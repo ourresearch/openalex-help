@@ -1,6 +1,6 @@
 # Table of contents
 
-* [Overview](README.md)
+* [OpenAlex](README.md)
 * [Quickstart tutorial](quickstart-tutorial.md)
 
 ## The Data

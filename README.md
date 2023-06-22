@@ -1,22 +1,18 @@
-# Overview
+# OpenAlex
 
 <figure><img src=".gitbook/assets/OpenAlex-logo-5.png" alt=""><figcaption></figcaption></figure>
 
-**OpenAlex** is a free and open catalog of the global research system. It's named after the [ancient Library of Alexandria](https://en.wikipedia.org/wiki/Library\_of\_Alexandria) and made by the nonprofit [OurResearch](https://ourresearch.org/).
+[**OpenAlex** ](https://openalex.org)is a free and open catalog of the global research system. It's named after the [ancient Library of Alexandria](https://en.wikipedia.org/wiki/Library\_of\_Alexandria) and made by the nonprofit [OurResearch](https://ourresearch.org/).
+
+These are the help pages for OpenAlex, containing information about the data, the website, and the background concepts. To learn about the API, the data snapshot, and other fun stuff, head over to our [technical documentation.](https://docs.openalex.org)
+
+## What is OpenAlex?
 
 The heart of OpenAlex is the [OpenAlex dataset](broken-reference), which describes scholarly [_entities_ ](the-data/entities-overview.md)and how those entities are connected to each other. Types of entities include [works](the-data/works/), [authors](the-data/authors/), [sources](the-data/sources.md), [institutions](the-data/institutions.md), [concepts](the-data/concepts.md), [publishers](the-data/publishers.md), and [funders](the-data/funders.md).
 
 Together, these make a huge web (or more technically, heterogeneous directed [graph](https://en.wikipedia.org/wiki/Graph\_theory)) of hundreds of millions of entities and billions of connections between them all.
 
-We offer three ways to make use of this dataset:
-
-1. [**The web interface** ](broken-reference)is the quickest way to get started. It lets you explore, search, and analyze the data with an intuitive visual app.
-2. [**The API** ](broken-reference)offers a more powerful way to access the data, but requires some coding experience. It is a fast, modern REST API with generous limits and no authentication requirements. The web interface is built entirely on the API.
-3. [**The data snapshot** ](broken-reference)is a full dump of the dataset available to download, which we update about once per month.
-
-**All three of these options are free.**
-
-We also offer [**OpenAlex Premium,** ](https://openalex.org/pricing)which includes services above and beyond the free tier, such as a higher daily limit for the API, and more frequent data updates. This is also a great way to support our mission and help keep us sustainable, so please check it out if you enjoy OpenAlex.
+This type of data is a valuable resource to institutions, researchers, governments, publishers, funders, and anyone else interested in global research and scholarly communication. We offer the data freely so that its value can be shared. Using the website, anyone can get started right away exploring the data to learn about all sorts of things, from individual papers, to global research trends.
 
 ## Why OpenAlex?
 
@@ -29,6 +25,12 @@ OpenAlex is:
 * _Open —_ Our complete dataset is free under the CC0 license, which allows for transparency and reuse.
 
 Many people and organizations have already found great value using OpenAlex. Have a look at the [Testimonials](https://openalex.org/testimonials) to hear what they've said!
+
+## Who are we?
+
+[OurResearch ](https://ourresearch.org/)is a nonprofit that builds tools for Open Science, including OpenAlex, [Unpaywall](https://unpaywall.org/), and [Unsub](https://unsub.org/), among [others](https://ourresearch.org/projects). Our open-source tools are used by millions every day, in universities, businesses, and libraries worldwide, to uncover, connect, and analyze research products.
+
+Openness is one of our core values, and so we strive to bake it into everything we do—including our data, code, software, and organizational practices.
 
 ## Contact
 
