@@ -1,16 +1,8 @@
----
-description: Query the OpenAlex dataset using the magic of The Internet
----
-
 # Quickstart tutorial
 
 ## Quickstart tutorial
 
-Lets use the OpenAlex API to get journal articles and books published by authors at Stanford University. We'll limit our search to articles published between 2010 and 2020. Since OpenAlex is free and openly available, these examples work without any login or account creation. :thumbsup:
-
-{% hint style="info" %}
-If you open these examples in a web browser, they will look _much_ better if you have a browser plug-in such as [JSONVue](https://chrome.google.com/webstore/detail/jsonvue/chklaanhfefbnpoihckbnefhakgolnmc) installed.
-{% endhint %}
+When you first visit openalex.org, you will see a search box where you can begin your exploration.
 
 #### 1. Find the institution
 
