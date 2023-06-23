@@ -10,9 +10,9 @@ Works are scholarly documents like journal articles, books, datasets, and theses
 
 OpenAlex indexes over 240M works, with about 50,000 added daily.
 
-This is what a work looks like in OpenAlex:
+This is what a work looks like in OpenAlex. Click on a shaded region to learn more:
 
-{% embed url="https://github.com/ourresearch/openalex-help/raw/main/work-screenshot.drawio" fullWidth="true" %}
+{% embed url="https://github.com/ourresearch/openalex-help/raw/main/diagrams/work-screenshot.drawio" %}
 
 ### Abstract
 
