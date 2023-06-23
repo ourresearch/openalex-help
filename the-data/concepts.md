@@ -13,7 +13,7 @@ OpenAlex indexes about 65k concepts. You can get a concept from the OpenAlex API
 * Get the concept with OpenAlex ID `C41008148`\
   [https://api.openalex.org/concepts/C41008148](https://api.openalex.org/concepts/C41008148)
 
-The [Canonical External ID](../the-api/get-single-entities/#canonical-external-ids) for OpenAlex concepts is the Wikidata ID, and each of our concepts has one, because all OpenAlex concepts are also Wikidata concepts.
+The [Canonical External ID](broken-reference) for OpenAlex concepts is the Wikidata ID, and each of our concepts has one, because all OpenAlex concepts are also Wikidata concepts.
 
 Concepts are hierarchical, like a tree. There are 19 root-level concepts, and six layers of descendants branching out from them, containing about 65 thousand concepts all told. This concept tree is a modified version of [the one created by MAG](https://arxiv.org/abs/1805.12216). You can view all the concepts and their position in the tree [as a spreadsheet here](https://docs.google.com/spreadsheets/d/1LBFHjPt4rj\_9r0t0TTAlT68NwOtNH8Z21lBMsJDMoZg/edit#gid=1473310811). About 85% of works are tagged with at least one concept (here's the [breakdown of concept counts per work](https://docs.google.com/spreadsheets/d/17DoJjyl1XVNZdVWs7fUy91z69U2tD8qtnBsaqJ-Zigo/edit#gid=0)).
 
@@ -128,7 +128,7 @@ All the external identifiers that we know about for this concept.
 IDs are expressed as URIs whenever possible. Possible ID types:
 
 * `mag` (_Integer:_ this concept's [Microsoft Academic Graph](https://www.microsoft.com/en-us/research/project/microsoft-academic-graph/) ID)
-* `openalex` (_String:_ this concept's [OpenAlex ID](../the-api/get-single-entities/#the-openalex-id). Same as [`Concept.id`](https://github.com/ourresearch/openalex-docs/blob/sandbox/the-data/concepts/concept-object.md#id))
+* `openalex` (_String:_ this concept's [OpenAlex ID](broken-reference). Same as [`Concept.id`](https://github.com/ourresearch/openalex-docs/blob/sandbox/the-data/concepts/concept-object.md#id))
 * `umls_cui` (_List:_ this concept's [Unified Medical Language System](https://www.nlm.nih.gov/research/umls/index.html) [Concept Unique Identifiers](https://www.nlm.nih.gov/research/umls/new\_users/online\_learning/Meta\_005.html))
 * `umls_aui` (_List:_ this concept's [Unified Medical Language System](https://www.nlm.nih.gov/research/umls/index.html) [Atom Unique Identifiers](https://www.nlm.nih.gov/research/umls/new\_users/online\_learning/Meta\_005.html))
 * `wikidata` (_String:_ this concept's [Wikidata ID](https://www.wikidata.org/wiki/Wikidata:Identifiers). Same as [`Concept.wikidata`](https://github.com/ourresearch/openalex-docs/blob/sandbox/the-data/concepts/concept-object.md#wikidata))
@@ -255,7 +255,7 @@ updated_date: "2021-12-25T14:04:30.578837"
 
 The Wikidata ID for this concept.
 
-This is the [Canonical External ID](../the-api/get-single-entities/#canonical-external-ids) for concepts.
+This is the [Canonical External ID](broken-reference) for concepts.
 
 {% hint style="info" %}
 _All_ OpenAlex concepts have a Wikidata ID, because all OpenAlex concepts are also Wikidata concepts.
@@ -298,6 +298,6 @@ Using the API, you can fetch, filter, search, and group data about concepts:
 
 * [Get a single concept](https://github.com/ourresearch/openalex-docs/blob/sandbox/the-data/concepts/get-a-single-concept.md)
 * [Get lists of concepts](https://github.com/ourresearch/openalex-docs/blob/sandbox/the-data/concepts/get-lists-of-concepts.md)
-* [Filter concepts](../the-api/filters/filter-concepts.md)
+* [Filter concepts](broken-reference)
 * [Search concepts](https://github.com/ourresearch/openalex-docs/blob/sandbox/the-data/concepts/search-concepts.md)
 * [Group concepts](https://github.com/ourresearch/openalex-docs/blob/sandbox/the-data/concepts/group-concepts.md)

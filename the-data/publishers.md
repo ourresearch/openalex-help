@@ -13,7 +13,7 @@ OpenAlex indexes about 10,000 publishers. You can get a publisher from the OpenA
 * Get the publisher Elsevier with OpenAlex ID `P4310311775`\
   [https://api.openalex.org/publishers/P4310311775](https://api.openalex.org/publishers/P4310311775)
 
-Our publisher data is closely tied to the publisher information in Wikidata. So the [Canonical External ID](../the-api/get-single-entities/#canonical-external-ids) for OpenAlex publishers is a Wikidata ID, and almost every publisher has one. Publishers are linked to sources through the [`host_organization`](https://github.com/ourresearch/openalex-docs/blob/sandbox/the-data/sources/source-object.md#host\_organization) field.
+Our publisher data is closely tied to the publisher information in Wikidata. So the [Canonical External ID](broken-reference) for OpenAlex publishers is a Wikidata ID, and almost every publisher has one. Publishers are linked to sources through the [`host_organization`](https://github.com/ourresearch/openalex-docs/blob/sandbox/the-data/sources/source-object.md#host\_organization) field.
 
 ## Publisher attributes
 
@@ -120,7 +120,7 @@ All the external identifiers that we know about for this publisher.
 
 IDs are expressed as URIs whenever possible. Possible ID types:
 
-* `openalex` _String:_ this publishers's [OpenAlex ID](../the-api/get-single-entities/#the-openalex-id)
+* `openalex` _String:_ this publishers's [OpenAlex ID](broken-reference)
 * `ror` _String:_ this publisher's ROR ID
 * `wikidata` _String:_ this publisher's [Wikidata ID](https://www.wikidata.org/wiki/Wikidata:Identifiers)
 
@@ -184,7 +184,7 @@ List of roles that this organization has, such as Institution, Funder, and Publi
 
 In many cases, a single organization does not fit neatly into one role. For example, Yale University is a single organization that is a research university, funds research studies, and publishes an academic journal. The `roles` property links the OpenAlex entities together for a single organization, and includes counts for the works associated with each role.
 
-Each `role` object in the list includes the `role` (one of `institution`, `funder`, or `publisher`), the `id` ([OpenAlex ID](../the-api/get-single-entities/#the-openalex-id)), and the `works_count`.
+Each `role` object in the list includes the `role` (one of `institution`, `funder`, or `publisher`), the `id` ([OpenAlex ID](broken-reference)), and the `works_count`.
 
 The `roles` list of an entity ([Funder](publishers.md), [Publisher](publishers.md), or [Institution](institutions.md)) always includes itself. In the case where an organization only has one role, the `roles` will be a list of length one, with itself as the only item.
 
@@ -260,6 +260,6 @@ Using the API, you can fetch, filter, search, and group data about publishers:
 
 * [Get a single publisher](https://github.com/ourresearch/openalex-docs/blob/sandbox/the-data/publishers/get-a-single-publisher.md)
 * [Get lists of publishers](https://github.com/ourresearch/openalex-docs/blob/sandbox/the-data/publishers/get-lists-of-publishers.md)
-* [Filter publishers](../the-api/filters/filter-publishers.md)
+* [Filter publishers](broken-reference)
 * [Search publishers](https://github.com/ourresearch/openalex-docs/blob/sandbox/the-data/publishers/search-publishers.md)
 * [Group publishers](https://github.com/ourresearch/openalex-docs/blob/sandbox/the-data/publishers/group-publishers.md)

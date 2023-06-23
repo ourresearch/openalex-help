@@ -13,7 +13,7 @@ OpenAlex indexes about 226,000 sources. There are several types, including journ
 * Search for the journal Nature\
   [`https://api.openalex.org/sources?search=nature`](https://api.openalex.org/sources?search=nature)
 
-The [Canonical External ID](../the-api/get-single-entities/#canonical-external-ids) for sources is ISSN-L, which is a special "main" ISSN assigned to every sources (sources tend to have multiple ISSNs). About 90% of sources in OpenAlex have an ISSN-L or ISSN.
+The [Canonical External ID](broken-reference) for sources is ISSN-L, which is a special "main" ISSN assigned to every sources (sources tend to have multiple ISSNs). About 90% of sources in OpenAlex have an ISSN-L or ISSN.
 
 Our information about sources comes from Crossref, the ISSN Network, and MAG. These datasets are joined automatically where possible, but there’s also a lot of manual combining involved. We do not curate journals, so any journal that is available in the data sources should make its way into OpenAlex.
 
@@ -199,7 +199,7 @@ IDs are expressed as URIs whenever possible. Possible ID types:
 * `issn` (_List:_ a list of this source's ISSNs. Same as [`Source.issn`](https://github.com/ourresearch/openalex-docs/blob/sandbox/the-data/sources/source-object.md#issn))
 * `issn_l` (_String:_ this source's ISSN-L. Same as [`Source.issn_l`](https://github.com/ourresearch/openalex-docs/blob/sandbox/the-data/sources/source-object.md#issn\_l))
 * `mag` (_Integer:_ this source's [Microsoft Academic Graph](https://www.microsoft.com/en-us/research/project/microsoft-academic-graph/) ID)
-* `openalex` (_String:_ this source's [OpenAlex ID](../the-api/get-single-entities/#the-openalex-id). Same as [`Source.id`](https://github.com/ourresearch/openalex-docs/blob/sandbox/the-data/sources/source-object.md#id))
+* `openalex` (_String:_ this source's [OpenAlex ID](broken-reference). Same as [`Source.id`](https://github.com/ourresearch/openalex-docs/blob/sandbox/the-data/sources/source-object.md#id))
 * `wikidata` (_String_: this source's [Wikidata](https://www.wikidata.org/wiki/Wikidata:Main\_Page) ID)
 
 {% hint style="info" %}
@@ -263,7 +263,7 @@ The ISSN-L identifying this source.
 
 ISSN is a global and unique ID for serial publications. However, different media versions of a given publication (e.g., print and electronic) often have _different_ ISSNs. This is why we can't have nice things. The [ISSN-L](https://en.wikipedia.org/wiki/International\_Standard\_Serial\_Number#Linking\_ISSN) or Linking ISSN solves the problem by designating a single canonical ISSN for all media versions of the title. It's _usually_ the same as the print ISSN.
 
-This is the [Canonical External ID](../the-api/get-single-entities/#canonical-external-ids) for sources.
+This is the [Canonical External ID](broken-reference) for sources.
 
 ```json
 issn_l: "2167-8359"
@@ -396,8 +396,8 @@ The `DehydratedSource` is stripped-down `Source` object, with most of its proper
 
 Using the API, you can fetch, filter, search, and group data about sources:
 
-* [Get a single source](../the-api/get-single-entities/get-a-single-source.md)
-* [Get lists of sources](../the-api/get-lists-of-entities/get-lists-of-sources.md)
-* [Filter sources](../the-api/filters/filter-sources.md)
+* [Get a single source](broken-reference)
+* [Get lists of sources](broken-reference)
+* [Filter sources](broken-reference)
 * [Search sources](https://github.com/ourresearch/openalex-docs/blob/sandbox/the-data/sources/search-sources.md)
 * [Group sources](https://github.com/ourresearch/openalex-docs/blob/sandbox/the-data/sources/group-sources.md)

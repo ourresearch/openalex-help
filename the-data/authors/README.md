@@ -12,7 +12,7 @@ OpenAlex indexes about 213M authors, with thousands added daily. You can get an 
 
 * Get the author with ORCID `https://orcid.org/0000-0002-1298-3089` [https://api.openalex.org/authors/https://orcid.org/0000-0002-1298-3089](https://api.openalex.org/authors/https://orcid.org/0000-0002-1298-3089)
 
-The [Canonical External ID](../../the-api/get-single-entities/#canonical-external-ids) for authors is ORCID; only a small percentage of authors have one, but the percentage is higher for more recent works.
+The [Canonical External ID](broken-reference) for authors is ORCID; only a small percentage of authors have one, but the percentage is higher for more recent works.
 
 Our information about authors comes from MAG, Crossref, PubMed, ORCID, and publisher websites. We use an algorithm to [disambiguate](https://en.wikipedia.org/wiki/Author\_name\_disambiguation) authors; this uses an author’s name, their publication record, their citation patterns, and (where available) their ORCID.
 
@@ -102,7 +102,7 @@ All the external identifiers that we know about for this author.
 IDs are expressed as URIs whenever possible. Possible ID types:
 
 * `mag` (_Integer:_ this author's [Microsoft Academic Graph](https://www.microsoft.com/en-us/research/project/microsoft-academic-graph/) ID)
-* `openalex` (_String:_ this author's [OpenAlex ID](../../the-api/get-single-entities/#the-openalex-id). Same as [`Author.id`](https://github.com/ourresearch/openalex-docs/blob/sandbox/the-data/authors/author-object.md#id))
+* `openalex` (_String:_ this author's [OpenAlex ID](broken-reference). Same as [`Author.id`](https://github.com/ourresearch/openalex-docs/blob/sandbox/the-data/authors/author-object.md#id))
 * `orcid` (_String:_ this author's [ORCID](https://orcid.org/) [ID](https://en.wikipedia.org/wiki/RAS\_syndrome). Same as [`Author.orcid`](https://github.com/ourresearch/openalex-docs/blob/sandbox/the-data/authors/author-object.md#orcid))
 * `scopus` (_String_: this author's [Scopus author ID](https://utas.libguides.com/ManageID/Scopus))
 * `twitter` (_String:_ this author's Twitter handle)
@@ -143,7 +143,7 @@ last_known_institution: {
 
 The ORCID ID for this author.
 
-ORCID is a global and unique ID for authors. This is the [Canonical external ID](../../the-api/get-single-entities/#canonical-external-ids) for authors.
+ORCID is a global and unique ID for authors. This is the [Canonical external ID](broken-reference) for authors.
 
 {% hint style="warning" %}
 Compared to other Canonical IDs, ORCID coverage is relatively low in OpenAlex, because ORCID adoption in the wild has been slow compared with DOI, for example. This is particularly an issue when dealing with older works and authors.
@@ -248,6 +248,6 @@ Using the API, you can fetch, filter, search, and group data about authors:
 
 * [Get a single author](https://github.com/ourresearch/openalex-docs/blob/sandbox/the-data/authors/get-a-single-author.md)
 * [Get lists of authors](https://github.com/ourresearch/openalex-docs/blob/sandbox/the-data/authors/get-lists-of-authors.md)
-* [Filter authors](../../the-api/filters/filter-authors.md)
+* [Filter authors](broken-reference)
 * [Search authors](https://github.com/ourresearch/openalex-docs/blob/sandbox/the-data/authors/search-authors.md)
 * [Group authors](https://github.com/ourresearch/openalex-docs/blob/sandbox/the-data/authors/group-authors.md)

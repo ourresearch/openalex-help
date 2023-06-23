@@ -20,6 +20,8 @@ Works are linked to other works via the [`referenced_works`](https://github.com/
 
 \{% @test-integration/test-integration url="https://alpha.openalex.org/works?filter=ids.openalex:W4229010617\&page=1" %\}
 
+<figure><img src="../../.gitbook/assets/tmplocations_screenshot_annotate.svg" alt=""><figcaption></figcaption></figure>
+
 ## Work attributes
 
 ### `abstract_inverted_index`
@@ -255,7 +257,7 @@ concepts: [
 
 The corresponding authors for this work.
 
-This is a list of the [OpenAlex IDs](../../the-api/get-single-entities/#the-openalex-id) of any authors for which [authorships.is\_corresponding](https://github.com/ourresearch/openalex-docs/blob/sandbox/the-data/works/authorship-object.md#is\_corresponding) is `true`.
+This is a list of the [OpenAlex IDs](broken-reference) of any authors for which [authorships.is\_corresponding](https://github.com/ourresearch/openalex-docs/blob/sandbox/the-data/works/authorship-object.md#is\_corresponding) is `true`.
 
 ```json
 corresponding_author_ids: ["https://openalex.org/A2109306456"]
@@ -265,7 +267,7 @@ corresponding_author_ids: ["https://openalex.org/A2109306456"]
 
 The institutions of the corresponding authors for this work.
 
-This is a list of the [OpenAlex IDs](../../the-api/get-single-entities/#the-openalex-id) of any institutions found within an `authorship` for which [authorships.is\_corresponding](https://github.com/ourresearch/openalex-docs/blob/sandbox/the-data/works/authorship-object.md#is\_corresponding) is `true`.
+This is a list of the [OpenAlex IDs](broken-reference) of any institutions found within an `authorship` for which [authorships.is\_corresponding](https://github.com/ourresearch/openalex-docs/blob/sandbox/the-data/works/authorship-object.md#is\_corresponding) is `true`.
 
 ```json
 corresponding_institution_ids: ["https://openalex.org/I4210123613"]
@@ -321,7 +323,7 @@ display_name: "The state of OA: a large-scale analysis of the prevalence and imp
 
 The DOI (digital object identifier) for the work.
 
-This is the [Canonical External ID](../../the-api/get-single-entities/#canonical-external-ids) for works.
+This is the [Canonical External ID](broken-reference) for works.
 
 Occasionally, a work has more than one DOI--for example, there might be one DOI for a preprint version hosted on [bioRxiv](https://www.biorxiv.org/), and another DOI for the [published version](./#version). However, this field always has just one DOI, the DOI for the published work.
 
@@ -509,7 +511,7 @@ A URL that will get you the groups of words and phrases (n-grams) that make up a
 This information is obtained from the [Internet Archive](https://archive.org/details/GeneralIndex). See [The Ngram object](./#the-ngram-object) and [Get N-grams](https://github.com/ourresearch/openalex-docs/blob/sandbox/the-data/get-n-grams.md) for background on n-grams, how we use them, and what this API call returns.
 
 {% hint style="info" %}
-`ngrams_url` is only displayed in the API and is not included in the [OpenAlex snapshot](../../the-data-snapshot/openalex-snapshot.md).
+`ngrams_url` is only displayed in the API and is not included in the [OpenAlex snapshot](broken-reference).
 {% endhint %}
 
 ```json
@@ -682,7 +684,7 @@ version: "publishedVersion"
 ## The `Ngram` object
 
 {% hint style="info" %}
-Ngram objects are only available in the API and are not included in the [OpenAlex snapshot](../../the-data-snapshot/openalex-snapshot.md).
+Ngram objects are only available in the API and are not included in the [OpenAlex snapshot](broken-reference).
 {% endhint %}
 
 ### ngram
@@ -783,9 +785,9 @@ oa_url: "https://peerj.com/articles/4375.pdf"
 
 Using the API, you can fetch, filter, search, and group data about works:
 
-* [Get a single work](../../the-api/get-single-entities/get-a-single-work.md)
-* [Get lists of works](../../the-api/get-lists-of-entities/get-lists-of-works.md)
-* [Filter works](../../the-api/filters/filter-works.md)
-* [Search for works](../../the-api/search/search-works.md)
-* [Group works](../../the-api/get-groups-of-entities/group-works.md)
+* [Get a single work](broken-reference)
+* [Get lists of works](broken-reference)
+* [Filter works](broken-reference)
+* [Search for works](broken-reference)
+* [Group works](broken-reference)
 * [Get N-grams](get-n-grams.md)

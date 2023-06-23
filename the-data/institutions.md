@@ -13,7 +13,7 @@ OpenAlex indexes about 109,000 institutions. You can get an institution from the
 * Get the institution with ROR ID `https://ror.org/00jmfr291`\
   [https://api.openalex.org/institutions/https://ror.org/00jmfr291](https://api.openalex.org/institutions/https://ror.org/00jmfr291)
 
-The [Canonical External ID](../the-api/get-single-entities/#canonical-external-ids) for institutions is the ROR ID. All institutions in OpenAlex have ROR IDs.
+The [Canonical External ID](broken-reference) for institutions is the ROR ID. All institutions in OpenAlex have ROR IDs.
 
 Our information about institutions comes from metadata found in Crossref, PubMed, ROR, MAG, and publisher websites. In order to link institutions to works, we parse every affiliation listed by every author. These affiliation strings can be quite messy, so we’ve trained an algorithm to interpret them and extract the actual institutions with reasonably high reliability.
 
@@ -183,7 +183,7 @@ IDs are expressed as URIs whenever possible. Possible ID types:
 
 * `grid` (_String:_ this institution's [GRID](https://www.grid.ac/) [ID](https://en.wikipedia.org/wiki/RAS\_syndrome))
 * `mag` (_Integer:_ this institution's [Microsoft Academic Graph](https://www.microsoft.com/en-us/research/project/microsoft-academic-graph/) ID)
-* `openalex` (_String:_ this institution's [OpenAlex ID](../the-api/get-single-entities/#the-openalex-id). Same as [`Institution.id`](https://github.com/ourresearch/openalex-docs/blob/sandbox/the-data/institutions/institution-object.md#id))
+* `openalex` (_String:_ this institution's [OpenAlex ID](broken-reference). Same as [`Institution.id`](https://github.com/ourresearch/openalex-docs/blob/sandbox/the-data/institutions/institution-object.md#id))
 * `ror` (_String:_ this institution's ROR ID. Same as [`Institution.ror`](https://github.com/ourresearch/openalex-docs/blob/sandbox/the-data/institutions/institution-object.md#ror))
 * `wikipedia` (_String:_ this institution's Wikipedia page URL)
 * `wikidata` (_String:_ this institution's [Wikidata ID](https://www.wikidata.org/wiki/Wikidata:Identifiers))
@@ -266,7 +266,7 @@ List of roles that this organization has, such as Institution, Funder, and Publi
 
 In many cases, a single organization does not fit neatly into one role. For example, Yale University is a single organization that is a research university, funds research studies, and publishes an academic journal. The `roles` property links the OpenAlex entities together for a single organization, and includes counts for the works associated with each role.
 
-Each `role` object in the list includes the `role` (one of `institution`, `funder`, or `publisher`), the `id` ([OpenAlex ID](../the-api/get-single-entities/#the-openalex-id)), and the `works_count`.
+Each `role` object in the list includes the `role` (one of `institution`, `funder`, or `publisher`), the `id` ([OpenAlex ID](broken-reference)), and the `works_count`.
 
 The `roles` list of an entity ([Funder](institutions.md), [Publisher](publishers.md), or [Institution](institutions.md)) always includes itself. In the case where an organization only has one role, the `roles` will be a list of length one, with itself as the only item.
 
@@ -296,7 +296,7 @@ The ROR ID for this institution.
 
 The [ROR (Research Organization Registry)](https://ror.org/) identifier is a globally unique ID for research organization. [ROR is the successor to GRiD](https://www.digital-science.com/press-release/grid-passes-torch-to-ror/), which is no longer being updated.
 
-The ROR ID is the [Canonical External ID](../the-api/get-single-entities/#canonical-external-ids) for institutions.
+The ROR ID is the [Canonical External ID](broken-reference) for institutions.
 
 ```json
 ror: "https://ror.org/0130frc33"
@@ -407,6 +407,6 @@ Using the API, you can fetch, filter, search, and group data about institutions:
 
 * [Get a single institution](https://github.com/ourresearch/openalex-docs/blob/sandbox/the-data/institutions/get-a-single-institution.md)
 * [Get lists of institutions](https://github.com/ourresearch/openalex-docs/blob/sandbox/the-data/institutions/get-lists-of-institutions.md)
-* [Filter institutions](../the-api/filters/filter-institutions.md)
+* [Filter institutions](broken-reference)
 * [Search institutions](https://github.com/ourresearch/openalex-docs/blob/sandbox/the-data/institutions/search-institutions.md)
 * [Group institutions](https://github.com/ourresearch/openalex-docs/blob/sandbox/the-data/institutions/group-institutions.md)

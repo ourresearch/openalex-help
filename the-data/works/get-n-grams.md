@@ -6,15 +6,15 @@ description: N-grams are groups of sequential words that occur in the text of a 
 
 ## Get N-grams
 
-N-grams list the words and phrases that occur in the full text of a [`Work`](broken-reference). We obtain them from Internet Archive's publicly (and generously :clap:) available [General Index](https://archive.org/details/GeneralIndex) and use them to enable fulltext searches on the Works that have them, through both the [`fulltext.search`](../../the-api/filters/filter-works.md#fulltext.search) _filter_, and as an element of the more holistic [`search`](../../the-api/search/search-works.md#works-full-search) _parameter_.
+N-grams list the words and phrases that occur in the full text of a [`Work`](broken-reference). We obtain them from Internet Archive's publicly (and generously :clap:) available [General Index](https://archive.org/details/GeneralIndex) and use them to enable fulltext searches on the Works that have them, through both the [`fulltext.search`](broken-reference) _filter_, and as an element of the more holistic [`search`](broken-reference) _parameter_.
 
 Note that while n-grams are derived from the fulltext of a Work, the presence of n-grams for a given Work doesn't imply that the fulltext is available to you, the reader. It only means the fulltext was available to Internet Archive for indexing. [`Work.open_access`](broken-reference) is the place to go for information on public fulltext availability.
 
 ### API Endpoint
 
-In addition to enabling fulltext search capabilities, a Work's n-grams are viewable directly through an endpoint that accepts either an [OpenAlex ID](../../the-api/get-single-entities/#the-openalex-id) or a DOI.
+In addition to enabling fulltext search capabilities, a Work's n-grams are viewable directly through an endpoint that accepts either an [OpenAlex ID](broken-reference) or a DOI.
 
-Unlike other API endpoints, n-grams are cached via CDN, which means this one is super fast, and you can call it as fast as you want - [rate limits](../../the-api/rate-limits-and-authentication.md) don't apply.
+Unlike other API endpoints, n-grams are cached via CDN, which means this one is super fast, and you can call it as fast as you want - [rate limits](broken-reference) don't apply.
 
 * Get n-grams for [W2023271753](https://openalex.org/W2023271753):\
   [`https://api.openalex.org/works/W2023271753/ngrams`](https://api.openalex.org/works/W2023271753/ngrams)\
@@ -47,7 +47,7 @@ The response is a list of [Ngram objects](get-n-grams.md#the-ngram-object), sort
 }
 ```
 
-The ID-based link is provided in [`Work.ngrams_url`](broken-reference) if n-grams are available. Works with n-grams can be found using the [`Work.has_ngrams`](../../the-api/filters/filter-works.md#has\_ngrams) filter, which can be [combined with other filters](broken-reference) using logical expressions.
+The ID-based link is provided in [`Work.ngrams_url`](broken-reference) if n-grams are available. Works with n-grams can be found using the [`Work.has_ngrams`](broken-reference) filter, which can be [combined with other filters](broken-reference) using logical expressions.
 
 ### Fulltext Coverage
 
