@@ -1,0 +1,19 @@
+name: svg-iframe-display
+title: svg-iframe-display
+organization: q9WAeozYo93Avo9VPiOf
+visibility: private
+description: ''
+script: src/index.tsx
+scopes:
+  - space:content:read
+  - space:content:write
+  - space:metadata:read
+  - space:metadata:write
+  - space:views:read
+blocks:
+  - id: svg-iframe-display
+    title: svg-iframe-display
+    description: My GitBook Integration
+    urlUnfurl:
+      - https://raw.githubusercontent.com/ourresearch/*
+secrets: {}
