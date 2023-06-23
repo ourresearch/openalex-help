@@ -1,6 +1,6 @@
 # Locations
 
-The locations online where a work lives, often in different versions.
+The  locations online where a work lives, often in different versions.
 
 Locations are meant to capture the way that a work exists in different versions. So, for example, a work may have a version that has been peer-reviewed and published in a journal (the [version of record](https://en.wikipedia.org/wiki/Version\_of\_record)). This would be one of the work's locations. It may have another version available on a preprint server like [bioRxiv](https://www.biorxiv.org/)—this version having been posted before it was accepted for publication. This would be another one of the work's locations.
 
