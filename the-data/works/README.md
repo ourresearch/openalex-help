@@ -14,6 +14,8 @@ This is what a work looks like in OpenAlex:
 
 <img src="../../.gitbook/assets/file.excalidraw (1).svg" alt="" class="gitbook-drawing">
 
+<img src="../../.gitbook/assets/tmplocations_screenshot_annotate.svg" alt="" class="gitbook-drawing">
+
 ## Work attributes
 
 ### `abstract_inverted_index`
