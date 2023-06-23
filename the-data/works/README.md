@@ -8,11 +8,11 @@ description: Journal articles, books, datasets, and theses
 
 Works are scholarly documents like journal articles, books, datasets, and theses.
 
-OpenAlex indexes over 240M works, with about 50,000 added daily.&#x20;
+OpenAlex indexes over 240M works, with about 50,000 added daily.
 
 This is what a work looks like in OpenAlex:
 
-<img src="../../.gitbook/assets/file.excalidraw (1).svg" alt="" class="gitbook-drawing" style="pointer-events: none;">
+{% embed url="https://raw.githubusercontent.com/ourresearch/openalex-help/main/.gitbook/assets/tmplocations_screenshot_annotate.svg" %}
 
 ## Work attributes
 
