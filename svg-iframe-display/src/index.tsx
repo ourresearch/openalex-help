@@ -46,14 +46,9 @@ import {
       return (
         <block>
             <webframe
-              source={{ url: `https://www.draw.io?lightbox=1&edit=_blank#Uhttps://raw.githubusercontent.com/ourresearch/openalex-help/main/.gitbook/assets/locations_screenshot_annotate.drawio` }}
-              aspectRatio={655 / 1030}
+              source={{ url: `https://www.draw.io?lightbox=1&edit=_blank#Uhttps://github.com/ourresearch/openalex-help/raw/main/work-screenshot.drawio` }}
+              aspectRatio={1}
             />
-          <image source={{
-            url: element.state.url
-          }} 
-          aspectRatio={655 / 1030}
-          />
         </block>
       );
     },
