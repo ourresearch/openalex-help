@@ -12,9 +12,7 @@ OpenAlex indexes over 240M works, with about 50,000 added daily.
 
 This is what a work looks like in OpenAlex:
 
-d
-
-{% embed url="https://raw.githubusercontent.com/ourresearch/eee" %}
+{% embed url="https://github.com/ourresearch/openalex-help/raw/main/work-screenshot.drawio" %}
 
 #### Abstract
 
