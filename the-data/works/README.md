@@ -12,9 +12,9 @@ OpenAlex indexes over 240M works, with about 50,000 added daily.
 
 This is what a work looks like in OpenAlex:
 
-{% embed url="https://raw.githubusercontent.com/ourresearch/openalex-help/main/.gitbook/assets/tmplocations_screenshot_annotate.svg" %}
+d
 
-<figure><img src="../../.gitbook/assets/tmplocations_screenshot_annotate.svg" alt=""><figcaption></figcaption></figure>
+{% embed url="https://raw.githubusercontent.com/ourresearch/openalex-help/main/.gitbook/assets/tmplocations_screenshot_annotate.svg" %}
 
 ## Work attributes
 
