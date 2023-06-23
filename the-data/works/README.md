@@ -8,19 +8,11 @@ description: Journal articles, books, datasets, and theses
 
 Works are scholarly documents like journal articles, books, datasets, and theses.
 
-OpenAlex indexes over 240M works, with about 50,000 added daily. You can access a work in the OpenAlex API like this:
+OpenAlex indexes over 240M works, with about 50,000 added daily.&#x20;
 
-* Get the work with the DOI `https://doi.org/10.7717/peerj.4375` [`https://api.openalex.org/works/https://doi.org/10.7717/peerj.4375`](https://api.openalex.org/works/https://doi.org/10.7717/peerj.4375)
+This is what a work looks like in OpenAlex:
 
-That will return a [`Work`](https://github.com/ourresearch/openalex-docs/blob/sandbox/the-data/works/work-object/README.md) object, describing everything OpenAlex knows about the work with that ID. We collect new works from many sources, including Crossref, PubMed, institutional and discipline-specific repositories (eg, arXiv). Many older works come from the now-defunct Microsoft Academic Graph.
-
-Works are linked to other works via the [`referenced_works`](https://github.com/ourresearch/openalex-docs/blob/sandbox/the-data/works/work-object/README.md#referenced\_works) (outgoing citations), [`cited_by_api_url`](https://github.com/ourresearch/openalex-docs/blob/sandbox/the-data/works/work-object/README.md#cited\_by\_api\_url) (incoming citations), and [`related_works`](https://github.com/ourresearch/openalex-docs/blob/sandbox/the-data/works/work-object/README.md#related\_works) properties.
-
-\{% @test-integration/test-integration url="https://alpha.openalex.org/works?filter=ids.openalex:W4229010617\&page=1" %\}
-
-\{% @test-integration/test-integration url="https://alpha.openalex.org/works?filter=ids.openalex:W4229010617\&page=1" %\}
-
-<img src="../../.gitbook/assets/file.excalidraw.svg" alt="" class="gitbook-drawing">
+<img src="../../.gitbook/assets/file.excalidraw (1).svg" alt="" class="gitbook-drawing">
 
 ## Work attributes
 
