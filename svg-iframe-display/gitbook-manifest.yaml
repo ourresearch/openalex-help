@@ -15,5 +15,5 @@ blocks:
     title: svg-iframe-display
     description: My GitBook Integration
     urlUnfurl:
-      - https://raw.githubusercontent.com/ourresearch/*
+      - https://github.com/*
 secrets: {}

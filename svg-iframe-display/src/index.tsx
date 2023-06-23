@@ -46,7 +46,7 @@ import {
       return (
         <block>
             <webframe
-              source={{ url: `https://www.draw.io?lightbox=1&edit=_blank#Uhttps://github.com/ourresearch/openalex-help/raw/main/work-screenshot.drawio` }}
+              source={{ url: `https://www.draw.io?lightbox=1&edit=_blank#U${element.state.url}` }}
               aspectRatio={1}
             />
         </block>
