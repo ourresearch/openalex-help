@@ -20,7 +20,7 @@ Works are linked to other works via the [`referenced_works`](https://github.com/
 
 \{% @test-integration/test-integration url="https://alpha.openalex.org/works?filter=ids.openalex:W4229010617\&page=1" %\}
 
-<figure><img src="../../.gitbook/assets/tmplocations_screenshot_annotate.svg" alt=""><figcaption></figcaption></figure>
+<object data="../../.gitbook/assets/tmplocations_screenshot_annotate.svg" type="image/svg+xml"></object>
 
 ## Work attributes
 
