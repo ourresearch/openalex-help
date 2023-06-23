@@ -14,7 +14,13 @@ This is what a work looks like in OpenAlex:
 
 d
 
-{% embed url="https://raw.githubusercontent.com/ourresearch/openalex-help/main/.gitbook/assets/tmplocations_screenshot_annotate.svg" %}
+{% embed url="https://raw.githubusercontent.com/ourresearch/eee" %}
+
+#### Abstract
+
+This is the abstract of the work.
+
+OpenAlex has abstracts for X% of works.
 
 ## Work attributes
 
