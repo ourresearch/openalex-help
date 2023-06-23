@@ -15,11 +15,45 @@ OpenAlex indexes about 109,000 institutions. You can get an institution from the
 
 The [Canonical External ID](broken-reference) for institutions is the ROR ID. All institutions in OpenAlex have ROR IDs.
 
-Our information about institutions comes from metadata found in Crossref, PubMed, ROR, MAG, and publisher websites. In order to link institutions to works, we parse every affiliation listed by every author. These affiliation strings can be quite messy, so we’ve trained an algorithm to interpret them and extract the actual institutions with reasonably high reliability.
+Our information about institutions comes from several sources: Crossref, PubMed, ROR, MAG, and publisher websites. In order to link institutions to works, we parse every affiliation listed by every author. These affiliation strings can be quite messy, so we’ve trained an algorithm to interpret them and extract the actual institutions with reasonably high reliability.
 
 For a simple example: we will treat both “MIT, Boston, USA” and “Massachusetts Institute of Technology” as the same institution ([https://ror.org/042nb2s44](https://ror.org/042nb2s44)).
 
 Institutions are linked to works via the [`works.authorships`](https://github.com/ourresearch/openalex-docs/blob/sandbox/the-data/works/work-object/README.md#authorships) property.
+
+### Concepts
+
+The concepts most frequently applied to works affiliated with this institution.
+
+### Identifiers
+
+All the external identifiers that we know about for this institution.
+
+IDs are expressed as URIs whenever possible. Possible ID types:
+
+* Grid: This institution's [GRID](https://www.grid.ac/) [ID](https://en.wikipedia.org/wiki/RAS\_syndrome)
+* MAG: This institution's [Microsoft Academic Graph](https://www.microsoft.com/en-us/research/project/microsoft-academic-graph/) ID
+* OpenAlex: This institution's [OpenAlex ID](broken-reference). Same as [`Institution.id`](https://github.com/ourresearch/openalex-docs/blob/sandbox/the-data/institutions/institution-object.md#id)
+* ROR: This institution's ROR ID. Same as [`Institution.ror`](https://github.com/ourresearch/openalex-docs/blob/sandbox/the-data/institutions/institution-object.md#ror)
+* Wikipedia: This institution's Wikipedia page URL
+* Wikidata: This institution's [Wikidata ID](https://www.wikidata.org/wiki/Wikidata:Identifiers)
+
+{% hint style="info" %}
+Many institution are missing one or more ID types (either because we don't know the ID, or because it was never assigned). Keys for null IDs are not displayed.
+{% endhint %}
+
+### Roles
+
+List of roles that this organization has, such as Institution, Funder, and Publisher.
+
+In many cases, a single organization does not fit neatly into one role. For example, Yale University is a single organization that is a research university, funds research studies, and publishes an academic journal. The Roles you see in OpenAlex are meant to link the entities together for a single organization, and includes counts for the works associated with each role.
+
+### Summary statistics
+
+### Works
+
+### Works by year
+
 
 ## Institution attributes
 
