@@ -8,7 +8,6 @@
 * [Data overview](the-data/entities-overview.md)
 * [📄 Works](the-data/works/README.md)
 * [👩 Authors](the-data/authors/README.md)
-  * [Limitations](the-data/authors/limitations.md)
 * [📚 Sources](the-data/sources.md)
 * [🏫 Institutions](the-data/institutions.md)
 * [💡 Concepts](the-data/concepts.md)
