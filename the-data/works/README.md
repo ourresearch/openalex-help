@@ -22,6 +22,20 @@ This is the abstract of the work.
 
 OpenAlex has abstracts for X% of works.
 
+#### Authors
+
+The people who created this work.
+
+Each author in a work can come with one or more affiliated institutions.
+
+#### Identifiers
+
+All the external identifiers that we know about for this work.
+
+#### Locations
+
+All of the unique places where this work lives.
+
 ## Work attributes
 
 ### `abstract_inverted_index`
