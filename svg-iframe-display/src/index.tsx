@@ -46,7 +46,7 @@ import {
       return (
         <block>
             <webframe
-              source={{ url: `https://www.draw.io?lightbox=1&edit=_blank#U${element.state.url}` }}
+              source={{ url: `https://www.draw.io?lightbox=1&#U${element.state.url}` }}
               aspectRatio={1}
             />
         </block>

@@ -7,9 +7,6 @@
 
 * [Data overview](the-data/entities-overview.md)
 * [📄 Works](the-data/works/README.md)
-  * [Authorships](the-data/works/authorships.md)
-  * [Locations](the-data/works/locations.md)
-  * [Get N-grams](the-data/works/get-n-grams.md)
 * [👩 Authors](the-data/authors/README.md)
   * [Limitations](the-data/authors/limitations.md)
 * [📚 Sources](the-data/sources.md)
