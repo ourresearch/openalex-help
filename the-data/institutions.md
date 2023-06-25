@@ -38,7 +38,7 @@ IDs are expressed as URIs whenever possible. Possible ID types:
 * Wikidata: This institution's [Wikidata ID](https://www.wikidata.org/wiki/Wikidata:Identifiers)
 
 {% hint style="info" %}
-Many institution are missing one or more ID types (either because we don't know the ID, or because it was never assigned). Keys for null IDs are not displayed.
+Many institutions are missing one or more ID types (either because we don't know the ID, or because it was never assigned). Keys for null IDs are not displayed.
 {% endhint %}
 
 ### Roles
