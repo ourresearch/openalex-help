@@ -51,12 +51,19 @@ In many cases, a single organization does not fit neatly into one role. For exam
 
 Citation metrics for this institution.
 
+<div align="left">
+
+<figure><img src="../.gitbook/assets/Screenshot 2023-06-25 110211.png" alt="" width="368"><figcaption></figcaption></figure>
+
+</div>
+
 Here we show the _Cited by_ count, which is the total number of citations that this institution has ever received. In other words, this is the total number of citations to all papers to which at least one author has claimed affiliation to this institution.
 
 We also show three derived citation measures:
+
 * _H-index_: The [_h_-index](https://en.wikipedia.org/wiki/H-index) for this institution.
-* _2yr mean citedness_:: The 2-year mean citedness for this institution. Also known as [impact factor](https://en.wikipedia.org/wiki/Impact_factor).
-* _i10 index_: The [i-10 index](https://en.wikipedia.org/wiki/Author-level_metrics#i-10-index) for this institution.
+* _2yr mean citedness_: The 2-year mean citedness for this institution. Also known as [impact factor](https://en.wikipedia.org/wiki/Impact\_factor).
+* _i10 index_: The [i-10 index](https://en.wikipedia.org/wiki/Author-level\_metrics#i-10-index) for this institution.
 
 While the _h_-index and the i-10 index are normally author-level metrics and the 2-year mean citedness is normally a journal-level metric, they can be calculated for any set of papers, so we include them for institutions.
 
