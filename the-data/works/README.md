@@ -55,14 +55,3 @@ Below is an example of a work in OpenAlex ([https://openalex.org/W2807749226](ht
 <figure><img src="../../.gitbook/assets/locations_screenshot_annotate (2).png" alt=""><figcaption><p>One work can have multiple locations. These locations can differ in properties such as version and open-access status.</p></figcaption></figure>
 
 Locations are meant to cover anywhere that a given work can be found. This can include journals, proceedings, institutional repositories, and subject-area repositories like [arXiv ](https://arxiv.org/)and [bioRxiv](https://www.biorxiv.org/). If you are only interested in a certain one of these (like journal), you can use a [filter](broken-reference/) to specify the type of source. ([Learn more about types here.](https://github.com/ourresearch/openalex-docs/blob/sandbox/sources/source-object.md#type))
-
-### What's next
-
-Using the API, you can fetch, filter, search, and group data about works:
-
-* [Get a single work](broken-reference/)
-* [Get lists of works](broken-reference/)
-* [Filter works](broken-reference/)
-* [Search for works](broken-reference/)
-* [Group works](broken-reference/)
-* [Get N-grams](get-n-grams.md)
