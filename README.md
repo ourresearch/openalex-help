@@ -14,6 +14,8 @@ Together, these make a huge web (or more technically, heterogeneous directed [gr
 
 This type of data is a valuable resource to institutions, researchers, governments, publishers, funders, and anyone else interested in global research and scholarly communication. We offer the data freely so that its value can be shared. Using the website, anyone can get started right away exploring the data to learn about all sorts of things, from individual papers, to global research trends.
 
+On top of the data is the OpenAlex web interface, which lets you quickly get started exploring and analyzing the data by filtering the literature in various ways. You can jump right in, or look at the [quickstart tutorial](./quickstart-tutorial.md) to get going.
+
 ## Why OpenAlex?
 
 OpenAlex offers an open replacement for industry-standard scientific knowledge bases like Elsevier's Scopus and Clarivate's Web of Science. [Compared to](https://openalex.org/about#comparison) these paywalled services, OpenAlex offers significant advantages in terms of inclusivity, affordability, and availability.

@@ -2,6 +2,7 @@
 
 * [OpenAlex](README.md)
 * [Quickstart tutorial](quickstart-tutorial.md)
+* [Author profiles and accounts](author-profiles-and-accounts.md)
 
 ## The Data
 
@@ -17,14 +18,8 @@
   * [Continents](the-data/geo/continents.md)
   * [Regions](the-data/geo/regions.md)
 
-## The Website
-
-* [Website Overview](the-website/website-overview.md)
-* [Author profiles and accounts](the-website/author-profiles-and-accounts.md)
-
 ## Additional Help
 
 * [Tutorials](additional-help/tutorials.md)
 * [Report bugs](additional-help/report-bugs.md)
 * [FAQ](additional-help/faq.md)
-* [Glossary](additional-help/glossary.md)
