@@ -20,6 +20,7 @@
 
 ## Additional Help
 
+* [About us](additional-help/about-us.md)
 * [Tutorials](additional-help/tutorials.md)
 * [Report bugs](additional-help/report-bugs.md)
 * [FAQ](additional-help/faq.md)
