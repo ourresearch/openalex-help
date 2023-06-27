@@ -8,13 +8,13 @@ These are the help pages for OpenAlex, containing information about the data, th
 
 ## What is OpenAlex?
 
-The heart of OpenAlex is the [OpenAlex dataset](broken-reference), which describes scholarly [_entities_ ](the-data/entities-overview.md)and how those entities are connected to each other. Types of entities include [works](the-data/works/), [authors](the-data/authors/), [sources](the-data/sources.md), [institutions](the-data/institutions.md), [concepts](the-data/concepts.md), [publishers](the-data/publishers.md), and [funders](the-data/funders.md).
+The heart of OpenAlex is the [OpenAlex dataset](broken-reference/), which describes scholarly [_entities_ ](the-data/entities-overview.md)and how those entities are connected to each other. Types of entities include [works](the-data/works/), [authors](broken-reference), [sources](broken-reference), [institutions](the-data/institutions.md), [concepts](broken-reference), [publishers](broken-reference), and [funders](broken-reference).
 
 Together, these make a huge web (or more technically, heterogeneous directed [graph](https://en.wikipedia.org/wiki/Graph\_theory)) of hundreds of millions of entities and billions of connections between them all.
 
 This type of data is a valuable resource to institutions, researchers, governments, publishers, funders, and anyone else interested in global research and scholarly communication. We offer the data freely so that its value can be shared. Using the website, anyone can get started right away exploring the data to learn about all sorts of things, from individual papers, to global research trends.
 
-On top of the data is the OpenAlex web interface, which lets you quickly get started exploring and analyzing the data by filtering the literature in various ways. You can jump right in, or look at the [quickstart tutorial](./quickstart-tutorial.md) to get going.
+On top of the data is the OpenAlex web interface, which lets you quickly get started exploring and analyzing the data by filtering the literature in various ways. You can jump right in, or look at the [quickstart tutorial](quickstart-tutorial.md) to get going.
 
 ## Why OpenAlex?
 

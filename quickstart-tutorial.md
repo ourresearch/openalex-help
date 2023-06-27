@@ -15,11 +15,9 @@ SCREENSHOT
 Jump into an area of OpenAlex that interests you:
 
 * [Works](the-data/works/)
-* [Authors](the-data/authors/)
-* [Sources](the-data/sources.md)
+* [Authors](broken-reference)
+* [Sources](broken-reference)
 * [Institutions](the-data/institutions.md)
-* [Concepts](the-data/concepts.md)
-* [Publishers](the-data/publishers.md)
-* [Funders](the-data/funders.md)
-
-And check out our [tutorials](background-and-more-info/tutorials.md) page for some hands-on examples!
+* [Concepts](broken-reference)
+* [Publishers](broken-reference)
+* [Funders](broken-reference)

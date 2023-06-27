@@ -26,7 +26,7 @@ The people who created this work.
 
 In the context of a work, we actually think of each author as an "authorship," which is a single author and their institutional affiliations for this work.
 
-[Learn more about authors here.](../authors/)
+[Learn more about authors here.](broken-reference)
 
 ### Identifiers
 

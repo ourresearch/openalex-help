@@ -7,10 +7,10 @@ The OpenAlex dataset describes scholarly _entities_ and how those entities are c
 Learn more about the OpenAlex entities:
 
 * [Works](works/): Scholarly documents like journal articles, books, datasets, and theses
-* [Authors](authors/): People who create works
-* [Sources](sources.md): Where works are hosted (such as journals, conferences, and repositories)
+* [Authors](broken-reference): People who create works
+* [Sources](broken-reference): Where works are hosted (such as journals, conferences, and repositories)
 * [Institutions](institutions.md): Universities and other organizations to which authors claim affiliations
-* [Concepts](concepts.md): Topics assigned to works
-* [Publishers](publishers.md): Companies and organizations that distribute works
-* [Funders](funders.md): Organizations that fund research
+* [Concepts](broken-reference): Topics assigned to works
+* [Publishers](broken-reference): Companies and organizations that distribute works
+* [Funders](broken-reference): Organizations that fund research
 * [Geo](geo/): Where things are in the world
