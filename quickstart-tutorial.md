@@ -22,4 +22,4 @@ Jump into an area of OpenAlex that interests you:
 * [Publishers](the-data/publishers.md)
 * [Funders](the-data/funders.md)
 
-And check out our [tutorials](additional-help/tutorials.md) page for some hands-on examples!
+And check out our [tutorials](background-and-more-info/tutorials.md) page for some hands-on examples!
