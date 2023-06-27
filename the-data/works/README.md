@@ -55,3 +55,7 @@ Below is an example of a work in OpenAlex ([https://openalex.org/W2807749226](ht
 <figure><img src="../../.gitbook/assets/locations_screenshot_annotate (2).png" alt=""><figcaption><p>One work can have multiple locations. These locations can differ in properties such as version and open-access status.</p></figcaption></figure>
 
 Locations are meant to cover anywhere that a given work can be found. This can include journals, proceedings, institutional repositories, and subject-area repositories like [arXiv ](https://arxiv.org/)and [bioRxiv](https://www.biorxiv.org/). If you are only interested in a certain one of these (like journal), you can use a [filter](broken-reference/) to specify the type of source. ([Learn more about types here.](https://github.com/ourresearch/openalex-docs/blob/sandbox/sources/source-object.md#type))
+
+### Source
+
+Under the work's title and publication year, you'll find the name of the work's source—its journal or repository. This is the source associated with the work's primary location, which is the first location found in the work's [list of locations.](./#locations) This is usually where the work's [version of record](https://en.wikipedia.org/wiki/Version\_of\_record) can be found.
