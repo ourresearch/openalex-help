@@ -2,13 +2,7 @@
 
 ## Quickstart tutorial
 
-When you first visit openalex.org, you will see a search box where you can begin your exploration.
-
-SCREENSHOT
-
-We'll start by searching for a university.
-
-SCREENSHOT
+COMING SOON
 
 ## What's next?
 

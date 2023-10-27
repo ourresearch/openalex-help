@@ -4,25 +4,11 @@
 
 See our [citation section here.](../#citation)
 
-### Are OpenAlex IDs stable?
-
-Yes! The work associated with ID W1234 will keep the ID W1234.
-
-At some point we might merge duplicated works, authors, etc that already have assigned IDs. At that point we will expand the schema to include synonym ID data.
-
 ### Can you index my journal?
 
 We automatically index new journals and articles so there is nothing you need to do. We primarily retrieve new records from [Crossref](https://www.crossref.org/). So if you are not seeing your journal or article in OpenAlex, it is best to check if it is in Crossref with a query like `https://api.crossref.org/works/<doi>` ([example](https://api.crossref.org/works/10.1097/HS9.0000000000000014)). We do not curate journals or limit which journals will be included in OpenAlex. So any discoverable journals will be added to the data set.
 
 If your example DOI is in Crossref but not in OpenAlex, please send us a [support request](https://openalex.org/help) so we can look into it further!
-
-### Do you disambiguate authors?
-
-Yes. Using coauthors, references, and other features of the data, we can tell that the same Jane Smith wrote both "Frog behavior" and "Frogs: A retrospective," but it's a different Jane Smith who wrote "Oats before boats: The breakfast customs of 17th-Century Dutch bargemen."
-
-### Do you gather author affiliations?
-
-Yes. We automatically gather and normalize author affiliations from both structured and unstructured sources.
 
 ### Where does your data come from?
 
@@ -38,14 +24,6 @@ OpenAlex is not doing this alone! Rather, we're aggregating and standardizing da
 * [Internet Archive](https://archive.org/details/GeneralIndex)
 * Web crawls
 * Subject-area and institutional repositories from [arXiv](https://arxiv.org/) to [Zenodo](https://zenodo.org/) and everywhere in between
-
-### How often is the data updated?
-
-For now, the database snapshot is updated about once per month. However, in the future we will probably offer a much faster update cadence (approximately daily) as an optional, [paid upgrade](faq.md#whats-your-sustainability-plan). If you're interested in that, drop us a line at [team@ourresearch.org](mailto:team@ourresearch.org).
-
-### Is your data quality better than \_\_\_\_?
-
-Our dataset is still very young, so there's not a lot of systematic research comparing OpenAlex to peer databases like MAG, Scopus, Dimensions, etc. We're currently working on publishing some research like that ourselves. Our initial finding are very encouraging...we believe OpenAlex is already comparable in coverage and accuracy to the more established players--but OpenAlex is 100% open data, built on 100% open-source code. We think that's a really important feature. We will also continue improving the data quality in the days, weeks, months, and years ahead!
 
 ### How is OpenAlex licensed?
 

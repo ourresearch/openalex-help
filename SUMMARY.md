@@ -21,6 +21,5 @@
 ## Background and More Info
 
 * [About us](background-and-more-info/about-us.md)
-* [Author profiles and accounts](background-and-more-info/author-profiles-and-accounts.md)
 * [Report bugs](background-and-more-info/report-bugs.md)
 * [FAQ](background-and-more-info/faq.md)
