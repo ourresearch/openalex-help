@@ -8,7 +8,7 @@ These are the help pages for OpenAlex, containing information about the data, th
 
 ## What is OpenAlex?
 
-The heart of OpenAlex is the [OpenAlex dataset](broken-reference/), which describes scholarly [_entities_ ](the-data/entities-overview.md)and how those entities are connected to each other. Types of entities include [works](the-data/works/), [authors](broken-reference), [sources](broken-reference), [institutions](the-data/institutions.md), [concepts](broken-reference), [publishers](broken-reference), and [funders](broken-reference).
+The heart of OpenAlex is the OpenAlex dataset, which describes scholarly [_entities_ ](the-data/entities-overview.md)and how those entities are connected to each other. Types of entities include [works](the-data/works/), [authors](broken-reference), [sources](broken-reference), [institutions](the-data/institutions.md), [concepts](broken-reference), [publishers](broken-reference), and [funders](broken-reference).
 
 Together, these make a huge web (or more technically, heterogeneous directed [graph](https://en.wikipedia.org/wiki/Graph\_theory)) of hundreds of millions of entities and billions of connections between them all.
 
