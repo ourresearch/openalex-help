@@ -24,6 +24,8 @@ OpenAlex is:
 * _Easy —_ Our service is fast, modern, and well-documented.
 * _Open —_ Our complete dataset is free under the CC0 license, which allows for transparency and reuse.
 
+We believe the global research system is one of humankind's most beautiful creations. OpenAlex aims to make that whole beautiful creation available to everyone, everywhere.
+
 Many people and organizations have already found great value using OpenAlex. Have a look at the [Testimonials](https://openalex.org/testimonials) to hear what they've said!
 
 ## Who are we?
