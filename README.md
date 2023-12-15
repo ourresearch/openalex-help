@@ -4,13 +4,11 @@
 
 [**OpenAlex** ](https://openalex.org)is a free and open catalog of the global research system. It's named after the [ancient Library of Alexandria](https://en.wikipedia.org/wiki/Library\_of\_Alexandria) and made by the nonprofit [OurResearch](https://ourresearch.org/).
 
-These are the help pages for OpenAlex, containing information about the data, the website, and the background concepts. To learn about the API, the data snapshot, and other fun stuff, head over to our [technical documentation.](https://docs.openalex.org)
+These are the help pages for OpenAlex, containing information about the [data](the-data/entities-overview.md), the [website](https://openalex.org), and the background concepts. To learn about the API, the data snapshot, and other fun stuff, head over to our [technical documentation.](https://docs.openalex.org)
 
 ## What is OpenAlex?
 
-The heart of OpenAlex is the OpenAlex dataset, which describes scholarly [_entities_ ](the-data/entities-overview.md)and how those entities are connected to each other. Types of entities include [works](the-data/works/), [authors](broken-reference), [sources](broken-reference), [institutions](the-data/institutions.md), [concepts](broken-reference), [publishers](broken-reference), and [funders](broken-reference).
-
-Together, these make a huge web (or more technically, heterogeneous directed [graph](https://en.wikipedia.org/wiki/Graph\_theory)) of hundreds of millions of entities and billions of connections between them all.
+At the heart of OpenAlex is our dataset—a catalog of [works](the-data/works/). A work is any sort of scholarly output. A research article is one kind of work, but there are others such as datasets, books, and dissertations. We keep track of these works—their titles (and abstracts and full text in many cases), when they were created, etc. But that's not all we do. We also keep track of the _connections_ between these works, finding associations through things like [journals](the-data/sources.md), [authors](the-data/authors/README.md), [institutional affiliations](the-data/institutions.md), citations, [concepts](the-data/concepts.md), and [funders](the-data/funders.md). There are hundreds of millions of works out there, and tens of thousands more being created every day, so it is important that we have these relationships to help us make sense of research at a large scale. 
 
 This type of data is a valuable resource to institutions, researchers, governments, publishers, funders, and anyone else interested in global research and scholarly communication. We offer the data freely so that its value can be shared. Using the website, anyone can get started right away exploring the data to learn about all sorts of things, from individual papers, to global research trends.
 
@@ -22,7 +20,7 @@ OpenAlex offers an open replacement for industry-standard scientific knowledge b
 
 OpenAlex is:
 
-* _Big —_ We have about twice the coverage of the other services, and have significantly better coverage of non-English works and works from the Global South.
+* _Big —_ We strive to be as comprehensive and inclusive as possible, especially for works in other languages and the Global South.
 * _Easy —_ Our service is fast, modern, and well-documented.
 * _Open —_ Our complete dataset is free under the CC0 license, which allows for transparency and reuse.
 
@@ -32,7 +30,7 @@ Many people and organizations have already found great value using OpenAlex. Hav
 
 [OurResearch ](https://ourresearch.org/)is a nonprofit that builds tools for Open Science, including OpenAlex, [Unpaywall](https://unpaywall.org/), and [Unsub](https://unsub.org/), among [others](https://ourresearch.org/projects). Our open-source tools are used by millions every day, in universities, businesses, and libraries worldwide, to uncover, connect, and analyze research products.
 
-Openness is one of our core values, and so we strive to bake it into everything we do—including our data, code, software, and organizational practices.
+Openness is one of our core values, and so we strive to bake it into everything we do—including our [data](the-data/entities-overview.md), [code](https://github.com/orgs/ourresearch/repositories?language=&q=openalex&sort=&type=public), software, and [organizational practices](https://ourresearch.org/transparency).
 
 ## Contact
 
