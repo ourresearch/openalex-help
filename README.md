@@ -12,7 +12,7 @@ At the heart of OpenAlex is our dataset—a catalog of [works](the-data/works/).
 
 This type of data is a valuable resource to institutions, researchers, governments, publishers, funders, and anyone else interested in global research and scholarly communication. We offer the data freely so that its value can be shared. Using the website, anyone can get started right away exploring the data to learn about all sorts of things, from individual papers, to global research trends.
 
-On top of the data is the OpenAlex web interface, which lets you quickly get started exploring and analyzing the data by filtering the literature in various ways. You can jump right in, or look at the [quickstart tutorial](quickstart-tutorial.md) to get going.
+On top of the data is the OpenAlex web interface, which lets you quickly get started exploring and analyzing the data by filtering the literature in various ways.
 
 ## Why OpenAlex?
 
