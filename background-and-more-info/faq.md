@@ -20,7 +20,7 @@ OpenAlex data is licensed as [CC0](https://creativecommons.org/publicdomain/zero
 
 ### How much does OpenAlex cost?
 
-It's free! The [website](https://explore.openalex.org), the [API](../), and the [database snapshot](broken-reference) are all available at no charge. As a nonprofit, making this data free and open is part of our mission.
+It's free! The [website](https://openalex.org), the [API](https://docs.openalex.org), and the [database snapshot](https://docs.openalex.org/download-all-data/openalex-snapshot) are all available at no charge. As a nonprofit, making this data free and open is part of our mission.
 
 For those who would like a higher level of service and to provide direct financial support for our mission, we offer [OpenAlex Premium. Click here to learn more.](https://openalex.org/pricing)
 
