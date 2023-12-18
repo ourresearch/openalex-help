@@ -12,25 +12,13 @@ At the heart of OpenAlex is our dataset—a catalog of [works](the-data/works/).
 
 This type of data is a valuable resource to institutions, researchers, governments, publishers, funders, and anyone else interested in global research and scholarly communication. We offer the data freely so that its value can be shared. Using the website, anyone can get started right away exploring the data to learn about all sorts of things, from individual papers, to global research trends.
 
-## Why OpenAlex?
-
-OpenAlex offers an open replacement for industry-standard scientific knowledge bases like Elsevier's Scopus and Clarivate's Web of Science. [Compared to](https://openalex.org/about#comparison) these paywalled services, OpenAlex offers significant advantages in terms of inclusivity, affordability, and availability.
-
-OpenAlex is:
-
-* _Big —_ We strive to be as comprehensive and inclusive as possible, especially for works in other languages and the Global South.
-* _Easy —_ Our service is fast, modern, and well-documented.
-* _Open —_ Our complete dataset is free under the CC0 license, which allows for transparency and reuse.
-
-We believe the global research system is one of humankind's most beautiful creations. OpenAlex aims to make that whole beautiful creation available to everyone, everywhere.
-
-Many people and organizations have already found great value using OpenAlex. Have a look at the [Testimonials](https://openalex.org/testimonials) to hear what they've said!
-
 ## Who are we?
 
 [OurResearch ](https://ourresearch.org/)is a nonprofit that builds tools for Open Science, including OpenAlex, [Unpaywall](https://unpaywall.org/), and [Unsub](https://unsub.org/), among [others](https://ourresearch.org/projects). Our open-source tools are used by millions every day, in universities, businesses, and libraries worldwide, to uncover, connect, and analyze research products.
 
 Openness is one of our core values, and so we strive to bake it into everything we do—including our [data](the-data/entities-overview.md), [code](https://github.com/orgs/ourresearch/repositories?language=\&q=openalex\&sort=\&type=public), software, and [organizational practices](https://ourresearch.org/transparency).
+
+Learn more at our [About us](./background-and-more-info/about-us.md) page!
 
 ## Contact
 
