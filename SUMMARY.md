@@ -14,8 +14,6 @@
 * [🏢 Publishers](the-data/publishers.md)
 * [💰 Funders](the-data/funders.md)
 * [🌎 Geo](the-data/geo/README.md)
-  * [Continents](the-data/geo/continents.md)
-  * [Regions](the-data/geo/regions.md)
 
 ## Background and More Info
 
