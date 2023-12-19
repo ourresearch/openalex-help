@@ -26,6 +26,10 @@ OpenAlex can tell you whether a source is currently fully open access. This coul
 
 We say "currently" because the status of a source can change over time. It's common for journals to "flip" to Gold OA, after which they may make only future articles open or also open their back catalogs. It's entirely possible for a source to say `is_oa: true`, but for an article from last year to require a subscription. Because of these nuances, OpenAlex keeps concept of Open Access _works_ separate from the Open Access status of _sources_.
 
+### Article processing charge (APC)
+
+OpenAlex has information on [Article processing charges (APC)](https://en.wikipedia.org/wiki/Article_processing_charge) for Open Access journals.
+
 ## Technical documentation
 
 You can find more information about OpenAlex sources that host works in our [technical documentation](https://docs.openalex.org/api-entities/sources).

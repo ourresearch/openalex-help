@@ -49,3 +49,7 @@ For a more in-depth explanation of how OpenAlex models the relationships between
 The authors of a work are the people who created the work. In the context of a work, we actually think of each author as an "authorship," which is a single author and the institutional affiliations they claim for the work.
 
 [Learn more about authors here.](../authors/README.md)
+
+## Technical documentation
+
+You can find more information about OpenAlex works in our [technical documentation](https://docs.openalex.org/api-entities/works).
