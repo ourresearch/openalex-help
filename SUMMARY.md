@@ -18,4 +18,7 @@
 * [💰 Funders](the-data/funders.md)
 * [🌎 Geo](the-data/geo/README.md)
 * [Report bugs](the-data/report-bugs.md)
-* [Open houses](the-data/open-houses.md)
+
+***
+
+* [Open houses](open-houses.md)
