@@ -17,6 +17,7 @@
 
 ## Background and More Info
 
+* [upgrade](background-and-more-info/upgrade.md)
 * [About us](background-and-more-info/about-us.md)
 * [Report bugs](background-and-more-info/report-bugs.md)
 * [FAQ](background-and-more-info/faq.md)
