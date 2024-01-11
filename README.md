@@ -1,4 +1,4 @@
-# OpenAlex
+# Welcome
 
 <figure><img src=".gitbook/assets/OpenAlex-logo-5.png" alt=""><figcaption></figcaption></figure>
 
@@ -18,7 +18,7 @@ This type of data is a valuable resource to institutions, researchers, governmen
 
 Openness is one of our core values, and so we strive to bake it into everything we do—including our [data](the-data/entities-overview.md), [code, software](https://github.com/orgs/ourresearch/repositories?language=\&q=openalex\&sort=\&type=public), and [organizational practices](https://ourresearch.org/transparency).
 
-Learn more at our [About us](./background-and-more-info/about-us.md) page!
+Learn more at our [About us](about-us.md) page!
 
 ## Contact
 

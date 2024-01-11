@@ -1,6 +1,9 @@
 # Table of contents
 
-* [OpenAlex](README.md)
+* [Welcome](README.md)
+* [About us](about-us.md)
+* [FAQ](faq.md)
+* [Upgrade](upgrade.md)
 * [How-tos](how-tos.md)
 
 ## The Data
@@ -14,10 +17,4 @@
 * [🏢 Publishers](the-data/publishers.md)
 * [💰 Funders](the-data/funders.md)
 * [🌎 Geo](the-data/geo/README.md)
-
-## Background and More Info
-
-* [upgrade](background-and-more-info/upgrade.md)
-* [About us](background-and-more-info/about-us.md)
-* [Report bugs](background-and-more-info/report-bugs.md)
-* [FAQ](background-and-more-info/faq.md)
+* [Report bugs](the-data/report-bugs.md)
