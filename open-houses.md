@@ -14,11 +14,11 @@ Jan 25: Ask us anything!
 
 Jan 31: special theme— Leiden Open Rankings & Affiliation Curation
 
-February 1: special theme— Leiden Open Rankings & Affiliation Curation
+Feb 1: special theme— Leiden Open Rankings & Affiliation Curation
 
 Feb 7: special theme— Classifying works: Topics, SDGs, and Concepts
 
-February 8: special theme— Classifying works: Topics, SDGs, and Concepts
+Feb 8: special theme— Classifying works: Topics, SDGs, and Concepts
 
 Feb 14: ask us anything!
 
