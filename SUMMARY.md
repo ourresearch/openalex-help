@@ -3,7 +3,9 @@
 * [Welcome](README.md)
 * [About us](about-us.md)
 * [FAQ](faq.md)
-* [Upgrade](upgrade.md)
+* [Pricing](pricing.md)
+* [Coverage](coverage.md)
+* [How it works](how-it-works.md)
 * [How-tos](how-tos.md)
 
 ## The Data
