@@ -4,21 +4,23 @@ We have twice-weekly open houses on Zoom: every Wednesday at 12pm Eastern and ev
 
 ## Schedule for 2024
 
-Jan 17: special theme— User Interface v2 walk-through and feedback
+Register for each day by clicking on the Zoom registration link. When you register, you will get a confirmation email with instructions on how to join.
 
-Jan 18: special theme— User Interface v2 walk-through and feedback
+Jan 17: special theme— User Interface v2 walk-through and feedback — [Zoom registration link](https://us02web.zoom.us/meeting/register/tZUlfuGopzIvHdBVk2UNsvYswOU2zNvNTmGx)
 
-Jan 24: Ask us anything!
+Jan 18: special theme— User Interface v2 walk-through and feedback — [Zoom registration link](https://us02web.zoom.us/meeting/register/tZYkcu2trz4sG9Lwb8t-D9q8bbATU994qp7r)
 
-Jan 25: Ask us anything!
+Jan 24: Ask us anything! — [Zoom registration link](https://us02web.zoom.us/meeting/register/tZAkde2srj0tGtJh\_TsoOvyRShJ9vXoc6FtK)
 
-Jan 31: special theme— Leiden Open Rankings & Affiliation Curation
+Jan 25: Ask us anything! — [Zoom registration link](https://us02web.zoom.us/meeting/register/tZEud--tpjgqGd3uHveK6OenQCd5ZPGZSFua)
 
-Feb 1: special theme— Leiden Open Rankings & Affiliation Curation
+Jan 31: special theme— Leiden Open Rankings & Affiliation Curation — [Zoom registration link](https://us02web.zoom.us/meeting/register/tZElfuqoqTsjE9176uanjRjSham5TvgBTLt5)
 
-Feb 7: special theme— Classifying works: Topics, SDGs, and Concepts
+Feb 1: special theme— Leiden Open Rankings & Affiliation Curation — [Zoom registration link](https://us02web.zoom.us/meeting/register/tZAqfuivpzkiHdM0QM\_a0WSF0ZbQ-puqXsR9)
 
-Feb 8: special theme— Classifying works: Topics, SDGs, and Concepts
+Feb 7: special theme— Classifying works: Topics, SDGs, and Concepts — [Zoom registration link](https://us02web.zoom.us/meeting/register/tZclde6vqTwjH9BedQ1\_rFsw-SXmNK96-VHB)
+
+Feb 8: special theme— Classifying works: Topics, SDGs, and Concepts — [Zoom registration link](https://us02web.zoom.us/meeting/register/tZwvd-2uqjwqHtfUN\_VnVHBmfKleLkRIENi8)
 
 Feb 14: ask us anything!
 
