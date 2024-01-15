@@ -65,7 +65,3 @@ April 18: special theme— \[TBD,[ click here](https://openalex.org/feedback) to
 April 24: ask us anything!
 
 April 25: ask us anything!
-
-&#x20;
-
-\
