@@ -1,6 +1,6 @@
 # Welcome
 
-<figure><img src=".gitbook/assets/OpenAlex-logo-5.png" alt=""><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/openalex_logo_text_transparent_20240117.png" alt=""><figcaption></figcaption></figure>
 
 [**OpenAlex** ](https://openalex.org)is a free and open catalog of the global research system. It's named after the [ancient Library of Alexandria](https://en.wikipedia.org/wiki/Library\_of\_Alexandria) and made by the nonprofit [OurResearch](https://ourresearch.org/).
 
@@ -8,7 +8,7 @@ These are the help pages for OpenAlex, containing information about the [data](t
 
 ## Contact
 
-For tech support and bug reports, please visit our [help page](https://openalex.org/help). You can also join the [OpenAlex user group](https://groups.google.com/g/openalex-users), and follow us on [Twitter (@OpenAlex\_org)](https://twitter.com/openalex\_org) and [Mastodon](https://mastodon.social/@OpenAlex).
+For tech support and bug reports, please use our [support ticket form](https://openalex.org/feedback). You can also join the [OpenAlex user group](https://groups.google.com/g/openalex-users), and follow us on [Twitter (@OpenAlex\_org)](https://twitter.com/openalex\_org) and [Mastodon](https://mastodon.social/@OpenAlex).
 
 ## Citation
 
