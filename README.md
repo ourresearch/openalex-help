@@ -1,6 +1,6 @@
 # Welcome
 
-<figure><img src=".gitbook/assets/openalex_logo_text_transparent_20240117.png" alt=""><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/openalex_logo_text_transparent_20240117.png" alt="" width="563"><figcaption></figcaption></figure>
 
 [**OpenAlex** ](https://openalex.org)is a free and open catalog of the global research system. It's named after the [ancient Library of Alexandria](https://en.wikipedia.org/wiki/Library\_of\_Alexandria) and made by the nonprofit [OurResearch](https://ourresearch.org/).
 
