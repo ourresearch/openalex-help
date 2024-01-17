@@ -6,20 +6,6 @@
 
 These are the help pages for OpenAlex, containing information about the [data](the-data/entities-overview.md), the [website](https://openalex.org) where you can start exploring, and the background concepts. To learn about the API, the data snapshot, and other fun stuff, head over to our [technical documentation.](https://docs.openalex.org)
 
-## What is OpenAlex?
-
-At the heart of OpenAlex is our dataset—a catalog of [works](the-data/works/). A work is any sort of scholarly output. A research article is one kind of work, but there are others such as datasets, books, and dissertations. We keep track of these works—their titles (and abstracts and full text in many cases), when they were created, etc. But that's not all we do. We also keep track of the _connections_ between these works, finding associations through things like [journals](the-data/sources.md), [authors](the-data/authors/), [institutional affiliations](the-data/institutions.md), citations, [concepts](the-data/concepts.md), and [funders](the-data/funders.md). There are hundreds of millions of works out there, and tens of thousands more being created every day, so it's important that we have these relationships to help us make sense of research at a large scale.
-
-This type of data is a valuable resource to institutions, researchers, governments, publishers, funders, and anyone else interested in global research and scholarly communication. We offer the data freely so that its value can be shared. Using the website, anyone can get started right away exploring the data to learn about all sorts of things, from individual papers, to global research trends.
-
-## Who are we?
-
-[OurResearch ](https://ourresearch.org/)is a nonprofit that builds tools for Open Science, including OpenAlex, [Unpaywall](https://unpaywall.org/), and [Unsub](https://unsub.org/), among [others](https://ourresearch.org/projects). Our open-source tools are used by millions every day, in universities, businesses, and libraries worldwide, to uncover, connect, and analyze research products.
-
-Openness is one of our core values, and so we strive to bake it into everything we do—including our [data](the-data/entities-overview.md), [code, software](https://github.com/orgs/ourresearch/repositories?language=\&q=openalex\&sort=\&type=public), and [organizational practices](https://ourresearch.org/transparency).
-
-Learn more at our [About us](about-us.md) page!
-
 ## Contact
 
 For tech support and bug reports, please visit our [help page](https://openalex.org/help). You can also join the [OpenAlex user group](https://groups.google.com/g/openalex-users), and follow us on [Twitter (@OpenAlex\_org)](https://twitter.com/openalex\_org) and [Mastodon](https://mastodon.social/@OpenAlex).

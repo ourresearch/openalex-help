@@ -1,6 +1,20 @@
 # About us
 
-OpenAlex offers an open replacement for industry-standard scientific knowledge bases like Elsevier's Scopus and Clarivate's Web of Science, created by the nonprofit [OurResearch](../README.md#who-are-we). [Compared to](https://openalex.org/about#comparison) these paywalled services, OpenAlex offers significant advantages in terms of inclusivity, affordability, and availability.
+## What is OpenAlex?
+
+At the heart of OpenAlex is our dataset—a catalog of [works](the-data/works/). A work is any sort of scholarly output. A research article is one kind of work, but there are others such as datasets, books, and dissertations. We keep track of these works—their titles (and abstracts and full text in many cases), when they were created, etc. But that's not all we do. We also keep track of the _connections_ between these works, finding associations through things like [journals](the-data/sources.md), [authors](the-data/authors/), [institutional affiliations](the-data/institutions.md), citations, [concepts](the-data/concepts.md), and [funders](the-data/funders.md). There are hundreds of millions of works out there, and tens of thousands more being created every day, so it's important that we have these relationships to help us make sense of research at a large scale.
+
+This type of data is a valuable resource to institutions, researchers, governments, publishers, funders, and anyone else interested in global research and scholarly communication. We offer the data freely so that its value can be shared. Using the website, anyone can get started right away exploring the data to learn about all sorts of things, from individual papers, to global research trends.
+
+## Who are we?
+
+[OurResearch ](https://ourresearch.org/)is a nonprofit that builds tools for Open Science, including OpenAlex, [Unpaywall](https://unpaywall.org/), and [Unsub](https://unsub.org/), among [others](https://ourresearch.org/projects). Our open-source tools are used by millions every day, in universities, businesses, and libraries worldwide, to uncover, connect, and analyze research products.
+
+Openness is one of our core values, and so we strive to bake it into everything we do—including our [data](the-data/entities-overview.md), [code, software](https://github.com/orgs/ourresearch/repositories?language=\&q=openalex\&sort=\&type=public), and [organizational practices](https://ourresearch.org/transparency).
+
+## Why OpenAlex?
+
+OpenAlex offers an open replacement for industry-standard scientific knowledge bases like Elsevier's Scopus and Clarivate's Web of Science. [Compared to](https://openalex.org/about#comparison) these paywalled services, OpenAlex offers significant advantages in terms of inclusivity, affordability, and availability.
 
 OpenAlex is:
 
@@ -24,14 +38,6 @@ OpenAlex beta launched on January 3rd, 2022. The data is available via an [API](
 
 Learn about our small, highly dedicated team [here](http://ourresearch.org/team).
 
-## Comparison with other scholarly data sources
-
-How does OpenAlex compare to other scholarly data sources like Dimensions, Scopus, Google Scholar, etc.?
-
-That is a big question! There are many ways to measure this, and we encourage you to try out the different options to see what is best for you.
-
-[Here we offer a comparison of some of the different options available.](./coverage.md)
-
 ## Acknowledgements
 
-We'd like to thank everyone behind all our [data sources,](https://openalex.org/about#sources) but especially the folks at [MAG](https://aka.ms/msracad) for building a really audacious and cool thing, and providing us lots of help and support as we build its replacement.
+We'd like to thank everyone behind all our [data sources,](./the-data/entities-overview.md#our-data-sources) but especially the folks at [MAG](https://aka.ms/msracad) for building a really audacious and cool thing, and providing us lots of help and support as we build its replacement.
