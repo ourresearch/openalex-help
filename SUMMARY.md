@@ -7,6 +7,7 @@
 * [Coverage](coverage.md)
 * [How it works](how-it-works.md)
 * [How-tos](how-tos.md)
+* [API](api.md)
 
 ## The Data
 
