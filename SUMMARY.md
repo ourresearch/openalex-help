@@ -8,6 +8,9 @@
 * [How it works](how-it-works.md)
 * [How-tos](how-tos.md)
 * [API](api.md)
+* [Events](events/README.md)
+  * [Webinars](events/webinars.md)
+  * [Open houses](events/open-houses.md)
 
 ## The Data
 
@@ -21,7 +24,3 @@
 * [💰 Funders](the-data/funders.md)
 * [🌎 Geo](the-data/geo/README.md)
 * [Report bugs](the-data/report-bugs.md)
-
-***
-
-* [Open houses](open-houses.md)
