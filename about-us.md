@@ -30,7 +30,7 @@ How does OpenAlex compare to other scholarly data sources like Dimensions, Scopu
 
 That is a big question! There are many ways to measure this, and we encourage you to try out the different options to see what is best for you.
 
-[Here we offer a comparison of some of the different options available.](https://openalex.org/about#comparison)
+[Here we offer a comparison of some of the different options available.](./coverage.md)
 
 ## Acknowledgements
 
