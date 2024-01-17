@@ -6,6 +6,15 @@
 
 These are the help pages for OpenAlex, containing information about the [data](the-data/entities-overview.md), the [website](https://openalex.org) where you can start exploring, and the background concepts. To learn about the API, the data snapshot, and other fun stuff, head over to our [technical documentation.](https://docs.openalex.org)
 
+## Where to go
+
+* [**OpenAlex.org**](https://openalex.org) is our homepage, where you can start exploring the data right now using our friendly user interface (UI).
+* [**About Us**](./about-us.md) is where you can learn more about OpenAlex and OurResearch.
+* [**Data Overview**](./the-data/entities-overview.md) is where you can start learning about our data and where it comes from.
+* [**Events**](./events/README.md) has information about how you can interact with us personally, through our [webinars](./events/webinars.md) and [open houses](./events/open-houses.md).
+* [**Technical Documentation**](https://docs.openalex.org) is the place to go to learn about using the API or downloading the data snapshot.
+* [**Support Request Form**](https://openalex.org/feedback) is where you can submit bug reports, provide feedback, or ask questions you don't find answered in the documentation.
+
 ## Contact
 
 For tech support and bug reports, please use our [support ticket form](https://openalex.org/feedback). You can also join the [OpenAlex user group](https://groups.google.com/g/openalex-users), and follow us on [Twitter (@OpenAlex\_org)](https://twitter.com/openalex\_org) and [Mastodon](https://mastodon.social/@OpenAlex).
