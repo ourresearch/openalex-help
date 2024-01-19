@@ -6,7 +6,7 @@ description: Where things are in the world
 
 Geography is central to categorizing scholarly data. That's why OpenAlex uses United Nations data to divide the globe into continents and regions that makes filtering data easier.
 
-Countries are assigned to works using the affiliations that authors claim. For each author affiliation, we try to assign a country using either the matched [institution](../institutions.md), or by identifying the name of a country in the affiliation text.
+Countries are assigned to works using the affiliations that authors claim. For each author affiliation, we try to assign a country using either the matched [institution](institutions.md), or by identifying the name of a country in the affiliation text.
 
 ## Continents
 

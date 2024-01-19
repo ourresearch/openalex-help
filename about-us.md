@@ -2,7 +2,7 @@
 
 ## What is OpenAlex?
 
-At the heart of OpenAlex is our dataset—a catalog of [works](the-data/works/). A work is any sort of scholarly output. A research article is one kind of work, but there are others such as datasets, books, and dissertations. We keep track of these works—their titles (and abstracts and full text in many cases), when they were created, etc. But that's not all we do. We also keep track of the _connections_ between these works, finding associations through things like [journals](the-data/sources.md), [authors](the-data/authors/), [institutional affiliations](the-data/institutions.md), citations, [concepts](the-data/concepts.md), and [funders](the-data/funders.md). There are hundreds of millions of works out there, and tens of thousands more being created every day, so it's important that we have these relationships to help us make sense of research at a large scale.
+At the heart of OpenAlex is our dataset—a catalog of [works](how-it-works/works.md). A work is any sort of scholarly output. A research article is one kind of work, but there are others such as datasets, books, and dissertations. We keep track of these works—their titles (and abstracts and full text in many cases), when they were created, etc. But that's not all we do. We also keep track of the _connections_ between these works, finding associations through things like [journals](how-it-works/sources.md), [authors](how-it-works/authors.md), [institutional affiliations](how-it-works/institutions.md), citations, [concepts](how-it-works/concepts.md), and [funders](how-it-works/funders.md). There are hundreds of millions of works out there, and tens of thousands more being created every day, so it's important that we have these relationships to help us make sense of research at a large scale.
 
 This type of data is a valuable resource to institutions, researchers, governments, publishers, funders, and anyone else interested in global research and scholarly communication. We offer the data freely so that its value can be shared. Using the website, anyone can get started right away exploring the data to learn about all sorts of things, from individual papers, to global research trends.
 
@@ -10,7 +10,7 @@ This type of data is a valuable resource to institutions, researchers, governmen
 
 [OurResearch ](https://ourresearch.org/)is a nonprofit that builds tools for Open Science, including OpenAlex, [Unpaywall](https://unpaywall.org/), and [Unsub](https://unsub.org/), among [others](https://ourresearch.org/projects). Our open-source tools are used by millions every day, in universities, businesses, and libraries worldwide, to uncover, connect, and analyze research products.
 
-Openness is one of our core values, and so we strive to bake it into everything we do—including our [data](the-data/entities-overview.md), [code, software](https://github.com/orgs/ourresearch/repositories?language=\&q=openalex\&sort=\&type=public), and [organizational practices](https://ourresearch.org/transparency).
+Openness is one of our core values, and so we strive to bake it into everything we do—including our [data](how-it-works/entities-overview.md), [code, software](https://github.com/orgs/ourresearch/repositories?language=\&q=openalex\&sort=\&type=public), and [organizational practices](https://ourresearch.org/transparency).
 
 ## Why OpenAlex?
 
@@ -40,4 +40,4 @@ Learn about our small, highly dedicated team [here](http://ourresearch.org/team)
 
 ## Acknowledgements
 
-We'd like to thank everyone behind all our [data sources,](./the-data/entities-overview.md#our-data-sources) but especially the folks at [MAG](https://aka.ms/msracad) for building a really audacious and cool thing, and providing us lots of help and support as we build its replacement.
+We'd like to thank everyone behind all our [data sources,](how-it-works/entities-overview.md#our-data-sources) but especially the folks at [MAG](https://aka.ms/msracad) for building a really audacious and cool thing, and providing us lots of help and support as we build its replacement.

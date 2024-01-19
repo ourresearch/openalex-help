@@ -8,7 +8,7 @@ description: People who create works
 
 Authors are people who create works.
 
-The [Canonical External ID](broken-reference) for authors is ORCID; only a small percentage of authors have one, but the percentage is higher for more recent works.
+The [Canonical External ID](../the-data/authors/broken-reference/) for authors is ORCID; only a small percentage of authors have one, but the percentage is higher for more recent works.
 
 Our information about authors comes from MAG, Crossref, PubMed, ORCID, and publisher websites. We use an algorithm to [disambiguate](https://en.wikipedia.org/wiki/Author\_name\_disambiguation) authors; this uses an author’s name, their publication record, their citation patterns, and (where available) their ORCID.
 
