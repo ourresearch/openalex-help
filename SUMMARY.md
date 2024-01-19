@@ -16,7 +16,7 @@
   * [💰 Funders](how-it-works/funders.md)
   * [🌎 Geo](how-it-works/geo.md)
 * [How-tos](how-tos.md)
-* [API](api.md)
+* [API and Data Snapshot](api-and-data-snapshot.md)
 * [Events](events/README.md)
   * [Webinars](events/webinars.md)
   * [Open houses](events/open-houses.md)
