@@ -14,6 +14,8 @@ These are the help pages for OpenAlex, containing information about the [data](t
 * [**Events**](./events/README.md) has information about how you can interact with us personally, through our [webinars](./events/webinars.md) and [open houses](./events/open-houses.md).
 * [**Technical Documentation**](https://docs.openalex.org) is the place to go to learn about using the API or downloading the data snapshot.
 * [**Support Request Form**](https://openalex.org/feedback) is where you can submit bug reports, provide feedback, or ask questions you don't find answered in the documentation.
+* [**OpenAlex User Group**](https://groups.google.com/g/openalex-users) is our mailing list, where we announce big updates and new features.
+* [**OurResearch Blog**](https://blog.ourresearch.org) is where you'll find news and press about OpenAlex, and other musings from our team that we think you may find interesting.
 
 ## Contact
 
