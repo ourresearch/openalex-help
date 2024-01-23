@@ -1,6 +1,6 @@
 # FAQ
 
-### How do I cite OpenAlex
+### How do I cite OpenAlex?
 
 See our [citation section here.](./#citation)
 
