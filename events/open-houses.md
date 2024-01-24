@@ -6,9 +6,9 @@ We have twice-weekly open houses on Zoom: every Wednesday at 12pm Eastern and ev
 
 Register for each day by clicking on the Zoom registration link. When you register, you will get a confirmation email with instructions on how to join.
 
-Jan 17: special theme— User Interface v2 walk-through and feedback — [Zoom registration link](https://us02web.zoom.us/meeting/register/tZUlfuGopzIvHdBVk2UNsvYswOU2zNvNTmGx)
+~~Jan 17: special theme— User Interface v2 walk-through and feedback —~~ [~~Zoom registration link~~](https://us02web.zoom.us/meeting/register/tZUlfuGopzIvHdBVk2UNsvYswOU2zNvNTmGx)
 
-Jan 18: special theme— User Interface v2 walk-through and feedback — [Zoom registration link](https://us02web.zoom.us/meeting/register/tZYkcu2trz4sG9Lwb8t-D9q8bbATU994qp7r)
+~~Jan 18: special theme— User Interface v2 walk-through and feedback —~~ [~~Zoom registration link~~](https://us02web.zoom.us/meeting/register/tZYkcu2trz4sG9Lwb8t-D9q8bbATU994qp7r)
 
 Jan 24: Ask us anything! — [Zoom registration link](https://us02web.zoom.us/meeting/register/tZAkde2srj0tGtJh\_TsoOvyRShJ9vXoc6FtK)
 
