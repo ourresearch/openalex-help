@@ -10,7 +10,7 @@ Register for each day by clicking on the Zoom registration link. When you regist
 
 ~~Jan 18: special theme— User Interface v2 walk-through and feedback~~
 
-Jan 24: Ask us anything! — [Zoom registration link](https://us02web.zoom.us/meeting/register/tZAkde2srj0tGtJh\_TsoOvyRShJ9vXoc6FtK)
+~~Jan 24: Ask us anything!~~
 
 Jan 25: Ask us anything! — [Zoom registration link](https://us02web.zoom.us/meeting/register/tZEud--tpjgqGd3uHveK6OenQCd5ZPGZSFua)
 
