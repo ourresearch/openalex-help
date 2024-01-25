@@ -1,8 +1,8 @@
 # Table of contents
 
 * [Welcome](README.md)
-* [Getting started](getting-started.md)
-* [About us](about-us.md)
+* [Tutorial](tutorial.md)
+* [Who are we?](about-us.md)
 * [FAQ](faq.md)
 * [Pricing](pricing.md)
 * [Coverage](coverage.md)

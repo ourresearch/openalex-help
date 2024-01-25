@@ -1,4 +1,4 @@
-# About us
+# Who are we?
 
 ## What is OpenAlex?
 
@@ -10,7 +10,7 @@ This type of data is a valuable resource to institutions, researchers, governmen
 
 [OurResearch ](https://ourresearch.org/)is a nonprofit that builds tools for Open Science, including OpenAlex, [Unpaywall](https://unpaywall.org/), and [Unsub](https://unsub.org/), among [others](https://ourresearch.org/projects). Our open-source tools are used by millions every day, in universities, businesses, and libraries worldwide, to uncover, connect, and analyze research products.
 
-Openness is one of our core values, and so we strive to bake it into everything we do—including our [data](how-it-works/entities-overview.md), [code, software](https://github.com/orgs/ourresearch/repositories?language=\&q=openalex\&sort=\&type=public), and [organizational practices](https://ourresearch.org/transparency).
+Openness is one of our core values, and so we strive to bake it into everything we do—including our [data](how-it-works/entities-overview.md), [code, software](https://github.com/orgs/ourresearch/repositories?language=\&q=openalex\&sort=\&type=public), and [organizational practices](https://ourresearch.org/transparency). This is also why OpenAlex is completely open-source and free to use under the CC0 license.
 
 ## Why OpenAlex?
 
