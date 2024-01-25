@@ -12,7 +12,7 @@ Register for each day by clicking on the Zoom registration link. When you regist
 
 ~~Jan 24: Ask us anything!~~
 
-Jan 25: Ask us anything! — [Zoom registration link](https://us02web.zoom.us/meeting/register/tZEud--tpjgqGd3uHveK6OenQCd5ZPGZSFua)
+~~Jan 25: Ask us anything!~~
 
 Jan 31: special theme— Leiden Open Rankings & Affiliation Curation — [Zoom registration link](https://us02web.zoom.us/meeting/register/tZElfuqoqTsjE9176uanjRjSham5TvgBTLt5)
 
@@ -28,7 +28,7 @@ Feb 15: ask us anything!
 
 Feb 21: special theme— Author Profile Curation
 
-Feb 22: special theme—Author Profile Curation
+Feb 22: No office hours, [come to the webinar instead!](webinars.md)
 
 Feb 28: ask us anything!
 
