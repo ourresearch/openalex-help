@@ -28,7 +28,7 @@ Feb 15: ask us anything!
 
 Feb 21: special theme— Author Profile Curation
 
-Feb 22: No office hours, [come to the webinar instead!](webinars.md)
+Feb 22: No open house, [come to the webinar instead!](webinars.md)
 
 Feb 28: ask us anything!
 
