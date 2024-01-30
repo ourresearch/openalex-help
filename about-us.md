@@ -28,7 +28,7 @@ Many people and organizations have already found great value using OpenAlex. Hav
 
 ## Past and future
 
-Let's start _way_ back at the beginning, with the ancient [Library of Alexandria.](https://en.wikipedia.org/wiki/Library\_of\_Alexandria) Working create a Universal Library, they didn't just gather knowledge — they made it useful by indexing it in the world's first library catalog, the [Pinakes.](https://en.wikipedia.org/wiki/Pinakes) That's what we're trying to do, too, and so our name is an homage to them!
+Let's start _way_ back at the beginning, with the ancient [Library of Alexandria.](https://en.wikipedia.org/wiki/Library\_of\_Alexandria) Working to create a Universal Library, they didn't just gather knowledge — they made it useful by indexing it in the world's first library catalog, the [Pinakes.](https://en.wikipedia.org/wiki/Pinakes) That's what we're trying to do, too, and so our name is an homage to them!
 
 Fast forward a few millenia: OpenAlex had been a dream at [our little nonprofit](https://ourresearch.org) for a long time, but two doors opened simultaneously in May 2021. First, [we received a generous grant](https://blog.ourresearch.org/arcadia-2021-grant/) from [Arcadia, a charitable fund of Lisbet Rausing and Peter Baldwin.](https://www.arcadiafund.org.uk/) Second, Microsoft announced it would shutter [Microsoft Academic Graph (MAG),](https://www.microsoft.com/en-us/research/project/microsoft-academic-graph/) which much of the community has come to rely upon as our best index of scholarly communication. So, we had the means and the opportunity, and we ran with it!
 
