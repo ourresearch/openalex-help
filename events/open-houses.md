@@ -14,9 +14,9 @@ Register for each day by clicking on the Zoom registration link. When you regist
 
 ~~Jan 25: Ask us anything!~~
 
-Jan 31: special theme— Leiden Open Rankings & Affiliation Curation — [Zoom registration link](https://us02web.zoom.us/meeting/register/tZElfuqoqTsjE9176uanjRjSham5TvgBTLt5)
+~~Jan 31: special theme— Leiden Open Rankings & Affiliation Curation~~
 
-Feb 1: special theme— Leiden Open Rankings & Affiliation Curation — [Zoom registration link](https://us02web.zoom.us/meeting/register/tZAqfuivpzkiHdM0QM\_a0WSF0ZbQ-puqXsR9)
+~~Feb 1: special theme— Leiden Open Rankings & Affiliation Curation~~
 
 Feb 7: special theme— Classifying works: Topics, SDGs, and Concepts — [Zoom registration link](https://us02web.zoom.us/meeting/register/tZclde6vqTwjH9BedQ1\_rFsw-SXmNK96-VHB)
 
