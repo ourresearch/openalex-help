@@ -22,9 +22,9 @@ Feb 7: special theme— Classifying works: Topics, SDGs, and Concepts — [Zoom 
 
 Feb 8: special theme— Classifying works: Topics, SDGs, and Concepts — [Zoom registration link](https://us02web.zoom.us/meeting/register/tZwvd-2uqjwqHtfUN\_VnVHBmfKleLkRIENi8)
 
-Feb 14: ask us anything!
+Feb 14: ask us anything! — [Zoom registration link](https://us02web.zoom.us/meeting/register/tZErcuutrj0sGte9j5dT7Y90wTHcp8cVjFrI)
 
-Feb 15: ask us anything!
+Feb 15: ask us anything! — [Zoom registration link](https://us02web.zoom.us/meeting/register/tZIpd-6hpjkoHtxXRTcOxtXzaeYgGWdISXnw)
 
 Feb 21: special theme— Author Profile Curation
 
