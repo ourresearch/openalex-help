@@ -6,6 +6,8 @@
 
 {% embed url="https://youtu.be/o_9OlJIWBOo" %}
 
+{% embed url="https://youtu.be/sy9FM2iEX8k" %}
+
 {% embed url="https://youtu.be/1A-2Moz65yo" %}
 
 {% embed url="https://youtu.be/7kV_rSIZ8yI" %}
