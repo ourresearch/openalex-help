@@ -8,7 +8,9 @@ description: People who create works
 
 Authors are people who create works.
 
-The [Canonical External ID](../the-data/authors/broken-reference/) for authors is ORCID; only a small percentage of authors have one, but the percentage is higher for more recent works.
+We try to identify authors and their works automatically. We describe the ways we do this below. If you are an author, and you've noticed that some of your data in OpenAlex is incorrect, please let us know by using the [Author Profile Change Request Form](https://docs.google.com/forms/d/e/1FAIpQLSel6otVekIyVOl46eh59mSkruIz32hAnGbJR6KM925E8wiCSg/viewform?usp=sf_link).
+
+## Author disambiguation
 
 Our information about authors comes from MAG, Crossref, PubMed, ORCID, and publisher websites. We use an algorithm to [disambiguate](https://en.wikipedia.org/wiki/Author\_name\_disambiguation) authors; this uses an author’s name, their publication record, their citation patterns, and (where available) their ORCID.
 
@@ -16,4 +18,3 @@ So for example, if J. Schmidt and John Jacob Jingleheimer Schmidt both write abo
 
 You can read more about how we disambiguate authors in our [technical documentation here.](https://docs.openalex.org/api-entities/authors/author-disambiguation)
 
-MORE COMING SOON
