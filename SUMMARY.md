@@ -1,6 +1,6 @@
 # Table of contents
 
-* [Welcome](README.md)
+* [Welcome to the knowledge base](README.md)
 * [Tutorial](tutorial.md)
 * [Who are we?](about-us.md)
 * [FAQ](faq.md)
