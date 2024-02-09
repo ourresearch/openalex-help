@@ -1,8 +1,4 @@
----
-description: Topics assigned to works
----
-
-# 💡 Concepts
+# Concepts
 
 We're working on a new system to assign topics to works, which we will be rolling out soon. To get the latest updates, join the [OpenAlex user group](https://groups.google.com/g/openalex-users).
 
