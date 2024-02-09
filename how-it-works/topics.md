@@ -23,3 +23,7 @@ We developed the method for classifying our works in collaboration with [CWTS at
 * Assign each topic to subfields, fields, and domains, which are based on Scopus's [ASJC categories](https://service.elsevier.com/app/answers/detail/a_id/12007/supporthub/scopus/)
 
 For a detailed description of the methods, see our paper: ["OpenAlex: End-to-End Process for Topic Classification"](https://docs.google.com/document/d/1bDopkhuGieQ4F8gGNj7sEc8WSE8mvLZS/edit?usp=sharing&ouid=106329373929967149989&rtpof=true&sd=true). The code and model are available at [https://github.com/ourresearch/openalex-topic-classification](https://github.com/ourresearch/openalex-topic-classification).
+
+## Technical documentation
+
+You can find more information about how OpenAlex Topics are included in the API and snapshot data in our [technical documentation Topics pages](https://docs.openalex.org/api-entities/topics).
