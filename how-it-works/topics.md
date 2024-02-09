@@ -16,11 +16,12 @@ Works are assigned topics using a model that assigns scores for each topic for a
 
 We developed the method for classifying our works in collaboration with [CWTS at Leiden University](https://www.cwts.nl/), extending the methods they used in their Open Leiden rankings, which they explain [in this article](https://www.leidenmadtrics.nl/articles/an-open-approach-for-classifying-research-publications). Here is an outline of the overall method:
 
-* Cluster the [citation network](https://en.wikipedia.org/wiki/Citation_graph) for works that have incoming and outgoing citations. This provides meaningful clusters of works that strongly correspond to research communities focused on different topics.
-* Use a Large Language Model (LLM) to get labels and descriptions for these clusters.
-* Use this labeled data to train a deep-learning model that can assign topics using titles, abstracts, citations, and journal name.
+#### The steps we used to assign Topics to works
+1. Cluster the [citation network](https://en.wikipedia.org/wiki/Citation_graph) for works that have incoming and outgoing citations. This provides meaningful clusters of works that strongly correspond to research communities focused on different topics.
+2. Use a Large Language Model (LLM) to get labels and descriptions for these clusters.
+3. Use this labeled data to train a deep-learning model that can assign topics using titles, abstracts, citations, and journal name.
   * This model can handle cases with missing data, so we can use it to classify most of our works, including new works that don't have any incoming citations.
-* Assign each topic to subfields, fields, and domains, which are based on Scopus's [ASJC categories](https://service.elsevier.com/app/answers/detail/a_id/12007/supporthub/scopus/)
+4. Assign each topic to subfields, fields, and domains, which are based on Scopus's [ASJC categories](https://service.elsevier.com/app/answers/detail/a_id/12007/supporthub/scopus/)
 
 For a detailed description of the methods, see our paper: ["OpenAlex: End-to-End Process for Topic Classification"](https://docs.google.com/document/d/1bDopkhuGieQ4F8gGNj7sEc8WSE8mvLZS/edit?usp=sharing&ouid=106329373929967149989&rtpof=true&sd=true). The code and model are available at [https://github.com/ourresearch/openalex-topic-classification](https://github.com/ourresearch/openalex-topic-classification).
 
