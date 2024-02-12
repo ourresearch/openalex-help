@@ -13,7 +13,7 @@ Works are assigned topics using a model that assigns scores for each topic for a
 * _Domain:_ "Health Sciences"
 * _Field:_ "Medicine"
 * _Subfield:_ "Health Informatics"
-* _Topic:_: "Artificial Intelligence in Medicine"
+* _Topic:_ "Artificial Intelligence in Medicine"
 
 We developed the method for classifying our works in collaboration with [CWTS at Leiden University](https://www.cwts.nl/), extending the methods they used in their Open Leiden rankings, which they explain [in this article](https://www.leidenmadtrics.nl/articles/an-open-approach-for-classifying-research-publications). Here is an outline of the overall method:
 
