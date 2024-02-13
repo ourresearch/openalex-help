@@ -18,15 +18,15 @@ Register for each day by clicking on the Zoom registration link. When you regist
 
 ~~Feb 1: special theme— Leiden Open Rankings & Affiliation Curation~~
 
-Feb 7: special theme— Classifying works: Topics, SDGs, and Concepts — [Zoom registration link](https://us02web.zoom.us/meeting/register/tZclde6vqTwjH9BedQ1\_rFsw-SXmNK96-VHB)
+~~Feb 7: special theme— Classifying works: Topics, SDGs, and Concepts~~ 
 
-Feb 8: special theme— Classifying works: Topics, SDGs, and Concepts — [Zoom registration link](https://us02web.zoom.us/meeting/register/tZwvd-2uqjwqHtfUN\_VnVHBmfKleLkRIENi8)
+~~Feb 8: special theme— Classifying works: Topics, SDGs, and Concepts~~
 
-Feb 14: ask us anything! — [Zoom registration link](https://us02web.zoom.us/meeting/register/tZErcuutrj0sGte9j5dT7Y90wTHcp8cVjFrI)
+Feb 14 (12pm EST): ask us anything! — [Zoom registration link](https://us02web.zoom.us/meeting/register/tZErcuutrj0sGte9j5dT7Y90wTHcp8cVjFrI)
 
-Feb 15: ask us anything! — [Zoom registration link](https://us02web.zoom.us/meeting/register/tZIpd-6hpjkoHtxXRTcOxtXzaeYgGWdISXnw)
+Feb 15 (9am EST): ask us anything! — [Zoom registration link](https://us02web.zoom.us/meeting/register/tZIpd-6hpjkoHtxXRTcOxtXzaeYgGWdISXnw)
 
-Feb 21: special theme— Author Profile Curation
+Feb 21 (12pm EST): special theme— Author Profile Curation
 
 Feb 22: No open house, [come to the webinar instead!](webinars.md)
 
