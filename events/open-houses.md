@@ -22,11 +22,11 @@ Register for each day by clicking on the Zoom registration link. When you regist
 
 ~~Feb 8: special theme— Classifying works: Topics, SDGs, and Concepts~~
 
-Feb 14 (12pm EST): ask us anything! — [Zoom registration link](https://us02web.zoom.us/meeting/register/tZErcuutrj0sGte9j5dT7Y90wTHcp8cVjFrI)
+~~Feb 14 (12pm EST): ask us anything!~~
 
-Feb 15 (9am EST): ask us anything! — [Zoom registration link](https://us02web.zoom.us/meeting/register/tZIpd-6hpjkoHtxXRTcOxtXzaeYgGWdISXnw)
+~~Feb 15 (9am EST): ask us anything!~~
 
-Feb 21 (12pm EST): special theme— Author Profile Curation
+~~Feb 21: No open house~~
 
 Feb 22: No open house, [come to the webinar instead!](webinars.md)
 
