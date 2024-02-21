@@ -16,7 +16,7 @@
   * [🏢 Publishers](how-it-works/publishers.md)
   * [💰 Funders](how-it-works/funders.md)
   * [🌎 Geo](how-it-works/geo.md)
-  * [Concepts](how-it-works/concepts.md)
+  * [💡 Concepts](how-it-works/concepts.md)
 * [How-tos](how-tos.md)
 * [API and Data Snapshot](api-and-data-snapshot.md)
 * [Events](events/README.md)
