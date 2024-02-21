@@ -16,6 +16,12 @@ In this webinar, the Academic Data Unit from École Polytechnique Fédérale de 
 
 OpenAlex has many ways of classifying research to help researchers and institutions find the works they are looking for. In this webinar, we will review the different ways of finding research by topic in OpenAlex, walk through building complex queries, and present ways of quantifying how well your query achieves your goals.
 
+### April 11, 2024, 12pm EST — The OpenAlex API Part 1: Getting Started <a href="#query-building-in-openalex" id="query-building-in-openalex"></a>
+
+### April 25, 2024, 12pm EST — The OpenAlex API Part 2: Diving In <a href="#query-building-in-openalex" id="query-building-in-openalex"></a>
+
+
+
 ## Past webinars
 
 ### Introducing OpenAlex: An open, comprehensive index of scholarship (September 14, 2023)
@@ -42,4 +48,3 @@ OpenAlex has many ways of classifying research to help researchers and instituti
 
 * [Video](https://youtu.be/pe1fJCyu3mE)
 * Slides coming soon
-
