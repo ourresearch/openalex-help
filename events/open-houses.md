@@ -10,13 +10,13 @@ Register for each day by clicking on the Zoom registration link. When you regist
 
 Feb 22: No open house, [come to the webinar instead!](webinars.md)
 
-Feb 28: ask us anything!
+Feb 28: ask us anything! — [Zoom registration link](https://zoom.us/meeting/register/tJwkf-CgrzgpH9ehib_mzGZWKcbFNUaj1plS)
 
-Feb 29: ask us anything!
+Feb 29: ask us anything! — [Zoom registration link](https://zoom.us/meeting/register/tJEvduGqpjstGdP9FOP69q-TguPglY70g4H4)
 
-March 6: special theme— Author Profiles
+March 6: special theme— Author Profiles — [Zoom registration link](https://zoom.us/meeting/register/tJ0uce-srD8oHdW8TjEx6427H56L1WaeDPGO)
 
-March 7: special theme— Author Profiles
+March 7: special theme— Author Profiles — [Zoom registration link](https://zoom.us/meeting/register/tJMpceuuqDIqG9K7wMfJbbT14-sE9Lc-GnCz)
 
 March 13: ask us anything!
 
