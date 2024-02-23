@@ -4,12 +4,6 @@
 
 ## Upcoming webinars
 
-### February 22, 2024, 9am EST — How EPFL uses OpenAlex for tailor-made scientometrics and benchmarking between Universities <a href="#how-epfl-uses-openalex" id="how-epfl-uses-openalex"></a>
-
-[**Click here to register**](https://us02web.zoom.us/webinar/register/WN\_lZD4HMD2RNmnuzPsfCef-g)
-
-In this webinar, the Academic Data Unit from École Polytechnique Fédérale de Lausanne in Switzerland (EPFL) will showcase how they use OpenAlex data to facilitate transparent, tailor-made scientometric analysis and university benchmarking. They will review their approach to navigate and combine over 65,000 concepts to form unique "areas of interest", enabling a clear comparative analysis of research trends and performance across universities. Using open data, their method offers a transparent approach to understanding and leveraging academic data for strategic insights.
-
 ### March 14, 2024, 12pm EST — Query Building in OpenAlex: Creating Custom Research Areas <a href="#query-building-in-openalex" id="query-building-in-openalex"></a>
 
 [**Click here to register**](https://us02web.zoom.us/webinar/register/WN\_Ar4Z80HlSRKAU5mhQEdLCw)
@@ -47,4 +41,9 @@ OpenAlex has many ways of classifying research to help researchers and instituti
 ### Institutional Profiles and Affiliation Curation in OpenAlex (February 8, 2024) <a href="#institutional-profiles-and-affiliation-curation" id="institutional-profiles-and-affiliation-curation"></a>
 
 * [Video](https://youtu.be/pe1fJCyu3mE)
+* Slides coming soon
+
+### How EPFL uses OpenAlex for tailor-made scientometrics and benchmarking between Universities (February 22, 2024) <a href="#how-epfl-uses-openalex" id="how-epfl-uses-openalex"></a>
+
+* [Video](https://youtu.be/DgQgbLN_uPc)
 * Slides coming soon
