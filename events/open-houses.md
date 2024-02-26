@@ -8,7 +8,7 @@ Register for each day by clicking on the Zoom registration link. When you regist
 
 ~~Feb 21: No open house~~
 
-Feb 22: No open house, [come to the webinar instead!](webinars.md)
+~~Feb 22: No open house, [come to the webinar instead!](webinars.md)~~
 
 Feb 28: ask us anything! — [Zoom registration link](https://zoom.us/meeting/register/tJwkf-CgrzgpH9ehib_mzGZWKcbFNUaj1plS)
 
