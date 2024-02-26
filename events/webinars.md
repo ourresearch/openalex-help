@@ -10,9 +10,17 @@
 
 OpenAlex has many ways of classifying research to help researchers and institutions find the works they are looking for. In this webinar, we will review the different ways of finding research by topic in OpenAlex, walk through building complex queries, and present ways of quantifying how well your query achieves your goals.
 
-### April 11, 2024, 12pm EST — The OpenAlex API Part 1: Getting Started <a href="#query-building-in-openalex" id="query-building-in-openalex"></a>
+### April 11, 2024, 12pm EST — The OpenAlex API Part 1: Getting Started <a href="#openalex-api-part-1" id="openalex-api-part-1"></a>
 
-### April 25, 2024, 12pm EST — The OpenAlex API Part 2: Diving In <a href="#query-building-in-openalex" id="query-building-in-openalex"></a>
+[**Click here to register**](https://zoom.us/webinar/register/WN_k1OfebT4RdGoylw6FVqiuw)
+
+The OpenAlex User Interface is designed to make common use cases as simple as possible. The OpenAlex Application Programming Interface (API) supports endless use cases but requires some coding skills from the user. This webinar will introduce basics of the OpenAlex API, when to use it vs the UI, and how the UI can support first time API users. 
+
+### April 25, 2024, 12pm EST — The OpenAlex API Part 2: Diving In <a href="#openalex-api-part-2" id="openalex-api-part-2"></a>
+
+[**Click here to register**](https://zoom.us/webinar/register/WN_Jtr5dZWuTgGojGC3yDRG5w)
+
+This webinar will focus on how to use the OpenAlex API (see Part 1 for introductory overview). We will review the basics of constructing API requests and using results. We will then walk through how to perform a few specific examples of analyses not possible in the User Interface that are easily achieved using the API. For this demonstration, we will be coding in Python. 
 
 
 
