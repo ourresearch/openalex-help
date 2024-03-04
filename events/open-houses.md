@@ -6,13 +6,9 @@ We have twice-weekly open houses on Zoom: every Wednesday at 12pm Eastern and ev
 
 Register for each day by clicking on the Zoom registration link. When you register, you will get a confirmation email with instructions on how to join.
 
-~~Feb 21: No open house~~
+~~Feb 28: ask us anything! — [Zoom registration link](https://zoom.us/meeting/register/tJwkf-CgrzgpH9ehib_mzGZWKcbFNUaj1plS)~~
 
-~~Feb 22: No open house, [come to the webinar instead!](webinars.md)~~
-
-Feb 28: ask us anything! — [Zoom registration link](https://zoom.us/meeting/register/tJwkf-CgrzgpH9ehib_mzGZWKcbFNUaj1plS)
-
-Feb 29: ask us anything! — [Zoom registration link](https://zoom.us/meeting/register/tJEvduGqpjstGdP9FOP69q-TguPglY70g4H4)
+~~Feb 29: ask us anything! — [Zoom registration link](https://zoom.us/meeting/register/tJEvduGqpjstGdP9FOP69q-TguPglY70g4H4)~~
 
 March 6: special theme— Author Profiles — [Zoom registration link](https://zoom.us/meeting/register/tJ0uce-srD8oHdW8TjEx6427H56L1WaeDPGO)
 
