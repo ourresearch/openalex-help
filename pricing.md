@@ -12,24 +12,24 @@ The website, API, and data snapshot are all available at no charge. The data is 
 | ------------------- | ----------------------- | -------------------- | ------------------------------------------------ |
 | Update frequency    | Monthly (via data dump) | Hourly (via API)     | Hourly (via API)                                 |
 | API limit           | 100k/day, max 10/second | As needed            | As needed                                        |
-| Support             | Best effort             | Priority (< 5 users) | Priority (all your users)                        |
+| Support             | Best effort             | Priority (≤ 5 users) | Priority (all your users)                        |
 | Additional services | —                       | —                    | Training, Advisory Services, Feature suggestions |
 
-**Update frequency**
+#### Update frequency
 
 We release a new [snapshot](https://docs.openalex.org/download-all-data/openalex-snapshot) of OpenAlex every month. If you’d like more up-to-date data, you can poll our API to be notified of new and modified works every hour. That way your local copy of OpenAlex will be perfectly synced with ours.
 
 To do this, you [just use two API filters available to subscribers,](https://github.com/ourresearch/openalex-api-tutorials/blob/main/notebooks/getting-started/premium.ipynb) along with a unique API key we give you as part of your subscription.
 
-**API limit**
+#### API limit
 
 The API has a limit of 100,000 calls per day, with a maximum of 10 per second. However, for Premium users we can (and do) support millions of calls per day, with low latency and high uptime. You just need to include your unique Premium API key along with your requests, and you’re good to go.
 
-**Priority support**
+#### Priority support
 
 We use an online ticketing system open to all OpenAlex users around the world for support requests. With the volume we receive, we can’t respond to every ticket as quickly as some users need. Premium and Institutional users’ tickets get marked as high priority and skip to the head of the queue when they have support requests. This may be critical for some institutions relying on OpenAlex data.
 
-**Additional services**
+#### Additional services
 
 For Premium and Institutional Subscribers, OpenAlex consultants will give virtual training events for their institution on OpenAlex data and how to use it (generic and custom training available). OpenAlex consultants will also meet with Institutional subscribers to discuss planned and on-going projects using OpenAlex data to provide advice. Institutional subscribers will also be invited to quarterly workshops to suggest and discuss OpenAlex feature development, directly.
 
