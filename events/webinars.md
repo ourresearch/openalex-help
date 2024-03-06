@@ -4,25 +4,17 @@
 
 ## Upcoming webinars
 
-### March 14, 2024, 12pm EST — Query Building in OpenAlex: Creating Custom Research Areas <a href="#query-building-in-openalex" id="query-building-in-openalex"></a>
-
-[**Click here to register**](https://us02web.zoom.us/webinar/register/WN\_Ar4Z80HlSRKAU5mhQEdLCw)
-
-OpenAlex has many ways of classifying research to help researchers and institutions find the works they are looking for. In this webinar, we will review the different ways of finding research by topic in OpenAlex, walk through building complex queries, and present ways of quantifying how well your query achieves your goals.
-
 ### April 11, 2024, 12pm EST — The OpenAlex API Part 1: Getting Started <a href="#openalex-api-part-1" id="openalex-api-part-1"></a>
 
-[**Click here to register**](https://zoom.us/webinar/register/WN_k1OfebT4RdGoylw6FVqiuw)
+[**Click here to register**](https://zoom.us/webinar/register/WN\_k1OfebT4RdGoylw6FVqiuw)
 
-The OpenAlex User Interface is designed to make common use cases as simple as possible. The OpenAlex Application Programming Interface (API) supports endless use cases but requires some coding skills from the user. This webinar will introduce basics of the OpenAlex API, when to use it vs the UI, and how the UI can support first time API users. 
+The OpenAlex User Interface is designed to make common use cases as simple as possible. The OpenAlex Application Programming Interface (API) supports endless use cases but requires some coding skills from the user. This webinar will introduce basics of the OpenAlex API, when to use it vs the UI, and how the UI can support first time API users.
 
 ### April 25, 2024, 12pm EST — The OpenAlex API Part 2: Diving In <a href="#openalex-api-part-2" id="openalex-api-part-2"></a>
 
-[**Click here to register**](https://zoom.us/webinar/register/WN_Jtr5dZWuTgGojGC3yDRG5w)
+[**Click here to register**](https://zoom.us/webinar/register/WN\_Jtr5dZWuTgGojGC3yDRG5w)
 
-This webinar will focus on how to use the OpenAlex API (see Part 1 for introductory overview). We will review the basics of constructing API requests and using results. We will then walk through how to perform a few specific examples of analyses not possible in the User Interface that are easily achieved using the API. For this demonstration, we will be coding in Python. 
-
-
+This webinar will focus on how to use the OpenAlex API (see Part 1 for introductory overview). We will review the basics of constructing API requests and using results. We will then walk through how to perform a few specific examples of analyses not possible in the User Interface that are easily achieved using the API. For this demonstration, we will be coding in Python.
 
 ## Past webinars
 
@@ -53,5 +45,5 @@ This webinar will focus on how to use the OpenAlex API (see Part 1 for introduct
 
 ### How EPFL uses OpenAlex for tailor-made scientometrics and benchmarking between Universities (February 22, 2024) <a href="#how-epfl-uses-openalex" id="how-epfl-uses-openalex"></a>
 
-* [Video](https://youtu.be/DgQgbLN_uPc)
+* [Video](https://youtu.be/DgQgbLN\_uPc)
 * Slides coming soon
