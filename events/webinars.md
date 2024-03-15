@@ -6,7 +6,7 @@
 
 ### March 28, 2024, 12pm EDT — How OpenAlex is helping power new commercial solutions and make science more accessible for everyone <a href="#commercial-orgs-1" id="commercial-orgs-1"></a>
 
-[**Click here to register**](TODO)
+[**Click here to register**](https://zoom.us/webinar/register/WN_rZqAk58-RMO-gtihu0loNw)
 
 We welcome guest presenters from two commercial organizations to highlight how they are making use of OpenAlex:
 
