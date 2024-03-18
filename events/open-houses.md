@@ -21,8 +21,7 @@ April 3 (12pm ET): special theme— \[TBD,[ click here](https://openalex.org/fee
 
 April 4 (9am ET): special theme— \[TBD,[ click here](https://openalex.org/feedback) to suggest a theme] — [Zoom registration link](https://zoom.us/meeting/register/tJYtdO6gqD8qGNFVMNL6vI9iooRw22tl8DbL)
 
-
-April 10: ask us anything!
+~~April 10: ask us anything!~~ Wednesday open house is canceled on April 10. See you another time!
 
 April 11: ask us anything!
 
