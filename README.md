@@ -15,10 +15,11 @@ These are the help pages for OpenAlex, containing information about the [data](h
 * [**Support Request Form**](https://openalex.org/feedback) is where you can submit bug reports, provide feedback, or ask questions you don't find answered in the documentation.
 * [**OpenAlex User Group**](https://groups.google.com/g/openalex-users) is our mailing list, where we announce big updates and new features.
 * [**OurResearch Blog**](https://blog.ourresearch.org) is where you'll find news and press about OpenAlex, and other musings from our team that we think you may find interesting.
+* [**OpenAlex Community Group**](https://groups.google.com/g/openalex-community) is the space for open community discussion about topics of broad interest related to OpenAlex.
 
 ## Contact
 
-For tech support and bug reports, please use our [support ticket form](https://openalex.org/feedback). You can also join the [OpenAlex user group](https://groups.google.com/g/openalex-users), and follow us on [Twitter (@OpenAlex\_org)](https://twitter.com/openalex\_org) and [Mastodon](https://mastodon.social/@OpenAlex).
+For tech support and bug reports, please use our [support ticket form](https://openalex.org/feedback). You can also join the [OpenAlex user group (mailing list)](https://groups.google.com/g/openalex-users), and follow us on [Twitter (@OpenAlex\_org)](https://twitter.com/openalex\_org) and [Mastodon](https://mastodon.social/@OpenAlex).
 
 Another great way to contact us is by attending our virtual [open-houses.md](events/open-houses.md "mention") to ask questions or provide feedback.
 

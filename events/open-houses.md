@@ -6,9 +6,9 @@ We have twice-weekly open houses on Zoom: every Wednesday at 12pm Eastern and ev
 
 Register for each day by clicking on the Zoom registration link. When you register, you will get a confirmation email with instructions on how to join.
 
-March 27 (12pm ET): ask us anything! — [Zoom registration link](https://zoom.us/meeting/register/tJwvceCqrT8oGtMUldsmD9TgIPIPBqpmtkA4)
+~~March 27 (12pm ET): ask us anything!~~
 
-March 28 (9am ET): ask us anything! — [Zoom registration link](https://zoom.us/meeting/register/tJYscOqpqjktGtPURnRFmPHDaBXdDaEFXHsa)
+~~March 28 (9am ET): ask us anything!~~
 
 April 3 (12pm ET): special theme— \[TBD,[ click here](https://openalex.org/feedback) to suggest a theme] — [Zoom registration link](https://zoom.us/meeting/register/tJ0tcOqrpjkjHNf10bjuRrZGnHXTisuhe7nZ)
 
