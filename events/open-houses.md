@@ -14,10 +14,10 @@ April 4 (9am ET): ask us anything! — [Zoom registration link](https://zoom.us/
 
 April 11 (9am ET): ask us anything! — [Zoom registration link](https://zoom.us/meeting/register/tJckcO-uqz0pHdVIDTqjUlNwS6adjkh0DF0H)
 
-April 17: special theme— \[TBD,[ click here](https://openalex.org/feedback) to suggest a theme]
+April 17 (12pm ET): special theme— \[TBD,[ click here](https://openalex.org/feedback) to suggest a theme] — [Zoom registration link](https://zoom.us/meeting/register/tJEoduqpqj8pG93F15WqDZDRmXYy2fAzHhYB)
 
-April 18: special theme— \[TBD,[ click here](https://openalex.org/feedback) to suggest a theme]
+April 18 (9am ET): special theme— \[TBD,[ click here](https://openalex.org/feedback) to suggest a theme] — [Zoom registration link](https://zoom.us/meeting/register/tJYkdeugpz8qGNf4Bqr0aZ2l-jxpQAeUIvpW)
 
-April 24: ask us anything!
+April 24 (12pm ET): ask us anything! — [Zoom registration link](https://zoom.us/meeting/register/tJcqfumuqzotGtZLGMHJvrTP3oBDQOlAmRYJ)
 
-April 25: ask us anything!
+April 25 (9am ET): ask us anything! — [Zoom registration link](https://zoom.us/j/97617343070?pwd=ME9tREc2NnJTaENGOU8zR0xjWXBEZz09)
