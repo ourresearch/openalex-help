@@ -16,10 +16,10 @@ Based on nearly 200 responses to our planning survey, we’ll be hosting two dif
 
 Both events will feature presentations from OpenAlex users around the world with live Q\&A and recorded presentations that will be available for viewing afterwards.
 
-We're looking for users of OpenAlex to give short presentations (12 minutes) showcasing the diverse ways they are using OpenAlex. Want to present? Let us know using this form by April 29th. [https://docs.google.com/forms/d/e/1FAIpQLSeLa1gRKRatZkL91i1QGftA-5xzkYaPnLx382B17zKxUbvQSw/viewform?usp=sf\_link](https://docs.google.com/forms/d/e/1FAIpQLSeLa1gRKRatZkL91i1QGftA-5xzkYaPnLx382B17zKxUbvQSw/viewform?usp=sf\_link)&#x20;
+We're looking for users of OpenAlex to give short presentations (12 minutes) showcasing the diverse ways they are using OpenAlex. Want to present? [Let us know using this form](https://docs.google.com/forms/d/e/1FAIpQLSeLa1gRKRatZkL91i1QGftA-5xzkYaPnLx382B17zKxUbvQSw/viewform?usp=sf_link) by April 29th.
 
 Look out for a detailed agenda in early May.
 
-If you have any questions or feedback while we’re planning the event, please send us a note at [support@openalex.org](mailto:support@openalex.org)&#x20;
+If you have any questions or feedback while we’re planning the event, please send us a note at [support@openalex.org](mailto:support@openalex.org)
 
 Looking forward to ‘seeing’ you there!
