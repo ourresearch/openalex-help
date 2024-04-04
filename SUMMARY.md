@@ -22,3 +22,4 @@
 * [Events](events/README.md)
   * [Webinars](events/webinars.md)
   * [Open houses](events/open-houses.md)
+  * [User Meeting](events/user-meeting.md)
