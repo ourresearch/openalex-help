@@ -4,12 +4,6 @@
 
 ## Upcoming webinars
 
-### April 11, 2024, 12pm EDT — The OpenAlex API Part 1: Getting Started <a href="#openalex-api-part-1" id="openalex-api-part-1"></a>
-
-[**Click here to register**](https://zoom.us/webinar/register/WN\_k1OfebT4RdGoylw6FVqiuw)
-
-The OpenAlex User Interface is designed to make common use cases as simple as possible. The OpenAlex Application Programming Interface (API) supports endless use cases but requires some coding skills from the user. This webinar will introduce basics of the OpenAlex API, when to use it vs the UI, and how the UI can support first time API users.
-
 ### April 25, 2024, 12pm EDT — The OpenAlex API Part 2: Diving In <a href="#openalex-api-part-2" id="openalex-api-part-2"></a>
 
 [**Click here to register**](https://zoom.us/webinar/register/WN\_Jtr5dZWuTgGojGC3yDRG5w)
@@ -51,4 +45,9 @@ This webinar will focus on how to use the OpenAlex API (see Part 1 for introduct
 ### How OpenAlex is helping power new commercial solutions and make science more accessible for everyone (March 28, 2024) <a href="#commercial-orgs-1" id="commercial-orgs-1"></a>
 
 * [Video](https://youtu.be/leJP-pDfSsQ)
+* Slides coming soon
+
+### The OpenAlex API Part 1: Getting Started (April 11, 2024) <a href="#openalex-api-part-1" id="openalex-api-part-1"></a>
+
+* [Video](https://youtu.be/ycoHc8flx8U)
 * Slides coming soon
