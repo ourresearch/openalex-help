@@ -2,11 +2,11 @@
 
 * [OpenAlex help center](README.md)
 * [Tutorial](tutorial.md)
-* [Who are we?](about-us.md)
+* [About us](about-us.md)
 * [FAQ](faq.md)
 * [Pricing](pricing.md)
 * [Coverage](coverage.md)
-* [How it works](how-it-works/README.md)
+* [About the data](how-it-works/README.md)
   * [Data overview](how-it-works/entities-overview.md)
   * [📄 Works](how-it-works/works.md)
   * [👩 Authors](how-it-works/authors.md)
