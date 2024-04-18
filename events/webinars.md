@@ -10,6 +10,22 @@
 
 This webinar will focus on how to use the OpenAlex API (see Part 1 for introductory overview). We will review the basics of constructing API requests and using results. We will then walk through how to perform a few specific examples of analyses not possible in the User Interface that are easily achieved using the API. For this demonstration, we will be coding in Python.
 
+### May 16, 2024, 12pm EDT — Query building in OpenAlex: Creating Custom Research Areas <a href="#query-building-1" id="query-building-1"></a>
+
+[**Click here to register**](https://zoom.us/webinar/register/WN_U9OYPrRFSKy-L3WW55JWMw)
+
+OpenAlex has many ways of classifying research to help researchers and institutions find the works they are looking for. In this webinar, we will review the different ways of finding research by topic in OpenAlex, walk through building complex queries, and present ways of quantifying how well your query achieves your goals. 
+
+Presenter: Kyle Demes
+
+### June 20, 2024, 12pm EDT — Finding, tracking, and analyzing research datasets in OpenAlex <a href="#research-datasets-1" id="research-datasets-1"></a>
+
+[**Click here to register**](https://zoom.us/webinar/register/WN_nM756zP8SPuxO3N7idl-4A)
+
+OpenAlex recently added DataCite as a major source, significantly increasing the coverage of diverse scholarly outputs in OpenAlex, most notably: research datasets! In this webinar, we will review coverage of research datasets in OpenAlex, their associated metadata and citations, and how to find and analyze research datasets in OpenAlex.
+
+Presenters: Kyle Demes and Iratxe Puebla 
+
 ## Past webinars
 
 ### Introducing OpenAlex: An open, comprehensive index of scholarship (September 14, 2023)
