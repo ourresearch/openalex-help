@@ -4,12 +4,6 @@
 
 ## Upcoming webinars
 
-### April 25, 2024, 12pm EDT — The OpenAlex API Part 2: Diving In <a href="#openalex-api-part-2" id="openalex-api-part-2"></a>
-
-[**Click here to register**](https://zoom.us/webinar/register/WN\_Jtr5dZWuTgGojGC3yDRG5w)
-
-This webinar will focus on how to use the OpenAlex API (see Part 1 for introductory overview). We will review the basics of constructing API requests and using results. We will then walk through how to perform a few specific examples of analyses not possible in the User Interface that are easily achieved using the API. For this demonstration, we will be coding in Python.
-
 ### May 16, 2024, 12pm EDT — Query building in OpenAlex: Creating Custom Research Areas <a href="#query-building-1" id="query-building-1"></a>
 
 [**Click here to register**](https://zoom.us/webinar/register/WN_U9OYPrRFSKy-L3WW55JWMw)
@@ -67,3 +61,8 @@ Presenters: Kyle Demes and Iratxe Puebla
 
 * [Video](https://youtu.be/ycoHc8flx8U)
 * Slides coming soon
+
+### The OpenAlex API Part 2: Diving In (April 25, 2024) <a href="#openalex-api-part-2" id="openalex-api-part-2"></a>
+
+* [Video](https://youtu.be/DLKUgbw7FV4)
+* [Python Jupyter notebook](https://openalex.org/webinars/api-notebook-01)
