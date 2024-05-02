@@ -13,6 +13,7 @@
   * [📚 Sources](how-it-works/sources.md)
   * [🏫 Institutions](how-it-works/institutions.md)
   * [💡 Topics](how-it-works/topics.md)
+  * [🗝️ Keywords](how-it-works/keywords.md)
   * [🏢 Publishers](how-it-works/publishers.md)
   * [💰 Funders](how-it-works/funders.md)
   * [🌎 Geo](how-it-works/geo.md)
