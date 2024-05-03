@@ -8,7 +8,7 @@ These are the help pages for OpenAlex, containing information about the [data](b
 
 * [**OpenAlex.org**](https://openalex.org) is our homepage, where you can start exploring the data right now using our friendly user interface (UI).
 * [**About Us**](about-us.md) is where you can learn more about OpenAlex and OurResearch.
-* [**Data Overview**](broken-reference) is where you can start learning about our data and where it comes from.
+* [**Data Overview**](./how-it-works/README.md) is where you can start learning about our data and where it comes from.
 * [**Author Profiles**](how-it-works/authors.md) — If you are a researcher and want to know more about how you are represented in OpenAlex, or you want to make corrections to your data, go to the [author info page](how-it-works/authors.md) to learn more.
 * [**Events**](events/) has information about how you can interact with us personally, through our [webinars](events/webinars.md) and [open houses](events/open-houses.md).
 * [**Technical Documentation**](https://docs.openalex.org) is the place to go to learn about using the API or downloading the data snapshot.

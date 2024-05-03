@@ -14,7 +14,7 @@ OpenAlex indexes over 240M works, with tens of thousands added daily.
 
 OpenAlex aggregates and builds upon data from a variety of different sources. One of the most important sources is the [Microsoft Academic Graph (MAG)](https://en.wikipedia.org/wiki/Microsoft\_Academic), which was a project by Microsoft Research to catalog all of the scholarly literature on the internet. When Microsoft discontinued the project in 2021, they released their final open dataset, and OpenAlex took these hundreds of millions of works along with the other data and continued building upon it.
 
-Our other main source of data for works is [Crossref](https://www.crossref.org/), an open scholarly data aggregator and DOI registration agency with data on 150 million works. We combine data from Crossref, MAG, and [several other sources](broken-reference) to get the full set of works that are the core of OpenAlex.
+Our other main source of data for works is [Crossref](https://www.crossref.org/), an open scholarly data aggregator and DOI registration agency with data on 150 million works. We combine data from Crossref, MAG, and [several other sources](./README.md) to get the full set of works that are the core of OpenAlex.
 
 ### How we add new works
 

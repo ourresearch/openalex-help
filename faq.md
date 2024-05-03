@@ -12,7 +12,7 @@ If your example DOI is in Crossref but not in OpenAlex, please send us a [suppor
 
 ### Where does your data come from?
 
-See our [data overview](broken-reference) page.
+See our [data overview](./how-it-works/README.md) page.
 
 ### How is OpenAlex licensed?
 
