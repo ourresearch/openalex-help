@@ -7,7 +7,6 @@
 * [Pricing](pricing.md)
 * [Coverage](coverage.md)
 * [About the data](how-it-works/README.md)
-  * [Data overview](how-it-works/entities-overview.md)
   * [📄 Works](how-it-works/works.md)
   * [👩 Authors](how-it-works/authors.md)
   * [📚 Sources](how-it-works/sources.md)
