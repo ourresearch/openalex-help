@@ -6,18 +6,14 @@ We have twice-weekly open houses on Zoom: every Wednesday at 12pm Eastern and ev
 
 Register for each day by clicking on the Zoom registration link. When you register, you will get a confirmation email with instructions on how to join.
 
-~~April 17 (12pm ET): ask us anything!~~
-
-~~April 18 (9am ET): ask us anything!~~
-
-Wed, April 24 (12pm ET): ask us anything! — [Zoom registration link](https://zoom.us/meeting/register/tJcqfumuqzotGtZLGMHJvrTP3oBDQOlAmRYJ)
-
-Thur, April 25 (9am ET): ask us anything! — [Zoom registration link](https://zoom.us/j/97617343070?pwd=ME9tREc2NnJTaENGOU8zR0xjWXBEZz09)
-
-Wed, May 1 (12pm ET): ask us anything! — [Zoom registration link](https://zoom.us/meeting/register/tJEkf-msqjoiH9UNDnmWOQK94gt7Tm0fOlGD)
-
-Thur, May 2 (9am ET): ask us anything! — [Zoom registration link](https://zoom.us/meeting/register/tJEldu-qrjwiEtIsLAUv2PG-PHZ4HAdhWGWJ)
-
 Wed, May 8 (12pm ET): ask us anything! — [Zoom registration link](https://zoom.us/meeting/register/tJUqc--rrT4iEtyHuogAWO4P9qai3dAGKzWU)
 
 Thur, May 9 (9am ET): ask us anything! — [Zoom registration link](https://zoom.us/meeting/register/tJEuceqppjgvE9RGrIfdC9GUWvTC7KueK-I4)
+
+Wed, May 15 (12pm ET): ask us anything! — [Zoom registration link](https://zoom.us/meeting/register/tJUvcu6uqjgoG9IOChjefhj2yGFGzyOSTFC7)
+
+Thur, May 16 (9am ET): ask us anything! — [Zoom registration link](https://zoom.us/meeting/register/tJArdumspz4rH9zzmzvT5yYwEgsiV7IqXY2C)
+
+Wed, May 22 (12pm ET): ask us anything! — [Zoom registration link](https://zoom.us/meeting/register/tJAqce-rqT8sGNwLIYBSgIGlr547fMfRHl6Z)
+
+Thur, May 23 (9am ET): ask us anything! — [Zoom registration link](https://zoom.us/meeting/register/tJcrcOyvqTsuEtQOLSsc8TLbXyKDR3dChITP)
