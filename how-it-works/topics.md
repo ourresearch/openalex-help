@@ -25,7 +25,13 @@ We developed the method for classifying our works in collaboration with [CWTS at
    * This model can handle cases with missing data, so we can use it to classify most of our works, including new works that don't have any incoming citations.
 4. Assign each topic to subfields, fields, and domains, which are based on Scopus's [ASJC categories](https://service.elsevier.com/app/answers/detail/a\_id/12007/supporthub/scopus/)
 
-For a detailed description of the methods, see our paper: ["OpenAlex: End-to-End Process for Topic Classification"](https://docs.google.com/document/d/1bDopkhuGieQ4F8gGNj7sEc8WSE8mvLZS/edit?usp=sharing&ouid=106329373929967149989&rtpof=true&sd=true). The code and model are available at [`https://github.com/ourresearch/openalex-topic-classification`](https://github.com/ourresearch/openalex-topic-classification).
+For a detailed description of the methods, see our paper: ["OpenAlex: End-to-End Process for Topic Classification"](https://docs.google.com/document/d/1bDopkhuGieQ4F8gGNj7sEc8WSE8mvLZS/edit?usp=sharing\&ouid=106329373929967149989\&rtpof=true\&sd=true). The code and model are available at [`https://github.com/ourresearch/openalex-topic-classification`](https://github.com/ourresearch/openalex-topic-classification).
+
+### Topics coverage
+
+Most works are assigned Topics—as well as domains, fields, subfields, and keywords—using the methods above. Some works, however, don't have enough associated data to be able to assign Topics. The following table taken from the methods paper (linked to above), shows how many works were classified with at least one Topic and how many works were excluded from Topic classification for various reasons:
+
+<figure><img src="../.gitbook/assets/image.png" alt="" width="563"><figcaption></figcaption></figure>
 
 ## Technical documentation
 
