@@ -20,7 +20,7 @@ You can read more about how we disambiguate authors in our [technical documentat
 
 ## Author profile curation
 
-You may have noticed errors in the OpenAlex author profiles, such as incorrect information about yourself or someone you know.
+You may have noticed errors in the OpenAlex author profiles, such as incorrect information about yourself or someone you know. If so, you may be wondering how you can help us correct the data, or maybe you have already submitted a support request or form to try to help!
 
 Thank you to everyone who has reached out with curation requests to help improve the accuracy of individual author profiles in OpenAlex! We greatly value these contributions and are committed to continuing to support grass-roots curation of metadata.
 
