@@ -38,15 +38,15 @@ Register here:[ https://zoom.us/webinar/register/WN\_N65daHwBRJWTRoW8syRvbQ](htt
 
 #### 14:20-14:30 – break
 
-#### 14:30-15:40 – User Presentations and Q\&A: Group 3
+#### 14:30-15:45 – User Presentations and Q\&A: Group 3
 
 * _Reviewerly: A High Quality Peer Reviewer Suggestion Application_ by Sajad Ebrahimi, Toronto Metropolitan University
 * _Impactu: CRIS platform for Colombia_ by Diego Restrepo, University of Antioquia
 * _coplemetrix.net A tool for visualizing bibliometric data_ by Albert Diaz-Guilera, Universitat de Barcelona
 * _Scite: A New Approach to Rankings_ by Sean C. Rife, Research Solutions, Inc.
-* _Characterizing research outputs and their use: openalex + scite_ by Ricardo Hartley, Universidad Central de Chile
+* _Characterizing research outputs and their use: openalex + scite_ by Ricardo Hartley Belmar, Universidad Central de Chile, Data Observatory Foundation
 
-#### 15:40-16:00 – OpenAlex Presentation and Q\&A
+#### 15:45-16:00 – OpenAlex Presentation and Q\&A
 
 * Kyle Demes & Jason Portenoy \[OurResearch]
 
@@ -71,7 +71,7 @@ Register here:[ https://zoom.us/webinar/register/WN\_BrzSHESETO-7mM2d6Q6MOw](htt
 
 * _Navigating Scholarly Data: UArizona's Approach Using OpenAlex for Measuring Authors' impacts_ by Yan Han, The University of Arizona
 * _SemOpenAlex: The Scientific Landscape in 26 Billion RDF Triples_ by Michael Färber, ScaDS.AI & TU Dresden
-* _Building a Node.js SDK to streamline literature searches using OpenAlex_ by Bethany Huntingon, Open Development & Education
+* _Building a Node.js SDK to streamline literature searches using OpenAlex_ by Hassan Mansour and Adnane Touiyate, Open Development & Education
 * _Visualizing OpenAlex data with VOSviewer_ by Nees Jan van Eck, CWTS Leiden University
 * _Analysing OpenAlex data with Cortext_ by Alexandre Hannud Abdo & Joenio Marques da Costa, Université Gustave Eiffel
 
