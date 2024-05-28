@@ -8,7 +8,7 @@ Register for each day by clicking on the Zoom registration link. When you regist
 
 ~~Wed, May 22 (12pm ET): ask us anything!~~ CANCELED
 
-Thur, May 23 (9am ET): ask us anything! — [Zoom registration link](https://zoom.us/meeting/register/tJcrcOyvqTsuEtQOLSsc8TLbXyKDR3dChITP)
+~~Thur, May 23 (9am ET): ask us anything!~~
 
 \*\* We will not have any open houses on May 29 or May 30. Come join us at the [OpenAlex Virtual User Meeting](./user-meeting.md) instead! \*\*
 

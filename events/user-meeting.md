@@ -8,13 +8,15 @@ description: OpenAlex Virtual User Conference
 
 Inspired by feedback from our community, we are excited to announce the first OpenAlex Virtual User Conference!
 
-Based on nearly 200 responses to our planning survey, we’ll be hosting two different events at the end of May. Both events will feature presentations from OpenAlex users around the world with live Q\&A.
+Based on nearly 200 responses to our planning survey, we’ll be hosting two different events. Both events will feature presentations from OpenAlex users around the world with live Q\&A.
 
 The list of presentations and speakers is included below. Presentations will be recorded and available for viewing after the event on this website and[ our YouTube channel](https://www.youtube.com/@OurResearch)—**so please only register for the events that you plan to attend live.**
 
-### Thursday May 30th \[12pm - 4pm EST]
+### Thursday May 30th \[12pm - 4pm EDT]
 
 Register here:[ https://zoom.us/webinar/register/WN\_N65daHwBRJWTRoW8syRvbQ](https://zoom.us/webinar/register/WN\_N65daHwBRJWTRoW8syRvbQ)
+
+Host for the day: **Kyle Demes**
 
 #### 12:00-12:10 – Introduction and Welcome
 
@@ -55,7 +57,9 @@ Register here:[ https://zoom.us/webinar/register/WN\_N65daHwBRJWTRoW8syRvbQ](htt
 
 Register here:[ https://zoom.us/webinar/register/WN\_BrzSHESETO-7mM2d6Q6MOw](https://zoom.us/webinar/register/WN\_BrzSHESETO-7mM2d6Q6MOw)
 
-#### 10:00-10:10 – Introduction, Welcome and OpenAlex Presentation
+Host for the day: **Bianca Kramer**
+
+#### 10:00-10:10 – Introduction and Welcome
 
 #### 10:10-11:25 – User Presentations and Q\&A: Group 1
 
@@ -70,7 +74,7 @@ Register here:[ https://zoom.us/webinar/register/WN\_BrzSHESETO-7mM2d6Q6MOw](htt
 #### 11:35-12:40 – User Presentations and Q\&A: Group 2
 
 * _Navigating Scholarly Data: UArizona's Approach Using OpenAlex for Measuring Authors' impacts_ by Yan Han, The University of Arizona
-* _SemOpenAlex: The Scientific Landscape in 26 Billion RDF Triples_ by Michael Färber, ScaDS.AI & TU Dresden
+* _SemOpenAlex: The Scientific Landscape in 26 Billion RDF Triples_ by David Lamprecht, ScaDS.AI & TU Dresden
 * _Building a Node.js SDK to streamline literature searches using OpenAlex_ by Hassan Mansour and Adnane Touiyate, Open Development & Education
 * _Visualizing OpenAlex data with VOSviewer_ by Nees Jan van Eck, CWTS Leiden University
 * _Analysing OpenAlex data with Cortext_ by Alexandre Hannud Abdo & Joenio Marques da Costa, Université Gustave Eiffel
