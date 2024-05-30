@@ -44,7 +44,7 @@ Host for the day: **Kyle Demes**
 
 * _Reviewerly: A High Quality Peer Reviewer Suggestion Application_ by Sajad Ebrahimi, Toronto Metropolitan University
 * _Impactu: CRIS platform for Colombia_ by Diego Restrepo, University of Antioquia
-* _coplemetrix.net A tool for visualizing bibliometric data_ by Albert Diaz-Guilera, Universitat de Barcelona
+* _[complemetrix.net](https://complemetrix.net) A tool for visualizing bibliometric data_ by Albert Diaz-Guilera, Universitat de Barcelona
 * _Scite: A New Approach to Rankings_ by Sean C. Rife, Research Solutions, Inc.
 * _Characterizing research outputs and their use: openalex + scite_ by Ricardo Hartley Belmar, Universidad Central de Chile, Data Observatory Foundation
 
