@@ -6,14 +6,6 @@ We have twice-weekly open houses on Zoom: every Wednesday at 12pm Eastern and ev
 
 Register for each day by clicking on the Zoom registration link. When you register, you will get a confirmation email with instructions on how to join.
 
-~~Wed, May 22 (12pm ET): ask us anything!~~ CANCELED
-
-~~Thur, May 23 (9am ET): ask us anything!~~
-
-\*\* We will not have any open houses on May 29 or May 30. Come join us at the [OpenAlex Virtual User Meeting](./user-meeting.md) instead! \*\*
-
-\*\* No open houses on June 5 or June 6 \*\*
-
 Wed, June 12 (12pm ET): Open house — [Zoom registration link](https://zoom.us/meeting/register/tJcpceygrjIvGNc7RG65FAfBAJd1nwpRQgL8)
 
 Thur, June 13 (9am ET): Open house — [Zoom registration link](https://zoom.us/meeting/register/tJUocuChqTMoG9ayjaQyUmo0aXhYUCZz2Lnh)
