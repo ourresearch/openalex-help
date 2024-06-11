@@ -6,6 +6,10 @@ description: OpenAlex Virtual User Conference
 
 ## 2024 OpenAlex Virtual User Conference
 
+{% hint style="success" %}
+The User Conference was a great success! We'll be updating this page soon with links to video recordings of the presentation. Come back soon!
+{% endhint %}
+
 Inspired by feedback from our community, we are excited to announce the first OpenAlex Virtual User Conference!
 
 Based on nearly 200 responses to our planning survey, we’ll be hosting two different events. Both events will feature presentations from OpenAlex users around the world with live Q\&A.
@@ -44,14 +48,13 @@ Host for the day: **Kyle Demes**
 
 * _Reviewerly: A High Quality Peer Reviewer Suggestion Application_ by Sajad Ebrahimi, Toronto Metropolitan University
 * _Impactu: CRIS platform for Colombia_ by Diego Restrepo, University of Antioquia
-* _[complemetrix.net](https://complemetrix.net) A tool for visualizing bibliometric data_ by Albert Diaz-Guilera, Universitat de Barcelona
+* [_complemetrix.net_](https://complemetrix.net) _A tool for visualizing bibliometric data_ by Albert Diaz-Guilera, Universitat de Barcelona
 * _Scite: A New Approach to Rankings_ by Sean C. Rife, Research Solutions, Inc.
 * _Characterizing research outputs and their use: openalex + scite_ by Ricardo Hartley Belmar, Universidad Central de Chile, Data Observatory Foundation
 
 #### 15:45-16:00 – OpenAlex Presentation and Q\&A
 
 * Kyle Demes & Jason Portenoy \[OurResearch]
-
 
 ### Friday May 31st \[10am - 2pm CET]
 
