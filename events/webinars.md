@@ -12,6 +12,14 @@ OpenAlex recently added DataCite as a major source, significantly increasing the
 
 Presenters: Kyle Demes and Iratxe Puebla 
 
+### July 17, 2024, 12pm EDT — openalexR: a glance into scholarly data analysis in R <a href="#openalexr" id="openalexr"></a>
+
+[**Click here to register**](https://zoom.us/webinar/register/WN_hF-lFmjPQ1a3uYpW1jklEg)
+
+This webinar introduces [openalexR](https://github.com/ropensci/openalexR), an R package designed for interacting with OpenAlex. Participants will learn to efficiently access and analyze scholarly data, enhancing research capabilities and insights within the R environment. 
+
+Presenter: Trang Le
+
 ## Past webinars
 
 ### Introducing OpenAlex: An open, comprehensive index of scholarship (September 14, 2023)
