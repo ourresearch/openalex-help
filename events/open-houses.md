@@ -7,3 +7,5 @@ We have regular open houses on Zoom: alternating between Wednesday at 12pm Easte
 Register for each day by clicking on the Zoom registration link. When you register, you will get a confirmation email with instructions on how to join.
 
 Thur, June 20 (9am ET): Open house — [Zoom registration link](https://zoom.us/meeting/register/tJMuce-hqDkpE9XCHtF4lz75l_a4_L4XS7Yp)
+
+Wed, June 26 (12pm ET): Open house — [Zoom registration link](https://zoom.us/meeting/register/tJwvc-morzguH9Gkiv8WtwXAr_9aCyRsMJQ9)

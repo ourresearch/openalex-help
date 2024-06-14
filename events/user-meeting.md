@@ -39,7 +39,6 @@ Host for the day: **Kyle Demes**
 
 * _Linking policy documents to academic research_ by Euan Adie, Overton
 * _Creating citation networks with OpenAlex's big data and cloud computing_ by Daniel Sunfeld, Universidade de Brasília
-* _Matching Latin American Scholarly databases to OpenAlex_ by Alysson Fernandes Mazoni, University of Campinas
 * _The increasing fragmentation of global science limits the diffusion of ideas_ by Alexander Gates, University of Virginia
 
 #### 14:20-14:30 – break
@@ -76,11 +75,11 @@ Host for the day: **Bianca Kramer**
 
 #### 11:35-12:40 – User Presentations and Q\&A: Group 2
 
-* _Navigating Scholarly Data: UArizona's Approach Using OpenAlex for Measuring Authors' impacts_ by Yan Han, The University of Arizona
 * _SemOpenAlex: The Scientific Landscape in 26 Billion RDF Triples_ by David Lamprecht, ScaDS.AI & TU Dresden
 * _Building a Node.js SDK to streamline literature searches using OpenAlex_ by Hassan Mansour and Adnane Touiyate, Open Development & Education
 * _Visualizing OpenAlex data with VOSviewer_ by Nees Jan van Eck, CWTS Leiden University
 * _Analysing OpenAlex data with Cortext_ by Alexandre Hannud Abdo & Joenio Marques da Costa, Université Gustave Eiffel
+* _Navigating Scholarly Data: UArizona's Approach Using OpenAlex for Measuring Authors' impacts_ by Yan Han, The University of Arizona
 
 #### 12:30-12:40 – break
 
