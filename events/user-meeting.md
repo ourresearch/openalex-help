@@ -14,11 +14,11 @@ Inspired by feedback from our community, we are excited to announce the first Op
 
 Based on nearly 200 responses to our planning survey, we’ll be hosting two different events. Both events will feature presentations from OpenAlex users around the world with live Q\&A.
 
-The list of presentations and speakers is included below. Presentations will be recorded and available for viewing after the event on this website and[ our YouTube channel](https://www.youtube.com/@OurResearch)—**so please only register for the events that you plan to attend live.**
+The list of presentations and speakers is included below. Presentations will be recorded and available for viewing after the event on this website and[ our YouTube channel](https://www.youtube.com/@OurResearch)
+
+UPDATE: The video recordings are now available here: [https://youtube.com/playlist?list=PLe06345JQjNbCjTTQjO8_62HLdDS-MV3n&si=0kuV14a-HzRyWMxr](https://youtube.com/playlist?list=PLe06345JQjNbCjTTQjO8_62HLdDS-MV3n&si=0kuV14a-HzRyWMxr)
 
 ### Thursday May 30th \[12pm - 4pm EDT]
-
-Register here:[ https://zoom.us/webinar/register/WN\_N65daHwBRJWTRoW8syRvbQ](https://zoom.us/webinar/register/WN\_N65daHwBRJWTRoW8syRvbQ)
 
 Host for the day: **Kyle Demes**
 
@@ -56,8 +56,6 @@ Host for the day: **Kyle Demes**
 * Kyle Demes & Jason Portenoy \[OurResearch]
 
 ### Friday May 31st \[10am - 2pm CET]
-
-Register here:[ https://zoom.us/webinar/register/WN\_BrzSHESETO-7mM2d6Q6MOw](https://zoom.us/webinar/register/WN\_BrzSHESETO-7mM2d6Q6MOw)
 
 Host for the day: **Bianca Kramer**
 
