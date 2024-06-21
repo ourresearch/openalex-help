@@ -4,14 +4,6 @@
 
 ## Upcoming webinars
 
-### June 20, 2024, 12pm EDT — Finding, tracking, and analyzing research datasets in OpenAlex <a href="#research-datasets-1" id="research-datasets-1"></a>
-
-[**Click here to register**](https://zoom.us/webinar/register/WN_nM756zP8SPuxO3N7idl-4A)
-
-OpenAlex recently added DataCite as a major source, significantly increasing the coverage of diverse scholarly outputs in OpenAlex, most notably: research datasets! In this webinar, we will review coverage of research datasets in OpenAlex, their associated metadata and citations, and how to find and analyze research datasets in OpenAlex.
-
-Presenters: Kyle Demes and Iratxe Puebla 
-
 ### July 17, 2024, 12pm EDT — openalexR: a glance into scholarly data analysis in R <a href="#openalexr" id="openalexr"></a>
 
 [**Click here to register**](https://zoom.us/webinar/register/WN_hF-lFmjPQ1a3uYpW1jklEg)
@@ -71,3 +63,9 @@ Presenter: Trang Le
 
 * [Video](https://youtu.be/aoOjsdjLU2I)
 * [Slides](https://docs.google.com/presentation/d/1D4gOqMVOKNJxEYhDfS9jLzStZqqLJKwA2jF-IKDr9SA/edit?usp=sharing)
+
+### Finding, tracking, and analyzing research datasets in OpenAlex (June 20, 2024) <a href="#research-datasets-1" id="research-datasets-1"></a>
+
+[**Click here to register**](https://zoom.us/webinar/register/WN_nM756zP8SPuxO3N7idl-4A)
+
+* [Video](https://youtu.be/cKUKXwxAlOM)
