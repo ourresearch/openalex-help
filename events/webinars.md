@@ -4,11 +4,11 @@
 
 ## Upcoming webinars
 
-### July 17, 2024, 12pm EDT — openalexR: a glance into scholarly data analysis in R <a href="#openalexr" id="openalexr"></a>
+### July 18, 2024, 12pm EDT — openalexR: a glance into scholarly data analysis in R <a href="#openalexr" id="openalexr"></a>
 
-[**Click here to register**](https://zoom.us/webinar/register/WN_hF-lFmjPQ1a3uYpW1jklEg)
+[**Click here to register**](https://zoom.us/webinar/register/WN\_hF-lFmjPQ1a3uYpW1jklEg)
 
-This webinar introduces [openalexR](https://github.com/ropensci/openalexR), an R package designed for interacting with OpenAlex. Participants will learn to efficiently access and analyze scholarly data, enhancing research capabilities and insights within the R environment. 
+This webinar introduces [openalexR](https://github.com/ropensci/openalexR), an R package designed for interacting with OpenAlex. Participants will learn to efficiently access and analyze scholarly data, enhancing research capabilities and insights within the R environment.
 
 Presenter: Trang Le
 
@@ -42,7 +42,7 @@ Presenter: Trang Le
 ### How EPFL uses OpenAlex for tailor-made scientometrics and benchmarking between Universities (February 22, 2024) <a href="#how-epfl-uses-openalex" id="how-epfl-uses-openalex"></a>
 
 * [Video](https://youtu.be/DgQgbLN\_uPc)
-* [Slides](https://drive.google.com/file/d/1VZzG2Q7_7lzXB9RAsiDx0SVKCpqGo-SA/view?usp=sharing)
+* [Slides](https://drive.google.com/file/d/1VZzG2Q7\_7lzXB9RAsiDx0SVKCpqGo-SA/view?usp=sharing)
 
 ### How OpenAlex is helping power new commercial solutions and make science more accessible for everyone (March 28, 2024) <a href="#commercial-orgs-1" id="commercial-orgs-1"></a>
 
@@ -66,6 +66,6 @@ Presenter: Trang Le
 
 ### Finding, tracking, and analyzing research datasets in OpenAlex (June 20, 2024) <a href="#research-datasets-1" id="research-datasets-1"></a>
 
-[**Click here to register**](https://zoom.us/webinar/register/WN_nM756zP8SPuxO3N7idl-4A)
+[**Click here to register**](https://zoom.us/webinar/register/WN\_nM756zP8SPuxO3N7idl-4A)
 
 * [Video](https://youtu.be/cKUKXwxAlOM)
