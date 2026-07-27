@@ -1,0 +1,14 @@
+# THE redirect map — single source of truth for every legacy URL (oxjob #354).
+#
+# Two legacy URL sets land here:
+#   1. Zendesk KB paths (/hc/en-us/articles/<id>-Title) — help.openalex.org was
+#      the Zendesk Guide host before this site.
+#   2. Old Mintlify dev-docs paths — developers.openalex.org/* 301s to
+#      help.openalex.org/<same path> via a zone-level wildcard rule, then this
+#      file re-routes any path whose new-IA home differs.
+#
+# Rules: explicit 301s, one line per legacy URL, filled in during the migration
+# grind. External targets allowed (the ~19 Unsub articles -> docs.unsub.org).
+# Cloudflare Pages limit: 2,000 static rules; we need ~200.
+#
+# Format: /old-path /new-path 301

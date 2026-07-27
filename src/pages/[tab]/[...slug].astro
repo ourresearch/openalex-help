@@ -1,0 +1,22 @@
+---
+import { render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import { allEntries } from '../../lib/tabs';
+
+export async function getStaticPaths() {
+  return (await allEntries()).map(({ tab, entry }) => ({
+    params: { tab, slug: entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+---
+
+<Base title={entry.data.title} description={entry.data.description}>
+  <article>
+    <h1>{entry.data.title}</h1>
+    <Content />
+  </article>
+</Base>

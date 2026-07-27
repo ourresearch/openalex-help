@@ -1,0 +1,8 @@
+# Keep raw-markdown sibling routes out of search indexes (duplicate content);
+# they're for agents/LLMs, discoverable via /llms.txt.
+/*.md
+  X-Robots-Tag: noindex
+/*/*.md
+  X-Robots-Tag: noindex
+/*/*/*.md
+  X-Robots-Tag: noindex

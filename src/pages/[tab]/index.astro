@@ -1,0 +1,21 @@
+---
+import Base from '../../layouts/Base.astro';
+import { TABS, allEntries, urlFor, type Tab } from '../../lib/tabs';
+
+export async function getStaticPaths() {
+  return TABS.map((tab) => ({ params: { tab } }));
+}
+
+const tab = Astro.params.tab as Tab;
+const entries = (await allEntries()).filter((e) => e.tab === tab);
+const labels: Record<Tab, string> = { help: 'Help', docs: 'Docs', api: 'API', learn: 'Learn' };
+---
+
+<Base title={labels[tab]}>
+  <h1>{labels[tab]}</h1>
+  <ul>
+    {entries.map(({ tab, entry }) => (
+      <li><a href={urlFor(tab, entry)}>{entry.data.title}</a></li>
+    ))}
+  </ul>
+</Base>

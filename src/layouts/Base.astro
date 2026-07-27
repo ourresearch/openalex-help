@@ -1,0 +1,49 @@
+---
+// Minimal shell — the real Cursor-shaped design lands in the "site shell" task
+// (oxjob #354, work/build-spec.md). Tabs are the site's information architecture:
+// Help is deliberately first (audience priority: nontechnical > semitechnical > technical).
+interface Props {
+  title: string;
+  description?: string;
+}
+const { title, description } = Astro.props;
+const tabs = [
+  { label: 'Help', href: '/help/' },
+  { label: 'Docs', href: '/docs/' },
+  { label: 'API', href: '/api/' },
+  { label: 'Learn', href: '/learn/' },
+];
+const path = Astro.url.pathname;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title} | OpenAlex Help</title>
+    {description && <meta name="description" content={description} />}
+  </head>
+  <body>
+    <header>
+      <nav>
+        <a href="/" class="wordmark">OpenAlex</a>
+        {tabs.map((t) => (
+          <a href={t.href} aria-current={path.startsWith(t.href) ? 'page' : undefined}>{t.label}</a>
+        ))}
+      </nav>
+    </header>
+    <main>
+      <slot />
+    </main>
+    <style>
+      body { font-family: system-ui, sans-serif; margin: 0; color: #1a1a1a; }
+      header { border-bottom: 1px solid #eee; }
+      nav { display: flex; gap: 1.5rem; padding: 0.75rem 1.5rem; max-width: 60rem; margin: 0 auto; }
+      .wordmark { font-weight: 600; }
+      nav a { text-decoration: none; color: inherit; }
+      nav a[aria-current='page'] { font-weight: 600; }
+      main { max-width: 60rem; margin: 2rem auto; padding: 0 1.5rem; }
+    </style>
+  </body>
+</html>
