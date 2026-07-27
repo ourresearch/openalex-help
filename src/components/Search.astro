@@ -70,14 +70,30 @@
   const container = document.getElementById('pagefind-container')!;
   let loaded = false;
 
+  function loadScript(src: string) {
+    return new Promise<void>((resolve, reject) => {
+      const s = document.createElement('script');
+      s.src = src;
+      s.onload = () => resolve();
+      s.onerror = reject;
+      document.head.appendChild(s);
+    });
+  }
+
   async function openSearch() {
     dialog.showModal();
     if (loaded) return;
     try {
-      // Runtime-only asset; @vite-ignore keeps the dev server from resolving it.
-      const pagefind = await import(/* @vite-ignore */ '/pagefind/pagefind-ui.js');
+      // pagefind-ui.js is a classic script that attaches window.PagefindUI —
+      // not an ES module, so it can't be import()ed. Assets exist only in the
+      // built site; on the dev server this rejects and the fallback note stays.
+      const css = document.createElement('link');
+      css.rel = 'stylesheet';
+      css.href = '/pagefind/pagefind-ui.css';
+      document.head.appendChild(css);
+      await loadScript('/pagefind/pagefind-ui.js');
       container.innerHTML = '<div id="pagefind-ui"></div>';
-      new pagefind.PagefindUI({
+      new (window as any).PagefindUI({
         element: '#pagefind-ui',
         showSubResults: true,
         showImages: false,
