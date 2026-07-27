@@ -1,0 +1,15 @@
+---
+title: "Aboutness"
+description: "\"Aboutness\" refers to what the stuff in OpenAlex is about. Most of the works in OpenAlex are \"about\" something, and this aboutness can aggregate up as well to characterize autho…"
+tags: ["data"]
+source_id: "24859286130583"
+source_url: "https://help.openalex.org/hc/en-us/articles/24859286130583-Aboutness"
+source_updated: "2024-07-26"
+---
+"Aboutness" refers to what the stuff in OpenAlex is about. Most of the works in OpenAlex are "about" something, and this aboutness can aggregate up as well to characterize authors, institutions, journals, etc. There are several ways of looking at aboutness in OpenAlex, and which ones you might look at will vary based on your use case and the questions you might want to answer. Below, we provide a summary of some of the OpenAlex data you can use for your aboutness-related questions. Each of these can be used as a filter as you hone your results sets. The number of groups for each one tells you about the granularity of the analysis. The familiarity relates to how well you might be able to compare your analyses or share your insights with others. You can use this information to help guide you when you're deciding which ones to use. Please click the links to learn more about the different forms of aboutness.
+
+<table id="docs-internal-guid-7f7a4c1b-7fff-bff1-78bf-fbe52e60ea9f" style="width: 100%;"><colgroup><col> <col> <col> <col></colgroup><tbody><tr><td><strong>OpenAlex Filter</strong></td><td><strong># groups</strong></td><td><strong>Familiarity</strong></td><td><strong>Fit to custom areas</strong></td></tr><tr><td>SDGs</td><td>17</td><td>High</td><td>Low</td></tr><tr><td><a href="https://help.openalex.org/hc/en-us/articles/24736129405719">Domains</a></td><td>4</td><td>High</td><td>Low</td></tr><tr><td><a href="https://help.openalex.org/hc/en-us/articles/24736129405719">Fields</a></td><td>26</td><td>High</td><td>Low</td></tr><tr><td><a href="https://help.openalex.org/hc/en-us/articles/24736129405719">Subfields</a></td><td>252</td><td>High</td><td>Medium</td></tr><tr><td><a href="https://help.openalex.org/hc/en-us/articles/24736129405719">Topics</a></td><td>4,516</td><td>Low</td><td>Medium-high</td></tr><tr><td><a href="https://help.openalex.org/hc/en-us/articles/24736201130391">Keywords</a></td><td>26,773</td><td>Medium</td><td>High</td></tr><tr><td>MAG_concepts</td><td>65,073</td><td>High</td><td>Variable</td></tr><tr><td>Text queries</td><td><strong>∞</strong></td><td>Low</td><td>High</td></tr></tbody></table>
+
+## Getting the aboutness for your own custom text
+
+For some of the OpenAlex aboutness measures, we provide a way for you to supply your own custom text. So, for example, you can provide the title and abstract of an unpublished article, or a grant proposal, and we can give you the SDGs, domains, fields, subfields, and topics in the exact same form as we have assigned to the works in OpenAlex. Learn more about this in [our technical documentation here.](https://docs.openalex.org/api-entities/aboutness-endpoint-text)

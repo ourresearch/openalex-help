@@ -1,0 +1,137 @@
+id	section	action	tab	slug	target	review	reason	title
+41193838887191	Unsub	redirect			https://docs.unsub.org/		Unsub product docs live at docs.unsub.org (#669 supplies exact mapping)	Single Journal Page Zoom-In
+41193838865303	Unsub	redirect			https://docs.unsub.org/		Unsub product docs live at docs.unsub.org (#669 supplies exact mapping)	Details: Cost
+41193820897559	Unsub	redirect			https://docs.unsub.org/		Unsub product docs live at docs.unsub.org (#669 supplies exact mapping)	Details: Open Access
+41193790734359	Unsub	redirect			https://docs.unsub.org/		Unsub product docs live at docs.unsub.org (#669 supplies exact mapping)	Details: Impact
+41193790703127	Unsub	redirect			https://docs.unsub.org/		Unsub product docs live at docs.unsub.org (#669 supplies exact mapping)	Details: Fulfillment
+41193820874519	Unsub	redirect			https://docs.unsub.org/		Unsub product docs live at docs.unsub.org (#669 supplies exact mapping)	Glossary
+41193798539159	Unsub	redirect			https://docs.unsub.org/		Unsub product docs live at docs.unsub.org (#669 supplies exact mapping)	Donation
+41193838748951	Unsub	redirect			https://docs.unsub.org/		Unsub product docs live at docs.unsub.org (#669 supplies exact mapping)	Benefits and Features
+41193820857495	Unsub	redirect			https://docs.unsub.org/		Unsub product docs live at docs.unsub.org (#669 supplies exact mapping)	Pricing
+41193805009815	Unsub	redirect			https://docs.unsub.org/		Unsub product docs live at docs.unsub.org (#669 supplies exact mapping)	What does "Edit Subscriptions" do and how does it work?
+41193819357591	Unsub	redirect			https://docs.unsub.org/		Unsub product docs live at docs.unsub.org (#669 supplies exact mapping)	How do we calculate ILL requests and ILL cost?
+41193804944791	Unsub	redirect			https://docs.unsub.org/		Unsub product docs live at docs.unsub.org (#669 supplies exact mapping)	Release Notes
+41193790596247	Unsub	redirect			https://docs.unsub.org/		Unsub product docs live at docs.unsub.org (#669 supplies exact mapping)	FAQ
+41193819279255	Unsub	redirect			https://docs.unsub.org/		Unsub product docs live at docs.unsub.org (#669 supplies exact mapping)	Publishing costs (APCs)
+41193838583191	Unsub	redirect			https://docs.unsub.org/		Unsub product docs live at docs.unsub.org (#669 supplies exact mapping)	Overview
+41193819205015	Unsub	redirect			https://docs.unsub.org/		Unsub product docs live at docs.unsub.org (#669 supplies exact mapping)	Description of data fields
+41193838534039	Unsub	redirect			https://docs.unsub.org/		Unsub product docs live at docs.unsub.org (#669 supplies exact mapping)	Configuration settings
+41193838518807	Unsub	redirect			https://docs.unsub.org/		Unsub product docs live at docs.unsub.org (#669 supplies exact mapping)	Cost Effectiveness (NCPPU)
+41193838501783	Unsub	redirect			https://docs.unsub.org/		Unsub product docs live at docs.unsub.org (#669 supplies exact mapping)	Getting Started
+41193790460055	Unpaywall	migrate	docs	recommendation-for-irs-license-reporting			Unpaywall → docs	Recommendation for IRs: License reporting
+41193820666263	Unpaywall	migrate	docs	how-are-documents-located-from-repository-records			Unpaywall → docs	How are documents located from repository records?
+41193798254743	Unpaywall	migrate	docs	how-are-repository-records-matched-to-published-articles			Unpaywall → docs	How are repository records matched to published articles?
+41193790429975	Unpaywall	migrate	docs	recommendation-for-irs-version-reporting			Unpaywall → docs	Recommendation for IRs: Version reporting
+41193838350359	Unpaywall	migrate	docs	how-do-i-make-the-unpaywall-extension-work-on-my-site			Unpaywall → docs	How do I make the Unpaywall extension work on my site?
+41193804772631	Unpaywall	migrate	docs	preventing-code-injection-using-text-from-unpaywall-safely			Unpaywall → docs	Preventing Code Injection - Using Text From Unpaywall Safely
+41193820565015	Unpaywall	migrate	docs	what-do-the-fields-in-the-api-response-and-snapshot-records-mean			Unpaywall → docs	What do the fields in the API response and snapshot records mean?
+41193820535191	Unpaywall	migrate	docs	what-counts-as-an-open-access-location			Unpaywall → docs	What counts as an Open Access location?
+41193790368279	Unpaywall	migrate	docs	what-do-the-host-type-values-publisher-and-repository-mean			Unpaywall → docs	What do the host_type values "publisher" and "repository" mean?
+41193804710935	Unpaywall	migrate	docs	what-does-oa-date-mean-and-how-is-it-determined			Unpaywall → docs	What does oa_date mean and how is it determined?
+41193820509079	Unpaywall	migrate	docs	what-is-an-oa-license			Unpaywall → docs	What is an OA license?
+41193820492951	Unpaywall	migrate	docs	how-do-i-use-the-title-search-api			Unpaywall → docs	How do I use the title search API?
+41193838206743	Unpaywall	migrate	docs	which-dois-does-unpaywall-cover			Unpaywall → docs	Which DOIs does Unpaywall cover?
+41193798112151	Unpaywall	migrate	docs	how-is-the-best-oa-location-determined			Unpaywall → docs	How is the best OA location determined?
+41193838188439	Unpaywall	migrate	docs	what-does-is-paratext-mean-in-the-api			Unpaywall → docs	What does is_paratext mean in the API?
+41193820448023	Unpaywall	migrate	docs	link-resolver-integrations			Unpaywall → docs	Link Resolver Integrations
+41193798060439	Unpaywall	migrate	docs	unpaywall-change-notes			Unpaywall → docs	Unpaywall Change Notes
+41193798040471	Unpaywall	migrate	docs	how-do-i-read-jsonl-files			Unpaywall → docs	How do I read JSONL files?
+41193820405143	Unpaywall	migrate	docs	why-does-the-unpaywall-plugin-say-this-paywalled-article-is-open-acces			Unpaywall → docs	Why does the Unpaywall plugin say this paywalled article is Open Access?
+41193790227991	Unpaywall	migrate	docs	how-do-we-decide-if-a-given-journal-is-fully-oa			Unpaywall → docs	How do we decide if a given journal is fully OA?
+41193818736663	Unpaywall	migrate	docs	paper-version-definitions			Unpaywall → docs	Paper version definitions
+38868153578263	Data	migrate	docs	changelog			Data → docs	Changelog
+33887210525719	General	migrate	help	how-can-i-correct-the-open-access-status-of-journals-in-unpaywall			General → help	How can I correct the Open Access status of journals in Unpaywall?
+33835155110423	Reference	migrate	help	why-are-my-open-access-curation-requests-getting-rejected			OA curation-request rejections — user troubleshooting	Why are my open access curation requests getting rejected?
+32297022991255	Reference	migrate	docs	how-sustainable-is-openalex			Reference → docs	How sustainable is OpenAlex?
+31562495453079	Welcome	migrate	help	whats-on-openalexs-roadmap			Welcome → help	What's on OpenAlex's Roadmap?
+31485900551319	Reference	migrate	docs	how-do-you-assign-papers-to-specific-countries			Reference → docs	How do you assign papers to specific countries?
+31459794276759	Reference	migrate	docs	where-does-your-citation-information-come-from			Reference → docs	Where does your citation information come from?
+30207962890647	General	migrate	help	is-there-a-limit-to-the-length-of-queries-in-openalex			General → help	Is there a limit to the length of queries in OpenAlex?
+29664870327447	Data	migrate	docs	why-is-affiliation-history-metadata-incomplete			Data → docs	Why is affiliation history metadata incomplete?
+29664482972183	Data	migrate	help	why-is-the-date-field-wrong-and-how-can-i-fix-it			Fix wrong date field — user troubleshooting	Why is the date field wrong and how can I fix it?
+29663215171479	Data	migrate	help	why-cant-i-find-the-right-publisher-for-a-journal-in-openalex			Cannot find publisher — user troubleshooting	Why can’t I find the right publisher for a journal in OpenAlex?
+29659998070423	Data	migrate	docs	where-do-you-get-apc-paid-metadata-from			Data → docs	Where do you get APC paid metadata from?
+29659650158999	General	migrate	help	why-does-the-abstract-field-have-text-that-isnt-part-of-the-abstract			General → help	Why does the abstract field have text that isn't part of the abstract?
+29659476661527	Data	migrate	docs	can-i-search-patents-in-openalex			Data → docs	Can I search patents in OpenAlex?
+29659391338263	General	migrate	help	how-can-i-get-my-repository-indexed-in-openalex			General → help	How can I get my repository indexed in OpenAlex?
+29039538348823	Community	migrate	help	openalex-in-the-news			Community → help	OpenAlex in the News
+28952211777047	Data	migrate	docs	does-openalex-index-books			Data → docs	Does OpenAlex index books?
+28951241521047	Reference	migrate	docs	can-i-search-exact-terms			Reference → docs	Can I search exact terms?
+28932712154391	Reference	migrate	docs	how-does-openalex-work			Reference → docs	How does OpenAlex work?
+28930700816407	Data	migrate	docs	how-accurate-is-openalex			Data → docs	How accurate is OpenAlex?
+28926687341207	Data	migrate	docs	how-can-i-see-if-openalex-has-the-same-papers-as-other-databases			Data → docs	How can I see if OpenAlex has the same papers as other databases?
+28926392245399	Reference	migrate	docs	how-is-openalex-open			Reference → docs	How is OpenAlex "open?"
+28764358342807	General	migrate	help	how-can-i-correct-institutional-affiliations-for-a-work			General → help	How can I correct institutional affiliations for a work?
+28763618477975	Data	migrate	docs	why-are-some-authors-assigned-to-null-author-id-a9999999999			Data → docs	Why are some authors assigned to "NULL AUTHOR_ID" (A9999999999)?
+28761511652247	General	migrate	help	how-can-i-cite-openalex			General → help	How can I cite OpenAlex?
+27972124390679	Data	migrate	docs	how-do-you-classify-works-as-contributing-to-the-un-sdgs			Data → docs	How do you classify works as contributing to the UN SDGs?
+27891614701207	Data	migrate	help	why-are-the-counts-by-year-numbers-different-than-what-i-see-in-the-us			counts_by_year vs UI — user-facing discrepancy	Why are the counts_by_year numbers different than what I see in the user interface?
+27886049396503	Reference	migrate	docs	is-openalex-data-used-in-university-rankings			Reference → docs	Is OpenAlex data used in University rankings?
+27883357789591	Reference	migrate	docs	when-i-look-at-my-repository-as-a-source-in-openalex-why-is-it-missing			Reference → docs	When I look at my repository as a Source in OpenAlex, why is it missing most of our works?
+27882764757527	Reference	migrate	docs	should-i-use-subfields-or-concepts-for-my-search			Reference → docs	Should I use Subfields or Concepts for my search?
+27810109633943	Data	migrate	docs	the-reference-counts-in-openalex-seem-off-why-is-that			Data → docs	The reference counts in OpenAlex seem off. Why is that?
+27719473439511	Data	migrate	docs	how-does-openalex-handle-predatory-and-lower-quality-journals			Data → docs	How does OpenAlex handle predatory and "lower-quality" journals?
+27714298573719	General	migrate	help	fix-errors-in-openalex			General → help	Fix errors in OpenAlex
+27629361012119	Data	migrate	docs	do-you-index-datacite-dois			Data → docs	Do you index DataCite DOIs?
+27626749267223	How do I...?	migrate	help	where-can-i-find-information-about-which-issue-of-a-journal-an-article			How do I...? → help	Where can I find information about which issue of a journal an article is in?
+27577985700887	General	migrate	help	how-can-i-get-my-journal-indexed-in-openalex			General → help	How can I get my journal indexed in OpenAlex?
+27572320730647	General	migrate	help	how-can-i-fix-errors-in-an-openalex-source-profile			General → help	How can I fix errors in an OpenAlex Source profile?
+27571188029719	Data	migrate	docs	what-are-cwts-core-sources-and-how-are-they-different-from-web-of-scie			Data → docs	What are CWTS Core sources and how are they different from Web of Science Core Collection?
+27550505470999	Reference	migrate	help	how-long-does-it-take-for-you-to-respond-to-support-tickets			Support-ticket SLA — help-desk content	How long does it take for you to respond to support tickets?
+27550438952855	Data	migrate	docs	how-do-you-determine-work-type			Data → docs	How do you determine work type?
+27547114373271	Data	migrate	help	why-is-this-publication-labeled-as-closed-when-it-is-clearly-open-acce			Closed-vs-OA labeling — user troubleshooting	Why is this publication labeled as 'closed' when it is clearly Open Access?
+27526853582999	How do I...?	migrate	help	how-do-i-find-the-openalex-source-id			How do I...? → help	How do I find the OpenAlex Source ID?
+27526559172759	How do I...?	migrate	help	how-do-i-find-a-publications-openalex-work-id			How do I...? → help	How do I find a publication's OpenAlex work ID?
+27502654374551	General	migrate	help	how-do-i-find-the-publisher-id-for-a-journals-host-organization			General → help	How do I find the Publisher ID for a journal's host organization?
+27283405287319	General	migrate	help	how-can-i-fix-errors-in-an-openalex-author-profile		review	zd#8966 origin — claim/curate author profile how-to (SPRING-CLEAN: rewrite to rebuilt flow)	How can I fix errors in an OpenAlex author profile?
+27282148869399	Data	migrate	help	what-are-alternate-names-and-how-i-do-change-them			Change alternate names — user how-to	What are alternate names and how I do change them?
+27281068027031	General	migrate	help	how-do-i-find-my-openalex-author-id			General → help	How do I find my OpenAlex author ID?
+27255333459991	Data	migrate	docs	what-is-the-difference-between-topics-and-topic-share-in-openalex-enti			Data → docs	What is the difference between topics and topic_share in OpenAlex entities?
+27250895840791	Data	migrate	docs	why-are-the-counts-by-year-numbers-different-than-the-count-of-works-i			Data → docs	Why are the counts_by_year numbers different than the count of works in a year?
+27220103769879	General	migrate	help	how-do-i-limit-my-results-to-only-the-top-100-cited-publications			General → help	How do I limit my results to only the top 100 cited publications?
+27219504981655	General	migrate	help	how-do-i-find-the-most-cited-publications			General → help	How do I find the most cited publications?
+27218772811543	General	migrate	help	how-do-i-import-openalex-data-into-vosviewer			General → help	How do I import OpenAlex data into VOSviewer?
+27204855162007	Data	migrate	help	i-think-my-institution-is-missing-works-in-openalex-what-can-i-do			Institution missing works — user troubleshooting	I think my institution is missing works in OpenAlex. What can I do?
+27190301279127	General	migrate	docs	what-content-does-openalex-include-and-how-does-it-compare-to-other-da			Data-scope/coverage explainer — reference material	What content does OpenAlex include and how does it compare to other databases?
+27190165185559	Reference	migrate	help	where-can-i-find-a-non-technical-explanation-of-how-open-alex-works			Explicitly the non-technical explanation — Help audience	Where can I find a non-technical explanation of how Open Alex works?
+27188534567703	Data	migrate	docs	french-affiliation-structures-are-complex-how-does-openalex-handle-the			Data → docs	French affiliation structures are complex-- how does OpenAlex handle them?
+27188355855639	Data	migrate	help	why-are-only-some-of-my-repository-records-showing-up-in-openalex			Repository records missing — user troubleshooting	Why are only some of my repository records showing up in openalex?
+27086501974551	Community	migrate	help	projects-using-openalex			Community → help	Projects Using OpenAlex
+25271311639063	Data	migrate	docs	data-ingest-pipeline			Data → docs	Data ingest pipeline
+24942051299095	Libraries	migrate	learn	estimate-the-apc-fees-my-institution-has-paid-to-make-research-open-ac			Libraries → learn	Estimate the APC fees my institution has paid to make research Open Access
+24830109246615	Summarize research impacts	migrate	learn	count-incoming-citations-to-any-results-set			Summarize research impacts → learn	Count incoming citations to any results set
+24829724234007	General	migrate	help	export-results-from-the-openalex-website			General → help	Export results from the OpenAlex website
+24429068929687	Community	migrate	help	user-meeting			Community → help	User Meeting
+24428530346263	Community	migrate	help	office-hours			Community → help	Office Hours
+24428492324631	Community	migrate	help	webinars			Community → help	Webinars
+24397920994327	Community	migrate	help	conferences-and-other-events			Community → help	Conferences and other events
+24397285563671	Data	migrate	docs	about-the-data			Data → docs	About the data
+24396686889751	Hello	migrate	help	about-us			About us — general audience	About us
+24346983449495	Publishers	migrate	learn	check-if-a-journals-works-are-in-openalex			Publishers → learn	Check if a journal’s works are in OpenAlex
+24346939943191	General	migrate	help	omit-retracted-works-from-my-analysis			General → help	Omit retracted works from my analysis
+24346929893911	Summarize research	migrate	learn	which-of-my-institutions-outputs-are-contributions-to-un-sustainable-d			Summarize research → learn	Which of my institution’s outputs are contributions to UN Sustainable Development Goals (SDGs)?
+24346841662615	Partnership development	migrate	learn	identify-other-institutions-that-collaborate-with-researchers-from-my			Partnership development → learn	Identify other institutions that collaborate with researchers from my institution
+24346743922071	Summarize research impacts	migrate	learn	how-much-is-my-institutions-work-cited			Summarize research impacts → learn	How much is my institution’s work cited?
+24346711549591	Summarize research	migrate	learn	break-down-of-my-institutions-outputs-by-subject-area-subfield			Summarize research → learn	Break-down of my institution’s outputs by subject area (subfield)
+24346638987799	Summarize research	migrate	learn	what-percentage-of-my-institutions-outputs-are-open-access-oa			Summarize research → learn	What percentage of my institution’s outputs are Open Access (OA)?
+24346632080023	Summarize research	migrate	learn	which-journals-do-researchers-at-my-institution-publish-in			Summarize research → learn	Which journals do researchers at my institution publish in?
+24346628202775	Summarize research	migrate	learn	how-many-of-each-type-of-output-does-my-institution-have			Summarize research → learn	How many of each type of output does my institution have?
+24346576711063	Summarize research	migrate	learn	how-many-outputs-does-my-institution-have			Summarize research → learn	How many outputs does my institution have?
+10503548918039	FAQ	retire					Zendesk default sample FAQ (not OpenAlex content)	How can agents leverage knowledge to help customers?
+10503491999767	FAQ	retire					Zendesk default sample FAQ (not OpenAlex content)	How do I publish my content in other languages?
+10503491990679	FAQ	retire					Zendesk default sample FAQ (not OpenAlex content)	How do I customize my Help Center?
+10503548885655	FAQ	retire					Zendesk default sample FAQ (not OpenAlex content)	What are these sections and articles doing here?
+10503548869911	Announcements	retire					Zendesk default sample article	Welcome to your Help Center!
+10503491978135	Announcements	retire					Zendesk default sample article	Sample article: Stellar Skyonomy refund policies
+24398041565207	Data	migrate	docs	api-and-data-snapshot			Data → docs	API and Data Snapshot
+24397762024087	Hello	migrate	help	pricing			Pricing — general audience	Pricing
+24348257451671	Hello	retire	help				Old KB landing page — superseded by new site home hero	Welcome to the OpenAlex help center
+24347019383191	Data	migrate	docs	where-do-works-in-openalex-come-from			Data → docs	Where do works in OpenAlex come from?
+24859286130583	Data	migrate	docs	aboutness			Data → docs	Aboutness
+24831328396311	Data	migrate	docs	institutions-and-raw-affiliation-string-parsing			Data → docs	Institutions and Raw Affiliation String Parsing
+24736201130391	Data	migrate	docs	keywords			Data → docs	Keywords
+24736129405719	Data	migrate	docs	topics			Data → docs	Topics
+24735753007895	Data	migrate	docs	field-weighted-citation-impact-fwci			Data → docs	Field Weighted Citation Impact (FWCI)
+24347048891543	Data	migrate	docs	author-disambiguation			Data → docs	Author disambiguation
+24347057529623	Data	migrate	docs	sources-in-openalex			Data → docs	Sources in OpenAlex
+24347035046295	Data	migrate	docs	open-access-oa			Data → docs	Open Access (OA)
