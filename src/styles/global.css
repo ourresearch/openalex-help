@@ -1,0 +1,177 @@
+/* ---------------------------------------------------------------------------
+   OpenAlex Help — design tokens & base styles
+   Aesthetic: scholarly-minimal. Warm paper ground, near-black ink, one deep
+   research-blue accent. Newsreader (serif) display over Instrument Sans body.
+   --------------------------------------------------------------------------- */
+
+:root {
+  --bg: #faf9f7;
+  --surface: #ffffff;
+  --ink: #1c1b1a;
+  --muted: #6f6b66;
+  --faint: #a8a39c;
+  --line: #e7e3dd;
+  --line-strong: #d6d1c9;
+  --accent: #15588f;
+  --accent-hover: #0e4573;
+  --accent-wash: #eef4f9;
+  --code-bg: #f3f1ed;
+
+  --font-display: 'Newsreader Variable', georgia, serif;
+  --font-body: 'Instrument Sans Variable', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono Variable', ui-monospace, monospace;
+
+  --measure: 68ch;
+  --nav-h: 3.5rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #151413;
+    --surface: #1d1c1a;
+    --ink: #eae7e3;
+    --muted: #9d9891;
+    --faint: #6b6660;
+    --line: #2b2926;
+    --line-strong: #3a3733;
+    --accent: #7fb2e0;
+    --accent-hover: #a4c9ec;
+    --accent-wash: #1c2733;
+    --code-bg: #232120;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  scroll-padding-top: calc(var(--nav-h) + 1rem);
+}
+
+body {
+  margin: 0;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+a:hover {
+  color: var(--accent-hover);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+
+code, pre, kbd {
+  font-family: var(--font-mono);
+  font-size: 0.86em;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--bg);
+}
+
+/* --- Article prose ------------------------------------------------------- */
+
+.prose {
+  max-width: var(--measure);
+}
+.prose h1 {
+  font-size: 2.1rem;
+  margin: 0 0 1.25rem;
+}
+.prose h2 {
+  font-size: 1.45rem;
+  margin: 2.25rem 0 0.75rem;
+}
+.prose h3 {
+  font-size: 1.15rem;
+  margin: 1.75rem 0 0.5rem;
+}
+.prose p, .prose ul, .prose ol {
+  margin: 0 0 1rem;
+}
+.prose li {
+  margin-bottom: 0.35rem;
+}
+.prose code {
+  background: var(--code-bg);
+  padding: 0.15em 0.4em;
+  border-radius: 4px;
+}
+.prose pre {
+  background: var(--code-bg);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+  overflow-x: auto;
+}
+.prose pre code {
+  background: none;
+  padding: 0;
+}
+.prose blockquote {
+  margin: 1.5rem 0;
+  padding: 0.25rem 0 0.25rem 1.25rem;
+  border-left: 2px solid var(--line-strong);
+  color: var(--muted);
+}
+.prose img {
+  max-width: 100%;
+  border-radius: 8px;
+}
+.prose table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 1.5rem 0;
+  font-size: 0.95rem;
+}
+.prose th, .prose td {
+  text-align: left;
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid var(--line);
+}
+.prose th {
+  font-weight: 600;
+  color: var(--muted);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* --- Reveal animation (landing pages) ------------------------------------ */
+
+@media (prefers-reduced-motion: no-preference) {
+  .reveal {
+    animation: reveal 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+  @keyframes reveal {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+}

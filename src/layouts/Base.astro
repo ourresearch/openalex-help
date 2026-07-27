@@ -1,12 +1,18 @@
 ---
-// Minimal shell — the real Cursor-shaped design lands in the "site shell" task
-// (oxjob #354, work/build-spec.md). Tabs are the site's information architecture:
-// Help is deliberately first (audience priority: nontechnical > semitechnical > technical).
+import '@fontsource-variable/newsreader';
+import '@fontsource-variable/newsreader/wght-italic.css';
+import '@fontsource-variable/instrument-sans';
+import '@fontsource-variable/jetbrains-mono';
+import '../styles/global.css';
+import Search from '../components/Search.astro';
+
 interface Props {
   title: string;
   description?: string;
 }
 const { title, description } = Astro.props;
+
+// Help is deliberately first: audience priority is nontechnical > semitechnical > technical.
 const tabs = [
   { label: 'Help', href: '/help/' },
   { label: 'Docs', href: '/docs/' },
@@ -21,29 +27,147 @@ const path = Astro.url.pathname;
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{title} | OpenAlex Help</title>
     {description && <meta name="description" content={description} />}
+    <link rel="canonical" href={new URL(path, Astro.site)} />
   </head>
   <body>
     <header>
-      <nav>
-        <a href="/" class="wordmark">OpenAlex</a>
-        {tabs.map((t) => (
-          <a href={t.href} aria-current={path.startsWith(t.href) ? 'page' : undefined}>{t.label}</a>
-        ))}
+      <nav aria-label="Main">
+        <a href="/" class="wordmark">Open<span>Alex</span></a>
+        <div class="tabs">
+          {tabs.map((t) => (
+            <a href={t.href} aria-current={path.startsWith(t.href) ? 'page' : undefined}>{t.label}</a>
+          ))}
+        </div>
+        <div class="nav-right">
+          <Search />
+          <a class="site-link" href="https://openalex.org">openalex.org ↗</a>
+        </div>
       </nav>
     </header>
+
     <main>
       <slot />
     </main>
+
+    <footer>
+      <div class="foot-inner">
+        <span>OpenAlex — the open catalog of the global research system</span>
+        <span class="foot-links">
+          <a href="https://openalex.org">openalex.org</a>
+          <a href="https://openalex.org/contact">Contact support</a>
+          <a href="/llms.txt">llms.txt</a>
+        </span>
+      </div>
+    </footer>
+
     <style>
-      body { font-family: system-ui, sans-serif; margin: 0; color: #1a1a1a; }
-      header { border-bottom: 1px solid #eee; }
-      nav { display: flex; gap: 1.5rem; padding: 0.75rem 1.5rem; max-width: 60rem; margin: 0 auto; }
-      .wordmark { font-weight: 600; }
-      nav a { text-decoration: none; color: inherit; }
-      nav a[aria-current='page'] { font-weight: 600; }
-      main { max-width: 60rem; margin: 2rem auto; padding: 0 1.5rem; }
+      header {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        background: color-mix(in srgb, var(--bg) 85%, transparent);
+        backdrop-filter: blur(8px);
+        border-bottom: 1px solid var(--line);
+      }
+      nav {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+        height: var(--nav-h);
+        max-width: 72rem;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+      }
+      .wordmark {
+        font-family: var(--font-display);
+        font-size: 1.15rem;
+        font-weight: 600;
+        color: var(--ink);
+        letter-spacing: -0.01em;
+      }
+      .wordmark span {
+        color: var(--accent);
+      }
+      .wordmark:hover {
+        text-decoration: none;
+      }
+      .tabs {
+        display: flex;
+        gap: 0.25rem;
+      }
+      .tabs a {
+        color: var(--muted);
+        font-size: 0.9rem;
+        padding: 0.3rem 0.65rem;
+        border-radius: 6px;
+        transition: color 0.15s, background 0.15s;
+      }
+      .tabs a:hover {
+        color: var(--ink);
+        text-decoration: none;
+        background: var(--code-bg);
+      }
+      .tabs a[aria-current='page'] {
+        color: var(--ink);
+        font-weight: 600;
+        background: var(--code-bg);
+      }
+      .nav-right {
+        margin-left: auto;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+      .site-link {
+        font-size: 0.85rem;
+        color: var(--muted);
+      }
+      .site-link:hover {
+        color: var(--ink);
+        text-decoration: none;
+      }
+      main {
+        flex: 1;
+        width: 100%;
+        max-width: 72rem;
+        margin: 0 auto;
+        padding: 2.5rem 1.5rem 5rem;
+      }
+      footer {
+        border-top: 1px solid var(--line);
+        font-size: 0.82rem;
+        color: var(--muted);
+      }
+      .foot-inner {
+        max-width: 72rem;
+        margin: 0 auto;
+        padding: 1.25rem 1.5rem;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem 2rem;
+        justify-content: space-between;
+      }
+      .foot-links {
+        display: flex;
+        gap: 1.5rem;
+      }
+      .foot-links a {
+        color: var(--muted);
+      }
+      .foot-links a:hover {
+        color: var(--ink);
+      }
+      @media (max-width: 640px) {
+        nav {
+          gap: 1rem;
+        }
+        .site-link {
+          display: none;
+        }
+      }
     </style>
   </body>
 </html>

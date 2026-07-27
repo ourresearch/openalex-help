@@ -1,13 +1,104 @@
 ---
 import Base from '../layouts/Base.astro';
+
+const doors = [
+  {
+    href: '/help/',
+    label: 'Help',
+    blurb: 'Accounts, claiming your author profile, fixing errors, exports — plain answers to common questions.',
+  },
+  {
+    href: '/docs/',
+    label: 'Docs',
+    blurb: 'What the data means: works, authors, Topics, FWCI, open access — where it comes from and how to read it.',
+  },
+  {
+    href: '/api/',
+    label: 'API',
+    blurb: 'The REST API and OQL: endpoints, filters, paging, auth, and rate limits.',
+  },
+  {
+    href: '/learn/',
+    label: 'Learn',
+    blurb: 'Recipes for real tasks — "how many outputs does my institution have?" — step by step, GUI or API.',
+  },
+];
 ---
 
 <Base title="Home" description="Help, documentation, API reference, and tutorials for OpenAlex.">
-  <h1>How can we help?</h1>
-  <p>
-    Help, documentation, API reference, and tutorials for
-    <a href="https://openalex.org">OpenAlex</a> — the open catalog of the global
-    research system. This site is under construction (oxjob #354); content is
-    migrating from the old knowledge base and developer docs.
-  </p>
+  <section class="hero reveal">
+    <h1>How can we help?</h1>
+    <p class="tagline">
+      Help and documentation for <a href="https://openalex.org">OpenAlex</a>,
+      the open catalog of the global research system.
+    </p>
+  </section>
+
+  <section class="doors">
+    {doors.map((d, i) => (
+      <a href={d.href} class="door reveal" style={`animation-delay: ${0.08 * (i + 1)}s`}>
+        <h2>{d.label}</h2>
+        <p>{d.blurb}</p>
+        <span class="go" aria-hidden="true">→</span>
+      </a>
+    ))}
+  </section>
+
+  <style>
+    .hero {
+      text-align: center;
+      padding: 4rem 0 3rem;
+    }
+    .hero h1 {
+      font-size: clamp(2.4rem, 6vw, 3.4rem);
+      margin: 0 0 0.75rem;
+    }
+    .tagline {
+      color: var(--muted);
+      font-size: 1.05rem;
+      margin: 0;
+    }
+    .doors {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+      gap: 1rem;
+      max-width: 64rem;
+      margin: 0 auto;
+    }
+    .door {
+      position: relative;
+      display: block;
+      color: inherit;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 1.5rem 1.5rem 1.25rem;
+      transition: border-color 0.15s, transform 0.15s;
+    }
+    .door:hover {
+      text-decoration: none;
+      border-color: var(--line-strong);
+      transform: translateY(-2px);
+    }
+    .door h2 {
+      font-size: 1.35rem;
+      margin: 0 0 0.5rem;
+    }
+    .door p {
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin: 0;
+    }
+    .go {
+      position: absolute;
+      top: 1.4rem;
+      right: 1.5rem;
+      color: var(--faint);
+      transition: color 0.15s, transform 0.15s;
+    }
+    .door:hover .go {
+      color: var(--accent);
+      transform: translateX(3px);
+    }
+  </style>
 </Base>

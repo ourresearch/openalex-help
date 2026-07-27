@@ -1,7 +1,7 @@
 ---
 import { render } from 'astro:content';
 import Base from '../../layouts/Base.astro';
-import { allEntries } from '../../lib/tabs';
+import { allEntries, urlFor, type Tab } from '../../lib/tabs';
 
 export async function getStaticPaths() {
   return (await allEntries()).map(({ tab, entry }) => ({
@@ -10,13 +10,93 @@ export async function getStaticPaths() {
   }));
 }
 
+const tab = Astro.params.tab as Tab;
 const { entry } = Astro.props;
 const { Content } = await render(entry);
+
+// Help + Learn articles read like a friendly answer: narrow column, back link,
+// no sidebar. Docs + API get a sidebar of sibling pages (reference posture).
+const hasSidebar = tab === 'docs' || tab === 'api';
+const labels: Record<Tab, string> = { help: 'Help', docs: 'Docs', api: 'API', learn: 'Learn' };
+const siblings = hasSidebar ? (await allEntries()).filter((e) => e.tab === tab) : [];
 ---
 
 <Base title={entry.data.title} description={entry.data.description}>
-  <article>
-    <h1>{entry.data.title}</h1>
-    <Content />
-  </article>
+  <div class:list={['page', { 'with-sidebar': hasSidebar }]}>
+    {hasSidebar && (
+      <aside aria-label={`${labels[tab]} pages`}>
+        <nav>
+          <span class="aside-head">{labels[tab]}</span>
+          {siblings.map(({ tab, entry: e }) => (
+            <a href={urlFor(tab, e)} aria-current={e.id === entry.id ? 'page' : undefined}>
+              {e.data.title}
+            </a>
+          ))}
+        </nav>
+      </aside>
+    )}
+    <article class="prose reveal">
+      {!hasSidebar && <a class="back" href={`/${tab}/`}>← {labels[tab]}</a>}
+      <h1>{entry.data.title}</h1>
+      <Content />
+    </article>
+  </div>
+
+  <style>
+    .with-sidebar {
+      display: grid;
+      grid-template-columns: 14rem minmax(0, 1fr);
+      gap: 3rem;
+    }
+    aside nav {
+      position: sticky;
+      top: calc(var(--nav-h) + 2rem);
+      display: flex;
+      flex-direction: column;
+      gap: 0.1rem;
+      font-size: 0.88rem;
+    }
+    .aside-head {
+      font-weight: 600;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--faint);
+      margin-bottom: 0.5rem;
+    }
+    aside a {
+      color: var(--muted);
+      padding: 0.25rem 0.5rem;
+      margin-left: -0.5rem;
+      border-radius: 6px;
+    }
+    aside a:hover {
+      color: var(--ink);
+      text-decoration: none;
+      background: var(--code-bg);
+    }
+    aside a[aria-current='page'] {
+      color: var(--accent);
+      font-weight: 600;
+    }
+    .back {
+      display: inline-block;
+      font-size: 0.88rem;
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+    }
+    .back:hover {
+      color: var(--ink);
+      text-decoration: none;
+    }
+    @media (max-width: 760px) {
+      .with-sidebar {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+      aside nav {
+        position: static;
+      }
+    }
+  </style>
 </Base>

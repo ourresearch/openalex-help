@@ -1,0 +1,120 @@
+---
+// ⌘K search modal backed by pagefind. The pagefind assets (/pagefind/*) exist
+// only in the built site (`npm run build`); in `astro dev` the modal shows a
+// gentle fallback note instead.
+---
+
+<button id="search-open" aria-label="Search" title="Search (⌘K)">
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
+    <circle cx="11" cy="11" r="7" /><path d="m20 20-3.5-3.5" />
+  </svg>
+  <span>Search</span>
+  <kbd>⌘K</kbd>
+</button>
+
+<dialog id="search-dialog">
+  <div id="pagefind-container">
+    <p class="search-fallback">Search loads on the deployed site.</p>
+  </div>
+</dialog>
+
+<style>
+  #search-open {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font: inherit;
+    font-size: 0.85rem;
+    color: var(--muted);
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 0.35rem 0.65rem;
+    cursor: pointer;
+    transition: border-color 0.15s, color 0.15s;
+  }
+  #search-open:hover {
+    border-color: var(--line-strong);
+    color: var(--ink);
+  }
+  #search-open kbd {
+    font-size: 0.7rem;
+    color: var(--faint);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 0.05rem 0.3rem;
+  }
+  #search-dialog {
+    width: min(38rem, calc(100vw - 2rem));
+    margin: 10vh auto auto;
+    padding: 1rem;
+    background: var(--surface);
+    color: var(--ink);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    box-shadow: 0 24px 60px rgb(0 0 0 / 0.18);
+  }
+  #search-dialog::backdrop {
+    background: rgb(0 0 0 / 0.35);
+    backdrop-filter: blur(2px);
+  }
+  .search-fallback {
+    color: var(--muted);
+    font-size: 0.9rem;
+    margin: 0;
+  }
+</style>
+
+<script>
+  const dialog = document.getElementById('search-dialog') as HTMLDialogElement;
+  const container = document.getElementById('pagefind-container')!;
+  let loaded = false;
+
+  async function openSearch() {
+    dialog.showModal();
+    if (loaded) return;
+    try {
+      // Runtime-only asset; @vite-ignore keeps the dev server from resolving it.
+      const pagefind = await import(/* @vite-ignore */ '/pagefind/pagefind-ui.js');
+      container.innerHTML = '<div id="pagefind-ui"></div>';
+      new pagefind.PagefindUI({
+        element: '#pagefind-ui',
+        showSubResults: true,
+        showImages: false,
+        autofocus: true,
+      });
+      loaded = true;
+    } catch {
+      /* dev server: keep fallback note */
+    }
+  }
+
+  document.getElementById('search-open')?.addEventListener('click', openSearch);
+  document.addEventListener('keydown', (e) => {
+    if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+      e.preventDefault();
+      dialog.open ? dialog.close() : openSearch();
+    }
+    if (e.key === '/' && !dialog.open && !(e.target instanceof HTMLInputElement)) {
+      e.preventDefault();
+      openSearch();
+    }
+  });
+  dialog.addEventListener('click', (e) => {
+    if (e.target === dialog) dialog.close();
+  });
+</script>
+
+<style is:global>
+  /* Pagefind UI theme — mapped onto our tokens. */
+  :root {
+    --pagefind-ui-scale: 0.9;
+    --pagefind-ui-primary: var(--accent);
+    --pagefind-ui-text: var(--ink);
+    --pagefind-ui-background: var(--surface);
+    --pagefind-ui-border: var(--line);
+    --pagefind-ui-border-width: 1px;
+    --pagefind-ui-border-radius: 8px;
+    --pagefind-ui-font: var(--font-body);
+  }
+</style>

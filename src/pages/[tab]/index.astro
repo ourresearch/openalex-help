@@ -8,14 +8,119 @@ export async function getStaticPaths() {
 
 const tab = Astro.params.tab as Tab;
 const entries = (await allEntries()).filter((e) => e.tab === tab);
-const labels: Record<Tab, string> = { help: 'Help', docs: 'Docs', api: 'API', learn: 'Learn' };
+
+const meta: Record<Tab, { label: string; lede: string }> = {
+  help: {
+    label: 'Help',
+    lede: 'Plain answers to common questions — accounts, author profiles, fixing errors, exports.',
+  },
+  docs: {
+    label: 'Docs',
+    lede: 'What the OpenAlex data means, where it comes from, and how to read it.',
+  },
+  api: {
+    label: 'API',
+    lede: 'The REST API and OQL: endpoints, filters, paging, auth, rate limits.',
+  },
+  learn: {
+    label: 'Learn',
+    lede: 'Step-by-step recipes for real research questions, in the GUI or the API.',
+  },
+};
+const isLearn = tab === 'learn';
 ---
 
-<Base title={labels[tab]}>
-  <h1>{labels[tab]}</h1>
-  <ul>
-    {entries.map(({ tab, entry }) => (
-      <li><a href={urlFor(tab, entry)}>{entry.data.title}</a></li>
+<Base title={meta[tab].label} description={meta[tab].lede}>
+  <header class="tab-head reveal">
+    <h1>{meta[tab].label}</h1>
+    <p>{meta[tab].lede}</p>
+  </header>
+
+  <ul class="listing" class:list={{ cards: isLearn }}>
+    {entries.map(({ tab, entry }, i) => (
+      <li class="reveal" style={`animation-delay: ${Math.min(0.05 * (i + 1), 0.4)}s`}>
+        <a href={urlFor(tab, entry)}>
+          <span class="entry-title">{entry.data.title}</span>
+          {entry.data.description && <span class="entry-desc">{entry.data.description}</span>}
+          {isLearn && entry.data.tags.length > 0 && (
+            <span class="tags">
+              {entry.data.tags.filter((t) => t !== 'placeholder').map((t) => <span class="tag">{t}</span>)}
+            </span>
+          )}
+        </a>
+      </li>
     ))}
   </ul>
+
+  <style>
+    .tab-head {
+      max-width: var(--measure);
+      margin-bottom: 2.5rem;
+    }
+    .tab-head h1 {
+      font-size: 2.4rem;
+      margin: 0 0 0.5rem;
+    }
+    .tab-head p {
+      color: var(--muted);
+      margin: 0;
+    }
+    .listing {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      max-width: var(--measure);
+    }
+    .listing li a {
+      display: block;
+      color: inherit;
+      padding: 1rem 0.25rem;
+      border-bottom: 1px solid var(--line);
+      transition: background 0.15s;
+    }
+    .listing li a:hover {
+      text-decoration: none;
+      background: var(--surface);
+    }
+    .entry-title {
+      display: block;
+      font-weight: 600;
+      color: var(--accent);
+    }
+    .entry-desc {
+      display: block;
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin-top: 0.2rem;
+    }
+    .cards {
+      max-width: none;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr));
+      gap: 1rem;
+    }
+    .cards li a {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 1.25rem;
+      height: 100%;
+      background: var(--surface);
+    }
+    .cards li a:hover {
+      border-color: var(--line-strong);
+    }
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+      margin-top: 0.75rem;
+    }
+    .tag {
+      font-size: 0.72rem;
+      color: var(--muted);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 0.05rem 0.55rem;
+    }
+  </style>
 </Base>
