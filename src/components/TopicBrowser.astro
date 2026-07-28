@@ -1,0 +1,94 @@
+---
+// Cursor-help-style "Browse by topic": one bordered container, a row per
+// topic (title + one-line muted description + chevron), native <details>
+// accordion opening to plain indented article links.
+import type { ResolvedGroup } from '../lib/nav';
+import { urlFor, type Tab } from '../lib/tabs';
+
+interface Props {
+  tab: Tab;
+  groups: ResolvedGroup[];
+  descriptions?: Record<string, string>;
+}
+const { tab, groups, descriptions = {} } = Astro.props;
+---
+
+<div class="topics">
+  {groups.map((g) => (
+    <details>
+      <summary>
+        <span class="topic-text">
+          <span class="topic-title">{g.label}</span>
+          {descriptions[g.label] && <span class="topic-desc">{descriptions[g.label]}</span>}
+        </span>
+        <svg class="chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9" /></svg>
+      </summary>
+      <ul>
+        {g.entries.map((e) => (
+          <li><a href={urlFor(tab, e)}>{e.data.title}</a></li>
+        ))}
+      </ul>
+    </details>
+  ))}
+</div>
+
+<style>
+  .topics {
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: var(--bg);
+    overflow: hidden;
+  }
+  details + details {
+    border-top: 1px solid var(--line);
+  }
+  summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.85rem 1.1rem;
+    cursor: pointer;
+    list-style: none;
+  }
+  summary::-webkit-details-marker {
+    display: none;
+  }
+  summary:hover {
+    background: var(--panel);
+  }
+  .topic-title {
+    display: block;
+    font-size: 0.95rem;
+    font-weight: 550;
+  }
+  .topic-desc {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--muted);
+    margin-top: 0.1rem;
+  }
+  .chev {
+    flex-shrink: 0;
+    color: var(--faint);
+    transition: transform 0.15s;
+  }
+  details[open] .chev {
+    transform: rotate(180deg);
+  }
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0.25rem 0 0.9rem;
+  }
+  li a {
+    display: block;
+    padding: 0.3rem 1.1rem 0.3rem 2rem;
+    color: var(--ink);
+    font-size: 0.9rem;
+  }
+  li a:hover {
+    color: var(--accent);
+    text-decoration: none;
+  }
+</style>

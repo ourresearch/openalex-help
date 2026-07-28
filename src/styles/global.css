@@ -1,43 +1,67 @@
 /* ---------------------------------------------------------------------------
    OpenAlex Help — design tokens & base styles
-   Aesthetic: scholarly-minimal. Warm paper ground, near-black ink, one deep
-   research-blue accent. Newsreader (serif) display over Instrument Sans body.
+   Aesthetic: quiet engineering-manual minimalism (cursor.com-aligned).
+   Warm paper ground, near-black ink, one research-blue accent, Inter
+   everywhere, structure from hairline borders — not shadows or color fields.
+
+   Theming: tokens are defined for light (:root) and dark. Dark applies via
+   html.dark (explicit user choice) or system preference when no explicit
+   choice (html:not(.light) + media query). Toggle lives in ThemeSwitch.
    --------------------------------------------------------------------------- */
 
 :root {
-  --bg: #faf9f7;
-  --surface: #ffffff;
-  --ink: #1c1b1a;
-  --muted: #6f6b66;
-  --faint: #a8a39c;
-  --line: #e7e3dd;
-  --line-strong: #d6d1c9;
+  --bg: #f7f7f3;
+  --panel: #efeeea;          /* recessed wells: cards, search, code */
+  --panel-strong: #e9e8e3;
+  --ink: #26251e;
+  --muted: #77756e;
+  --faint: #a3a099;
+  --line: #e3e2de;
+  --line-strong: #d2d1cb;
   --accent: #15588f;
   --accent-hover: #0e4573;
   --accent-wash: #eef4f9;
-  --code-bg: #f3f1ed;
+  --code-bg: #efeeea;
 
-  --font-display: 'Newsreader Variable', georgia, serif;
-  --font-body: 'Instrument Sans Variable', system-ui, sans-serif;
+  --font-body: 'Inter Variable', system-ui, -apple-system, sans-serif;
   --font-mono: 'JetBrains Mono Variable', ui-monospace, monospace;
 
   --measure: 68ch;
-  --nav-h: 3.5rem;
+  --nav-h: 3.125rem; /* 50px, cursor: 49 */
 }
 
+.dark {
+  --bg: #171511;
+  --panel: #1f1d18;
+  --panel-strong: #26241e;
+  --ink: #edecea;
+  --muted: #9d9a92;
+  --faint: #6b6862;
+  --line: #2a2822;
+  --line-strong: #3a3730;
+  --accent: #7fb2e0;
+  --accent-hover: #a4c9ec;
+  --accent-wash: #1c2733;
+  --code-bg: #211f1a;
+  color-scheme: dark;
+}
+
+/* System dark, unless the user explicitly chose light */
 @media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #151413;
-    --surface: #1d1c1a;
-    --ink: #eae7e3;
-    --muted: #9d9891;
-    --faint: #6b6660;
-    --line: #2b2926;
-    --line-strong: #3a3733;
+  html:not(.light) {
+    --bg: #171511;
+    --panel: #1f1d18;
+    --panel-strong: #26241e;
+    --ink: #edecea;
+    --muted: #9d9a92;
+    --faint: #6b6862;
+    --line: #2a2822;
+    --line-strong: #3a3730;
     --accent: #7fb2e0;
     --accent-hover: #a4c9ec;
     --accent-wash: #1c2733;
-    --code-bg: #232120;
+    --code-bg: #211f1a;
+    color-scheme: dark;
   }
 }
 
@@ -49,8 +73,8 @@ html {
   background: var(--bg);
   color: var(--ink);
   font-family: var(--font-body);
-  font-size: 16px;
-  line-height: 1.65;
+  font-size: 15.5px;
+  line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   scroll-padding-top: calc(var(--nav-h) + 1rem);
 }
@@ -72,12 +96,30 @@ a:hover {
   text-underline-offset: 0.2em;
 }
 
+/* Cursor-style quiet headings: modest sizes, regular-weight h1 */
 h1, h2, h3 {
-  font-family: var(--font-display);
-  font-weight: 500;
-  line-height: 1.15;
-  letter-spacing: -0.01em;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
   text-wrap: balance;
+}
+h1 {
+  font-size: 2.1rem;
+  font-weight: 400;
+}
+h2 {
+  font-size: 1.2rem;
+  font-weight: 650;
+}
+h3 {
+  font-size: 1rem;
+  font-weight: 650;
+}
+
+.eyebrow {
+  display: block;
+  font-size: 0.82rem;
+  color: var(--muted);
+  margin-bottom: 0.6rem;
 }
 
 code, pre, kbd {
@@ -96,15 +138,12 @@ code, pre, kbd {
   max-width: var(--measure);
 }
 .prose h1 {
-  font-size: 2.1rem;
   margin: 0 0 1.25rem;
 }
 .prose h2 {
-  font-size: 1.45rem;
   margin: 2.25rem 0 0.75rem;
 }
 .prose h3 {
-  font-size: 1.15rem;
   margin: 1.75rem 0 0.5rem;
 }
 .prose p, .prose ul, .prose ol {
@@ -115,19 +154,37 @@ code, pre, kbd {
 }
 .prose code {
   background: var(--code-bg);
-  padding: 0.15em 0.4em;
+  border: 1px solid var(--line);
+  padding: 0.1em 0.35em;
   border-radius: 4px;
 }
 .prose pre {
   background: var(--code-bg);
   border: 1px solid var(--line);
-  border-radius: 8px;
+  border-radius: 6px;
   padding: 1rem 1.25rem;
   overflow-x: auto;
 }
 .prose pre code {
   background: none;
+  border: none;
   padding: 0;
+}
+
+/* Shiki dual themes: force our recessed panel bg; flip token colors in dark.
+   (Shiki inlines the light theme and carries dark as --shiki-dark vars.) */
+.prose pre.astro-code {
+  background: var(--code-bg) !important;
+}
+.dark .astro-code,
+.dark .astro-code span {
+  color: var(--shiki-dark) !important;
+}
+@media (prefers-color-scheme: dark) {
+  html:not(.light) .astro-code,
+  html:not(.light) .astro-code span {
+    color: var(--shiki-dark) !important;
+  }
 }
 .prose blockquote {
   margin: 1.5rem 0;
@@ -137,13 +194,14 @@ code, pre, kbd {
 }
 .prose img {
   max-width: 100%;
-  border-radius: 8px;
+  border-radius: 6px;
+  border: 1px solid var(--line);
 }
 .prose table {
   border-collapse: collapse;
   width: 100%;
   margin: 1.5rem 0;
-  font-size: 0.95rem;
+  font-size: 0.92rem;
 }
 .prose th, .prose td {
   text-align: left;
@@ -153,9 +211,7 @@ code, pre, kbd {
 .prose th {
   font-weight: 600;
   color: var(--muted);
-  font-size: 0.85rem;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
+  font-size: 0.82rem;
 }
 
 /* --- Reveal animation (landing pages) ------------------------------------ */
