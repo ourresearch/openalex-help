@@ -1,8 +1,9 @@
 ---
 import { render } from 'astro:content';
 import Base from '../../layouts/Base.astro';
+import DocsShell from '../../layouts/DocsShell.astro';
 import ThemeSwitch from '../../components/ThemeSwitch.astro';
-import { allEntries, urlFor, mdUrlFor, type Tab } from '../../lib/tabs';
+import { allEntries, mdUrlFor, type Tab } from '../../lib/tabs';
 import { groupEntries, groupLabelFor } from '../../lib/nav';
 
 export async function getStaticPaths() {
@@ -17,11 +18,10 @@ const { entry } = Astro.props;
 const { Content, headings } = await render(entry);
 
 // Help + Learn articles read like a friendly answer: narrow column, back link,
-// no sidebar. Docs + API get a grouped sidebar of sibling pages plus a right
-// rail (mini-TOC + page utilities) — reference posture.
-const hasSidebar = tab === 'docs' || tab === 'api';
+// no sidebar. Docs + API get the full app shell (grouped sidebar + right rail).
+const isShell = tab === 'docs' || tab === 'api';
 const labels: Record<Tab, string> = { help: 'Help', docs: 'Docs', api: 'API', learn: 'Learn' };
-const groups = hasSidebar
+const groups = isShell
   ? groupEntries(tab, (await allEntries()).filter((e) => e.tab === tab).map((e) => e.entry))
   : [];
 const eyebrow = groupLabelFor(tab, entry.id) ?? labels[tab];
@@ -29,28 +29,16 @@ const toc = headings.filter((h) => h.depth === 2);
 const mdUrl = mdUrlFor(tab, entry);
 ---
 
-<Base title={entry.data.title} description={entry.data.description}>
-  <div class:list={['page', { 'with-sidebar': hasSidebar }]}>
-    {hasSidebar && (
-      <aside aria-label={`${labels[tab]} pages`}>
-        <nav>
-          {groups.map((g) => (
-            <div class="group">
-              <span class="group-label">{g.label}</span>
-              {g.entries.map((e) => (
-                <a href={urlFor(tab, e)} aria-current={e.id === entry.id ? 'page' : undefined}>
-                  {e.data.title}
-                </a>
-              ))}
-            </div>
-          ))}
-        </nav>
-      </aside>
-    )}
-
-    <article class="prose reveal">
-      {!hasSidebar && <a class="back" href={`/${tab}/`}>← {labels[tab]}</a>}
-      {hasSidebar && <span class="eyebrow">{eyebrow}</span>}
+{isShell ? (
+  <DocsShell
+    title={entry.data.title}
+    description={entry.data.description}
+    tab={tab}
+    groups={groups}
+    activeSlug={entry.id}
+  >
+    <article class="prose">
+      <span class="eyebrow">{eyebrow}</span>
       <h1>{entry.data.title}</h1>
       <Content />
       <div class="article-foot">
@@ -59,181 +47,129 @@ const mdUrl = mdUrlFor(tab, entry);
       </div>
     </article>
 
-    {hasSidebar && (
-      <div class="rail">
-        {toc.length > 1 && (
-          <nav class="toc" aria-label="On this page">
-            {toc.map((h) => (
-              <a href={`#${h.slug}`}>{h.text}</a>
-            ))}
-          </nav>
-        )}
-        <div class="utils">
-          <button id="copy-page" data-md-url={mdUrl}>
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-            <span>Copy page</span>
-          </button>
-          <a href={mdUrl}>
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-            <span>View as Markdown</span>
-          </a>
-        </div>
+    <div class="rail" slot="rail">
+      {toc.length > 1 && (
+        <nav class="toc" aria-label="On this page">
+          {toc.map((h) => (
+            <a href={`#${h.slug}`}>{h.text}</a>
+          ))}
+        </nav>
+      )}
+      <div class="utils">
+        <button id="copy-page" data-md-url={mdUrl}>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          <span>Copy page</span>
+        </button>
+        <a href={mdUrl}>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          <span>View as Markdown</span>
+        </a>
       </div>
-    )}
-  </div>
+    </div>
+  </DocsShell>
+) : (
+  <Base title={entry.data.title} description={entry.data.description}>
+    <div class="page">
+      <article class="prose reveal">
+        <a class="back" href={`/${tab}/`}>← {labels[tab]}</a>
+        <h1>{entry.data.title}</h1>
+        <Content />
+        <div class="article-foot">
+          <ThemeSwitch />
+          <a class="md-link" href={mdUrl}>View as Markdown</a>
+        </div>
+      </article>
+    </div>
+  </Base>
+)}
 
-  <style>
-    .with-sidebar {
-      display: grid;
-      grid-template-columns: 15rem minmax(0, 1fr) 13rem;
-      gap: 3rem;
-    }
-    .page:not(.with-sidebar) {
-      max-width: var(--measure);
-      margin: 0 auto;
-    }
-    aside nav {
-      position: sticky;
-      top: calc(var(--nav-h) + 2rem);
-      max-height: calc(100dvh - var(--nav-h) - 4rem);
-      overflow-y: auto;
-      display: flex;
-      flex-direction: column;
-      gap: 1.25rem;
-      font-size: 0.86rem;
-      padding-right: 0.5rem;
-    }
-    .group {
-      display: flex;
-      flex-direction: column;
-      gap: 0.05rem;
-    }
-    .group-label {
-      font-size: 0.8rem;
-      color: var(--muted);
-      margin-bottom: 0.35rem;
-    }
-    aside a {
-      color: var(--ink);
-      padding: 0.18rem 0.5rem;
-      margin-left: -0.5rem;
-      border-radius: 6px;
-    }
-    aside a:hover {
-      color: var(--accent);
-      text-decoration: none;
-    }
-    aside a[aria-current='page'] {
-      color: var(--accent);
-      font-weight: 550;
-    }
-    .back {
-      display: inline-block;
-      font-size: 0.88rem;
-      color: var(--muted);
-      margin-bottom: 1.5rem;
-    }
-    .back:hover {
-      color: var(--ink);
-      text-decoration: none;
-    }
-    .rail {
-      font-size: 0.84rem;
-    }
-    .rail > :first-child {
-      position: sticky;
-      top: calc(var(--nav-h) + 2rem);
-    }
-    .toc {
-      display: flex;
-      flex-direction: column;
-      gap: 0.35rem;
-      padding-bottom: 1rem;
-      margin-bottom: 1rem;
-      border-bottom: 1px solid var(--line);
-    }
-    .toc a {
-      color: var(--muted);
-    }
-    .toc a:hover {
-      color: var(--ink);
-      text-decoration: none;
-    }
-    .toc + .utils {
-      position: static;
-    }
-    .utils {
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-    }
-    .utils a,
-    .utils button {
-      display: flex;
-      align-items: center;
-      gap: 0.45rem;
-      color: var(--muted);
-      background: none;
-      border: none;
-      padding: 0;
-      font: inherit;
-      font-size: 0.84rem;
-      cursor: pointer;
-    }
-    .utils a:hover,
-    .utils button:hover {
-      color: var(--ink);
-      text-decoration: none;
-    }
-    .article-foot {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-top: 3rem;
-      padding-top: 1.25rem;
-      border-top: 1px solid var(--line);
-    }
-    .md-link {
-      font-size: 0.82rem;
-      color: var(--muted);
-    }
-    .md-link:hover {
-      color: var(--ink);
-    }
-    @media (max-width: 1080px) {
-      .with-sidebar {
-        grid-template-columns: 14rem minmax(0, 1fr);
-      }
-      .rail {
-        display: none;
-      }
-    }
-    @media (max-width: 760px) {
-      .with-sidebar {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-      }
-      aside nav {
-        position: static;
-        max-height: none;
-      }
-    }
-  </style>
+<style>
+  .page {
+    max-width: var(--measure);
+    margin: 0 auto;
+  }
+  .back {
+    display: inline-block;
+    font-size: 0.88rem;
+    color: var(--muted);
+    margin-bottom: 1.5rem;
+  }
+  .back:hover {
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .rail {
+    position: sticky;
+    top: calc(var(--nav-h) + 2.5rem);
+  }
+  .toc {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid var(--line);
+  }
+  .toc a {
+    color: var(--muted);
+  }
+  .toc a:hover {
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .utils {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .utils a,
+  .utils button {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    color: var(--muted);
+    background: none;
+    border: none;
+    padding: 0;
+    font: inherit;
+    font-size: 0.84rem;
+    cursor: pointer;
+  }
+  .utils a:hover,
+  .utils button:hover {
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .article-foot {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 3rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--line);
+  }
+  .md-link {
+    font-size: 0.82rem;
+    color: var(--muted);
+  }
+  .md-link:hover {
+    color: var(--ink);
+  }
+</style>
 
-  <script>
-    // "Copy page": fetch this page's markdown sibling and put it on the
-    // clipboard — the agent-legibility story, one click for humans.
-    const btn = document.getElementById('copy-page') as HTMLButtonElement | null;
-    btn?.addEventListener('click', async () => {
-      const label = btn.querySelector('span')!;
-      try {
-        const res = await fetch(btn.dataset.mdUrl!);
-        await navigator.clipboard.writeText(await res.text());
-        label.textContent = 'Copied!';
-      } catch {
-        label.textContent = 'Copy failed';
-      }
-      setTimeout(() => (label.textContent = 'Copy page'), 1600);
-    });
-  </script>
-</Base>
+<script>
+  // "Copy page": fetch this page's markdown sibling and put it on the
+  // clipboard — the agent-legibility story, one click for humans.
+  const btn = document.getElementById('copy-page') as HTMLButtonElement | null;
+  btn?.addEventListener('click', async () => {
+    const label = btn.querySelector('span')!;
+    try {
+      const res = await fetch(btn.dataset.mdUrl!);
+      await navigator.clipboard.writeText(await res.text());
+      label.textContent = 'Copied!';
+    } catch {
+      label.textContent = 'Copy failed';
+    }
+    setTimeout(() => (label.textContent = 'Copy page'), 1600);
+  });
+</script>

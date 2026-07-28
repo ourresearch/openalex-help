@@ -1,0 +1,60 @@
+---
+// Cursor-style two-part card: icon + title header strip (slightly darker,
+// bottom hairline) over a muted body. Radius 4–6, 1px border, no shadow.
+interface Props {
+  title: string;
+  href: string;
+}
+const { title, href } = Astro.props;
+---
+
+<a class="card" href={href}>
+  <span class="card-head">
+    <slot name="icon" />
+    <span class="card-title">{title}</span>
+  </span>
+  <span class="card-body"><slot /></span>
+</a>
+
+<style>
+  .card {
+    display: flex;
+    flex-direction: column;
+    color: inherit;
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    overflow: hidden;
+    transition: border-color 0.15s;
+  }
+  .card:hover {
+    border-color: var(--line-strong);
+    text-decoration: none;
+  }
+  .card:hover .card-title {
+    color: var(--accent);
+  }
+  .card-head {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.7rem 1rem;
+    border-bottom: 1px solid var(--line);
+    background: var(--panel-strong);
+  }
+  .card-head :global(svg) {
+    flex-shrink: 0;
+    color: var(--muted);
+  }
+  .card-title {
+    font-size: 0.92rem;
+    font-weight: 600;
+  }
+  .card-body {
+    flex: 1;
+    padding: 0.7rem 1rem 0.9rem;
+    color: var(--muted);
+    font-size: 0.87rem;
+    line-height: 1.5;
+  }
+</style>

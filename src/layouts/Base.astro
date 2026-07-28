@@ -7,8 +7,9 @@ import Search from '../components/Search.astro';
 interface Props {
   title: string;
   description?: string;
+  wide?: boolean; // full-bleed pages (DocsShell) manage their own container
 }
-const { title, description } = Astro.props;
+const { title, description, wide = false } = Astro.props;
 
 // Help is deliberately first: audience priority is nontechnical > semitechnical > technical.
 const tabs = [
@@ -40,20 +41,25 @@ const path = Astro.url.pathname;
   <body>
     <header>
       <nav aria-label="Main">
-        <a href="/" class="wordmark">Open<span>Alex</span></a>
+        <a href="/" class="logo">
+          <img class="light-only" src="/brand/openalex-lockup.png" alt="OpenAlex" height="20" />
+          <img class="dark-only" src="/brand/openalex-lockup-white.png" alt="OpenAlex" height="20" />
+        </a>
         <div class="tabs">
           {tabs.map((t) => (
             <a href={t.href} aria-current={path.startsWith(t.href) ? 'page' : undefined}>{t.label}</a>
           ))}
         </div>
-        <div class="nav-right">
+        <div class="nav-center">
           <Search />
+        </div>
+        <div class="nav-right">
           <a class="site-link" href="https://openalex.org">openalex.org ↗</a>
         </div>
       </nav>
     </header>
 
-    <main>
+    <main class:list={{ wide }}>
       <slot />
     </main>
 
@@ -77,25 +83,21 @@ const path = Astro.url.pathname;
         border-bottom: 1px solid var(--line);
       }
       nav {
+        position: relative;
         display: flex;
         align-items: center;
-        gap: 1.75rem;
+        gap: 1.5rem;
         height: var(--nav-h);
-        max-width: 84rem;
-        margin: 0 auto;
-        padding: 0 1.5rem;
+        padding: 0 1.25rem;
       }
-      .wordmark {
-        font-size: 1rem;
-        font-weight: 600;
-        color: var(--ink);
-        letter-spacing: -0.01em;
+      .logo {
+        display: flex;
+        align-items: center;
       }
-      .wordmark span {
-        color: var(--accent);
-      }
-      .wordmark:hover {
-        text-decoration: none;
+      .logo img {
+        height: 20px;
+        width: auto;
+        display: block;
       }
       .tabs {
         display: flex;
@@ -129,6 +131,12 @@ const path = Astro.url.pathname;
         height: 2px;
         background: var(--accent);
       }
+      /* Search pill dead-center in the header, like Cursor. */
+      .nav-center {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+      }
       .nav-right {
         margin-left: auto;
         display: flex;
@@ -137,15 +145,17 @@ const path = Astro.url.pathname;
       }
       .site-link {
         font-size: 0.82rem;
-        color: var(--muted);
-        border: 1px solid var(--line);
+        color: var(--bg);
+        background: var(--ink);
+        border: 1px solid var(--ink);
         border-radius: 999px;
-        padding: 0.3rem 0.8rem;
-        transition: color 0.15s, border-color 0.15s;
+        padding: 0.32rem 0.85rem;
+        font-weight: 500;
+        transition: opacity 0.15s;
       }
       .site-link:hover {
-        color: var(--ink);
-        border-color: var(--line-strong);
+        opacity: 0.85;
+        color: var(--bg);
         text-decoration: none;
       }
       main {
@@ -154,6 +164,11 @@ const path = Astro.url.pathname;
         max-width: 84rem;
         margin: 0 auto;
         padding: 2.5rem 1.5rem 5rem;
+      }
+      main.wide {
+        max-width: none;
+        margin: 0;
+        padding: 0;
       }
       footer {
         border-top: 1px solid var(--line);
@@ -178,6 +193,16 @@ const path = Astro.url.pathname;
       }
       .foot-links a:hover {
         color: var(--ink);
+      }
+      @media (max-width: 1000px) {
+        .nav-center {
+          position: static;
+          transform: none;
+          margin-left: auto;
+        }
+        .nav-right {
+          margin-left: 0;
+        }
       }
       @media (max-width: 640px) {
         nav {

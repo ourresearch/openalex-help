@@ -69,6 +69,25 @@
   box-sizing: border-box;
 }
 
+/* Theme-conditional assets (e.g. the logo lockup PNGs) */
+.dark-only {
+  display: none !important;
+}
+.dark .dark-only {
+  display: block !important;
+}
+.dark .light-only {
+  display: none !important;
+}
+@media (prefers-color-scheme: dark) {
+  html:not(.light) .dark-only {
+    display: block !important;
+  }
+  html:not(.light) .light-only {
+    display: none !important;
+  }
+}
+
 html {
   background: var(--bg);
   color: var(--ink);

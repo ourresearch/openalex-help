@@ -1,9 +1,12 @@
 ---
 import Base from '../../layouts/Base.astro';
+import DocsShell from '../../layouts/DocsShell.astro';
 import ThemeSwitch from '../../components/ThemeSwitch.astro';
 import TopicBrowser from '../../components/TopicBrowser.astro';
-import { TABS, allEntries, urlFor, type Tab } from '../../lib/tabs';
-import { groupEntries } from '../../lib/nav';
+import Card from '../../components/Card.astro';
+import Icon from '../../components/Icon.astro';
+import { TABS, allEntries, urlFor, type Tab, type AnyEntry } from '../../lib/tabs';
+import { groupEntries, NAV_GROUPS } from '../../lib/nav';
 
 export async function getStaticPaths() {
   return TABS.map((tab) => ({ params: { tab } }));
@@ -12,191 +15,264 @@ export async function getStaticPaths() {
 const tab = Astro.params.tab as Tab;
 const entries = (await allEntries()).filter((e) => e.tab === tab).map((e) => e.entry);
 const groups = groupEntries(tab, entries);
+const bySlug = new Map(entries.map((e) => [e.id, e]));
 
-const meta: Record<Tab, { label: string; lede: string }> = {
+const meta: Record<Tab, { label: string; h1: string; lede: string }> = {
   help: {
     label: 'Help',
+    h1: 'Help Center',
     lede: 'Plain answers to common questions — accounts, author profiles, fixing errors, exports.',
   },
   docs: {
     label: 'Docs',
-    lede: 'What the OpenAlex data means, where it comes from, and how to read it.',
+    h1: 'OpenAlex Documentation',
+    lede: 'OpenAlex is an open catalog of the global research system: papers, authors, institutions, journals, and topics, all connected. These docs explain what the data means, where it comes from, and how to read it.',
   },
   api: {
     label: 'API',
-    lede: 'The REST API and OQL: endpoints, filters, paging, auth, rate limits.',
+    h1: 'OpenAlex API',
+    lede: 'A fast, modern REST API for all of OpenAlex, plus OQL for expressive queries. Free for everyone, no key required to start. These pages cover endpoints, filters, paging, auth, and rate limits.',
   },
   learn: {
     label: 'Learn',
+    h1: 'Learn',
     lede: 'Step-by-step recipes for real research questions, in the GUI or the API.',
   },
 };
-const isLearn = tab === 'learn';
+
+// Docs/API landings are Cursor-style welcome pages: "Start here" cards +
+// per-group topic cards (each linking to its group's first article).
+const startHere: Record<string, { slug: string; icon: string; blurb: string }[]> = {
+  docs: [
+    { slug: 'about-the-data', icon: 'book-open', blurb: 'The entities, how they connect, and the three ways to get them' },
+    { slug: 'how-does-openalex-work', icon: 'cpu', blurb: 'How we build the map of the research ecosystem' },
+    { slug: 'changelog', icon: 'clock', blurb: 'Recent updates and changes to OpenAlex' },
+  ],
+  api: [
+    { slug: 'introduction', icon: 'zap', blurb: 'What the API offers and how it is organized' },
+    { slug: 'quickstart', icon: 'play', blurb: 'Your first request in under a minute' },
+    { slug: 'authentication', icon: 'key', blurb: 'Keys, credits, and what is free' },
+  ],
+};
+const groupIcons: Record<string, string> = {
+  'Start here': 'compass',
+  'Works & metadata': 'file-text',
+  'Authors & institutions': 'users',
+  'Sources & publishers': 'book',
+  'Topics, metrics & aboutness': 'tag',
+  'Open Access': 'unlock',
+  'Repositories': 'archive',
+  'Downloads & snapshot': 'download',
+  'Unpaywall': 'globe',
+  'Getting started': 'zap',
+  'Querying': 'filter',
+  'Entities': 'database',
+  'Vocabularies': 'list',
+  'Curation & special': 'edit',
+};
+
+const isShell = tab === 'docs' || tab === 'api';
 const isHelp = tab === 'help';
+const start = (startHere[tab] ?? [])
+  .map(({ slug, icon, blurb }) => ({ entry: bySlug.get(slug), icon, blurb }))
+  .filter((s): s is { entry: AnyEntry; icon: string; blurb: string } => Boolean(s.entry));
+// Topic cards: skip "Start here" (its content is the card row above).
+const topicGroups = (NAV_GROUPS[tab] ?? [])
+  .filter((g) => !['Start here', 'Getting started'].includes(g.label) || tab === 'help')
+  .map((g) => ({ ...g, first: g.slugs.map((s) => bySlug.get(s)).find(Boolean) }))
+  .filter((g) => g.first);
 ---
 
-<Base title={meta[tab].label} description={meta[tab].lede}>
-  <div class="wrap" class:list={{ narrow: isHelp }}>
-    <header class="tab-head reveal">
-      <h1>{meta[tab].label}</h1>
-      <p>{meta[tab].lede}</p>
-    </header>
+{isShell ? (
+  <DocsShell title={meta[tab].label} description={meta[tab].lede} tab={tab} groups={groups}>
+    <article class="prose">
+      <span class="eyebrow">{meta[tab].label}</span>
+      <h1>{meta[tab].h1}</h1>
+      <p class="lede">{meta[tab].lede}</p>
+      {tab === 'docs' && (
+        <img
+          class="hero-img"
+          src="/images/zendesk/openalex-overview-diagram.png"
+          alt="Diagram of OpenAlex entities and how they connect"
+        />
+      )}
 
-    {isHelp ? (
-      <div class="reveal" style="animation-delay: 0.08s">
-        <TopicBrowser tab={tab} groups={groups} />
-      </div>
-    ) : isLearn ? (
-      <ul class="cards">
-        {entries.map((entry, i) => (
-          <li class="reveal" style={`animation-delay: ${Math.min(0.05 * (i + 1), 0.4)}s`}>
-            <a href={urlFor(tab, entry)}>
-              <span class="entry-title">{entry.data.title}</span>
-              {entry.data.description && <span class="entry-desc">{entry.data.description}</span>}
-              {entry.data.tags.length > 0 && (
-                <span class="tags">
-                  {entry.data.tags.filter((t) => t !== 'placeholder').map((t) => <span class="tag">{t}</span>)}
-                </span>
-              )}
-            </a>
-          </li>
-        ))}
-      </ul>
-    ) : (
-      <div class="groups">
-        {groups.map((g, gi) => (
-          <section class="reveal" style={`animation-delay: ${Math.min(0.06 * (gi + 1), 0.4)}s`}>
-            <h2>{g.label}</h2>
-            <ul class="listing">
-              {g.entries.map((entry) => (
-                <li>
-                  <a href={urlFor(tab, entry)}>
-                    <span class="entry-title">{entry.data.title}</span>
-                    {entry.data.description && <span class="entry-desc">{entry.data.description}</span>}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </section>
+      <h2 id="start-here">Start here</h2>
+      <div class="card-grid">
+        {start.map(({ entry, icon, blurb }) => (
+          <Card title={entry.data.title} href={urlFor(tab, entry)}>
+            <Icon name={icon} slot="icon" />
+            {blurb}
+          </Card>
         ))}
       </div>
-    )}
 
-    <div class="page-foot">
-      <ThemeSwitch />
+      <h2 id="browse-by-topic">Browse by topic</h2>
+      <div class="card-grid">
+        {topicGroups.map((g) => (
+          <Card title={g.label} href={urlFor(tab, g.first!)}>
+            <Icon name={groupIcons[g.label] ?? 'file-text'} slot="icon" />
+            {g.desc}
+          </Card>
+        ))}
+      </div>
+
+      <div class="article-foot">
+        <ThemeSwitch />
+      </div>
+    </article>
+    <nav class="toc" slot="rail" aria-label="On this page">
+      <a href="#start-here">Start here</a>
+      <a href="#browse-by-topic">Browse by topic</a>
+    </nav>
+  </DocsShell>
+) : (
+  <Base title={meta[tab].label} description={meta[tab].lede}>
+    <div class="wrap" class:list={{ narrow: isHelp }}>
+      <header class="tab-head reveal">
+        <h1>{meta[tab].h1}</h1>
+        <p>{meta[tab].lede}</p>
+      </header>
+
+      {isHelp ? (
+        <div class="reveal" style="animation-delay: 0.08s">
+          <TopicBrowser tab={tab} groups={groups} />
+        </div>
+      ) : (
+        <ul class="cards">
+          {entries.map((entry, i) => (
+            <li class="reveal" style={`animation-delay: ${Math.min(0.05 * (i + 1), 0.4)}s`}>
+              <a href={urlFor(tab, entry)}>
+                <span class="entry-title">{entry.data.title}</span>
+                {entry.data.description && <span class="entry-desc">{entry.data.description}</span>}
+                {entry.data.tags.length > 0 && (
+                  <span class="tags">
+                    {entry.data.tags.filter((t) => t !== 'placeholder').map((t) => <span class="tag">{t}</span>)}
+                  </span>
+                )}
+              </a>
+            </li>
+          ))}
+        </ul>
+      )}
+
+      <div class="page-foot">
+        <ThemeSwitch />
+      </div>
     </div>
-  </div>
+  </Base>
+)}
 
-  <style>
-    .wrap {
-      max-width: 52rem;
-      margin: 0 auto;
-    }
-    .wrap.narrow {
-      max-width: 44rem;
-    }
-    .tab-head {
-      margin-bottom: 2rem;
-    }
-    .tab-head h1 {
-      margin: 0 0 0.4rem;
-    }
-    .tab-head p {
-      color: var(--muted);
-      margin: 0;
-      font-size: 0.95rem;
-    }
-    .groups section {
-      margin-bottom: 2rem;
-    }
-    .groups h2 {
-      margin: 0 0 0.25rem;
-      font-size: 0.85rem;
-      font-weight: 500;
-      color: var(--muted);
-    }
-    .listing {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      border: 1px solid var(--line);
-      border-radius: 10px;
-      overflow: hidden;
-    }
-    .listing li + li {
-      border-top: 1px solid var(--line);
-    }
-    .listing li a {
-      display: block;
-      color: inherit;
-      padding: 0.65rem 1rem;
-      transition: background 0.15s;
-    }
-    .listing li a:hover {
-      text-decoration: none;
-      background: var(--panel);
-    }
-    .entry-title {
-      display: block;
-      font-weight: 500;
-      font-size: 0.93rem;
-    }
-    .listing li a:hover .entry-title {
-      color: var(--accent);
-    }
-    .entry-desc {
-      display: block;
-      color: var(--muted);
-      font-size: 0.85rem;
-      margin-top: 0.15rem;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-    .cards {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
-      gap: 0.9rem;
-    }
-    .cards li a {
-      display: block;
-      color: inherit;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      padding: 1rem 1.1rem;
-      height: 100%;
-      background: var(--panel);
-      transition: border-color 0.15s;
-    }
-    .cards li a:hover {
-      text-decoration: none;
-      border-color: var(--line-strong);
-    }
-    .cards .entry-desc {
-      white-space: normal;
-    }
-    .tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.35rem;
-      margin-top: 0.75rem;
-    }
-    .tag {
-      font-size: 0.72rem;
-      color: var(--muted);
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      padding: 0.05rem 0.55rem;
-    }
-    .page-foot {
-      display: flex;
-      justify-content: center;
-      margin-top: 3rem;
-      padding-top: 1.5rem;
-      border-top: 1px solid var(--line);
-    }
-  </style>
-</Base>
+<style>
+  /* --- Shell (docs/api) landing --- */
+  .lede {
+    color: var(--muted);
+    font-size: 0.97rem;
+  }
+  .hero-img {
+    width: 100%;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    margin: 1.5rem 0 0.5rem;
+    background: #fff;
+  }
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(13rem, 1fr));
+    gap: 0.9rem;
+    margin: 1rem 0 1.5rem;
+  }
+  .toc {
+    position: sticky;
+    top: calc(var(--nav-h) + 2.5rem);
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+  .toc a {
+    color: var(--muted);
+  }
+  .toc a:hover {
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .article-foot {
+    display: flex;
+    margin-top: 3rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--line);
+  }
+
+  /* --- Centered (help/learn) landing --- */
+  .wrap {
+    max-width: 52rem;
+    margin: 0 auto;
+  }
+  .wrap.narrow {
+    max-width: 44rem;
+  }
+  .tab-head {
+    margin-bottom: 2rem;
+  }
+  .tab-head h1 {
+    margin: 0 0 0.4rem;
+  }
+  .tab-head p {
+    color: var(--muted);
+    margin: 0;
+    font-size: 0.95rem;
+  }
+  .cards {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+    gap: 0.9rem;
+  }
+  .cards li a {
+    display: block;
+    color: inherit;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 1rem 1.1rem;
+    height: 100%;
+    background: var(--panel);
+    transition: border-color 0.15s;
+  }
+  .cards li a:hover {
+    text-decoration: none;
+    border-color: var(--line-strong);
+  }
+  .entry-title {
+    display: block;
+    font-weight: 500;
+    font-size: 0.93rem;
+  }
+  .entry-desc {
+    display: block;
+    color: var(--muted);
+    font-size: 0.85rem;
+    margin-top: 0.15rem;
+  }
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    margin-top: 0.75rem;
+  }
+  .tag {
+    font-size: 0.72rem;
+    color: var(--muted);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 0.05rem 0.55rem;
+  }
+  .page-foot {
+    display: flex;
+    justify-content: center;
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--line);
+  }
+</style>

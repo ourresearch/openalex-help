@@ -11,6 +11,7 @@
 
 export interface NavGroup {
   label: string;
+  desc?: string; // one-liner for landing-page cards / accordions
   slugs: string[];
 }
 
@@ -18,6 +19,7 @@ export const NAV_GROUPS: Record<string, NavGroup[]> = {
   help: [
     {
       label: 'Getting started',
+      desc: 'What OpenAlex is, citing it, pricing, and the roadmap.',
       slugs: [
         'about-us',
         'where-can-i-find-a-non-technical-explanation-of-how-open-alex-works',
@@ -29,6 +31,7 @@ export const NAV_GROUPS: Record<string, NavGroup[]> = {
     },
     {
       label: 'Fixing errors & curation',
+      desc: 'Correct author profiles, affiliations, OA status, and more.',
       slugs: [
         'fix-errors-in-openalex',
         'how-can-i-fix-errors-in-an-openalex-author-profile',
@@ -45,6 +48,7 @@ export const NAV_GROUPS: Record<string, NavGroup[]> = {
     },
     {
       label: 'Getting your content indexed',
+      desc: 'Get your journal or repository into OpenAlex.',
       slugs: [
         'how-can-i-get-my-journal-indexed-in-openalex',
         'how-can-i-get-my-repository-indexed-in-openalex',
@@ -54,6 +58,7 @@ export const NAV_GROUPS: Record<string, NavGroup[]> = {
     },
     {
       label: 'Finding IDs & searching',
+      desc: 'Find IDs and build sharper queries.',
       slugs: [
         'how-do-i-find-a-publications-openalex-work-id',
         'how-do-i-find-my-openalex-author-id',
@@ -69,6 +74,7 @@ export const NAV_GROUPS: Record<string, NavGroup[]> = {
     },
     {
       label: 'Using & exporting data',
+      desc: 'Exports and downstream tools like VOSviewer.',
       slugs: [
         'export-results-from-the-openalex-website',
         'how-do-i-import-openalex-data-into-vosviewer',
@@ -76,6 +82,7 @@ export const NAV_GROUPS: Record<string, NavGroup[]> = {
     },
     {
       label: 'Community & events',
+      desc: 'Webinars, office hours, and OpenAlex in the wild.',
       slugs: [
         'user-meeting',
         'webinars',
@@ -90,6 +97,7 @@ export const NAV_GROUPS: Record<string, NavGroup[]> = {
   docs: [
     {
       label: 'Start here',
+      desc: 'What OpenAlex is and how it all fits together.',
       slugs: [
         'about-the-data',
         'how-does-openalex-work',
@@ -105,6 +113,7 @@ export const NAV_GROUPS: Record<string, NavGroup[]> = {
     },
     {
       label: 'Works & metadata',
+      desc: 'Where works come from and what their fields mean.',
       slugs: [
         'where-do-works-in-openalex-come-from',
         'data-ingest-pipeline',
@@ -125,6 +134,7 @@ export const NAV_GROUPS: Record<string, NavGroup[]> = {
     },
     {
       label: 'Authors & institutions',
+      desc: 'Disambiguation, affiliations, and country assignment.',
       slugs: [
         'author-disambiguation',
         'why-are-some-authors-assigned-to-null-author-id-a9999999999',
@@ -136,6 +146,7 @@ export const NAV_GROUPS: Record<string, NavGroup[]> = {
     },
     {
       label: 'Sources & publishers',
+      desc: 'Journals, repositories, and how we classify them.',
       slugs: [
         'sources-in-openalex',
         'how-does-openalex-handle-predatory-and-lower-quality-journals',
@@ -146,6 +157,7 @@ export const NAV_GROUPS: Record<string, NavGroup[]> = {
     },
     {
       label: 'Topics, metrics & aboutness',
+      desc: 'Topics, keywords, FWCI, and other classifications.',
       slugs: [
         'aboutness',
         'topics',
@@ -158,6 +170,7 @@ export const NAV_GROUPS: Record<string, NavGroup[]> = {
     },
     {
       label: 'Open Access',
+      desc: 'How OA status, locations, and licenses are determined.',
       slugs: [
         'open-access-oa',
         'what-counts-as-an-open-access-location',
@@ -169,6 +182,7 @@ export const NAV_GROUPS: Record<string, NavGroup[]> = {
     },
     {
       label: 'Repositories',
+      desc: 'Repository records, matching, and recommendations for IRs.',
       slugs: [
         'how-are-repository-records-matched-to-published-articles',
         'how-are-documents-located-from-repository-records',
@@ -180,6 +194,7 @@ export const NAV_GROUPS: Record<string, NavGroup[]> = {
     },
     {
       label: 'Downloads & snapshot',
+      desc: 'Snapshot, changefiles, and working with the data at scale.',
       slugs: [
         'downloading-openalex-data',
         'download-to-your-machine',
@@ -191,6 +206,7 @@ export const NAV_GROUPS: Record<string, NavGroup[]> = {
     },
     {
       label: 'Unpaywall',
+      desc: 'The Unpaywall dataset, extension, and integrations.',
       slugs: [
         'which-dois-does-unpaywall-cover',
         'how-do-i-make-the-unpaywall-extension-work-on-my-site',
@@ -204,6 +220,7 @@ export const NAV_GROUPS: Record<string, NavGroup[]> = {
   api: [
     {
       label: 'Getting started',
+      desc: 'Auth, errors, and your first request.',
       slugs: [
         'introduction',
         'quickstart',
@@ -216,6 +233,7 @@ export const NAV_GROUPS: Record<string, NavGroup[]> = {
     },
     {
       label: 'Querying',
+      desc: 'Filter, search, sort, group, and page through results.',
       slugs: [
         'filtering',
         'searching',
@@ -230,6 +248,7 @@ export const NAV_GROUPS: Record<string, NavGroup[]> = {
     },
     {
       label: 'Entities',
+      desc: 'The entity endpoints: works, authors, sources, and more.',
       slugs: [
         'works',
         'authors',
@@ -247,6 +266,7 @@ export const NAV_GROUPS: Record<string, NavGroup[]> = {
     },
     {
       label: 'Vocabularies',
+      desc: 'Controlled vocabularies: types, countries, licenses, SDGs.',
       slugs: [
         'work-types',
         'source-types',
@@ -263,6 +283,7 @@ export const NAV_GROUPS: Record<string, NavGroup[]> = {
     },
     {
       label: 'Curation & special',
+      desc: 'Curation endpoints and special-purpose APIs.',
       slugs: ['author-curation', 'tag-aboutness'],
     },
   ],
