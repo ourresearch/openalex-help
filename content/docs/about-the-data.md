@@ -6,7 +6,7 @@ source_id: "24397285563671"
 source_url: "https://help.openalex.org/hc/en-us/articles/24397285563671-About-the-data"
 source_updated: "2024-07-30"
 ---
-![](https://3117786224-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2Fa3BRxfacarwiv3wTnHuB%2Fuploads%2FHk254kXRAMOIXVCYDDT9%2Fopenalex-overview-diagram.png?alt=media&token=133a87f6-6435-47c8-a272-0b108576e36a)
+![](/images/zendesk/openalex-overview-diagram.png)
 
 OpenAlex is more than just a catalog of research publications. We do the work of _disambiguating_ and _connecting_ scholarly works, authors, institutions, sources, and other entities. We then offer the data and analytics on top of it in three different channels, depending on your needs:
 

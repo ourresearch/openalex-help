@@ -13,6 +13,6 @@ source_updated: "2024-07-08"
 
 ### Number of works from your institution that have received at least one citation. 
 
-1.  After you have filtered by your institution (see above), click the “Add filter” button ![](https://help.openalex.org/hc/article_attachments/24346755545367), then type “citation count” and click on that filter. 
+1.  After you have filtered by your institution (see above), click the “Add filter” button ![](/images/zendesk/24346755545367.png), then type “citation count” and click on that filter. 
 2.  You will see a dialog box prompting you to enter a number or range. Type “>0” in this box  and press enter. This adds an additional filter to only include works that have received at least one citation. 
 3.  The “results” panel under Stats will now show the count of works from your institution that have at least one citation.

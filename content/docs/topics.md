@@ -8,7 +8,7 @@ source_updated: "2026-03-06"
 ---
 OpenAlex organizes scholarly works into roughly 4,500 research topics, arranged in a four-level hierarchy: domains (4), fields (26), subfields (254), and topics (~4,500). Every work with enough metadata gets assigned to one or more topics automatically.
 
-![](https://help.openalex.org/hc/article_attachments/24736129393431)
+![](/images/zendesk/24736129393431.png)
 
 This system was developed in collaboration with [CWTS at Leiden University](https://www.cwts.nl/), extending their [Open Leiden Rankings approach](https://www.leidenmadtrics.nl/articles/an-open-approach-for-classifying-research-publications).
 
@@ -47,7 +47,7 @@ Some works don't have enough data to classify — if there's no title, no abstra
 
 Most works are assigned topics — as well as domains, fields, subfields, and keywords — using the methods above. Some works, however, don't have enough associated data to be classified. The following table from the methods paper shows how many works were classified and how many were excluded:
 
-![](https://help.openalex.org/hc/article_attachments/24736129398167)
+![](/images/zendesk/24736129398167.png)
 
 ## Learn more
 

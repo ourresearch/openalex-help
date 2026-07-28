@@ -92,8 +92,17 @@ td.use(gfm);
 
 const imagesToLocalize = [];
 
+// Remote images vendored into public/images/zendesk/ (they die when the Zendesk
+// Guide / GitBook space is retired). Keyed by a substring of the decoded URL.
+const LOCAL_IMAGES = {
+  'uploads%2FHk254kXRAMOIXVCYDDT9%2Fopenalex-overview-diagram.png': '/images/zendesk/openalex-overview-diagram.png',
+  'uploads/Hk254kXRAMOIXVCYDDT9/openalex-overview-diagram.png': '/images/zendesk/openalex-overview-diagram.png',
+};
+
 // GitBook proxied images: src=https://ourresearch.gitbook.io/~gitbook/image?url=<ENCODED real url>&...
-// Decode to the underlying file URL and record it for later localization.
+// Decode to the underlying file URL; swap known remote images (GitBook files,
+// Zendesk article attachments) for the local copies in public/images/zendesk/;
+// record anything still remote for later localization.
 td.addRule('gitbookImage', {
   filter: 'img',
   replacement: (_content, node) => {
@@ -103,7 +112,12 @@ td.addRule('gitbookImage', {
     if (src.includes('gitbook.io/~gitbook/image') && m) {
       try { src = decodeURIComponent(m[1]); } catch { /* keep proxy url */ }
     }
-    if (src.includes('gitbook')) imagesToLocalize.push(src);
+    const att = src.match(/\/hc\/article_attachments\/(\d+)/);
+    if (att) src = `/images/zendesk/${att[1]}.png`;
+    for (const [needle, local] of Object.entries(LOCAL_IMAGES)) {
+      if (src.includes(needle)) { src = local; break; }
+    }
+    if (src.includes('gitbook') || src.includes('article_attachments')) imagesToLocalize.push(src);
     return src ? `![${alt}](${src})` : '';
   },
 });
@@ -250,11 +264,11 @@ if (current.includes(BEGIN)) {
 }
 fs.writeFileSync(redirectsPath, current);
 
+const imagesTsv = path.join(__dirname, 'images-to-localize.tsv');
 if (imagesToLocalize.length) {
-  fs.writeFileSync(
-    path.join(__dirname, 'images-to-localize.tsv'),
-    'gitbook_url\n' + [...new Set(imagesToLocalize)].join('\n') + '\n',
-  );
+  fs.writeFileSync(imagesTsv, 'remote_url\n' + [...new Set(imagesToLocalize)].join('\n') + '\n');
+} else if (fs.existsSync(imagesTsv)) {
+  fs.unlinkSync(imagesTsv);
 }
 
 // ── Summary ──────────────────────────────────────────────────────────────────

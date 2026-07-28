@@ -1,12 +1,12 @@
 ---
 title: "Export results from the OpenAlex website"
-description: "Above any Works result set, you will see an export button !(https://help.openalex.org/hc/articleattachments/24829724230167) that you can click to download a file with OpenAlex's…"
+description: "Above any Works result set, you will see an export button !(/images/zendesk/24829724230167.png) that you can click to download a file with OpenAlex's data about works. There are…"
 tags: ["general"]
 source_id: "24829724234007"
 source_url: "https://help.openalex.org/hc/en-us/articles/24829724234007-Export-results-from-the-OpenAlex-website"
 source_updated: "2025-01-27"
 ---
-Above any Works result set, you will see an export button ![](https://help.openalex.org/hc/article_attachments/24829724230167) that you can click to download a file with OpenAlex's data about works. There are three different file formats to choose from:
+Above any Works result set, you will see an export button ![](/images/zendesk/24829724230167.png) that you can click to download a file with OpenAlex's data about works. There are three different file formats to choose from:
 
 -   -   **Spreadsheet (.csv)** — CSV (comma-separated values) file that can be used by spreadsheet applications like Microsoft Excel. This flattens the [copious data that make up the works](https://docs.openalex.org/api-entities/works/work-object) into a large number of columns.
         -   "Shorten column values for Excel compatibility" — Excel has limitations in the length of data values, so a standard export can cause errors. If you plan to use Excel to work with the data you're exporting, check this feature so that any cells that exceed these limits will be truncated and the errors will be avoided (at the expense of data loss).
