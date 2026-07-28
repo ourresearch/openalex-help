@@ -89,13 +89,6 @@ const topicGroups = (NAV_GROUPS[tab] ?? [])
       <span class="eyebrow">{meta[tab].label}</span>
       <h1>{meta[tab].h1}</h1>
       <p class="lede">{meta[tab].lede}</p>
-      {tab === 'docs' && (
-        <img
-          class="hero-img"
-          src="/images/zendesk/openalex-overview-diagram.png"
-          alt="Diagram of OpenAlex entities and how they connect"
-        />
-      )}
 
       <h2 id="start-here">Start here</h2>
       <div class="card-grid">
@@ -168,13 +161,6 @@ const topicGroups = (NAV_GROUPS[tab] ?? [])
   .lede {
     color: var(--muted);
     font-size: 0.97rem;
-  }
-  .hero-img {
-    width: 100%;
-    border: 1px solid var(--line);
-    border-radius: 8px;
-    margin: 1.5rem 0 0.5rem;
-    background: #fff;
   }
   .card-grid {
     display: grid;
