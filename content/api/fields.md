@@ -1,0 +1,60 @@
+---
+title: "Fields Overview"
+description: "Schema reference for Fields entities"
+tags: ["api"]
+source_id: "api-reference/fields"
+source_url: "https://developers.openalex.org/api-reference/fields"
+source_updated: "2026-02-17"
+---
+Fields are the second level of the OpenAlex topic hierarchy. There are 26 fields spread across 4 domains. Each field contains multiple subfields.
+
+The topic hierarchy is: Domain → **Field** → Subfield → Topic
+
+## All 26 fields
+
+| ID | Name | Domain |
+|---:|------|--------|
+| 11 | Agricultural and Biological Sciences | Life Sciences |
+| 12 | Arts and Humanities | Social Sciences |
+| 13 | Biochemistry, Genetics and Molecular Biology | Life Sciences |
+| 14 | Business, Management and Accounting | Social Sciences |
+| 15 | Chemical Engineering | Physical Sciences |
+| 16 | Chemistry | Physical Sciences |
+| 17 | Computer Science | Physical Sciences |
+| 18 | Decision Sciences | Social Sciences |
+| 19 | Earth and Planetary Sciences | Physical Sciences |
+| 20 | Economics, Econometrics and Finance | Social Sciences |
+| 21 | Energy | Physical Sciences |
+| 22 | Engineering | Physical Sciences |
+| 23 | Environmental Science | Physical Sciences |
+| 24 | Immunology and Microbiology | Life Sciences |
+| 25 | Materials Science | Physical Sciences |
+| 26 | Mathematics | Physical Sciences |
+| 27 | Medicine | Health Sciences |
+| 28 | Neuroscience | Life Sciences |
+| 29 | Nursing | Health Sciences |
+| 30 | Pharmacology, Toxicology and Pharmaceutics | Life Sciences |
+| 31 | Physics and Astronomy | Physical Sciences |
+| 32 | Psychology | Social Sciences |
+| 33 | Social Sciences | Social Sciences |
+| 34 | Veterinary | Health Sciences |
+| 35 | Dentistry | Health Sciences |
+| 36 | Health Professions | Health Sciences |
+
+## Filter, sort, and group_by fields
+
+The API supports filtering, sorting, and grouping on fields fields. See [Filtering](/api/filtering/), [Sorting](/api/sorting/), and [Grouping](/api/grouping/) for syntax.
+
+Fields marked **(deprecated)** are `.search` filters — use the [`search` parameter](/api/searching/) instead.
+
+| Field | Sort | Group_by | Filter |
+|-------|:----:|:--------:|:------:|
+| `cited_by_count` | ✓ | ✓ | ✓ |
+| `default.search` **(deprecated)** |  |  | ✓ |
+| `display_name` | ✓ |  | ✓ |
+| `display_name.search` **(deprecated)** |  |  | ✓ |
+| `domain.id` | ✓ | ✓ | ✓ |
+| `from_created_date` | ✓ |  | ✓ |
+| `id` | ✓ | ✓ | ✓ |
+| `subfields.id` | ✓ | ✓ | ✓ |
+| `works_count` | ✓ | ✓ | ✓ |

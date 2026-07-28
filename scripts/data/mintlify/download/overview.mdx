@@ -1,0 +1,88 @@
+---
+title: "Overview"
+description: "Download OpenAlex data for local analysis"
+---
+
+OpenAlex offers multiple ways to access data beyond the REST API. Choose the approach that best fits your use case.
+
+## When to use the API vs. downloads
+
+<CardGroup cols={2}>
+  <Card title="Use the REST API" icon="cloud">
+    - Quick lookups and searches
+    - Building applications
+    - Real-time data needs
+    - Most use cases
+  </Card>
+  <Card title="Use data downloads" icon="download">
+    - Large-scale analysis
+    - Machine learning training
+    - Building local search indexes
+    - Offline access requirements
+  </Card>
+</CardGroup>
+
+## Download options
+
+### OpenAlex Snapshot
+
+The complete OpenAlex database, available in two formats: gzip-compressed [JSON Lines](https://jsonlines.org/) and [Apache Parquet](https://parquet.apache.org/). The free public snapshot is updated quarterly; [paid plans](https://openalex.org/pricing) get daily-refreshed snapshots and daily change files. Includes works, authors, sources, institutions, topics, publishers, funders, awards, and more.
+
+**Best for:** Full database replication, data warehousing, comprehensive analysis
+
+**Size:** The JSON Lines snapshot is ~330 GB compressed (~1.6 TB decompressed). Parquet is provided alongside it as a separate copy of the same data, so downloading both roughly doubles the transfer.
+
+[Learn more about the snapshot format](/download/snapshot-format)
+
+### OpenAlex CLI
+
+The official command-line tool for downloading filtered subsets of OpenAlex data.
+
+```bash
+pip install openalex-official
+openalex download \
+  --api-key YOUR_KEY \
+  --filter "publication_year:2024" \
+  --output ./results
+```
+
+**Best for:** Downloading specific subsets without the full snapshot
+
+[OpenAlex CLI documentation](/download/openalex-cli)
+
+### Full-text PDFs
+
+Download PDFs and TEI XML for about 60 million works. Requires an API key — content downloads cost $0.01 per file.
+
+**Best for:** Text mining, content analysis, building corpora
+
+[Full-text PDF documentation](/download/full-text-pdfs)
+
+## Decision tree
+
+```
+Do you need the complete database?
+├── Yes → Download the snapshot
+│         (/download/snapshot-format)
+└── No
+    ├── Do you need filtered metadata or content files?
+    │   ├── Yes → Use the OpenAlex CLI
+    │   │         (/download/openalex-cli)
+    │   └── No → Use the REST API
+    │             (/api-reference/introduction)
+    └── Do you need bulk full-text PDFs?
+        ├── Yes → See full-text PDF options
+        │         (/download/full-text-pdfs)
+        └── No → Use the REST API
+```
+
+## Getting started
+
+1. **For the snapshot:** Follow the [download instructions](/download/download-to-machine) to get the data to your machine
+2. **For the CLI:** Install with `pip install openalex-official` and run `openalex download --help`
+3. **For PDFs:** See [full-text PDFs](/download/full-text-pdfs) for the three download options
+
+<Warning>
+Working with the full snapshot is challenging. The dataset is large (330 GB+ compressed) and complex. If you're unsure, start with the REST API — it can answer most questions with much less setup.
+</Warning>
+

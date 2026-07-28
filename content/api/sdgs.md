@@ -1,0 +1,47 @@
+---
+title: "SDGs Overview"
+description: "Schema reference for SDGs entities"
+tags: ["api"]
+source_id: "api-reference/sdgs"
+source_url: "https://developers.openalex.org/api-reference/sdgs"
+source_updated: "2026-02-17"
+---
+SDGs (Sustainable Development Goals) are the 17 global goals adopted by the United Nations in 2015. OpenAlex automatically tags works that are relevant to each SDG.
+
+## All 17 SDGs
+
+| ID | Name |
+|---:|------|
+| 1 | No poverty |
+| 2 | Zero hunger |
+| 3 | Good health and well-being |
+| 4 | Quality education |
+| 5 | Gender equality |
+| 6 | Clean water and sanitation |
+| 7 | Affordable and clean energy |
+| 8 | Decent work and economic growth |
+| 9 | Industry, innovation and infrastructure |
+| 10 | Reduced inequalities |
+| 11 | Sustainable cities and communities |
+| 12 | Responsible consumption and production |
+| 13 | Climate action |
+| 14 | Life below water |
+| 15 | Life on land |
+| 16 | Peace, justice, and strong institutions |
+| 17 | Partnerships for the goals |
+
+## Filter, sort, and group_by fields
+
+The API supports filtering, sorting, and grouping on sdgs fields. See [Filtering](/api/filtering/), [Sorting](/api/sorting/), and [Grouping](/api/grouping/) for syntax.
+
+Fields marked **(deprecated)** are `.search` filters — use the [`search` parameter](/api/searching/) instead.
+
+| Field | Sort | Group_by | Filter |
+|-------|:----:|:--------:|:------:|
+| `cited_by_count` | ✓ | ✓ | ✓ |
+| `default.search` **(deprecated)** |  |  | ✓ |
+| `display_name` | ✓ |  | ✓ |
+| `display_name.search` **(deprecated)** |  |  | ✓ |
+| `from_created_date` | ✓ |  | ✓ |
+| `id` | ✓ | ✓ | ✓ |
+| `works_count` | ✓ | ✓ | ✓ |

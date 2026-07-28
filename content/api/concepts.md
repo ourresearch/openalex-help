@@ -1,0 +1,37 @@
+---
+title: "Concepts (deprecated) Overview"
+description: "Schema reference for Concepts (deprecated) entities"
+tags: ["api"]
+source_id: "api-reference/concepts"
+source_url: "https://developers.openalex.org/api-reference/concepts"
+source_updated: "2026-02-17"
+---
+> **Warning:**
+> Concepts are **deprecated** and have been replaced by [Topics](/api/topics/). The concepts endpoints remain functional but will not receive updates.
+
+Concepts were a hierarchical taxonomy of research areas derived from Wikidata. They have been replaced by the Topics system, which provides more accurate and comprehensive classification.
+
+## Filter, sort, and group_by fields
+
+The API supports filtering, sorting, and grouping on concepts fields. See [Filtering](/api/filtering/), [Sorting](/api/sorting/), and [Grouping](/api/grouping/) for syntax.
+
+Fields marked **(deprecated)** are `.search` filters — use the [`search` parameter](/api/searching/) instead.
+
+| Field | Sort | Group_by | Filter |
+|-------|:----:|:--------:|:------:|
+| `ancestors.id` | ✓ | ✓ | ✓ |
+| `cited_by_count` | ✓ | ✓ | ✓ |
+| `default.search` **(deprecated)** |  |  | ✓ |
+| `display_name` | ✓ |  | ✓ |
+| `display_name.search` **(deprecated)** |  |  | ✓ |
+| `from_created_date` | ✓ |  | ✓ |
+| `has_wikidata` | ✓ | ✓ | ✓ |
+| `ids.openalex` | ✓ | ✓ | ✓ |
+| `level` | ✓ | ✓ | ✓ |
+| `openalex` | ✓ | ✓ | ✓ |
+| `openalex_id` |  | ✓ | ✓ |
+| `summary_stats.2yr_mean_citedness` |  | ✓ | ✓ |
+| `summary_stats.h_index` |  | ✓ | ✓ |
+| `summary_stats.i10_index` |  | ✓ | ✓ |
+| `wikidata_id` |  | ✓ | ✓ |
+| `works_count` | ✓ | ✓ | ✓ |

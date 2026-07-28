@@ -1,0 +1,28 @@
+---
+title: "Subfields Overview"
+sidebarTitle: "Subfields Overview"
+description: "Schema reference for Subfields entities"
+---
+
+Subfields are the third level of the OpenAlex topic hierarchy. There are 254 subfields spread across 26 fields. Each subfield contains multiple topics.
+
+The topic hierarchy is: Domain → Field → **Subfield** → Topic
+
+## Filter, sort, and group_by fields
+
+The API supports filtering, sorting, and grouping on subfields fields. See [Filtering](/guides/filtering), [Sorting](/guides/sort), and [Grouping](/guides/grouping) for syntax.
+
+Fields marked **(deprecated)** are `.search` filters — use the [`search` parameter](/guides/searching) instead.
+
+| Field | Sort | Group_by | Filter |
+|-------|:----:|:--------:|:------:|
+| `cited_by_count` | ✓ | ✓ | ✓ |
+| `default.search` **(deprecated)** |  |  | ✓ |
+| `display_name` | ✓ |  | ✓ |
+| `display_name.search` **(deprecated)** |  |  | ✓ |
+| `domain.id` | ✓ | ✓ | ✓ |
+| `field.id` | ✓ | ✓ | ✓ |
+| `from_created_date` | ✓ |  | ✓ |
+| `id` | ✓ | ✓ | ✓ |
+| `topics.id` | ✓ | ✓ | ✓ |
+| `works_count` | ✓ | ✓ | ✓ |

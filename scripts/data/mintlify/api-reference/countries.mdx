@@ -1,0 +1,23 @@
+---
+title: "Countries Overview"
+sidebarTitle: "Countries Overview"
+description: "Schema reference for Countries entities"
+---
+
+Countries represent geographic nations. They are used for filtering works by author affiliation country, and for understanding the geographic distribution of research.
+
+## Filter, sort, and group_by fields
+
+The API supports filtering, sorting, and grouping on countries fields. See [Filtering](/guides/filtering), [Sorting](/guides/sort), and [Grouping](/guides/grouping) for syntax.
+
+Fields marked **(deprecated)** are `.search` filters — use the [`search` parameter](/guides/searching) instead.
+
+| Field | Sort | Group_by | Filter |
+|-------|:----:|:--------:|:------:|
+| `cited_by_count` | ✓ | ✓ | ✓ |
+| `default.search` **(deprecated)** |  |  | ✓ |
+| `display_name` | ✓ |  | ✓ |
+| `display_name.search` **(deprecated)** |  |  | ✓ |
+| `from_created_date` | ✓ |  | ✓ |
+| `id` | ✓ | ✓ | ✓ |
+| `works_count` | ✓ | ✓ | ✓ |

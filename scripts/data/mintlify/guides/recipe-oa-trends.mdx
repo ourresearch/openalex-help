@@ -1,0 +1,97 @@
+---
+title: Open Access Trends by Year
+description: Track the growth of open access publishing over the last decade
+---
+
+How has open access publishing changed over the last decade? Two API calls and some simple subtraction give you a year-by-year breakdown. <Tooltip headline="Under 1¢" tip="2 List+Filter calls at $0.10 per 1,000"><Icon icon="coins" size={16} color="#DAA520" /></Tooltip>
+
+## Step 1: Get total works by year
+
+Use `group_by=publication_year` to count all works per year:
+
+```bash
+https://api.openalex.org/works?filter=publication_year:2015-2025&group_by=publication_year
+```
+
+The response `group_by` array contains one entry per year:
+
+```json
+[
+  {"key": "2015", "key_display_name": "2015", "count": 9949715},
+  {"key": "2016", "key_display_name": "2016", "count": 10262596},
+  {"key": "2017", "key_display_name": "2017", "count": 10109865}
+]
+```
+
+## Step 2: Get open access works by year
+
+Add `open_access.is_oa:true` to the filter to count only OA works:
+
+```bash
+https://api.openalex.org/works?filter=publication_year:2015-2025,open_access.is_oa:true&group_by=publication_year
+```
+
+Same shape, smaller counts:
+
+```json
+[
+  {"key": "2015", "key_display_name": "2015", "count": 3066358},
+  {"key": "2016", "key_display_name": "2016", "count": 3383207},
+  {"key": "2017", "key_display_name": "2017", "count": 3564129}
+]
+```
+
+## Step 3: Combine the results
+
+Match up the two responses by year and compute the OA percentage.
+
+```python
+import requests
+
+total_resp = requests.get(
+    "https://api.openalex.org/works",
+    params={"filter": "publication_year:2015-2025", "group_by": "publication_year"}
+).json()
+
+oa_resp = requests.get(
+    "https://api.openalex.org/works",
+    params={"filter": "publication_year:2015-2025,open_access.is_oa:true", "group_by": "publication_year"}
+).json()
+
+total_by_year = {g["key"]: g["count"] for g in total_resp["group_by"]}
+oa_by_year = {g["key"]: g["count"] for g in oa_resp["group_by"]}
+
+for year in sorted(total_by_year):
+    total = total_by_year[year]
+    oa = oa_by_year.get(year, 0)
+    closed = total - oa
+    pct = 100 * oa / total
+    print(f"{year}: {total:>12,} total | {oa:>12,} OA | {closed:>12,} closed | {pct:.1f}%")
+```
+
+## Results
+
+Data retrieved February 2026. Counts are approximate and will shift as OpenAlex continues indexing.
+
+<div style={{display: 'flex', justifyContent: 'center'}}>
+<table style={{width: 'auto', borderLeft: '3px solid var(--primary)', paddingLeft: '1rem'}}>
+  <thead>
+    <tr><th>Year</th><th style={{textAlign: 'right'}}>Total</th><th style={{textAlign: 'right'}}>OA</th><th style={{textAlign: 'right'}}>Closed</th><th style={{textAlign: 'right'}}>OA %</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>2015</td><td style={{textAlign: 'right'}}>9.9M</td><td style={{textAlign: 'right'}}>3.1M</td><td style={{textAlign: 'right'}}>6.9M</td><td style={{textAlign: 'right'}}>30.8%</td></tr>
+    <tr><td>2016</td><td style={{textAlign: 'right'}}>10.3M</td><td style={{textAlign: 'right'}}>3.4M</td><td style={{textAlign: 'right'}}>6.9M</td><td style={{textAlign: 'right'}}>33.0%</td></tr>
+    <tr><td>2017</td><td style={{textAlign: 'right'}}>10.1M</td><td style={{textAlign: 'right'}}>3.6M</td><td style={{textAlign: 'right'}}>6.5M</td><td style={{textAlign: 'right'}}>35.3%</td></tr>
+    <tr><td>2018</td><td style={{textAlign: 'right'}}>10.1M</td><td style={{textAlign: 'right'}}>4.0M</td><td style={{textAlign: 'right'}}>6.1M</td><td style={{textAlign: 'right'}}>39.6%</td></tr>
+    <tr><td>2019</td><td style={{textAlign: 'right'}}>10.5M</td><td style={{textAlign: 'right'}}>4.4M</td><td style={{textAlign: 'right'}}>6.0M</td><td style={{textAlign: 'right'}}>42.5%</td></tr>
+    <tr><td>2020</td><td style={{textAlign: 'right'}}>11.2M</td><td style={{textAlign: 'right'}}>5.4M</td><td style={{textAlign: 'right'}}>5.8M</td><td style={{textAlign: 'right'}}>48.4%</td></tr>
+    <tr><td>2021</td><td style={{textAlign: 'right'}}>10.2M</td><td style={{textAlign: 'right'}}>5.6M</td><td style={{textAlign: 'right'}}>4.7M</td><td style={{textAlign: 'right'}}><strong>54.2%</strong></td></tr>
+    <tr><td>2022</td><td style={{textAlign: 'right'}}>9.8M</td><td style={{textAlign: 'right'}}>6.0M</td><td style={{textAlign: 'right'}}>3.8M</td><td style={{textAlign: 'right'}}>61.2%</td></tr>
+    <tr><td>2023</td><td style={{textAlign: 'right'}}>10.4M</td><td style={{textAlign: 'right'}}>6.5M</td><td style={{textAlign: 'right'}}>4.0M</td><td style={{textAlign: 'right'}}>62.0%</td></tr>
+    <tr><td>2024</td><td style={{textAlign: 'right'}}>10.2M</td><td style={{textAlign: 'right'}}>6.2M</td><td style={{textAlign: 'right'}}>4.0M</td><td style={{textAlign: 'right'}}>60.8%</td></tr>
+    <tr><td>2025</td><td style={{textAlign: 'right'}}>14.0M</td><td style={{textAlign: 'right'}}>9.5M</td><td style={{textAlign: 'right'}}>4.5M</td><td style={{textAlign: 'right'}}>67.9%</td></tr>
+  </tbody>
+</table>
+</div>
+
+Open access has grown from roughly 31% to 68% of indexed works over the last decade. The crossover point — where OA works first outnumbered closed — was around 2021.

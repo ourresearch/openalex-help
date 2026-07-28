@@ -161,7 +161,9 @@ for (const tab of ['help', 'docs', 'api', 'learn']) {
   if (!fs.existsSync(dir)) continue;
   for (const f of fs.readdirSync(dir)) {
     const p = path.join(dir, f);
-    if (f.endsWith('.md') && fs.readFileSync(p, 'utf8').includes('source_id:')) fs.unlinkSync(p);
+    // Only clear Zendesk-sourced files — Mintlify-ported files (mintlify-port.mjs)
+    // also carry source_id and must survive this script's re-runs.
+    if (f.endsWith('.md') && fs.readFileSync(p, 'utf8').includes('source_url: "https://help.openalex.org')) fs.unlinkSync(p);
   }
 }
 

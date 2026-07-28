@@ -1,0 +1,30 @@
+---
+title: "Topics Overview"
+sidebarTitle: "Topics Overview"
+description: "Schema reference for Topics entities"
+---
+
+Topics are research areas automatically assigned to works. Topics exist in a four-level hierarchy: domain > field > subfield > topic.
+
+## Filter, sort, and group_by fields
+
+The API supports filtering, sorting, and grouping on topics fields. See [Filtering](/guides/filtering), [Sorting](/guides/sort), and [Grouping](/guides/grouping) for syntax.
+
+Fields marked **(deprecated)** are `.search` filters — use the [`search` parameter](/guides/searching) instead.
+
+| Field | Sort | Group_by | Filter |
+|-------|:----:|:--------:|:------:|
+| `cited_by_count` | ✓ | ✓ | ✓ |
+| `default.search` **(deprecated)** |  |  | ✓ |
+| `description.search` **(deprecated)** |  |  | ✓ |
+| `display_name` | ✓ |  | ✓ |
+| `display_name.search` **(deprecated)** |  |  | ✓ |
+| `domain.id` | ✓ | ✓ | ✓ |
+| `field.id` | ✓ | ✓ | ✓ |
+| `from_created_date` | ✓ |  | ✓ |
+| `id` | ✓ | ✓ | ✓ |
+| `ids.openalex` | ✓ | ✓ | ✓ |
+| `keywords.search` **(deprecated)** |  |  | ✓ |
+| `openalex` | ✓ | ✓ | ✓ |
+| `subfield.id` | ✓ | ✓ | ✓ |
+| `works_count` | ✓ | ✓ | ✓ |

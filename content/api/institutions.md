@@ -1,0 +1,48 @@
+---
+title: "Institutions Overview"
+description: "Schema reference for Institutions entities"
+tags: ["api"]
+source_id: "api-reference/institutions"
+source_url: "https://developers.openalex.org/api-reference/institutions"
+source_updated: "2026-02-17"
+---
+Institutions are universities and other organizations to which authors claim affiliations.
+
+## Filter, sort, and group_by fields
+
+The API supports filtering, sorting, and grouping on institutions fields. See [Filtering](/api/filtering/), [Sorting](/api/sorting/), and [Grouping](/api/grouping/) for syntax.
+
+Fields marked **(deprecated)** are `.search` filters — use the [`search` parameter](/api/searching/) instead.
+
+| Field | Sort | Group_by | Filter |
+|-------|:----:|:--------:|:------:|
+| `cited_by_count` | ✓ | ✓ | ✓ |
+| `concept.id` |  | ✓ | ✓ |
+| `concepts.id` |  | ✓ | ✓ |
+| `continent` | ✓ | ✓ | ✓ |
+| `country_code` | ✓ | ✓ | ✓ |
+| `default.search` **(deprecated)** |  |  | ✓ |
+| `display_name` | ✓ |  | ✓ |
+| `display_name.search` **(deprecated)** |  |  | ✓ |
+| `from_created_date` | ✓ |  | ✓ |
+| `has_ror` | ✓ | ✓ | ✓ |
+| `id` | ✓ | ✓ | ✓ |
+| `ids.openalex` | ✓ | ✓ | ✓ |
+| `is_global_south` | ✓ | ✓ | ✓ |
+| `is_super_system` | ✓ | ✓ | ✓ |
+| `lineage` | ✓ | ✓ | ✓ |
+| `openalex` | ✓ | ✓ | ✓ |
+| `openalex_id` |  | ✓ | ✓ |
+| `repositories.host_organization` | ✓ | ✓ | ✓ |
+| `repositories.host_organization_lineage` | ✓ | ✓ | ✓ |
+| `repositories.id` | ✓ | ✓ | ✓ |
+| `roles.id` | ✓ | ✓ | ✓ |
+| `ror` | ✓ | ✓ | ✓ |
+| `summary_stats.2yr_mean_citedness` | ✓ | ✓ | ✓ |
+| `summary_stats.h_index` | ✓ | ✓ | ✓ |
+| `summary_stats.i10_index` | ✓ | ✓ | ✓ |
+| `topic_share.id` | ✓ | ✓ | ✓ |
+| `topics.id` | ✓ | ✓ | ✓ |
+| `type` | ✓ | ✓ | ✓ |
+| `works_count` | ✓ | ✓ | ✓ |
+| `x_concepts.id` |  | ✓ | ✓ |

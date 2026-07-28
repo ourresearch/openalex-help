@@ -1,0 +1,23 @@
+---
+title: "Continents Overview"
+sidebarTitle: "Continents Overview"
+description: "Schema reference for Continents entities"
+---
+
+Continents represent the major geographic regions of the world. They are used for filtering works by geographic region and for understanding the global distribution of research.
+
+## Filter, sort, and group_by fields
+
+The API supports filtering, sorting, and grouping on continents fields. See [Filtering](/guides/filtering), [Sorting](/guides/sort), and [Grouping](/guides/grouping) for syntax.
+
+Fields marked **(deprecated)** are `.search` filters — use the [`search` parameter](/guides/searching) instead.
+
+| Field | Sort | Group_by | Filter |
+|-------|:----:|:--------:|:------:|
+| `cited_by_count` | ✓ | ✓ | ✓ |
+| `default.search` **(deprecated)** |  |  | ✓ |
+| `display_name` | ✓ |  | ✓ |
+| `display_name.search` **(deprecated)** |  |  | ✓ |
+| `from_created_date` | ✓ |  | ✓ |
+| `id` | ✓ | ✓ | ✓ |
+| `works_count` | ✓ | ✓ | ✓ |
