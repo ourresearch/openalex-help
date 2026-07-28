@@ -7,6 +7,7 @@ import Card from '../../components/Card.astro';
 import Icon from '../../components/Icon.astro';
 import { TABS, allEntries, urlFor, type Tab, type AnyEntry } from '../../lib/tabs';
 import { groupEntries, NAV_GROUPS } from '../../lib/nav';
+import { FACETS, facetsFor } from '../../lib/facets';
 
 export async function getStaticPaths() {
   return TABS.map((tab) => ({ params: { tab } }));
@@ -35,8 +36,8 @@ const meta: Record<Tab, { label: string; h1: string; lede: string }> = {
   },
   learn: {
     label: 'Learn',
-    h1: 'Learn',
-    lede: 'Step-by-step recipes for real research questions, in the GUI or the API.',
+    h1: 'Recipes',
+    lede: 'Step-by-step recipes for real research questions — on the web, through the API, or with your agent.',
   },
 };
 
@@ -73,6 +74,19 @@ const groupIcons: Record<string, string> = {
 
 const isShell = tab === 'docs' || tab === 'api';
 const isHelp = tab === 'help';
+const isLearn = tab === 'learn';
+
+// Learn: facet tags + per-value counts for the filtering sidebar.
+const learnCards = isLearn ? entries.map((e) => ({ entry: e, tags: facetsFor(e.id) })) : [];
+const facetCounts: Record<string, Record<string, number>> = {};
+for (const f of FACETS) {
+  facetCounts[f.key] = Object.fromEntries(f.values.map((v) => [v.id, 0]));
+}
+for (const { tags } of learnCards) {
+  for (const [key, vals] of Object.entries(tags)) {
+    for (const v of vals ?? []) facetCounts[key][v] = (facetCounts[key][v] ?? 0) + 1;
+  }
+}
 const start = (startHere[tab] ?? [])
   .map(({ slug, icon, blurb }) => ({ entry: bySlug.get(slug), icon, blurb }))
   .filter((s): s is { entry: AnyEntry; icon: string; blurb: string } => Boolean(s.entry));
@@ -119,35 +133,68 @@ const topicGroups = (NAV_GROUPS[tab] ?? [])
       <a href="#browse-by-topic">Browse by topic</a>
     </nav>
   </DocsShell>
+) : isLearn ? (
+  <Base title={meta[tab].label} description={meta[tab].lede} wide>
+    <div class="learn-shell">
+      <aside class="facet-bar" aria-label="Filter recipes">
+        {FACETS.map((f) => (
+          <div class="facet">
+            <span class="facet-label">{f.label}</span>
+            {f.values.map((v) => (
+              <button
+                class="facet-value"
+                data-facet={f.key}
+                data-value={v.id}
+                disabled={facetCounts[f.key][v.id] === 0}
+                aria-pressed="false"
+              >
+                <span>{v.label}</span>
+                <span class="count">{facetCounts[f.key][v.id]}</span>
+              </button>
+            ))}
+          </div>
+        ))}
+        <button class="clear-facets" hidden>Clear filters</button>
+      </aside>
+
+      <div class="learn-content">
+        <header class="tab-head">
+          <h1>{meta[tab].h1}</h1>
+          <p>{meta[tab].lede}</p>
+        </header>
+        <ul class="cards">
+          {learnCards.map(({ entry, tags }) => (
+            <li
+              data-task={(tags.task ?? []).join(' ')}
+              data-variable={(tags.variable ?? []).join(' ')}
+              data-entity={(tags.entity ?? []).join(' ')}
+              data-interface={(tags.interface ?? []).join(' ')}
+            >
+              <a href={urlFor(tab, entry)}>
+                <span class="entry-title">{entry.data.title}</span>
+                {entry.data.description && <span class="entry-desc">{entry.data.description}</span>}
+              </a>
+            </li>
+          ))}
+        </ul>
+        <p class="no-match" hidden>No recipes match those filters yet — the library is growing.</p>
+        <div class="page-foot">
+          <ThemeSwitch />
+        </div>
+      </div>
+    </div>
+  </Base>
 ) : (
   <Base title={meta[tab].label} description={meta[tab].lede}>
-    <div class="wrap" class:list={{ narrow: isHelp }}>
+    <div class="wrap narrow">
       <header class="tab-head reveal">
         <h1>{meta[tab].h1}</h1>
         <p>{meta[tab].lede}</p>
       </header>
 
-      {isHelp ? (
-        <div class="reveal" style="animation-delay: 0.08s">
-          <TopicBrowser tab={tab} groups={groups} />
-        </div>
-      ) : (
-        <ul class="cards">
-          {entries.map((entry, i) => (
-            <li class="reveal" style={`animation-delay: ${Math.min(0.05 * (i + 1), 0.4)}s`}>
-              <a href={urlFor(tab, entry)}>
-                <span class="entry-title">{entry.data.title}</span>
-                {entry.data.description && <span class="entry-desc">{entry.data.description}</span>}
-                {entry.data.tags.length > 0 && (
-                  <span class="tags">
-                    {entry.data.tags.filter((t) => t !== 'placeholder').map((t) => <span class="tag">{t}</span>)}
-                  </span>
-                )}
-              </a>
-            </li>
-          ))}
-        </ul>
-      )}
+      <div class="reveal" style="animation-delay: 0.08s">
+        <TopicBrowser tab={tab} groups={groups} />
+      </div>
 
       <div class="page-foot">
         <ThemeSwitch />
@@ -208,6 +255,89 @@ const topicGroups = (NAV_GROUPS[tab] ?? [])
     margin: 0;
     font-size: 0.95rem;
   }
+  /* --- Learn: facet sidebar + recipe cards --- */
+  .learn-shell {
+    display: grid;
+    grid-template-columns: 16.5rem minmax(0, 1fr);
+    min-height: calc(100dvh - var(--nav-h));
+  }
+  .facet-bar {
+    border-right: 1px solid var(--line);
+    position: sticky;
+    top: var(--nav-h);
+    height: calc(100dvh - var(--nav-h));
+    overflow-y: auto;
+    padding: 1.75rem 1.25rem 2.5rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    scrollbar-width: thin;
+  }
+  .facet {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+  }
+  .facet-label {
+    font-size: 0.8rem;
+    color: var(--muted);
+    margin-bottom: 0.4rem;
+  }
+  .facet-value {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    font: inherit;
+    font-size: 0.86rem;
+    color: var(--ink);
+    background: none;
+    border: none;
+    border-radius: 6px;
+    padding: 0.22rem 0.5rem;
+    margin-left: -0.5rem;
+    cursor: pointer;
+    text-align: left;
+  }
+  .facet-value:hover {
+    color: var(--accent);
+  }
+  .facet-value[aria-pressed='true'] {
+    color: var(--accent);
+    background: var(--accent-wash);
+    font-weight: 550;
+  }
+  .facet-value:disabled {
+    color: var(--faint);
+    cursor: default;
+  }
+  .facet-value .count {
+    font-size: 0.75rem;
+    color: var(--faint);
+  }
+  .clear-facets {
+    align-self: flex-start;
+    font: inherit;
+    font-size: 0.82rem;
+    color: var(--muted);
+    background: none;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 0.25rem 0.8rem;
+    cursor: pointer;
+  }
+  .clear-facets:hover {
+    color: var(--ink);
+    border-color: var(--line-strong);
+  }
+  .learn-content {
+    padding: 2.5rem 2.5rem 5rem;
+    max-width: 62rem;
+  }
+  .no-match {
+    color: var(--muted);
+    font-size: 0.92rem;
+  }
   .cards {
     list-style: none;
     margin: 0;
@@ -230,6 +360,9 @@ const topicGroups = (NAV_GROUPS[tab] ?? [])
     text-decoration: none;
     border-color: var(--line-strong);
   }
+  .cards li a:hover .entry-title {
+    color: var(--accent);
+  }
   .entry-title {
     display: block;
     font-weight: 500;
@@ -241,18 +374,22 @@ const topicGroups = (NAV_GROUPS[tab] ?? [])
     font-size: 0.85rem;
     margin-top: 0.15rem;
   }
-  .tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.35rem;
-    margin-top: 0.75rem;
-  }
-  .tag {
-    font-size: 0.72rem;
-    color: var(--muted);
-    border: 1px solid var(--line);
-    border-radius: 999px;
-    padding: 0.05rem 0.55rem;
+  @media (max-width: 900px) {
+    .learn-shell {
+      grid-template-columns: 1fr;
+    }
+    .facet-bar {
+      position: static;
+      height: auto;
+      border-right: none;
+      border-bottom: 1px solid var(--line);
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 1.5rem 2.5rem;
+    }
+    .learn-content {
+      padding: 2rem 1.25rem 4rem;
+    }
   }
   .page-foot {
     display: flex;
@@ -262,3 +399,56 @@ const topicGroups = (NAV_GROUPS[tab] ?? [])
     border-top: 1px solid var(--line);
   }
 </style>
+
+<script>
+  // Learn facet filtering: OR within a facet, AND across facets.
+  const buttons = [...document.querySelectorAll<HTMLButtonElement>('.facet-value')];
+  if (buttons.length) {
+    const cards = [...document.querySelectorAll<HTMLLIElement>('.learn-content .cards > li')];
+    const clearBtn = document.querySelector<HTMLButtonElement>('.clear-facets')!;
+    const noMatch = document.querySelector<HTMLElement>('.no-match')!;
+    const selected: Record<string, Set<string>> = {};
+
+    function apply() {
+      let any = false;
+      let visible = 0;
+      for (const s of Object.values(selected)) if (s.size) any = true;
+      for (const card of cards) {
+        let show = true;
+        for (const [facet, vals] of Object.entries(selected)) {
+          if (!vals.size) continue;
+          const cardVals = (card.dataset[facet] ?? '').split(' ').filter(Boolean);
+          if (!cardVals.some((v) => vals.has(v))) {
+            show = false;
+            break;
+          }
+        }
+        card.hidden = !show;
+        if (show) visible++;
+      }
+      clearBtn.hidden = !any;
+      noMatch.hidden = visible > 0;
+    }
+
+    for (const b of buttons) {
+      b.addEventListener('click', () => {
+        const f = b.dataset.facet!;
+        const v = b.dataset.value!;
+        selected[f] ??= new Set();
+        if (selected[f].has(v)) {
+          selected[f].delete(v);
+          b.setAttribute('aria-pressed', 'false');
+        } else {
+          selected[f].add(v);
+          b.setAttribute('aria-pressed', 'true');
+        }
+        apply();
+      });
+    }
+    clearBtn.addEventListener('click', () => {
+      for (const s of Object.values(selected)) s.clear();
+      for (const b of buttons) b.setAttribute('aria-pressed', 'false');
+      apply();
+    });
+  }
+</script>
