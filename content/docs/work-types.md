@@ -1,0 +1,59 @@
+---
+title: "Work types"
+description: "The controlled vocabulary of work types in OpenAlex, what each value means, how the type is assigned, and the paratext category."
+tags: ["reference"]
+source_id: "27550438952855"
+source_url: "https://help.openalex.org/hc/en-us/articles/27550438952855-How-do-you-determine-work-type"
+source_updated: "2026-06-30"
+---
+Every [work](/docs/works/) has exactly one `type`, classifying the form of the document. Work type is deceptively hard to get right: the upstream sources OpenAlex draws from (Crossref, DataCite, HAL, and others) each use their own taxonomy, and records are often filed under the wrong type even within those taxonomies. OpenAlex maps all of them onto the single controlled vocabulary below.
+
+This page is the canonical definition of each type. The [Work types API reference](/api/work-types/) covers the mechanics of filtering by type.
+
+## The vocabulary
+
+| ID | Description |
+|----|-------------|
+| `article` | Original, citable research usually in a journal, including full research papers, brief communications, technical notes, and full-paper case reports. |
+| `book` | A scholarly book published as a complete, standalone volume, such as a monograph or authored or edited volume. |
+| `book-chapter` | A single chapter or section within a book, such as a contributed chapter in an edited volume, sometimes presenting original research. |
+| `book-review` | An evaluation of one book and its significance, such as a book review or a review essay focused on a single book, usually published in a journal's book-review section. |
+| `conference-abstract` | A standalone abstract for a conference or symposium presentation, published without the accompanying full paper, such as a meeting abstract, poster abstract, or abstract-only proceedings record. |
+| `conference-paper` | A complete paper delivered at a conference, symposium, or meeting and usually appearing in the published proceedings, including proceedings papers and review talks given at a conference. |
+| `data-paper` | A peer-reviewed paper written mainly to describe a dataset, such as a data descriptor or data article, rather than to analyze it. |
+| `dataset` | The deposited data artifact itself, such as a dataset, data collection, or database record, typically with its own DOI, not a paper about the data. |
+| `dissertation` | A document submitted in completion of an academic degree or professional qualification, such as a PhD or master's thesis or dissertation. |
+| `editorial` | A piece expressing the views of an individual, group, or organization on a broad topic rather than on one specific work, such as an editorial, commentary, interview, or research highlight. |
+| `erratum` | A journal-issued fix for mistakes in a published article, such as an erratum, corrigendum, or publisher correction, referencing the article it corrects. |
+| `letter` | A short message sent by readers to a journal's editor responding to previously published material, such as a letter to the editor, reply, or reader comment. |
+| `libguides` | A library research guide (LibGuides) curated by librarians to point users toward resources on a topic or course. |
+| `other` | A catch-all for works that fit no other type, such as news items, obituaries, full journal issues, and non-scholarly repository media (photographs, video, audio). |
+| `paratext` | Records that package or frame a publication rather than carry its content, such as covers, title pages, tables of contents, and author guidelines. See [Paratext](#paratext) below. |
+| `peer-review` | A peer review or report about a single other work, rather than a survey of many, such as an open peer review, referee report, or reviewer report. |
+| `preprint` | An article whose primary location is a preprint repository such as arXiv, bioRxiv, medRxiv, SSRN, or Research Square. |
+| `reference-entry` | A self-contained entry within a reference work, such as an encyclopedia article, dictionary entry, or handbook entry. |
+| `report` | A technical report or working paper issued outside the journal system by an institution, agency, or company, such as a technical report, white paper, or government report. |
+| `retraction` | A notice that formally withdraws an earlier work and explains why, with a reference to the work being retracted. |
+| `review` | A journal article that summarizes and evaluates the existing research on a topic without reporting new findings, such as a literature review, systematic review, or meta-analysis. |
+| `software` | A research software package or code released as a citable artifact, such as deposited code or a tagged software release with its own identifier, not a paper about it. |
+| `software-paper` | A peer-reviewed paper written mainly to describe research software, such as a software article or descriptor, rather than to report research results. |
+| `standard` | A formal standard or technical specification from a Standards Development Organization (SDO) or consortium, such as an ISO, IEEE, or W3C standard. |
+| `supplementary-materials` | Supporting materials accompanying a primary work, usually a journal article, such as supporting-information files, supplementary figures, tables, or appendices. |
+
+The display name for each type is the same as its ID.
+
+> **Note:**
+> `book-review`, `conference-abstract`, `conference-paper`, `data-paper`, and `software-paper` are
+> newly added to the vocabulary. They are being rolled out, so coverage is currently low or zero and
+> they may not yet appear under [`works?group_by=type`](https://api.openalex.org/works?group_by=type).
+
+## How types are assigned
+
+Every work gets exactly one `type`. OpenAlex assigns it by mapping the type reported by the work's source — Crossref's `type`, DataCite's `resourceType`, PubMed's publication type, and so on — onto the OpenAlex vocabulary above, then applying a set of internal heuristics (for example, titles like "Index", "Cover Picture", or a bare journal name are classified as `paratext`). Approved [curations](/api/works/) can override the assigned type for an individual work.
+
+## Paratext
+
+`paratext` covers material that is part of a publication but not the scholarly content itself — front matter, back matter, indexes, covers, mastheads, and advertisements. Because almost anything can be assigned a DOI, a lot of this non-article content flows in from upstream sources labeled as ordinary journal content; classifying it as `paratext` lets analyses that care only about scholarly output filter it out. Filter for it with `filter=type:paratext`.
+
+> **Warning:**
+> The separate boolean field **`is_paratext` is deprecated**. It is now derived directly from `type` (it is `true` exactly when `type` is `paratext`) and carries no additional information. Use `filter=type:paratext` instead of `filter=is_paratext:true`. `is_paratext` remains available for backward compatibility but may be removed in a future release.

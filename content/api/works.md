@@ -8,6 +8,30 @@ source_updated: "2026-06-01"
 ---
 Works are scholarly documents like journal articles, books, datasets, and theses. OpenAlex indexes hundreds of millions of works.
 
+## Field meanings
+
+What each field on a work *means*, its type, and how it's structured are documented in the canonical [Work object field dictionary](/docs/work-fields/). This page covers the endpoint *mechanics*: which fields you can filter, sort, and group on, and the query syntax.
+
+The most-used fields, at a glance (full definitions and the complete field list are in the [dictionary](/docs/work-fields/)):
+
+| Field | Type | Meaning |
+|-------|------|---------|
+| [`id`](/docs/work-fields/#id) | String | The work's OpenAlex ID |
+| [`doi`](/docs/work-fields/#doi) | String | The work's DOI (canonical external ID) |
+| [`title`](/docs/work-fields/#title) | String | The work's title (= `display_name`) |
+| [`type`](/docs/work-fields/#type) | String | Work type — see [Work types](/docs/work-types/) |
+| [`publication_year`](/docs/work-fields/#publication_year) | Integer | Year of publication |
+| [`authorships`](/docs/work-fields/#authorships) | List | Authors + their institutions (first 100) |
+| [`primary_location`](/docs/work-fields/#primary_location) | Object | Best (version-of-record) copy's location |
+| [`locations`](/docs/work-fields/#locations) | List | All places the work lives |
+| [`open_access`](/docs/work-fields/#open_access) | Object | `is_oa`, `oa_status`, `oa_url` |
+| [`primary_topic`](/docs/work-fields/#primary_topic) | Object | Top-ranked topic |
+| [`cited_by_count`](/docs/work-fields/#cited_by_count) | Integer | How many works cite this one |
+| [`referenced_works`](/docs/work-fields/#referenced_works) | List | Works this one cites |
+| [`fwci`](/docs/work-fields/#fwci) | Float | Field-Weighted Citation Impact |
+| [`abstract_inverted_index`](/docs/work-fields/#abstract_inverted_index) | Object | Abstract as an inverted index |
+| [`is_retracted`](/docs/work-fields/#is_retracted) | Boolean | Whether the work is retracted |
+
 ## Filter, sort, and group_by fields
 
 The API supports filtering, sorting, and grouping on works fields. See [Filtering](/api/filtering/), [Sorting](/api/sorting/), and [Grouping](/api/grouping/) for syntax.

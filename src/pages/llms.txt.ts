@@ -28,6 +28,11 @@ export const GET: APIRoute = async ({ site }) => {
     '',
     'Every page on this site has a raw-markdown sibling: append `.md` to its path.',
     '',
+    'Field and vocabulary semantics (what each entity field means, controlled-vocabulary',
+    'definitions) are canonical under `/docs/` — e.g. the work field dictionary at',
+    '`/docs/work-fields/` and work types at `/docs/work-types/`. The `/api/` pages cover',
+    'endpoint mechanics (filtering, sorting, grouping, query syntax).',
+    '',
     ...sections,
     '',
   ].join('\n');
