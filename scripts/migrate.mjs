@@ -23,6 +23,20 @@ import { fileURLToPath } from 'node:url';
 import TurndownService from 'turndown';
 import { gfm } from 'turndown-plugin-gfm';
 
+// ── FROZEN (oxjob #354 decision D01, 2026-07-28) ─────────────────────────────
+// content/ is canonical now: the corpus is being hand-rewritten (the Docs
+// rewrite passes). Re-running this generator clears + regenerates the Zendesk-
+// sourced files, which would clobber those hand edits. Kept for provenance only.
+if (!process.env.I_UNDERSTAND_THIS_CLOBBERS_CONTENT) {
+  console.error(
+    'FROZEN: content/ is canonical (oxjob #354 D01, 2026-07-28).\n' +
+    'Re-running migrate.mjs deletes and regenerates the Zendesk-sourced files in\n' +
+    'content/, clobbering hand rewrites. Edit content/*.md directly instead.\n' +
+    'To override (almost certainly wrong): I_UNDERSTAND_THIS_CLOBBERS_CONTENT=1 node scripts/migrate.mjs'
+  );
+  process.exit(1);
+}
+
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const REPO = path.resolve(__dirname, '..');
 const DATA = path.join(__dirname, 'data');

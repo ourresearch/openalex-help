@@ -6,7 +6,7 @@ import TopicBrowser from '../../components/TopicBrowser.astro';
 import Card from '../../components/Card.astro';
 import Icon from '../../components/Icon.astro';
 import { TABS, allEntries, urlFor, type Tab, type AnyEntry } from '../../lib/tabs';
-import { groupEntries, NAV_GROUPS } from '../../lib/nav';
+import { groupEntries, NAV_GROUPS, flatSlugs } from '../../lib/nav';
 import { FACETS, facetsFor } from '../../lib/facets';
 
 export async function getStaticPaths() {
@@ -93,7 +93,7 @@ const start = (startHere[tab] ?? [])
 // Topic cards: skip "Start here" (its content is the card row above).
 const topicGroups = (NAV_GROUPS[tab] ?? [])
   .filter((g) => !['Start here', 'Getting started'].includes(g.label) || tab === 'help')
-  .map((g) => ({ ...g, first: g.slugs.map((s) => bySlug.get(s)).find(Boolean) }))
+  .map((g) => ({ ...g, first: flatSlugs(g).map((s) => bySlug.get(s)).find(Boolean) }))
   .filter((g) => g.first);
 ---
 

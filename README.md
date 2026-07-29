@@ -11,6 +11,12 @@ indexed post-build. Design/build spec and decision records: oxjob #354.
 
 ## Principles
 
+- **`content/` is canonical — the migration generators are FROZEN.** As of
+  2026-07-28 (oxjob #354 decision D01) the corpus is hand-maintained; edit
+  `content/*.md` directly. `scripts/migrate.mjs` and `scripts/mintlify-port.mjs`
+  were one-time importers (Zendesk KB, Mintlify dev docs) and now exit with an
+  error if run — a re-run would clobber hand rewrites. They're kept only as
+  provenance for where each article came from.
 - **Agent-legible, agent-maintained.** Content is plain Markdown in `content/`;
   agents author and maintain it. Machine-readability plumbing ships with the
   site: root `/llms.txt`, plus a raw-markdown sibling for every page (append

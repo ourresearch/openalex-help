@@ -2,6 +2,11 @@
 // Cursor-style left sidebar: pinned to the viewport edge, full height below
 // the header, its own scroll, hairline border-right. Shared by the docs/api
 // tab landings and article pages.
+//
+// Three levels (oxjob #354 Pass 0): group label → item → chevron-expandable
+// subitems. A subgroup renders as a native <details> row; it auto-opens when
+// the active page is inside it. A subgroup's optional overview page renders as
+// its first child link.
 import type { ResolvedGroup } from '../lib/nav';
 import { urlFor, type Tab } from '../lib/tabs';
 
@@ -18,11 +23,40 @@ const { tab, groups, activeSlug } = Astro.props;
     {groups.map((g) => (
       <div class="group">
         <span class="group-label">{g.label}</span>
-        {g.entries.map((e) => (
-          <a href={urlFor(tab, e)} aria-current={e.id === activeSlug ? 'page' : undefined}>
-            {e.data.title}
-          </a>
-        ))}
+        {g.items.map((item) =>
+          item.children.length ? (
+            <details
+              open={
+                item.entry?.id === activeSlug ||
+                item.children.some((c) => c.id === activeSlug) ||
+                undefined
+              }
+            >
+              <summary>
+                <span>{item.label}</span>
+                <svg class="chev" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6" /></svg>
+              </summary>
+              <div class="children">
+                {item.entry && (
+                  <a href={urlFor(tab, item.entry)} aria-current={item.entry.id === activeSlug ? 'page' : undefined}>
+                    {item.entry.data.title}
+                  </a>
+                )}
+                {item.children.map((e) => (
+                  <a href={urlFor(tab, e)} aria-current={e.id === activeSlug ? 'page' : undefined}>
+                    {e.data.title}
+                  </a>
+                ))}
+              </div>
+            </details>
+          ) : (
+            item.entry && (
+              <a href={urlFor(tab, item.entry)} aria-current={item.entry.id === activeSlug ? 'page' : undefined}>
+                {item.entry.data.title}
+              </a>
+            )
+          )
+        )}
       </div>
     ))}
   </nav>
@@ -67,6 +101,41 @@ const { tab, groups, activeSlug } = Astro.props;
   a[aria-current='page'] {
     color: var(--accent);
     font-weight: 550;
+  }
+  summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    color: var(--ink);
+    padding: 0.22rem 0.5rem;
+    margin-left: -0.5rem;
+    border-radius: 6px;
+    line-height: 1.35;
+    cursor: pointer;
+    list-style: none;
+    user-select: none;
+  }
+  summary::-webkit-details-marker {
+    display: none;
+  }
+  summary:hover {
+    color: var(--accent);
+  }
+  .chev {
+    flex: none;
+    color: var(--faint);
+    transition: transform 0.15s;
+  }
+  details[open] > summary .chev {
+    transform: rotate(90deg);
+  }
+  .children {
+    display: flex;
+    flex-direction: column;
+    margin-left: 0.55rem;
+    padding-left: 0.55rem;
+    border-left: 1px solid var(--line);
   }
   @media (max-width: 900px) {
     aside {

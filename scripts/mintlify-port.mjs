@@ -24,6 +24,20 @@ import { fileURLToPath } from 'node:url';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const REPO = path.resolve(__dirname, '..');
 const SRC = path.join(__dirname, 'data', 'mintlify');
+
+// ── FROZEN (oxjob #354 decision D01, 2026-07-28) ─────────────────────────────
+// content/ is canonical now: the corpus is being hand-rewritten (the Docs
+// rewrite passes). Re-running this generator clears + regenerates the Mintlify-
+// sourced files, which would clobber those hand edits. Kept for provenance only.
+if (!process.env.I_UNDERSTAND_THIS_CLOBBERS_CONTENT) {
+  console.error(
+    'FROZEN: content/ is canonical (oxjob #354 D01, 2026-07-28).\n' +
+    'Re-running mintlify-port.mjs deletes and regenerates the Mintlify-sourced files\n' +
+    'in content/, clobbering hand rewrites. Edit content/*.md directly instead.\n' +
+    'To override (almost certainly wrong): I_UNDERSTAND_THIS_CLOBBERS_CONTENT=1 node scripts/mintlify-port.mjs'
+  );
+  process.exit(1);
+}
 const manifest = JSON.parse(fs.readFileSync(path.join(SRC, 'manifest.json'), 'utf8'));
 
 // ── Page map (the per-page grind) ────────────────────────────────────────────

@@ -1,3 +1,11 @@
+## Content: `content/` is canonical
+
+The migration generators (`scripts/migrate.mjs`, `scripts/mintlify-port.mjs`) are
+**FROZEN** (oxjob #354 D01, 2026-07-28) and exit with an error if run. Edit
+`content/*.md` directly — never regenerate. When renaming/merging articles, add a
+`public/_redirects` line (+ the `.md` sibling path) per changed slug and update
+`src/lib/nav.ts`.
+
 ## Development
 
 When starting the dev server, use background mode:
