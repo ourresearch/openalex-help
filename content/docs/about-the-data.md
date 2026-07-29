@@ -31,7 +31,7 @@ OpenAlex aggregates and standardizes data from many other projects, like a river
 - Web crawls
 - Subject-area and institutional repositories, from [arXiv](https://arxiv.org/) to [Zenodo](https://zenodo.org/) and many in between
 
-More on how works enter the dataset: [Where do works in OpenAlex come from?](/docs/where-do-works-in-openalex-come-from/)
+More on how works enter the dataset: [Works](/docs/works/).
 
 ## Ways to access the data
 

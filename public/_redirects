@@ -397,3 +397,22 @@
 /docs/do-you-index-datacite-dois/  /docs/coverage-and-accuracy/  301
 /docs/do-you-index-datacite-dois.md  /docs/coverage-and-accuracy.md  301
 # <<< rewrite-pass-a <<<
+
+# >>> rewrite-pass-b >>>
+# Docs rewrite Pass B (oxjob #354, D07): Works & metadata zone — renames + merges
+/docs/where-do-works-in-openalex-come-from  /docs/works/  301
+/docs/where-do-works-in-openalex-come-from/  /docs/works/  301
+/docs/where-do-works-in-openalex-come-from.md  /docs/works.md  301
+/docs/paper-version-definitions  /docs/versions/  301
+/docs/paper-version-definitions/  /docs/versions/  301
+/docs/paper-version-definitions.md  /docs/versions.md  301
+/docs/where-does-your-citation-information-come-from  /docs/citations/  301
+/docs/where-does-your-citation-information-come-from/  /docs/citations/  301
+/docs/where-does-your-citation-information-come-from.md  /docs/citations.md  301
+/docs/the-reference-counts-in-openalex-seem-off-why-is-that  /docs/citations/  301
+/docs/the-reference-counts-in-openalex-seem-off-why-is-that/  /docs/citations/  301
+/docs/the-reference-counts-in-openalex-seem-off-why-is-that.md  /docs/citations.md  301
+/docs/why-are-the-counts-by-year-numbers-different-than-the-count-of-works-i  /docs/counts-by-year/  301
+/docs/why-are-the-counts-by-year-numbers-different-than-the-count-of-works-i/  /docs/counts-by-year/  301
+/docs/why-are-the-counts-by-year-numbers-different-than-the-count-of-works-i.md  /docs/counts-by-year.md  301
+# <<< rewrite-pass-b <<<
