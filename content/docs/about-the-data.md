@@ -1,49 +1,44 @@
 ---
 title: "About the data"
-description: "OpenAlex is more than just a catalog of research publications. We do the work of disambiguating and connecting scholarly works, authors, institutions, sources, and other entitie…"
-tags: ["data"]
+description: "The OpenAlex dataset: entities, the connections between them, and the three ways to access it all."
+tags: ["reference"]
 source_id: "24397285563671"
 source_url: "https://help.openalex.org/hc/en-us/articles/24397285563671-About-the-data"
 source_updated: "2024-07-30"
 ---
 ![](/images/zendesk/openalex-overview-diagram.png)
 
-OpenAlex is more than just a catalog of research publications. We do the work of _disambiguating_ and _connecting_ scholarly works, authors, institutions, sources, and other entities. We then offer the data and analytics on top of it in three different channels, depending on your needs:
+OpenAlex is more than a catalog of research publications. We do the work of _disambiguating_ and _connecting_ scholarly works, authors, institutions, sources, and other entities, turning hundreds of millions of records into one linked dataset — an open map of the world's research system.
 
--   [**OpenAlex Web**](https://openalex.org) — Our friendly web user interface
-    
--   [**OpenAlex API**](https://help.openalex.org/api-and-data-snapshot) — A fast, modern REST API to get the data programmatically
-    
--   [**Data Snapshot**](https://docs.openalex.org/download-all-data/openalex-snapshot) — A periodic snapshot of the data, available to download in its entirety, for free
-    
+## The dataset
 
-## Data overview
+At the heart of OpenAlex is a catalog of **works**. A work is any sort of scholarly output: research articles are one kind, but there are others, such as datasets, books, and dissertations. OpenAlex indexes over 320 million works, with tens of thousands more added every day. We track each work's own metadata — title, abstract (and often full text), publication date, and so on — and, just as importantly, the **connections** between works: journals, authors, institutional affiliations, citations, topics, and funders.
 
-At the heart of OpenAlex is our dataset—a catalog of works. A work is any sort of scholarly output. A research article is one kind of work, but there are others such as datasets, books, and dissertations. We keep track of these works—their titles (and abstracts and full text in many cases), when they were created, etc. But that's not all we do. We also keep track of the _connections_ between these works, finding associations through things like journals, authors, institutional affiliations, citations, topics, and funders. There are hundreds of millions of works out there, and tens of thousands more being created every day, so it's important that we have these relationships to help us make sense of research at a large scale.
+Those connections are what make research legible at scale. Each connected thing is its own entity with its own record: [authors](/api/authors/), [sources](/docs/sources-in-openalex/) (journals and repositories), [institutions](/api/institutions/), [topics](/docs/topics/), [publishers](/api/publishers/), and [funders](/api/funders/). For how the graph is actually built, see [How OpenAlex works](/docs/how-openalex-works/).
 
-### Our data sources
+## Data sources
 
-OpenAlex aggregates and standardizes data from a whole bunch of other great projects, like a river fed by many tributaries. Our two most important data sources are [MAG](https://aka.ms/msracad) and [Crossref.](https://www.crossref.org/) Other key sources include:
+OpenAlex aggregates and standardizes data from many other projects, like a river fed by tributaries. Two of the most important are [MAG](https://aka.ms/msracad) (the discontinued Microsoft Academic Graph, which seeded the catalog) and [Crossref](https://www.crossref.org/). Other key sources include:
 
--   [ORCID](https://orcid.org/)
-    
--   [ROR](https://ror.org/)
-    
--   [DOAJ](https://doaj.org/)
-    
--   [Unpaywall](https://unpaywall.org/)
-    
--   [Pubmed](https://pubmed.ncbi.nlm.nih.gov/)
-    
--   [Pubmed Central](https://www.ncbi.nlm.nih.gov/pmc/)
-    
--   [The ISSN International Centre](https://www.issn.org/)
-    
--   [Internet Archive](https://archive.org/details/GeneralIndex)
-    
--   Web crawls
-    
--   Subject-area and institutional repositories from [arXiv](https://arxiv.org/) to [Zenodo](https://zenodo.org/) and many in between
-    
+- [ORCID](https://orcid.org/)
+- [ROR](https://ror.org/)
+- [DOAJ](https://doaj.org/)
+- [DataCite](https://datacite.org/)
+- [Unpaywall](https://unpaywall.org/)
+- [PubMed](https://pubmed.ncbi.nlm.nih.gov/) and [PubMed Central](https://www.ncbi.nlm.nih.gov/pmc/)
+- [The ISSN International Centre](https://www.issn.org/)
+- [Internet Archive](https://archive.org/details/GeneralIndex)
+- Web crawls
+- Subject-area and institutional repositories, from [arXiv](https://arxiv.org/) to [Zenodo](https://zenodo.org/) and many in between
 
-Learn more about how OpenAlex gets its works: [Where do works in OpenAlex come from?](https://help.openalex.org/hc/en-us/articles/24347019383191)
+More on how works enter the dataset: [Where do works in OpenAlex come from?](/docs/where-do-works-in-openalex-come-from/)
+
+## Ways to access the data
+
+The same dataset is available through three channels, depending on your needs:
+
+- **[OpenAlex Web](https://openalex.org)** — the friendly web interface: search, filter, group, and export without writing code.
+- **[The API](/api/)** — a fast, modern REST API for programmatic access, free to start, plus OQL for expressive queries.
+- **[Bulk data](/docs/downloading-openalex-data/)** — the full-dataset snapshot, changefiles, and the full-text content archive, for when you want the whole thing on your own machines.
+
+Coverage and quality questions — what's included, how it compares to other databases, how accurate it is — are covered in [Coverage & accuracy](/docs/coverage-and-accuracy/).

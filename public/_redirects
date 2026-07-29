@@ -357,3 +357,43 @@
 /api-reference/*  /api/  301
 /download/*  /docs/  301
 # <<< mintlify <<<
+
+# >>> rewrite-pass-a >>>
+# Docs rewrite Pass A (oxjob #354, D07): merged/renamed Start-here zone
+/docs/how-does-openalex-work  /docs/how-openalex-works/  301
+/docs/how-does-openalex-work/  /docs/how-openalex-works/  301
+/docs/how-does-openalex-work.md  /docs/how-openalex-works.md  301
+/docs/data-ingest-pipeline  /docs/how-openalex-works/  301
+/docs/data-ingest-pipeline/  /docs/how-openalex-works/  301
+/docs/data-ingest-pipeline.md  /docs/how-openalex-works.md  301
+/docs/api-and-data-snapshot  /docs/about-the-data/  301
+/docs/api-and-data-snapshot/  /docs/about-the-data/  301
+/docs/api-and-data-snapshot.md  /docs/about-the-data.md  301
+/docs/how-is-openalex-open  /docs/openness-and-sustainability/  301
+/docs/how-is-openalex-open/  /docs/openness-and-sustainability/  301
+/docs/how-is-openalex-open.md  /docs/openness-and-sustainability.md  301
+/docs/how-sustainable-is-openalex  /docs/openness-and-sustainability/  301
+/docs/how-sustainable-is-openalex/  /docs/openness-and-sustainability/  301
+/docs/how-sustainable-is-openalex.md  /docs/openness-and-sustainability.md  301
+/docs/how-accurate-is-openalex  /docs/coverage-and-accuracy/  301
+/docs/how-accurate-is-openalex/  /docs/coverage-and-accuracy/  301
+/docs/how-accurate-is-openalex.md  /docs/coverage-and-accuracy.md  301
+/docs/what-content-does-openalex-include-and-how-does-it-compare-to-other-da  /docs/coverage-and-accuracy/  301
+/docs/what-content-does-openalex-include-and-how-does-it-compare-to-other-da/  /docs/coverage-and-accuracy/  301
+/docs/what-content-does-openalex-include-and-how-does-it-compare-to-other-da.md  /docs/coverage-and-accuracy.md  301
+/docs/how-can-i-see-if-openalex-has-the-same-papers-as-other-databases  /docs/coverage-and-accuracy/  301
+/docs/how-can-i-see-if-openalex-has-the-same-papers-as-other-databases/  /docs/coverage-and-accuracy/  301
+/docs/how-can-i-see-if-openalex-has-the-same-papers-as-other-databases.md  /docs/coverage-and-accuracy.md  301
+/docs/is-openalex-data-used-in-university-rankings  /docs/coverage-and-accuracy/  301
+/docs/is-openalex-data-used-in-university-rankings/  /docs/coverage-and-accuracy/  301
+/docs/is-openalex-data-used-in-university-rankings.md  /docs/coverage-and-accuracy.md  301
+/docs/does-openalex-index-books  /docs/coverage-and-accuracy/  301
+/docs/does-openalex-index-books/  /docs/coverage-and-accuracy/  301
+/docs/does-openalex-index-books.md  /docs/coverage-and-accuracy.md  301
+/docs/can-i-search-patents-in-openalex  /docs/coverage-and-accuracy/  301
+/docs/can-i-search-patents-in-openalex/  /docs/coverage-and-accuracy/  301
+/docs/can-i-search-patents-in-openalex.md  /docs/coverage-and-accuracy.md  301
+/docs/do-you-index-datacite-dois  /docs/coverage-and-accuracy/  301
+/docs/do-you-index-datacite-dois/  /docs/coverage-and-accuracy/  301
+/docs/do-you-index-datacite-dois.md  /docs/coverage-and-accuracy.md  301
+# <<< rewrite-pass-a <<<
