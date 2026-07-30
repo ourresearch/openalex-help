@@ -362,68 +362,48 @@
 # Docs rewrite Pass A (oxjob #354, D07): merged/renamed Start-here zone
 /docs/how-does-openalex-work  /docs/how-openalex-works/  301
 /docs/how-does-openalex-work/  /docs/how-openalex-works/  301
-/docs/how-does-openalex-work.md  /docs/how-openalex-works.md  301
 /docs/data-ingest-pipeline  /docs/how-openalex-works/  301
 /docs/data-ingest-pipeline/  /docs/how-openalex-works/  301
-/docs/data-ingest-pipeline.md  /docs/how-openalex-works.md  301
 /docs/api-and-data-snapshot  /docs/about-the-data/  301
 /docs/api-and-data-snapshot/  /docs/about-the-data/  301
-/docs/api-and-data-snapshot.md  /docs/about-the-data.md  301
 /docs/how-is-openalex-open  /docs/openness-and-sustainability/  301
 /docs/how-is-openalex-open/  /docs/openness-and-sustainability/  301
-/docs/how-is-openalex-open.md  /docs/openness-and-sustainability.md  301
 /docs/how-sustainable-is-openalex  /docs/openness-and-sustainability/  301
 /docs/how-sustainable-is-openalex/  /docs/openness-and-sustainability/  301
-/docs/how-sustainable-is-openalex.md  /docs/openness-and-sustainability.md  301
 /docs/how-accurate-is-openalex  /docs/coverage-and-accuracy/  301
 /docs/how-accurate-is-openalex/  /docs/coverage-and-accuracy/  301
-/docs/how-accurate-is-openalex.md  /docs/coverage-and-accuracy.md  301
 /docs/what-content-does-openalex-include-and-how-does-it-compare-to-other-da  /docs/coverage-and-accuracy/  301
 /docs/what-content-does-openalex-include-and-how-does-it-compare-to-other-da/  /docs/coverage-and-accuracy/  301
-/docs/what-content-does-openalex-include-and-how-does-it-compare-to-other-da.md  /docs/coverage-and-accuracy.md  301
 /docs/how-can-i-see-if-openalex-has-the-same-papers-as-other-databases  /docs/coverage-and-accuracy/  301
 /docs/how-can-i-see-if-openalex-has-the-same-papers-as-other-databases/  /docs/coverage-and-accuracy/  301
-/docs/how-can-i-see-if-openalex-has-the-same-papers-as-other-databases.md  /docs/coverage-and-accuracy.md  301
 /docs/is-openalex-data-used-in-university-rankings  /docs/coverage-and-accuracy/  301
 /docs/is-openalex-data-used-in-university-rankings/  /docs/coverage-and-accuracy/  301
-/docs/is-openalex-data-used-in-university-rankings.md  /docs/coverage-and-accuracy.md  301
 /docs/does-openalex-index-books  /docs/coverage-and-accuracy/  301
 /docs/does-openalex-index-books/  /docs/coverage-and-accuracy/  301
-/docs/does-openalex-index-books.md  /docs/coverage-and-accuracy.md  301
 /docs/can-i-search-patents-in-openalex  /docs/coverage-and-accuracy/  301
 /docs/can-i-search-patents-in-openalex/  /docs/coverage-and-accuracy/  301
-/docs/can-i-search-patents-in-openalex.md  /docs/coverage-and-accuracy.md  301
 /docs/do-you-index-datacite-dois  /docs/coverage-and-accuracy/  301
 /docs/do-you-index-datacite-dois/  /docs/coverage-and-accuracy/  301
-/docs/do-you-index-datacite-dois.md  /docs/coverage-and-accuracy.md  301
 # <<< rewrite-pass-a <<<
 
 # >>> rewrite-pass-b >>>
 # Docs rewrite Pass B (oxjob #354, D07): Works & metadata zone — renames + merges
 /docs/where-do-works-in-openalex-come-from  /docs/works/  301
 /docs/where-do-works-in-openalex-come-from/  /docs/works/  301
-/docs/where-do-works-in-openalex-come-from.md  /docs/works.md  301
 /docs/paper-version-definitions  /docs/versions/  301
 /docs/paper-version-definitions/  /docs/versions/  301
-/docs/paper-version-definitions.md  /docs/versions.md  301
 /docs/where-does-your-citation-information-come-from  /docs/citations/  301
 /docs/where-does-your-citation-information-come-from/  /docs/citations/  301
-/docs/where-does-your-citation-information-come-from.md  /docs/citations.md  301
 /docs/the-reference-counts-in-openalex-seem-off-why-is-that  /docs/citations/  301
 /docs/the-reference-counts-in-openalex-seem-off-why-is-that/  /docs/citations/  301
-/docs/the-reference-counts-in-openalex-seem-off-why-is-that.md  /docs/citations.md  301
 /docs/why-are-the-counts-by-year-numbers-different-than-the-count-of-works-i  /docs/counts-by-year/  301
 /docs/why-are-the-counts-by-year-numbers-different-than-the-count-of-works-i/  /docs/counts-by-year/  301
-/docs/why-are-the-counts-by-year-numbers-different-than-the-count-of-works-i.md  /docs/counts-by-year.md  301
 /docs/how-do-you-determine-work-type  /docs/work-types/  301
 /docs/how-do-you-determine-work-type/  /docs/work-types/  301
-/docs/how-do-you-determine-work-type.md  /docs/work-types.md  301
 /docs/what-does-is-paratext-mean-in-the-api  /docs/work-types/  301
 /docs/what-does-is-paratext-mean-in-the-api/  /docs/work-types/  301
-/docs/what-does-is-paratext-mean-in-the-api.md  /docs/work-types.md  301
 /docs/what-do-the-fields-in-the-api-response-and-snapshot-records-mean  /docs/work-fields/  301
 /docs/what-do-the-fields-in-the-api-response-and-snapshot-records-mean/  /docs/work-fields/  301
-/docs/what-do-the-fields-in-the-api-response-and-snapshot-records-mean.md  /docs/work-fields.md  301
 # <<< rewrite-pass-b <<<
 
 # >>> rewrite-pass-c >>>
@@ -432,22 +412,16 @@
 # fire until the Pass Z _redirects reorg (see job PLAN). Kept here, correct, for that reorg.
 /docs/can-i-search-exact-terms  /api/searching/  301
 /docs/can-i-search-exact-terms/  /api/searching/  301
-/docs/can-i-search-exact-terms.md  /api/searching.md  301
 /docs/why-are-some-authors-assigned-to-null-author-id-a9999999999  /docs/author-disambiguation/  301
 /docs/why-are-some-authors-assigned-to-null-author-id-a9999999999/  /docs/author-disambiguation/  301
-/docs/why-are-some-authors-assigned-to-null-author-id-a9999999999.md  /docs/author-disambiguation.md  301
 /docs/institutions-and-raw-affiliation-string-parsing  /docs/affiliations/  301
 /docs/institutions-and-raw-affiliation-string-parsing/  /docs/affiliations/  301
-/docs/institutions-and-raw-affiliation-string-parsing.md  /docs/affiliations.md  301
 /docs/why-is-affiliation-history-metadata-incomplete  /docs/affiliations/  301
 /docs/why-is-affiliation-history-metadata-incomplete/  /docs/affiliations/  301
-/docs/why-is-affiliation-history-metadata-incomplete.md  /docs/affiliations.md  301
 /docs/french-affiliation-structures-are-complex-how-does-openalex-handle-the  /docs/affiliations/  301
 /docs/french-affiliation-structures-are-complex-how-does-openalex-handle-the/  /docs/affiliations/  301
-/docs/french-affiliation-structures-are-complex-how-does-openalex-handle-the.md  /docs/affiliations.md  301
 /docs/how-do-you-assign-papers-to-specific-countries  /docs/affiliations/  301
 /docs/how-do-you-assign-papers-to-specific-countries/  /docs/affiliations/  301
-/docs/how-do-you-assign-papers-to-specific-countries.md  /docs/affiliations.md  301
 # <<< rewrite-pass-c <<<
 
 # >>> rewrite-pass-d >>>
@@ -456,17 +430,12 @@
 # fire until the Pass Z _redirects reorg (see job PLAN). Kept here, correct, for that reorg.
 /docs/sources-in-openalex  /docs/sources/  301
 /docs/sources-in-openalex/  /docs/sources/  301
-/docs/sources-in-openalex.md  /docs/sources.md  301
 /docs/what-are-cwts-core-sources-and-how-are-they-different-from-web-of-scie  /docs/sources/  301
 /docs/what-are-cwts-core-sources-and-how-are-they-different-from-web-of-scie/  /docs/sources/  301
-/docs/what-are-cwts-core-sources-and-how-are-they-different-from-web-of-scie.md  /docs/sources.md  301
 /docs/how-does-openalex-handle-predatory-and-lower-quality-journals  /docs/journal-quality/  301
 /docs/how-does-openalex-handle-predatory-and-lower-quality-journals/  /docs/journal-quality/  301
-/docs/how-does-openalex-handle-predatory-and-lower-quality-journals.md  /docs/journal-quality.md  301
 /docs/how-do-we-decide-if-a-given-journal-is-fully-oa  /docs/journal-quality/  301
 /docs/how-do-we-decide-if-a-given-journal-is-fully-oa/  /docs/journal-quality/  301
-/docs/how-do-we-decide-if-a-given-journal-is-fully-oa.md  /docs/journal-quality.md  301
 /docs/where-do-you-get-apc-paid-metadata-from  /docs/journal-quality/  301
 /docs/where-do-you-get-apc-paid-metadata-from/  /docs/journal-quality/  301
-/docs/where-do-you-get-apc-paid-metadata-from.md  /docs/journal-quality.md  301
 # <<< rewrite-pass-d <<<
