@@ -84,6 +84,7 @@ export const NAV_GROUPS: Record<string, NavGroup[]> = {
         'where-can-i-find-information-about-which-issue-of-a-journal-an-article',
         'why-are-the-counts-by-year-numbers-different-than-what-i-see-in-the-us',
         'why-are-my-reference-counts-lower-than-expected',
+        'why-are-some-authors-assigned-to-null-author-id',
       ],
     },
     {
@@ -132,7 +133,6 @@ export const NAV_GROUPS: Record<string, NavGroup[]> = {
         'work-fields',
         'full-text-pdfs',
         'how-do-i-use-the-title-search-api',
-        'can-i-search-exact-terms',
       ],
     },
     {
@@ -140,11 +140,7 @@ export const NAV_GROUPS: Record<string, NavGroup[]> = {
       desc: 'Disambiguation, affiliations, and country assignment.',
       slugs: [
         'author-disambiguation',
-        'why-are-some-authors-assigned-to-null-author-id-a9999999999',
-        'why-is-affiliation-history-metadata-incomplete',
-        'institutions-and-raw-affiliation-string-parsing',
-        'french-affiliation-structures-are-complex-how-does-openalex-handle-the',
-        'how-do-you-assign-papers-to-specific-countries',
+        'affiliations',
       ],
     },
     {

@@ -425,3 +425,27 @@
 /docs/what-do-the-fields-in-the-api-response-and-snapshot-records-mean/  /docs/work-fields/  301
 /docs/what-do-the-fields-in-the-api-response-and-snapshot-records-mean.md  /docs/work-fields.md  301
 # <<< rewrite-pass-b <<<
+
+# >>> rewrite-pass-c >>>
+# Docs rewrite Pass C (oxjob #354, D07): Authors & institutions zone + deferred Works moves
+# NOTE: these rules currently sit past the CF Pages ~370-rule processing ceiling and will not
+# fire until the Pass Z _redirects reorg (see job PLAN). Kept here, correct, for that reorg.
+/docs/can-i-search-exact-terms  /api/searching/  301
+/docs/can-i-search-exact-terms/  /api/searching/  301
+/docs/can-i-search-exact-terms.md  /api/searching.md  301
+/docs/why-are-some-authors-assigned-to-null-author-id-a9999999999  /docs/author-disambiguation/  301
+/docs/why-are-some-authors-assigned-to-null-author-id-a9999999999/  /docs/author-disambiguation/  301
+/docs/why-are-some-authors-assigned-to-null-author-id-a9999999999.md  /docs/author-disambiguation.md  301
+/docs/institutions-and-raw-affiliation-string-parsing  /docs/affiliations/  301
+/docs/institutions-and-raw-affiliation-string-parsing/  /docs/affiliations/  301
+/docs/institutions-and-raw-affiliation-string-parsing.md  /docs/affiliations.md  301
+/docs/why-is-affiliation-history-metadata-incomplete  /docs/affiliations/  301
+/docs/why-is-affiliation-history-metadata-incomplete/  /docs/affiliations/  301
+/docs/why-is-affiliation-history-metadata-incomplete.md  /docs/affiliations.md  301
+/docs/french-affiliation-structures-are-complex-how-does-openalex-handle-the  /docs/affiliations/  301
+/docs/french-affiliation-structures-are-complex-how-does-openalex-handle-the/  /docs/affiliations/  301
+/docs/french-affiliation-structures-are-complex-how-does-openalex-handle-the.md  /docs/affiliations.md  301
+/docs/how-do-you-assign-papers-to-specific-countries  /docs/affiliations/  301
+/docs/how-do-you-assign-papers-to-specific-countries/  /docs/affiliations/  301
+/docs/how-do-you-assign-papers-to-specific-countries.md  /docs/affiliations.md  301
+# <<< rewrite-pass-c <<<
