@@ -158,10 +158,8 @@ export const NAV_GROUPS: Record<string, NavGroup[]> = {
         'aboutness',
         'topics',
         'keywords',
-        'should-i-use-subfields-or-concepts-for-my-search',
-        'how-do-you-classify-works-as-contributing-to-the-un-sdgs',
-        'what-is-the-difference-between-topics-and-topic-share-in-openalex-enti',
-        'field-weighted-citation-impact-fwci',
+        'sdg-classification',
+        'fwci',
       ],
     },
     {

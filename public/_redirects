@@ -439,3 +439,17 @@
 /docs/where-do-you-get-apc-paid-metadata-from  /docs/journal-quality/  301
 /docs/where-do-you-get-apc-paid-metadata-from/  /docs/journal-quality/  301
 # <<< rewrite-pass-d <<<
+
+# >>> rewrite-pass-e >>>
+# Docs rewrite Pass E (oxjob #354, D07): Topics, metrics & aboutness zone
+# NOTE: these rules currently sit past the CF Pages ~370-rule processing ceiling and will not
+# fire until the Pass Z _redirects reorg (see job PLAN). Kept here, correct, for that reorg.
+/docs/what-is-the-difference-between-topics-and-topic-share-in-openalex-enti  /docs/topics/  301
+/docs/what-is-the-difference-between-topics-and-topic-share-in-openalex-enti/  /docs/topics/  301
+/docs/should-i-use-subfields-or-concepts-for-my-search  /docs/topics/  301
+/docs/should-i-use-subfields-or-concepts-for-my-search/  /docs/topics/  301
+/docs/how-do-you-classify-works-as-contributing-to-the-un-sdgs  /docs/sdg-classification/  301
+/docs/how-do-you-classify-works-as-contributing-to-the-un-sdgs/  /docs/sdg-classification/  301
+/docs/field-weighted-citation-impact-fwci  /docs/fwci/  301
+/docs/field-weighted-citation-impact-fwci/  /docs/fwci/  301
+# <<< rewrite-pass-e <<<

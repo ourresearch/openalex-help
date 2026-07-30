@@ -2,9 +2,9 @@
 
 The migration generators (`scripts/migrate.mjs`, `scripts/mintlify-port.mjs`) are
 **FROZEN** (oxjob #354 D01, 2026-07-28) and exit with an error if run. Edit
-`content/*.md` directly — never regenerate. When renaming/merging articles, add a
-`public/_redirects` line (+ the `.md` sibling path) per changed slug and update
-`src/lib/nav.ts`.
+`content/*.md` directly — never regenerate. When renaming/merging articles, add
+`public/_redirects` rules per changed slug — bare + trailing-slash only, **no `.md`-variant
+rules** (settled policy, oxjob #354 2026-07-30) — and update `src/lib/nav.ts`.
 
 ## Development
 

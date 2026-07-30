@@ -1,7 +1,7 @@
 ---
-title: "How do you classify works as contributing to the UN SDGs?"
-description: "OpenAlex tags scholarly works with relevant United Nations Sustainable Development Goals(https://sdgs.un.org/goals) (SDGs). These are the 17 global goals adopted by the UN in 20…"
-tags: ["data"]
+title: "SDG classification"
+description: "How OpenAlex tags works with the 17 UN Sustainable Development Goals using the open-source Aurora classifier, and why the relevancy threshold is set at 0.4."
+tags: ["reference"]
 source_id: "27972124390679"
 source_url: "https://help.openalex.org/hc/en-us/articles/27972124390679-How-do-you-classify-works-as-contributing-to-the-UN-SDGs"
 source_updated: "2026-03-06"
@@ -57,4 +57,9 @@ https://api.openalex.org/works?filter=sustainable_development_goals.id:3
 https://api.openalex.org/works?filter=sustainable_development_goals.id:13
 ```
 
-For full details, see the [SDGs API documentation](https://docs.openalex.org/api-entities/sdgs).
+For full details, see the [SDGs API reference](/api/sdgs/).
+
+## Related pages
+
+- [Aboutness](/docs/aboutness/) — how SDGs fit among OpenAlex's other subject signals
+- [Map the SDG research landscape](/learn/map-an-sdg-research-landscape/) — a worked example
