@@ -14,7 +14,7 @@ Unpaywall is used as a data source in several third-party link resolvers, for ex
 
   
 
-Unpaywall link resolver integrations allow users who click on a link resolver link to get an open access copy of that resource, if one exists and your library doesn’t have a subscription. These integrations offer a seamless way to bring over 20 million OA papers directly to your users:
+Unpaywall link resolver integrations allow users who click on a link resolver link to get an open access copy of that resource, if one exists and your library doesn’t have a subscription. (Unpaywall is OpenAlex's legacy-format API surface — the same underlying data.) These integrations offer a seamless way to bring over 100 million OA papers directly to your users:
 
 **OA copies → Unpaywall data → Link resolver software → your users**
 

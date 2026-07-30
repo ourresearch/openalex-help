@@ -378,14 +378,9 @@ curl "https://api.openalex.org/works"
 curl "https://api.openalex.org/works?include_xpac=true"
 ```
 
-### Filtering by XPAC
+### Telling XPAC works apart
 
-Each work has an `is_xpac` boolean field:
-
-```bash
-# Get only XPAC works
-curl "https://api.openalex.org/works?include_xpac=true&filter=is_xpac:true"
-```
+Each work object carries an `is_xpac` boolean field in the response, so you can tell which works in your results came from the expansion. (In OQL, the `corpus` selector chooses which corpus you query: `core`, `expansion`, or `all`.)
 
 ## Query Parameter Naming
 

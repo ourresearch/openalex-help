@@ -173,9 +173,7 @@ export const NAV_GROUPS: Record<string, NavGroup[]> = {
       label: 'Repositories',
       desc: 'Repository records, matching, and recommendations for IRs.',
       slugs: [
-        'how-are-repository-records-matched-to-published-articles',
-        'how-are-documents-located-from-repository-records',
-        'when-i-look-at-my-repository-as-a-source-in-openalex-why-is-it-missing',
+        'repository-records',
         {
           label: 'For repository managers',
           children: [

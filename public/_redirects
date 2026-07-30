@@ -467,3 +467,13 @@
 /docs/what-do-the-host-type-values-publisher-and-repository-mean  /docs/open-access/  301
 /docs/what-do-the-host-type-values-publisher-and-repository-mean/  /docs/open-access/  301
 # <<< rewrite-pass-f <<<
+# >>> rewrite-pass-g >>>
+# NOTE: these rules currently sit past the CF Pages ~370-rule processing ceiling and will not
+# fire until the Pass Z _redirects reorg (see job PLAN). Kept here, correct, for that reorg.
+/docs/how-are-repository-records-matched-to-published-articles  /docs/repository-records/  301
+/docs/how-are-repository-records-matched-to-published-articles/  /docs/repository-records/  301
+/docs/how-are-documents-located-from-repository-records  /docs/repository-records/  301
+/docs/how-are-documents-located-from-repository-records/  /docs/repository-records/  301
+/docs/when-i-look-at-my-repository-as-a-source-in-openalex-why-is-it-missing  /docs/repository-records/  301
+/docs/when-i-look-at-my-repository-as-a-source-in-openalex-why-is-it-missing/  /docs/repository-records/  301
+# <<< rewrite-pass-g <<<
