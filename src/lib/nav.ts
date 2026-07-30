@@ -147,11 +147,8 @@ export const NAV_GROUPS: Record<string, NavGroup[]> = {
       label: 'Sources & publishers',
       desc: 'Journals, repositories, and how we classify them.',
       slugs: [
-        'sources-in-openalex',
-        'how-does-openalex-handle-predatory-and-lower-quality-journals',
-        'how-do-we-decide-if-a-given-journal-is-fully-oa',
-        'what-are-cwts-core-sources-and-how-are-they-different-from-web-of-scie',
-        'where-do-you-get-apc-paid-metadata-from',
+        'sources',
+        'journal-quality',
       ],
     },
     {

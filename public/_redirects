@@ -449,3 +449,24 @@
 /docs/how-do-you-assign-papers-to-specific-countries/  /docs/affiliations/  301
 /docs/how-do-you-assign-papers-to-specific-countries.md  /docs/affiliations.md  301
 # <<< rewrite-pass-c <<<
+
+# >>> rewrite-pass-d >>>
+# Docs rewrite Pass D (oxjob #354, D07): Sources & publishers zone
+# NOTE: these rules currently sit past the CF Pages ~370-rule processing ceiling and will not
+# fire until the Pass Z _redirects reorg (see job PLAN). Kept here, correct, for that reorg.
+/docs/sources-in-openalex  /docs/sources/  301
+/docs/sources-in-openalex/  /docs/sources/  301
+/docs/sources-in-openalex.md  /docs/sources.md  301
+/docs/what-are-cwts-core-sources-and-how-are-they-different-from-web-of-scie  /docs/sources/  301
+/docs/what-are-cwts-core-sources-and-how-are-they-different-from-web-of-scie/  /docs/sources/  301
+/docs/what-are-cwts-core-sources-and-how-are-they-different-from-web-of-scie.md  /docs/sources.md  301
+/docs/how-does-openalex-handle-predatory-and-lower-quality-journals  /docs/journal-quality/  301
+/docs/how-does-openalex-handle-predatory-and-lower-quality-journals/  /docs/journal-quality/  301
+/docs/how-does-openalex-handle-predatory-and-lower-quality-journals.md  /docs/journal-quality.md  301
+/docs/how-do-we-decide-if-a-given-journal-is-fully-oa  /docs/journal-quality/  301
+/docs/how-do-we-decide-if-a-given-journal-is-fully-oa/  /docs/journal-quality/  301
+/docs/how-do-we-decide-if-a-given-journal-is-fully-oa.md  /docs/journal-quality.md  301
+/docs/where-do-you-get-apc-paid-metadata-from  /docs/journal-quality/  301
+/docs/where-do-you-get-apc-paid-metadata-from/  /docs/journal-quality/  301
+/docs/where-do-you-get-apc-paid-metadata-from.md  /docs/journal-quality.md  301
+# <<< rewrite-pass-d <<<

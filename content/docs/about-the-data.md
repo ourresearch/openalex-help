@@ -14,7 +14,7 @@ OpenAlex is more than a catalog of research publications. We do the work of _dis
 
 At the heart of OpenAlex is a catalog of **works**. A work is any sort of scholarly output: research articles are one kind, but there are others, such as datasets, books, and dissertations. OpenAlex indexes over 320 million works, with tens of thousands more added every day. We track each work's own metadata — title, abstract (and often full text), publication date, and so on — and, just as importantly, the **connections** between works: journals, authors, institutional affiliations, citations, topics, and funders.
 
-Those connections are what make research legible at scale. Each connected thing is its own entity with its own record: [authors](/api/authors/), [sources](/docs/sources-in-openalex/) (journals and repositories), [institutions](/api/institutions/), [topics](/docs/topics/), [publishers](/api/publishers/), and [funders](/api/funders/). For how the graph is actually built, see [How OpenAlex works](/docs/how-openalex-works/).
+Those connections are what make research legible at scale. Each connected thing is its own entity with its own record: [authors](/api/authors/), [sources](/docs/sources/) (journals and repositories), [institutions](/api/institutions/), [topics](/docs/topics/), [publishers](/api/publishers/), and [funders](/api/funders/). For how the graph is actually built, see [How OpenAlex works](/docs/how-openalex-works/).
 
 ## Data sources
 
