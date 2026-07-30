@@ -14,6 +14,6 @@ OpenAlex uses three version categories, following the [DRIVER Guidelines v2.0](h
 - **`acceptedVersion`** — the manuscript after peer review and formal acceptance for publication. It may differ from the version of record in minor ways (spelling, word choice, sentence structure) and typically lacks the publisher's formatting, but its content is essentially interchangeable with the published version for a reasonable reader's purposes.
 - **`submittedVersion`** — the manuscript as submitted to the publisher, before peer review. Its content may differ significantly from the final article.
 
-Version is central to open access: the [best OA location](/docs/open-access-oa/) OpenAlex reports for a work prefers the most authoritative freely available version. A work whose only free copy is a `submittedVersion` preprint is treated differently from one with a freely available `publishedVersion`.
+Version is central to open access: the [best OA location](/docs/open-access/) OpenAlex reports for a work prefers the most authoritative freely available version. A work whose only free copy is a `submittedVersion` preprint is treated differently from one with a freely available `publishedVersion`.
 
 If you run an institutional repository, see our [recommendations for version reporting](/docs/recommendation-for-irs-version-reporting/) to help OpenAlex classify your records correctly.

@@ -18,4 +18,6 @@ Some reasons you might see an error in open access status:
 -   Sometimes we miss the link to the OA version (on a source page or repository);
 -   We might not check your institution's repository for green OA versions ([check and fix that here](https://unpaywall.org/sources))
 
-To suggest a change to a work's Open Access status, you can [use this google form](https://docs.google.com/forms/d/e/1FAIpQLScUcNZdqOBFxVJ0oihjeHFilm9IqqWKQY4WDmmqgxUNGr3R1g/viewform?usp=sf_link).
+To suggest a change to a work's Open Access status, [submit a correction request](https://unpaywall.org/fix) — and see [Why are my open access curation requests getting rejected?](/help/why-are-my-open-access-curation-requests-getting-rejected/) first for what reviewers check.
+
+For the full story of how OA statuses, locations, and licenses are determined, see [Open Access](/docs/open-access/) in the docs.

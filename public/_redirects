@@ -453,3 +453,17 @@
 /docs/field-weighted-citation-impact-fwci  /docs/fwci/  301
 /docs/field-weighted-citation-impact-fwci/  /docs/fwci/  301
 # <<< rewrite-pass-e <<<
+# >>> rewrite-pass-f >>>
+/docs/open-access-oa  /docs/open-access/  301
+/docs/open-access-oa/  /docs/open-access/  301
+/docs/what-counts-as-an-open-access-location  /docs/open-access/  301
+/docs/what-counts-as-an-open-access-location/  /docs/open-access/  301
+/docs/how-is-the-best-oa-location-determined  /docs/open-access/  301
+/docs/how-is-the-best-oa-location-determined/  /docs/open-access/  301
+/docs/what-is-an-oa-license  /docs/open-access/  301
+/docs/what-is-an-oa-license/  /docs/open-access/  301
+/docs/what-does-oa-date-mean-and-how-is-it-determined  /docs/open-access/  301
+/docs/what-does-oa-date-mean-and-how-is-it-determined/  /docs/open-access/  301
+/docs/what-do-the-host-type-values-publisher-and-repository-mean  /docs/open-access/  301
+/docs/what-do-the-host-type-values-publisher-and-repository-mean/  /docs/open-access/  301
+# <<< rewrite-pass-f <<<

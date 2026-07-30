@@ -40,7 +40,7 @@ Because of the open nature of the database, a list of journals to *exclude* can 
 
 ## Fully-OA journals
 
-Whether a journal is **fully open access** matters beyond the journal itself: it determines the [OA status](/docs/open-access-oa/) of the works inside it. An OA article in a fully-OA journal is **gold**; the same article in a toll-access journal would be **hybrid** or **bronze**. Two source fields record the determination:
+Whether a journal is **fully open access** matters beyond the journal itself: it determines the [OA status](/docs/open-access/) of the works inside it. An OA article in a fully-OA journal is **gold**; the same article in a toll-access journal would be **hybrid** or **bronze**. Two source fields record the determination:
 
 - **`is_in_doaj`** — the journal is indexed in the [Directory of Open Access Journals](https://doaj.org/) (about 23,000 sources). DOAJ verifies the credibility and legitimacy of the journals it indexes; OpenAlex does not do its own vetting, so use this field when legitimacy matters to your question.
 - **`is_oa`** — the journal is fully OA, whether or not DOAJ lists it (about 64,000 journals).
@@ -52,7 +52,7 @@ DOAJ membership answers the question immediately: if a journal is in DOAJ, it's 
 
 A journal passing either check gets `is_oa=true`, `is_in_doaj=false`.
 
-The observation-based check also detects **flipped journals** — journals that switched from toll-access to OA at some "flip date." An OA article published in that journal *before* the flip is hybrid or bronze (it appeared in a then-toll-access journal); an OA article published *after* the flip is gold. See [Open Access](/docs/open-access-oa/) for the full status taxonomy.
+The observation-based check also detects **flipped journals** — journals that switched from toll-access to OA at some "flip date." An OA article published in that journal *before* the flip is hybrid or bronze (it appeared in a then-toll-access journal); an OA article published *after* the flip is gold. See [Open Access](/docs/open-access/) for the full status taxonomy.
 
 ## APC data
 
@@ -70,10 +70,20 @@ These are **estimates in a market that isn't transparent**, and two limitations 
 
 For year-by-year APC list prices, [Butler et al. 2024](https://doi.org/10.7910/DVN/CR1MMV) (Harvard Dataverse, CC0) provides publisher price lists per journal per year, 2019–2023, for six large publishers (Elsevier, Springer Nature, Wiley, MDPI, Frontiers, PLOS) — 8,711 journals covering roughly half the world's gold and hybrid output. OpenAlex is evaluating integrating this dataset (an expanded release covering more publishers and years is expected in 2026); until then, it's the best companion resource for historical APC analysis.
 
-For a worked example of estimating institutional APC spend — including the assumptions involved — see [Estimate the APC fees my institution has paid](/learn/estimate-the-apc-fees-my-institution-has-paid-to-make-research-open-ac/).
+### Estimating APC spend
+
+Because the actual amount paid is usually unknown, any count of APC spend built on OpenAlex is an estimate resting on several assumptions, each of which can bias the result:
+
+- **The corresponding author's institution paid the APC.** Not always true, and when a work has multiple corresponding institutions (about 6% of journal articles), each gets the full APC attributed — an over-estimate. It's still the best available default, since corresponding institution is what publishers use in transformative agreements.
+- **Corresponding-institution metadata exists.** OpenAlex is missing it for the majority of journal articles, which under-estimates total spend.
+- **Only articles and reviews incur APCs.** If editorials or other document types are charged, this under-estimates.
+- **Only journals charge APCs.** If conference proceedings or other source types charge them, this under-estimates.
+- **The APC field reflects what was paid.** Where OpenAlex falls back to the current list price, and list prices climb yearly, older works' spend is over-estimated.
+
+For a worked example of estimating institutional APC spend, see [Estimate the APC fees my institution has paid](/learn/estimate-the-apc-fees-my-institution-has-paid-to-make-research-open-ac/). For the nuances of APC analysis more broadly, see [Asai 2023](https://doi.org/10.1007/s11192-023-04841-z) and [Butler et al. 2024 (arXiv)](https://doi.org/10.48550/arXiv.2406.08356).
 
 ## Related pages
 
 - [Sources](/docs/sources/) — source types, locations, and curated lists
-- [Open Access](/docs/open-access-oa/) — the OA status taxonomy and how statuses are assigned
+- [Open Access](/docs/open-access/) — the OA status taxonomy and how statuses are assigned
 - [How can I fix errors in an OpenAlex Source profile?](/help/how-can-i-fix-errors-in-an-openalex-source-profile/)

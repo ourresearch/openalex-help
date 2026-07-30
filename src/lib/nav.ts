@@ -166,12 +166,7 @@ export const NAV_GROUPS: Record<string, NavGroup[]> = {
       label: 'Open Access',
       desc: 'How OA status, locations, and licenses are determined.',
       slugs: [
-        'open-access-oa',
-        'what-counts-as-an-open-access-location',
-        'how-is-the-best-oa-location-determined',
-        'what-is-an-oa-license',
-        'what-does-oa-date-mean-and-how-is-it-determined',
-        'what-do-the-host-type-values-publisher-and-repository-mean',
+        'open-access',
       ],
     },
     {
