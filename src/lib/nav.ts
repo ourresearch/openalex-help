@@ -184,6 +184,22 @@ export const NAV_GROUPS: Record<string, NavGroup[]> = {
       ],
     },
     {
+      label: 'Query language (OQL)',
+      desc: 'The OpenAlex Query Language — readable queries over everything.',
+      slugs: [
+        'oql',
+        'oql-cheatsheet',
+        {
+          label: 'Reference',
+          children: [
+            'oql-spec',
+            'oql-grammar',
+            'oqo-schema',
+          ],
+        },
+      ],
+    },
+    {
       label: 'Bulk data',
       desc: 'Snapshot, data feed, content archive, and CLI — the data in bulk.',
       slugs: [
@@ -239,6 +255,7 @@ export const NAV_GROUPS: Record<string, NavGroup[]> = {
         'selecting-fields',
         'get-single-entities',
         'autocomplete',
+        'oql',
       ],
     },
     {

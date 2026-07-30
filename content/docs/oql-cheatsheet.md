@@ -1,0 +1,160 @@
+---
+title: "OQL cheat sheet"
+description: "The OQL one-pager: every construct with a copyable example."
+tags: ["oql"]
+generated: true
+source_id: "query-spec/cheatsheet"
+source_url: "https://api.openalex.org/query/spec/cheatsheet"
+source_updated: "2026-07-30"
+---
+> **Note:**
+> The OpenAlex Query Language is in **alpha**. It may change without warning — build against it at your own risk, and [tell us what you think](mailto:support@openalex.org).
+
+**OQL** is the OpenAlex Query Language — a readable way to write any OpenAlex query.
+A query reads almost like a sentence: `works where title has (cancer) and year >= (2020)`.
+Try it in the new **OQL tab** at the top of the search page, or hit the API directly:
+`https://api.openalex.org/?oql=<your query>`.
+
+> Every example below runs on production today. Counts are live and will drift.
+
+---
+
+## The shape
+
+```
+<entity> where <filters> [ group by <dims> ] [ sample <n> ]
+```
+
+- **entity** — what you get back: `works`, `authors`, `institutions`, `sources`, `funders`, `topics`, …
+- **where** — your filters (skip it for everything: `works`).
+- A filter is `<field> <operator> (<value>)`: `year >= (2020)`, `type is (review)`, `title has (cancer)`. The value always sits in `( … )`.
+
+```
+works
+works where year is (2020)
+authors where last known institution is (I136199984 [Harvard University])
+```
+
+---
+
+## Filter on a field — `is`, `>=`, `<=`, `>`, `<`
+
+| Example | Meaning |
+|---|---|
+| `works where year is (2020)` | exact match |
+| `works where type is (article)` | a single value |
+| `works where type is (article or review)` | one of several — join values with `or` |
+| `works where citation count >= (100)` | numeric comparison |
+| `works where FWCI >= (2.0)` | floats allowed |
+| `works where year >= (2019) and year <= (2023)` | a range = two endpoint filters |
+| `works where institution is (I136199984 [Harvard University])` | entities use their OpenAlex ID; the `[name]` is optional and just for reading |
+| `works where language is (en)` · `works where SDG is (3)` | closed vocabularies use codes/ids |
+
+The ID is what counts — anything in `[ … ]` is ignored on input and auto-filled as the
+entity's name when the query is displayed back to you.
+
+---
+
+## Search text — `has`
+
+Search a text field with **`has`**. Bare words are **stemmed** (so `cancer` also matches
+*cancers*); **quotes** turn stemming off for an **exact** match.
+
+| Example | Meaning |
+|---|---|
+| `works where title has (cancer)` | one stemmed word |
+| `works where title has (machine learning)` | a phrase — one search unit, ranked by adjacency |
+| `works where title has ("climate change")` | **exact** phrase (no stemming) |
+| `works where title has ("cat")` | exact single word — excludes *cats* |
+| `works where title has (stemmed "genome editing")` | exact-adjacent **but** still stemmed |
+| `works where title has ("psoriat*")` | wildcard — **must be quoted**; `*` = any chars, `?` = exactly one char (`"wom?n"`, `"wo??n"`) |
+| `works where title has (within 3 ("smart", "phone"))` | proximity — terms within N words, any order |
+| `works where title/abstract is similar to ("ocean acidification on coral")` | semantic (meaning-based) search |
+
+**Text fields:** `title`, `abstract`, `title/abstract`, `full text`, `raw affiliation`, `byline`.
+
+---
+
+## Combine & nest — `and`, `or`, `( … )`
+
+Join filters with `and` / `or`. Use parentheses to group; `and` binds tighter than `or`.
+
+```
+works where title has (cancer) and year >= (2020)
+works where institution is (I136199984) or funder is (F4320332161)
+works where title/abstract has ((vape or vaping) and (health or harm))
+works where (year < (2000) and title/abstract has ("global warming"))
+  or (title/abstract has ("climate change") and year > (2020))
+```
+
+---
+
+## Exclude — `not`
+
+Put `not` right before the value you want to exclude.
+
+```
+works where country is (not FR)
+works where title has (covid) and abstract has (not pediatric)
+works where title has (not mouse and cancer)
+```
+
+---
+
+## Yes / no flags — `is true` / `is false`
+
+```
+works where open access is (true)
+works where has DOI is (true)
+works where retracted is (true)
+```
+
+---
+
+## Citation links — `it cites`, `it's cited by`
+
+Follow the citation edge in either direction — the subject `it` is each work in your
+results. Takes `not` and `or` in the value like any other filter. The bare verb
+also works as input (`cites (W…)`, `cited by (W…)`); it canonicalizes to the `it` form.
+
+```
+works where it cites (W2741809807)                 works whose reference list includes W…
+works where it's cited by (W2741809807)            works in W…'s reference list
+works where it's related to (W2741809807)          OpenAlex "related works"
+works where title has (climate) and it cites (W1767272795 or W2741809807)
+```
+
+---
+
+## Group & sample
+
+```
+works where year >= (2020) group by topic
+works where year >= (2020) group by topic, year
+works where year is (2020) sample 500
+```
+
+> **Sorting and choosing columns are not part of OQL** — they're controls in the results
+> view (and `?sort=` / `?select=` on the API). OQL describes *which* results, not how
+> they're displayed.
+
+---
+
+## When something's wrong, OQL tells you
+
+OQL never guesses — a query that can't do what it looks like it does is a clear error
+**with a fix-it**, never a silent wrong answer.
+
+| You wrote | OQL says |
+|---|---|
+| `title contains cancer` | `contains` was renamed → use `title has (cancer)` |
+| `title has bar*` | wildcards need quotes → `title has ("bar*")` |
+| `title has climate change or warming` | wrap the terms → `title has (climate change or warming)` |
+| `type is (article review)` | two values need a connective → add `or` between them (or `and` if you mean both) |
+| `pub_year is 2020` | unknown field `pub_year` — check the field name (you want `year`) |
+
+---
+
+**Go deeper:** the **Cases** page (browsable worked examples), the **Guide** (a readable
+walkthrough), and — for the truly curious — the **Spec**, **Grammar**, and **OQO schema**
+pages, all under `/query`.

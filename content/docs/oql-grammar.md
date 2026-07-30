@@ -1,0 +1,121 @@
+---
+title: "OQL grammar"
+description: "The derived reference grammar of OQL in W3C-EBNF notation, with a railroad-diagram view."
+tags: ["oql"]
+generated: true
+source_id: "query-spec/grammar"
+source_url: "https://api.openalex.org/query/spec/grammar"
+source_updated: "2026-07-30"
+---
+> **Note:**
+> The OpenAlex Query Language is in **alpha**. It may change without warning — build against it at your own risk, and [tell us what you think](mailto:support@openalex.org).
+
+The grammar below is **derived from the OQL implementation** in W3C-EBNF notation, so it can't drift from what the engine actually parses. A visual [railroad-diagram rendering](https://api.openalex.org/query/spec/railroad) of the same grammar is also available.
+
+```ebnf
+/* OQL (OpenAlex Query Language) v2.2 -- derived reference grammar (W3C-EBNF). */
+/* Hand-written from the spec/parser; NOT generated, NOT the parser itself. */
+/* Single source of truth = query_translation/oql_lang.py + docs/oql/corpus.yaml. */
+/* No-drift gate: tests/oql/test_grammar_ebnf.py (oxjob #361). */
+/* Renders to a railroad diagram via the rr tool (oxjob #386 recipe). */
+
+query        ::= entity ( 'where' conditions )? directive*
+
+entity       ::= word
+
+directive    ::= groupBy | sample | ';'
+
+groupBy      ::= 'group' 'by' word ( ',' word )*
+
+sample       ::= 'sample' NUMBER ( 'seed' NUMBER )?
+
+/* The `where` body is a boolean of clauses joined by infix `and`/`or`; a 2+
+   body renders as the implicit-AND list `a and b`, and explicit groups use
+   bare parens `(a or b)` / `(a and b)`. */
+conditions   ::= operand ( connective operand )*
+
+connective   ::= 'and' | '&' | 'or'   /* '&' is an input synonym for 'and'; canonical render is always 'and' */
+
+operand      ::= 'not' operand
+               | '(' conditions ')'
+               | clause
+
+clause       ::= determiner? ( valueClause | searchClause )
+
+/* An optional leading determiner 'the' is ignorable input sugar before a
+   field name (`the title is foo`), so a clause can read like a sentence. It is
+   dropped at parse and never round-trips (the canonical render omits it). It is
+   only swallowed when a known field follows -- a semantic guard, not
+   grammatical -- so a search value that opens with "the"
+   (`title has (the great gatsby)`) keeps it. */
+determiner   ::= 'the'
+
+valueClause  ::= field operator value
+
+field        ::= word+
+
+operator     ::= 'is' 'not'? 'in' 'collection'
+               | 'is' 'not'?
+               | 'is' 'similar' 'to'
+               | 'has'
+               | ( 'does' 'not' | "doesn't" | 'doesnt' ) 'have'
+               | '>=' | '<=' | '>' | '<'
+
+/* The CANONICAL value form is always the parenthesized group (oxjob #554,
+   spec v2.2) -- `type is (article)`, `year >= (2019)`; the bare scalar /
+   bare 'unknown' alternatives are the accepted-input (lenient) layer only.
+   Scalar-domain operators (comparisons, booleans, collection, similar-to)
+   take exactly ONE item in their group -- a semantic rule, not grammatical. */
+value        ::= valueGroup | 'unknown' | 'null' | scalar   /* a boolean's value is 'true' or 'false' (oxjob #363) */
+
+/* A value group is a parenthesized boolean of values: `(a or b)` / `(a and b)`,
+   nesting freely. Items are joined by infix 'or'/'and' (one separator per
+   level); bare adjacency between value items is a loud error (#554), never an
+   implicit AND. 'unknown'/'null' inside a group is the null sentinel (#554). */
+valueGroup   ::= '(' valueExpr ')'
+
+valueExpr    ::= valueItem ( connective valueItem )*
+
+valueItem    ::= 'not'? ( valueGroup | 'unknown' | 'null' | scalar )
+
+scalar       ::= ( WORD | NUMBER | STRING ) ANNOT?
+
+searchClause ::= searchField ( 'has' | ( 'does' 'not' | "doesn't" | 'doesnt' ) 'have' ) searchExpr
+               | searchField 'is' 'similar' 'to' ( '(' STRING ')' | STRING )
+
+searchField  ::= word ( ( '&' | 'and' ) word )*
+
+searchExpr   ::= termRun ( connective termRun )*
+
+termRun      ::= searchOperand+
+
+searchOperand ::= 'not' searchOperand
+               | proximity
+               | '(' searchExpr ')'
+               | searchAtom
+
+/* Proximity is one leading list operator: K (2+) operands within an N-word
+   window of each other, unordered (oxjob #514). Quotes freeze an operand into
+   an adjacent phrase; bare operands stem. (The legacy `within N words` suffix
+   and `within N words of` binary forms were removed from the OQL surface; the
+   OXURL `~` notation keeps single/binary proximity unchanged.) */
+proximity    ::= 'within' NUMBER '(' term ( ',' term )+ ')'
+
+searchAtom   ::= 'stemmed'? term
+
+term         ::= STRING | word
+
+word         ::= WORD | NUMBER
+
+WORD         ::= wordChar+
+
+NUMBER       ::= [0-9]+
+
+STRING       ::= '"' [#x20-#x10FFFF]* '"'
+
+ANNOT        ::= '[' [#x20-#x10FFFF]* ']'
+
+wordChar     ::= [#x21-#x10FFFF]
+```
+
+See the [OQL specification](/docs/oql-spec/) for the normative prose and the [cheat sheet](/docs/oql-cheatsheet/) for examples.
