@@ -81,7 +81,7 @@ One pseudo-license to know about: **`implied-oa`** marks articles that the publi
 
 ## OA dates
 
-OpenAlex's underlying data also tracks *when* a copy of a work first became available at each location. This `oa_date` field is exposed through the [Unpaywall API format](https://unpaywall.org/data-format#oa-location-object) (a legacy-compatible view of the same OpenAlex data) rather than on the OpenAlex work object itself. In brief:
+OpenAlex's underlying data also tracks *when* a copy of a work first became available at each location. This `oa_date` field is exposed through the [Unpaywall API format](/docs/unpaywall/) (a legacy-compatible view of the same OpenAlex data — see [its data-format reference](https://unpaywall.org/data-format#oa-location-object)) rather than on the OpenAlex work object itself. In brief:
 
 - **Gold/diamond**: the article was free from day one, so `oa_date` is the publication date.
 - **Hybrid**: the publication date, or the manuscript license's effective date if a manuscript version was opened separately.

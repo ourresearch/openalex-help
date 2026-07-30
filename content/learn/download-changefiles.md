@@ -1,7 +1,7 @@
 ---
 title: "Download Changefiles"
 description: "Download incremental updates to keep your local data current"
-tags: ["downloads"]
+tags: ["recipes", "downloads"]
 source_id: "download/changefiles"
 source_url: "https://developers.openalex.org/download/changefiles"
 source_updated: "2026-06-26"

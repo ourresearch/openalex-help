@@ -6,7 +6,7 @@ source_id: "api-reference/authentication"
 source_url: "https://developers.openalex.org/api-reference/authentication"
 source_updated: "2026-06-20"
 ---
-OpenAlex data is and will remain available at no cost. Our [data snapshot](/docs/downloading-openalex-data/#openalex-snapshot) is totally free for bulk download. The API is a freemium service with free daily usage—$0.10/day with no key, or 10× that ($1/day) with a [free API key](#getting-an-api-key)—and after that you pay for what you use. [We sell services, not data.](https://openscholarlyinfrastructure.org/)
+OpenAlex data is and will remain available at no cost. Our [data snapshot](/docs/bulk-data/#openalex-snapshot) is totally free for bulk download. The API is a freemium service with free daily usage—$0.10/day with no key, or 10× that ($1/day) with a [free API key](#getting-an-api-key)—and after that you pay for what you use. [We sell services, not data.](https://openscholarlyinfrastructure.org/)
 
 ## Getting an API Key
 
@@ -29,7 +29,7 @@ curl "https://api.openalex.org/works?api_key=YOUR_KEY"
 | [List+Filter](/api/filtering/) | Query and filter entities | **$0.10** |
 | [Search](/api/searching/) | Full-text keyword search | **$1** |
 | [Semantic search](/api/searching/) | AI-powered semantic search | **$1** |
-| [Content download](/docs/full-text-pdfs/) | Cached PDF via content API | **$10** |
+| [Content download](/docs/content-archive/) | Cached PDF via content API | **$10** |
 | [Text/Aboutness](/api/deprecations/) *(deprecated)* | Topic classification | **$10** |
 
 > **Note:**

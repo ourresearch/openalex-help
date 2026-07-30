@@ -1,11 +1,14 @@
 ---
 title: "How do I use the title search API?"
 description: "The Unpaywall title search endpoint gives you the full DOI API(https://unpaywall.org/products/apiget-doi) response for articles with titles matching your query. 50 results are r…"
-tags: ["unpaywall"]
+tags: ["recipes", "unpaywall"]
 source_id: "41193820492951"
 source_url: "https://help.openalex.org/hc/en-us/articles/41193820492951-How-do-I-use-the-title-search-API"
 source_updated: "2026-06-13"
 ---
+> **Note:**
+> This recipe covers **Unpaywall's** title-search endpoint (`api.unpaywall.org/v2/search`), part of the [Unpaywall legacy-format surface](/docs/unpaywall/). For OpenAlex-native search — which covers titles, abstracts, and full text with more filters — see [Searching](/api/searching/).
+
 ## Unpaywall Title Search Endpoint
 
   

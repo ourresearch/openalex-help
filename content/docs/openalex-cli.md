@@ -64,7 +64,7 @@ cat work_ids.txt | openalex download \
   --stdin
 ```
 
-See [Full-text PDFs](/docs/full-text-pdfs/#option-2-openalex-cli-up-to-a-few-million-files) for more examples.
+See [Full-text PDFs](/docs/content-archive/#option-2-openalex-cli-up-to-a-few-million-files) for more examples.
 
 ## Output format
 

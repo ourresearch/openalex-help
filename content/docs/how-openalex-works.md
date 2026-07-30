@@ -22,7 +22,7 @@ The core sources we pull records from include Crossref, DataCite, PubMed, HAL, D
 
 ## Update cadence
 
-As new works are published (or new records of old works are minted), they are matched and added continuously — the database evolves hourly. How updates reach you depends on the access channel: the [web interface](https://openalex.org) and [API](/api/) serve the live dataset, while [bulk data](/docs/downloading-openalex-data/) is released on a schedule.
+As new works are published (or new records of old works are minted), they are matched and added continuously — the database evolves hourly. How updates reach you depends on the access channel: the [web interface](https://openalex.org) and [API](/api/) serve the live dataset, while [bulk data](/docs/bulk-data/) is released on a schedule.
 
 ## Pipeline dashboard
 

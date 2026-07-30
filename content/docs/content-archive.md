@@ -1,12 +1,12 @@
 ---
-title: "Full-text PDFs"
-description: "Download full-text PDFs and TEI XML for millions of works"
+title: "Content archive"
+description: "The OpenAlex content archive — full-text PDFs and Grobid TEI XML for millions of works, and the three ways to download them."
 tags: ["downloads"]
 source_id: "download/full-text-pdfs"
 source_url: "https://developers.openalex.org/download/full-text-pdfs"
 source_updated: "2026-06-24"
 ---
-OpenAlex has cached full-text content for about 60 million works:
+The **content archive** is the full-text member of the [bulk-data family](/docs/bulk-data/): cached full-text content for about 60 million works.
 
 | Format | Files | Size |
 |--------|-------|------|
@@ -175,14 +175,14 @@ duckdb.sql("""
 
 The join is then entirely local, with no API calls:
 
-1. Join `openalex_id` to your [works snapshot](/docs/snapshot-data-format/) to attach metadata.
+1. Join `openalex_id` to your [works snapshot](/docs/snapshot/) to attach metadata.
 2. Join `pdf_uuid` / `grobid_xml_id` to your synced files to attach the PDF and TEI XML.
 
 Because the manifest is a full daily replacement, re-pull the `_manifest/` prefix whenever you re-sync the archive.
 
 ### The content endpoint (for per-work fetches)
 
-If you're fetching files one at a time through the [content API](/docs/full-text-pdfs/#option-1-api-up-to-10k-files) rather than syncing the bucket, you don't deal with UUIDs at all — the endpoint resolves the work ID to the underlying object server-side:
+If you're fetching files one at a time through the [content API](#option-1-api-up-to-10k-files) rather than syncing the bucket, you don't deal with UUIDs at all — the endpoint resolves the work ID to the underlying object server-side:
 
 ```
 https://content.openalex.org/works/{work_id}.pdf
@@ -196,7 +196,7 @@ Work objects from the API expose this directly via `has_content` and `content_ur
                   "grobid_xml": "https://content.openalex.org/works/W1775749144.grobid-xml" }
 ```
 
-Filter your candidate set with `has_content.pdf:true` (available in the [snapshot](/docs/snapshot-data-format/) and the API; `content_urls` is API-only), then fetch each work by ID. This is convenient for small-to-medium sets, but at archive scale prefer the manifest above — the join is offline and costs nothing.
+Filter your candidate set with `has_content.pdf:true` (available in the [snapshot](/docs/snapshot/) and the API; `content_urls` is API-only), then fetch each work by ID. This is convenient for small-to-medium sets, but at archive scale prefer the manifest above — the join is offline and costs nothing.
 
 > **Warning:**
 > Do **not** map work IDs to archive objects via `locations[].pdf_url`. That field is the *original publisher* URL, not the archive object — keying off it produces a lossy, inferred match. Use the manifest or the content endpoint instead.

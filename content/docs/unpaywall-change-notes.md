@@ -18,7 +18,7 @@ This page will summarize important changes to our methodology and data sources t
 
   
 
-**2021-01-19:** Updated our list of "detected OA" journals, as described [in this FAQ](https://help.openalex.org/hc/en-us/articles/41193790227991-How-do-we-decide-if-a-given-journal-is-fully-OA), for 2021. Added about 200,000 Gold articles from 9,000 journals.
+**2021-01-19:** Updated our list of "detected OA" journals, as described in [Journal quality & OA status](/docs/journal-quality/), for 2021. Added about 200,000 Gold articles from 9,000 journals.
 
   
 

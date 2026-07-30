@@ -1,7 +1,7 @@
 ---
 title: "How do I make the Unpaywall extension work on my site?"
 description: "The Unpaywall browser extension(https://unpaywall.org/products/extension) gets open access locations by calling our REST API.(https://unpaywall.org/products/api) The API is call…"
-tags: ["unpaywall"]
+tags: ["recipes", "unpaywall"]
 source_id: "41193838350359"
 source_url: "https://help.openalex.org/hc/en-us/articles/41193838350359-How-do-I-make-the-Unpaywall-extension-work-on-my-site"
 source_updated: "2026-06-13"

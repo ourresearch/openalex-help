@@ -162,7 +162,7 @@ For how these are produced, see [Aboutness](/docs/aboutness/).
 ## Full-text content
 
 ### `has_content`
-*Object.* Whether downloadable full text exists: `pdf` (Boolean) and `grobid_xml` (Boolean, TEI XML). About 60 million works have `has_content.pdf: true`. See [Full-text PDFs](/docs/full-text-pdfs/).
+*Object.* Whether downloadable full text exists: `pdf` (Boolean) and `grobid_xml` (Boolean, TEI XML). About 60 million works have `has_content.pdf: true`. See [Full-text PDFs](/docs/content-archive/).
 
 ### `content_url`
 *String.* A URL for downloading full-text content, present only when [`has_content`](#has_content) indicates a PDF or TEI XML is available. Append `.pdf` or `.grobid-xml` and your API key to fetch a format.

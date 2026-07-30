@@ -170,6 +170,29 @@ export const CARD_FACETS: Record<string, CardTags> = {
     entity: ['institutions'],
     interface: ['web'],
   },
+  // Bulk-data + Unpaywall recipes (moved in from Docs, rewrite Pass H)
+  'download-to-your-machine': {
+    task: ['map'],
+    interface: ['snapshot'],
+  },
+  'download-changefiles': {
+    task: ['map'],
+    interface: ['snapshot', 'api'],
+  },
+  'how-do-i-read-jsonl-files': {
+    task: ['map'],
+    interface: ['snapshot'],
+  },
+  'how-do-i-use-the-title-search-api': {
+    task: ['find'],
+    variable: ['open-access'],
+    interface: ['api'],
+  },
+  'how-do-i-make-the-unpaywall-extension-work-on-my-site': {
+    task: ['fix'],
+    variable: ['open-access'],
+    interface: ['web'],
+  },
 };
 
 export function facetsFor(slug: string): CardTags {

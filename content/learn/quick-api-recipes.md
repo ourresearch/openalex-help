@@ -275,4 +275,4 @@ for work_id in work_ids:
 ```
 
 > **Info:**
-> **Downloading more than a few thousand files?** Use the [CLI tool](/docs/full-text-pdfs/#option-2-command-line-tool-up-to-a-few-million-files) for parallel downloads and automatic retries.
+> **Downloading more than a few thousand files?** Use the [CLI tool](/docs/content-archive/#option-2-command-line-tool-up-to-a-few-million-files) for parallel downloads and automatic retries.

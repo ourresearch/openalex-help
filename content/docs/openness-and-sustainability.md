@@ -16,7 +16,7 @@ OpenAlex data is free to everyone, everywhere, under a No Rights Reserved licens
 
 If you put something at the center of a maze and don't lock the maze entrance, it's technically open — but hardly accessible. Accessibility is part of the mission, at every level of technical capacity:
 
-- Users with big-data capacity can [download the entire dataset](/docs/downloading-openalex-data/), free.
+- Users with big-data capacity can [download the entire dataset](/docs/bulk-data/), free.
 - Beginner coders can use the [easy-to-use API](/api/).
 - Non-technical users get the full dataset through the [web interface](https://openalex.org).
 

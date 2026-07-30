@@ -477,3 +477,29 @@
 /docs/when-i-look-at-my-repository-as-a-source-in-openalex-why-is-it-missing  /docs/repository-records/  301
 /docs/when-i-look-at-my-repository-as-a-source-in-openalex-why-is-it-missing/  /docs/repository-records/  301
 # <<< rewrite-pass-g <<<
+# >>> rewrite-pass-h >>>
+# NOTE: these rules currently sit past the CF Pages ~370-rule processing ceiling and will not
+# fire until the Pass Z _redirects reorg (see job PLAN). Kept here, correct, for that reorg.
+/docs/downloading-openalex-data  /docs/bulk-data/  301
+/docs/downloading-openalex-data/  /docs/bulk-data/  301
+/docs/snapshot-data-format  /docs/snapshot/  301
+/docs/snapshot-data-format/  /docs/snapshot/  301
+/docs/full-text-pdfs  /docs/content-archive/  301
+/docs/full-text-pdfs/  /docs/content-archive/  301
+/docs/which-dois-does-unpaywall-cover  /docs/unpaywall/  301
+/docs/which-dois-does-unpaywall-cover/  /docs/unpaywall/  301
+/docs/preventing-code-injection-using-text-from-unpaywall-safely  /docs/unpaywall-data-safety/  301
+/docs/preventing-code-injection-using-text-from-unpaywall-safely/  /docs/unpaywall-data-safety/  301
+/docs/download-to-your-machine  /learn/download-to-your-machine/  301
+/docs/download-to-your-machine/  /learn/download-to-your-machine/  301
+/docs/download-changefiles  /learn/download-changefiles/  301
+/docs/download-changefiles/  /learn/download-changefiles/  301
+/docs/how-do-i-read-jsonl-files  /learn/how-do-i-read-jsonl-files/  301
+/docs/how-do-i-read-jsonl-files/  /learn/how-do-i-read-jsonl-files/  301
+/docs/how-do-i-use-the-title-search-api  /learn/how-do-i-use-the-title-search-api/  301
+/docs/how-do-i-use-the-title-search-api/  /learn/how-do-i-use-the-title-search-api/  301
+/docs/how-do-i-make-the-unpaywall-extension-work-on-my-site  /learn/how-do-i-make-the-unpaywall-extension-work-on-my-site/  301
+/docs/how-do-i-make-the-unpaywall-extension-work-on-my-site/  /learn/how-do-i-make-the-unpaywall-extension-work-on-my-site/  301
+/docs/why-does-the-unpaywall-plugin-say-this-paywalled-article-is-open-acces  /help/why-does-the-unpaywall-plugin-say-this-paywalled-article-is-open-acces/  301
+/docs/why-does-the-unpaywall-plugin-say-this-paywalled-article-is-open-acces/  /help/why-does-the-unpaywall-plugin-say-this-paywalled-article-is-open-acces/  301
+# <<< rewrite-pass-h <<<
