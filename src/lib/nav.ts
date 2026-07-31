@@ -97,6 +97,17 @@ export const NAV_GROUPS: Record<string, NavGroup[]> = {
       ],
     },
     {
+      label: 'For institutional supporters',
+      desc: 'Activate your Member, Member+, or Partner benefits.',
+      slugs: [
+        'activate-your-admin-dashboard',
+        'activate-the-affiliation-editor',
+        'activate-unsub',
+        'advisory-board-nominations',
+        'quarterly-supporter-meetings',
+      ],
+    },
+    {
       label: 'Community & events',
       desc: 'Webinars, office hours, and OpenAlex in the wild.',
       slugs: [
