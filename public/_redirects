@@ -325,7 +325,7 @@
 /download/overview  /docs/downloading-openalex-data/  301
 /download/download-to-machine  /docs/download-to-your-machine/  301
 /download/snapshot-format  /docs/snapshot-data-format/  301
-/download/changefiles  /docs/download-changefiles/  301
+/download/changefiles  /docs/snapshot-updates/  301
 /download/full-text-pdfs  /docs/full-text-pdfs/  301
 /download/openalex-cli  /docs/openalex-cli/  301
 /api-reference/introduction  /api/introduction/  301
@@ -492,8 +492,8 @@
 /docs/preventing-code-injection-using-text-from-unpaywall-safely/  /docs/unpaywall-data-safety/  301
 /docs/download-to-your-machine  /learn/download-to-your-machine/  301
 /docs/download-to-your-machine/  /learn/download-to-your-machine/  301
-/docs/download-changefiles  /learn/download-changefiles/  301
-/docs/download-changefiles/  /learn/download-changefiles/  301
+/docs/download-changefiles  /docs/snapshot-updates/  301
+/docs/download-changefiles/  /docs/snapshot-updates/  301
 /docs/how-do-i-read-jsonl-files  /learn/how-do-i-read-jsonl-files/  301
 /docs/how-do-i-read-jsonl-files/  /learn/how-do-i-read-jsonl-files/  301
 /docs/how-do-i-use-the-title-search-api  /learn/how-do-i-use-the-title-search-api/  301
@@ -503,3 +503,9 @@
 /docs/why-does-the-unpaywall-plugin-say-this-paywalled-article-is-open-acces  /help/why-does-the-unpaywall-plugin-say-this-paywalled-article-is-open-acces/  301
 /docs/why-does-the-unpaywall-plugin-say-this-paywalled-article-is-open-acces/  /help/why-does-the-unpaywall-plugin-say-this-paywalled-article-is-open-acces/  301
 # <<< rewrite-pass-h <<<
+# >>> changefiles-retirement >>>
+/docs/data-feed  /docs/snapshot-updates/  301
+/docs/data-feed/  /docs/snapshot-updates/  301
+/learn/download-changefiles  /docs/snapshot-updates/  301
+/learn/download-changefiles/  /docs/snapshot-updates/  301
+# <<< changefiles-retirement <<<

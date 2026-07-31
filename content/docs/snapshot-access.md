@@ -1,6 +1,6 @@
 ---
 title: "Access & authentication"
-description: "Where the OpenAlex bulk-data buckets live, which ones are free, and how API keys and credentials work for the paid snapshot, changefiles, and content archive."
+description: "Where the OpenAlex bulk-data buckets live, which ones are free, and how API keys and credentials work for the paid daily snapshot and content archive."
 tags: ["downloads"]
 source_id: "new/snapshot-access"
 source_url: "https://developers.openalex.org/download/download-to-machine"
@@ -11,9 +11,7 @@ Bulk data lives in several buckets with different access rules. This page is the
 | What | Where | Auth |
 |---|---|---|
 | Public [snapshot](/docs/snapshot/) | `s3://openalex` (S3, `data/` prefix) | **None** — free, anonymous |
-| Daily-refreshed snapshot (paid) | `s3://openalex-snapshots` (staging bucket, dated folders under `full/`) | API key via `credential_process` |
-| [Changefile](/docs/data-feed/) listings | `api.openalex.org/changefiles` | **None** — free to browse |
-| Changefile data files | `content.openalex.org/changefiles/...` | API key on a [paid plan](https://openalex.org/pricing) |
+| [Daily snapshot](/docs/snapshot-updates/#the-daily-snapshot-paid-plans) (paid) | `s3://openalex-snapshots` (staging bucket, dated folders under `full/`) | API key via `credential_process` |
 | [Content archive](/docs/content-archive/) per-file | `content.openalex.org/works/...` | API key ($0.01/file) |
 | Content archive bucket sync | Cloudflare R2 (S3-compatible) | Time-limited R2 credentials issued by us |
 
@@ -45,14 +43,7 @@ aws s3 ls s3://openalex-snapshots/full/ --profile openalex
 aws s3 sync s3://openalex-snapshots/full/2026-04-29/jsonl/ ./openalex-snapshot-jsonl --profile openalex
 ```
 
-## Changefiles (paid plans)
-
-Two different access levels, often confused:
-
-- **Browsing what's available is free** — `api.openalex.org/changefiles` and `/changefiles/{date}` need no key at all. Look before you subscribe.
-- **Downloading the data files requires an API key on a paid plan.** The `content.openalex.org/...` URLs in the listings take `?api_key=YOUR_KEY`. There's no per-file charge — changefile downloads are included with the plan.
-
-See [Data feed & changefiles](/docs/data-feed/) for what these files are, and the [changefiles recipe](/learn/download-changefiles/) for the workflow.
+See [Updates & releases](/docs/snapshot-updates/#the-daily-snapshot-paid-plans) for what the daily snapshot is and the sync workflows it enables.
 
 ## Content archive
 
@@ -68,7 +59,6 @@ Sign up free at [openalex.org](https://openalex.org/signup) and find your key in
 |---|---|
 | `AccessDenied` / `403` on `s3://openalex` | You're making a *signed* request with your own AWS credentials. Add `--no-sign-request`. |
 | `credential_process` errors for the staging bucket | Test the curl command by itself — if it returns nothing, the API key is wrong or your plan doesn't include the daily snapshot. `curl` must be on the PATH the AWS CLI uses. |
-| `401`/`403` from `content.openalex.org` changefile URLs | Missing `api_key` parameter, or the key's plan doesn't include changefiles. The *listings* being free is what makes this surprising — data files are gated. |
 | Sync re-downloads or duplicates records | Re-syncing into an old copy without `--delete`; see [Updates & releases](/docs/snapshot-updates/). |
 | Download is slow or flaky | The snapshot is hundreds of GB — use `aws s3 sync` (it parallelizes and resumes) rather than single `cp` streams, and re-run it to pick up where it left off. |
 

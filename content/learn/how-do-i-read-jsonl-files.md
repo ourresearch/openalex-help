@@ -1,12 +1,12 @@
 ---
 title: "How do I read JSONL files?"
-description: "Working with the JSON Lines files in the OpenAlex snapshot and changefiles — Python and R patterns for line-by-line parsing."
+description: "Working with the JSON Lines files in the OpenAlex snapshot — Python and R patterns for line-by-line parsing."
 tags: ["recipes"]
 source_id: "41193798040471"
 source_url: "https://help.openalex.org/hc/en-us/articles/41193798040471-How-do-I-read-JSONL-files"
 source_updated: "2026-06-13"
 ---
-The OpenAlex [snapshot](/docs/snapshot/) and [changefiles](/docs/data-feed/) deliver data in the [JSON Lines](https://jsonlines.org/) text format (JSONL): each line of a file is one JSON object representing a single record.
+The OpenAlex [snapshot](/docs/snapshot/) delivers data in the [JSON Lines](https://jsonlines.org/) text format (JSONL): each line of a file is one JSON object representing a single record.
 
 Since the decompressed snapshot runs to terabytes, this is a great advantage over plain JSON — you can process one line at a time without ever loading a whole file. The downside is that a JSONL file *as a whole* isn't valid JSON, so tools expecting one big JSON document can't read it directly. Treat each **line**, not the file, as the JSON object.
 

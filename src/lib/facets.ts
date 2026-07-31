@@ -175,10 +175,6 @@ export const CARD_FACETS: Record<string, CardTags> = {
     task: ['map'],
     interface: ['snapshot'],
   },
-  'download-changefiles': {
-    task: ['map'],
-    interface: ['snapshot', 'api'],
-  },
   'how-do-i-read-jsonl-files': {
     task: ['map'],
     interface: ['snapshot'],

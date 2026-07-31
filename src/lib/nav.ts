@@ -212,7 +212,7 @@ export const NAV_GROUPS: Record<string, NavGroup[]> = {
     },
     {
       label: 'Bulk data',
-      desc: 'Snapshot, data feed, content archive, and CLI — the data in bulk.',
+      desc: 'Snapshot, content archive, and CLI — the data in bulk.',
       slugs: [
         'bulk-data',
         {
@@ -223,7 +223,6 @@ export const NAV_GROUPS: Record<string, NavGroup[]> = {
             'snapshot-access',
           ],
         },
-        'data-feed',
         'content-archive',
         'openalex-cli',
       ],

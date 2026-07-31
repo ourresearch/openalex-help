@@ -17,7 +17,7 @@ source_updated: "2026-06-13"
 | [REST API](https://unpaywall.org/products/api) | `api.unpaywall.org/v2/{DOI}?email=you@example.com` returns the article's OA record in the [Unpaywall data format](https://unpaywall.org/data-format) |
 | [Simple Query Tool](https://unpaywall.org/products/simple-query-tool) | Paste up to 1,000 DOIs, get results by email — no code needed |
 | [Browser extension](https://unpaywall.org/products/extension) | Shows a green tab when the article you're viewing has a free copy |
-| [Data feed](/docs/data-feed/#the-unpaywall-data-feed) | Change updates in the Unpaywall record format, for subscribers |
+| [Data feed](#the-unpaywall-data-feed) | Change updates in the Unpaywall record format, for subscribers |
 | Link-resolver integrations | Unpaywall data inside SFX, EBSCO, 360 Link, and others — see [Link resolver integrations](/docs/link-resolver-integrations/) |
 
 For new projects, consider the [OpenAlex API](/api/) directly — it exposes the same OA information plus everything else OpenAlex knows (works, authors, sources, topics, and more). The Unpaywall format is best when you're integrating with tools that already speak it.
@@ -32,6 +32,12 @@ DOIs can be created by any of several [Registration Agencies](https://www.doi.or
 
 **DataCite DOIs** aren't included. Nearly everything with a DataCite DOI is Open Access, so classifying them added little value and was mostly a source of errors — for statistical purposes, if you have a DataCite DOI, it's OA. (OpenAlex itself *does* index DataCite works — that's one of the things the [OpenAlex API](/api/) gives you beyond the Unpaywall format.)
 
+## The Unpaywall Data Feed
+
+Unpaywall has a data feed for [subscribers](https://openalex.org/pricing): daily change updates in the Unpaywall record format, covering Crossref-DOI works only. It delivers changes to the same underlying OpenAlex data — the feed exists for the ecosystem of integrations that already speak the Unpaywall schema, and it's one of the [four ways to keep in sync with OpenAlex](/docs/snapshot-updates/#keeping-in-sync-with-openalex).
+
+For any new integration, use an OpenAlex-native sync method instead — they cover every entity type (works, authors, sources, institutions, and the rest) in the full OpenAlex schema. If you're an existing Unpaywall Data Feed subscriber weighing a migration, [talk to us](mailto:sales@openalex.org) — the mapping from Unpaywall records to OpenAlex works is well-trodden.
+
 ## Fixing errors
 
 - **A specific article's OA status looks wrong:** report it at [unpaywall.org/fix](https://unpaywall.org/fix).
@@ -43,4 +49,4 @@ DOIs can be created by any of several [Registration Agencies](https://www.doi.or
 - [Open Access](/docs/open-access/) — how OpenAlex determines OA status, the taxonomy behind `oa_status`
 - [Unpaywall change notes](/docs/unpaywall-change-notes/) — methodology changes affecting the dataset
 - [Using Unpaywall data safely](/docs/unpaywall-data-safety/) — code-injection care when displaying metadata
-- [Data feed & changefiles](/docs/data-feed/) — the OpenAlex-native way to stay in sync
+- [Updates & releases](/docs/snapshot-updates/#keeping-in-sync-with-openalex) — the OpenAlex-native ways to stay in sync

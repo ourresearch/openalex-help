@@ -39,6 +39,6 @@ The same dataset is available through three channels, depending on your needs:
 
 - **[OpenAlex Web](https://openalex.org)** — the friendly web interface: search, filter, group, and export without writing code.
 - **[The API](/api/)** — a fast, modern REST API for programmatic access, free to start, plus OQL for expressive queries.
-- **[Bulk data](/docs/bulk-data/)** — the full-dataset snapshot, changefiles, and the full-text content archive, for when you want the whole thing on your own machines.
+- **[Bulk data](/docs/bulk-data/)** — the full-dataset snapshot and the full-text content archive, for when you want the whole thing on your own machines.
 
 Coverage and quality questions — what's included, how it compares to other databases, how accurate it is — are covered in [Coverage & accuracy](/docs/coverage-and-accuracy/).
