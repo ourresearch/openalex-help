@@ -13,7 +13,7 @@ This page is the authoritative reference for how the [snapshot](/docs/snapshot/)
 | Plan | What you get |
 |---|---|
 | **Free** (everyone) | New full releases of the public snapshot (`s3://openalex/data/`), released **quarterly**. Each release replaces the bucket contents in place. |
-| **Paid** ([Premium, Institutional, Partner](https://openalex.org/pricing)) | A **daily** full snapshot — the complete database, rebuilt and published every day (dated folders in the `openalex-snapshots` staging bucket) — plus the premium sync filters on the API. |
+| **Paid** ([Member+ and Partner plans](https://openalex.org/pricing)) | A **daily** full snapshot — the complete database, rebuilt and published every day (dated folders in the `openalex-snapshots` staging bucket) — plus the premium sync filters on the API. |
 
 The authoritative history of what shipped when is [`RELEASE_NOTES.txt`](https://openalex.s3.amazonaws.com/RELEASE_NOTES.txt), at the root of the public bucket. Each entry summarizes the data changes in that release — new sources, quality fixes, schema additions. Check it (and the manifest `date`) rather than guessing from file timestamps.
 
