@@ -107,18 +107,6 @@ export const NAV_GROUPS: Record<string, NavGroup[]> = {
         'quarterly-supporter-meetings',
       ],
     },
-    {
-      label: 'Community & events',
-      desc: 'Webinars, office hours, and OpenAlex in the wild.',
-      slugs: [
-        'user-meeting',
-        'webinars',
-        'office-hours',
-        'conferences-and-other-events',
-        'openalex-in-the-news',
-        'projects-using-openalex',
-      ],
-    },
   ],
 
   docs: [

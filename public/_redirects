@@ -131,8 +131,8 @@
 /hc/en-us/articles/29659476661527  /docs/can-i-search-patents-in-openalex/  301
 /hc/en-us/articles/29659391338263-How-can-I-get-my-repository-indexed-in-OpenAlex  /help/how-can-i-get-my-repository-indexed-in-openalex/  301
 /hc/en-us/articles/29659391338263  /help/how-can-i-get-my-repository-indexed-in-openalex/  301
-/hc/en-us/articles/29039538348823-OpenAlex-in-the-News  /help/openalex-in-the-news/  301
-/hc/en-us/articles/29039538348823  /help/openalex-in-the-news/  301
+/hc/en-us/articles/29039538348823-OpenAlex-in-the-News  https://openalex.org  301
+/hc/en-us/articles/29039538348823  https://openalex.org  301
 /hc/en-us/articles/28952211777047-Does-OpenAlex-index-books  /docs/does-openalex-index-books/  301
 /hc/en-us/articles/28952211777047  /docs/does-openalex-index-books/  301
 /hc/en-us/articles/28951241521047-Can-I-search-exact-terms  /docs/can-i-search-exact-terms/  301
@@ -215,8 +215,8 @@
 /hc/en-us/articles/27188534567703  /docs/french-affiliation-structures-are-complex-how-does-openalex-handle-the/  301
 /hc/en-us/articles/27188355855639-Why-are-only-some-of-my-repository-records-showing-up-in-openalex  /help/why-are-only-some-of-my-repository-records-showing-up-in-openalex/  301
 /hc/en-us/articles/27188355855639  /help/why-are-only-some-of-my-repository-records-showing-up-in-openalex/  301
-/hc/en-us/articles/27086501974551-Projects-Using-OpenAlex  /help/projects-using-openalex/  301
-/hc/en-us/articles/27086501974551  /help/projects-using-openalex/  301
+/hc/en-us/articles/27086501974551-Projects-Using-OpenAlex  https://openalex.org  301
+/hc/en-us/articles/27086501974551  https://openalex.org  301
 /hc/en-us/articles/25271311639063-Data-ingest-pipeline  /docs/data-ingest-pipeline/  301
 /hc/en-us/articles/25271311639063  /docs/data-ingest-pipeline/  301
 /hc/en-us/articles/24942051299095-Estimate-the-APC-fees-my-institution-has-paid-to-make-research-Open-Access  /learn/estimate-the-apc-fees-my-institution-has-paid-to-make-research-open-ac/  301
@@ -225,14 +225,14 @@
 /hc/en-us/articles/24830109246615  /learn/count-incoming-citations-to-any-results-set/  301
 /hc/en-us/articles/24829724234007-Export-results-from-the-OpenAlex-website  /help/export-results-from-the-openalex-website/  301
 /hc/en-us/articles/24829724234007  /help/export-results-from-the-openalex-website/  301
-/hc/en-us/articles/24429068929687-User-Meeting  /help/user-meeting/  301
-/hc/en-us/articles/24429068929687  /help/user-meeting/  301
-/hc/en-us/articles/24428530346263-Office-Hours  /help/office-hours/  301
-/hc/en-us/articles/24428530346263  /help/office-hours/  301
-/hc/en-us/articles/24428492324631-Webinars  /help/webinars/  301
-/hc/en-us/articles/24428492324631  /help/webinars/  301
-/hc/en-us/articles/24397920994327-Conferences-and-other-events  /help/conferences-and-other-events/  301
-/hc/en-us/articles/24397920994327  /help/conferences-and-other-events/  301
+/hc/en-us/articles/24429068929687-User-Meeting  https://openalex.org/events  301
+/hc/en-us/articles/24429068929687  https://openalex.org/events  301
+/hc/en-us/articles/24428530346263-Office-Hours  https://openalex.org/events  301
+/hc/en-us/articles/24428530346263  https://openalex.org/events  301
+/hc/en-us/articles/24428492324631-Webinars  https://openalex.org/events  301
+/hc/en-us/articles/24428492324631  https://openalex.org/events  301
+/hc/en-us/articles/24397920994327-Conferences-and-other-events  https://openalex.org/events  301
+/hc/en-us/articles/24397920994327  https://openalex.org/events  301
 /hc/en-us/articles/24397285563671-About-the-data  /docs/about-the-data/  301
 /hc/en-us/articles/24397285563671  /docs/about-the-data/  301
 /hc/en-us/articles/24396686889751-About-us  /help/about-us/  301
@@ -505,6 +505,21 @@
 /learn/download-changefiles  /docs/snapshot-updates/  301
 /learn/download-changefiles/  /docs/snapshot-updates/  301
 # <<< changefiles-retirement <<<
+
+# >>> community-retirement (D10: content moved offsite / retired, oxjob #354 + #685) >>>
+/help/user-meeting  https://openalex.org/events  301
+/help/user-meeting/  https://openalex.org/events  301
+/help/webinars  https://openalex.org/events  301
+/help/webinars/  https://openalex.org/events  301
+/help/office-hours  https://openalex.org/events  301
+/help/office-hours/  https://openalex.org/events  301
+/help/conferences-and-other-events  https://openalex.org/events  301
+/help/conferences-and-other-events/  https://openalex.org/events  301
+/help/openalex-in-the-news  https://openalex.org  301
+/help/openalex-in-the-news/  https://openalex.org  301
+/help/projects-using-openalex  https://openalex.org  301
+/help/projects-using-openalex/  https://openalex.org  301
+# <<< community-retirement <<<
 
 # >>> WILDCARDS LAST — do not move, do not add rules after this section >>>
 # CF Pages bug (oxjob #354, verified 2026-08-01): once a wildcard/splat rule
