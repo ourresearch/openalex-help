@@ -5,7 +5,7 @@ tags: ["oql"]
 generated: true
 source_id: "query-spec/api"
 source_url: "https://api.openalex.org/query/spec/api"
-source_updated: "2026-07-30"
+source_updated: "2026-08-02"
 ---
 > **Note:**
 > The OpenAlex Query Language is in **alpha**. It may change without warning — build against it at your own risk, and [tell us what you think](mailto:support@openalex.org).
@@ -69,7 +69,7 @@ How they relate:
 So: use the **classic URL** for legacy compatibility, **OQL** for most applications, and
 **OQO** when an agent or program needs a JSON schema to validate against. The
 [`/query` endpoint](#translating-a-query-the-query-endpoint) converts freely between all
-three, and every result echoes all three back in [`meta.x_query`](#reading-results-meta-x-query).
+three, and every result echoes all three back in [`meta.x_query`](#reading-results-metax_query).
 
 ---
 

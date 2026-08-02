@@ -5,7 +5,7 @@ tags: ["oql"]
 generated: true
 source_id: "query-spec/oql"
 source_url: "https://api.openalex.org/query/spec/oql"
-source_updated: "2026-07-30"
+source_updated: "2026-08-02"
 ---
 > **Note:**
 > The OpenAlex Query Language is in **alpha**. It may change without warning — build against it at your own risk, and [tell us what you think](mailto:support@openalex.org).
@@ -19,8 +19,8 @@ source_updated: "2026-07-30"
 > error** (never implicit AND), and **`unknown` inside a group is the null
 > sentinel**). This is a cases-first
 > specification: the normative truth is the worked-example corpus
-> [`docs/oql/corpus.yaml`](./oql/corpus.yaml), machine-checked by
-> [`tests/oql/test_corpus_roundtrip.py`](../tests/oql/test_corpus_roundtrip.py).
+> `docs/oql/corpus.yaml`, machine-checked by
+> `tests/oql/test_corpus_roundtrip.py`.
 > **The rules in this prose are the generalization *under* the cases.** When prose
 > and a corpus case disagree, the case wins — fix the prose.
 >
@@ -28,10 +28,10 @@ source_updated: "2026-07-30"
 > designed months ago and never shipped; v2 is a "build one to throw away" rev
 > (Brooks) — the general idea survives, many local decisions changed. The
 > production translator is still v1.1; reconciling it to v2 is roadmap step 3 (see
-> [`docs/oql/gap_report.md`](./oql/gap_report.md)).
+> `docs/oql/gap_report.md`).
 
 OQL is the **human-readable surface over OQO**. It is defined and validated *in
-terms of* OQO (the canonical query object, [`oqo-spec.md`](./oqo-spec.md)) — not
+terms of* OQO (the canonical query object, [`oqo-spec.md`](/docs/oqo-schema/)) — not
 in terms of OXURL. Its whole bet, versus Scopus / Web of Science / Dimensions, is
 that a researcher can **read a query aloud and roughly understand it** (confirmed
 by the #277 peer survey: OQL is the only one of the four that does this).
@@ -111,7 +111,7 @@ is **OQO-identity-preserving by construction** — it cannot change meaning or b
 any consumer. There is exactly **One Right Way** to lay a query out; it is a pure
 function of the query, never of the input's whitespace.
 
-Implemented in [`query_translation/oql_lang.py`](../query_translation/oql_lang.py)
+Implemented in `query_translation/oql_lang.py`
 (`format_oql`, reached via `render()` / `render_tree()`); the rules:
 
 - **Target width 80 columns** (soft); **indent 2 spaces** per level.
@@ -665,7 +665,7 @@ works where title has within 3 (foo, "bar")             (row 192) ✗ OQL_PROXIM
   error with a fix-it — never a silent literal, never a false promise. (This
   **reverses** #337's old `OQL_WILDCARD_IN_QUOTES` "move it out of the quotes"
   guidance: quotes are now exactly where wildcards belong.) See
-  [`docs/oql/engine_findings.md`](./oql/engine_findings.md) for the engine behavior.
+  `docs/oql/engine_findings.md` for the engine behavior.
 
 > **Resolved (was an acknowledged limitation):** wildcard-in-a-phrase and
 > wildcard-in-proximity — `"smart* phone"` (row 79), `within 3 ("smart",
@@ -900,7 +900,7 @@ entity letter is enforced.
 
 ## 7. The corpus (normative)
 
-[`docs/oql/corpus.yaml`](./oql/corpus.yaml) is the normative set of `(OQL, OQO)`
+`docs/oql/corpus.yaml` is the normative set of `(OQL, OQO)`
 pairs. It covers: every in-scope #284 worked-example row rendered to v2, the 9
 gauntlet cases, the proximity/wildcard matrix, and the entity/boolean/set cases.
 Each row is `ok` (round-trips), `error` (named diagnostic + fix-it), or `boundary`
@@ -945,12 +945,12 @@ work-list.
 
 ## 10. Related documentation
 
-- [`oqo-spec.md`](./oqo-spec.md) — the canonical query object OQL is sugar over.
-- [`oql-addressing.md`](./oql-addressing.md) — decimal addressing (outline
+- [`oqo-spec.md`](/docs/oqo-schema/) — the canonical query object OQL is sugar over.
+- `oql-addressing.md` — decimal addressing (outline
   coordinates `1`, `3.1`, `4.1.2`) over this filter tree, for diagnostics, the
   builder, and human reference (oxjob #474). Additive; changes no language surface.
-- [`oql/corpus.yaml`](./oql/corpus.yaml) — the normative cases.
-- [`oql/gap_report.md`](./oql/gap_report.md) — v1.1 → v2 work-list.
-- [`oql/engine_findings.md`](./oql/engine_findings.md) — engine reality behind the
+- `oql/corpus.yaml` — the normative cases.
+- `oql/gap_report.md` — v1.1 → v2 work-list.
+- `oql/engine_findings.md` — engine reality behind the
   wildcard/proximity errors.
 - `plans/oqlo.md` (oxjobs) — the OQLO charter (architecture, roadmap, decisions).

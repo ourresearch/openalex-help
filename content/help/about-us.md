@@ -17,7 +17,7 @@ OpenAlex is an open, comprehensive index of scholarly works. Compared to legacy 
 OpenAlex is:
 
 -   **Big** — We're focused on coverage inclusive, offering particular advantages in coverage of works from diverse languages and from the Global South. OpenAlex now indexes more than 477 million works, the largest connected repository of scholarship ever published.
--   **Easy** — Our service is fast, modern, and well-documented, with a [well-documented](https://docs.openalex.org/) API, a command-line tool, and a website for exploring the data.
+-   **Easy** — Our service is fast, modern, and well-documented, with a [well-documented](/api/) API, a command-line tool, and a website for exploring the data.
 -   **Open** — The complete dataset is free under the CC0 license, supporting transparency and reuse.
 
 We believe the global research system is one of humankind's most beautiful creations. OpenAlex aims to make that whole creation available to everyone, everywhere.

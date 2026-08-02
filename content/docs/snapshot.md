@@ -92,7 +92,7 @@ A per-entity manifest looks like this:
 }
 ```
 
-The combined manifest has the same shape but nests one entry per entity under an `entities` array, with a top-level `meta` carrying the totals. The manifest drives the [incremental-update workflow](/docs/snapshot-updates/#keeping-a-copy-up-to-date).
+The combined manifest has the same shape but nests one entry per entity under an `entities` array, with a top-level `meta` carrying the totals. The manifest drives the [incremental-update workflow](/docs/snapshot-updates/#keeping-in-sync-with-openalex).
 
 ## Entity schemas
 

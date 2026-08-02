@@ -17,4 +17,4 @@ Example: [https://openalex.org/works?page=1&filter=corresponding\_institution\_i
 
 This approach is based on several assumptions which could bias the results—[these are discussed in detail here](/docs/journal-quality/#estimating-apc-spend). Throughout the process, there are both under- and over-estimates, which interact to provide an estimate that is likely closer to the real values paid. It is important to note that APC fees and behaviours vary among disciplines and institution type and so global patterns will not hold the same for institutions that vary in size, disciplinary focus, and/or organizational type (e.g., government, academic, research hospital, company).
 
-[Learn more about Open Access (OA) in OpenAlex](https://help.openalex.org/hc/en-us/articles/24347035046295)
+[Learn more about Open Access (OA) in OpenAlex](/docs/open-access/)

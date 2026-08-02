@@ -206,6 +206,6 @@ See [Deprecations](/api/deprecations/) for full list. Key items:
 
 ## Links
 
-- Full docs: https://docs.openalex.org
+- Full docs: https://help.openalex.org (machine index: https://help.openalex.org/llms.txt)
 - API key: https://openalex.org/settings/api
 - Help: https://openalex.org/help

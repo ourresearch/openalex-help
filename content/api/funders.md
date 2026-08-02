@@ -8,7 +8,7 @@ source_updated: "2026-02-17"
 ---
 Funders are organizations that fund research. OpenAlex indexes about 32,000 funders. Funder data comes from Crossref, and is enhanced with data from Wikidata and ROR.
 
-Funders are connected to works through [grants](/api/key-concepts/#grants).
+Funders are connected to works through their [`funders` and `awards` fields](/docs/work-fields/#funders).
 
 ## Filter, sort, and group_by fields
 

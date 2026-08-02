@@ -335,6 +335,7 @@
 /download/changefiles  /docs/snapshot-updates/  301
 /download/full-text-pdfs  /docs/full-text-pdfs/  301
 /download/openalex-cli  /docs/openalex-cli/  301
+/api-reference/openapi.json  /openapi.json  301
 /api-reference/introduction  /api/introduction/  301
 /api-reference/authentication  /api/authentication/  301
 /api-reference/errors  /api/errors/  301

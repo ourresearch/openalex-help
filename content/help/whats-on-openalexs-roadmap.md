@@ -12,7 +12,7 @@ At the moment, we are working on a complete re-write of the OpenAlex guts code t
 
 For now, the best way to keep up to date with our developments is to come to our quarterly townhalls, where CEO Jason Priem gives an update on recent development, on-going work, and future priorities.
 
-You can sign-up for the next townhall here: [Webinars – OpenAlex](https://help.openalex.org/hc/en-us/articles/24428492324631-Webinars) or watch recordings of recent townhalls on our YouTube page.
+You can sign-up for the next townhall here: [our events page](https://openalex.org/events) or watch recordings of recent townhalls on our YouTube page.
 
 Q2 April 16, 2025 Update: [https://www.youtube.com/watch?v=d070TbIOOrw](https://www.youtube.com/watch?v=d070TbIOOrw) 
 

@@ -6,7 +6,7 @@ source_id: "api-reference/authentication"
 source_url: "https://developers.openalex.org/api-reference/authentication"
 source_updated: "2026-06-20"
 ---
-OpenAlex data is and will remain available at no cost. Our [data snapshot](/docs/bulk-data/#openalex-snapshot) is totally free for bulk download. The API is a freemium service with free daily usage—$0.10/day with no key, or 10× that ($1/day) with a [free API key](#getting-an-api-key)—and after that you pay for what you use. [We sell services, not data.](https://openscholarlyinfrastructure.org/)
+OpenAlex data is and will remain available at no cost. Our [data snapshot](/docs/snapshot/) is totally free for bulk download. The API is a freemium service with free daily usage—$0.10/day with no key, or 10× that ($1/day) with a [free API key](#getting-an-api-key)—and after that you pay for what you use. [We sell services, not data.](https://openscholarlyinfrastructure.org/)
 
 ## Getting an API Key
 
@@ -157,7 +157,7 @@ To retrieve more than 10,000 results, use [cursor paging](/api/paging/#cursor-pa
 
 **Best practices:**
 - Use `per_page=100` to reduce the number of requests needed
-- Batch ID lookups using the [OR syntax](/api/filtering/#or-operator) (up to 100 values per filter)
+- Batch ID lookups using the [OR syntax](/api/filtering/#addition-or) (up to 100 values per filter)
 - Use `select=` to [limit returned fields](/api/selecting-fields/) for faster responses
 - Implement [exponential backoff](/api/errors/#retry-logic) when you hit rate limits
 

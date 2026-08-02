@@ -10,7 +10,7 @@ The easiest way to do this in the user interface is to add a filter to your sear
 
 Finding the right citation threshold to add:
 
--   Once you have added all the filters you want to your analysis, sort by citation count ([more info here](https://help.openalex.org/hc/en-us/articles/27219504981655-How-do-I-find-the-most-cited-publications))
+-   Once you have added all the filters you want to your analysis, sort by citation count ([more info here](/help/how-do-i-find-the-most-cited-publications/))
 -   then click the three vertical dots next to the sort button to select 100 results per page
 -   scroll to the bottom and find the number of citations received by the last work (i.e., the 100th most cited)
 -   this number is the threshold you'll add. as i am typing this, [my example looking at UBC journal articles](https://openalex.org/works?page=1&filter=type%3Atypes%2Farticle,primary_location.source.type%3Asource-types%2Fjournal) finds that threshold should be 2,516 citations

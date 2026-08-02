@@ -11,7 +11,7 @@ OpenAlex's author entity resolution is good but imperfect. A profile (`A1234...`
 > **Tip:**
 > This is a good task to hand to an LLM agent. The "find missing works" half powers the "Add works" dialog on author profiles in the OpenAlex web UI.
 
-The technique uses [`raw_author_name.search`](/api/searching/#searching-author-bylines-with-raw_author_name-search), which matches the byline string on each work directly (rather than the resolved `author.id`). That lets you find works the resolver missed, and inspect the byline on each work currently attached to the profile.
+The technique uses [`raw_author_name.search`](/api/searching/#searching-author-bylines-with-raw_author_namesearch), which matches the byline string on each work directly (rather than the resolved `author.id`). That lets you find works the resolver missed, and inspect the byline on each work currently attached to the profile.
 
 ## Step 1: Get the profile's display name
 

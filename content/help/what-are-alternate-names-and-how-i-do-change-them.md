@@ -1,12 +1,12 @@
 ---
 title: "What are alternate names and how I do change them?"
-description: "The alternate names field for OpenAlex author profiles (display\\name\\alternatives(https://docs.openalex.org/api-entities/authors/author-objectdisplaynamealternatives)) are the v…"
+description: "The display_name_alternatives field on OpenAlex author profiles holds name variants for an author, and how to request changes to them."
 tags: ["data"]
 source_id: "27282148869399"
 source_url: "https://help.openalex.org/hc/en-us/articles/27282148869399-What-are-alternate-names-and-how-I-do-change-them"
 source_updated: "2024-10-23"
 ---
-The alternate names field for OpenAlex author profiles ([display\_name\_alternatives](https://docs.openalex.org/api-entities/authors/author-object#display_name_alternatives)) are the versions of the name that have been used on publications linked to an author profile. For instance, Kyle Demes ([A5086928770](https://openalex.org/authors/a5086928770)) has published papers using an author name of "K Demes", "Kyle W. Demes", and "Kyle Demes" and so all of these are included in his author profile as alternate names.
+The alternate names field for OpenAlex author profiles ([display\_name\_alternatives](/api/authors/)) are the versions of the name that have been used on publications linked to an author profile. For instance, Kyle Demes ([A5086928770](https://openalex.org/authors/a5086928770)) has published papers using an author name of "K Demes", "Kyle W. Demes", and "Kyle Demes" and so all of these are included in his author profile as alternate names.
 
 Sometimes authors change names and so the primary display name might not match their alternate names. But sometimes we also match author names incorrectly to an author's profile. For instance, our algorithmic matching might not have matched "Kyle William Glenn" to the same profile when it should have and it might have matched "Kyla Demers" when it should not have.
 

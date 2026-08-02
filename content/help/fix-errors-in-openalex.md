@@ -16,6 +16,6 @@ In the meantime, the best way to submit curation requests for common errors is t
 -   [Fixing Source Profiles](https://docs.google.com/forms/d/e/1FAIpQLSehRQBTvckqFhmbTLruRxu-GEOuaIpZWGBI4PDGcI4E4kZqWQ/viewform?usp=sf_link)
 -   [Fixing Work records](https://docs.google.com/forms/d/e/1FAIpQLScUcNZdqOBFxVJ0oihjeHFilm9IqqWKQY4WDmmqgxUNGr3R1g/viewform?usp=sf_link)
 
-If the errors you've found are related to affiliation metadata and matching, you should first make sure your institution's ROR record is correct (and update it, if needed). Then you can use the works-magnet to fix our algorithmic matching. [More on that here](https://help.openalex.org/hc/en-us/articles/27204855162007-I-think-my-institution-is-missing-works-in-OpenAlex-What-can-I-do).
+If the errors you've found are related to affiliation metadata and matching, you should first make sure your institution's ROR record is correct (and update it, if needed). Then you can use the works-magnet to fix our algorithmic matching. [More on that here](/help/i-think-my-institution-is-missing-works-in-openalex-what-can-i-do/).
 
 For all other errors, send us a ticket: [support@openalex.org](mailto:support@openalex.org)

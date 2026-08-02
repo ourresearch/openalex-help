@@ -142,7 +142,7 @@ GET /works/pmid:29456894
 
 The complete API specification is available for tooling and code generation:
 
-- **[OpenAPI Spec](/api-reference/openapi.json)** — Download the OpenAPI 3.1 specification
+- **[OpenAPI Spec](/openapi.json)** — Download the OpenAPI 3.1 specification
 
 ## Next Steps
 

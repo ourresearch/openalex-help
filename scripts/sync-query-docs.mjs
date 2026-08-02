@@ -51,7 +51,10 @@ const PAGES = [
     description:
       "Executing and translating OQL over HTTP — endpoints, query formats, and reading results.",
     body: (t) =>
-      stripH1(t).replaceAll("https://api.openalex.org/query/spec/schema", "/docs/oqo-schema/"),
+      stripH1(t)
+        .replaceAll("https://api.openalex.org/query/spec/schema", "/docs/oqo-schema/")
+        // upstream anchor doesn't survive this site's heading slugger
+        .replaceAll("#reading-results-meta-x-query", "#reading-results-metax_query"),
   },
   {
     file: "content/docs/oql-spec.md",
@@ -59,7 +62,13 @@ const PAGES = [
     title: "OQL specification",
     description:
       "The frozen normative specification of the OpenAlex Query Language (v2).",
-    body: (t) => stripH1(t),
+    // The spec references sibling files in the elastic-api repo. Only the OQO
+    // spec has a published counterpart here; de-link the rest (keep the code-
+    // formatted text) so the page carries no broken relative links.
+    body: (t) =>
+      stripH1(t)
+        .replaceAll("](./oqo-spec.md)", "](/docs/oqo-schema/)")
+        .replace(/\[([^\]]+)\]\(\.\.?\/[^)]*\)/g, "$1"),
   },
   {
     file: "content/docs/oql-grammar.md",

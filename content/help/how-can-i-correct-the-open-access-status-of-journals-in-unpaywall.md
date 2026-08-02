@@ -8,7 +8,7 @@ source_updated: "2025-08-08"
 ---
 If you've found a journal in Unpaywall whose Open Access status is incorrect, you can quickly make submit corrections using our [Journal Curation page](https://openalex.org/curate/journals). This tool currently works for Unpaywall records only, but will be extended to OpenAlex soon. 
 
-This tool is currently only available to logged in users who are known librarians to OpenAlex. If you would like to have your account marked as a librarian please [submit a support request](https://openalex.zendesk.com/hc/en-us/requests/new).
+This tool is currently only available to logged in users who are known librarians to OpenAlex. If you would like to have your account marked as a librarian please [submit a support request](https://openalex.org/contact).
 
 Using this tool you can:
 
