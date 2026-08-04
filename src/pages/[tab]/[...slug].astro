@@ -2,7 +2,6 @@
 import { render } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import DocsShell from '../../layouts/DocsShell.astro';
-import ThemeSwitch from '../../components/ThemeSwitch.astro';
 import { allEntries, mdUrlFor, type Tab } from '../../lib/tabs';
 import { groupEntries, groupLabelFor } from '../../lib/nav';
 
@@ -42,7 +41,6 @@ const mdUrl = mdUrlFor(tab, entry);
       <h1>{entry.data.title}</h1>
       <Content />
       <div class="article-foot">
-        <ThemeSwitch />
         <a class="md-link" href={mdUrl}>View as Markdown</a>
       </div>
     </article>
@@ -75,7 +73,6 @@ const mdUrl = mdUrlFor(tab, entry);
         <h1>{entry.data.title}</h1>
         <Content />
         <div class="article-foot">
-          <ThemeSwitch />
           <a class="md-link" href={mdUrl}>View as Markdown</a>
         </div>
       </article>
@@ -143,7 +140,7 @@ const mdUrl = mdUrlFor(tab, entry);
   .article-foot {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-end;
     margin-top: 3rem;
     padding-top: 1.25rem;
     border-top: 1px solid var(--line);

@@ -16,6 +16,7 @@ interface Props {
   activeSlug?: string;
 }
 const { tab, groups, activeSlug } = Astro.props;
+const path = Astro.url.pathname;
 ---
 
 <aside>
@@ -49,6 +50,10 @@ const { tab, groups, activeSlug } = Astro.props;
                 ))}
               </div>
             </details>
+          ) : item.href ? (
+            <a href={item.href} aria-current={path === item.href ? 'page' : undefined}>
+              {item.label}
+            </a>
           ) : (
             item.entry && (
               <a href={urlFor(tab, item.entry)} aria-current={item.entry.id === activeSlug ? 'page' : undefined}>
@@ -75,7 +80,7 @@ const { tab, groups, activeSlug } = Astro.props;
     flex-direction: column;
     gap: 1.5rem;
     padding: 1.5rem 1rem 2.5rem 1.5rem;
-    font-size: 0.86rem;
+    font-size: 1rem; /* 16px items, cursor-measured */
     scrollbar-width: thin;
   }
   .group {
@@ -83,7 +88,7 @@ const { tab, groups, activeSlug } = Astro.props;
     flex-direction: column;
   }
   .group-label {
-    font-size: 0.8rem;
+    font-size: 0.75rem; /* 12px, cursor-measured */
     color: var(--muted);
     margin-bottom: 0.45rem;
   }

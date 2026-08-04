@@ -20,7 +20,12 @@ export interface NavSubgroup {
   slug?: string; // optional overview page for the subgroup itself
   children: string[];
 }
-export type NavItem = string | NavSubgroup;
+/** A static sidebar link to a non-article route (e.g. "Welcome" → the tab landing). */
+export interface NavLink {
+  label: string;
+  href: string;
+}
+export type NavItem = string | NavSubgroup | NavLink;
 
 export interface NavGroup {
   label: string;
@@ -38,6 +43,7 @@ export const NAV_GROUPS: Record<string, NavGroup[]> = {
         'where-can-i-find-a-non-technical-explanation-of-how-open-alex-works',
         'how-can-i-cite-openalex',
         'pricing',
+        'what-is-openalexs-sustainability-model',
         'whats-on-openalexs-roadmap',
         'how-long-does-it-take-for-you-to-respond-to-support-tickets',
       ],
@@ -111,14 +117,12 @@ export const NAV_GROUPS: Record<string, NavGroup[]> = {
 
   docs: [
     {
-      label: 'Start here',
+      label: 'Get started',
       desc: 'What OpenAlex is and how it all fits together.',
       slugs: [
-        'about-the-data',
-        'how-openalex-works',
-        'openness-and-sustainability',
-        'coverage-and-accuracy',
-        'changelog',
+        { label: 'Welcome', href: '/docs/' },
+        'quickstart',
+        'how-it-works',
       ],
     },
     {
@@ -301,10 +305,11 @@ export const NAV_GROUPS: Record<string, NavGroup[]> = {
 
 import type { AnyEntry } from './tabs';
 
-/** A rendered sidebar row: a plain article link, or a chevron subgroup. */
+/** A rendered sidebar row: a plain article link, a static link, or a chevron subgroup. */
 export interface ResolvedItem {
   label: string;
   entry?: AnyEntry; // plain item's entry, or the subgroup's overview page
+  href?: string; // static link (e.g. "Welcome" → the tab landing)
   children: AnyEntry[]; // non-empty only for subgroups
 }
 
@@ -318,6 +323,7 @@ export interface ResolvedGroup {
 /** All slugs a NavItem covers, in render order. */
 function itemSlugs(item: NavItem): string[] {
   if (typeof item === 'string') return [item];
+  if ('href' in item) return []; // static links carry no article slugs
   return [...(item.slug ? [item.slug] : []), ...item.children];
 }
 
@@ -345,6 +351,8 @@ export function groupEntries(tab: string, entries: AnyEntry[]): ResolvedGroup[] 
       if (typeof item === 'string') {
         const entry = lookup(item);
         if (entry) items.push({ label: entry.data.title, entry, children: [] });
+      } else if ('href' in item) {
+        items.push({ label: item.label, href: item.href, children: [] });
       } else {
         const entry = item.slug ? lookup(item.slug) : undefined;
         const children = item.children.map(lookup).filter((e): e is AnyEntry => Boolean(e));

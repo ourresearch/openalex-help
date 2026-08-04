@@ -5,12 +5,8 @@ export default defineConfig({
   site: 'https://help.openalex.org',
   markdown: {
     shikiConfig: {
-      // Light/dark pair: Shiki emits both themes via CSS variables; the
-      // .dark / prefers-color-scheme rules in global.css flip them.
-      themes: {
-        light: 'github-light',
-        dark: 'github-dark',
-      },
+      // Light-mode only for now (dark support removed 2026-08-04, oxjob #354).
+      theme: 'github-light',
     },
   },
 });

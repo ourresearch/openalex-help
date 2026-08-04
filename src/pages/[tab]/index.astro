@@ -1,7 +1,6 @@
 ---
 import Base from '../../layouts/Base.astro';
 import DocsShell from '../../layouts/DocsShell.astro';
-import ThemeSwitch from '../../components/ThemeSwitch.astro';
 import TopicBrowser from '../../components/TopicBrowser.astro';
 import Card from '../../components/Card.astro';
 import Icon from '../../components/Icon.astro';
@@ -57,9 +56,8 @@ const providers = [
 // per-group topic cards (each linking to its group's first article).
 const startHere: Record<string, { slug: string; icon: string; blurb: string }[]> = {
   docs: [
-    { slug: 'about-the-data', icon: 'book-open', blurb: 'The entities, how they connect, and the three ways to get them' },
-    { slug: 'how-openalex-works', icon: 'cpu', blurb: 'How we build the map of the research ecosystem' },
-    { slug: 'changelog', icon: 'clock', blurb: 'Recent updates and changes to OpenAlex' },
+    { slug: 'quickstart', icon: 'play', blurb: 'Get real data in five minutes — web, API, or agent' },
+    { slug: 'how-it-works', icon: 'cpu', blurb: 'How we build the map of the research ecosystem' },
   ],
   api: [
     { slug: 'introduction', icon: 'zap', blurb: 'What the API offers and how it is organized' },
@@ -68,7 +66,7 @@ const startHere: Record<string, { slug: string; icon: string; blurb: string }[]>
   ],
 };
 const groupIcons: Record<string, string> = {
-  'Start here': 'compass',
+  'Get started': 'compass',
   'Works & metadata': 'file-text',
   'Authors & institutions': 'users',
   'Sources & publishers': 'book',
@@ -102,9 +100,9 @@ for (const { tags } of learnCards) {
 const start = (startHere[tab] ?? [])
   .map(({ slug, icon, blurb }) => ({ entry: bySlug.get(slug), icon, blurb }))
   .filter((s): s is { entry: AnyEntry; icon: string; blurb: string } => Boolean(s.entry));
-// Topic cards: skip "Start here" (its content is the card row above).
+// Topic cards: skip "Get started" (its content is the card row above).
 const topicGroups = (NAV_GROUPS[tab] ?? [])
-  .filter((g) => !['Start here', 'Getting started'].includes(g.label) || tab === 'help')
+  .filter((g) => !['Get started', 'Getting started'].includes(g.label) || tab === 'help')
   .map((g) => ({ ...g, first: flatSlugs(g).map((s) => bySlug.get(s)).find(Boolean) }))
   .filter((g) => g.first);
 ---
@@ -112,9 +110,16 @@ const topicGroups = (NAV_GROUPS[tab] ?? [])
 {isShell ? (
   <DocsShell title={meta[tab].label} description={meta[tab].lede} tab={tab} groups={groups}>
     <article class="prose">
-      <span class="eyebrow">{meta[tab].label}</span>
+      <span class="eyebrow">{tab === 'docs' ? 'Get started' : meta[tab].label}</span>
       <h1>{meta[tab].h1}</h1>
       <p class="lede">{meta[tab].lede}</p>
+      {tab === 'docs' && (
+        <p class="lede">
+          Under the hood, OpenAlex continuously gathers records from thousands of sources — Crossref,
+          ORCID, PubMed, and repositories from arXiv to Zenodo — and connects them into one open graph;
+          see <a href="/docs/how-it-works/">How it works</a>.
+        </p>
+      )}
 
       <h2 id="start-here">Start here</h2>
       <div class="card-grid">
@@ -134,10 +139,6 @@ const topicGroups = (NAV_GROUPS[tab] ?? [])
             {g.desc}
           </Card>
         ))}
-      </div>
-
-      <div class="article-foot">
-        <ThemeSwitch />
       </div>
     </article>
     <nav class="toc" slot="rail" aria-label="On this page">
@@ -190,9 +191,6 @@ const topicGroups = (NAV_GROUPS[tab] ?? [])
           ))}
         </ul>
         <p class="no-match" hidden>No recipes match those filters yet — the library is growing.</p>
-        <div class="page-foot">
-          <ThemeSwitch />
-        </div>
       </div>
     </div>
   </Base>
@@ -236,10 +234,6 @@ const topicGroups = (NAV_GROUPS[tab] ?? [])
         <span class="browse-label">Browse by topic</span>
         <TopicBrowser tab={tab} groups={groups} />
       </section>
-
-      <div class="page-foot reveal" style="animation-delay: 0.24s">
-        <ThemeSwitch />
-      </div>
     </div>
   </Base>
 )}

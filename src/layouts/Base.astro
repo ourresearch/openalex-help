@@ -27,23 +27,15 @@ const path = Astro.url.pathname;
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <title>{title} | OpenAlex Help</title>
+    <title>{title} | OpenAlex Help Center</title>
     {description && <meta name="description" content={description} />}
     <link rel="canonical" href={new URL(path, Astro.site)} />
-    <script is:inline>
-      // Apply saved theme before first paint to avoid a flash.
-      (function () {
-        var t = localStorage.getItem('theme');
-        if (t === 'light' || t === 'dark') document.documentElement.classList.add(t);
-      })();
-    </script>
   </head>
   <body>
     <header>
       <nav aria-label="Main">
         <a href="/help/" class="logo">
-          <img class="light-only" src="/brand/openalex-lockup.png" alt="OpenAlex" height="20" />
-          <img class="dark-only" src="/brand/openalex-lockup-white.png" alt="OpenAlex" height="20" />
+          <img src="/brand/openalex-lockup.png" alt="OpenAlex" height="22" />
         </a>
         <div class="tabs">
           {tabs.map((t) => (
@@ -63,17 +55,6 @@ const path = Astro.url.pathname;
       <slot />
     </main>
 
-    <footer>
-      <div class="foot-inner">
-        <span>OpenAlex — the open catalog of the global research system</span>
-        <span class="foot-links">
-          <a href="https://openalex.org">openalex.org</a>
-          <a href="https://openalex.org/contact">Contact support</a>
-          <a href="/llms.txt">llms.txt</a>
-        </span>
-      </div>
-    </footer>
-
     <style>
       header {
         position: sticky;
@@ -88,30 +69,31 @@ const path = Astro.url.pathname;
         align-items: center;
         gap: 1.5rem;
         height: var(--nav-h);
-        padding: 0 1.25rem;
+        padding: 0 1.5rem;
       }
       .logo {
         display: flex;
         align-items: center;
       }
       .logo img {
-        height: 20px;
+        height: 22px;
         width: auto;
         display: block;
       }
       .tabs {
         display: flex;
-        gap: 0.35rem;
         align-self: stretch;
       }
-      /* Cursor-style tabs: quiet text, active = accent + underline sitting on
-         the header's bottom border. */
+      /* Cursor-measured tabs: 14px, 12px side padding, active = accent text +
+         a 2px accent underline spanning the full pill, sitting on the header's
+         bottom border. */
       .tabs a {
         display: flex;
         align-items: center;
         color: var(--muted);
-        font-size: 0.88rem;
-        padding: 0 0.6rem;
+        font-size: 0.875rem;
+        padding: 0 0.75rem;
+        border-radius: 4px;
         position: relative;
         transition: color 0.15s;
       }
@@ -125,8 +107,8 @@ const path = Astro.url.pathname;
       .tabs a[aria-current='page']::after {
         content: '';
         position: absolute;
-        left: 0.6rem;
-        right: 0.6rem;
+        left: 0;
+        right: 0;
         bottom: -1px;
         height: 2px;
         background: var(--accent);
@@ -169,30 +151,6 @@ const path = Astro.url.pathname;
         max-width: none;
         margin: 0;
         padding: 0;
-      }
-      footer {
-        border-top: 1px solid var(--line);
-        font-size: 0.8rem;
-        color: var(--muted);
-      }
-      .foot-inner {
-        max-width: 84rem;
-        margin: 0 auto;
-        padding: 1.25rem 1.5rem;
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.75rem 2rem;
-        justify-content: space-between;
-      }
-      .foot-links {
-        display: flex;
-        gap: 1.5rem;
-      }
-      .foot-links a {
-        color: var(--muted);
-      }
-      .foot-links a:hover {
-        color: var(--ink);
       }
       @media (max-width: 1000px) {
         .nav-center {

@@ -1,12 +1,12 @@
 /* ---------------------------------------------------------------------------
-   OpenAlex Help — design tokens & base styles
+   OpenAlex Help Center — design tokens & base styles
    Aesthetic: quiet engineering-manual minimalism (cursor.com-aligned).
-   Warm paper ground, near-black ink, one research-blue accent, Inter
-   everywhere, structure from hairline borders — not shadows or color fields.
+   Warm paper ground, near-black ink, one brand-blue accent (#2563EB, the
+   openalex.org link blue), Inter everywhere, structure from hairline
+   borders — not shadows or color fields.
 
-   Theming: tokens are defined for light (:root) and dark. Dark applies via
-   html.dark (explicit user choice) or system preference when no explicit
-   choice (html:not(.light) + media query). Toggle lives in ThemeSwitch.
+   Light-mode only for now (dark support removed 2026-08-04, oxjob #354 —
+   Jason's call: "ain't worth the trouble", can return later).
    --------------------------------------------------------------------------- */
 
 :root {
@@ -18,81 +18,27 @@
   --faint: #a3a099;
   --line: #e3e2de;
   --line-strong: #d2d1cb;
-  --accent: #15588f;
-  --accent-hover: #0e4573;
-  --accent-wash: #eef4f9;
+  --accent: #2563eb;
+  --accent-hover: #1d4ed8;
+  --accent-wash: #eff6ff;
   --code-bg: #efeeea;
 
   --font-body: 'Inter Variable', system-ui, -apple-system, sans-serif;
   --font-mono: 'JetBrains Mono Variable', ui-monospace, monospace;
 
   --measure: 68ch;
-  --nav-h: 3.125rem; /* 50px, cursor: 49 */
-}
-
-.dark {
-  --bg: #171511;
-  --panel: #1f1d18;
-  --panel-strong: #26241e;
-  --ink: #edecea;
-  --muted: #9d9a92;
-  --faint: #6b6862;
-  --line: #2a2822;
-  --line-strong: #3a3730;
-  --accent: #7fb2e0;
-  --accent-hover: #a4c9ec;
-  --accent-wash: #1c2733;
-  --code-bg: #211f1a;
-  color-scheme: dark;
-}
-
-/* System dark, unless the user explicitly chose light */
-@media (prefers-color-scheme: dark) {
-  html:not(.light) {
-    --bg: #171511;
-    --panel: #1f1d18;
-    --panel-strong: #26241e;
-    --ink: #edecea;
-    --muted: #9d9a92;
-    --faint: #6b6862;
-    --line: #2a2822;
-    --line-strong: #3a3730;
-    --accent: #7fb2e0;
-    --accent-hover: #a4c9ec;
-    --accent-wash: #1c2733;
-    --code-bg: #211f1a;
-    color-scheme: dark;
-  }
+  --nav-h: 3rem; /* 48px content + 1px border, matching cursor.com */
 }
 
 * {
   box-sizing: border-box;
 }
 
-/* Theme-conditional assets (e.g. the logo lockup PNGs) */
-.dark-only {
-  display: none !important;
-}
-.dark .dark-only {
-  display: block !important;
-}
-.dark .light-only {
-  display: none !important;
-}
-@media (prefers-color-scheme: dark) {
-  html:not(.light) .dark-only {
-    display: block !important;
-  }
-  html:not(.light) .light-only {
-    display: none !important;
-  }
-}
-
 html {
   background: var(--bg);
   color: var(--ink);
   font-family: var(--font-body);
-  font-size: 15.5px;
+  font-size: 16px;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   scroll-padding-top: calc(var(--nav-h) + 1rem);
@@ -190,20 +136,9 @@ code, pre, kbd {
   padding: 0;
 }
 
-/* Shiki dual themes: force our recessed panel bg; flip token colors in dark.
-   (Shiki inlines the light theme and carries dark as --shiki-dark vars.) */
+/* Shiki: force our recessed panel bg over the theme's own. */
 .prose pre.astro-code {
   background: var(--code-bg) !important;
-}
-.dark .astro-code,
-.dark .astro-code span {
-  color: var(--shiki-dark) !important;
-}
-@media (prefers-color-scheme: dark) {
-  html:not(.light) .astro-code,
-  html:not(.light) .astro-code span {
-    color: var(--shiki-dark) !important;
-  }
 }
 .prose blockquote {
   margin: 1.5rem 0;

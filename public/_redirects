@@ -107,8 +107,8 @@
 /hc/en-us/articles/41193790227991  /docs/how-do-we-decide-if-a-given-journal-is-fully-oa/  301
 /hc/en-us/articles/41193818736663-Paper-version-definitions  /docs/paper-version-definitions/  301
 /hc/en-us/articles/41193818736663  /docs/paper-version-definitions/  301
-/hc/en-us/articles/38868153578263-Changelog  /docs/changelog/  301
-/hc/en-us/articles/38868153578263  /docs/changelog/  301
+/hc/en-us/articles/38868153578263-Changelog  /docs/  301
+/hc/en-us/articles/38868153578263  /docs/  301
 /hc/en-us/articles/33887210525719-How-can-I-correct-the-Open-Access-status-of-journals-in-Unpaywall  /help/how-can-i-correct-the-open-access-status-of-journals-in-unpaywall/  301
 /hc/en-us/articles/33887210525719  /help/how-can-i-correct-the-open-access-status-of-journals-in-unpaywall/  301
 /hc/en-us/articles/33835155110423-Why-are-my-open-access-curation-requests-getting-rejected  /help/why-are-my-open-access-curation-requests-getting-rejected/  301
@@ -239,8 +239,8 @@
 /hc/en-us/articles/24428492324631  https://openalex.org/events  301
 /hc/en-us/articles/24397920994327-Conferences-and-other-events  https://openalex.org/events  301
 /hc/en-us/articles/24397920994327  https://openalex.org/events  301
-/hc/en-us/articles/24397285563671-About-the-data  /docs/about-the-data/  301
-/hc/en-us/articles/24397285563671  /docs/about-the-data/  301
+/hc/en-us/articles/24397285563671-About-the-data  /docs/  301
+/hc/en-us/articles/24397285563671  /docs/  301
 /hc/en-us/articles/24396686889751-About-us  /help/about-us/  301
 /hc/en-us/articles/24396686889751  /help/about-us/  301
 /hc/en-us/articles/24346983449495-Check-if-a-journal-s-works-are-in-OpenAlex  /learn/check-if-a-journals-works-are-in-openalex/  301
@@ -372,30 +372,30 @@
 
 # >>> rewrite-pass-a >>>
 # Docs rewrite Pass A (oxjob #354, D07): merged/renamed Start-here zone
-/docs/how-does-openalex-work  /docs/how-openalex-works/  301
-/docs/how-does-openalex-work/  /docs/how-openalex-works/  301
-/docs/data-ingest-pipeline  /docs/how-openalex-works/  301
-/docs/data-ingest-pipeline/  /docs/how-openalex-works/  301
-/docs/api-and-data-snapshot  /docs/about-the-data/  301
-/docs/api-and-data-snapshot/  /docs/about-the-data/  301
-/docs/how-is-openalex-open  /docs/openness-and-sustainability/  301
-/docs/how-is-openalex-open/  /docs/openness-and-sustainability/  301
-/docs/how-sustainable-is-openalex  /docs/openness-and-sustainability/  301
-/docs/how-sustainable-is-openalex/  /docs/openness-and-sustainability/  301
-/docs/how-accurate-is-openalex  /docs/coverage-and-accuracy/  301
-/docs/how-accurate-is-openalex/  /docs/coverage-and-accuracy/  301
-/docs/what-content-does-openalex-include-and-how-does-it-compare-to-other-da  /docs/coverage-and-accuracy/  301
-/docs/what-content-does-openalex-include-and-how-does-it-compare-to-other-da/  /docs/coverage-and-accuracy/  301
-/docs/how-can-i-see-if-openalex-has-the-same-papers-as-other-databases  /docs/coverage-and-accuracy/  301
-/docs/how-can-i-see-if-openalex-has-the-same-papers-as-other-databases/  /docs/coverage-and-accuracy/  301
-/docs/is-openalex-data-used-in-university-rankings  /docs/coverage-and-accuracy/  301
-/docs/is-openalex-data-used-in-university-rankings/  /docs/coverage-and-accuracy/  301
-/docs/does-openalex-index-books  /docs/coverage-and-accuracy/  301
-/docs/does-openalex-index-books/  /docs/coverage-and-accuracy/  301
-/docs/can-i-search-patents-in-openalex  /docs/coverage-and-accuracy/  301
-/docs/can-i-search-patents-in-openalex/  /docs/coverage-and-accuracy/  301
-/docs/do-you-index-datacite-dois  /docs/coverage-and-accuracy/  301
-/docs/do-you-index-datacite-dois/  /docs/coverage-and-accuracy/  301
+/docs/how-does-openalex-work  /docs/how-it-works/  301
+/docs/how-does-openalex-work/  /docs/how-it-works/  301
+/docs/data-ingest-pipeline  /docs/how-it-works/  301
+/docs/data-ingest-pipeline/  /docs/how-it-works/  301
+/docs/api-and-data-snapshot  /docs/  301
+/docs/api-and-data-snapshot/  /docs/  301
+/docs/how-is-openalex-open  /help/what-is-openalexs-sustainability-model/  301
+/docs/how-is-openalex-open/  /help/what-is-openalexs-sustainability-model/  301
+/docs/how-sustainable-is-openalex  /help/what-is-openalexs-sustainability-model/  301
+/docs/how-sustainable-is-openalex/  /help/what-is-openalexs-sustainability-model/  301
+/docs/how-accurate-is-openalex  /docs/  301
+/docs/how-accurate-is-openalex/  /docs/  301
+/docs/what-content-does-openalex-include-and-how-does-it-compare-to-other-da  /docs/  301
+/docs/what-content-does-openalex-include-and-how-does-it-compare-to-other-da/  /docs/  301
+/docs/how-can-i-see-if-openalex-has-the-same-papers-as-other-databases  /docs/  301
+/docs/how-can-i-see-if-openalex-has-the-same-papers-as-other-databases/  /docs/  301
+/docs/is-openalex-data-used-in-university-rankings  /docs/  301
+/docs/is-openalex-data-used-in-university-rankings/  /docs/  301
+/docs/does-openalex-index-books  /docs/  301
+/docs/does-openalex-index-books/  /docs/  301
+/docs/can-i-search-patents-in-openalex  /docs/  301
+/docs/can-i-search-patents-in-openalex/  /docs/  301
+/docs/do-you-index-datacite-dois  /docs/  301
+/docs/do-you-index-datacite-dois/  /docs/  301
 # <<< rewrite-pass-a <<<
 
 # >>> rewrite-pass-b >>>
@@ -526,6 +526,19 @@
 /help/projects-using-openalex  https://openalex.org  301
 /help/projects-using-openalex/  https://openalex.org  301
 # <<< community-retirement <<<
+
+# >>> design-round-4 (oxjob #354, 2026-08-04: Get-started restructure) >>>
+/docs/about-the-data  /docs/  301
+/docs/about-the-data/  /docs/  301
+/docs/changelog  /docs/  301
+/docs/changelog/  /docs/  301
+/docs/coverage-and-accuracy  /docs/  301
+/docs/coverage-and-accuracy/  /docs/  301
+/docs/openness-and-sustainability  /help/what-is-openalexs-sustainability-model/  301
+/docs/openness-and-sustainability/  /help/what-is-openalexs-sustainability-model/  301
+/docs/how-openalex-works  /docs/how-it-works/  301
+/docs/how-openalex-works/  /docs/how-it-works/  301
+# <<< design-round-4 <<<
 
 # >>> WILDCARDS LAST — do not move, do not add rules after this section >>>
 # CF Pages bug (oxjob #354, verified 2026-08-01): once a wildcard/splat rule

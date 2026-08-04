@@ -24,12 +24,13 @@
     align-items: center;
     gap: 0.5rem;
     font: inherit;
-    font-size: 0.85rem;
+    font-size: 0.875rem;
     color: var(--muted);
     background: var(--panel);
     border: 1px solid var(--line);
     border-radius: 8px;
-    padding: 0.35rem 0.65rem;
+    height: 36px; /* cursor-measured pill */
+    padding: 0 0.75rem;
     cursor: pointer;
     transition: border-color 0.15s, color 0.15s;
   }
@@ -43,7 +44,7 @@
   }
   @media (min-width: 1000px) {
     #search-open {
-      width: 280px;
+      width: 320px; /* cursor-measured */
     }
   }
   #search-open kbd {

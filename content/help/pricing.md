@@ -8,7 +8,7 @@ source_updated: "2026-03-02"
 ---
 # Learn about OpenAlex's premium offerings
 
-OpenAlex is free. The website, API, and data snapshot are all available at no charge. The data is licensed as [CC0](https://creativecommons.org/publicdomain/zero/1.0/) so it is free to use and distribute. As a [nonprofit,](https://ourresearch.org/) making this data free and open is part of our mission. [Being sustainable](/docs/openness-and-sustainability/) is also part of our mission! Our sustainability depends on revenue from two value-add offerings: paid subscribers and consulting services. So if you’re looking for our services in addition to our data, or simply want to support open science, consider our paid services below. [Contact us to get a quote—and a free trial!](https://share.hsforms.com/1fEEj8qYrQAKpHWn3WgaIWA4iz53)
+OpenAlex is free. The website, API, and data snapshot are all available at no charge. The data is licensed as [CC0](https://creativecommons.org/publicdomain/zero/1.0/) so it is free to use and distribute. As a [nonprofit,](https://ourresearch.org/) making this data free and open is part of our mission. [Being sustainable](/help/what-is-openalexs-sustainability-model/) is also part of our mission! Our sustainability depends on revenue from two value-add offerings: paid subscribers and consulting services. So if you’re looking for our services in addition to our data, or simply want to support open science, consider our paid services below. [Contact us to get a quote—and a free trial!](https://share.hsforms.com/1fEEj8qYrQAKpHWn3WgaIWA4iz53)
 
 ## OpenAlex Paid Subscriptions
 
