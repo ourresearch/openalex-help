@@ -8,9 +8,8 @@ import { urlFor, type Tab } from '../lib/tabs';
 interface Props {
   tab: Tab;
   groups: ResolvedGroup[];
-  descriptions?: Record<string, string>;
 }
-const { tab, groups, descriptions = {} } = Astro.props;
+const { tab, groups } = Astro.props;
 ---
 
 <div class="topics">
@@ -19,7 +18,7 @@ const { tab, groups, descriptions = {} } = Astro.props;
       <summary>
         <span class="topic-text">
           <span class="topic-title">{g.label}</span>
-          {descriptions[g.label] && <span class="topic-desc">{descriptions[g.label]}</span>}
+          {g.desc && <span class="topic-desc">{g.desc}</span>}
         </span>
         <svg class="chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9" /></svg>
       </summary>

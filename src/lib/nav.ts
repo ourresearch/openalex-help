@@ -310,6 +310,7 @@ export interface ResolvedItem {
 
 export interface ResolvedGroup {
   label: string;
+  desc?: string; // one-liner for landing-page cards / accordions
   entries: AnyEntry[]; // flat, in nav order (accordions, landing cards, "first article")
   items: ResolvedItem[]; // nested, for the 3-level sidebar
 }
@@ -351,7 +352,7 @@ export function groupEntries(tab: string, entries: AnyEntry[]): ResolvedGroup[] 
       }
     }
     const flat = items.flatMap((i) => [...(i.entry ? [i.entry] : []), ...i.children]);
-    if (items.length) out.push({ label: g.label, entries: flat, items });
+    if (items.length) out.push({ label: g.label, desc: g.desc, entries: flat, items });
   }
   const leftovers = entries.filter((e) => !seen.has(e.id));
   if (leftovers.length) {
