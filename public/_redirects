@@ -372,10 +372,10 @@
 
 # >>> rewrite-pass-a >>>
 # Docs rewrite Pass A (oxjob #354, D07): merged/renamed Start-here zone
-/docs/how-does-openalex-work  /docs/how-it-works/  301
-/docs/how-does-openalex-work/  /docs/how-it-works/  301
-/docs/data-ingest-pipeline  /docs/how-it-works/  301
-/docs/data-ingest-pipeline/  /docs/how-it-works/  301
+/docs/how-does-openalex-work  /docs/overview/  301
+/docs/how-does-openalex-work/  /docs/overview/  301
+/docs/data-ingest-pipeline  /docs/overview/  301
+/docs/data-ingest-pipeline/  /docs/overview/  301
 /docs/api-and-data-snapshot  /docs/  301
 /docs/api-and-data-snapshot/  /docs/  301
 /docs/how-is-openalex-open  /help/what-is-openalexs-sustainability-model/  301
@@ -536,8 +536,8 @@
 /docs/coverage-and-accuracy/  /docs/  301
 /docs/openness-and-sustainability  /help/what-is-openalexs-sustainability-model/  301
 /docs/openness-and-sustainability/  /help/what-is-openalexs-sustainability-model/  301
-/docs/how-openalex-works  /docs/how-it-works/  301
-/docs/how-openalex-works/  /docs/how-it-works/  301
+/docs/how-openalex-works  /docs/overview/  301
+/docs/how-openalex-works/  /docs/overview/  301
 # <<< design-round-4 <<<
 
 # Retired 2026-08-05 (sidebar reorg round): change notes ~5y stale -> parent

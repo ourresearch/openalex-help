@@ -1,5 +1,5 @@
 ---
-title: "How it works"
+title: "Overview"
 description: "How OpenAlex builds its map of the research ecosystem: gathering records from thousands of sources, deduplicating and connecting them, and sharing the result eight different ways."
 tags: ["reference"]
 ---

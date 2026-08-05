@@ -122,7 +122,7 @@ export const NAV_GROUPS: Record<string, NavGroup[]> = {
       slugs: [
         { label: 'Welcome', href: '/docs/' },
         'quickstart',
-        'how-it-works',
+        'overview',
       ],
     },
     {
