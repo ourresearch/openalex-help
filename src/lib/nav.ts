@@ -100,6 +100,7 @@ export const NAV_GROUPS: Record<string, NavGroup[]> = {
       slugs: [
         'export-results-from-the-openalex-website',
         'how-do-i-import-openalex-data-into-vosviewer',
+        'link-resolver-integrations',
       ],
     },
     {
@@ -139,17 +140,11 @@ export const NAV_GROUPS: Record<string, NavGroup[]> = {
       ],
     },
     {
-      label: 'Authors & institutions',
-      desc: 'Disambiguation, affiliations, and country assignment.',
+      label: 'Entities',
+      desc: 'The non-work entities: authors, institutions, sources, publishers.',
       slugs: [
         'author-disambiguation',
         'affiliations',
-      ],
-    },
-    {
-      label: 'Sources & publishers',
-      desc: 'Journals, repositories, and how we classify them.',
-      slugs: [
         'sources',
         'journal-quality',
       ],
@@ -169,15 +164,7 @@ export const NAV_GROUPS: Record<string, NavGroup[]> = {
       desc: 'OA status and licenses, repositories, and Unpaywall.',
       slugs: [
         'open-access',
-        'repository-records',
-        {
-          label: 'For repository managers',
-          children: [
-            'recommendation-for-irs-license-reporting',
-            'recommendation-for-irs-version-reporting',
-            'link-resolver-integrations',
-          ],
-        },
+        'repositories',
         'unpaywall',
         // 'unpaywall-change-notes' — RETIRED 2026-08-05 (Jason): the change log
         // is ~5 years out of date, so we no longer share it publicly. The

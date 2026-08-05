@@ -65,14 +65,14 @@
 /hc/en-us/articles/41193838518807  https://docs.unsub.org/  301
 /hc/en-us/articles/41193838501783-Getting-Started  https://docs.unsub.org/  301
 /hc/en-us/articles/41193838501783  https://docs.unsub.org/  301
-/hc/en-us/articles/41193790460055-Recommendation-for-IRs-License-reporting  /docs/recommendation-for-irs-license-reporting/  301
-/hc/en-us/articles/41193790460055  /docs/recommendation-for-irs-license-reporting/  301
-/hc/en-us/articles/41193820666263-How-are-documents-located-from-repository-records  /docs/how-are-documents-located-from-repository-records/  301
-/hc/en-us/articles/41193820666263  /docs/how-are-documents-located-from-repository-records/  301
-/hc/en-us/articles/41193798254743-How-are-repository-records-matched-to-published-articles  /docs/how-are-repository-records-matched-to-published-articles/  301
-/hc/en-us/articles/41193798254743  /docs/how-are-repository-records-matched-to-published-articles/  301
-/hc/en-us/articles/41193790429975-Recommendation-for-IRs-Version-reporting  /docs/recommendation-for-irs-version-reporting/  301
-/hc/en-us/articles/41193790429975  /docs/recommendation-for-irs-version-reporting/  301
+/hc/en-us/articles/41193790460055-Recommendation-for-IRs-License-reporting  /docs/repositories/#license-reporting  301
+/hc/en-us/articles/41193790460055  /docs/repositories/#license-reporting  301
+/hc/en-us/articles/41193820666263-How-are-documents-located-from-repository-records  /docs/repositories/  301
+/hc/en-us/articles/41193820666263  /docs/repositories/  301
+/hc/en-us/articles/41193798254743-How-are-repository-records-matched-to-published-articles  /docs/repositories/  301
+/hc/en-us/articles/41193798254743  /docs/repositories/  301
+/hc/en-us/articles/41193790429975-Recommendation-for-IRs-Version-reporting  /docs/repositories/#version-reporting  301
+/hc/en-us/articles/41193790429975  /docs/repositories/#version-reporting  301
 /hc/en-us/articles/41193838350359-How-do-I-make-the-Unpaywall-extension-work-on-my-site  /docs/how-do-i-make-the-unpaywall-extension-work-on-my-site/  301
 /hc/en-us/articles/41193838350359  /docs/how-do-i-make-the-unpaywall-extension-work-on-my-site/  301
 /hc/en-us/articles/41193804772631-Preventing-Code-Injection-Using-Text-From-Unpaywall-Safely  /api/introduction/#security  301
@@ -95,8 +95,8 @@
 /hc/en-us/articles/41193798112151  /docs/how-is-the-best-oa-location-determined/  301
 /hc/en-us/articles/41193838188439-What-does-is-paratext-mean-in-the-API  /docs/what-does-is-paratext-mean-in-the-api/  301
 /hc/en-us/articles/41193838188439  /docs/what-does-is-paratext-mean-in-the-api/  301
-/hc/en-us/articles/41193820448023-Link-Resolver-Integrations  /docs/link-resolver-integrations/  301
-/hc/en-us/articles/41193820448023  /docs/link-resolver-integrations/  301
+/hc/en-us/articles/41193820448023-Link-Resolver-Integrations  /help/link-resolver-integrations/  301
+/hc/en-us/articles/41193820448023  /help/link-resolver-integrations/  301
 /hc/en-us/articles/41193798060439-Unpaywall-Change-Notes  /docs/unpaywall/  301
 /hc/en-us/articles/41193798060439  /docs/unpaywall/  301
 /hc/en-us/articles/41193798040471-How-do-I-read-JSONL-files  /docs/how-do-i-read-jsonl-files/  301
@@ -474,12 +474,12 @@
 /docs/what-do-the-host-type-values-publisher-and-repository-mean/  /docs/open-access/  301
 # <<< rewrite-pass-f <<<
 # >>> rewrite-pass-g >>>
-/docs/how-are-repository-records-matched-to-published-articles  /docs/repository-records/  301
-/docs/how-are-repository-records-matched-to-published-articles/  /docs/repository-records/  301
-/docs/how-are-documents-located-from-repository-records  /docs/repository-records/  301
-/docs/how-are-documents-located-from-repository-records/  /docs/repository-records/  301
-/docs/when-i-look-at-my-repository-as-a-source-in-openalex-why-is-it-missing  /docs/repository-records/  301
-/docs/when-i-look-at-my-repository-as-a-source-in-openalex-why-is-it-missing/  /docs/repository-records/  301
+/docs/how-are-repository-records-matched-to-published-articles  /docs/repositories/  301
+/docs/how-are-repository-records-matched-to-published-articles/  /docs/repositories/  301
+/docs/how-are-documents-located-from-repository-records  /docs/repositories/  301
+/docs/how-are-documents-located-from-repository-records/  /docs/repositories/  301
+/docs/when-i-look-at-my-repository-as-a-source-in-openalex-why-is-it-missing  /docs/repositories/  301
+/docs/when-i-look-at-my-repository-as-a-source-in-openalex-why-is-it-missing/  /docs/repositories/  301
 # <<< rewrite-pass-g <<<
 # >>> rewrite-pass-h >>>
 /docs/downloading-openalex-data  /docs/bulk-data/  301
@@ -546,6 +546,18 @@
 /docs/unpaywall-change-notes/  /docs/unpaywall/  301
 /docs/unpaywall-data-safety  /api/introduction/#security  301
 /docs/unpaywall-data-safety/  /api/introduction/#security  301
+
+# Sidebar reorg 2026-08-05 continued: repository-records -> repositories; the
+# two IR-recommendation pages merged into it as sections; link-resolver moved
+# to the Help tab.
+/docs/repository-records  /docs/repositories/  301
+/docs/repository-records/  /docs/repositories/  301
+/docs/recommendation-for-irs-license-reporting  /docs/repositories/#license-reporting  301
+/docs/recommendation-for-irs-license-reporting/  /docs/repositories/#license-reporting  301
+/docs/recommendation-for-irs-version-reporting  /docs/repositories/#version-reporting  301
+/docs/recommendation-for-irs-version-reporting/  /docs/repositories/#version-reporting  301
+/docs/link-resolver-integrations  /help/link-resolver-integrations/  301
+/docs/link-resolver-integrations/  /help/link-resolver-integrations/  301
 
 # >>> WILDCARDS LAST — do not move, do not add rules after this section >>>
 # CF Pages bug (oxjob #354, verified 2026-08-01): once a wildcard/splat rule

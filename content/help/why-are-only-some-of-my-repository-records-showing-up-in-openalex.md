@@ -14,7 +14,7 @@ Your unmatched records may still be in OpenAlex, though. Since the November 2025
 
 Two other things can hold the count down:
 
-- **Metadata-dependent matching.** Records without a cleanly reported DOI (or a matchable title and first author) can fail to match. See [Repository records](/docs/repository-records/) for the metadata guidelines.
+- **Metadata-dependent matching.** Records without a cleanly reported DOI (or a matchable title and first author) can fail to match. See [Repositories](/docs/repositories/) for the metadata guidelines.
 - **A historical wrinkle.** Some records inherited from Microsoft Academic Graph (which shut down in 2022) list an institutional repository as their sole source. That legacy coverage was never comprehensive.
 
 To see which repositories we harvest, or to suggest yours: [https://unpaywall.org/sources](https://unpaywall.org/sources)

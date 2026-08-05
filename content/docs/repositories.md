@@ -1,5 +1,5 @@
 ---
-title: "Repository records"
+title: "Repositories"
 description: "How repository content gets into OpenAlex — OAI-PMH harvesting, matching records to works by DOI or title, locating full text, and why a repository's work count can look smaller than expected."
 tags: ["reference"]
 source_id: "41193798254743"
@@ -57,7 +57,7 @@ If the URL leads directly to a PDF, that's used as an open location. If it leads
 - PDF links should be in `citation_pdf_url` meta tags, for example `<meta name="citation_pdf_url" content="YOUR_URL"/>`.
 - The page should link to the article's license terms or note that the work is in the public domain — ideally a [Creative Commons](https://creativecommons.org/licenses/) license URL like `https://creativecommons.org/licenses/by/4.0/`. If your repository uses a different open license, [let us know](https://openalex.org/contact).
 
-Repositories can make both matching and full-text detection more reliable by following the metadata recommendations for [license reporting](/docs/recommendation-for-irs-license-reporting/) and [version reporting](/docs/recommendation-for-irs-version-reporting/).
+Repositories can make both matching and full-text detection more reliable by following the [recommendations for repositories](#recommendations-for-repositories) below.
 
 ## Why a repository seems to be missing most of its works
 
@@ -70,9 +70,40 @@ If you look at your repository as a [source](/docs/sources/) in OpenAlex, its wo
 
 To get your repository harvested in the first place, add it at [unpaywall.org/sources](https://unpaywall.org/sources). To register interest in direct indexing of your repository's full contents, use the [repository registration form](https://forms.gle/LMmjdKw9HZJooxVT8).
 
+## Recommendations for repositories
+
+If you run a repository, two kinds of metadata make your records much more useful in OpenAlex: license information and version information.
+
+### License reporting
+
+OpenAlex reports the [license](/docs/open-access/#licenses) that articles in your repository are distributed under. If you know the license, you can include it in the OAI-PMH record in a _rights_ element like this:
+
+```xml
+<dc:rights>https://creativecommons.org/licenses/by/4.0</dc:rights>
+```
+or
+```xml
+<dc:rights.license>CC BY-NC</dc:rights.license>
+```
+
+If an element like this isn't present, OpenAlex looks for a license statement inside any full-text item it finds. This is less accurate: it relies on full license URLs or text patterns seen before, like "distributed under the terms ..." or "This is an open access article published under ...", which may not include the pattern used by your repository software. We recommend including the license in the OAI-PMH record as shown above.
+
+### Version reporting
+
+OpenAlex reports the [version](/docs/versions/) of the full-text papers it finds. It determines the version automatically, but in some cases it can improve accuracy for repositories to report version information when they know it.
+
+If your repository knows the version of the PDF it is hosting, we recommend you put version information in the metadata as follows (based on the [DRIVER Guidelines v2.0 VERSION standard](https://wiki.surfnet.nl/display/DRIVERguidelines/DRIVER-VERSION+Mappings)):
+
+- `<dc:type>publishedVersion</dc:type>` when you have verified that the PDF you are hosting is the version of record, with all publisher copyediting and formatting.
+- `<dc:type>acceptedVersion</dc:type>` when you have verified that the PDF you are hosting meets [the definition of acceptedVersion](/docs/versions/).
+- `<dc:type>submittedVersion</dc:type>` when you know the PDF you are hosting does **NOT** meet the definitions for publishedVersion or acceptedVersion (for example if it was uploaded before the paper was accepted for publication).
+
+If you have not verified the version of the document you are hosting, don't specify version metadata — OpenAlex will determine it automatically.
+
+In addition, if your repository has a policy of never hosting any submitted versions of papers, but only author accepted manuscripts or published versions, [let us know](https://openalex.org/contact). We'll note this policy and tag your papers accordingly.
+
 ## Related pages
 
 - [Open Access](/docs/open-access/) — how repository copies make works green OA, and how the best OA location is chosen
 - [Versions](/docs/versions/) — publishedVersion, acceptedVersion, and submittedVersion
 - [Sources](/docs/sources/) — what source records are and the source-type taxonomy
-- [License reporting for IRs](/docs/recommendation-for-irs-license-reporting/) and [Version reporting for IRs](/docs/recommendation-for-irs-version-reporting/) — metadata recommendations for repository managers

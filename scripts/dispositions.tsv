@@ -18,10 +18,10 @@ id	section	action	tab	slug	target	review	reason	title
 41193838534039	Unsub	redirect			https://docs.unsub.org/		Unsub product docs live at docs.unsub.org (#669 supplies exact mapping)	Configuration settings
 41193838518807	Unsub	redirect			https://docs.unsub.org/		Unsub product docs live at docs.unsub.org (#669 supplies exact mapping)	Cost Effectiveness (NCPPU)
 41193838501783	Unsub	redirect			https://docs.unsub.org/		Unsub product docs live at docs.unsub.org (#669 supplies exact mapping)	Getting Started
-41193790460055	Unpaywall	migrate	docs	recommendation-for-irs-license-reporting			Unpaywall → docs	Recommendation for IRs: License reporting
-41193820666263	Unpaywall	migrate	docs	how-are-documents-located-from-repository-records			Unpaywall → docs	How are documents located from repository records?
-41193798254743	Unpaywall	migrate	docs	how-are-repository-records-matched-to-published-articles			Unpaywall → docs	How are repository records matched to published articles?
-41193790429975	Unpaywall	migrate	docs	recommendation-for-irs-version-reporting			Unpaywall → docs	Recommendation for IRs: Version reporting
+41193790460055	Unpaywall	merge	docs	repositories			MERGED 2026-08-05 into /docs/repositories/#license-reporting	Recommendation for IRs: License reporting
+41193820666263	Unpaywall	migrate	docs	repositories			Unpaywall → docs	How are documents located from repository records?
+41193798254743	Unpaywall	migrate	docs	repositories			Unpaywall → docs	How are repository records matched to published articles?
+41193790429975	Unpaywall	merge	docs	repositories			MERGED 2026-08-05 into /docs/repositories/#version-reporting	Recommendation for IRs: Version reporting
 41193838350359	Unpaywall	migrate	docs	how-do-i-make-the-unpaywall-extension-work-on-my-site			Unpaywall → docs	How do I make the Unpaywall extension work on my site?
 41193804772631	Unpaywall	retire	docs	preventing-code-injection-using-text-from-unpaywall-safely			RETIRED 2026-08-05: page deleted; essence folded into /api/introduction/#security; URL -> that anchor	Preventing Code Injection - Using Text From Unpaywall Safely
 41193820565015	Unpaywall	migrate	docs	what-do-the-fields-in-the-api-response-and-snapshot-records-mean			Unpaywall → docs	What do the fields in the API response and snapshot records mean?
@@ -33,7 +33,7 @@ id	section	action	tab	slug	target	review	reason	title
 41193838206743	Unpaywall	migrate	docs	which-dois-does-unpaywall-cover			Unpaywall → docs	Which DOIs does Unpaywall cover?
 41193798112151	Unpaywall	migrate	docs	how-is-the-best-oa-location-determined			Unpaywall → docs	How is the best OA location determined?
 41193838188439	Unpaywall	migrate	docs	what-does-is-paratext-mean-in-the-api			Unpaywall → docs	What does is_paratext mean in the API?
-41193820448023	Unpaywall	migrate	docs	link-resolver-integrations			Unpaywall → docs	Link Resolver Integrations
+41193820448023	Unpaywall	migrate	help	link-resolver-integrations			MOVED 2026-08-05 to Help tab (Using & exporting data)	Link Resolver Integrations
 41193798060439	Unpaywall	retire	docs	unpaywall-change-notes			RETIRED 2026-08-05: ~5y out of date, no longer public; source kept in content/_retired/; URL -> /docs/unpaywall/	Unpaywall Change Notes
 41193798040471	Unpaywall	migrate	docs	how-do-i-read-jsonl-files			Unpaywall → docs	How do I read JSONL files?
 41193820405143	Unpaywall	migrate	docs	why-does-the-unpaywall-plugin-say-this-paywalled-article-is-open-acces			Unpaywall → docs	Why does the Unpaywall plugin say this paywalled article is Open Access?
