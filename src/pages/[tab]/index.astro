@@ -352,6 +352,11 @@ const topicGroups = (NAV_GROUPS[tab] ?? [])
     grid-template-columns: repeat(3, 1fr);
     gap: 0.9rem;
     margin-bottom: 3rem;
+    /* The .reveal animation makes each landing section a stacking context, so
+       the Ask AI dropdown can't out-z-index the later .browse section without
+       lifting this whole section above it. */
+    position: relative;
+    z-index: 10;
   }
   .link-card {
     display: block;
