@@ -80,7 +80,11 @@ const path = Astro.url.pathname;
     flex-direction: column;
     gap: 1.5rem;
     padding: 1.5rem 1rem 2.5rem 1.5rem;
-    font-size: 1rem; /* 16px items, cursor-measured */
+    /* Cursor overrides Tailwind's text-base with --font-size-base: 15px /
+       140% line-height / .005em tracking — measured on the inner span, not
+       the 16px-inheriting <a> wrapper (round-4 measured the wrapper). */
+    font-size: 15px;
+    letter-spacing: 0.005em;
     scrollbar-width: thin;
   }
   .group {
@@ -97,7 +101,7 @@ const path = Astro.url.pathname;
     padding: 0.22rem 0.5rem;
     margin-left: -0.5rem;
     border-radius: 6px;
-    line-height: 1.35;
+    line-height: 1.4; /* 21px at 15px, cursor-measured */
   }
   a:hover {
     color: var(--accent);
@@ -116,7 +120,7 @@ const path = Astro.url.pathname;
     padding: 0.22rem 0.5rem;
     margin-left: -0.5rem;
     border-radius: 6px;
-    line-height: 1.35;
+    line-height: 1.4;
     cursor: pointer;
     list-style: none;
     user-select: none;
