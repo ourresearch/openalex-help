@@ -579,4 +579,7 @@
 /guides/*  /api/  301
 /api-reference/*  /api/  301
 /download/*  /docs/  301
+# Learn tab renamed to Recipes (oxjob #354 Pass R); slugs unchanged, so preserve
+# the path via :splat (the /hc/ etc. rules above deliberately drop it).
+/learn/*  /recipes/:splat  301
 # <<< WILDCARDS LAST <<<

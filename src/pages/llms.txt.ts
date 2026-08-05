@@ -1,12 +1,12 @@
 import type { APIRoute } from 'astro';
 import { TABS, allEntries, mdUrlFor, urlFor } from '../lib/tabs';
 
-// Root llms.txt: one unified index across all four tabs (the Cursor pattern).
+// Root llms.txt: one unified index across all five tabs (the Cursor pattern).
 // Each line links the canonical page plus its raw-markdown sibling route.
 export const GET: APIRoute = async ({ site }) => {
   const base = (site ?? new URL('https://help.openalex.org')).href.replace(/\/$/, '');
   const entries = await allEntries();
-  const labels: Record<string, string> = { help: 'Help', docs: 'Docs', api: 'API', learn: 'Learn' };
+  const labels: Record<string, string> = { help: 'Help', docs: 'Docs', entities: 'Entities', api: 'API', recipes: 'Recipes' };
 
   const sections = TABS.map((tab) => {
     const rows = entries
@@ -28,10 +28,12 @@ export const GET: APIRoute = async ({ site }) => {
     '',
     'Every page on this site has a raw-markdown sibling: append `.md` to its path.',
     '',
-    'Field and vocabulary semantics (what each entity field means, controlled-vocabulary',
-    'definitions) are canonical under `/docs/` — e.g. the work field dictionary at',
-    '`/docs/work-fields/` and work types at `/docs/work-types/`. The `/api/` pages cover',
-    'endpoint mechanics (filtering, sorting, grouping, query syntax).',
+    'Field and vocabulary semantics (what each entity is, where its records come from,',
+    'what every field means, controlled-vocabulary definitions) are canonical under',
+    '`/entities/` — e.g. the works field dictionary at `/entities/works/` and work types',
+    'at `/entities/work-types/`. The `/docs/` pages cover cross-cutting topics (querying,',
+    'open access, getting the data); the `/api/` pages cover endpoint mechanics (filtering,',
+    'sorting, grouping, query syntax).',
     '',
     ...sections,
     '',

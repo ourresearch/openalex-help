@@ -13,6 +13,10 @@ const article = z.object({
   source_id: z.string().optional(),
   source_url: z.string().optional(),
   source_updated: z.string().optional(),
+  // Help extended-FAQ stubs (oxjob #354 Pass R §7): a stub duplicates entity
+  // provenance material by design, capped at ≤3 paragraphs, and points to the
+  // canonical section for depth. A future lint can verify the target resolves.
+  canonical: z.string().optional(),
 });
 
 const makeCollection = (dir: string) =>
@@ -25,5 +29,6 @@ export const collections = {
   help: makeCollection('help'),
   docs: makeCollection('docs'),
   api: makeCollection('api'),
-  learn: makeCollection('learn'),
+  entities: makeCollection('entities'),
+  recipes: makeCollection('recipes'),
 };

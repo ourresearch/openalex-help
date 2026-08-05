@@ -28,13 +28,18 @@ const meta: Record<Tab, { label: string; h1: string; lede: string }> = {
     h1: 'OpenAlex Documentation',
     lede: 'OpenAlex is an open catalog of the global research system: papers, authors, institutions, journals, and topics, all connected. These docs explain what the data means, where it comes from, and how to read it.',
   },
+  entities: {
+    label: 'Entities',
+    h1: 'OpenAlex Entities',
+    lede: 'The people, papers, places, and concepts OpenAlex catalogs — works, authors, sources, institutions, topics, and more. Each page explains where the records come from, what judgment calls we make, and what every field means.',
+  },
   api: {
     label: 'API',
     h1: 'OpenAlex API',
     lede: 'A fast, modern REST API for all of OpenAlex, plus OQL for expressive queries. Free for everyone, no key required to start. These pages cover endpoints, filters, paging, auth, and rate limits.',
   },
-  learn: {
-    label: 'Learn',
+  recipes: {
+    label: 'Recipes',
     h1: 'Recipes',
     lede: 'Step-by-step recipes for real research questions — on the web, through the API, or with your agent.',
   },
@@ -64,6 +69,11 @@ const startHere: Record<string, { slug: string; icon: string; blurb: string }[]>
     { slug: 'quickstart', icon: 'play', blurb: 'Your first request in under a minute' },
     { slug: 'authentication', icon: 'key', blurb: 'Keys, credits, and what is free' },
   ],
+  entities: [
+    { slug: 'overview', icon: 'compass', blurb: 'What entities are and how to trust their IDs' },
+    { slug: 'common-fields', icon: 'list', blurb: 'The fields every entity shares' },
+    { slug: 'works', icon: 'file-text', blurb: 'The core entity: every scholarly document' },
+  ],
 };
 const groupIcons: Record<string, string> = {
   'Get started': 'compass',
@@ -80,13 +90,25 @@ const groupIcons: Record<string, string> = {
   'Entities': 'database',
   'Vocabularies': 'list',
   'Curation & special': 'edit',
+  // Entities-tab groups
+  'Overview': 'compass',
+  'Native': 'database',
+  'Component': 'layers',
+  'Aboutness': 'tag',
+  'Vocabulary': 'list',
+  'User-created': 'edit',
+  // Docs-tab groups (Pass R)
+  'Open access': 'unlock',
+  'Get the data': 'download',
+  // API-tab groups (Pass R)
+  'Endpoints': 'database',
 };
 
-const isShell = tab === 'docs' || tab === 'api';
+const isShell = tab === 'docs' || tab === 'api' || tab === 'entities';
 const isHelp = tab === 'help';
-const isLearn = tab === 'learn';
+const isLearn = tab === 'recipes';
 
-// Learn: facet tags + per-value counts for the filtering sidebar.
+// Recipes: facet tags + per-value counts for the filtering sidebar.
 const learnCards = isLearn ? entries.map((e) => ({ entry: e, tags: facetsFor(e.id) })) : [];
 const facetCounts: Record<string, Record<string, number>> = {};
 for (const f of FACETS) {

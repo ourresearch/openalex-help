@@ -18,8 +18,8 @@ const { Content, headings } = await render(entry);
 
 // Help + Learn articles read like a friendly answer: narrow column, back link,
 // no sidebar. Docs + API get the full app shell (grouped sidebar + right rail).
-const isShell = tab === 'docs' || tab === 'api';
-const labels: Record<Tab, string> = { help: 'Help', docs: 'Docs', api: 'API', learn: 'Learn' };
+const isShell = tab === 'docs' || tab === 'api' || tab === 'entities';
+const labels: Record<Tab, string> = { help: 'Help', docs: 'Docs', entities: 'Entities', api: 'API', recipes: 'Recipes' };
 const groups = isShell
   ? groupEntries(tab, (await allEntries()).filter((e) => e.tab === tab).map((e) => e.entry))
   : [];

@@ -34,6 +34,52 @@ export interface NavGroup {
 }
 
 export const NAV_GROUPS: Record<string, NavGroup[]> = {
+  // Entities tab (oxjob #354 Pass R). Group overviews use the group's own
+  // `slug` so the overview renders as the subgroup's first child. Slugs are
+  // added here as their pages land during the grind; unmapped ones warn.
+  entities: [
+    {
+      label: 'Overview',
+      desc: 'What entities are and the fields they share.',
+      slugs: ['overview', 'common-fields'],
+    },
+    {
+      label: 'Native',
+      desc: 'Entities where OpenAlex mints its own IDs and boundary judgments.',
+      slugs: ['native', 'works', 'authors', 'sources', 'publishers', 'funders', 'awards', 'institutions'],
+    },
+    {
+      label: 'Component',
+      desc: 'Parts of a work without their own OpenAlex IDs.',
+      slugs: ['component', 'authorships', 'locations', 'raw-affiliation-strings'],
+    },
+    {
+      label: 'Aboutness',
+      desc: 'What a work is about: topics, keywords, and classifications.',
+      slugs: ['aboutness', 'sdgs', 'domains', 'fields', 'subfields', 'topics', 'keywords', 'concepts'],
+    },
+    {
+      label: 'Vocabulary',
+      desc: 'Consistent handles on things that already exist crisply.',
+      slugs: [
+        'vocabulary',
+        'work-types',
+        'source-types',
+        'institution-types',
+        'countries',
+        'continents',
+        'languages',
+        'licenses',
+        'indexes',
+      ],
+    },
+    {
+      label: 'User-created',
+      desc: 'Things users mint, not OpenAlex.',
+      slugs: ['user-created', 'collections', 'curations'],
+    },
+  ],
+
   help: [
     {
       label: 'Getting started',

@@ -11,12 +11,15 @@ interface Props {
 }
 const { title, description, wide = false } = Astro.props;
 
-// Help is deliberately first: audience priority is nontechnical > semitechnical > technical.
+// Help is deliberately first (default tab). Order = the two-sided model
+// (oxjob #354 Pass R): Help + Recipes = "get things done"; Docs/Entities/API =
+// "look things up" (one reference work split across three tabs).
 const tabs = [
   { label: 'Help', href: '/help/' },
   { label: 'Docs', href: '/docs/' },
+  { label: 'Entities', href: '/entities/' },
   { label: 'API', href: '/api/' },
-  { label: 'Learn', href: '/learn/' },
+  { label: 'Recipes', href: '/recipes/' },
 ];
 const path = Astro.url.pathname;
 ---

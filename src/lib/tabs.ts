@@ -1,6 +1,6 @@
 import { getCollection, type CollectionEntry } from 'astro:content';
 
-export const TABS = ['help', 'docs', 'api', 'learn'] as const;
+export const TABS = ['help', 'docs', 'entities', 'api', 'recipes'] as const;
 export type Tab = (typeof TABS)[number];
 
 export type AnyEntry = CollectionEntry<Tab>;
