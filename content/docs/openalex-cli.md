@@ -1,5 +1,5 @@
 ---
-title: "OpenAlex CLI"
+title: "CLI"
 description: "Download filtered subsets of OpenAlex data from the command line"
 tags: ["downloads"]
 source_id: "download/openalex-cli"

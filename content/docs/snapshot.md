@@ -65,7 +65,7 @@ The entity folders under each format are:
 
 You can browse the bucket at [openalex.s3.amazonaws.com/browse.html](https://openalex.s3.amazonaws.com/browse.html#data/).
 
-Records are partitioned by `updated_date`: each partition holds the records that **last changed** on that date, in part files (`part_0000.*`, `part_0001.*`, …) of up to 400,000 records each. This is what makes incremental updates cheap — see [Updates & releases](/docs/snapshot-updates/) for how partitions move between releases and how to keep a copy current.
+Records are partitioned by `updated_date`: each partition holds the records that **last changed** on that date, in part files (`part_0000.*`, `part_0001.*`, …) of up to 400,000 records each. This is what makes incremental updates cheap — see [Sync](/docs/snapshot-updates/) for how partitions move between releases and how to keep a copy current.
 
 > **Note:**
 > Pre-2026 snapshots used a flat `data/{entity}/` layout (JSON Lines only) with no `jsonl/`/`parquet/` split. That older layout, along with the `merged_ids/` directory, is preserved under the `legacy-data/` prefix.
@@ -107,7 +107,7 @@ People often compare counts or fields between their snapshot copy and the live A
 | Difference | Why |
 |---|---|
 | **Works count: snapshot ~510M vs API default ~322M** | The snapshot contains **all** works, including the [expansion (XPAC) corpus](/api/key-concepts/#xpac-expansion-pack). The API **excludes XPAC works by default**; add `include_xpac=true` to match. Filter locally on the `is_xpac` field to reproduce the API's default view. |
-| **Freshness** | The snapshot is a point-in-time release (quarterly for the free public snapshot; daily on [paid plans](https://openalex.org/pricing)); the API updates continuously. Counts and records drift between releases — see [Updates & releases](/docs/snapshot-updates/). |
+| **Freshness** | The snapshot is a point-in-time release (quarterly for the free public snapshot; daily on [paid plans](https://openalex.org/pricing)); the API updates continuously. Counts and records drift between releases — see [Sync](/docs/snapshot-updates/). |
 | **`content_urls` is absent** | It's generated at serve time, API-only. The snapshot has `has_content`; build download URLs via the [content endpoint](/docs/content-archive/) with work IDs. |
 | **Some works have `abstract_inverted_index: null`** | Not every work has an abstract (availability and publisher restrictions) — same as the API. |
 | **No n-grams** | The old n-grams dataset is retired and was never part of this snapshot layout. |
@@ -116,7 +116,6 @@ Otherwise the snapshot work schema matches the API's — including `fwci`, `topi
 
 ## Related pages
 
-- [Updates & releases](/docs/snapshot-updates/) — release cadence, partition semantics, deletions & merged entities
+- [Sync](/docs/snapshot-updates/) — release cadence, partition semantics, deletions & merged entities
 - [Access & authentication](/docs/snapshot-access/) — the public bucket, paid daily snapshots, credentials
-- [Bulk data](/docs/bulk-data/) — the whole bulk family and how to choose
 - [Download to your machine](/learn/download-to-your-machine/) — step-by-step recipe

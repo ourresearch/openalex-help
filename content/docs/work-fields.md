@@ -168,7 +168,7 @@ For how these are produced, see [Aboutness](/docs/aboutness/).
 *String.* A URL for downloading full-text content, present only when [`has_content`](#has_content) indicates a PDF or TEI XML is available. Append `.pdf` or `.grobid-xml` and your API key to fetch a format.
 
 > **Note:**
-> `content_url` is available only through the API, not in the [snapshot](/docs/bulk-data/).
+> `content_url` is available only through the API, not in the [snapshot](/docs/snapshot/).
 
 ## Flags
 

@@ -63,7 +63,7 @@ Repeat until `next_cursor` is `null` and `results` is empty.
 > - It takes days to page through /works or /authors
 > - It puts heavy load on our servers
 >
-> Instead, use the [OpenAlex snapshot](/docs/bulk-data/) for bulk downloads. It's free, fast, and gives you the same data format.
+> Instead, use the [OpenAlex snapshot](/docs/snapshot/) for bulk downloads. It's free, fast, and gives you the same data format.
 
 ## Jupyter notebook
 

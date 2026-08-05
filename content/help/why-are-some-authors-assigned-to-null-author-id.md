@@ -6,7 +6,7 @@ source_id: "28763618477975"
 source_url: "https://help.openalex.org/hc/en-us/articles/28763618477975-Why-are-some-authors-assigned-to-NULL-AUTHOR-ID-A9999999999"
 source_updated: "2024-12-25"
 ---
-`A9999999999` is the **NULL author** — a single catch-all ID for authorships that didn't go through OpenAlex's disambiguation process. You'll most often see it in the [data snapshot](/docs/bulk-data/).
+`A9999999999` is the **NULL author** — a single catch-all ID for authorships that didn't go through OpenAlex's disambiguation process. You'll most often see it in the [data snapshot](/docs/snapshot/).
 
 An authorship lands here when:
 

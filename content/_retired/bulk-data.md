@@ -1,3 +1,9 @@
+<!--
+RETIRED 2026-08-05 (Jason, oxjob #354 Access reorg): the "Bulk data" sidebar
+section was replaced by the "Access" section (one page per access method), which
+supersedes this overview/chooser page. Preserved here (outside the build).
+/docs/bulk-data/ redirects to /docs/snapshot/.
+-->
 ---
 title: "Bulk data"
 description: "The OpenAlex bulk-data family — snapshot, content archive, and CLI — and how to choose between bulk downloads and the API."

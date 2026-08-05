@@ -11,6 +11,11 @@
 //
 //   node scripts/sync-query-docs.mjs
 //
+// NOTE (2026-08-05, oxjob #354 Access reorg): content/docs/oql.md (the OQL
+// Overview) is now HAND-MAINTAINED — an editorial synthesis of the upstream
+// guide + cheatsheet artifacts — and is deliberately NOT in PAGES below. When
+// the upstream artifacts change, port relevant changes into it by hand.
+//
 // Idempotent: files are only rewritten when the upstream body actually changed
 // (source_updated stamps the last *change*, not the last run).
 
@@ -30,21 +35,6 @@ const ALPHA_NOTE = `> **Note:**
 // fetched artifact(s); the leading H1 is stripped (frontmatter title replaces it).
 const PAGES = [
   {
-    file: "content/docs/oql.md",
-    slug: "guide",
-    title: "OQL",
-    description:
-      "The OpenAlex Query Language — a readable walkthrough of what OQL is and how to write it.",
-    body: (t) => stripH1(t),
-  },
-  {
-    file: "content/docs/oql-cheatsheet.md",
-    slug: "cheatsheet",
-    title: "OQL cheat sheet",
-    description: "The OQL one-pager: every construct with a copyable example.",
-    body: (t) => stripH1(t),
-  },
-  {
     file: "content/api/oql.md",
     slug: "api",
     title: "OQL API",
@@ -59,39 +49,47 @@ const PAGES = [
   {
     file: "content/docs/oql-spec.md",
     slug: "oql",
-    title: "OQL specification",
+    extraSlugs: ["grammar"],
+    title: "Specification",
     description:
-      "The frozen normative specification of the OpenAlex Query Language (v2).",
+      "The frozen normative specification of the OpenAlex Query Language (v2), including the formal grammar.",
     // The spec references sibling files in the elastic-api repo. Only the OQO
     // spec has a published counterpart here; de-link the rest (keep the code-
-    // formatted text) so the page carries no broken relative links.
-    body: (t) =>
+    // formatted text) so the page carries no broken relative links. The
+    // derived formal grammar (its own page until 2026-08-05) is appended as a
+    // closing section.
+    body: (t, [grammar]) =>
       stripH1(t)
         .replaceAll("](./oqo-spec.md)", "](/docs/oqo-schema/)")
-        .replace(/\[([^\]]+)\]\(\.\.?\/[^)]*\)/g, "$1"),
-  },
-  {
-    file: "content/docs/oql-grammar.md",
-    slug: "grammar",
-    title: "OQL grammar",
-    description:
-      "The derived reference grammar of OQL in W3C-EBNF notation, with a railroad-diagram view.",
-    body: (t) => `The grammar below is **derived from the OQL implementation** in W3C-EBNF notation, so it can't drift from what the engine actually parses. A visual [railroad-diagram rendering](https://api.openalex.org/query/spec/railroad) of the same grammar is also available.
+        .replace(/\[([^\]]+)\]\(\.\.?\/[^)]*\)/g, "$1") +
+      `
+
+## Formal grammar
+
+The grammar below is **derived from the OQL implementation** in W3C-EBNF notation, so it can't drift from what the engine actually parses. A visual [railroad-diagram rendering](https://api.openalex.org/query/spec/railroad) of the same grammar is also available.
 
 \`\`\`ebnf
-${t.trim()}
-\`\`\`
-
-See the [OQL specification](/docs/oql-spec/) for the normative prose and the [cheat sheet](/docs/oql-cheatsheet/) for examples.`,
+${grammar.trim()}
+\`\`\``,
   },
   {
     file: "content/docs/oqo-schema.md",
     slug: "oqo",
-    title: "OQO schema",
+    title: "OQO",
     description:
-      "The JSON Schema for OQO, the abstract-syntax-tree JSON format that OQL parses into.",
+      "OQO (OpenAlex Query Objects) — the machine-readable JSON twin of OQL, built for agents and tools, with its JSON Schema.",
     json: true,
-    body: (t) => `OQO (OpenAlex Query Objects) is the JSON abstract-syntax-tree format that [OQL](/docs/oql/) parses into — tools can construct or manipulate queries as OQO directly and skip string parsing entirely. The [OQL API](/api/oql/) accepts both. The JSON Schema:
+    body: (t) => `OQO (OpenAlex Query Objects) is the machine-readable twin of [OQL](/docs/oql/): the same queries, expressed as JSON data instead of text.
+
+Every OQL query parses into an OQO object, and every OQO object renders back to canonical OQL — two views of one query. The difference is the audience. **OQL is built for humans**: you can read it aloud, type it in the search box, and paste it in an email. **OQO is built for machines — and especially for AI agents.** A JSON tree with a published schema is much easier for software to get right than a string: nothing to quote or escape, no parsing, and a query can be constructed, validated, and modified field by field.
+
+Use OQO when:
+
+- **An agent is writing the query.** Generating valid JSON against a schema is the thing agents are best at; generating a novel query *language* invites syntax errors. Agents can validate an OQO object against the schema below before ever sending it.
+- **A tool is building or rewriting queries** — query builders, saved-search editors, anything that manipulates queries programmatically.
+- **Queries are data** in your system — stored, versioned, diffed, or transformed.
+
+The [OQL API](/api/oql/) accepts either form and returns the canonical OQO for any query in \`meta.x_query\`, so you can always convert between the two by round-tripping. The JSON Schema:
 
 \`\`\`json
 ${JSON.stringify(JSON.parse(t), null, 2)}
@@ -125,7 +123,8 @@ function existingBody(path) {
 let changed = 0;
 for (const p of PAGES) {
   const raw = await fetchArtifact(p.slug);
-  const body = p.body(raw).trim();
+  const extras = await Promise.all((p.extraSlugs ?? []).map(fetchArtifact));
+  const body = p.body(raw, extras).trim();
   const full = `${ALPHA_NOTE}\n\n${body}\n`;
   const out = resolve(ROOT, p.file);
   if (existingBody(out) === full) {

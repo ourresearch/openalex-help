@@ -43,7 +43,7 @@ aws s3 ls s3://openalex-snapshots/full/ --profile openalex
 aws s3 sync s3://openalex-snapshots/full/2026-04-29/jsonl/ ./openalex-snapshot-jsonl --profile openalex
 ```
 
-See [Updates & releases](/docs/snapshot-updates/#the-daily-snapshot-paid-plans) for what the daily snapshot is and the sync workflows it enables.
+See [Sync](/docs/snapshot-updates/#the-daily-snapshot-paid-plans) for what the daily snapshot is and the sync workflows it enables.
 
 ## Content archive
 
@@ -59,7 +59,7 @@ Sign up free at [openalex.org](https://openalex.org/signup) and find your key in
 |---|---|
 | `AccessDenied` / `403` on `s3://openalex` | You're making a *signed* request with your own AWS credentials. Add `--no-sign-request`. |
 | `credential_process` errors for the staging bucket | Test the curl command by itself — if it returns nothing, the API key is wrong or your plan doesn't include the daily snapshot. `curl` must be on the PATH the AWS CLI uses. |
-| Sync re-downloads or duplicates records | Re-syncing into an old copy without `--delete`; see [Updates & releases](/docs/snapshot-updates/). |
+| Sync re-downloads or duplicates records | Re-syncing into an old copy without `--delete`; see [Sync](/docs/snapshot-updates/). |
 | Download is slow or flaky | The snapshot is hundreds of GB — use `aws s3 sync` (it parallelizes and resumes) rather than single `cp` streams, and re-run it to pick up where it left off. |
 
 Still stuck? [Contact support](https://openalex.org/contact) with the exact command and error.

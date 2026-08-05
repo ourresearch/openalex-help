@@ -1,16 +1,26 @@
 ---
-title: "OQO schema"
-description: "The JSON Schema for OQO, the abstract-syntax-tree JSON format that OQL parses into."
+title: "OQO"
+description: "OQO (OpenAlex Query Objects) — the machine-readable JSON twin of OQL, built for agents and tools, with its JSON Schema."
 tags: ["oql"]
 generated: true
 source_id: "query-spec/oqo"
 source_url: "https://api.openalex.org/query/spec/oqo"
-source_updated: "2026-07-30"
+source_updated: "2026-08-05"
 ---
 > **Note:**
 > The OpenAlex Query Language is in **alpha**. It may change without warning — build against it at your own risk, and [tell us what you think](mailto:support@openalex.org).
 
-OQO (OpenAlex Query Objects) is the JSON abstract-syntax-tree format that [OQL](/docs/oql/) parses into — tools can construct or manipulate queries as OQO directly and skip string parsing entirely. The [OQL API](/api/oql/) accepts both. The JSON Schema:
+OQO (OpenAlex Query Objects) is the machine-readable twin of [OQL](/docs/oql/): the same queries, expressed as JSON data instead of text.
+
+Every OQL query parses into an OQO object, and every OQO object renders back to canonical OQL — two views of one query. The difference is the audience. **OQL is built for humans**: you can read it aloud, type it in the search box, and paste it in an email. **OQO is built for machines — and especially for AI agents.** A JSON tree with a published schema is much easier for software to get right than a string: nothing to quote or escape, no parsing, and a query can be constructed, validated, and modified field by field.
+
+Use OQO when:
+
+- **An agent is writing the query.** Generating valid JSON against a schema is the thing agents are best at; generating a novel query *language* invites syntax errors. Agents can validate an OQO object against the schema below before ever sending it.
+- **A tool is building or rewriting queries** — query builders, saved-search editors, anything that manipulates queries programmatically.
+- **Queries are data** in your system — stored, versioned, diffed, or transformed.
+
+The [OQL API](/api/oql/) accepts either form and returns the canonical OQO for any query in `meta.x_query`, so you can always convert between the two by round-tripping. The JSON Schema:
 
 ```json
 {

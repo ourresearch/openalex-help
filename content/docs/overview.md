@@ -57,11 +57,11 @@ The same dataset is available through eight channels, from no-code to whole-data
     <span class="ac-title">API</span>
     <span class="ac-body">Built for builders: fast and well-documented, with a generous free tier and pay-as-you-go after that.</span>
   </a>
-  <a class="access-card" href="/api/">
+  <a class="access-card" href="/docs/openalex-cli/">
     <span class="ac-title">CLI</span>
     <span class="ac-body">Query from your terminal and pipe the results into your own scripts. Agents love using it.</span>
   </a>
-  <a class="access-card" href="/api/llm-quick-reference/">
+  <a class="access-card" href="/docs/agents/">
     <span class="ac-title">Agents</span>
     <span class="ac-body">Just say "Use OpenAlex" to your agent and it'll handle the rest.</span>
   </a>

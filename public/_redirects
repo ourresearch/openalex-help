@@ -482,8 +482,8 @@
 /docs/when-i-look-at-my-repository-as-a-source-in-openalex-why-is-it-missing/  /docs/repositories/  301
 # <<< rewrite-pass-g <<<
 # >>> rewrite-pass-h >>>
-/docs/downloading-openalex-data  /docs/bulk-data/  301
-/docs/downloading-openalex-data/  /docs/bulk-data/  301
+/docs/downloading-openalex-data  /docs/snapshot/  301
+/docs/downloading-openalex-data/  /docs/snapshot/  301
 /docs/snapshot-data-format  /docs/snapshot/  301
 /docs/snapshot-data-format/  /docs/snapshot/  301
 /docs/full-text-pdfs  /docs/content-archive/  301
@@ -558,6 +558,16 @@
 /docs/recommendation-for-irs-version-reporting/  /docs/repositories/#version-reporting  301
 /docs/link-resolver-integrations  /help/link-resolver-integrations/  301
 /docs/link-resolver-integrations/  /help/link-resolver-integrations/  301
+
+# Access-section reorg 2026-08-05: bulk-data retired (superseded by the Access
+# nav section); OQL cheatsheet merged into the OQL overview; OQL grammar merged
+# into the Specification page.
+/docs/bulk-data  /docs/snapshot/  301
+/docs/bulk-data/  /docs/snapshot/  301
+/docs/oql-cheatsheet  /docs/oql/  301
+/docs/oql-cheatsheet/  /docs/oql/  301
+/docs/oql-grammar  /docs/oql-spec/#formal-grammar  301
+/docs/oql-grammar/  /docs/oql-spec/#formal-grammar  301
 
 # >>> WILDCARDS LAST — do not move, do not add rules after this section >>>
 # CF Pages bug (oxjob #354, verified 2026-08-01): once a wildcard/splat rule

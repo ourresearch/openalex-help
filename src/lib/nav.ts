@@ -173,36 +173,28 @@ export const NAV_GROUPS: Record<string, NavGroup[]> = {
       ],
     },
     {
-      label: 'Query language (OQL)',
-      desc: 'The OpenAlex Query Language — readable queries over everything.',
+      label: 'Access',
+      desc: 'The ways to get the data — from a quick query to the whole database.',
       slugs: [
-        'oql',
-        'oql-cheatsheet',
         {
-          label: 'Reference',
+          label: 'OQL',
+          slug: 'oql',
           children: [
             'oql-spec',
-            'oql-grammar',
             'oqo-schema',
           ],
         },
-      ],
-    },
-    {
-      label: 'Bulk data',
-      desc: 'Snapshot, content archive, and CLI — the data in bulk.',
-      slugs: [
-        'bulk-data',
+        'openalex-cli',
+        'agents',
         {
           label: 'Snapshot',
+          slug: 'snapshot',
           children: [
-            'snapshot',
-            'snapshot-updates',
             'snapshot-access',
           ],
         },
+        'snapshot-updates',
         'content-archive',
-        'openalex-cli',
       ],
     },
   ],

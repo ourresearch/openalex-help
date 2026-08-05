@@ -1,12 +1,12 @@
 ---
-title: "Content archive"
+title: "Fulltext"
 description: "The OpenAlex content archive — full-text PDFs and Grobid TEI XML for millions of works, and the three ways to download them."
 tags: ["downloads"]
 source_id: "download/full-text-pdfs"
 source_url: "https://developers.openalex.org/download/full-text-pdfs"
 source_updated: "2026-06-24"
 ---
-The **content archive** is the full-text member of the [bulk-data family](/docs/bulk-data/): cached full-text content for about 60 million works.
+The **content archive** is OpenAlex’s full-text collection: cached full-text content for about 60 million works.
 
 | Format | Files | Size |
 |--------|-------|------|
