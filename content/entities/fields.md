@@ -1,0 +1,64 @@
+---
+title: "Fields"
+description: "What a field is, where it sits in the OpenAlex classification hierarchy, and what every field on a field object means."
+tags: ["reference"]
+source_id: "24736129405719"
+source_url: "https://help.openalex.org/hc/en-us/articles/24736129405719-Topics"
+source_updated: "2026-03-06"
+---
+A **field** is the second level of OpenAlex's four-level classification hierarchy: 4 [domains](/entities/domains/) → 26 fields → 252 [subfields](/entities/subfields/) → 4,516 [topics](/entities/topics/). The 26 fields are broad disciplines — "Medicine," "Computer Science," "Arts and Humanities," "Physics and Astronomy," and so on — each sitting under one of the four domains and gathering a set of subfields beneath it. A field's OpenAlex ID is a bare number, e.g. `27` for Medicine; fetch one at [`api.openalex.org/fields/27`](https://api.openalex.org/fields/27). Fields are one of several [aboutness](/entities/aboutness/) signals — high familiarity, coarse granularity — see that page to choose the right level for your question.
+
+## How we build it
+
+Fields aren't classified on their own — they're a level of the same hierarchy [topics](/entities/topics/) are built from. Each of the ~4,500 topics maps up through a [subfield](/entities/subfields/) to one of the 26 fields, following Scopus's [ASJC categories](https://service.elsevier.com/app/answers/detail/a_id/12007/supporthub/scopus/), and a work "belongs to" a field through the topics assigned to it. The 26 field **labels** are standardized, but a work lands in one only because a machine-learning model inferred its topic from the work's text — which is why fields, like the rest of the hierarchy, live under [Aboutness](/entities/aboutness/) rather than [Vocabulary](/entities/vocabulary/). See [Topics → How we build it](/entities/topics/#how-we-build-it) for the full pipeline.
+
+A work's primary field is the field of its [`primary_topic`](/entities/works/#primary_topic). To find works in a field, filter [Works](/entities/works/) by `topics.field.id` (any assigned topic's field) or `primary_topic.field.id` (the primary only). One level up is a [domain](/entities/domains/); one level down is a set of [subfields](/entities/subfields/).
+
+## Fields
+
+This is the canonical dictionary of every field on a **field** object. (Confusingly, "field" is both the entity and the generic word for an object's properties; the properties are dictionaried below.) Fields shared with other entities ([`id`](/entities/common-fields/#id), [`ids`](/entities/common-fields/#ids), [`display_name`](/entities/common-fields/#display_name), [`works_count`](/entities/common-fields/#works_count), [`cited_by_count`](/entities/common-fields/#cited_by_count), [`created_date`](/entities/common-fields/#created_date), [`updated_date`](/entities/common-fields/#updated_date)) are documented once on [Common fields](/entities/common-fields/); field-specific notes are below.
+
+### `id`
+*String.* The [OpenAlex ID](/entities/overview/#the-openalex-id-scheme) for this field, e.g. `https://openalex.org/fields/27`. Fields use a bare numeric ID (two digits, 11–36), not the letter-prefixed scheme. See [Common fields](/entities/common-fields/#id).
+
+### `ids`
+*Object.* External identifiers for this field, as URIs: `openalex`, plus `wikidata` and `wikipedia` where a matching article exists.
+
+### `display_name`
+*String.* The field's name, e.g. "Medicine." See [Common fields](/entities/common-fields/#display_name).
+
+### `display_name_alternatives`
+*List.* Other names the field is known by (e.g. "healthcare sciences" for Medicine), for matching and search.
+
+### `description`
+*String.* A short description of what the field covers.
+
+### `domain`
+*Object.* The [domain](/entities/domains/) this field belongs to (`id`, `display_name`) — the level directly above it in the hierarchy.
+
+### `subfields`
+*List.* The [subfields](/entities/subfields/) that belong to this field (`id`, `display_name`) — the level directly below it.
+
+### `siblings`
+*List.* The other 25 fields (`id`, `display_name`), for navigating laterally across the classification.
+
+### `works_count`
+*Integer.* How many works fall in this field (through their assigned topics). See [Common fields](/entities/common-fields/#works_count).
+
+### `cited_by_count`
+*Integer.* Total citations across all works in this field. See [Common fields](/entities/common-fields/#cited_by_count).
+
+### `works_api_url`
+*String.* A ready-made [Works](/entities/works/) API URL for every work in this field, e.g. `https://api.openalex.org/works?filter=topics.field.id:27`. A convenience link; work IDs aren't stored on the field object.
+
+### `created_date`
+*String.* The date this field was added to OpenAlex (`YYYY-MM-DD`). See [Common fields](/entities/common-fields/#created_date).
+
+### `updated_date`
+*String.* The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) UTC timestamp of the last change to the field object. See [Common fields](/entities/common-fields/#updated_date).
+
+## In the API
+
+The Fields endpoint is at [`api.openalex.org/fields`](https://api.openalex.org/fields). Fetch a single field by ID — [`/fields/27`](https://api.openalex.org/fields/27) — or a list, and [filter](/api/filtering/), [search](/api/searching/), [sort](/api/sorting/), [group](/api/grouping/), and [page](/api/paging/) over it. With only 26 fields, one unfiltered request returns them all.
+
+You can filter and group fields by `domain.id` and `subfields.id`, and by `works_count`, `cited_by_count`, `id`, and `display_name`, all of which also sort. Full-text matching uses the [`search` parameter](/api/searching/) (the older `display_name.search` filter is deprecated). To find works in a field, use the [Works](/entities/works/) endpoint: `filter=primary_topic.field.id:27` (primary only) or `filter=topics.field.id:27` (any assigned topic). See the [Fields API reference](/api/fields/) and the [endpoints index](/api/endpoints/).

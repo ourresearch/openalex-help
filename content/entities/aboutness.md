@@ -12,16 +12,16 @@ Two properties help you choose. **Granularity** (the number of groups) sets how 
 
 | Signal | # groups | Familiarity | Fit to custom areas |
 |---|---|---|---|
-| [SDGs](/docs/sdg-classification/) | 17 | High | Low |
-| [Domains](/docs/topics/) | 4 | High | Low |
-| [Fields](/docs/topics/) | 26 | High | Low |
-| [Subfields](/docs/topics/) | 252 | High | Medium |
-| [Topics](/docs/topics/) | 4,516 | Low | Medium-high |
-| [Keywords](/docs/keywords/) | ~65,000 | Medium | High |
-| [Concepts](/api/concepts/) (deprecated) | ~65,000 | High | Variable |
+| [SDGs](/entities/sdgs/) | 17 | High | Low |
+| [Domains](/entities/domains/) | 4 | High | Low |
+| [Fields](/entities/fields/) | 26 | High | Low |
+| [Subfields](/entities/subfields/) | 252 | High | Medium |
+| [Topics](/entities/topics/) | 4,516 | Low | Medium-high |
+| [Keywords](/entities/keywords/) | ~65,000 | Medium | High |
+| [Concepts](/entities/concepts/) (deprecated) | ~65,000 | High | Variable |
 | [Text search](/api/searching/) | ∞ | Low | High |
 
-A rough guide: the **topics hierarchy** (domains → fields → subfields → topics) is the supported general-purpose system — pick the level whose granularity matches your question. **Keywords** fit narrower, more specific slices. **SDGs** map research onto the UN Sustainable Development Goals and little else. **Concepts** are deprecated — kept for continuity with Microsoft Academic Graph, no longer maintained; see [subfields vs concepts](/docs/topics/#subfields-vs-concepts). **Text search** fits custom areas no scheme covers, at the cost of comparability.
+A rough guide: the **topics hierarchy** ([domains](/entities/domains/) → [fields](/entities/fields/) → [subfields](/entities/subfields/) → [topics](/entities/topics/)) is the supported general-purpose system — pick the level whose granularity matches your question. **Keywords** fit narrower, more specific slices. **SDGs** map research onto the UN Sustainable Development Goals and little else. **Concepts** are deprecated — kept for continuity with Microsoft Academic Graph, no longer maintained; see [Concepts](/entities/concepts/). **Text search** fits custom areas no scheme covers, at the cost of comparability.
 
 ## Aboutness for your own text
 
@@ -29,7 +29,7 @@ For the topics hierarchy and keywords, you can supply your own custom text — t
 
 ## Related pages
 
-- [Topics](/docs/topics/) — the four-level hierarchy and how it's assigned
-- [Keywords](/docs/keywords/) — how keyword tagging works
-- [SDG classification](/docs/sdg-classification/) — the Sustainable Development Goals tagger
-- [FWCI](/docs/fwci/) — the field-normalized citation metric built on subfields
+- [Topics](/entities/topics/) — the four-level hierarchy and how it's assigned
+- [Keywords](/entities/keywords/) — how keyword tagging works
+- [SDGs](/entities/sdgs/) — the Sustainable Development Goals tagger
+- [FWCI](/entities/works/#field-weighted-citation-impact) — the field-normalized citation metric built on subfields

@@ -196,10 +196,13 @@ export const NAV_GROUPS: Record<string, NavGroup[]> = {
       ],
     },
     {
+      // Aboutness moved to the Entities tab (oxjob #354 Pass R). `aboutness`
+      // already lives at /entities/aboutness/; topics/keywords/sdg-classification
+      // are dissolved into Entities in the docs-tab restructure step and will be
+      // removed from this group + redirected then.
       label: 'Aboutness',
       desc: 'Topics, keywords, and other classifications.',
       slugs: [
-        'aboutness',
         'topics',
         'keywords',
         'sdg-classification',

@@ -24,13 +24,16 @@ const MAILTO = 'team@openalex.org';
 const API = 'https://api.openalex.org';
 
 // slug -> { endpoint?, propKey? }. endpoint + propKey default to the slug.
-// Entities with a field dictionary but no clean list endpoint (authorships,
-// raw-affiliation-strings — documented from the works object) are omitted; add
-// them here with a custom sampler if that ever changes.
+// Only entities whose page documents the SAME object the list endpoint returns
+// are listed. Component entities (authorships, locations, raw-affiliation-strings)
+// are intentionally omitted: their pages document the object as embedded in a
+// work (e.g. work.locations[] — is_oa/pdf_url/version/…), which is a different
+// shape from the standalone /locations Walden row, so the list endpoint is the
+// wrong oracle for them. They're self-verified against a live work object.
 const ENTITIES = {
   works: {}, authors: {}, sources: {}, institutions: {}, publishers: {},
   funders: {}, topics: {}, keywords: {}, awards: {}, concepts: {},
-  subfields: {}, fields: {}, domains: {}, sdgs: {}, locations: {},
+  subfields: {}, fields: {}, domains: {}, sdgs: {},
   'work-types': {}, 'source-types': {}, 'institution-types': {},
   countries: {}, continents: {}, languages: {}, licenses: {}, indexes: {},
 };
