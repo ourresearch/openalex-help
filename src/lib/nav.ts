@@ -258,44 +258,19 @@ export const NAV_GROUPS: Record<string, NavGroup[]> = {
       ],
     },
     {
-      label: 'Entities',
-      desc: 'The entity endpoints: works, authors, sources, and more.',
-      slugs: [
-        'works',
-        'authors',
-        'sources',
-        'institutions',
-        'publishers',
-        'funders',
-        'topics',
-        'keywords',
-        'awards',
-        'collections',
-        'indexes',
-        'concepts',
-      ],
+      // Per-entity API pages killed (oxjob #354 Pass R §5): entity semantics +
+      // per-field capabilities live in the Entities tab. The API tab is
+      // mechanics + this one-page endpoint index.
+      label: 'Endpoints',
+      desc: 'The full list of endpoints, each linking to its entity page.',
+      slugs: ['endpoints'],
     },
     {
-      label: 'Vocabularies',
-      desc: 'Controlled vocabularies: types, countries, licenses, SDGs.',
-      slugs: [
-        'work-types',
-        'source-types',
-        'institution-types',
-        'countries',
-        'continents',
-        'languages',
-        'licenses',
-        'domains',
-        'fields',
-        'subfields',
-        'sdgs',
-      ],
-    },
-    {
+      // collections is a write API (CRUD on user.openalex.org), so its mechanics
+      // stay in the API tab as a special endpoint (flagged for Jason's review).
       label: 'Curation & special',
-      desc: 'Curation endpoints and special-purpose APIs.',
-      slugs: ['author-curation', 'tag-aboutness'],
+      desc: 'Curation, collections, and special-purpose endpoints.',
+      slugs: ['author-curation', 'collections', 'tag-aboutness'],
     },
   ],
 };

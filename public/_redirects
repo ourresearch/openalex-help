@@ -614,6 +614,51 @@
 /docs/content-archive/  /docs/fulltext/  301
 /docs/snapshot-access  /docs/snapshot/  301
 /docs/snapshot-access/  /docs/snapshot/  301
+# --- Per-entity API pages killed -> Entities tab (§5) ---
+/api/works  /entities/works/  301
+/api/works/  /entities/works/  301
+/api/authors  /entities/authors/  301
+/api/authors/  /entities/authors/  301
+/api/sources  /entities/sources/  301
+/api/sources/  /entities/sources/  301
+/api/institutions  /entities/institutions/  301
+/api/institutions/  /entities/institutions/  301
+/api/publishers  /entities/publishers/  301
+/api/publishers/  /entities/publishers/  301
+/api/funders  /entities/funders/  301
+/api/funders/  /entities/funders/  301
+/api/awards  /entities/awards/  301
+/api/awards/  /entities/awards/  301
+/api/topics  /entities/topics/  301
+/api/topics/  /entities/topics/  301
+/api/subfields  /entities/subfields/  301
+/api/subfields/  /entities/subfields/  301
+/api/fields  /entities/fields/  301
+/api/fields/  /entities/fields/  301
+/api/domains  /entities/domains/  301
+/api/domains/  /entities/domains/  301
+/api/keywords  /entities/keywords/  301
+/api/keywords/  /entities/keywords/  301
+/api/sdgs  /entities/sdgs/  301
+/api/sdgs/  /entities/sdgs/  301
+/api/concepts  /entities/concepts/  301
+/api/concepts/  /entities/concepts/  301
+/api/work-types  /entities/work-types/  301
+/api/work-types/  /entities/work-types/  301
+/api/source-types  /entities/source-types/  301
+/api/source-types/  /entities/source-types/  301
+/api/institution-types  /entities/institution-types/  301
+/api/institution-types/  /entities/institution-types/  301
+/api/countries  /entities/countries/  301
+/api/countries/  /entities/countries/  301
+/api/continents  /entities/continents/  301
+/api/continents/  /entities/continents/  301
+/api/languages  /entities/languages/  301
+/api/languages/  /entities/languages/  301
+/api/licenses  /entities/licenses/  301
+/api/licenses/  /entities/licenses/  301
+/api/indexes  /entities/indexes/  301
+/api/indexes/  /entities/indexes/  301
 # <<< restructure Pass R <<<
 
 # >>> WILDCARDS LAST — do not move, do not add rules after this section >>>
