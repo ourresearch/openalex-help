@@ -140,8 +140,8 @@ export const NAV_GROUPS: Record<string, NavGroup[]> = {
       ],
     },
     {
-      label: 'Entities',
-      desc: 'The non-work entities: authors, institutions, sources, publishers.',
+      label: 'Other entities',
+      desc: 'Authors, institutions, sources, and publishers.',
       slugs: [
         'author-disambiguation',
         'affiliations',
