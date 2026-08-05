@@ -1,5 +1,5 @@
 ---
-title: "Field-Weighted Citation Impact (FWCI)"
+title: "FWCI"
 description: "FWCI measures a work's citation impact normalized for its subfield, work type, and publication year — 1.0 is world average. How OpenAlex calculates it and how it compares to other databases' FWCI."
 tags: ["reference"]
 source_id: "24735753007895"

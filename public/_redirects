@@ -97,8 +97,8 @@
 /hc/en-us/articles/41193838188439  /docs/what-does-is-paratext-mean-in-the-api/  301
 /hc/en-us/articles/41193820448023-Link-Resolver-Integrations  /docs/link-resolver-integrations/  301
 /hc/en-us/articles/41193820448023  /docs/link-resolver-integrations/  301
-/hc/en-us/articles/41193798060439-Unpaywall-Change-Notes  /docs/unpaywall-change-notes/  301
-/hc/en-us/articles/41193798060439  /docs/unpaywall-change-notes/  301
+/hc/en-us/articles/41193798060439-Unpaywall-Change-Notes  /docs/unpaywall/  301
+/hc/en-us/articles/41193798060439  /docs/unpaywall/  301
 /hc/en-us/articles/41193798040471-How-do-I-read-JSONL-files  /docs/how-do-i-read-jsonl-files/  301
 /hc/en-us/articles/41193798040471  /docs/how-do-i-read-jsonl-files/  301
 /hc/en-us/articles/41193820405143-Why-does-the-Unpaywall-plugin-say-this-paywalled-article-is-Open-Access  /docs/why-does-the-unpaywall-plugin-say-this-paywalled-article-is-open-acces/  301
@@ -490,8 +490,8 @@
 /docs/full-text-pdfs/  /docs/content-archive/  301
 /docs/which-dois-does-unpaywall-cover  /docs/unpaywall/  301
 /docs/which-dois-does-unpaywall-cover/  /docs/unpaywall/  301
-/docs/preventing-code-injection-using-text-from-unpaywall-safely  /docs/unpaywall-data-safety/  301
-/docs/preventing-code-injection-using-text-from-unpaywall-safely/  /docs/unpaywall-data-safety/  301
+/docs/preventing-code-injection-using-text-from-unpaywall-safely  /api/introduction/#security  301
+/docs/preventing-code-injection-using-text-from-unpaywall-safely/  /api/introduction/#security  301
 /docs/download-to-your-machine  /learn/download-to-your-machine/  301
 /docs/download-to-your-machine/  /learn/download-to-your-machine/  301
 /docs/download-changefiles  /docs/snapshot-updates/  301
@@ -539,6 +539,13 @@
 /docs/how-openalex-works  /docs/how-it-works/  301
 /docs/how-openalex-works/  /docs/how-it-works/  301
 # <<< design-round-4 <<<
+
+# Retired 2026-08-05 (sidebar reorg round): change notes ~5y stale -> parent
+# unpaywall page; data-safety folded into API overview "Security" section.
+/docs/unpaywall-change-notes  /docs/unpaywall/  301
+/docs/unpaywall-change-notes/  /docs/unpaywall/  301
+/docs/unpaywall-data-safety  /api/introduction/#security  301
+/docs/unpaywall-data-safety/  /api/introduction/#security  301
 
 # >>> WILDCARDS LAST — do not move, do not add rules after this section >>>
 # CF Pages bug (oxjob #354, verified 2026-08-01): once a wildcard/splat rule

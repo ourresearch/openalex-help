@@ -144,6 +144,10 @@ The complete API specification is available for tooling and code generation:
 
 - **[OpenAPI Spec](/openapi.json)** — Download the OpenAPI 3.1 specification
 
+## Security
+
+Text fields in OpenAlex (and Unpaywall) records — titles, abstracts, affiliation strings — come from external sources, and we pass them through as-is rather than sanitizing them. If you display or process this text, especially on web pages, follow standard best practice for handling untrusted text: escape it for your output format, or use tools that do it for you (HTML templating engines, [prepared statements](https://en.wikipedia.org/wiki/Prepared_statement)). We've never seen a malicious payload in OpenAlex or Unpaywall data, but it's possible in principle, and following best practice is cheap. Good starting points: [OWASP's XSS prevention cheat sheet](https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html) and Wikipedia's overview of [code injection](https://en.wikipedia.org/wiki/Code_injection).
+
 ## Next Steps
 
   - **[Authentication](/api/authentication/)** — API keys, pricing, and rate limits

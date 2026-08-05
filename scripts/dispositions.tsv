@@ -23,7 +23,7 @@ id	section	action	tab	slug	target	review	reason	title
 41193798254743	Unpaywall	migrate	docs	how-are-repository-records-matched-to-published-articles			Unpaywall → docs	How are repository records matched to published articles?
 41193790429975	Unpaywall	migrate	docs	recommendation-for-irs-version-reporting			Unpaywall → docs	Recommendation for IRs: Version reporting
 41193838350359	Unpaywall	migrate	docs	how-do-i-make-the-unpaywall-extension-work-on-my-site			Unpaywall → docs	How do I make the Unpaywall extension work on my site?
-41193804772631	Unpaywall	migrate	docs	preventing-code-injection-using-text-from-unpaywall-safely			Unpaywall → docs	Preventing Code Injection - Using Text From Unpaywall Safely
+41193804772631	Unpaywall	retire	docs	preventing-code-injection-using-text-from-unpaywall-safely			RETIRED 2026-08-05: page deleted; essence folded into /api/introduction/#security; URL -> that anchor	Preventing Code Injection - Using Text From Unpaywall Safely
 41193820565015	Unpaywall	migrate	docs	what-do-the-fields-in-the-api-response-and-snapshot-records-mean			Unpaywall → docs	What do the fields in the API response and snapshot records mean?
 41193820535191	Unpaywall	migrate	docs	what-counts-as-an-open-access-location			Unpaywall → docs	What counts as an Open Access location?
 41193790368279	Unpaywall	migrate	docs	what-do-the-host-type-values-publisher-and-repository-mean			Unpaywall → docs	What do the host_type values "publisher" and "repository" mean?
@@ -34,7 +34,7 @@ id	section	action	tab	slug	target	review	reason	title
 41193798112151	Unpaywall	migrate	docs	how-is-the-best-oa-location-determined			Unpaywall → docs	How is the best OA location determined?
 41193838188439	Unpaywall	migrate	docs	what-does-is-paratext-mean-in-the-api			Unpaywall → docs	What does is_paratext mean in the API?
 41193820448023	Unpaywall	migrate	docs	link-resolver-integrations			Unpaywall → docs	Link Resolver Integrations
-41193798060439	Unpaywall	migrate	docs	unpaywall-change-notes			Unpaywall → docs	Unpaywall Change Notes
+41193798060439	Unpaywall	retire	docs	unpaywall-change-notes			RETIRED 2026-08-05: ~5y out of date, no longer public; source kept in content/_retired/; URL -> /docs/unpaywall/	Unpaywall Change Notes
 41193798040471	Unpaywall	migrate	docs	how-do-i-read-jsonl-files			Unpaywall → docs	How do I read JSONL files?
 41193820405143	Unpaywall	migrate	docs	why-does-the-unpaywall-plugin-say-this-paywalled-article-is-open-acces			Unpaywall → docs	Why does the Unpaywall plugin say this paywalled article is Open Access?
 41193790227991	Unpaywall	migrate	docs	how-do-we-decide-if-a-given-journal-is-fully-oa			Unpaywall → docs	How do we decide if a given journal is fully OA?

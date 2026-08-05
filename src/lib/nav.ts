@@ -126,13 +126,14 @@ export const NAV_GROUPS: Record<string, NavGroup[]> = {
       ],
     },
     {
-      label: 'Works & metadata',
+      label: 'Works',
       desc: 'Where works come from and what their fields mean.',
       slugs: [
         'works',
         'work-types',
         'versions',
         'citations',
+        'fwci',
         'counts-by-year',
         'work-fields',
       ],
@@ -154,27 +155,20 @@ export const NAV_GROUPS: Record<string, NavGroup[]> = {
       ],
     },
     {
-      label: 'Topics, metrics & aboutness',
-      desc: 'Topics, keywords, FWCI, and other classifications.',
+      label: 'Aboutness',
+      desc: 'Topics, keywords, and other classifications.',
       slugs: [
         'aboutness',
         'topics',
         'keywords',
         'sdg-classification',
-        'fwci',
       ],
     },
     {
       label: 'Open Access',
-      desc: 'How OA status, locations, and licenses are determined.',
+      desc: 'OA status and licenses, repositories, and Unpaywall.',
       slugs: [
         'open-access',
-      ],
-    },
-    {
-      label: 'Repositories',
-      desc: 'Repository records, matching, and recommendations for IRs.',
-      slugs: [
         'repository-records',
         {
           label: 'For repository managers',
@@ -184,6 +178,11 @@ export const NAV_GROUPS: Record<string, NavGroup[]> = {
             'link-resolver-integrations',
           ],
         },
+        'unpaywall',
+        // 'unpaywall-change-notes' — RETIRED 2026-08-05 (Jason): the change log
+        // is ~5 years out of date, so we no longer share it publicly. The
+        // article source is preserved at content/_retired/ (outside the build);
+        // /docs/unpaywall-change-notes/ now redirects to /docs/unpaywall/.
       ],
     },
     {
@@ -217,15 +216,6 @@ export const NAV_GROUPS: Record<string, NavGroup[]> = {
         },
         'content-archive',
         'openalex-cli',
-      ],
-    },
-    {
-      label: 'Unpaywall',
-      desc: 'The legacy-format OA surface: API, extension, and integrations.',
-      slugs: [
-        'unpaywall',
-        'unpaywall-change-notes',
-        'unpaywall-data-safety',
       ],
     },
   ],
