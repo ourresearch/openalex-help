@@ -56,7 +56,7 @@ With a free API key ($1/day), you can download about 100 files per day. Good for
 
 ### Option 2: OpenAlex CLI (up to a few million files)
 
-For larger downloads, use the [OpenAlex CLI](/docs/openalex-cli/). It handles parallel downloads, retries, checkpointing, and resume automatically.
+For larger downloads, use the [OpenAlex CLI](/docs/cli/). It handles parallel downloads, retries, checkpointing, and resume automatically.
 
 ```bash
 pip install openalex-official

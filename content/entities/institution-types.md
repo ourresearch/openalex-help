@@ -7,7 +7,7 @@ An **institution type** classifies the kind of organization: a university (`educ
 
 ## How we build it
 
-The vocabulary is derived directly from [ROR](https://ror.org/), the Research Organization Registry, which assigns each organization a type. OpenAlex adopts ROR's type for each [institution](/entities/institutions/), mapping onto the fixed list below (with an `other` bucket for organizations that don't fit ROR's standard categories). We don't decide the boundary between an education and a healthcare institution; we standardize the label from the ROR standard. See the [Institutions guide](/api/institutions/) for more.
+The vocabulary is derived directly from [ROR](https://ror.org/), the Research Organization Registry, which assigns each organization a type. OpenAlex adopts ROR's type for each [institution](/entities/institutions/), mapping onto the fixed list below (with an `other` bucket for organizations that don't fit ROR's standard categories). We don't decide the boundary between an education and a healthcare institution; we standardize the label from the ROR standard. See the [Institutions guide](/entities/institutions/) for more.
 
 ## Values
 

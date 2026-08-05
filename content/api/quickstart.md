@@ -104,9 +104,9 @@ Check the `has_content.pdf` filter to find downloadable works.
 
 ## Next steps
 
-  - **[Works](/api/works/)** — Journal articles, books, datasets, theses
-  - **[Authors](/api/authors/)** — Researchers and their publications
+  - **[Works](/entities/works/)** — Journal articles, books, datasets, theses
+  - **[Authors](/entities/authors/)** — Researchers and their publications
   - **[Filtering](/api/filtering/)** — Narrow results with 150+ filter options
-  - **[Recipes](/learn/quick-api-recipes/)** — Common API patterns and examples
+  - **[Recipes](/recipes/quick-api-recipes/)** — Common API patterns and examples
 
 All data is [CC0 licensed](https://creativecommons.org/publicdomain/zero/1.0/) — free to access and share.

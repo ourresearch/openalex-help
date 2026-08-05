@@ -53,7 +53,7 @@ It's very unusual for agents to hallucinate results here, since the API is so we
     <span class="ac-title">Help</span>
     <span class="ac-body">Friendly answers to common questions — accounts, exports, fixing your profile.</span>
   </a>
-  <a class="access-card" href="/learn/">
+  <a class="access-card" href="/recipes/">
     <span class="ac-title">Recipes</span>
     <span class="ac-body">Step-by-step walkthroughs of real research questions.</span>
   </a>

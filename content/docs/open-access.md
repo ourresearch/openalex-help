@@ -10,7 +10,7 @@ There are [many ways to define Open Access](https://peerj.com/articles/4375/#lit
 
 For each work, OpenAlex decides whether it meets the definition using several techniques — checking whether its journal is in the [Directory of Open Access Journals](https://doaj.org/) (DOAJ), looking for a free copy on the publisher's page, and searching repositories for deposited versions. When a work is OA, OpenAlex gives you a link to its full text.
 
-On the [Work object](/api/works/), this information lives in the `open_access` object:
+On the [Work object](/entities/works/), this information lives in the `open_access` object:
 
 | Field | What it tells you |
 |---|---|
@@ -34,14 +34,14 @@ Beyond the yes/no of `is_oa`, OpenAlex assigns every work an **OA status** — t
 
 Two things follow from these definitions that often surprise people:
 
-- **Status depends on the journal, not just the article.** The same freely readable article is `gold` (or `diamond`) in a fully-OA journal but `hybrid` or `bronze` in a toll-access one. How OpenAlex determines whether a journal is fully OA — including journals that "flipped" to OA partway through their run — is covered in [Journal quality & OA status](/docs/journal-quality/).
+- **Status depends on the journal, not just the article.** The same freely readable article is `gold` (or `diamond`) in a fully-OA journal but `hybrid` or `bronze` in a toll-access one. How OpenAlex determines whether a journal is fully OA — including journals that "flipped" to OA partway through their run — is covered in [Journal quality & OA status](/entities/sources/#how-we-build-it).
 - **The hybrid/bronze line is drawn by license.** A free-to-read article in a toll-access journal is `hybrid` if it carries an open license and `bronze` if it doesn't. What counts as an open license is defined below.
 
 You can filter and group works by status — for example, [group all works by `oa_status`](https://api.openalex.org/works?group_by=open_access.oa_status) — so the taxonomy is countable, not just descriptive.
 
 ## OA locations
 
-A work's OA evidence lives in its [locations](/docs/sources/) — the individual places (journal pages, repositories) where copies of the work are hosted. Each location records whether that copy is OA (`is_oa`), plus its `landing_page_url`, `pdf_url`, `license`, [`version`](/docs/versions/), and host `source`.
+A work's OA evidence lives in its [locations](/entities/sources/) — the individual places (journal pages, repositories) where copies of the work are hosted. Each location records whether that copy is OA (`is_oa`), plus its `landing_page_url`, `pdf_url`, `license`, [`version`](/entities/locations/), and host `source`.
 
 **What counts as an OA location?** OpenAlex is flexible: in general, if a page makes the full text of an article available for free — directly on the page, through a PDF link, or in an embedded reader — it counts. There are two deliberate exceptions, both about keeping links usable and machine-readable:
 
@@ -55,7 +55,7 @@ A work's OA evidence lives in its [locations](/docs/sources/) — the individual
 When a work has more than one OA location, OpenAlex designates the most current, authoritative one as `best_oa_location`. Locations are ranked by a series of tiebreakers, in order:
 
 1. **Host kind**: publisher-hosted beats repository-hosted.
-2. **[Version](/docs/versions/)**: `publishedVersion` beats `acceptedVersion`, which beats `submittedVersion`.
+2. **[Version](/entities/locations/)**: `publishedVersion` beats `acceptedVersion`, which beats `submittedVersion`.
 3. **Direct PDF link**: a location with a `pdf_url` beats one without.
 4. **Match quality** (repository locations): a repository record matched to the work by DOI beats one matched by title.
 5. **Repository rankings**: some major repositories, like PubMed Central and arXiv, rank above others.
@@ -90,12 +90,12 @@ OpenAlex's underlying data also tracks *when* a copy of a work first became avai
 
 ## Article processing charges
 
-The **article processing charge** (APC) is the fee some journals charge authors to make a work OA — relevant to `gold` and `hybrid` works. OpenAlex estimates APCs at both the work level (`apc_list`, `apc_paid`) and the source level. Where that data comes from, its limitations, and how to estimate an institution's APC spend are covered in [Journal quality & OA status](/docs/journal-quality/#apc-data).
+The **article processing charge** (APC) is the fee some journals charge authors to make a work OA — relevant to `gold` and `hybrid` works. OpenAlex estimates APCs at both the work level (`apc_list`, `apc_paid`) and the source level. Where that data comes from, its limitations, and how to estimate an institution's APC spend are covered in [Journal quality & OA status](/entities/sources/#how-we-build-it).
 
 ## Related pages
 
-- [Journal quality & OA status](/docs/journal-quality/) — how fully-OA journals are identified, flipped journals, and APC data
-- [Versions](/docs/versions/) — submitted, accepted, and published versions and how they interact with OA
-- [Sources](/docs/sources/) — how works connect to journals and repositories through locations
-- [Works API reference](/api/works/) — the `open_access` and location objects
+- [Journal quality & OA status](/entities/sources/#how-we-build-it) — how fully-OA journals are identified, flipped journals, and APC data
+- [Versions](/entities/locations/) — submitted, accepted, and published versions and how they interact with OA
+- [Sources](/entities/sources/) — how works connect to journals and repositories through locations
+- [Works API reference](/entities/works/) — the `open_access` and location objects
 - [Why is this publication labeled as 'closed' when it is clearly Open Access?](/help/why-is-this-publication-labeled-as-closed-when-it-is-clearly-open-acce/)

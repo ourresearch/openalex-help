@@ -29,7 +29,7 @@ curl "https://api.openalex.org/works?api_key=YOUR_KEY"
 | [List+Filter](/api/filtering/) | Query and filter entities | **$0.10** |
 | [Search](/api/searching/) | Full-text keyword search | **$1** |
 | [Semantic search](/api/searching/) | AI-powered semantic search | **$1** |
-| [Content download](/docs/content-archive/) | Cached PDF via content API | **$10** |
+| [Content download](/docs/fulltext/) | Cached PDF via content API | **$10** |
 | [Text/Aboutness](/api/deprecations/) *(deprecated)* | Topic classification | **$10** |
 
 > **Note:**

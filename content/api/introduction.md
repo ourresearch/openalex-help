@@ -34,27 +34,27 @@ The API is organized around these entity types:
 
 | Entity | Endpoint | Description |
 |--------|----------|-------------|
-| [Works](/api/works/) | `/works` | Scholarly documents (articles, books, datasets) |
-| [Authors](/api/authors/) | `/authors` | Researchers with disambiguated identities |
-| [Sources](/api/sources/) | `/sources` | Journals, repositories, conferences |
-| [Institutions](/api/institutions/) | `/institutions` | Universities, research organizations |
-| [Topics](/api/topics/) | `/topics` | Research area classifications |
-| [Keywords](/api/keywords/) | `/keywords` | Short phrases from works |
-| [Publishers](/api/publishers/) | `/publishers` | Publishing organizations |
-| [Funders](/api/funders/) | `/funders` | Funding agencies |
-| [Awards](/api/awards/) | `/awards` | Research grants |
-| [Domains](/api/domains/) | `/domains` | Top-level topic hierarchy |
-| [Fields](/api/fields/) | `/fields` | Second-level topic hierarchy |
-| [Subfields](/api/subfields/) | `/subfields` | Third-level topic hierarchy |
-| [SDGs](/api/sdgs/) | `/sdgs` | UN Sustainable Development Goals |
-| [Countries](/api/countries/) | `/countries` | Geographic entities |
-| [Continents](/api/continents/) | `/continents` | Geographic entities |
-| [Languages](/api/languages/) | `/languages` | Language classifications |
-| [Work Types](/api/work-types/) | `/work-types` | Enumeration of work types |
-| [Source Types](/api/source-types/) | `/source-types` | Enumeration of source types |
-| [Institution Types](/api/institution-types/) | `/institution-types` | Enumeration of institution types |
-| [Licenses](/api/licenses/) | `/licenses` | Enumeration of licenses |
-| [Concepts](/api/concepts/) | `/concepts` | Legacy taxonomy (deprecated) |
+| [Works](/entities/works/) | `/works` | Scholarly documents (articles, books, datasets) |
+| [Authors](/entities/authors/) | `/authors` | Researchers with disambiguated identities |
+| [Sources](/entities/sources/) | `/sources` | Journals, repositories, conferences |
+| [Institutions](/entities/institutions/) | `/institutions` | Universities, research organizations |
+| [Topics](/entities/topics/) | `/topics` | Research area classifications |
+| [Keywords](/entities/keywords/) | `/keywords` | Short phrases from works |
+| [Publishers](/entities/publishers/) | `/publishers` | Publishing organizations |
+| [Funders](/entities/funders/) | `/funders` | Funding agencies |
+| [Awards](/entities/awards/) | `/awards` | Research grants |
+| [Domains](/entities/domains/) | `/domains` | Top-level topic hierarchy |
+| [Fields](/entities/fields/) | `/fields` | Second-level topic hierarchy |
+| [Subfields](/entities/subfields/) | `/subfields` | Third-level topic hierarchy |
+| [SDGs](/entities/sdgs/) | `/sdgs` | UN Sustainable Development Goals |
+| [Countries](/entities/countries/) | `/countries` | Geographic entities |
+| [Continents](/entities/continents/) | `/continents` | Geographic entities |
+| [Languages](/entities/languages/) | `/languages` | Language classifications |
+| [Work Types](/entities/work-types/) | `/work-types` | Enumeration of work types |
+| [Source Types](/entities/source-types/) | `/source-types` | Enumeration of source types |
+| [Institution Types](/entities/institution-types/) | `/institution-types` | Enumeration of institution types |
+| [Licenses](/entities/licenses/) | `/licenses` | Enumeration of licenses |
+| [Concepts](/entities/concepts/) | `/concepts` | Legacy taxonomy (deprecated) |
 
 ## Operations
 

@@ -68,11 +68,11 @@ Re-sync from each quarterly release using the manifest (per entity or combined):
 4. **Verify consistency** — re-download the manifest; if unchanged since step 1, no records moved mid-download.
 5. **Upsert by `id`** into your store.
 
-If you mirror *files* with `aws s3 sync`, always pass `--delete` — otherwise files vacated by records moving to newer partitions linger and you get duplicates. Full commands in the [download recipe](/learn/download-to-your-machine/).
+If you mirror *files* with `aws s3 sync`, always pass `--delete` — otherwise files vacated by records moving to newer partitions linger and you get duplicates. Full commands in the [download recipe](/recipes/download-to-your-machine/).
 
 ### The daily snapshot (paid plans)
 
-Subscribers get the **complete database, rebuilt and published every day** — each day's copy in its own dated folder in the staging bucket, partitioned by `updated_date` just like the public snapshot ([access details](/docs/snapshot-access/#the-daily-snapshot-bucket-paid-plans)).
+Subscribers get the **complete database, rebuilt and published every day** — each day's copy in its own dated folder in the staging bucket, partitioned by `updated_date` just like the public snapshot ([access details](/docs/snapshot/#the-daily-snapshot-bucket-paid-plans)).
 
 Because every daily copy is both *complete* and *partitioned by change date*, it covers every sync rhythm:
 
@@ -103,11 +103,11 @@ All OpenAlex metadata is [CC0](https://creativecommons.org/publicdomain/zero/1.0
 
 ## Deletions and merged entities
 
-Records don't just get created and updated — they also disappear: works get merged when they're found to be duplicates, author profiles get [merged or deleted](/docs/author-disambiguation/), and bogus records get removed.
+Records don't just get created and updated — they also disappear: works get merged when they're found to be duplicates, author profiles get [merged or deleted](/entities/authors/#how-we-build-it), and bogus records get removed.
 
 How that shows up today:
 
-- **In the API:** a deleted or merged-away ID returns **404**. There is no redirect to the surviving record. (Special case: works of removed author profiles point to the [null author `A9999999999`](/docs/author-disambiguation/), and `A5317838346` marks deleted authors.)
+- **In the API:** a deleted or merged-away ID returns **404**. There is no redirect to the surviving record. (Special case: works of removed author profiles point to the [null author `A9999999999`](/entities/authors/#how-we-build-it), and `A5317838346` marks deleted authors.)
 - **In the snapshot:** the record is simply **gone from the current release** — it doesn't appear in any partition, and the vacated file space disappears from the manifest. This is true of every daily copy too, which is why reconciling against a snapshot is how mirrors pick up deletions.
 
 **To pick up deletions in a mirror**, reconcile against a full release periodically (daily-snapshot subscribers can do this any day):
@@ -125,5 +125,5 @@ The public bucket holds only the **current** release — once a release lands, t
 ## Related pages
 
 - [Snapshot](/docs/snapshot/) — formats, layout, manifests, and API parity
-- [Access & authentication](/docs/snapshot-access/) — buckets and credentials
-- [Download the snapshot](/learn/download-to-your-machine/) — the hands-on recipe
+- [Access & authentication](/docs/snapshot/) — buckets and credentials
+- [Download the snapshot](/recipes/download-to-your-machine/) — the hands-on recipe

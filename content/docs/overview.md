@@ -65,7 +65,7 @@ The same knowledge graph is available through eight channels, from no-code to wh
     <span class="ac-title">API</span>
     <span class="ac-body">Built for builders: fast and well-documented, with a generous free tier and pay-as-you-go after that.</span>
   </a>
-  <a class="access-card" href="/docs/openalex-cli/">
+  <a class="access-card" href="/docs/cli/">
     <span class="ac-title">CLI</span>
     <span class="ac-body">Query from your terminal and pipe the results into your own scripts. Agents love using it.</span>
   </a>
@@ -77,11 +77,11 @@ The same knowledge graph is available through eight channels, from no-code to wh
     <span class="ac-title">Snapshot</span>
     <span class="ac-body">Download our entire dataset for free. Updated quarterly.</span>
   </a>
-  <a class="access-card" href="/docs/snapshot-updates/">
+  <a class="access-card" href="/docs/sync/">
     <span class="ac-title">Sync</span>
     <span class="ac-body">Keep your database up to date with daily changes, via AWS or API.</span>
   </a>
-  <a class="access-card" href="/docs/content-archive/">
+  <a class="access-card" href="/docs/fulltext/">
     <span class="ac-title">Fulltext</span>
     <span class="ac-body">Download 50M full-text PDFs with license info — and get new ones daily.</span>
   </a>

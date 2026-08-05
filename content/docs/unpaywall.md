@@ -34,7 +34,7 @@ DOIs can be created by any of several [Registration Agencies](https://www.doi.or
 
 ## The Unpaywall Data Feed
 
-Unpaywall has a data feed for [subscribers](https://openalex.org/pricing): daily change updates in the Unpaywall record format, covering Crossref-DOI works only. It delivers changes to the same underlying OpenAlex data — the feed exists for the ecosystem of integrations that already speak the Unpaywall schema, and it's one of the [four ways to keep in sync with OpenAlex](/docs/snapshot-updates/#keeping-in-sync-with-openalex).
+Unpaywall has a data feed for [subscribers](https://openalex.org/pricing): daily change updates in the Unpaywall record format, covering Crossref-DOI works only. It delivers changes to the same underlying OpenAlex data — the feed exists for the ecosystem of integrations that already speak the Unpaywall schema, and it's one of the [four ways to keep in sync with OpenAlex](/docs/sync/#keeping-in-sync-with-openalex).
 
 For any new integration, use an OpenAlex-native sync method instead — they cover every entity type (works, authors, sources, institutions, and the rest) in the full OpenAlex schema. If you're an existing Unpaywall Data Feed subscriber weighing a migration, [talk to us](mailto:sales@openalex.org) — the mapping from Unpaywall records to OpenAlex works is well-trodden.
 
@@ -48,4 +48,4 @@ For any new integration, use an OpenAlex-native sync method instead — they cov
 
 - [Open Access](/docs/open-access/) — how OpenAlex determines OA status, the taxonomy behind `oa_status`
 - [API security](/api/introduction/#security) — displaying metadata text safely
-- [Sync](/docs/snapshot-updates/#keeping-in-sync-with-openalex) — the OpenAlex-native ways to stay in sync
+- [Sync](/docs/sync/#keeping-in-sync-with-openalex) — the OpenAlex-native ways to stay in sync

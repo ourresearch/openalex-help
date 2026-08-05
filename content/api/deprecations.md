@@ -76,7 +76,7 @@ These features still work but are not recommended. They will be removed in the f
 > **Warning:**
 > Concepts are deprecated in favor of **Topics**. We will continue to provide Concepts on Works, but we are not actively maintaining, updating, or providing support for them.
 
-**Replacement:** Use [Topics](/api/topics/) instead.
+**Replacement:** Use [Topics](/entities/topics/) instead.
 
 **Why Topics are better:**
 

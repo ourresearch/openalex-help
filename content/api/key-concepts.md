@@ -17,14 +17,14 @@ OpenAlex describes scholarly research as a graph of interconnected **entities**.
 
 | Entity | Description | Approx. Count |
 |--------|-------------|-------|
-| [Works](/api/works/) | Scholarly documents (articles, books, datasets, theses) | hundreds of millions |
-| [Authors](/api/authors/) | Researchers who create works | tens of millions |
-| [Sources](/api/sources/) | Where works are hosted (journals, repositories, conferences) | 250K+ |
-| [Institutions](/api/institutions/) | Organizations where authors are affiliated | 110K+ |
-| [Topics](/api/topics/) | Subject classifications (4-level hierarchy) | 4.5K |
-| [Publishers](/api/publishers/) | Organizations that distribute works | 10K+ |
-| [Funders](/api/funders/) | Organizations that fund research | 35K+ |
-| [Countries](/api/countries/) | Geographic information (countries, continents) | — |
+| [Works](/entities/works/) | Scholarly documents (articles, books, datasets, theses) | hundreds of millions |
+| [Authors](/entities/authors/) | Researchers who create works | tens of millions |
+| [Sources](/entities/sources/) | Where works are hosted (journals, repositories, conferences) | 250K+ |
+| [Institutions](/entities/institutions/) | Organizations where authors are affiliated | 110K+ |
+| [Topics](/entities/topics/) | Subject classifications (4-level hierarchy) | 4.5K |
+| [Publishers](/entities/publishers/) | Organizations that distribute works | 10K+ |
+| [Funders](/entities/funders/) | Organizations that fund research | 35K+ |
+| [Countries](/entities/countries/) | Geographic information (countries, continents) | — |
 
 Each entity type has its own API endpoint (e.g., `/works`, `/authors`).
 
@@ -34,10 +34,10 @@ Topics are organized in a four-level hierarchy:
 
 | Level | Name | Count | Example |
 |-------|------|-------|---------|
-| 1 | [Domain](/api/domains/) | 4 | Physical Sciences |
-| 2 | [Field](/api/fields/) | 26 | Computer Science |
-| 3 | [Subfield](/api/subfields/) | 254 | Artificial Intelligence |
-| 4 | [Topic](/api/topics/) | ~4,500 | Natural Language Processing |
+| 1 | [Domain](/entities/domains/) | 4 | Physical Sciences |
+| 2 | [Field](/entities/fields/) | 26 | Computer Science |
+| 3 | [Subfield](/entities/subfields/) | 254 | Artificial Intelligence |
+| 4 | [Topic](/entities/topics/) | ~4,500 | Natural Language Processing |
 
 Every work is assigned a `primary_topic` which includes the full hierarchy path. You can filter by any level: `filter=primary_topic.domain.id:1`, `filter=primary_topic.field.id:17`, etc.
 

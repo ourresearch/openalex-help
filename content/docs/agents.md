@@ -16,7 +16,7 @@ This page is about how to work with agents effectively — which kind to use, ho
 
 - **A chat agent** (Claude, ChatGPT, Gemini) is right for one-off questions and small exports: "who are the most-cited authors at my university this decade?", "get me these 200 DOIs as a spreadsheet." Zero setup.
 - **A coding agent** (Claude Code, Cursor, Codex) is right when the output is a *dataset or analysis*: it writes real scripts that page through results, retries failures, and save clean files — and the scripts are yours to re-run and audit. This is the sweet spot for systematic reviews, bibliometric analyses, and anything you'll want to reproduce later.
-- **For big pulls**, a coding agent can drive the [CLI](/docs/openalex-cli/) ("download all works on this topic as JSONL") or work against the [snapshot](/docs/snapshot/) — you get bulk-scale results without learning the tooling yourself.
+- **For big pulls**, a coding agent can drive the [CLI](/docs/cli/) ("download all works on this topic as JSONL") or work against the [snapshot](/docs/snapshot/) — you get bulk-scale results without learning the tooling yourself.
 
 ## Set your agent up for success
 
@@ -40,4 +40,4 @@ Agents very rarely hallucinate OpenAlex results — the API is well-structured, 
 
 - [Quickstart](/docs/quickstart/) — the five-minute version: website → API → agent
 - [LLM quick reference](/api/llm-quick-reference/) — the condensed API reference to hand your agent
-- [CLI](/docs/openalex-cli/) — the command-line tool agents can drive for bulk downloads
+- [CLI](/docs/cli/) — the command-line tool agents can drive for bulk downloads

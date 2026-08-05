@@ -7,7 +7,7 @@ A **source type** classifies the kind of venue where works are hosted: a `journa
 
 ## How we build it
 
-The vocabulary is a small, fixed set of venue kinds. OpenAlex assigns each [source](/entities/sources/) a single type from the list below based on its metadata and origin (journals and their ISSNs from Crossref and the [DOAJ](https://doaj.org/), repositories from their harvested registries, and so on). We don't decide the boundary between a journal and a repository; we standardize the label. See the [Sources guide](/api/sources/) for more.
+The vocabulary is a small, fixed set of venue kinds. OpenAlex assigns each [source](/entities/sources/) a single type from the list below based on its metadata and origin (journals and their ISSNs from Crossref and the [DOAJ](https://doaj.org/), repositories from their harvested registries, and so on). We don't decide the boundary between a journal and a repository; we standardize the label. See the [Sources guide](/entities/sources/) for more.
 
 ## Values
 

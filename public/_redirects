@@ -225,10 +225,10 @@
 /hc/en-us/articles/27086501974551  https://openalex.org  301
 /hc/en-us/articles/25271311639063-Data-ingest-pipeline  /docs/data-ingest-pipeline/  301
 /hc/en-us/articles/25271311639063  /docs/data-ingest-pipeline/  301
-/hc/en-us/articles/24942051299095-Estimate-the-APC-fees-my-institution-has-paid-to-make-research-Open-Access  /learn/estimate-the-apc-fees-my-institution-has-paid-to-make-research-open-ac/  301
-/hc/en-us/articles/24942051299095  /learn/estimate-the-apc-fees-my-institution-has-paid-to-make-research-open-ac/  301
-/hc/en-us/articles/24830109246615-Count-incoming-citations-to-any-results-set  /learn/count-incoming-citations-to-any-results-set/  301
-/hc/en-us/articles/24830109246615  /learn/count-incoming-citations-to-any-results-set/  301
+/hc/en-us/articles/24942051299095-Estimate-the-APC-fees-my-institution-has-paid-to-make-research-Open-Access  /recipes/estimate-the-apc-fees-my-institution-has-paid-to-make-research-open-ac/  301
+/hc/en-us/articles/24942051299095  /recipes/estimate-the-apc-fees-my-institution-has-paid-to-make-research-open-ac/  301
+/hc/en-us/articles/24830109246615-Count-incoming-citations-to-any-results-set  /recipes/count-incoming-citations-to-any-results-set/  301
+/hc/en-us/articles/24830109246615  /recipes/count-incoming-citations-to-any-results-set/  301
 /hc/en-us/articles/24829724234007-Export-results-from-the-OpenAlex-website  /help/export-results-from-the-openalex-website/  301
 /hc/en-us/articles/24829724234007  /help/export-results-from-the-openalex-website/  301
 /hc/en-us/articles/24429068929687-User-Meeting  https://openalex.org/events  301
@@ -243,26 +243,26 @@
 /hc/en-us/articles/24397285563671  /docs/  301
 /hc/en-us/articles/24396686889751-About-us  /help/about-us/  301
 /hc/en-us/articles/24396686889751  /help/about-us/  301
-/hc/en-us/articles/24346983449495-Check-if-a-journal-s-works-are-in-OpenAlex  /learn/check-if-a-journals-works-are-in-openalex/  301
-/hc/en-us/articles/24346983449495  /learn/check-if-a-journals-works-are-in-openalex/  301
+/hc/en-us/articles/24346983449495-Check-if-a-journal-s-works-are-in-OpenAlex  /recipes/check-if-a-journals-works-are-in-openalex/  301
+/hc/en-us/articles/24346983449495  /recipes/check-if-a-journals-works-are-in-openalex/  301
 /hc/en-us/articles/24346939943191-Omit-retracted-works-from-my-analysis  /help/omit-retracted-works-from-my-analysis/  301
 /hc/en-us/articles/24346939943191  /help/omit-retracted-works-from-my-analysis/  301
-/hc/en-us/articles/24346929893911-Which-of-my-institution-s-outputs-are-contributions-to-UN-Sustainable-Development-Goals-SDGs  /learn/which-of-my-institutions-outputs-are-contributions-to-un-sustainable-d/  301
-/hc/en-us/articles/24346929893911  /learn/which-of-my-institutions-outputs-are-contributions-to-un-sustainable-d/  301
-/hc/en-us/articles/24346841662615-Identify-other-institutions-that-collaborate-with-researchers-from-my-institution  /learn/identify-other-institutions-that-collaborate-with-researchers-from-my/  301
-/hc/en-us/articles/24346841662615  /learn/identify-other-institutions-that-collaborate-with-researchers-from-my/  301
-/hc/en-us/articles/24346743922071-How-much-is-my-institution-s-work-cited  /learn/how-much-is-my-institutions-work-cited/  301
-/hc/en-us/articles/24346743922071  /learn/how-much-is-my-institutions-work-cited/  301
-/hc/en-us/articles/24346711549591-Break-down-of-my-institution-s-outputs-by-subject-area-subfield  /learn/break-down-of-my-institutions-outputs-by-subject-area-subfield/  301
-/hc/en-us/articles/24346711549591  /learn/break-down-of-my-institutions-outputs-by-subject-area-subfield/  301
-/hc/en-us/articles/24346638987799-What-percentage-of-my-institution-s-outputs-are-Open-Access-OA  /learn/what-percentage-of-my-institutions-outputs-are-open-access-oa/  301
-/hc/en-us/articles/24346638987799  /learn/what-percentage-of-my-institutions-outputs-are-open-access-oa/  301
-/hc/en-us/articles/24346632080023-Which-journals-do-researchers-at-my-institution-publish-in  /learn/which-journals-do-researchers-at-my-institution-publish-in/  301
-/hc/en-us/articles/24346632080023  /learn/which-journals-do-researchers-at-my-institution-publish-in/  301
-/hc/en-us/articles/24346628202775-How-many-of-each-type-of-output-does-my-institution-have  /learn/how-many-of-each-type-of-output-does-my-institution-have/  301
-/hc/en-us/articles/24346628202775  /learn/how-many-of-each-type-of-output-does-my-institution-have/  301
-/hc/en-us/articles/24346576711063-How-many-outputs-does-my-institution-have  /learn/how-many-outputs-does-my-institution-have/  301
-/hc/en-us/articles/24346576711063  /learn/how-many-outputs-does-my-institution-have/  301
+/hc/en-us/articles/24346929893911-Which-of-my-institution-s-outputs-are-contributions-to-UN-Sustainable-Development-Goals-SDGs  /recipes/which-of-my-institutions-outputs-are-contributions-to-un-sustainable-d/  301
+/hc/en-us/articles/24346929893911  /recipes/which-of-my-institutions-outputs-are-contributions-to-un-sustainable-d/  301
+/hc/en-us/articles/24346841662615-Identify-other-institutions-that-collaborate-with-researchers-from-my-institution  /recipes/identify-other-institutions-that-collaborate-with-researchers-from-my/  301
+/hc/en-us/articles/24346841662615  /recipes/identify-other-institutions-that-collaborate-with-researchers-from-my/  301
+/hc/en-us/articles/24346743922071-How-much-is-my-institution-s-work-cited  /recipes/how-much-is-my-institutions-work-cited/  301
+/hc/en-us/articles/24346743922071  /recipes/how-much-is-my-institutions-work-cited/  301
+/hc/en-us/articles/24346711549591-Break-down-of-my-institution-s-outputs-by-subject-area-subfield  /recipes/break-down-of-my-institutions-outputs-by-subject-area-subfield/  301
+/hc/en-us/articles/24346711549591  /recipes/break-down-of-my-institutions-outputs-by-subject-area-subfield/  301
+/hc/en-us/articles/24346638987799-What-percentage-of-my-institution-s-outputs-are-Open-Access-OA  /recipes/what-percentage-of-my-institutions-outputs-are-open-access-oa/  301
+/hc/en-us/articles/24346638987799  /recipes/what-percentage-of-my-institutions-outputs-are-open-access-oa/  301
+/hc/en-us/articles/24346632080023-Which-journals-do-researchers-at-my-institution-publish-in  /recipes/which-journals-do-researchers-at-my-institution-publish-in/  301
+/hc/en-us/articles/24346632080023  /recipes/which-journals-do-researchers-at-my-institution-publish-in/  301
+/hc/en-us/articles/24346628202775-How-many-of-each-type-of-output-does-my-institution-have  /recipes/how-many-of-each-type-of-output-does-my-institution-have/  301
+/hc/en-us/articles/24346628202775  /recipes/how-many-of-each-type-of-output-does-my-institution-have/  301
+/hc/en-us/articles/24346576711063-How-many-outputs-does-my-institution-have  /recipes/how-many-outputs-does-my-institution-have/  301
+/hc/en-us/articles/24346576711063  /recipes/how-many-outputs-does-my-institution-have/  301
 # retired: Zendesk default sample FAQ (not OpenAlex content)
 /hc/en-us/articles/10503548918039-How-can-agents-leverage-knowledge-to-help-customers  /help/  301
 /hc/en-us/articles/10503548918039  /help/  301
@@ -290,20 +290,20 @@
 /hc/en-us/articles/24348257451671  /help/  301
 /hc/en-us/articles/24347019383191-Where-do-works-in-OpenAlex-come-from  /docs/where-do-works-in-openalex-come-from/  301
 /hc/en-us/articles/24347019383191  /docs/where-do-works-in-openalex-come-from/  301
-/hc/en-us/articles/24859286130583-Aboutness  /docs/aboutness/  301
-/hc/en-us/articles/24859286130583  /docs/aboutness/  301
+/hc/en-us/articles/24859286130583-Aboutness  /entities/aboutness/  301
+/hc/en-us/articles/24859286130583  /entities/aboutness/  301
 /hc/en-us/articles/24831328396311-Institutions-and-Raw-Affiliation-String-Parsing  /docs/institutions-and-raw-affiliation-string-parsing/  301
 /hc/en-us/articles/24831328396311  /docs/institutions-and-raw-affiliation-string-parsing/  301
-/hc/en-us/articles/24736201130391-Keywords  /docs/keywords/  301
-/hc/en-us/articles/24736201130391  /docs/keywords/  301
-/hc/en-us/articles/24736129405719-Topics  /docs/topics/  301
-/hc/en-us/articles/24736129405719  /docs/topics/  301
+/hc/en-us/articles/24736201130391-Keywords  /entities/keywords/  301
+/hc/en-us/articles/24736201130391  /entities/keywords/  301
+/hc/en-us/articles/24736129405719-Topics  /entities/topics/  301
+/hc/en-us/articles/24736129405719  /entities/topics/  301
 /hc/en-us/articles/24735753007895-Field-Weighted-Citation-Impact-FWCI  /docs/field-weighted-citation-impact-fwci/  301
 /hc/en-us/articles/24735753007895  /docs/field-weighted-citation-impact-fwci/  301
-/hc/en-us/articles/24347048891543-Author-disambiguation  /docs/author-disambiguation/  301
-/hc/en-us/articles/24347048891543  /docs/author-disambiguation/  301
-/hc/en-us/articles/24347057529623-Sources-in-OpenAlex  /docs/sources-in-openalex/  301
-/hc/en-us/articles/24347057529623  /docs/sources-in-openalex/  301
+/hc/en-us/articles/24347048891543-Author-disambiguation  /entities/authors/#how-we-build-it  301
+/hc/en-us/articles/24347048891543  /entities/authors/#how-we-build-it  301
+/hc/en-us/articles/24347057529623-Sources-in-OpenAlex  /entities/sources/  301
+/hc/en-us/articles/24347057529623  /entities/sources/  301
 /hc/en-us/articles/24347035046295-Open-Access-OA  /docs/open-access-oa/  301
 /hc/en-us/articles/24347035046295  /docs/open-access-oa/  301
 # catch-all for stale title-slug variants + any other old Guide path:
@@ -328,45 +328,45 @@
 /guides/curation-authors  /api/author-curation/  301
 /guides/llm-quick-reference  /api/llm-quick-reference/  301
 /guides/deprecations  /api/deprecations/  301
-/guides/recipes  /learn/quick-api-recipes/  301
-/guides/recipe-oa-trends  /learn/track-open-access-trends/  301
-/guides/recipe-find-collaborators  /learn/find-collaborators/  301
-/guides/recipe-funder-portfolio  /learn/analyze-a-funders-portfolio/  301
-/guides/recipe-cited-journals  /learn/find-most-cited-journals/  301
-/guides/recipe-sdg-landscape  /learn/map-an-sdg-research-landscape/  301
-/guides/recipe-audit-author-profile-works  /learn/audit-an-author-profiles-works/  301
+/guides/recipes  /recipes/quick-api-recipes/  301
+/guides/recipe-oa-trends  /recipes/track-open-access-trends/  301
+/guides/recipe-find-collaborators  /recipes/find-collaborators/  301
+/guides/recipe-funder-portfolio  /recipes/analyze-a-funders-portfolio/  301
+/guides/recipe-cited-journals  /recipes/find-most-cited-journals/  301
+/guides/recipe-sdg-landscape  /recipes/map-an-sdg-research-landscape/  301
+/guides/recipe-audit-author-profile-works  /recipes/audit-an-author-profiles-works/  301
 /download/overview  /docs/downloading-openalex-data/  301
 /download/download-to-machine  /docs/download-to-your-machine/  301
 /download/snapshot-format  /docs/snapshot-data-format/  301
-/download/changefiles  /docs/snapshot-updates/  301
+/download/changefiles  /docs/sync/  301
 /download/full-text-pdfs  /docs/full-text-pdfs/  301
-/download/openalex-cli  /docs/openalex-cli/  301
+/download/openalex-cli  /docs/cli/  301
 /api-reference/openapi.json  /openapi.json  301
 /api-reference/introduction  /api/introduction/  301
 /api-reference/authentication  /api/authentication/  301
 /api-reference/errors  /api/errors/  301
-/api-reference/works  /api/works/  301
-/api-reference/authors  /api/authors/  301
-/api-reference/sources  /api/sources/  301
-/api-reference/institutions  /api/institutions/  301
-/api-reference/topics  /api/topics/  301
-/api-reference/publishers  /api/publishers/  301
-/api-reference/funders  /api/funders/  301
-/api-reference/awards  /api/awards/  301
-/api-reference/keywords  /api/keywords/  301
-/api-reference/concepts  /api/concepts/  301
-/api-reference/continents  /api/continents/  301
-/api-reference/countries  /api/countries/  301
-/api-reference/domains  /api/domains/  301
-/api-reference/fields  /api/fields/  301
-/api-reference/subfields  /api/subfields/  301
-/api-reference/sdgs  /api/sdgs/  301
-/api-reference/licenses  /api/licenses/  301
-/api-reference/languages  /api/languages/  301
-/api-reference/indexes  /api/indexes/  301
-/api-reference/institution-types  /api/institution-types/  301
-/api-reference/source-types  /api/source-types/  301
-/api-reference/work-types  /api/work-types/  301
+/api-reference/works  /entities/works/  301
+/api-reference/authors  /entities/authors/  301
+/api-reference/sources  /entities/sources/  301
+/api-reference/institutions  /entities/institutions/  301
+/api-reference/topics  /entities/topics/  301
+/api-reference/publishers  /entities/publishers/  301
+/api-reference/funders  /entities/funders/  301
+/api-reference/awards  /entities/awards/  301
+/api-reference/keywords  /entities/keywords/  301
+/api-reference/concepts  /entities/concepts/  301
+/api-reference/continents  /entities/continents/  301
+/api-reference/countries  /entities/countries/  301
+/api-reference/domains  /entities/domains/  301
+/api-reference/fields  /entities/fields/  301
+/api-reference/subfields  /entities/subfields/  301
+/api-reference/sdgs  /entities/sdgs/  301
+/api-reference/licenses  /entities/licenses/  301
+/api-reference/languages  /entities/languages/  301
+/api-reference/indexes  /entities/indexes/  301
+/api-reference/institution-types  /entities/institution-types/  301
+/api-reference/source-types  /entities/source-types/  301
+/api-reference/work-types  /entities/work-types/  301
 # (the /guides/* /api-reference/* /download/* wildcards live in the WILDCARDS LAST section at file end)
 # <<< mintlify <<<
 
@@ -400,64 +400,64 @@
 
 # >>> rewrite-pass-b >>>
 # Docs rewrite Pass B (oxjob #354, D07): Works & metadata zone — renames + merges
-/docs/where-do-works-in-openalex-come-from  /docs/works/  301
-/docs/where-do-works-in-openalex-come-from/  /docs/works/  301
-/docs/paper-version-definitions  /docs/versions/  301
-/docs/paper-version-definitions/  /docs/versions/  301
-/docs/where-does-your-citation-information-come-from  /docs/citations/  301
-/docs/where-does-your-citation-information-come-from/  /docs/citations/  301
-/docs/the-reference-counts-in-openalex-seem-off-why-is-that  /docs/citations/  301
-/docs/the-reference-counts-in-openalex-seem-off-why-is-that/  /docs/citations/  301
-/docs/why-are-the-counts-by-year-numbers-different-than-the-count-of-works-i  /docs/counts-by-year/  301
-/docs/why-are-the-counts-by-year-numbers-different-than-the-count-of-works-i/  /docs/counts-by-year/  301
-/docs/how-do-you-determine-work-type  /docs/work-types/  301
-/docs/how-do-you-determine-work-type/  /docs/work-types/  301
-/docs/what-does-is-paratext-mean-in-the-api  /docs/work-types/  301
-/docs/what-does-is-paratext-mean-in-the-api/  /docs/work-types/  301
-/docs/what-do-the-fields-in-the-api-response-and-snapshot-records-mean  /docs/work-fields/  301
-/docs/what-do-the-fields-in-the-api-response-and-snapshot-records-mean/  /docs/work-fields/  301
+/docs/where-do-works-in-openalex-come-from  /entities/works/  301
+/docs/where-do-works-in-openalex-come-from/  /entities/works/  301
+/docs/paper-version-definitions  /entities/locations/  301
+/docs/paper-version-definitions/  /entities/locations/  301
+/docs/where-does-your-citation-information-come-from  /entities/works/#citations-and-references  301
+/docs/where-does-your-citation-information-come-from/  /entities/works/#citations-and-references  301
+/docs/the-reference-counts-in-openalex-seem-off-why-is-that  /entities/works/#citations-and-references  301
+/docs/the-reference-counts-in-openalex-seem-off-why-is-that/  /entities/works/#citations-and-references  301
+/docs/why-are-the-counts-by-year-numbers-different-than-the-count-of-works-i  /entities/common-fields/#counts_by_year  301
+/docs/why-are-the-counts-by-year-numbers-different-than-the-count-of-works-i/  /entities/common-fields/#counts_by_year  301
+/docs/how-do-you-determine-work-type  /entities/work-types/  301
+/docs/how-do-you-determine-work-type/  /entities/work-types/  301
+/docs/what-does-is-paratext-mean-in-the-api  /entities/work-types/  301
+/docs/what-does-is-paratext-mean-in-the-api/  /entities/work-types/  301
+/docs/what-do-the-fields-in-the-api-response-and-snapshot-records-mean  /entities/works/#fields  301
+/docs/what-do-the-fields-in-the-api-response-and-snapshot-records-mean/  /entities/works/#fields  301
 # <<< rewrite-pass-b <<<
 
 # >>> rewrite-pass-c >>>
 # Docs rewrite Pass C (oxjob #354, D07): Authors & institutions zone + deferred Works moves
 /docs/can-i-search-exact-terms  /api/searching/  301
 /docs/can-i-search-exact-terms/  /api/searching/  301
-/docs/why-are-some-authors-assigned-to-null-author-id-a9999999999  /docs/author-disambiguation/  301
-/docs/why-are-some-authors-assigned-to-null-author-id-a9999999999/  /docs/author-disambiguation/  301
-/docs/institutions-and-raw-affiliation-string-parsing  /docs/affiliations/  301
-/docs/institutions-and-raw-affiliation-string-parsing/  /docs/affiliations/  301
-/docs/why-is-affiliation-history-metadata-incomplete  /docs/affiliations/  301
-/docs/why-is-affiliation-history-metadata-incomplete/  /docs/affiliations/  301
-/docs/french-affiliation-structures-are-complex-how-does-openalex-handle-the  /docs/affiliations/  301
-/docs/french-affiliation-structures-are-complex-how-does-openalex-handle-the/  /docs/affiliations/  301
-/docs/how-do-you-assign-papers-to-specific-countries  /docs/affiliations/  301
-/docs/how-do-you-assign-papers-to-specific-countries/  /docs/affiliations/  301
+/docs/why-are-some-authors-assigned-to-null-author-id-a9999999999  /entities/authors/#how-we-build-it  301
+/docs/why-are-some-authors-assigned-to-null-author-id-a9999999999/  /entities/authors/#how-we-build-it  301
+/docs/institutions-and-raw-affiliation-string-parsing  /entities/raw-affiliation-strings/  301
+/docs/institutions-and-raw-affiliation-string-parsing/  /entities/raw-affiliation-strings/  301
+/docs/why-is-affiliation-history-metadata-incomplete  /entities/raw-affiliation-strings/  301
+/docs/why-is-affiliation-history-metadata-incomplete/  /entities/raw-affiliation-strings/  301
+/docs/french-affiliation-structures-are-complex-how-does-openalex-handle-the  /entities/raw-affiliation-strings/  301
+/docs/french-affiliation-structures-are-complex-how-does-openalex-handle-the/  /entities/raw-affiliation-strings/  301
+/docs/how-do-you-assign-papers-to-specific-countries  /entities/raw-affiliation-strings/  301
+/docs/how-do-you-assign-papers-to-specific-countries/  /entities/raw-affiliation-strings/  301
 # <<< rewrite-pass-c <<<
 
 # >>> rewrite-pass-d >>>
 # Docs rewrite Pass D (oxjob #354, D07): Sources & publishers zone
-/docs/sources-in-openalex  /docs/sources/  301
-/docs/sources-in-openalex/  /docs/sources/  301
-/docs/what-are-cwts-core-sources-and-how-are-they-different-from-web-of-scie  /docs/sources/  301
-/docs/what-are-cwts-core-sources-and-how-are-they-different-from-web-of-scie/  /docs/sources/  301
-/docs/how-does-openalex-handle-predatory-and-lower-quality-journals  /docs/journal-quality/  301
-/docs/how-does-openalex-handle-predatory-and-lower-quality-journals/  /docs/journal-quality/  301
-/docs/how-do-we-decide-if-a-given-journal-is-fully-oa  /docs/journal-quality/  301
-/docs/how-do-we-decide-if-a-given-journal-is-fully-oa/  /docs/journal-quality/  301
-/docs/where-do-you-get-apc-paid-metadata-from  /docs/journal-quality/  301
-/docs/where-do-you-get-apc-paid-metadata-from/  /docs/journal-quality/  301
+/docs/sources-in-openalex  /entities/sources/  301
+/docs/sources-in-openalex/  /entities/sources/  301
+/docs/what-are-cwts-core-sources-and-how-are-they-different-from-web-of-scie  /entities/sources/  301
+/docs/what-are-cwts-core-sources-and-how-are-they-different-from-web-of-scie/  /entities/sources/  301
+/docs/how-does-openalex-handle-predatory-and-lower-quality-journals  /entities/sources/#how-we-build-it  301
+/docs/how-does-openalex-handle-predatory-and-lower-quality-journals/  /entities/sources/#how-we-build-it  301
+/docs/how-do-we-decide-if-a-given-journal-is-fully-oa  /entities/sources/#how-we-build-it  301
+/docs/how-do-we-decide-if-a-given-journal-is-fully-oa/  /entities/sources/#how-we-build-it  301
+/docs/where-do-you-get-apc-paid-metadata-from  /entities/sources/#how-we-build-it  301
+/docs/where-do-you-get-apc-paid-metadata-from/  /entities/sources/#how-we-build-it  301
 # <<< rewrite-pass-d <<<
 
 # >>> rewrite-pass-e >>>
 # Docs rewrite Pass E (oxjob #354, D07): Topics, metrics & aboutness zone
-/docs/what-is-the-difference-between-topics-and-topic-share-in-openalex-enti  /docs/topics/  301
-/docs/what-is-the-difference-between-topics-and-topic-share-in-openalex-enti/  /docs/topics/  301
-/docs/should-i-use-subfields-or-concepts-for-my-search  /docs/topics/  301
-/docs/should-i-use-subfields-or-concepts-for-my-search/  /docs/topics/  301
-/docs/how-do-you-classify-works-as-contributing-to-the-un-sdgs  /docs/sdg-classification/  301
-/docs/how-do-you-classify-works-as-contributing-to-the-un-sdgs/  /docs/sdg-classification/  301
-/docs/field-weighted-citation-impact-fwci  /docs/fwci/  301
-/docs/field-weighted-citation-impact-fwci/  /docs/fwci/  301
+/docs/what-is-the-difference-between-topics-and-topic-share-in-openalex-enti  /entities/topics/  301
+/docs/what-is-the-difference-between-topics-and-topic-share-in-openalex-enti/  /entities/topics/  301
+/docs/should-i-use-subfields-or-concepts-for-my-search  /entities/topics/  301
+/docs/should-i-use-subfields-or-concepts-for-my-search/  /entities/topics/  301
+/docs/how-do-you-classify-works-as-contributing-to-the-un-sdgs  /entities/sdgs/  301
+/docs/how-do-you-classify-works-as-contributing-to-the-un-sdgs/  /entities/sdgs/  301
+/docs/field-weighted-citation-impact-fwci  /entities/works/#field-weighted-citation-impact  301
+/docs/field-weighted-citation-impact-fwci/  /entities/works/#field-weighted-citation-impact  301
 # <<< rewrite-pass-e <<<
 # >>> rewrite-pass-f >>>
 /docs/open-access-oa  /docs/open-access/  301
@@ -486,30 +486,30 @@
 /docs/downloading-openalex-data/  /docs/snapshot/  301
 /docs/snapshot-data-format  /docs/snapshot/  301
 /docs/snapshot-data-format/  /docs/snapshot/  301
-/docs/full-text-pdfs  /docs/content-archive/  301
-/docs/full-text-pdfs/  /docs/content-archive/  301
+/docs/full-text-pdfs  /docs/fulltext/  301
+/docs/full-text-pdfs/  /docs/fulltext/  301
 /docs/which-dois-does-unpaywall-cover  /docs/unpaywall/  301
 /docs/which-dois-does-unpaywall-cover/  /docs/unpaywall/  301
 /docs/preventing-code-injection-using-text-from-unpaywall-safely  /api/introduction/#security  301
 /docs/preventing-code-injection-using-text-from-unpaywall-safely/  /api/introduction/#security  301
-/docs/download-to-your-machine  /learn/download-to-your-machine/  301
-/docs/download-to-your-machine/  /learn/download-to-your-machine/  301
-/docs/download-changefiles  /docs/snapshot-updates/  301
-/docs/download-changefiles/  /docs/snapshot-updates/  301
-/docs/how-do-i-read-jsonl-files  /learn/how-do-i-read-jsonl-files/  301
-/docs/how-do-i-read-jsonl-files/  /learn/how-do-i-read-jsonl-files/  301
-/docs/how-do-i-use-the-title-search-api  /learn/how-do-i-use-the-title-search-api/  301
-/docs/how-do-i-use-the-title-search-api/  /learn/how-do-i-use-the-title-search-api/  301
-/docs/how-do-i-make-the-unpaywall-extension-work-on-my-site  /learn/how-do-i-make-the-unpaywall-extension-work-on-my-site/  301
-/docs/how-do-i-make-the-unpaywall-extension-work-on-my-site/  /learn/how-do-i-make-the-unpaywall-extension-work-on-my-site/  301
+/docs/download-to-your-machine  /recipes/download-to-your-machine/  301
+/docs/download-to-your-machine/  /recipes/download-to-your-machine/  301
+/docs/download-changefiles  /docs/sync/  301
+/docs/download-changefiles/  /docs/sync/  301
+/docs/how-do-i-read-jsonl-files  /recipes/how-do-i-read-jsonl-files/  301
+/docs/how-do-i-read-jsonl-files/  /recipes/how-do-i-read-jsonl-files/  301
+/docs/how-do-i-use-the-title-search-api  /recipes/how-do-i-use-the-title-search-api/  301
+/docs/how-do-i-use-the-title-search-api/  /recipes/how-do-i-use-the-title-search-api/  301
+/docs/how-do-i-make-the-unpaywall-extension-work-on-my-site  /recipes/how-do-i-make-the-unpaywall-extension-work-on-my-site/  301
+/docs/how-do-i-make-the-unpaywall-extension-work-on-my-site/  /recipes/how-do-i-make-the-unpaywall-extension-work-on-my-site/  301
 /docs/why-does-the-unpaywall-plugin-say-this-paywalled-article-is-open-acces  /help/why-does-the-unpaywall-plugin-say-this-paywalled-article-is-open-acces/  301
 /docs/why-does-the-unpaywall-plugin-say-this-paywalled-article-is-open-acces/  /help/why-does-the-unpaywall-plugin-say-this-paywalled-article-is-open-acces/  301
 # <<< rewrite-pass-h <<<
 # >>> changefiles-retirement >>>
-/docs/data-feed  /docs/snapshot-updates/  301
-/docs/data-feed/  /docs/snapshot-updates/  301
-/learn/download-changefiles  /docs/snapshot-updates/  301
-/learn/download-changefiles/  /docs/snapshot-updates/  301
+/docs/data-feed  /docs/sync/  301
+/docs/data-feed/  /docs/sync/  301
+/learn/download-changefiles  /docs/sync/  301
+/learn/download-changefiles/  /docs/sync/  301
 # <<< changefiles-retirement <<<
 
 # >>> community-retirement (D10: content moved offsite / retired, oxjob #354 + #685) >>>

@@ -21,7 +21,7 @@ Steps 2 and 3 fill gaps left by the model, which hasn't been retrained since Apr
 
 ### Complex and layered systems
 
-Some national research systems are layered — a French *unité mixte de recherche* (UMR) may belong to several parent organizations at once. OpenAlex handles these through ROR lineage: when a sub-unit has its own ROR record, the raw string matches to it, and lineage lets users roll the report up to the parent universities. The limiting factor is ROR coverage; where a sub-unit has no ROR record, a string can only match its parent. See [Affiliations](/docs/affiliations/) for more on France and other layered systems.
+Some national research systems are layered — a French *unité mixte de recherche* (UMR) may belong to several parent organizations at once. OpenAlex handles these through ROR lineage: when a sub-unit has its own ROR record, the raw string matches to it, and lineage lets users roll the report up to the parent universities. The limiting factor is ROR coverage; where a sub-unit has no ROR record, a string can only match its parent. See [Affiliations](/entities/raw-affiliation-strings/) for more on France and other layered systems.
 
 ### Failure modes
 

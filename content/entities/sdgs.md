@@ -21,7 +21,7 @@ Two things to keep in mind:
 - **It's a text classifier, so it inherits text-classifier limits.** Tags come only from the title and abstract; a work with no abstract has less signal, and the model can still mislabel. Treat SDG tags as a broad, comparable filter, not a precise verdict on a single paper.
 - **The classifier is open source.** Because Aurora is public, you can run the identical model on documents OpenAlex doesn't index — course syllabi, grant proposals, unpublished research — and get tags in the same form. OpenAlex also exposes it directly through the [text aboutness endpoint](/api/tag-aboutness/).
 
-For the fuller write-up, see [How we classify works as contributing to the UN SDGs](/docs/sdg-classification/).
+For the fuller write-up, see [How we classify works as contributing to the UN SDGs](/entities/sdgs/).
 
 ## Fields
 
@@ -79,4 +79,4 @@ https://api.openalex.org/sdgs/13
 https://api.openalex.org/works?filter=sustainable_development_goals.id:3
 ```
 
-See the [SDGs API reference](/api/sdgs/) for the filter/sort/group_by table.
+See the [SDGs API reference](/entities/sdgs/) for the filter/sort/group_by table.

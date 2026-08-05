@@ -17,4 +17,4 @@ An authorship lands here when:
 
 There's a second special ID, `A5317838346`, for **deleted authors** — used when an author ID is removed because it no longer has any works.
 
-For the full explanation of how OpenAlex assigns author IDs, see [Author disambiguation](/docs/author-disambiguation/) in the docs.
+For the full explanation of how OpenAlex assigns author IDs, see [Author disambiguation](/entities/authors/#how-we-build-it) in the docs.

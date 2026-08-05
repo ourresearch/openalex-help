@@ -76,7 +76,7 @@ This is the canonical dictionary of every field on a **concept** object. Fields 
 
 ## In the API
 
-> Concepts are **deprecated**. The endpoint below still works but is frozen and will not receive updates — use [topics](/api/topics/) instead.
+> Concepts are **deprecated**. The endpoint below still works but is frozen and will not receive updates — use [topics](/entities/topics/) instead.
 
 The Concepts endpoint is at [`api.openalex.org/concepts`](https://api.openalex.org/concepts). Fetch a single concept by ID — [`/concepts/C41008148`](https://api.openalex.org/concepts/C41008148) — or a list, and [filter](/api/filtering/), [search](/api/searching/), [sort](/api/sorting/), [group](/api/grouping/), and [page](/api/paging/) over the fields above.
 
@@ -86,4 +86,4 @@ To find the works carrying a concept, filter on the [Works](/entities/works/) en
 https://api.openalex.org/works?filter=concepts.id:C41008148
 ```
 
-For the full list of filterable, sortable, and groupable fields see the [Concepts API reference](/api/concepts/); for all endpoints see the [endpoints index](/api/endpoints/).
+For the full list of filterable, sortable, and groupable fields see the [Concepts API reference](/entities/concepts/); for all endpoints see the [endpoints index](/api/endpoints/).

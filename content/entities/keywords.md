@@ -56,4 +56,4 @@ To find the works carrying a keyword, filter on the [Works](/entities/works/) en
 https://api.openalex.org/works?filter=keywords.id:machine-learning
 ```
 
-For the full list of filterable, sortable, and groupable fields see the [Keywords API reference](/api/keywords/); for all endpoints see the [endpoints index](/api/endpoints/).
+For the full list of filterable, sortable, and groupable fields see the [Keywords API reference](/entities/keywords/); for all endpoints see the [endpoints index](/api/endpoints/).

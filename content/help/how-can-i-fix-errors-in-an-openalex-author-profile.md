@@ -38,6 +38,6 @@ You don't have to be the author to help. Anyone signed in can suggest correction
 
 - [How do I find my OpenAlex author ID?](/help/how-do-i-find-my-openalex-author-id/)
 - [What are alternate names and how do I change them?](/help/what-are-alternate-names-and-how-i-do-change-them/)
-- [Author disambiguation](/docs/author-disambiguation/)
+- [Author disambiguation](/entities/authors/#how-we-build-it)
 
 Still stuck? [Contact support](https://openalex.org/) and we'll help.

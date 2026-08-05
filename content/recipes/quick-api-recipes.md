@@ -18,7 +18,7 @@ https://api.openalex.org/works?filter=author.id:A5023888391&sort=-publication_da
 https://api.openalex.org/works?filter=author.id:A5023888391,cited_by_count:>10&sort=-cited_by_count
 ```
 
-To audit a profile end-to-end — find works that should be attached but aren't, plus works that are wrongly attached and should be removed — see the [Audit an Author Profile's Works recipe](/learn/audit-an-author-profiles-works/).
+To audit a profile end-to-end — find works that should be attached but aren't, plus works that are wrongly attached and should be removed — see the [Audit an Author Profile's Works recipe](/recipes/audit-an-author-profiles-works/).
 
 ## Find works from an institution (Under 1¢)
 
@@ -275,4 +275,4 @@ for work_id in work_ids:
 ```
 
 > **Info:**
-> **Downloading more than a few thousand files?** Use the [CLI tool](/docs/content-archive/#option-2-openalex-cli-up-to-a-few-million-files) for parallel downloads and automatic retries.
+> **Downloading more than a few thousand files?** Use the [CLI tool](/docs/fulltext/#option-2-openalex-cli-up-to-a-few-million-files) for parallel downloads and automatic retries.
