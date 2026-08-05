@@ -53,16 +53,6 @@ const mdUrl = mdUrlFor(tab, entry);
           ))}
         </nav>
       )}
-      <div class="utils">
-        <button id="copy-page" data-md-url={mdUrl}>
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-          <span>Copy page</span>
-        </button>
-        <a href={mdUrl}>
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-          <span>View as Markdown</span>
-        </a>
-      </div>
     </div>
   </DocsShell>
 ) : (
@@ -103,37 +93,11 @@ const mdUrl = mdUrlFor(tab, entry);
     display: flex;
     flex-direction: column;
     gap: 0.35rem;
-    padding-bottom: 1rem;
-    margin-bottom: 1rem;
-    border-bottom: 1px solid var(--line);
   }
   .toc a {
     color: var(--muted);
   }
   .toc a:hover {
-    color: var(--ink);
-    text-decoration: none;
-  }
-  .utils {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-  .utils a,
-  .utils button {
-    display: flex;
-    align-items: center;
-    gap: 0.45rem;
-    color: var(--muted);
-    background: none;
-    border: none;
-    padding: 0;
-    font: inherit;
-    font-size: 0.84rem;
-    cursor: pointer;
-  }
-  .utils a:hover,
-  .utils button:hover {
     color: var(--ink);
     text-decoration: none;
   }
@@ -153,20 +117,3 @@ const mdUrl = mdUrlFor(tab, entry);
     color: var(--ink);
   }
 </style>
-
-<script>
-  // "Copy page": fetch this page's markdown sibling and put it on the
-  // clipboard — the agent-legibility story, one click for humans.
-  const btn = document.getElementById('copy-page') as HTMLButtonElement | null;
-  btn?.addEventListener('click', async () => {
-    const label = btn.querySelector('span')!;
-    try {
-      const res = await fetch(btn.dataset.mdUrl!);
-      await navigator.clipboard.writeText(await res.text());
-      label.textContent = 'Copied!';
-    } catch {
-      label.textContent = 'Copy failed';
-    }
-    setTimeout(() => (label.textContent = 'Copy page'), 1600);
-  });
-</script>

@@ -36,29 +36,63 @@ From here, see the [API quickstart](/api/quickstart/) and [authentication](/api/
 
 ## 3. Or just ask your agent
 
-Here's the thing about step 2: we didn't really need to learn the API at all. We could have just asked an AI agent (Claude, ChatGPT, Cursor, or whatever you use) and let *it* call the API for us:
+Here's the thing about steps 1 and 2: we didn't really need to learn the API — or use the website — at all. We could have just asked an AI agent (Claude, ChatGPT, Cursor, or whatever you use) and let *it* do the whole job:
 
 > Using the OpenAlex API, find the 25 most-cited papers about microplastics published since 2024 and save them as a CSV with title, year, citations, and DOI.
 
-That's it. Agents already know OpenAlex, and for anything they're unsure of they can read this site directly — every page here has a Markdown twin, indexed at [/llms.txt](/llms.txt). Point your agent there for best results.
+That's it. Agents already know OpenAlex, and anything they're unsure of they can find right here at [help.openalex.org](https://help.openalex.org) — the site is optimized for AI use.
 
-**Give your agent your API key.** Agents make a lot of requests, so the keyless budget runs out fast; at any reasonable scale your agent should use your free key. The clean way to do that without pasting secrets into chats:
+**Give your agent your API key.** Agents make a lot of requests, so the keyless budget runs out fast; at any reasonable scale your agent should use your free key. Just paste it into the chat and your agent will take it from there. (If a key ever leaks, no big deal: rotate it in **Settings → API key**, which invalidates the old one instantly.)
 
-1. Put the key in an environment variable, e.g. add `export OPENALEX_API_KEY=...` to your shell profile.
-2. Tell your agent about it once, in its memory or config file (`CLAUDE.md`, `AGENTS.md`, or your tool's equivalent):
-
-```markdown
-When calling the OpenAlex API, authenticate with
-`Authorization: Bearer $OPENALEX_API_KEY` (already set in my environment).
-Docs: https://help.openalex.org/llms.txt
-```
-
-Your key never appears in the conversation, and every session picks it up automatically. (If a key does leak, no big deal: rotate it in **Settings → API key**, which invalidates the old one instantly.)
-
-One honest caveat: agent results vary. Agents occasionally misread a filter or hallucinate a field name, so for anything that matters, spot-check a few rows against the [website](https://openalex.org) — or have the agent show you the API calls it made.
+It's very unusual for agents to hallucinate results here, since the API is so well-structured — but for consequential queries, it's a good idea to check against the [website](https://openalex.org) yourself.
 
 ## Where next
 
-- **[How it works](/docs/how-it-works/)** — how the data gets gathered, connected, and shared
-- **[API reference](/api/)** — endpoints, filters, paging, and rate limits
-- **[Recipes](/learn/)** — step-by-step walkthroughs of real research questions
+<div class="access-grid">
+  <a class="access-card" href="/help/">
+    <span class="ac-title">Help</span>
+    <span class="ac-body">Friendly answers to common questions — accounts, exports, fixing your profile.</span>
+  </a>
+  <a class="access-card" href="/learn/">
+    <span class="ac-title">Recipes</span>
+    <span class="ac-body">Step-by-step walkthroughs of real research questions.</span>
+  </a>
+  <a class="access-card" href="/api/">
+    <span class="ac-title">API docs</span>
+    <span class="ac-body">Endpoints, filters, paging, and rate limits.</span>
+  </a>
+</div>
+
+<style>
+  .access-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr));
+    gap: 0.9rem;
+    margin: 1.25rem 0 1.5rem;
+  }
+  .access-card {
+    display: block;
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 0.9rem 1rem;
+    color: inherit;
+    transition: border-color 0.15s;
+  }
+  .access-card:hover {
+    border-color: var(--line-strong);
+    text-decoration: none;
+    color: inherit;
+  }
+  .ac-title {
+    display: block;
+    font-weight: 600;
+    font-size: 0.93rem;
+    margin-bottom: 0.2rem;
+  }
+  .ac-body {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--muted);
+  }
+</style>
