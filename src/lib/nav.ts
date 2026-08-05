@@ -95,6 +95,20 @@ export const NAV_GROUPS: Record<string, NavGroup[]> = {
       ],
     },
     {
+      // Extended-FAQ "how do you…" stubs (oxjob #354 Pass R §7): short answers to
+      // real user questions that duplicate entity provenance by design, each with
+      // a `canonical:` link to the full treatment on the Entities/Docs tab.
+      label: 'How OpenAlex works',
+      desc: 'Short answers to how the data is built.',
+      slugs: [
+        'how-does-author-name-disambiguation-work',
+        'how-do-you-match-affiliations-to-institutions',
+        'how-do-you-decide-if-an-article-is-open-access',
+        'how-do-preprints-get-linked-to-published-versions',
+        'what-is-fwci-and-how-is-it-calculated',
+      ],
+    },
+    {
       label: 'Fixing errors & curation',
       desc: 'Correct author profiles, affiliations, OA status, and more.',
       slugs: [
