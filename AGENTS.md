@@ -1,3 +1,33 @@
+## The site is two-sided (oxjob #354 Pass R)
+
+- **Look things up**: Docs / Entities / API — one reference work split across three
+  tabs to keep each table of contents scannable. **Entities** = "what is this thing?"
+  (the entity graph). **Docs** = cross-cutting topics (querying, open access, getting the
+  data). **API** = wire mechanics + a one-page endpoints index.
+- **Get things done**: Help (extended FAQ of real user questions) / Recipes (worked
+  tutorials).
+- Routing for writers: "What is this thing?" → Entities. "How does querying/OA/bulk
+  access work?" → Docs. "Wire mechanics?" → API. "A question a real user asked?" → Help.
+  "A worked walkthrough?" → Recipes. NOT "help = nontechnical, docs = technical".
+
+### Entity pages
+
+- Every entity page follows the template in `content/entities/works.md`: intro (what it
+  is + ID form + a live example link) → `## How we build it` (fixed heading/anchor
+  `#how-we-build-it`: provenance, judgment calls, failure modes; where the old deep-dive
+  pages live now) → `## Fields` (one ``### `field` `` per top-level API field; common
+  fields get a one-liner + link to `/entities/common-fields/`) → `## In the API`.
+  Vocabulary pages add a `## Values` section (the controlled list).
+- **Field dictionaries are gated, not hand-trusted.** `scripts/check-entity-fields.mjs`
+  compares each page's ``### `field` `` headings against live API object keys +
+  `/properties`. Run `node scripts/check-entity-fields.mjs [slug…]` after touching a
+  field dictionary; **0 drift is a gate**. Component entities (authorships/locations/
+  raw-affiliation-strings) are intentionally NOT in its config — they document the
+  work-embedded object shape, not a list-endpoint row.
+- Native vs. vocabulary framing (put in copy where it helps trust): **native** entities
+  (W/A/S…) encode OpenAlex judgment calls about fuzzy real-world boundaries (curatable);
+  **vocabulary** entities are consistent handles on crisply-existing things (no judgment).
+
 ## Content: `content/` is canonical
 
 The migration generators (`scripts/migrate.mjs`, `scripts/mintlify-port.mjs`) are
