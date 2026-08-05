@@ -20,7 +20,7 @@ const path = Astro.url.pathname;
 ---
 
 <aside>
-  <nav aria-label="Section pages">
+  <nav aria-label="Section pages" data-tab={tab}>
     {groups.map((g) => (
       <div class="group">
         <span class="group-label">{g.label}</span>
@@ -66,6 +66,41 @@ const path = Astro.url.pathname;
     ))}
   </nav>
 </aside>
+
+<!-- Sidebar scroll persistence (Cursor parity, oxjob #354): each full page load
+     resets the nav's scroll, so save it to sessionStorage (per tab, like
+     Cursor's docs-scroll-<section> keys) and restore on the next load. Must be
+     is:inline and sit right after the <nav> markup: it then runs during HTML
+     parse, after the blocking stylesheets but before first paint, so the
+     restore never flickers. -->
+<script is:inline>
+  (() => {
+    const nav = document.querySelector('aside > nav[data-tab]');
+    if (!nav) return;
+    const key = 'sidebar-scroll-' + nav.dataset.tab;
+    let saved = null;
+    try {
+      saved = sessionStorage.getItem(key);
+    } catch {}
+    if (saved !== null) {
+      nav.scrollTop = parseInt(saved, 10) || 0;
+    } else {
+      // First entry in this tab (deep link, new tab): show the reader where
+      // they are instead of the top of the drawer.
+      const active = nav.querySelector('a[aria-current="page"]');
+      if (active) active.scrollIntoView({ block: 'nearest' });
+    }
+    nav.addEventListener(
+      'scroll',
+      () => {
+        try {
+          sessionStorage.setItem(key, String(nav.scrollTop));
+        } catch {}
+      },
+      { passive: true }
+    );
+  })();
+</script>
 
 <style>
   aside {
