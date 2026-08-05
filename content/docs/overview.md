@@ -1,9 +1,9 @@
 ---
 title: "Overview"
-description: "How OpenAlex builds its map of the research ecosystem: gathering records from thousands of sources, deduplicating and connecting them, and sharing the result eight different ways."
+description: "How OpenAlex works, end to end: gathering records from thousands of sources, resolving them into one connected knowledge graph, and sharing the result for free. A map that points into the entity pages where each step is documented in full."
 tags: ["reference"]
 ---
-OpenAlex gathers the world's research output from thousands of sources, organizes it into one connected knowledge graph, and shares it with everyone for free. This page explains each of those three steps.
+OpenAlex gathers the world's research output from thousands of sources, organizes it into one connected knowledge graph, and shares it with everyone for free. This page is the map of how that pipeline works, from broad strokes. Each step is documented in depth in the "How we build it" section of the relevant [entity](/entities/) page, and this page links into them as it goes.
 
 <figure class="layers-figure">
   <img src="/images/layer-cake.webp" alt="How OpenAlex works: research content is gathered, organized, and shared, growing into the scholarly ecosystem" />
@@ -16,11 +16,11 @@ OpenAlex gathers the world's research output from thousands of sources, organize
   </figcaption>
 </figure>
 
-## Data sources
+## Gather
 
-When a researcher publishes an article, book, or dataset, information about it is registered with agencies like [Crossref](https://crossref.org) and [DataCite](https://datacite.org), or deposited in institutional and national repositories. OpenAlex pulls records from these sources continuously — the database evolves hourly.
+When a researcher publishes an article, book, or dataset, information about it is registered with agencies like [Crossref](https://crossref.org) and [DataCite](https://datacite.org), or deposited in institutional and national repositories. OpenAlex pulls records from these sources continuously — the database evolves hourly. The catalog was seeded by the discontinued [Microsoft Academic Graph (MAG)](https://en.wikipedia.org/wiki/Microsoft_Academic), whose final open dataset OpenAlex adopted in 2021.
 
-The catalog was seeded by [MAG](https://aka.ms/msracad) (the discontinued Microsoft Academic Graph). The core sources we pull from today include:
+We track the external [indexes](/entities/indexes/) a record can come from — Crossref, PubMed, DataCite, DOAJ, arXiv — and the venues those records name become [sources](/entities/sources/#how-we-build-it): journals, conference series, ebook platforms, and repositories. The core inputs we pull from today include:
 
 - [Crossref](https://www.crossref.org/) and [DataCite](https://datacite.org/), the DOI registration agencies
 - [ORCID](https://orcid.org/) and [ROR](https://ror.org/), the open identifier systems for researchers and institutions
@@ -28,21 +28,29 @@ The catalog was seeded by [MAG](https://aka.ms/msracad) (the discontinued Micros
 - [DOAJ](https://doaj.org/) and [the ISSN International Centre](https://www.issn.org/)
 - [Unpaywall](https://unpaywall.org/) and the [Internet Archive](https://archive.org/details/GeneralIndex)
 - Aggregators and subject repositories: HAL, arXiv, Zenodo, Dergipark, OSTI, RePEc, and many more
-- Thousands of institutional repositories, from [UNC's CDR](https://cdr.lib.unc.edu/) to [Michigan's Deep Blue](https://deepblue.lib.umich.edu/documents) ([full list](https://unpaywall.org/sources))
+- Thousands of institutional [repositories](/docs/repositories/), from [UNC's CDR](https://cdr.lib.unc.edu/) to [Michigan's Deep Blue](https://deepblue.lib.umich.edu/documents) ([full list](https://unpaywall.org/sources))
 - Parsing of 60M+ open access PDFs, journal landing pages, and direct publisher feeds
 - Corrections from users through [community curation](/help/fix-errors-in-openalex/)
 
-## Deduplicate and connect
+## Organize
 
-**Matching links records to known entities.** Each incoming record gets matched against persistent-identifier systems: affiliation text to institutions in [ROR](https://ror.org/search), authors to [ORCID](https://orcid.org/) records (and to each other — see [Author disambiguation](/docs/author-disambiguation/)), journal titles to [ISSN](https://www.issn.org/). Duplicate records of the same work are merged into one. This forms the foundation of the knowledge graph: [works](/docs/works/) connected to [authors](/api/authors/), [sources](/docs/sources/), [institutions](/api/institutions/), [topics](/docs/topics/), [publishers](/api/publishers/), and [funders](/api/funders/).
+The records flowing in are messy and redundant, so the heart of OpenAlex is turning them into a clean, connected graph of [entities](/entities/). Some of those entities are **native** — OpenAlex mints its own IDs by making judgment calls about fuzzy real-world boundaries — and some are a consistent **vocabulary** wrapped around things that already exist crisply; the [Entities overview](/entities/overview/) explains that distinction and how much to trust each kind of ID.
 
-**Enrichment adds the connections that make the map useful.** We link outputs to other outputs by extracting reference metadata (citations), and we run text classifiers over titles and abstracts to understand what each work is about, linking it to topics, subfields, keywords, and even SDGs — see [Aboutness](/docs/aboutness/).
+**Records become works.** Each incoming record is matched (by DOI or other metadata) against the [works](/entities/works/#how-we-build-it) already in OpenAlex. If it matches, the record enriches the existing work; if nothing matches, it may seed a new one. Duplicate records of the same work are merged into a single work — the core node that every other entity connects to.
+
+**Authors get disambiguated.** The name strings on a work ("J. Smith," "John A. Smith") are clustered into real people, each assigned a stable author ID. This is [author disambiguation](/entities/authors/#how-we-build-it), a machine-learning process that weighs name, co-authors, affiliations, topics, citations, and ORCID.
+
+**Affiliations get matched.** The free-text [raw affiliation strings](/entities/raw-affiliation-strings/) on each work ("MIT, Boston, USA") are parsed and linked to ROR-backed [institutions](/entities/institutions/#how-we-build-it) and countries — which in turn feeds the affiliation signal used in author disambiguation.
+
+**Works get classified.** Text classifiers read each work's title and abstract to decide what it's *about*, tagging it with [topics](/entities/topics/), subfields, keywords, and SDGs. See [Aboutness](/entities/aboutness/) for the full set of subject signals and how to pick among them.
+
+**Citations get built.** Each work's reference list is extracted — from source metadata and, for open works, from the PDF — and matched to other works already in OpenAlex, producing both references and citation counts. See [Works: citations and references](/entities/works/#citations-and-references).
 
 This pipeline is complex and changes frequently. In the interest of openness, we share our internal monitoring dashboard publicly: [view the pipeline dashboard](http://unpaywall-metabase.herokuapp.com/public/dashboard/8e114521-b74b-4e6c-bba8-3a8fc573fb64).
 
 ## Share
 
-The same dataset is available through eight channels, from no-code to whole-database:
+The same knowledge graph is available through eight channels, from no-code to whole-database. For picking among the query-time channels, see [Querying](/docs/querying/); to pull the whole dataset, see [Get the data](/docs/snapshot/).
 
 <div class="access-grid">
   <a class="access-card" href="https://openalex.org">

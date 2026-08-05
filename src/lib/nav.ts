@@ -173,43 +173,9 @@ export const NAV_GROUPS: Record<string, NavGroup[]> = {
       ],
     },
     {
-      label: 'Works',
-      desc: 'Where works come from and what their fields mean.',
-      slugs: [
-        'works',
-        'work-types',
-        'versions',
-        'citations',
-        'fwci',
-        'counts-by-year',
-        'work-fields',
-      ],
-    },
-    {
-      label: 'Other entities',
-      desc: 'Authors, institutions, sources, and publishers.',
-      slugs: [
-        'author-disambiguation',
-        'affiliations',
-        'sources',
-        'journal-quality',
-      ],
-    },
-    {
-      // Aboutness moved to the Entities tab (oxjob #354 Pass R). `aboutness`
-      // already lives at /entities/aboutness/; topics/keywords/sdg-classification
-      // are dissolved into Entities in the docs-tab restructure step and will be
-      // removed from this group + redirected then.
-      label: 'Aboutness',
-      desc: 'Topics, keywords, and other classifications.',
-      slugs: [
-        'topics',
-        'keywords',
-        'sdg-classification',
-      ],
-    },
-    {
-      label: 'Open Access',
+      // Open access + repositories + Unpaywall (oxjob #354 Pass R §4). Entity
+      // deep-dives (works/authors/sources/topics/…) moved to the Entities tab.
+      label: 'Open access',
       desc: 'OA status and licenses, repositories, and Unpaywall.',
       slugs: [
         'open-access',
@@ -222,28 +188,41 @@ export const NAV_GROUPS: Record<string, NavGroup[]> = {
       ],
     },
     {
-      label: 'Access',
-      desc: 'The ways to get the data — from a quick query to the whole database.',
+      label: 'Querying',
+      desc: 'The ways to ask OpenAlex a question — all transpile to the same query object.',
       slugs: [
+        'querying',
+        {
+          label: 'Web interface',
+          children: [
+            'web-interface-basic',
+            'web-interface-advanced',
+          ],
+        },
+        'url',
         {
           label: 'OQL',
           slug: 'oql',
           children: [
             'oql-spec',
-            'oqo-schema',
           ],
         },
-        'openalex-cli',
+        'oqo-schema',
+      ],
+    },
+    {
+      // Renamed from "Access" (oxjob #354 Pass R): tools AND bulk files are all
+      // ways to *get* the data. Slug renames: openalex-cli→cli,
+      // snapshot-updates→sync, content-archive→fulltext; snapshot absorbed
+      // snapshot-access.
+      label: 'Get the data',
+      desc: 'Every way to get the data onto your machine — a query, the CLI, an agent, or the whole database.',
+      slugs: [
+        'cli',
         'agents',
-        {
-          label: 'Snapshot',
-          slug: 'snapshot',
-          children: [
-            'snapshot-access',
-          ],
-        },
-        'snapshot-updates',
-        'content-archive',
+        'snapshot',
+        'sync',
+        'fulltext',
       ],
     },
   ],

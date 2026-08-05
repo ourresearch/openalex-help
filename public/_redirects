@@ -569,6 +569,53 @@
 /docs/oql-grammar  /docs/oql-spec/#formal-grammar  301
 /docs/oql-grammar/  /docs/oql-spec/#formal-grammar  301
 
+# >>> restructure Pass R (oxjob #354, 2026-08-05) >>>
+# New Entities tab + Docs reorg. One explicit 301 per moved slug (bare + slash).
+# NOTE: CF redirects do NOT chain — existing Zendesk/Mintlify rules that target
+# any slug moved below are repointed to the FINAL URL in their own sections
+# (done in the Pass R redirect/link sweep), so these are the canonical targets.
+# --- Docs entity deep-dives -> Entities tab ---
+/docs/works  /entities/works/  301
+/docs/works/  /entities/works/  301
+/docs/work-types  /entities/work-types/  301
+/docs/work-types/  /entities/work-types/  301
+/docs/work-fields  /entities/works/#fields  301
+/docs/work-fields/  /entities/works/#fields  301
+/docs/versions  /entities/locations/  301
+/docs/versions/  /entities/locations/  301
+/docs/citations  /entities/works/#citations-and-references  301
+/docs/citations/  /entities/works/#citations-and-references  301
+/docs/fwci  /entities/works/#field-weighted-citation-impact  301
+/docs/fwci/  /entities/works/#field-weighted-citation-impact  301
+/docs/counts-by-year  /entities/common-fields/#counts_by_year  301
+/docs/counts-by-year/  /entities/common-fields/#counts_by_year  301
+/docs/author-disambiguation  /entities/authors/#how-we-build-it  301
+/docs/author-disambiguation/  /entities/authors/#how-we-build-it  301
+/docs/affiliations  /entities/raw-affiliation-strings/  301
+/docs/affiliations/  /entities/raw-affiliation-strings/  301
+/docs/sources  /entities/sources/  301
+/docs/sources/  /entities/sources/  301
+/docs/journal-quality  /entities/sources/#how-we-build-it  301
+/docs/journal-quality/  /entities/sources/#how-we-build-it  301
+/docs/topics  /entities/topics/  301
+/docs/topics/  /entities/topics/  301
+/docs/keywords  /entities/keywords/  301
+/docs/keywords/  /entities/keywords/  301
+/docs/sdg-classification  /entities/sdgs/  301
+/docs/sdg-classification/  /entities/sdgs/  301
+/docs/aboutness  /entities/aboutness/  301
+/docs/aboutness/  /entities/aboutness/  301
+# --- Docs slug renames / merges (stay in Docs tab) ---
+/docs/openalex-cli  /docs/cli/  301
+/docs/openalex-cli/  /docs/cli/  301
+/docs/snapshot-updates  /docs/sync/  301
+/docs/snapshot-updates/  /docs/sync/  301
+/docs/content-archive  /docs/fulltext/  301
+/docs/content-archive/  /docs/fulltext/  301
+/docs/snapshot-access  /docs/snapshot/  301
+/docs/snapshot-access/  /docs/snapshot/  301
+# <<< restructure Pass R <<<
+
 # >>> WILDCARDS LAST — do not move, do not add rules after this section >>>
 # CF Pages bug (oxjob #354, verified 2026-08-01): once a wildcard/splat rule
 # appears, CF silently stops processing rules some distance later in the file
