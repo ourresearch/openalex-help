@@ -25,6 +25,9 @@ const tabs = [
 ];
 const path = Astro.url.pathname;
 const isActive = (href: string) => (href === '/' ? path === '/' : path.startsWith(href));
+// The homepage has its own hero search box, so hide the navbar one there — two
+// search boxes on one page reads as "these must do different things" (Pass V).
+const isHome = path === '/';
 ---
 
 <!doctype html>
@@ -50,7 +53,7 @@ const isActive = (href: string) => (href === '/' ? path === '/' : path.startsWit
           ))}
         </div>
         <div class="nav-right">
-          <Search />
+          <Search button={!isHome} />
           <a class="site-link" href="https://openalex.org">Main site ↗</a>
           <button class="menu-toggle" aria-label="Menu" aria-expanded="false" aria-controls="mobile-menu">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">

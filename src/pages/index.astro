@@ -1,8 +1,9 @@
 ---
-// Help Center homepage (oxjob #354 Pass U): the front door for the whole site.
-// We don't know what mode a visitor arrives in — asking a question, reading
-// reference, following a tutorial — so the homepage orients: search, support
-// links, what OpenAlex is, where to start, and what lives in each tab.
+// Help Center homepage (oxjob #354 Pass U/V): the front door for the whole
+// site. We don't know what mode a visitor arrives in — asking a question,
+// reading reference, following a tutorial — so the homepage orients: a one-line
+// description, one search box, then a flat grid of cards for everywhere you can
+// go. No section headers, no second search box (Pass V, Jason 2026-08-06).
 import Base from '../layouts/Base.astro';
 import Card from '../components/Card.astro';
 import Icon from '../components/Icon.astro';
@@ -17,52 +18,30 @@ const providers = [
   { label: 'Perplexity', href: `https://www.perplexity.ai/search?q=${encodeURIComponent(prompt)}` },
 ];
 
-const startHere = [
-  {
-    title: 'Quickstart',
-    href: '/docs/quickstart/',
-    icon: 'play',
-    blurb: 'Get real data in five minutes — web, API, or agent',
-  },
-  {
-    title: 'Overview',
-    href: '/docs/overview/',
-    icon: 'cpu',
-    blurb: 'How we build the map of the research ecosystem',
-  },
-];
-
-// One card per tab: icon + name + what you'll find there.
-const tabCards = [
-  {
-    title: 'FAQ',
-    href: '/help/',
-    icon: 'help-circle',
-    blurb: 'The questions users actually ask us, answered plainly',
-  },
-  {
-    title: 'Docs',
-    href: '/docs/',
-    icon: 'book-open',
-    blurb: 'How the dataset works — querying, open access, getting the data',
-  },
+// One card per destination — the five tabs plus the three support surfaces, all
+// the same design (Ask AI, below, is the eighth; it expands instead of links).
+const cards = [
+  { title: 'FAQ', href: '/help/', icon: 'help-circle', blurb: 'Real questions answered plainly' },
+  { title: 'Docs', href: '/docs/', icon: 'notebook', blurb: 'How OpenAlex works and how to use it' },
   {
     title: 'Entities',
     href: '/entities/',
-    icon: 'database',
-    blurb: 'Works, authors, sources, and more — every field explained',
+    icon: 'shapes',
+    blurb: "Works, authors, etc: how they're made and what each field means",
+  },
+  { title: 'API', href: '/api/', icon: 'cog', blurb: 'Endpoints, filters, auth, rate-limits, etc.' },
+  { title: 'Recipes', href: '/recipes/', icon: 'food', blurb: 'Step-by-step tutorials' },
+  {
+    title: 'Community Forum',
+    href: 'https://groups.google.com/g/openalex-users',
+    icon: 'message',
+    blurb: 'Discuss with other users',
   },
   {
-    title: 'API',
-    href: '/api/',
-    icon: 'zap',
-    blurb: 'Endpoints, filters, paging, auth, and rate limits',
-  },
-  {
-    title: 'Recipes',
-    href: '/recipes/',
-    icon: 'play',
-    blurb: 'Step-by-step walkthroughs for real research questions',
+    title: 'Contact Support',
+    href: 'https://openalex.org/contact',
+    icon: 'mail',
+    blurb: 'Get help from our team',
   },
 ];
 ---
@@ -71,65 +50,41 @@ const tabCards = [
   <div class="wrap home">
     <section class="hero reveal">
       <h1>OpenAlex Help Center</h1>
+      <p class="subtitle">
+        OpenAlex is an open catalog of the global research system — papers, authors, institutions,
+        journals, and topics, all connected. This help center is where you learn to use it.
+      </p>
       <button class="big-search" data-search-trigger aria-label="Search the help center">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
           <circle cx="11" cy="11" r="7" /><path d="m20 20-3.5-3.5" />
         </svg>
-        <span class="placeholder">How do I find my author ID?</span>
+        <span class="placeholder">Search the help center</span>
         <kbd>⌘K</kbd>
       </button>
     </section>
 
-    <section class="links reveal" style="animation-delay: 0.08s">
-      <a class="link-card" href="https://groups.google.com/g/openalex-users">
-        <span class="lc-title">Community Forum</span>
-        <span class="lc-desc">Discuss with other users</span>
-      </a>
-      <a class="link-card" href="https://openalex.org/contact">
-        <span class="lc-title">Contact Support</span>
-        <span class="lc-desc">Get help from our team</span>
-      </a>
-      <details class="link-card ask-ai">
-        <summary>
-          <span class="lc-title">Ask AI</span>
-          <span class="lc-desc">Open your assistant, primed with our docs</span>
-        </summary>
-        <div class="providers">
-          {providers.map((p) => (
-            <a href={p.href} target="_blank" rel="noopener">{p.label} ↗</a>
-          ))}
-        </div>
-      </details>
-    </section>
-
-    <section class="about reveal" style="animation-delay: 0.16s">
-      <span class="section-label">What is OpenAlex?</span>
-      <p>
-        OpenAlex is an open catalog of the global research system: papers, authors, institutions,
-        journals, and topics, all connected. It's free for everyone — browse it
-        on <a href="https://openalex.org">the web</a>, query it through the API, or download the
-        whole thing.
-      </p>
-      <span class="section-label">Start here</span>
-      <div class="card-grid start-grid">
-        {startHere.map((c) => (
-          <Card title={c.title} href={c.href}>
-            <Icon name={c.icon} slot="icon" />
-            {c.blurb}
-          </Card>
-        ))}
-      </div>
-    </section>
-
-    <section class="explore reveal" style="animation-delay: 0.24s">
-      <span class="section-label">Explore the Help Center</span>
+    <section class="explore reveal" style="animation-delay: 0.08s">
       <div class="card-grid">
-        {tabCards.map((c) => (
+        {cards.map((c) => (
           <Card title={c.title} href={c.href}>
             <Icon name={c.icon} slot="icon" />
             {c.blurb}
           </Card>
         ))}
+        <details class="ai-card ask-ai">
+          <summary>
+            <span class="ai-head">
+              <Icon name="sparkles" />
+              <span class="ai-title">Ask AI</span>
+            </span>
+            <span class="ai-body">Open your assistant, primed with our docs</span>
+          </summary>
+          <div class="providers">
+            {providers.map((p) => (
+              <a href={p.href} target="_blank" rel="noopener">{p.label} ↗</a>
+            ))}
+          </div>
+        </details>
       </div>
     </section>
   </div>
@@ -146,7 +101,14 @@ const tabCards = [
     margin-bottom: 2.5rem;
   }
   .hero h1 {
-    margin: 0 0 2.5rem;
+    margin: 0 0 0.75rem;
+  }
+  .subtitle {
+    max-width: 38rem;
+    margin: 0 auto 2rem;
+    color: var(--muted);
+    font-size: 0.98rem;
+    line-height: 1.6;
   }
   .big-search {
     display: flex;
@@ -183,51 +145,66 @@ const tabCards = [
     padding: 0.1rem 0.35rem;
     background: var(--bg);
   }
-  .links {
+
+  /* The eight-card grid — five tabs + three support surfaces, all one design. */
+  .card-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fill, minmax(13rem, 1fr));
     gap: 0.9rem;
-    margin-bottom: 3rem;
-    /* The .reveal animation makes each landing section a stacking context, so
-       the Ask AI dropdown can't out-z-index the later sections without
-       lifting this whole section above them. */
+    /* .reveal makes the section a stacking context; lift it so the Ask AI
+       dropdown can't be covered by anything painted later. */
     position: relative;
     z-index: 10;
   }
-  .link-card {
-    display: block;
-    text-align: center;
+
+  /* Ask AI: matches Card.astro exactly, but it's a <details> that expands to a
+     provider menu instead of an <a> that navigates. */
+  .ai-card {
+    display: flex;
+    flex-direction: column;
+    color: inherit;
     background: var(--panel);
     border: 1px solid var(--line);
-    border-radius: 10px;
-    padding: 0.9rem 1rem;
-    color: inherit;
+    border-radius: 5px;
+    position: relative;
     transition: border-color 0.15s;
   }
-  .link-card:hover {
+  .ai-card:hover {
     border-color: var(--line-strong);
-    text-decoration: none;
   }
-  .lc-title {
-    display: block;
-    font-size: 0.93rem;
-    font-weight: 550;
+  .ai-card:hover .ai-title {
+    color: var(--accent);
   }
-  .lc-desc {
-    display: block;
-    font-size: 0.82rem;
-    color: var(--muted);
-    margin-top: 0.15rem;
-  }
-  .ask-ai {
-    position: relative;
-  }
-  .ask-ai summary {
+  .ai-card summary {
     list-style: none;
     cursor: pointer;
+    display: flex;
+    flex-direction: column;
   }
-  .ask-ai summary::-webkit-details-marker {
+  .ai-card summary::-webkit-details-marker {
     display: none;
+  }
+  .ai-head {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.7rem 1rem;
+    border-bottom: 1px solid var(--line);
+    background: var(--panel-strong);
+  }
+  .ai-head :global(svg) {
+    flex-shrink: 0;
+    color: var(--muted);
+  }
+  .ai-title {
+    font-size: 0.92rem;
+    font-weight: 600;
+  }
+  .ai-body {
+    padding: 0.7rem 1rem 0.9rem;
+    color: var(--muted);
+    font-size: 0.87rem;
+    line-height: 1.5;
   }
   .providers {
     position: absolute;
@@ -253,30 +230,6 @@ const tabCards = [
     background: var(--panel);
     text-decoration: none;
     color: var(--accent);
-  }
-  .section-label {
-    display: block;
-    font-size: 0.82rem;
-    color: var(--muted);
-    margin-bottom: 0.6rem;
-  }
-  .about {
-    margin-bottom: 3rem;
-  }
-  .about p {
-    margin: 0 0 1.75rem;
-    font-size: 0.95rem;
-    line-height: 1.65;
-  }
-  .card-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(13rem, 1fr));
-    gap: 0.9rem;
-  }
-  @media (max-width: 640px) {
-    .links {
-      grid-template-columns: 1fr;
-    }
   }
 </style>
 

@@ -2,15 +2,26 @@
 // ⌘K search modal backed by pagefind. The pagefind assets (/pagefind/*) exist
 // only in the built site (`npm run build`); in `astro dev` the modal shows a
 // gentle fallback note instead.
+//
+// `button` (default true) renders the visible navbar search pill. The homepage
+// passes button={false} so there's only one search box on that page (its hero
+// big-search box) — but the dialog + ⌘K / [data-search-trigger] wiring below
+// still load, so the hero box keeps working (oxjob #354 Pass V).
+interface Props {
+  button?: boolean;
+}
+const { button = true } = Astro.props;
 ---
 
-<button id="search-open" aria-label="Search" title="Search (⌘K)">
-  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
-    <circle cx="11" cy="11" r="7" /><path d="m20 20-3.5-3.5" />
-  </svg>
-  <span class="search-label">Search help center…</span>
-  <kbd>⌘K</kbd>
-</button>
+{button && (
+  <button id="search-open" aria-label="Search" title="Search (⌘K)">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
+      <circle cx="11" cy="11" r="7" /><path d="m20 20-3.5-3.5" />
+    </svg>
+    <span class="search-label">Search help center…</span>
+    <kbd>⌘K</kbd>
+  </button>
+)}
 
 <dialog id="search-dialog">
   <div id="pagefind-container">
