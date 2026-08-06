@@ -42,10 +42,9 @@
     flex: 1;
     text-align: left;
   }
-  /* Full-width pill only when the header has room (matches Base.astro's
-     centered-search breakpoint); below that it sits in-flow on the right at
+  /* Full-width pill only when the header has room; below that it stays at
      natural width, and on phones it collapses to just the icon. */
-  @media (min-width: 1440px) {
+  @media (min-width: 1024px) {
     #search-open {
       width: 320px; /* cursor-measured */
     }

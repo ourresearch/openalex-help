@@ -46,10 +46,8 @@ const path = Astro.url.pathname;
             <a href={t.href} aria-current={path.startsWith(t.href) ? 'page' : undefined}>{t.label}</a>
           ))}
         </div>
-        <div class="nav-center">
-          <Search />
-        </div>
         <div class="nav-right">
+          <Search />
           <a class="site-link" href="https://openalex.org">Main site ↗</a>
           <button class="menu-toggle" aria-label="Menu" aria-expanded="false" aria-controls="mobile-menu">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
@@ -137,11 +135,11 @@ const path = Astro.url.pathname;
         width: auto;
         display: block;
       }
-      /* "Help" extends the wordmark: Inter at the wordmark's optical size and
-         tracking, light weight so it reads as a suffix, not a second logo. */
+      /* "Help" extends the wordmark: Inter at the wordmark's optical size,
+         tracking, and weight. */
       .logo-help {
         font-size: 21px;
-        font-weight: 350;
+        font-weight: 700;
         letter-spacing: -0.02em;
         color: var(--ink);
         line-height: 1;
@@ -150,9 +148,14 @@ const path = Astro.url.pathname;
       .logo:hover {
         text-decoration: none;
       }
+      /* Tabs left-align with the nav drawer's right border (DocsShell's
+         17.5rem sidebar column), spreading the bar out Cursor-style. */
       .tabs {
         display: flex;
-        align-self: stretch;
+        position: absolute;
+        left: 17.5rem;
+        top: 0;
+        bottom: 0;
       }
       /* Cursor-measured tabs: 14px, 12px side padding, active = accent text +
          a 2px accent underline spanning the full pill, sitting on the header's
@@ -182,12 +185,6 @@ const path = Astro.url.pathname;
         bottom: -1px;
         height: 2px;
         background: var(--accent);
-      }
-      /* Search pill dead-center in the header, like Cursor. */
-      .nav-center {
-        position: absolute;
-        left: 50%;
-        transform: translateX(-50%);
       }
       .nav-right {
         margin-left: auto;
@@ -258,20 +255,6 @@ const path = Astro.url.pathname;
         max-width: none;
         margin: 0;
         padding: 0;
-      }
-      /* The dead-centered search pill needs vw/2 - 160px to clear the
-         logo + tabs block (~560px) — true only from ~1440px up. Below that
-         the pill is in normal flow on the right (it used to break at
-         1000–1400px: the centered pill painted over the API/Recipes tabs). */
-      @media (max-width: 1439px) {
-        .nav-center {
-          position: static;
-          transform: none;
-          margin-left: auto;
-        }
-        .nav-right {
-          margin-left: 0;
-        }
       }
       /* Mobile (Cursor pattern): tabs collapse into a hamburger; the main-site
          button moves into the menu. */
