@@ -14,8 +14,13 @@ const { crumbs } = Astro.props;
 
 <nav class="breadcrumbs" aria-label="Breadcrumb">
   <ol>
-    {crumbs.map((c) => (
-      <li>{c.href ? <a href={c.href}>{c.label}</a> : <span>{c.label}</span>}</li>
+    {crumbs.map((c, i) => (
+      <li>
+        {i > 0 && (
+          <svg class="sep" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6" /></svg>
+        )}
+        {c.href ? <a href={c.href}>{c.label}</a> : <span>{c.label}</span>}
+      </li>
     ))}
   </ol>
 </nav>
@@ -38,9 +43,9 @@ const { crumbs } = Astro.props;
     display: flex;
     align-items: center;
   }
-  li + li::before {
-    content: '/';
-    margin: 0 0.45rem;
+  .sep {
+    flex: none;
+    margin: 0 0.35rem;
     color: var(--faint);
   }
   a {

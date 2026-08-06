@@ -4,7 +4,7 @@ import Base from '../../layouts/Base.astro';
 import DocsShell from '../../layouts/DocsShell.astro';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import { allEntries, mdUrlFor, type Tab } from '../../lib/tabs';
-import { groupEntries, breadcrumbsFor } from '../../lib/nav';
+import { groupEntries, breadcrumbsFor, displayTitleFor } from '../../lib/nav';
 
 export async function getStaticPaths() {
   return (await allEntries()).map(({ tab, entry }) => ({
@@ -24,14 +24,18 @@ const groups = isShell
   ? groupEntries(tab, (await allEntries()).filter((e) => e.tab === tab).map((e) => e.entry))
   : [];
 const crumbs = breadcrumbsFor(tab, entry.id);
-// Context-free page titles ("Overview", "Basic") are the Pass S naming rule —
-// the nav drawer and breadcrumbs supply the context. The <title> tag has no
-// such context, so append the nearest crumb there: "Overview – Querying".
+// Overview pages compose their parent's name into the H1 ("Querying Overview")
+// — Jason's Pass S round 2 call. Other context-free titles ("Basic") keep the
+// bare H1 (breadcrumbs supply context) but get the parent appended in the
+// <title> tag, which has no context of its own.
+const displayTitle = displayTitleFor(tab, entry.id, entry.data.title);
 const parentLabel = crumbs.length > 1 ? crumbs[crumbs.length - 1].label : undefined;
 const docTitle =
-  parentLabel && parentLabel !== entry.data.title
-    ? `${entry.data.title} – ${parentLabel}`
-    : entry.data.title;
+  displayTitle !== entry.data.title
+    ? displayTitle
+    : parentLabel && parentLabel !== entry.data.title
+      ? `${entry.data.title} – ${parentLabel}`
+      : entry.data.title;
 const toc = headings.filter((h) => h.depth === 2);
 const mdUrl = mdUrlFor(tab, entry);
 ---
@@ -46,7 +50,7 @@ const mdUrl = mdUrlFor(tab, entry);
   >
     <article class="prose">
       <Breadcrumbs crumbs={crumbs} />
-      <h1>{entry.data.title}</h1>
+      <h1>{displayTitle}</h1>
       <Content />
       <div class="article-foot">
         <a class="md-link" href={mdUrl}>View as Markdown</a>
@@ -68,7 +72,7 @@ const mdUrl = mdUrlFor(tab, entry);
     <div class="page">
       <article class="prose reveal">
         <Breadcrumbs crumbs={crumbs} />
-        <h1>{entry.data.title}</h1>
+        <h1>{displayTitle}</h1>
         <Content />
         <div class="article-foot">
           <a class="md-link" href={mdUrl}>View as Markdown</a>

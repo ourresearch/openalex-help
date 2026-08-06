@@ -22,16 +22,8 @@ const path = Astro.url.pathname;
 <aside>
   <nav aria-label="Section pages" data-tab={tab}>
     {groups.map((g) => (
-      <details
-        class="group"
-        data-group={g.label}
-        open={g.entries.some((e) => e.id === activeSlug) || undefined}
-      >
-        <summary class="group-label">
-          <span>{g.label}</span>
-          <svg class="chev" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6" /></svg>
-        </summary>
-        <div class="group-items">
+      <div class="group">
+        <span class="group-label">{g.label}</span>
         {g.items.map((item) =>
           item.children.length ? (
             <details
@@ -70,8 +62,7 @@ const path = Astro.url.pathname;
             )
           )
         )}
-        </div>
-      </details>
+      </div>
     ))}
   </nav>
 </aside>
@@ -108,27 +99,6 @@ const path = Astro.url.pathname;
       },
       { passive: true }
     );
-
-    // Group open/closed persistence (Pass S): groups start collapsed; the one
-    // holding the active page is server-opened. Re-apply the user's manual
-    // toggles from sessionStorage (per tab), but never close the active group.
-    const gkey = 'sidebar-groups-' + nav.dataset.tab;
-    let states = {};
-    try {
-      states = JSON.parse(sessionStorage.getItem(gkey) || '{}');
-    } catch {}
-    for (const d of nav.querySelectorAll('details.group')) {
-      const name = d.dataset.group;
-      if (name in states && !d.querySelector('a[aria-current="page"]')) {
-        d.open = states[name];
-      }
-      d.addEventListener('toggle', () => {
-        states[name] = d.open;
-        try {
-          sessionStorage.setItem(gkey, JSON.stringify(states));
-        } catch {}
-      });
-    }
   })();
 </script>
 
@@ -152,34 +122,17 @@ const path = Astro.url.pathname;
     letter-spacing: 0.005em;
     scrollbar-width: thin;
   }
-  /* Top-level groups are collapsible and start CLOSED (Cursor parity, Pass S):
-     only the group holding the active page opens on load; user toggles persist
-     per-tab in sessionStorage (script below). */
-  .group-items {
+  /* Sections are NOT collapsible (Jason, Pass S round 2 — Cursor parity):
+     only SUBGROUPS collapse, and those start closed unless they hold the
+     active page. */
+  .group {
     display: flex;
     flex-direction: column;
-    padding-top: 0.45rem;
   }
   .group-label {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 0.5rem;
     font-size: 0.75rem; /* 12px, cursor-measured */
     color: var(--muted);
-    cursor: pointer;
-    list-style: none;
-    user-select: none;
-    padding: 0.22rem 0;
-  }
-  .group-label::-webkit-details-marker {
-    display: none;
-  }
-  .group-label:hover {
-    color: var(--ink);
-  }
-  details.group[open] > .group-label .chev {
-    transform: rotate(90deg);
+    margin-bottom: 0.45rem;
   }
   a {
     color: var(--ink);

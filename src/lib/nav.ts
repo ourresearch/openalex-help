@@ -391,6 +391,31 @@ function groupTarget(tab: string, g: NavGroup): string | undefined {
   return slug ? `/${tab}/${slug}/` : undefined;
 }
 
+/** Display H1 for an article (oxjob #354 Pass S round 2): pages titled
+ * "Overview" get their parent container's name prepended — "Querying Overview",
+ * "OQL Overview" — since a bare "Overview" H1 (and <title>) carries no context.
+ * The nav-drawer label stays the bare frontmatter title ("Overview").
+ * Parent = the subgroup label for a subgroup's overview page, else the group
+ * label when the page is the group's FIRST article (a true section overview);
+ * the tab label stands in when the group is a catch-all ("Get(ting) started")
+ * or shares the page's own title (entities' "Overview" group). */
+export function displayTitleFor(tab: string, slug: string, title: string): string {
+  if (title !== 'Overview') return title;
+  for (const g of NAV_GROUPS[tab] ?? []) {
+    for (const item of g.slugs) {
+      if (!itemSlugs(item).includes(slug)) continue;
+      if (typeof item === 'object' && !('href' in item)) {
+        return item.slug === slug ? `${item.label} Overview` : title;
+      }
+      if (flatSlugs(g)[0] !== slug) return title; // mid-group page, not a section overview
+      const catchAll = ['Get started', 'Getting started'].includes(g.label);
+      const parent = catchAll || g.label === title ? (TAB_LABELS[tab] ?? tab) : g.label;
+      return `${parent} Overview`;
+    }
+  }
+  return title;
+}
+
 /** Breadcrumb trail for an article page (oxjob #354 Pass S): Tab → group →
  * (subgroup, when the page sits inside one). The page's own title renders as
  * the H1 beneath the trail, so it is never a crumb. A crumb whose target IS
