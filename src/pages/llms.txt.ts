@@ -6,7 +6,7 @@ import { TABS, allEntries, mdUrlFor, urlFor } from '../lib/tabs';
 export const GET: APIRoute = async ({ site }) => {
   const base = (site ?? new URL('https://help.openalex.org')).href.replace(/\/$/, '');
   const entries = await allEntries();
-  const labels: Record<string, string> = { help: 'Help', docs: 'Docs', entities: 'Entities', api: 'API', recipes: 'Recipes' };
+  const labels: Record<string, string> = { help: 'FAQ', docs: 'Docs', entities: 'Entities', api: 'API', recipes: 'Recipes' };
 
   const sections = TABS.map((tab) => {
     const rows = entries

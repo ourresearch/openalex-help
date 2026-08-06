@@ -15,7 +15,7 @@ const { title, description, wide = false } = Astro.props;
 // (oxjob #354 Pass R): Help + Recipes = "get things done"; Docs/Entities/API =
 // "look things up" (one reference work split across three tabs).
 const tabs = [
-  { label: 'Help', href: '/help/' },
+  { label: 'FAQ', href: '/help/' },
   { label: 'Docs', href: '/docs/' },
   { label: 'Entities', href: '/entities/' },
   { label: 'API', href: '/api/' },
@@ -39,6 +39,7 @@ const path = Astro.url.pathname;
       <nav aria-label="Main">
         <a href="/help/" class="logo">
           <img src="/brand/openalex-lockup.png" alt="OpenAlex" height="22" />
+          <span class="logo-help">Help</span>
         </a>
         <div class="tabs">
           {tabs.map((t) => (
@@ -49,9 +50,20 @@ const path = Astro.url.pathname;
           <Search />
         </div>
         <div class="nav-right">
-          <a class="site-link" href="https://openalex.org">openalex.org ↗</a>
+          <a class="site-link" href="https://openalex.org">Main site ↗</a>
+          <button class="menu-toggle" aria-label="Menu" aria-expanded="false" aria-controls="mobile-menu">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+              <path d="M4 7h16M4 12h16M4 17h16" />
+            </svg>
+          </button>
         </div>
       </nav>
+      <div id="mobile-menu" hidden>
+        {tabs.map((t) => (
+          <a href={t.href} aria-current={path.startsWith(t.href) ? 'page' : undefined}>{t.label}</a>
+        ))}
+        <a class="menu-site-link" href="https://openalex.org">Main site ↗</a>
+      </div>
     </header>
 
     <main class:list={{ wide }}>
@@ -80,6 +92,23 @@ const path = Astro.url.pathname;
           location.hash = h.id;
         });
       }
+
+      // Mobile menu toggle.
+      const menuBtn = document.querySelector<HTMLButtonElement>('.menu-toggle');
+      const menu = document.getElementById('mobile-menu');
+      if (menuBtn && menu) {
+        menuBtn.addEventListener('click', () => {
+          const open = menu.classList.toggle('open');
+          menu.hidden = false; // visibility is driven by the .open class + media query
+          menuBtn.setAttribute('aria-expanded', String(open));
+        });
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape' && menu.classList.contains('open')) {
+            menu.classList.remove('open');
+            menuBtn.setAttribute('aria-expanded', 'false');
+          }
+        });
+      }
     </script>
 
     <style>
@@ -101,11 +130,25 @@ const path = Astro.url.pathname;
       .logo {
         display: flex;
         align-items: center;
+        gap: 0.42rem;
       }
       .logo img {
         height: 22px;
         width: auto;
         display: block;
+      }
+      /* "Help" extends the wordmark: Inter at the wordmark's optical size and
+         tracking, light weight so it reads as a suffix, not a second logo. */
+      .logo-help {
+        font-size: 21px;
+        font-weight: 350;
+        letter-spacing: -0.02em;
+        color: var(--ink);
+        line-height: 1;
+        transform: translateY(-1px); /* optical baseline match with the lockup */
+      }
+      .logo:hover {
+        text-decoration: none;
       }
       .tabs {
         display: flex;
@@ -167,6 +210,43 @@ const path = Astro.url.pathname;
         color: var(--bg);
         text-decoration: none;
       }
+      .menu-toggle {
+        display: none;
+        align-items: center;
+        justify-content: center;
+        width: 36px;
+        height: 36px;
+        color: var(--ink);
+        background: none;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        cursor: pointer;
+      }
+      #mobile-menu {
+        display: none;
+        flex-direction: column;
+        padding: 0.5rem 1.5rem 1rem;
+        border-top: 1px solid var(--line);
+        background: var(--bg);
+      }
+      #mobile-menu a {
+        padding: 0.65rem 0.25rem;
+        font-size: 0.95rem;
+        color: var(--muted);
+        border-bottom: 1px solid var(--line);
+      }
+      #mobile-menu a:hover {
+        color: var(--ink);
+        text-decoration: none;
+      }
+      #mobile-menu a[aria-current='page'] {
+        color: var(--accent);
+      }
+      #mobile-menu .menu-site-link {
+        color: var(--ink);
+        font-weight: 500;
+        border-bottom: none;
+      }
       main {
         flex: 1;
         width: 100%;
@@ -179,7 +259,11 @@ const path = Astro.url.pathname;
         margin: 0;
         padding: 0;
       }
-      @media (max-width: 1000px) {
+      /* The dead-centered search pill needs vw/2 - 160px to clear the
+         logo + tabs block (~560px) — true only from ~1440px up. Below that
+         the pill is in normal flow on the right (it used to break at
+         1000–1400px: the centered pill painted over the API/Recipes tabs). */
+      @media (max-width: 1439px) {
         .nav-center {
           position: static;
           transform: none;
@@ -189,12 +273,21 @@ const path = Astro.url.pathname;
           margin-left: 0;
         }
       }
-      @media (max-width: 640px) {
+      /* Mobile (Cursor pattern): tabs collapse into a hamburger; the main-site
+         button moves into the menu. */
+      @media (max-width: 900px) {
         nav {
           gap: 1rem;
         }
+        .tabs,
         .site-link {
           display: none;
+        }
+        .menu-toggle {
+          display: flex;
+        }
+        #mobile-menu.open {
+          display: flex;
         }
       }
     </style>
