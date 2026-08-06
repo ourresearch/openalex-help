@@ -1,6 +1,6 @@
 ---
 title: "Why is this publication labeled as 'closed' when it is clearly Open Access?"
-description: "To determine the Open Access status of a work, we try to find a PDF of other fulltext format of the work on the landing page of the journal and also by looking through instituti…"
+description: "We mark a work Open Access only when we find a free fulltext copy at the publisher or a repository. Here's why we might miss yours."
 tags: ["data"]
 source_id: "27547114373271"
 source_url: "https://help.openalex.org/hc/en-us/articles/27547114373271-Why-is-this-publication-labeled-as-closed-when-it-is-clearly-Open-Access"

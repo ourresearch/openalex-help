@@ -1,6 +1,6 @@
 ---
 title: "Why does the Unpaywall plugin say this paywalled article is Open Access?"
-description: "In addition to using our API(http://unpaywall.org/products/api), the browser extension looks for a PDF link directly in the page content and, if one is found, displays it as a B…"
+description: "The browser extension also looks for a PDF link in the page itself, which can disagree with our API. Here's what's happening."
 tags: ["unpaywall"]
 source_id: "41193820405143"
 source_url: "https://help.openalex.org/hc/en-us/articles/41193820405143-Why-does-the-Unpaywall-plugin-say-this-paywalled-article-is-Open-Access"

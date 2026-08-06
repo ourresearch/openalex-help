@@ -1,6 +1,6 @@
 ---
 title: "How do I limit my results to only the top 100 cited publications?"
-description: "The easiest way to do this in the user interface is to add a filter to your search that specifies a threshold of number of citations needed to be included in the search and matc…"
+description: "Add a citation-count threshold filter, or sort by citations and take the top of the list."
 tags: ["general"]
 source_id: "27220103769879"
 source_url: "https://help.openalex.org/hc/en-us/articles/27220103769879-How-do-I-limit-my-results-to-only-the-top-100-cited-publications"

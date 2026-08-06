@@ -1,6 +1,6 @@
 ---
 title: "Why does the abstract field have text that isn't part of the abstract?"
-description: "We get abstract metadata from diverse sources and sometimes we have to source it from fulltext articles using text mining techniques. Our processes usually do a great job collec…"
+description: "Abstracts come from diverse sources, sometimes text-mined from fulltext — and occasionally extra text slips in."
 tags: ["general"]
 source_id: "29659650158999"
 source_url: "https://help.openalex.org/hc/en-us/articles/29659650158999-Why-does-the-abstract-field-have-text-that-isn-t-part-of-the-abstract"

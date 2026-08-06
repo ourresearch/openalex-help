@@ -1,6 +1,6 @@
 ---
 title: "Link resolver integrations"
-description: "Unpaywall is used as a data source in several third-party link resolvers, for example SFX(https://knowledge.exlibrisgroup.com/SFX/KnowledgeArticles/HowtoEnabletheUnpaywall\\(form…"
+description: "Unpaywall is used as a data source in several third-party link resolvers, like SFX. Here's how to enable it."
 tags: ["unpaywall"]
 source_id: "41193820448023"
 source_url: "https://help.openalex.org/hc/en-us/articles/41193820448023-Link-Resolver-Integrations"

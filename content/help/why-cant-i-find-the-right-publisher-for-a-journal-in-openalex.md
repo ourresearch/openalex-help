@@ -1,6 +1,6 @@
 ---
 title: "Why can’t I find the right publisher for a journal in OpenAlex?"
-description: "We link research outputs to their sources (e.g., journals) using metadata available in the output's record (e.g., text describing journal or ISSN number). We then rely on the so…"
+description: "We link journals to publishers using the metadata in each work's record — and that metadata is sometimes thin or wrong."
 tags: ["data"]
 source_id: "29663215171479"
 source_url: "https://help.openalex.org/hc/en-us/articles/29663215171479-Why-can-t-I-find-the-right-publisher-for-a-journal-in-OpenAlex"

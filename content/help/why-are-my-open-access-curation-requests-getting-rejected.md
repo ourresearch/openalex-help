@@ -1,6 +1,6 @@
 ---
 title: "Why are my open access curation requests getting rejected?"
-description: "Before submitting a correction to https://unpaywall.org/fix(https://unpaywall.org/fix), check the actual article with your own eyes, from a non-university network. Let’s break i…"
+description: "Before submitting a correction, check the actual article with your own eyes from a non-university network. Here's what we check."
 tags: ["reference"]
 source_id: "33835155110423"
 source_url: "https://help.openalex.org/hc/en-us/articles/33835155110423-Why-are-my-open-access-curation-requests-getting-rejected"

@@ -1,6 +1,6 @@
 ---
 title: "How can I fix errors in an OpenAlex Source profile?"
-description: "Disambiguating text about publication venues into the correct Sources is foundational to most bibliometric and research intelligence use case. Our approach is to use the informa…"
+description: "How source profiles get built, and what to do when a work is matched to the wrong journal or venue."
 tags: ["general"]
 source_id: "27572320730647"
 source_url: "https://help.openalex.org/hc/en-us/articles/27572320730647-How-can-I-fix-errors-in-an-OpenAlex-Source-profile"

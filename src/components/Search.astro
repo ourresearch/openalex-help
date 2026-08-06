@@ -44,7 +44,9 @@
   }
   /* Full-width pill only when the header has room; below that it stays at
      natural width, and on phones it collapses to just the icon. */
-  @media (min-width: 1024px) {
+  /* 1120 (was 1024): with the Home tab (Pass U) the tab row ends ~600px, so a
+     320px pill + Main site button needs ~1090px to clear it. */
+  @media (min-width: 1120px) {
     #search-open {
       width: 320px; /* cursor-measured */
     }

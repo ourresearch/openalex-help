@@ -1,6 +1,6 @@
 ---
 title: "How long does it take for you to respond to support tickets?"
-description: "We check the help desk daily. We read every ticket that comes in, but unfortunately don't have the capacity to respond to every ticket. For context, our team is 6 people and we…"
+description: "We check the help desk daily and read every ticket, but our small team can't respond to all of them."
 tags: ["reference"]
 source_id: "27550505470999"
 source_url: "https://help.openalex.org/hc/en-us/articles/27550505470999-How-long-does-it-take-for-you-to-respond-to-support-tickets"

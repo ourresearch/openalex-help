@@ -1,6 +1,6 @@
 ---
 title: "Pricing"
-description: "OpenAlex is free. The website, API, and data snapshot are all available at no charge. The data is licensed as CC0(https://creativecommons.org/publicdomain/zero/1.0/) so it is fr…"
+description: "OpenAlex is free: the website, API, and data snapshot are all available at no charge, and the data is CC0."
 tags: ["hello"]
 source_id: "24397762024087"
 source_url: "https://help.openalex.org/hc/en-us/articles/24397762024087-Pricing"

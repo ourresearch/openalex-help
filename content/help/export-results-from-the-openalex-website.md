@@ -1,6 +1,6 @@
 ---
 title: "Export results from the OpenAlex website"
-description: "Above any Works result set, you will see an export button !(/images/zendesk/24829724230167.png) that you can click to download a file with OpenAlex's data about works. There are…"
+description: "Use the export button above any works result set to download a file of OpenAlex data about those works."
 tags: ["general"]
 source_id: "24829724234007"
 source_url: "https://help.openalex.org/hc/en-us/articles/24829724234007-Export-results-from-the-OpenAlex-website"

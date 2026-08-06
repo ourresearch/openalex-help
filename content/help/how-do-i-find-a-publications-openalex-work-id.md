@@ -1,6 +1,6 @@
 ---
 title: "How do I find a publication's OpenAlex work ID?"
-description: "The OpenAlex Work ID is a unique identifier that refers to an OpenAlex work (e.g., publication, dataset, thesis, etc). All work IDs begin with a W and are followed by numbers, l…"
+description: "Work IDs start with W followed by numbers. Here's where to find one on the website and in the API."
 tags: ["how-do-i"]
 source_id: "27526559172759"
 source_url: "https://help.openalex.org/hc/en-us/articles/27526559172759-How-do-I-find-a-publication-s-OpenAlex-work-ID"

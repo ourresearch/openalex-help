@@ -1,6 +1,6 @@
 ---
 title: "How can I cite OpenAlex?"
-description: "This is really important for us because it allows us to understand how the community is using OpenAlex and helps us demonstrate impact to our funders, which in turn helps keep O…"
+description: "How to cite OpenAlex in your paper — citations help us demonstrate impact and keep OpenAlex free."
 tags: ["general"]
 source_id: "28761511652247"
 source_url: "https://help.openalex.org/hc/en-us/articles/28761511652247-How-can-I-cite-OpenAlex"

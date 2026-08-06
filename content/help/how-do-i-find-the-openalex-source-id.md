@@ -1,6 +1,6 @@
 ---
 title: "How do I find the OpenAlex Source ID?"
-description: "The OpenAlex Source ID is a unique identifier that refers to venue hosting the work. This includes journals, conferences, repositories, ebook platform, book series, and other. T…"
+description: "Source IDs identify the venue hosting a work — journals, conferences, repositories, and more. Here's how to find one."
 tags: ["how-do-i"]
 source_id: "27526853582999"
 source_url: "https://help.openalex.org/hc/en-us/articles/27526853582999-How-do-I-find-the-OpenAlex-Source-ID"

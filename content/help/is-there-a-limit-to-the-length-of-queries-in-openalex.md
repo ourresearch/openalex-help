@@ -1,6 +1,6 @@
 ---
 title: "Is there a limit to the length of queries in OpenAlex?"
-description: "Queries in OpenAlex are currently limited to URLs with a total length of 2,048 characters. We're working on a new way of querying the database that is not limited by URL length…"
+description: "Query URLs are limited to 2,048 characters — and what to do when yours is longer."
 tags: ["general"]
 source_id: "30207962890647"
 source_url: "https://help.openalex.org/hc/en-us/articles/30207962890647-Is-there-a-limit-to-the-length-of-queries-in-OpenAlex"

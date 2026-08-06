@@ -1,6 +1,6 @@
 ---
 title: "How do I find my OpenAlex author ID?"
-description: "OpenAlex author IDs are the unique identifier we use for author profiles. They start with \"A\" and are followed by a unique number. For instance, the author profile ID for our CO…"
+description: "Author IDs start with A followed by a unique number. Here's where to find yours."
 tags: ["general"]
 source_id: "27281068027031"
 source_url: "https://help.openalex.org/hc/en-us/articles/27281068027031-How-do-I-find-my-OpenAlex-author-ID"

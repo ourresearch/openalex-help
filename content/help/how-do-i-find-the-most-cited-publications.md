@@ -1,6 +1,6 @@
 ---
 title: "How do I find the most cited publications?"
-description: "In the OpenAlex user interface and API, you can sort any works search by the number of citations received. In fact, the default sort is descending citation count, so you'll get…"
+description: "Sort any works search by citation count — it's the default sort, on both the website and the API."
 tags: ["general"]
 source_id: "27219504981655"
 source_url: "https://help.openalex.org/hc/en-us/articles/27219504981655-How-do-I-find-the-most-cited-publications"

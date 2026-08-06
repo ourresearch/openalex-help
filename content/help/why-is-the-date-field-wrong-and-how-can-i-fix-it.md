@@ -1,6 +1,6 @@
 ---
 title: "Why is the date field wrong and how can I fix it?"
-description: "Date metadata is surprisingly complex. For instance, a paper can have dates for when a journal mints a DOI for it, the date it is accepted, the date it is 'published', and the d…"
+description: "A paper can have many dates — DOI minting, acceptance, publication, print. Here's how we choose, and how to fix errors."
 tags: ["data"]
 source_id: "29664482972183"
 source_url: "https://help.openalex.org/hc/en-us/articles/29664482972183-Why-is-the-date-field-wrong-and-how-can-I-fix-it"

@@ -1,0 +1,291 @@
+---
+// Help Center homepage (oxjob #354 Pass U): the front door for the whole site.
+// We don't know what mode a visitor arrives in — asking a question, reading
+// reference, following a tutorial — so the homepage orients: search, support
+// links, what OpenAlex is, where to start, and what lives in each tab.
+import Base from '../layouts/Base.astro';
+import Card from '../components/Card.astro';
+import Icon from '../components/Icon.astro';
+
+// "Ask AI" deep links: providers with working URL-prefill. The prompt tells
+// the assistant to ground itself in this site; the user appends their question.
+const prompt =
+  'Answer my question using the OpenAlex documentation at https://help.openalex.org/ (machine index: https://help.openalex.org/llms.txt). My question: ';
+const providers = [
+  { label: 'Claude', href: `https://claude.ai/new?q=${encodeURIComponent(prompt)}` },
+  { label: 'ChatGPT', href: `https://chatgpt.com/?q=${encodeURIComponent(prompt)}` },
+  { label: 'Perplexity', href: `https://www.perplexity.ai/search?q=${encodeURIComponent(prompt)}` },
+];
+
+const startHere = [
+  {
+    title: 'Quickstart',
+    href: '/docs/quickstart/',
+    icon: 'play',
+    blurb: 'Get real data in five minutes — web, API, or agent',
+  },
+  {
+    title: 'Overview',
+    href: '/docs/overview/',
+    icon: 'cpu',
+    blurb: 'How we build the map of the research ecosystem',
+  },
+];
+
+// One card per tab: icon + name + what you'll find there.
+const tabCards = [
+  {
+    title: 'FAQ',
+    href: '/help/',
+    icon: 'help-circle',
+    blurb: 'The questions users actually ask us, answered plainly',
+  },
+  {
+    title: 'Docs',
+    href: '/docs/',
+    icon: 'book-open',
+    blurb: 'How the dataset works — querying, open access, getting the data',
+  },
+  {
+    title: 'Entities',
+    href: '/entities/',
+    icon: 'database',
+    blurb: 'Works, authors, sources, and more — every field explained',
+  },
+  {
+    title: 'API',
+    href: '/api/',
+    icon: 'zap',
+    blurb: 'Endpoints, filters, paging, auth, and rate limits',
+  },
+  {
+    title: 'Recipes',
+    href: '/recipes/',
+    icon: 'play',
+    blurb: 'Step-by-step walkthroughs for real research questions',
+  },
+];
+---
+
+<Base title="" description="Help, documentation, API reference, and tutorials for OpenAlex, the open catalog of the global research system.">
+  <div class="wrap home">
+    <section class="hero reveal">
+      <h1>OpenAlex Help Center</h1>
+      <button class="big-search" data-search-trigger aria-label="Search the help center">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
+          <circle cx="11" cy="11" r="7" /><path d="m20 20-3.5-3.5" />
+        </svg>
+        <span class="placeholder">How do I find my author ID?</span>
+        <kbd>⌘K</kbd>
+      </button>
+    </section>
+
+    <section class="links reveal" style="animation-delay: 0.08s">
+      <a class="link-card" href="https://groups.google.com/g/openalex-users">
+        <span class="lc-title">Community Forum</span>
+        <span class="lc-desc">Discuss with other users</span>
+      </a>
+      <a class="link-card" href="https://openalex.org/contact">
+        <span class="lc-title">Contact Support</span>
+        <span class="lc-desc">Get help from our team</span>
+      </a>
+      <details class="link-card ask-ai">
+        <summary>
+          <span class="lc-title">Ask AI</span>
+          <span class="lc-desc">Open your assistant, primed with our docs</span>
+        </summary>
+        <div class="providers">
+          {providers.map((p) => (
+            <a href={p.href} target="_blank" rel="noopener">{p.label} ↗</a>
+          ))}
+        </div>
+      </details>
+    </section>
+
+    <section class="about reveal" style="animation-delay: 0.16s">
+      <span class="section-label">What is OpenAlex?</span>
+      <p>
+        OpenAlex is an open catalog of the global research system: papers, authors, institutions,
+        journals, and topics, all connected. It's free for everyone — browse it
+        on <a href="https://openalex.org">the web</a>, query it through the API, or download the
+        whole thing.
+      </p>
+      <span class="section-label">Start here</span>
+      <div class="card-grid start-grid">
+        {startHere.map((c) => (
+          <Card title={c.title} href={c.href}>
+            <Icon name={c.icon} slot="icon" />
+            {c.blurb}
+          </Card>
+        ))}
+      </div>
+    </section>
+
+    <section class="explore reveal" style="animation-delay: 0.24s">
+      <span class="section-label">Explore the Help Center</span>
+      <div class="card-grid">
+        {tabCards.map((c) => (
+          <Card title={c.title} href={c.href}>
+            <Icon name={c.icon} slot="icon" />
+            {c.blurb}
+          </Card>
+        ))}
+      </div>
+    </section>
+  </div>
+</Base>
+
+<style>
+  .wrap.home {
+    max-width: 46rem;
+    margin: 0 auto;
+    padding-top: 2.5rem;
+  }
+  .hero {
+    text-align: center;
+    margin-bottom: 2.5rem;
+  }
+  .hero h1 {
+    margin: 0 0 2.5rem;
+  }
+  .big-search {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    width: 100%;
+    max-width: 40rem;
+    margin: 0 auto;
+    height: 3.4rem;
+    padding: 0 1rem;
+    font: inherit;
+    font-size: 0.95rem;
+    color: var(--faint);
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    box-shadow: 0 1px 2px rgb(0 0 0 / 0.05);
+    cursor: text;
+    transition: border-color 0.15s;
+  }
+  .big-search:hover {
+    border-color: var(--line-strong);
+  }
+  .placeholder {
+    flex: 1;
+    text-align: left;
+  }
+  .big-search kbd {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--faint);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 0.1rem 0.35rem;
+    background: var(--bg);
+  }
+  .links {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.9rem;
+    margin-bottom: 3rem;
+    /* The .reveal animation makes each landing section a stacking context, so
+       the Ask AI dropdown can't out-z-index the later sections without
+       lifting this whole section above them. */
+    position: relative;
+    z-index: 10;
+  }
+  .link-card {
+    display: block;
+    text-align: center;
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 0.9rem 1rem;
+    color: inherit;
+    transition: border-color 0.15s;
+  }
+  .link-card:hover {
+    border-color: var(--line-strong);
+    text-decoration: none;
+  }
+  .lc-title {
+    display: block;
+    font-size: 0.93rem;
+    font-weight: 550;
+  }
+  .lc-desc {
+    display: block;
+    font-size: 0.82rem;
+    color: var(--muted);
+    margin-top: 0.15rem;
+  }
+  .ask-ai {
+    position: relative;
+  }
+  .ask-ai summary {
+    list-style: none;
+    cursor: pointer;
+  }
+  .ask-ai summary::-webkit-details-marker {
+    display: none;
+  }
+  .providers {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: calc(100% + 0.4rem);
+    z-index: 5;
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    box-shadow: 0 12px 32px rgb(0 0 0 / 0.12);
+    padding: 0.35rem;
+  }
+  .providers a {
+    display: block;
+    padding: 0.45rem 0.75rem;
+    border-radius: 7px;
+    color: var(--ink);
+    font-size: 0.9rem;
+    text-align: left;
+  }
+  .providers a:hover {
+    background: var(--panel);
+    text-decoration: none;
+    color: var(--accent);
+  }
+  .section-label {
+    display: block;
+    font-size: 0.82rem;
+    color: var(--muted);
+    margin-bottom: 0.6rem;
+  }
+  .about {
+    margin-bottom: 3rem;
+  }
+  .about p {
+    margin: 0 0 1.75rem;
+    font-size: 0.95rem;
+    line-height: 1.65;
+  }
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(13rem, 1fr));
+    gap: 0.9rem;
+  }
+  @media (max-width: 640px) {
+    .links {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<script>
+  // Close the Ask AI menu when clicking elsewhere.
+  const askAi = document.querySelector<HTMLDetailsElement>('.ask-ai');
+  if (askAi) {
+    document.addEventListener('click', (e) => {
+      if (askAi.open && !askAi.contains(e.target as Node)) askAi.open = false;
+    });
+  }
+</script>

@@ -11,10 +11,12 @@ interface Props {
 }
 const { title, description, wide = false } = Astro.props;
 
-// Help is deliberately first (default tab). Order = the two-sided model
-// (oxjob #354 Pass R): Help + Recipes = "get things done"; Docs/Entities/API =
-// "look things up" (one reference work split across three tabs).
+// Home first (the site front door — oxjob #354 Pass U: it gets a real tab so
+// there's never a no-tab state). Then the two-sided model (Pass R): FAQ +
+// Recipes = "get things done"; Docs/Entities/API = "look things up" (one
+// reference work split across three tabs).
 const tabs = [
+  { label: 'Home', href: '/' },
   { label: 'FAQ', href: '/help/' },
   { label: 'Docs', href: '/docs/' },
   { label: 'Entities', href: '/entities/' },
@@ -22,6 +24,7 @@ const tabs = [
   { label: 'Recipes', href: '/recipes/' },
 ];
 const path = Astro.url.pathname;
+const isActive = (href: string) => (href === '/' ? path === '/' : path.startsWith(href));
 ---
 
 <!doctype html>
@@ -30,20 +33,20 @@ const path = Astro.url.pathname;
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <title>{title} | OpenAlex Help Center</title>
+    <title>{title ? `${title} | OpenAlex Help Center` : 'OpenAlex Help Center'}</title>
     {description && <meta name="description" content={description} />}
     <link rel="canonical" href={new URL(path, Astro.site)} />
   </head>
   <body>
     <header>
       <nav aria-label="Main">
-        <a href="/help/" class="logo">
+        <a href="/" class="logo">
           <img src="/brand/openalex-lockup.png" alt="OpenAlex" height="22" />
           <span class="logo-help">Help</span>
         </a>
         <div class="tabs">
           {tabs.map((t) => (
-            <a href={t.href} aria-current={path.startsWith(t.href) ? 'page' : undefined}>{t.label}</a>
+            <a href={t.href} aria-current={isActive(t.href) ? 'page' : undefined}>{t.label}</a>
           ))}
         </div>
         <div class="nav-right">
@@ -58,7 +61,7 @@ const path = Astro.url.pathname;
       </nav>
       <div id="mobile-menu" hidden>
         {tabs.map((t) => (
-          <a href={t.href} aria-current={path.startsWith(t.href) ? 'page' : undefined}>{t.label}</a>
+          <a href={t.href} aria-current={isActive(t.href) ? 'page' : undefined}>{t.label}</a>
         ))}
         <a class="menu-site-link" href="https://openalex.org">Main site ↗</a>
       </div>
@@ -261,9 +264,10 @@ const path = Astro.url.pathname;
         padding: 0;
       }
       /* Mobile (Cursor pattern): tabs collapse into a hamburger; the main-site
-         button moves into the menu. 940 (not 900): the labeled search pill +
-         Main site need ~910px to clear the absolutely-positioned tabs. */
-      @media (max-width: 940px) {
+         button moves into the menu. 1010 (was 940): the Home tab (Pass U)
+         added ~64px, so the labeled search pill + Main site need ~980px to
+         clear the absolutely-positioned tabs. */
+      @media (max-width: 1010px) {
         nav {
           gap: 1rem;
         }

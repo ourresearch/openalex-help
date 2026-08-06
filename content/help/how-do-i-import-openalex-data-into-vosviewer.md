@@ -1,6 +1,6 @@
 ---
 title: "How do I import OpenAlex data into VOSviewer?"
-description: "VOSviewer(https://www.vosviewer.com/) is an open source software tool that constructs and visualizes bibliometric network data. It's a powerful tool trusted by bibliometricians…"
+description: "VOSviewer builds and visualizes bibliometric networks — here's how to load OpenAlex data into it."
 tags: ["general"]
 source_id: "27218772811543"
 source_url: "https://help.openalex.org/hc/en-us/articles/27218772811543-How-do-I-import-OpenAlex-data-into-VOSviewer"

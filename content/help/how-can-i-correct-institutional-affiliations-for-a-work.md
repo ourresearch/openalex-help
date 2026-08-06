@@ -1,6 +1,6 @@
 ---
 title: "How can I correct institutional affiliations for a work?"
-description: "If you see that an institution is incorrectly attributed to a work, you can using the works-magnet tool(https://works-magnet.esr.gouv.fr/) to fix that affiliation. We have made…"
+description: "If an institution is incorrectly attributed to a work, you can submit a fix with the works-magnet tool."
 tags: ["general"]
 source_id: "28764358342807"
 source_url: "https://help.openalex.org/hc/en-us/articles/28764358342807-How-can-I-correct-institutional-affiliations-for-a-work"

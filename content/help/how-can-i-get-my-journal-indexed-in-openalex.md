@@ -1,6 +1,6 @@
 ---
 title: "How can I get my journal indexed in OpenAlex?"
-description: "OpenAlex doesn't index journals-- we index works (publications, datasets, etc). We index works which have records in at least one of our main, trusted repositories: Crossref, Da…"
+description: "OpenAlex indexes works, not journals: your journal's works get in through a trusted source like Crossref or DataCite."
 tags: ["general"]
 source_id: "27577985700887"
 source_url: "https://help.openalex.org/hc/en-us/articles/27577985700887-How-can-I-get-my-journal-indexed-in-OpenAlex"

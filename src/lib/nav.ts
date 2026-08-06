@@ -80,101 +80,10 @@ export const NAV_GROUPS: Record<string, NavGroup[]> = {
     },
   ],
 
-  help: [
-    {
-      label: 'Getting started',
-      desc: 'What OpenAlex is, citing it, pricing, and the roadmap.',
-      slugs: [
-        'about-us',
-        'where-can-i-find-a-non-technical-explanation-of-how-open-alex-works',
-        'how-can-i-cite-openalex',
-        'pricing',
-        'what-is-openalexs-sustainability-model',
-        'whats-on-openalexs-roadmap',
-        'how-long-does-it-take-for-you-to-respond-to-support-tickets',
-      ],
-    },
-    {
-      // Extended-FAQ "how do you…" stubs (oxjob #354 Pass R §7): short answers to
-      // real user questions that duplicate entity provenance by design, each with
-      // a `canonical:` link to the full treatment on the Entities/Docs tab.
-      label: 'How OpenAlex works',
-      desc: 'Short answers to how the data is built.',
-      slugs: [
-        'how-does-author-name-disambiguation-work',
-        'how-do-you-match-affiliations-to-institutions',
-        'how-do-you-decide-if-an-article-is-open-access',
-        'how-do-preprints-get-linked-to-published-versions',
-        'what-is-fwci-and-how-is-it-calculated',
-      ],
-    },
-    {
-      label: 'Fixing errors & curation',
-      desc: 'Correct author profiles, affiliations, OA status, and more.',
-      slugs: [
-        'fix-errors-in-openalex',
-        'how-can-i-fix-errors-in-an-openalex-author-profile',
-        'how-can-i-correct-institutional-affiliations-for-a-work',
-        'how-can-i-fix-errors-in-an-openalex-source-profile',
-        'how-can-i-correct-the-open-access-status-of-journals-in-unpaywall',
-        'what-are-alternate-names-and-how-i-do-change-them',
-        'why-are-my-open-access-curation-requests-getting-rejected',
-        'why-is-the-date-field-wrong-and-how-can-i-fix-it',
-        'why-is-this-publication-labeled-as-closed-when-it-is-clearly-open-acce',
-        'why-does-the-unpaywall-plugin-say-this-paywalled-article-is-open-acces',
-        'why-does-the-abstract-field-have-text-that-isnt-part-of-the-abstract',
-        'i-think-my-institution-is-missing-works-in-openalex-what-can-i-do',
-      ],
-    },
-    {
-      label: 'Getting your content indexed',
-      desc: 'Get your journal or repository into OpenAlex.',
-      slugs: [
-        'how-can-i-get-my-journal-indexed-in-openalex',
-        'how-can-i-get-my-repository-indexed-in-openalex',
-        'why-are-only-some-of-my-repository-records-showing-up-in-openalex',
-        'why-cant-i-find-the-right-publisher-for-a-journal-in-openalex',
-      ],
-    },
-    {
-      label: 'Finding IDs & searching',
-      desc: 'Find IDs and build sharper queries.',
-      slugs: [
-        'how-do-i-find-a-publications-openalex-work-id',
-        'how-do-i-find-my-openalex-author-id',
-        'how-do-i-find-the-openalex-source-id',
-        'how-do-i-find-the-publisher-id-for-a-journals-host-organization',
-        'how-do-i-find-the-most-cited-publications',
-        'how-do-i-limit-my-results-to-only-the-top-100-cited-publications',
-        'omit-retracted-works-from-my-analysis',
-        'is-there-a-limit-to-the-length-of-queries-in-openalex',
-        'where-can-i-find-information-about-which-issue-of-a-journal-an-article',
-        'why-are-the-counts-by-year-numbers-different-than-what-i-see-in-the-us',
-        'why-are-my-reference-counts-lower-than-expected',
-        'why-are-some-authors-assigned-to-null-author-id',
-      ],
-    },
-    {
-      label: 'Using & exporting data',
-      desc: 'Exports and downstream tools like VOSviewer.',
-      slugs: [
-        'export-results-from-the-openalex-website',
-        'how-do-i-import-openalex-data-into-vosviewer',
-        'link-resolver-integrations',
-      ],
-    },
-    {
-      label: 'For institutional supporters',
-      desc: 'Activate your Member, Member+, or Partner benefits.',
-      slugs: [
-        'activate-your-admin-dashboard',
-        'activate-the-affiliation-editor',
-        'activate-unsub',
-        'advisory-board-nominations',
-        'quarterly-supporter-meetings',
-      ],
-    },
-  ],
+  // help (FAQ) has NO nav groups (oxjob #354 Pass U, 2026-08-06): it's a flat
+  // bucket of real user questions, filtered by facet tags in facets.ts
+  // (HELP_FACETS / HELP_CARD_FACETS) — the Recipes pattern. Article pages get a
+  // single "FAQ" breadcrumb.
 
   docs: [
     {
@@ -358,14 +267,6 @@ export function groupEntries(tab: string, entries: AnyEntry[]): ResolvedGroup[] 
     });
   }
   return out;
-}
-
-/** The group label an entry belongs to (for article-page eyebrows). */
-export function groupLabelFor(tab: string, slug: string): string | undefined {
-  for (const g of NAV_GROUPS[tab] ?? []) {
-    if (flatSlugs(g).includes(slug)) return g.label;
-  }
-  return undefined;
 }
 
 /** One breadcrumb: a link when a natural target exists, plain text otherwise. */

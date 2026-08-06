@@ -1,6 +1,6 @@
 ---
 title: "Fix errors in OpenAlex"
-description: "There are lots of ways that errors can get into OpenAlex. There may be an error in one of our upstream data sources (like Crossref or a repository). It's also possible an error…"
+description: "Errors can enter OpenAlex from upstream sources or from our own processing. Here's every way to get them fixed."
 tags: ["general"]
 source_id: "27714298573719"
 source_url: "https://help.openalex.org/hc/en-us/articles/27714298573719-Fix-errors-in-OpenAlex"

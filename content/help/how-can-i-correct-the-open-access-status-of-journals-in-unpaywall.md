@@ -1,6 +1,6 @@
 ---
 title: "How can I correct the Open Access status of journals in Unpaywall?"
-description: "If you've found a journal in Unpaywall whose Open Access status is incorrect, you can quickly make submit corrections using our Journal Curation page(https://openalex.org/curate…"
+description: "How to submit corrections for a journal whose Open Access status is wrong, using our Journal Curation page."
 tags: ["general"]
 source_id: "33887210525719"
 source_url: "https://help.openalex.org/hc/en-us/articles/33887210525719-How-can-I-correct-the-Open-Access-status-of-journals-in-Unpaywall"
