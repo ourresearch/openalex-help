@@ -135,11 +135,11 @@ const path = Astro.url.pathname;
         width: auto;
         display: block;
       }
-      /* "Help" extends the wordmark: Inter at the wordmark's optical size,
-         tracking, and weight. */
+      /* "Help" extends the wordmark: Inter at the wordmark's optical size and
+         tracking, normal weight so it reads as a quieter suffix. */
       .logo-help {
         font-size: 21px;
-        font-weight: 700;
+        font-weight: 400;
         letter-spacing: -0.02em;
         color: var(--ink);
         line-height: 1;
@@ -192,13 +192,17 @@ const path = Astro.url.pathname;
         align-items: center;
         gap: 0.75rem;
       }
+      /* Linear-style rounded rectangle, sized to match the search pill. */
       .site-link {
-        font-size: 0.82rem;
+        display: flex;
+        align-items: center;
+        height: 36px;
+        font-size: 0.875rem;
         color: var(--bg);
         background: var(--ink);
         border: 1px solid var(--ink);
-        border-radius: 999px;
-        padding: 0.32rem 0.85rem;
+        border-radius: 8px;
+        padding: 0 0.9rem;
         font-weight: 500;
         transition: opacity 0.15s;
       }
@@ -257,8 +261,9 @@ const path = Astro.url.pathname;
         padding: 0;
       }
       /* Mobile (Cursor pattern): tabs collapse into a hamburger; the main-site
-         button moves into the menu. */
-      @media (max-width: 900px) {
+         button moves into the menu. 940 (not 900): the labeled search pill +
+         Main site need ~910px to clear the absolutely-positioned tabs. */
+      @media (max-width: 940px) {
         nav {
           gap: 1rem;
         }
