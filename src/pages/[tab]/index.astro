@@ -3,8 +3,9 @@ import Base from '../../layouts/Base.astro';
 import DocsShell from '../../layouts/DocsShell.astro';
 import Card from '../../components/Card.astro';
 import Icon from '../../components/Icon.astro';
-import { TABS, allEntries, urlFor, type Tab, type AnyEntry } from '../../lib/tabs';
-import { groupEntries, NAV_GROUPS, flatSlugs } from '../../lib/nav';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import { TABS, allEntries, urlFor, type Tab } from '../../lib/tabs';
+import { groupEntries, landingCrumbs, type ResolvedGroup } from '../../lib/nav';
 import { facetConfig } from '../../lib/facets';
 
 export async function getStaticPaths() {
@@ -14,81 +15,97 @@ export async function getStaticPaths() {
 const tab = Astro.params.tab as Tab;
 const entries = (await allEntries()).filter((e) => e.tab === tab).map((e) => e.entry);
 const groups = groupEntries(tab, entries);
-const bySlug = new Map(entries.map((e) => [e.id, e]));
 
 const meta: Record<Tab, { label: string; h1: string; lede: string; empty?: string }> = {
   help: {
     label: 'FAQ',
     h1: 'Frequently asked questions',
-    lede: 'The questions users actually ask us — accounts, author profiles, data quirks, exports — answered plainly.',
+    lede: 'Real questions from users, answered plainly.',
     empty: 'No questions match those filters.',
   },
   docs: {
     label: 'Docs',
-    h1: 'OpenAlex Documentation',
+    h1: 'Documentation Overview',
     lede: 'How the dataset works and how to use it — querying, open access, and every way to get the data.',
   },
   entities: {
     label: 'Entities',
-    h1: 'OpenAlex Entities',
+    h1: 'Entities Overview',
     lede: 'The people, papers, places, and concepts OpenAlex catalogs — works, authors, sources, institutions, topics, and more. Each page explains where the records come from, what judgment calls we make, and what every field means.',
   },
   api: {
     label: 'API',
-    h1: 'OpenAlex API',
+    h1: 'API Overview',
     lede: 'A fast, modern REST API for all of OpenAlex, plus OQL for expressive queries. Free for everyone, no key required to start. These pages cover endpoints, filters, paging, auth, and rate limits.',
   },
   recipes: {
     label: 'Recipes',
     h1: 'Recipes',
-    lede: 'Step-by-step recipes for real research questions — on the web, through the API, or with your agent.',
+    lede: 'Step-by-step tutorials for real research questions — on the web, through the API, or with your agent.',
     empty: 'No recipes match those filters yet — the library is growing.',
   },
 };
 
-// Docs/API landings are Cursor-style welcome pages: "Start here" cards +
-// per-group topic cards (each linking to its group's first article).
-const startHere: Record<string, { slug: string; icon: string; blurb: string }[]> = {
-  docs: [
-    { slug: 'quickstart', icon: 'play', blurb: 'Get real data in five minutes — web, API, or agent' },
-    { slug: 'overview', icon: 'cpu', blurb: 'How we build the map of the research ecosystem' },
-  ],
-  api: [
-    { slug: 'introduction', icon: 'zap', blurb: 'What the API offers and how it is organized' },
-    { slug: 'quickstart', icon: 'play', blurb: 'Your first request in under a minute' },
-    { slug: 'authentication', icon: 'key', blurb: 'Keys, credits, and what is free' },
-  ],
-  entities: [
-    { slug: 'overview', icon: 'compass', blurb: 'What entities are and how to trust their IDs' },
-    { slug: 'common-fields', icon: 'list', blurb: 'The fields every entity shares' },
-    { slug: 'works', icon: 'file-text', blurb: 'The core entity: every scholarly document' },
-  ],
-};
+// Reference-tab landings (Pass W) are simple overview pages: header + subtitle
+// + one card per sidebar section (no "Start here"/"Browse by topic" split).
+// Each card links to its section's natural landing (a static link, else the
+// section's first article). A section whose target IS this landing (docs'
+// "Get started" → /docs/) is skipped so the overview never links to itself.
 const groupIcons: Record<string, string> = {
   'Get started': 'compass',
-  'Getting started': 'zap',
+  'How it works': 'cpu',
   'Querying': 'filter',
   'Curation & special': 'edit',
   // Entities-tab groups
-  'Overview': 'compass',
   'Native': 'database',
   'Component': 'layers',
   'Aboutness': 'tag',
   'Vocabulary': 'list',
   'User-created': 'edit',
-  // Docs-tab groups (Pass R)
-  'Open access': 'unlock',
+  // Docs-tab groups
   'Get the data': 'download',
-  // API-tab groups (Pass R)
+  // API-tab groups
   'Endpoints': 'database',
 };
+
+const landingHref = `/${tab}/`;
+// First item target in a section that isn't the landing itself, so e.g. docs'
+// "Get started" card (whose Overview link IS this landing) falls through to
+// Quickstart rather than pointing back at this page.
+const sectionTarget = (g: ResolvedGroup): string | undefined => {
+  for (const it of g.items) {
+    const href = it.href ?? (it.entry ? urlFor(tab, it.entry) : it.children[0] ? urlFor(tab, it.children[0]) : undefined);
+    if (href && href !== landingHref) return href;
+  }
+  return undefined;
+};
+const sectionCards = groups
+  .map((g) => ({ label: g.label, desc: g.desc, href: sectionTarget(g) }))
+  .filter((c): c is { label: string; desc?: string; href: string } => Boolean(c.href));
 
 const isShell = tab === 'docs' || tab === 'api' || tab === 'entities';
 
 // Bucket tabs (FAQ + Recipes, Pass U): a flat filterable list, no curated
-// hierarchy — facet tags + per-value counts for the filtering sidebar.
+// hierarchy. Pass W: filtered by a facet sidebar AND Linear-style chip
+// dropdowns + a filter-as-you-type search box, single-select per facet;
+// rendered as three-row list items (title / subtitle / small tags).
 const bucket = facetConfig(tab);
-const bucketCards = bucket ? entries.map((e) => ({ entry: e, tags: bucket.tagsFor(e.id) })) : [];
+const facetLabel: Record<string, Record<string, string>> = {};
+if (bucket) {
+  for (const f of bucket.facets) facetLabel[f.key] = Object.fromEntries(f.values.map((v) => [v.id, v.label]));
+}
+const bucketCards = bucket
+  ? entries.map((e) => {
+      const tags = bucket.tagsFor(e.id);
+      // Recipes get a hand-written subtitle; FAQ falls back to the description.
+      const subtitle = e.data.subtitle ?? e.data.description ?? '';
+      // Visible tag chips: labels for each value across the SHOWN facets only
+      // (dropped facets like Recipes' "task" are excluded).
+      const chips = bucket.facets.flatMap((f) => (tags[f.key] ?? []).map((v) => facetLabel[f.key]?.[v] ?? v));
+      const searchText = `${e.data.title} ${subtitle}`.toLowerCase();
+      return { entry: e, tags, subtitle, chips, searchText };
+    })
+  : [];
 const facetCounts: Record<string, Record<string, number>> = {};
 if (bucket) {
   for (const f of bucket.facets) {
@@ -96,51 +113,30 @@ if (bucket) {
   }
   for (const { tags } of bucketCards) {
     for (const [key, vals] of Object.entries(tags)) {
+      if (!facetCounts[key]) continue; // skip dropped facets (e.g. task)
       for (const v of vals ?? []) facetCounts[key][v] = (facetCounts[key][v] ?? 0) + 1;
     }
   }
 }
-const start = (startHere[tab] ?? [])
-  .map(({ slug, icon, blurb }) => ({ entry: bySlug.get(slug), icon, blurb }))
-  .filter((s): s is { entry: AnyEntry; icon: string; blurb: string } => Boolean(s.entry));
-// Topic cards: skip "Get started" (its content is the card row above).
-const topicGroups = (NAV_GROUPS[tab] ?? [])
-  .filter((g) => !['Get started', 'Getting started'].includes(g.label))
-  .map((g) => ({ ...g, first: flatSlugs(g).map((s) => bySlug.get(s)).find(Boolean) }))
-  .filter((g) => g.first);
+const searchPlaceholder = tab === 'recipes' ? 'Search recipes…' : 'Search questions…';
 ---
 
 {isShell ? (
-  <DocsShell title={meta[tab].label} description={meta[tab].lede} tab={tab} groups={groups}>
+  <DocsShell title={meta[tab].h1} description={meta[tab].lede} tab={tab} groups={groups}>
     <article class="prose">
-      <span class="eyebrow">{tab === 'docs' ? 'Get started' : meta[tab].label}</span>
+      <Breadcrumbs crumbs={landingCrumbs(tab)} />
       <h1>{meta[tab].h1}</h1>
       <p class="lede">{meta[tab].lede}</p>
 
-      <h2 id="start-here">Start here</h2>
       <div class="card-grid">
-        {start.map(({ entry, icon, blurb }) => (
-          <Card title={entry.data.title} href={urlFor(tab, entry)}>
-            <Icon name={icon} slot="icon" />
-            {blurb}
-          </Card>
-        ))}
-      </div>
-
-      <h2 id="browse-by-topic">Browse by topic</h2>
-      <div class="card-grid">
-        {topicGroups.map((g) => (
-          <Card title={g.label} href={urlFor(tab, g.first!)}>
-            <Icon name={groupIcons[g.label] ?? 'file-text'} slot="icon" />
-            {g.desc}
+        {sectionCards.map((c) => (
+          <Card title={c.label} href={c.href}>
+            <Icon name={groupIcons[c.label] ?? 'file-text'} slot="icon" />
+            {c.desc}
           </Card>
         ))}
       </div>
     </article>
-    <nav class="toc" slot="rail" aria-label="On this page">
-      <a href="#start-here">Start here</a>
-      <a href="#browse-by-topic">Browse by topic</a>
-    </nav>
   </DocsShell>
 ) : (
   <Base title={meta[tab].label} description={meta[tab].lede} wide>
@@ -171,16 +167,53 @@ const topicGroups = (NAV_GROUPS[tab] ?? [])
           <h1>{meta[tab].h1}</h1>
           <p>{meta[tab].lede}</p>
         </header>
-        <ul class="cards">
-          {bucketCards.map(({ entry, tags }) => (
+
+        <div class="filter-row">
+          {bucket!.facets.map((f) => (
+            <div class="chip" data-facet={f.key} data-default={f.label}>
+              <button class="chip-btn" type="button" aria-haspopup="true" aria-expanded="false">
+                <span class="chip-text">{f.label}</span>
+                <svg class="caret" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9" /></svg>
+              </button>
+              <div class="chip-menu" role="menu" hidden>
+                {f.values.map((v) => (
+                  <button
+                    class="chip-option"
+                    type="button"
+                    role="menuitemradio"
+                    aria-checked="false"
+                    data-facet={f.key}
+                    data-value={v.id}
+                    disabled={facetCounts[f.key][v.id] === 0}
+                  >
+                    <span class="opt-label">{v.label}</span>
+                    <span class="count">{facetCounts[f.key][v.id]}</span>
+                  </button>
+                ))}
+              </div>
+            </div>
+          ))}
+          <input class="filter-search" type="search" placeholder={searchPlaceholder} aria-label={searchPlaceholder} />
+        </div>
+
+        <ul class="rows">
+          {bucketCards.map(({ entry, tags, subtitle, chips, searchText }) => (
             <li
+              data-text={searchText}
               {...Object.fromEntries(
                 bucket!.facets.map((f) => [`data-${f.key}`, (tags[f.key] ?? []).join(' ')])
               )}
             >
               <a href={urlFor(tab, entry)}>
-                <span class="entry-title">{entry.data.title}</span>
-                {entry.data.description && <span class="entry-desc">{entry.data.description}</span>}
+                <span class="row-title">{entry.data.title}</span>
+                {subtitle && <span class="row-sub">{subtitle}</span>}
+                {chips.length > 0 && (
+                  <span class="row-tags">
+                    {chips.map((c) => (
+                      <span class="tag">{c}</span>
+                    ))}
+                  </span>
+                )}
               </a>
             </li>
           ))}
@@ -318,41 +351,162 @@ const topicGroups = (NAV_GROUPS[tab] ?? [])
     color: var(--muted);
     font-size: 0.92rem;
   }
-  .cards {
+  /* Linear-style filter chips + search box, one row above the list. */
+  .filter-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+  .chip {
+    position: relative;
+  }
+  .chip-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    font: inherit;
+    font-size: 0.84rem;
+    color: var(--ink);
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 7px;
+    padding: 0.32rem 0.6rem;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .chip-btn:hover {
+    border-color: var(--line-strong);
+  }
+  .chip[data-active] .chip-btn {
+    color: var(--accent);
+    border-color: var(--accent);
+    background: var(--accent-wash);
+  }
+  .chip-btn .caret {
+    color: var(--faint);
+  }
+  .chip-menu {
+    position: absolute;
+    z-index: 20;
+    top: calc(100% + 0.3rem);
+    left: 0;
+    min-width: 12rem;
+    max-height: 18rem;
+    overflow-y: auto;
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    box-shadow: 0 8px 28px rgb(0 0 0 / 12%);
+    padding: 0.3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.05rem;
+  }
+  .chip-menu[hidden] {
+    display: none; /* author display:flex would otherwise beat the [hidden] UA rule */
+  }
+  .chip-option {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    font: inherit;
+    font-size: 0.85rem;
+    color: var(--ink);
+    background: none;
+    border: none;
+    border-radius: 6px;
+    padding: 0.32rem 0.5rem;
+    cursor: pointer;
+    text-align: left;
+  }
+  .chip-option:hover {
+    background: var(--accent-wash);
+  }
+  .chip-option[aria-checked='true'] {
+    color: var(--accent);
+    font-weight: 550;
+  }
+  .chip-option:disabled {
+    color: var(--faint);
+    cursor: default;
+  }
+  .chip-option:disabled:hover {
+    background: none;
+  }
+  .chip-option .count {
+    font-size: 0.75rem;
+    color: var(--faint);
+  }
+  .filter-search {
+    flex: 1 1 12rem;
+    min-width: 8rem;
+    font: inherit;
+    font-size: 0.86rem;
+    color: var(--ink);
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 7px;
+    padding: 0.34rem 0.7rem;
+  }
+  .filter-search:focus {
+    outline: none;
+    border-color: var(--accent);
+  }
+
+  /* Three-row list items: title / one-line subtitle / small tags. */
+  .rows {
     list-style: none;
     margin: 0;
     padding: 0;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
-    gap: 0.9rem;
   }
-  .cards li a {
+  .rows li {
+    border-top: 1px solid var(--line);
+  }
+  .rows li:last-child {
+    border-bottom: 1px solid var(--line);
+  }
+  .rows li a {
     display: block;
     color: inherit;
-    border: 1px solid var(--line);
-    border-radius: 8px;
-    padding: 1rem 1.1rem;
-    height: 100%;
-    background: var(--panel);
-    transition: border-color 0.15s;
+    padding: 0.85rem 0.4rem;
   }
-  .cards li a:hover {
+  .rows li a:hover {
     text-decoration: none;
-    border-color: var(--line-strong);
   }
-  .cards li a:hover .entry-title {
+  .rows li a:hover .row-title {
     color: var(--accent);
   }
-  .entry-title {
+  .row-title {
     display: block;
     font-weight: 500;
-    font-size: 0.93rem;
+    font-size: 0.95rem;
   }
-  .entry-desc {
+  .row-sub {
     display: block;
     color: var(--muted);
-    font-size: 0.85rem;
+    font-size: 0.86rem;
     margin-top: 0.15rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .row-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+    margin-top: 0.45rem;
+  }
+  .tag {
+    font-size: 0.68rem;
+    line-height: 1.4;
+    color: var(--muted);
+    background: var(--accent-wash);
+    border-radius: 4px;
+    padding: 0.05rem 0.4rem;
+    white-space: nowrap;
   }
   @media (max-width: 900px) {
     .learn-shell {
@@ -381,54 +535,120 @@ const topicGroups = (NAV_GROUPS[tab] ?? [])
 </style>
 
 <script>
-  // Bucket-tab facet filtering: OR within a facet, AND across facets.
-  const buttons = [...document.querySelectorAll<HTMLButtonElement>('.facet-value')];
-  if (buttons.length) {
-    const cards = [...document.querySelectorAll<HTMLLIElement>('.learn-content .cards > li')];
-    const clearBtn = document.querySelector<HTMLButtonElement>('.clear-facets')!;
-    const noMatch = document.querySelector<HTMLElement>('.no-match')!;
-    const selected: Record<string, Set<string>> = {};
+  // Bucket-tab filtering (Pass W): SINGLE-select per facet, driven by BOTH the
+  // left sidebar buttons and the top Linear-style chip dropdowns (kept in
+  // sync), plus a filter-as-you-type search box. AND across facets; substring
+  // match on title + subtitle for the search.
+  const root = document.querySelector<HTMLElement>('.learn-shell');
+  if (root) {
+    const rows = [...root.querySelectorAll<HTMLLIElement>('.rows > li')];
+    const sidebarBtns = [...root.querySelectorAll<HTMLButtonElement>('.facet-value')];
+    const chipEls = [...root.querySelectorAll<HTMLElement>('.chip')];
+    const chipOptions = [...root.querySelectorAll<HTMLButtonElement>('.chip-option')];
+    const searchInput = root.querySelector<HTMLInputElement>('.filter-search');
+    const clearBtn = root.querySelector<HTMLButtonElement>('.clear-facets');
+    const noMatch = root.querySelector<HTMLElement>('.no-match');
+
+    const selected: Record<string, string | null> = {};
+    let query = '';
 
     function apply() {
       let any = false;
+      for (const v of Object.values(selected)) if (v) any = true;
       let visible = 0;
-      for (const s of Object.values(selected)) if (s.size) any = true;
-      for (const card of cards) {
+      for (const row of rows) {
         let show = true;
-        for (const [facet, vals] of Object.entries(selected)) {
-          if (!vals.size) continue;
-          const cardVals = (card.dataset[facet] ?? '').split(' ').filter(Boolean);
-          if (!cardVals.some((v) => vals.has(v))) {
+        for (const [facet, val] of Object.entries(selected)) {
+          if (!val) continue;
+          const cardVals = (row.dataset[facet] ?? '').split(' ').filter(Boolean);
+          if (!cardVals.includes(val)) {
             show = false;
             break;
           }
         }
-        card.hidden = !show;
+        if (show && query) show = (row.dataset.text ?? '').includes(query);
+        row.hidden = !show;
         if (show) visible++;
       }
-      clearBtn.hidden = !any;
-      noMatch.hidden = visible > 0;
+      if (clearBtn) clearBtn.hidden = !any && !query;
+      if (noMatch) noMatch.hidden = visible > 0;
     }
 
-    for (const b of buttons) {
-      b.addEventListener('click', () => {
-        const f = b.dataset.facet!;
-        const v = b.dataset.value!;
-        selected[f] ??= new Set();
-        if (selected[f].has(v)) {
-          selected[f].delete(v);
-          b.setAttribute('aria-pressed', 'false');
+    function syncUI() {
+      for (const b of sidebarBtns) {
+        b.setAttribute('aria-pressed', selected[b.dataset.facet!] === b.dataset.value ? 'true' : 'false');
+      }
+      for (const o of chipOptions) {
+        o.setAttribute('aria-checked', selected[o.dataset.facet!] === o.dataset.value ? 'true' : 'false');
+      }
+      for (const chip of chipEls) {
+        const key = chip.dataset.facet!;
+        const val = selected[key];
+        const textEl = chip.querySelector<HTMLElement>('.chip-text')!;
+        if (val) {
+          const opt = chipOptions.find((o) => o.dataset.facet === key && o.dataset.value === val);
+          textEl.textContent = opt?.querySelector('.opt-label')?.textContent ?? chip.dataset.default!;
+          chip.setAttribute('data-active', '');
         } else {
-          selected[f].add(v);
-          b.setAttribute('aria-pressed', 'true');
+          textEl.textContent = chip.dataset.default!;
+          chip.removeAttribute('data-active');
         }
+      }
+    }
+
+    function setFacet(key: string, value: string) {
+      selected[key] = selected[key] === value ? null : value;
+      syncUI();
+      apply();
+    }
+
+    function closeMenus(except?: HTMLElement) {
+      for (const chip of chipEls) {
+        if (chip === except) continue;
+        chip.querySelector<HTMLElement>('.chip-menu')!.hidden = true;
+        chip.querySelector<HTMLButtonElement>('.chip-btn')!.setAttribute('aria-expanded', 'false');
+      }
+    }
+
+    for (const b of sidebarBtns) {
+      b.addEventListener('click', () => setFacet(b.dataset.facet!, b.dataset.value!));
+    }
+    for (const o of chipOptions) {
+      o.addEventListener('click', () => {
+        setFacet(o.dataset.facet!, o.dataset.value!);
+        closeMenus();
+      });
+    }
+    for (const chip of chipEls) {
+      const btn = chip.querySelector<HTMLButtonElement>('.chip-btn')!;
+      const menu = chip.querySelector<HTMLElement>('.chip-menu')!;
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const willOpen = menu.hidden;
+        closeMenus(chip);
+        menu.hidden = !willOpen;
+        btn.setAttribute('aria-expanded', String(willOpen));
+      });
+    }
+    document.addEventListener('click', () => closeMenus());
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeMenus();
+    });
+
+    if (searchInput) {
+      searchInput.addEventListener('input', () => {
+        query = searchInput.value.trim().toLowerCase();
         apply();
       });
     }
-    clearBtn.addEventListener('click', () => {
-      for (const s of Object.values(selected)) s.clear();
-      for (const b of buttons) b.setAttribute('aria-pressed', 'false');
-      apply();
-    });
+    if (clearBtn) {
+      clearBtn.addEventListener('click', () => {
+        for (const k of Object.keys(selected)) selected[k] = null;
+        query = '';
+        if (searchInput) searchInput.value = '';
+        syncUI();
+        apply();
+      });
+    }
   }
 </script>

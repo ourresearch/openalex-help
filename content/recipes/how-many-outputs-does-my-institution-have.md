@@ -1,5 +1,6 @@
 ---
 title: "How many outputs does my institution have?"
+subtitle: "Get a running total of an institution's indexed works in a couple of clicks."
 description: "1. Search for your institution by typing it into the search bar. 2. Select your institution; this will create a filter. 3. Under “Stats,” you will see the total number of result…"
 tags: ["summarize-research"]
 source_id: "24346576711063"

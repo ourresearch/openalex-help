@@ -1,5 +1,6 @@
 ---
 title: "Analyze a Funder's Research Portfolio"
+subtitle: "See what a funder pays for: its top fields, how spending shifts over time, and which institutions win the most support."
 description: "Map what a funding agency invests in by field, track shifts over time, and find top recipient institutions"
 tags: ["recipes","api"]
 source_id: "guides/recipe-funder-portfolio"

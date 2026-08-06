@@ -27,17 +27,10 @@ export interface Facet {
   values: FacetValue[];
 }
 
+// Pass W (2026-08-06): the "Task" facet (Count/Find/Fix/Map) was dropped — too
+// abstract to be useful. Recipes now filter on Variable / Entity / Interface.
+// (CARD_FACETS rows keep their `task` tags harmlessly; they're just not shown.)
 export const FACETS: Facet[] = [
-  {
-    key: 'task',
-    label: 'Task',
-    values: [
-      { id: 'count', label: 'Count' },
-      { id: 'find', label: 'Find' },
-      { id: 'fix', label: 'Fix' },
-      { id: 'map', label: 'Map' },
-    ],
-  },
   {
     key: 'variable',
     label: 'Variable',

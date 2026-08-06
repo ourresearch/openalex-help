@@ -1,5 +1,6 @@
 ---
 title: "How do I read JSONL files?"
+subtitle: "Parse the snapshot's JSON Lines files line by line, with ready-to-run Python and R snippets."
 description: "Working with the JSON Lines files in the OpenAlex snapshot — Python and R patterns for line-by-line parsing."
 tags: ["recipes"]
 source_id: "41193798040471"

@@ -39,7 +39,10 @@ export const NAV_GROUPS: Record<string, NavGroup[]> = {
   // added here as their pages land during the grind; unmapped ones warn.
   entities: [
     {
-      label: 'Overview',
+      // Pass W: renamed "Overview" → "Get started" for cross-tab consistency
+      // (every reference tab opens with a Get started section, first page
+      // "Overview"). The overview page still composes to "Entities Overview".
+      label: 'Get started',
       desc: 'What entities are and the fields they share.',
       slugs: ['overview', 'common-fields'],
     },
@@ -87,41 +90,37 @@ export const NAV_GROUPS: Record<string, NavGroup[]> = {
 
   docs: [
     {
+      // Pass W (2026-08-06): the tab front door. "Overview" here is the /docs/
+      // landing card page (former "Welcome"); the system how-it-works article
+      // (slug `overview`) moved down to the "How it works" section.
       label: 'Get started',
-      desc: 'What OpenAlex is and how it all fits together.',
+      desc: 'What OpenAlex is and how to get going fast.',
       slugs: [
-        { label: 'Welcome', href: '/docs/' },
+        { label: 'Overview', href: '/docs/' },
         'quickstart',
-        'overview',
       ],
     },
     {
-      // Open access + repositories + Unpaywall (oxjob #354 Pass R §4). Entity
-      // deep-dives (works/authors/sources/topics/…) moved to the Entities tab.
-      label: 'Open access',
-      desc: 'OA status and licenses, repositories, and Unpaywall.',
+      // Pass W (2026-08-06): NEW section — how the dataset is built and the
+      // shape of the data. `overview` moved here from Get started; repositories
+      // + open-access moved here from the dissolved "Open access" group;
+      // `sustainability` is a new page.
+      label: 'How it works',
+      desc: 'How OpenAlex is built — the pipeline, open access, repositories, and how it stays funded.',
       slugs: [
-        'open-access',
+        'overview',
         'repositories',
-        'unpaywall',
-        // 'unpaywall-change-notes' — RETIRED 2026-08-05 (Jason): the change log
-        // is ~5 years out of date, so we no longer share it publicly. The
-        // article source is preserved at content/_retired/ (outside the build);
-        // /docs/unpaywall-change-notes/ now redirects to /docs/unpaywall/.
+        'sustainability',
+        'open-access',
       ],
     },
     {
+      // Pass W: Website subgroup moved out to "Get the data"; Querying is now
+      // just the four query surfaces (all transpile to the same query object).
       label: 'Querying',
       desc: 'The ways to ask OpenAlex a question — all transpile to the same query object.',
       slugs: [
         'querying',
-        {
-          label: 'Website',
-          children: [
-            'website-basic',
-            'website-advanced',
-          ],
-        },
         'url',
         {
           label: 'OQL',
@@ -137,22 +136,33 @@ export const NAV_GROUPS: Record<string, NavGroup[]> = {
       // Renamed from "Access" (oxjob #354 Pass R): tools AND bulk files are all
       // ways to *get* the data. Slug renames: openalex-cli→cli,
       // snapshot-updates→sync, content-archive→fulltext; snapshot absorbed
-      // snapshot-access.
+      // snapshot-access. Pass W: Website subgroup + Unpaywall moved in here —
+      // both are ways people get our data.
       label: 'Get the data',
-      desc: 'Every way to get the data onto your machine — a query, the CLI, an agent, or the whole database.',
+      desc: 'Every way to get the data — the website, a query, the CLI, an agent, the whole database, or Unpaywall.',
       slugs: [
+        {
+          label: 'Website',
+          children: [
+            'website-basic',
+            'website-advanced',
+          ],
+        },
         'cli',
         'agents',
         'snapshot',
         'sync',
         'fulltext',
+        'unpaywall',
       ],
     },
   ],
 
   api: [
     {
-      label: 'Getting started',
+      // Pass W: renamed "Getting started" → "Get started" for cross-tab
+      // consistency. First page `introduction` is titled "API Overview".
+      label: 'Get started',
       desc: 'Auth, errors, and your first request.',
       slugs: [
         'introduction',
@@ -309,12 +319,19 @@ export function displayTitleFor(tab: string, slug: string, title: string): strin
         return item.slug === slug ? `${item.label} Overview` : title;
       }
       if (flatSlugs(g)[0] !== slug) return title; // mid-group page, not a section overview
-      const catchAll = ['Get started', 'Getting started'].includes(g.label);
+      const catchAll = g.label === 'Get started';
       const parent = catchAll || g.label === title ? (TAB_LABELS[tab] ?? tab) : g.label;
       return `${parent} Overview`;
     }
   }
   return title;
+}
+
+/** Breadcrumb trail for a tab LANDING page (Pass W): just the tab name, as
+ * plain text — you are at the tab root, so there is nothing above it to link
+ * to. Keeps the "every page has breadcrumbs, including the default page" rule. */
+export function landingCrumbs(tab: string): Crumb[] {
+  return [{ label: TAB_LABELS[tab] ?? tab }];
 }
 
 /** Breadcrumb trail for an article page (oxjob #354 Pass S): Tab → group →

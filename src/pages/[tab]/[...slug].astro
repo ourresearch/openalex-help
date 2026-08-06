@@ -5,6 +5,7 @@ import DocsShell from '../../layouts/DocsShell.astro';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import { allEntries, mdUrlFor, type Tab } from '../../lib/tabs';
 import { groupEntries, breadcrumbsFor, displayTitleFor } from '../../lib/nav';
+import { facetConfig } from '../../lib/facets';
 
 export async function getStaticPaths() {
   return (await allEntries()).map(({ tab, entry }) => ({
@@ -38,6 +39,17 @@ const docTitle =
       : entry.data.title;
 const toc = headings.filter((h) => h.depth === 2);
 const mdUrl = mdUrlFor(tab, entry);
+
+// How-to tabs (FAQ + Recipes, Pass W): the article carries its facet tags,
+// lined up under the H1 — the same tags shown on the tab's list rows.
+const bucket = facetConfig(tab);
+let tagChips: string[] = [];
+if (bucket) {
+  const tags = bucket.tagsFor(entry.id);
+  const flabel: Record<string, Record<string, string>> = {};
+  for (const f of bucket.facets) flabel[f.key] = Object.fromEntries(f.values.map((v) => [v.id, v.label]));
+  tagChips = bucket.facets.flatMap((f) => (tags[f.key] ?? []).map((v) => flabel[f.key]?.[v] ?? v));
+}
 ---
 
 {isShell ? (
@@ -68,24 +80,85 @@ const mdUrl = mdUrlFor(tab, entry);
     </div>
   </DocsShell>
 ) : (
-  <Base title={docTitle} description={entry.data.description}>
-    <div class="page">
-      <article class="prose reveal">
-        <Breadcrumbs crumbs={crumbs} />
-        <h1>{displayTitle}</h1>
-        <Content />
-        <div class="article-foot">
-          <a class="md-link" href={mdUrl}>View as Markdown</a>
+  <Base title={docTitle} description={entry.data.description} wide>
+    <div class="howto-shell">
+      <div class="howto-cols">
+        <article class="prose reveal main-col">
+          <Breadcrumbs crumbs={crumbs} />
+          <h1>{displayTitle}</h1>
+          {tagChips.length > 0 && (
+            <div class="howto-tags">
+              {tagChips.map((t) => (
+                <span class="tag">{t}</span>
+              ))}
+            </div>
+          )}
+          <Content />
+          <div class="article-foot">
+            <a class="md-link" href={mdUrl}>View as Markdown</a>
+          </div>
+        </article>
+        <div class="rail-col">
+          {toc.length > 1 && (
+            <nav class="toc" aria-label="On this page">
+              {toc.map((h) => (
+                <a href={`#${h.slug}`}>{h.text}</a>
+              ))}
+            </nav>
+          )}
         </div>
-      </article>
+      </div>
     </div>
   </Base>
 )}
 
 <style>
-  .page {
-    max-width: var(--measure);
-    margin: 0 auto;
+  /* How-to article layout (FAQ + Recipes, Pass W): reading column + a right
+     nav rail, centered — same rail the Docs/API shell uses, minus the left
+     sidebar. */
+  .howto-shell {
+    padding: 2.5rem 2rem 5rem;
+  }
+  .howto-cols {
+    display: grid;
+    grid-template-columns: minmax(0, var(--measure)) 13rem;
+    gap: 3.5rem;
+    justify-content: center;
+  }
+  .rail-col {
+    font-size: 0.84rem;
+  }
+  .rail-col .toc {
+    position: sticky;
+    top: calc(var(--nav-h) + 2.5rem);
+  }
+  .howto-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin: -0.2rem 0 1.6rem;
+  }
+  .tag {
+    font-size: 0.72rem;
+    line-height: 1.5;
+    color: var(--muted);
+    background: var(--accent-wash);
+    border-radius: 4px;
+    padding: 0.08rem 0.5rem;
+    white-space: nowrap;
+  }
+  @media (max-width: 1180px) {
+    .howto-cols {
+      grid-template-columns: minmax(0, var(--measure));
+    }
+    .rail-col {
+      display: none;
+    }
+  }
+  @media (max-width: 900px) {
+    .howto-shell {
+      padding: 2rem 1.25rem 4rem;
+    }
   }
   .rail {
     position: sticky;

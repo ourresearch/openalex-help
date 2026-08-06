@@ -8,6 +8,10 @@ import { glob } from 'astro/loaders';
 const article = z.object({
   title: z.string(),
   description: z.string().optional(),
+  // Hand-written one-liner shown as the subtitle row in the Recipes list
+  // (oxjob #354 Pass W). Recipes get a bespoke subtitle explaining the recipe;
+  // FAQ rows fall back to `description`.
+  subtitle: z.string().optional(),
   tags: z.array(z.string()).default([]),
   synonyms: z.array(z.string()).default([]),
   source_id: z.string().optional(),

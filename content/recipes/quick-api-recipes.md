@@ -1,5 +1,6 @@
 ---
 title: "Quick Recipes"
+subtitle: "A grab-bag of short, copy-paste API patterns for common questions."
 description: "Common API patterns and use cases"
 tags: ["recipes","api"]
 source_id: "guides/recipes"

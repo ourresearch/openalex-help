@@ -1,5 +1,6 @@
 ---
 title: "How do I use the title search API?"
+subtitle: "Look up a work by its title through the Unpaywall-compatible title search endpoint."
 description: "The Unpaywall title search endpoint gives you the full DOI API(https://unpaywall.org/products/apiget-doi) response for articles with titles matching your query. 50 results are r…"
 tags: ["recipes", "unpaywall"]
 source_id: "41193820492951"

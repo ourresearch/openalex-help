@@ -1,5 +1,6 @@
 ---
 title: "How many of each type of output does my institution have?"
+subtitle: "Break an institution's output down by work type — articles, books, datasets, and more — on the website."
 description: "1. Search for your institution by typing it into the search bar 2. Select your institution; this will create a filter. 3. Under “Stats,” look for a panel labeled “type”. If you…"
 tags: ["summarize-research"]
 source_id: "24346628202775"

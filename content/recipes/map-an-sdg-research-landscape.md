@@ -1,5 +1,6 @@
 ---
 title: "Map the SDG Research Landscape"
+subtitle: "Compare how countries contribute to each UN Sustainable Development Goal and see who leads."
 description: "Compare how countries contribute to the UN Sustainable Development Goals and find who leads each one"
 tags: ["recipes","api"]
 source_id: "guides/recipe-sdg-landscape"

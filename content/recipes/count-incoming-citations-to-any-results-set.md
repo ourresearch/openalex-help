@@ -1,5 +1,6 @@
 ---
 title: "Count incoming citations to any results set"
+subtitle: "Add up all the citations received by every work in any search or filter you've built."
 description: "Once you have a search results set, with whatever searches and filters you've chosen, you can see a count of the total number of citations received by all of the works in that set:"
 tags: ["summarize-research-impacts"]
 source_id: "24830109246615"

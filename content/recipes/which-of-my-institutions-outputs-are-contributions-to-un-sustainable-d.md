@@ -1,5 +1,6 @@
 ---
 title: "Which of my institution’s outputs are contributions to UN Sustainable Development Goals (SDGs)?"
+subtitle: "Find which of an institution's works map to UN Sustainable Development Goals."
 description: "1. Search for your institution by typing it into the search bar. 2. Select your institution; this will create a filter. 3. Under “Stats,” look for a panel labeled “Sustainable D…"
 tags: ["summarize-research"]
 source_id: "24346929893911"
