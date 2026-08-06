@@ -5,11 +5,8 @@ tags: ["oql"]
 generated: true
 source_id: "query-spec/oqo"
 source_url: "https://api.openalex.org/query/spec/oqo"
-source_updated: "2026-08-05"
+source_updated: "2026-08-06"
 ---
-> **Note:**
-> The OpenAlex Query Language is in **alpha**. It may change without warning — build against it at your own risk, and [tell us what you think](mailto:support@openalex.org).
-
 OQO (OpenAlex Query Objects) is the machine-readable twin of [OQL](/docs/oql/): the same queries, expressed as JSON data instead of text.
 
 Every OQL query parses into an OQO object, and every OQO object renders back to canonical OQL — two views of one query. The difference is the audience. **OQL is built for humans**: you can read it aloud, type it in the search box, and paste it in an email. **OQO is built for machines — and especially for AI agents.** A JSON tree with a published schema is much easier for software to get right than a string: nothing to quote or escape, no parsing, and a query can be constructed, validated, and modified field by field.

@@ -11,9 +11,6 @@ synthesis of the upstream guide + cheatsheet artifacts (api.openalex.org/query/
 spec/{guide,cheatsheet}) and is NOT written by sync-query-docs.mjs. When the
 upstream artifacts change, port the changes here by hand. -->
 
-> **Note:**
-> The OpenAlex Query Language is in **alpha**. It may change without warning — build against it at your own risk, and [tell us what you think](mailto:support@openalex.org).
-
 **OQL is the OpenAlex Query Language — a readable way to ask OpenAlex anything.** Where the classic API uses URL filter strings, OQL lets you write the query out in something close to plain English:
 
 ```
@@ -39,7 +36,7 @@ You can read that aloud and roughly know what it does — that's the whole point
 
 That's enough to write most queries. Everything below is detail — and every example runs on production today.
 
-## Filter on a field — `is`, `>=`, `<=`, `>`, `<`
+## Filtering
 
 | Example | Meaning |
 |---|---|
@@ -56,7 +53,7 @@ For entity filters, the ID is what counts — the `[name]` in square brackets is
 works where institution is (I136199984) or funder is (F4320332161 [National Institutes of Health])
 ```
 
-## Search text — `has`
+## Searching
 
 Search a text field with **`has`**. The fields: `title`, `abstract`, `title/abstract` (both at once), `full text`, `raw affiliation`, `byline`.
 
@@ -72,7 +69,7 @@ The one rule to internalize: **bare words are stemmed, quotes mean exact.** `tit
 | `works where title has (within 3 ("smart", "phone"))` | proximity — terms within N words, any order |
 | `works where title/abstract is similar to ("ocean acidification effects on coral reefs")` | semantic search — by meaning, not keywords |
 
-## Combine & nest — `and`, `or`, `( … )`
+## Boolean logic
 
 Join filters with `and` / `or`, and group with parentheses. `and` binds tighter than `or`, so `a and b or c` means `(a and b) or c` — but the canonical form always adds the parentheses back so nothing is left to guess:
 
@@ -85,7 +82,7 @@ works where (year < (2000) and title/abstract has ("global warming"))
 
 This nesting — and OR across *different* fields (`institution is … or funder is …`) — is what the classic URL syntax can't express.
 
-## Exclude — `not`
+## Negation
 
 There's just one way to negate: `not` inside the parentheses, directly before the value to exclude. To exclude a whole group, write `(not (a or b))`.
 
@@ -95,7 +92,7 @@ works where title has (covid) and abstract has (not pediatric)
 works where title has (not mouse and cancer)
 ```
 
-## Yes / no flags
+## Boolean flags
 
 Boolean flags read as `is (true)` / `is (false)`:
 
@@ -105,7 +102,7 @@ works where has DOI is (true)
 works where retracted is (true)
 ```
 
-## Citation links — `it cites`, `it's cited by`
+## Citation links
 
 Follow the citation edge in either direction — the subject `it` is each work in your results. Takes `not` and `or` in the value like any other filter:
 
@@ -116,7 +113,7 @@ works where it's related to (W2741809807)          OpenAlex "related works"
 works where title has (climate) and it cites (W1767272795 or W2741809807)
 ```
 
-## Group & sample
+## Grouping and sampling
 
 `group by` aggregates results into buckets; `sample` returns a random subset:
 
@@ -128,7 +125,7 @@ works where year is (2020) sample 500
 
 > Sorting and choosing columns are **not** part of OQL — they're controls in the results view (`?sort=` / `?select=` on the API). OQL says *which* works you want, not how to display them.
 
-## When something's wrong, OQL tells you
+## Error reporting
 
 OQL never guesses. A query that can't do what it appears to do is always a clear error **with a fix-it** — never a silent wrong answer:
 

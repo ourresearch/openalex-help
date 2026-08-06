@@ -661,6 +661,13 @@
 /api/indexes/  /entities/indexes/  301
 # <<< restructure Pass R <<<
 
+# >>> Pass S (nav/naming red-pen round, 2026-08-05) >>>
+/docs/web-interface-basic  /docs/website-basic/  301
+/docs/web-interface-basic/  /docs/website-basic/  301
+/docs/web-interface-advanced  /docs/website-advanced/  301
+/docs/web-interface-advanced/  /docs/website-advanced/  301
+# <<< Pass S <<<
+
 # >>> WILDCARDS LAST — do not move, do not add rules after this section >>>
 # CF Pages bug (oxjob #354, verified 2026-08-01): once a wildcard/splat rule
 # appears, CF silently stops processing rules some distance later in the file

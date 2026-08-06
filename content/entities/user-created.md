@@ -1,5 +1,5 @@
 ---
-title: "User-created entities"
+title: "Overview"
 description: "Things OpenAlex users mint themselves — collections and curations — rather than things OpenAlex mints."
 tags: ["reference"]
 ---

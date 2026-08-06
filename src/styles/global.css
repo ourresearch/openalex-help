@@ -111,6 +111,34 @@ code, pre, kbd {
 .prose h3 {
   margin: 1.75rem 0 0.5rem;
 }
+/* Heading anchors (oxjob #354 Pass S): headings are clickable anchor links;
+   a link icon appears at the end of the heading on hover (script in Base). */
+.prose :is(h2, h3, h4) {
+  scroll-margin-top: calc(var(--nav-h) + 1.25rem);
+}
+.prose :is(h2, h3, h4).has-anchor {
+  cursor: pointer;
+}
+.h-anchor {
+  display: inline-block;
+  margin-left: 0.45rem;
+  color: var(--faint);
+  opacity: 0;
+  transition: opacity 0.12s;
+  line-height: 1;
+  vertical-align: baseline;
+}
+.h-anchor svg {
+  display: inline-block;
+  vertical-align: -0.08em;
+}
+.prose :is(h2, h3, h4):hover .h-anchor,
+.h-anchor:focus-visible {
+  opacity: 1;
+}
+.h-anchor:hover {
+  color: var(--accent);
+}
 .prose p, .prose ul, .prose ol {
   margin: 0 0 1rem;
 }

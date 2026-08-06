@@ -5,11 +5,8 @@ tags: ["oql"]
 generated: true
 source_id: "query-spec/api"
 source_url: "https://api.openalex.org/query/spec/api"
-source_updated: "2026-08-02"
+source_updated: "2026-08-06"
 ---
-> **Note:**
-> The OpenAlex Query Language is in **alpha**. It may change without warning — build against it at your own risk, and [tell us what you think](mailto:support@openalex.org).
-
 **Everything OQL does is available over plain HTTP — no GUI required.** There are two
 endpoint families, and they divide cleanly:
 
@@ -335,7 +332,7 @@ translation is best-effort — a handful of exotic parameter combinations don't 
 
 > The `x_` prefix means what it usually does: this field is young and its details may
 > still shift. The three-forms concept is stable; treat exact field-level details as
-> alpha, like the rest of OQL.
+> subject to change.
 
 ---
 
@@ -415,5 +412,5 @@ And the rest of the story lives in the sibling pages here under **`/query`**: th
 sheet** and **Guide** teach the OQL language itself, the **Spec** is the normative
 reference, and the **OQO schema** page renders the full JSON Schema.
 
-OQL and its API are in alpha and under active development — tell us what's confusing,
+OQL and its API are under active development — tell us what's confusing,
 what's missing, and what you wish you could do.

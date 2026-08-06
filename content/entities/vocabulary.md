@@ -1,5 +1,5 @@
 ---
-title: "Vocabulary entities"
+title: "Overview"
 description: "Consistent, controlled handles on things that already exist crisply in the real world — work types, countries, licenses, and more."
 tags: ["reference"]
 ---

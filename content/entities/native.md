@@ -1,5 +1,5 @@
 ---
-title: "Native entities"
+title: "Overview"
 description: "Entities where OpenAlex mints its own IDs, encoding our own judgment calls about real-world boundary disputes."
 tags: ["reference"]
 ---

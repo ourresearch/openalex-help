@@ -1,5 +1,5 @@
 ---
-title: "Endpoints"
+title: "Overview"
 description: "Every OpenAlex API endpoint at a glance — the entity list/single endpoints and the special-purpose ones — each linking to the entity page that documents its fields."
 tags: ["reference"]
 ---

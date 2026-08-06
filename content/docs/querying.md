@@ -1,5 +1,5 @@
 ---
-title: "Querying"
+title: "Overview"
 description: "The several ways to ask OpenAlex a question — web interface, REST URLs, OQL, CLI, and agents — and how they all transpile to the same query object under the hood."
 tags: ["reference"]
 ---
@@ -14,13 +14,13 @@ Here's the key idea that ties them together: **every one of these surfaces trans
 | **Web (basic)** | Point-and-click search and filters at [openalex.org](https://openalex.org) | Non-technical users; quick one-off questions; browsing and exporting | Easiest to learn; a friendly subset — not every query shape is expressible |
 | **Web (advanced)** | The visual query builder at [openalex.org](https://openalex.org) | Complex filters without writing code; systematic reviews | More expressive than basic; covers the common shapes, not every valid query |
 | **REST URL** | `filter=`/`search=`/`sort=`/`group_by=` params on `api.openalex.org` | Programmatic access; scripts; sharing a query as a link | Fast and well-documented; classic URL syntax can't express deep nesting or cross-field OR |
-| **OQL** | The readable [OpenAlex Query Language](/docs/oql/) (alpha) | Writing and sharing complex queries in near-plain English | Most expressive by hand; still alpha, may change |
+| **OQL** | The readable [OpenAlex Query Language](/docs/oql/) | Writing and sharing complex queries in near-plain English | Most expressive by hand; a new syntax to learn |
 | **CLI** | Query from your terminal and pipe results into scripts | Terminal workflows; automation; feeding your own tools | Scriptable and composable; requires the command line |
 | **Agents** | Just tell your AI agent to "use OpenAlex" | Letting an agent do the whole job for you | No syntax to learn; best to verify consequential results yourself |
 
 ## Where to go next
 
-- **[Web interface](/docs/web-interface-basic/)** — the no-code way. Start with [basic](/docs/web-interface-basic/) search and filters, and move to [advanced](/docs/web-interface-advanced/) when you need more.
+- **[Website](/docs/website-basic/)** — the no-code way. Start with [basic](/docs/website-basic/) search and filters, and move to [advanced](/docs/website-advanced/) when you need more.
 - **[REST URLs](/docs/url/)** — query by URL against `api.openalex.org`. The [API](/api/) tab documents the wire mechanics in full.
 - **[OQL](/docs/oql/)** — the OpenAlex Query Language, a readable way to express queries the classic URL syntax can't.
 - **[CLI](/docs/cli/)** — query from your terminal.

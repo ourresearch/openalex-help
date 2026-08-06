@@ -59,6 +59,7 @@ export const FACETS: Facet[] = [
     values: [
       { id: 'web', label: 'Web' },
       { id: 'api', label: 'API' },
+      { id: 'oql', label: 'OQL' },
       { id: 'agents', label: 'Agents' },
       { id: 'snapshot', label: 'Snapshot' },
     ],
@@ -169,6 +170,10 @@ export const CARD_FACETS: Record<string, CardTags> = {
     variable: ['aboutness'],
     entity: ['institutions'],
     interface: ['web'],
+  },
+  'systematic-reviews-with-oql': {
+    task: ['find'],
+    interface: ['oql', 'web', 'api'],
   },
   // Bulk-data + Unpaywall recipes (moved in from Docs, rewrite Pass H)
   'download-to-your-machine': {

@@ -58,6 +58,30 @@ const path = Astro.url.pathname;
       <slot />
     </main>
 
+    <script>
+      // Heading anchor links (oxjob #354 Pass S): every article section heading
+      // is a linkable anchor — hovering shows a link icon (a link, not Cursor's
+      // copy icon — deliberate), and clicking the heading or the icon loads the
+      // anchor URL.
+      const ICON =
+        '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>';
+      for (const h of document.querySelectorAll<HTMLHeadingElement>(
+        '.prose h2[id], .prose h3[id], .prose h4[id]'
+      )) {
+        const a = document.createElement('a');
+        a.className = 'h-anchor';
+        a.href = '#' + h.id;
+        a.setAttribute('aria-label', 'Link to this section');
+        a.innerHTML = ICON;
+        h.appendChild(a);
+        h.classList.add('has-anchor');
+        h.addEventListener('click', (e) => {
+          if ((e.target as Element).closest('a')) return; // real links keep working
+          location.hash = h.id;
+        });
+      }
+    </script>
+
     <style>
       header {
         position: sticky;

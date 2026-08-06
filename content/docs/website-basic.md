@@ -1,5 +1,5 @@
 ---
-title: "Web interface: basic"
+title: "Basic"
 description: "Point-and-click search and filters at openalex.org — the no-code way to query OpenAlex."
 tags: ["reference"]
 ---
@@ -18,4 +18,4 @@ For most one-off questions, this is all you need.
 
 Basic mode is a **friendly subset** of everything OpenAlex can express. It covers the common cases cleanly, but not all query shapes are expressible here — deep nesting, OR across different fields, and other complex combinations don't fit the point-and-click model.
 
-When you hit that ceiling, switch to the [advanced query builder](/docs/web-interface-advanced/), which covers the fuller range.
+When you hit that ceiling, switch to the [advanced query builder](/docs/website-advanced/), which covers the fuller range.

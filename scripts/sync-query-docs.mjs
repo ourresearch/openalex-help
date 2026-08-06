@@ -16,6 +16,15 @@
 // guide + cheatsheet artifacts — and is deliberately NOT in PAGES below. When
 // the upstream artifacts change, port relevant changes into it by hand.
 //
+// NOTE (2026-08-05, oxjob #354 Pass S): content/docs/oql-spec.md is ALSO
+// hand-maintained now — a user-facing editorial rendering of the upstream spec
+// + grammar artifacts (de-numbered headings, internal provenance refs purged).
+// Port upstream spec/grammar changes into it by hand; the elastic-api artifact
+// remains the internal/normative original.
+//
+// Alpha-status banners were removed for OQL GA (Pass S, 2026-08-05) — don't
+// reintroduce them here.
+//
 // Idempotent: files are only rewritten when the upstream body actually changed
 // (source_updated stamps the last *change*, not the last run).
 
@@ -27,9 +36,6 @@ const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const BASE = "https://api.openalex.org/query/spec";
 const MAILTO = "mailto=help-site-sync@openalex.org";
 const TODAY = new Date().toISOString().slice(0, 10);
-
-const ALPHA_NOTE = `> **Note:**
-> The OpenAlex Query Language is in **alpha**. It may change without warning — build against it at your own risk, and [tell us what you think](mailto:support@openalex.org).`;
 
 // One entry per page we publish. `body` builds the markdown body from the
 // fetched artifact(s); the leading H1 is stripped (frontmatter title replaces it).
@@ -44,33 +50,10 @@ const PAGES = [
       stripH1(t)
         .replaceAll("https://api.openalex.org/query/spec/schema", "/docs/oqo-schema/")
         // upstream anchor doesn't survive this site's heading slugger
-        .replaceAll("#reading-results-meta-x-query", "#reading-results-metax_query"),
-  },
-  {
-    file: "content/docs/oql-spec.md",
-    slug: "oql",
-    extraSlugs: ["grammar"],
-    title: "Specification",
-    description:
-      "The frozen normative specification of the OpenAlex Query Language (v2), including the formal grammar.",
-    // The spec references sibling files in the elastic-api repo. Only the OQO
-    // spec has a published counterpart here; de-link the rest (keep the code-
-    // formatted text) so the page carries no broken relative links. The
-    // derived formal grammar (its own page until 2026-08-05) is appended as a
-    // closing section.
-    body: (t, [grammar]) =>
-      stripH1(t)
-        .replaceAll("](./oqo-spec.md)", "](/docs/oqo-schema/)")
-        .replace(/\[([^\]]+)\]\(\.\.?\/[^)]*\)/g, "$1") +
-      `
-
-## Formal grammar
-
-The grammar below is **derived from the OQL implementation** in W3C-EBNF notation, so it can't drift from what the engine actually parses. A visual [railroad-diagram rendering](https://api.openalex.org/query/spec/railroad) of the same grammar is also available.
-
-\`\`\`ebnf
-${grammar.trim()}
-\`\`\``,
+        .replaceAll("#reading-results-meta-x-query", "#reading-results-metax_query")
+        // OQL went GA (Pass S): strip the upstream alpha framing
+        .replace(/treat exact field-level details as[\s>]+alpha, like the rest of OQL\./, "treat exact field-level details as\n> subject to change.")
+        .replace("OQL and its API are in alpha and under active development", "OQL and its API are under active development"),
   },
   {
     file: "content/docs/oqo-schema.md",
@@ -125,7 +108,7 @@ for (const p of PAGES) {
   const raw = await fetchArtifact(p.slug);
   const extras = await Promise.all((p.extraSlugs ?? []).map(fetchArtifact));
   const body = p.body(raw, extras).trim();
-  const full = `${ALPHA_NOTE}\n\n${body}\n`;
+  const full = `${body}\n`;
   const out = resolve(ROOT, p.file);
   if (existingBody(out) === full) {
     console.log(`unchanged: ${p.file}`);

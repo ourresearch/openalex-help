@@ -1,5 +1,5 @@
 ---
-title: "Entities"
+title: "Overview"
 description: "The people, papers, places, and concepts OpenAlex catalogs — how their IDs work, how much to trust them, and how the objects are shaped."
 tags: ["reference"]
 ---

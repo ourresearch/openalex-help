@@ -1,5 +1,5 @@
 ---
-title: "Querying with URLs"
+title: "URL"
 description: "Query OpenAlex over raw REST URLs — the filter, search, sort, and group_by parameters on api.openalex.org."
 tags: ["reference"]
 ---

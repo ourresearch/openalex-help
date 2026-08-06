@@ -1,5 +1,5 @@
 ---
-title: "API Overview"
+title: "Overview"
 description: "OpenAlex REST API fundamentals"
 tags: ["api"]
 source_id: "api-reference/introduction"

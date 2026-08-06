@@ -207,10 +207,10 @@ export const NAV_GROUPS: Record<string, NavGroup[]> = {
       slugs: [
         'querying',
         {
-          label: 'Web interface',
+          label: 'Website',
           children: [
-            'web-interface-basic',
-            'web-interface-advanced',
+            'website-basic',
+            'website-advanced',
           ],
         },
         'url',
@@ -366,4 +366,52 @@ export function groupLabelFor(tab: string, slug: string): string | undefined {
     if (flatSlugs(g).includes(slug)) return g.label;
   }
   return undefined;
+}
+
+/** One breadcrumb: a link when a natural target exists, plain text otherwise. */
+export interface Crumb {
+  label: string;
+  href?: string;
+}
+
+const TAB_LABELS: Record<string, string> = {
+  help: 'Help',
+  docs: 'Docs',
+  entities: 'Entities',
+  api: 'API',
+  recipes: 'Recipes',
+};
+
+/** A group's natural landing: a leading static link (e.g. Welcome → /docs/),
+ * else its first article. */
+function groupTarget(tab: string, g: NavGroup): string | undefined {
+  const first = g.slugs[0];
+  if (first && typeof first === 'object' && 'href' in first) return first.href;
+  const slug = flatSlugs(g)[0];
+  return slug ? `/${tab}/${slug}/` : undefined;
+}
+
+/** Breadcrumb trail for an article page (oxjob #354 Pass S): Tab → group →
+ * (subgroup, when the page sits inside one). The page's own title renders as
+ * the H1 beneath the trail, so it is never a crumb. A crumb whose target IS
+ * the current page renders as plain text instead of a self-link. */
+export function breadcrumbsFor(tab: string, slug: string): Crumb[] {
+  const here = `/${tab}/${slug}/`;
+  const link = (label: string, href?: string): Crumb =>
+    href && href !== here ? { label, href } : { label };
+  const crumbs: Crumb[] = [{ label: TAB_LABELS[tab] ?? tab, href: `/${tab}/` }];
+  for (const g of NAV_GROUPS[tab] ?? []) {
+    for (const item of g.slugs) {
+      if (!itemSlugs(item).includes(slug)) continue;
+      crumbs.push(link(g.label, groupTarget(tab, g)));
+      if (typeof item === 'object' && !('href' in item)) {
+        // Inside a subgroup: crumb for the parent, targeting its overview
+        // page when it has one, else its first child.
+        const target = item.slug ?? item.children[0];
+        crumbs.push(link(item.label, target ? `/${tab}/${target}/` : undefined));
+      }
+      return crumbs;
+    }
+  }
+  return crumbs;
 }

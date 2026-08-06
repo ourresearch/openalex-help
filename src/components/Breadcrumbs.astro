@@ -1,0 +1,53 @@
+---
+// Article-header breadcrumb trail (oxjob #354 Pass S): replaces the old
+// plain-text eyebrow. Tab → group → (subgroup); the article's own title is the
+// H1 below, never a crumb. Deliberate divergence from Cursor (which has no
+// breadcrumbs) — child pages carry context-free names ("Basic", "Overview"),
+// so the trail supplies the context and gives one-click up-navigation.
+import type { Crumb } from '../lib/nav';
+
+interface Props {
+  crumbs: Crumb[];
+}
+const { crumbs } = Astro.props;
+---
+
+<nav class="breadcrumbs" aria-label="Breadcrumb">
+  <ol>
+    {crumbs.map((c) => (
+      <li>{c.href ? <a href={c.href}>{c.label}</a> : <span>{c.label}</span>}</li>
+    ))}
+  </ol>
+</nav>
+
+<style>
+  .breadcrumbs {
+    margin-bottom: 0.6rem;
+  }
+  ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    font-size: 0.82rem;
+    color: var(--muted);
+  }
+  li {
+    display: flex;
+    align-items: center;
+  }
+  li + li::before {
+    content: '/';
+    margin: 0 0.45rem;
+    color: var(--faint);
+  }
+  a {
+    color: var(--muted);
+  }
+  a:hover {
+    color: var(--accent);
+    text-decoration: none;
+  }
+</style>
