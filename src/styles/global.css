@@ -10,7 +10,7 @@
    --------------------------------------------------------------------------- */
 
 :root {
-  --bg: #f7f7f3;
+  --bg: #ffffff; /* pure white (Jason 2026-08-07; was warm paper #f7f7f3) */
   --panel: #efeeea;          /* recessed wells: cards, search, code */
   --panel-strong: #e9e8e3;
   --ink: #26251e;
