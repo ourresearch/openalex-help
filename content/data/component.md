@@ -13,4 +13,4 @@ They sit between [native entities](/data/native/) (which get minted IDs and are 
 - [**Locations**](/data/locations/) — each place a version of the work is available (the publisher's site, a repository, a preprint server), with its version, license, and open-access status. Lives in `work.locations` / `primary_location` / `best_oa_location`.
 - [**Raw affiliation strings**](/data/raw-affiliation-strings/) — the exact affiliation text an author printed on a work, before OpenAlex matches it to an [institution](/data/institutions/). The raw input to institution disambiguation.
 
-Because components carry much of a work's richest metadata, their fields are documented on their own pages here rather than crammed into the [works field dictionary](/data/works/#fields).
+Because components carry much of a work's richest metadata, their fields are documented on their own pages here rather than crammed into the [works attribute dictionary](/data/works/attributes/).

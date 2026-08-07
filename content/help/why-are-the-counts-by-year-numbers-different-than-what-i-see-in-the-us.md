@@ -16,4 +16,4 @@ If you need an exact, current count, run a works search filtered by the entity i
 https://openalex.org/works?filter=authorships.author.id:a5086928770
 ```
 
-For the full explanation of how these counts are calculated and why they change, see [Counts by year](/data/common-fields/#counts_by_year) in the docs.
+For the full explanation of how these counts are calculated and why they change, see [Counts by year](/data/common-attributes/#counts_by_year) in the docs.

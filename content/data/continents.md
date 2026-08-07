@@ -26,18 +26,18 @@ There are seven continents — the complete list:
 | `Q51` | Antarctica | 3 |
 | `Q55643` | Oceania | 25 |
 
-## Fields
+## Attributes
 
-The top-level fields on a **continent** object. Fields shared with other entities ([`id`](/data/common-fields/#id), [`ids`](/data/common-fields/#ids), [`display_name`](/data/common-fields/#display_name), [`created_date`](/data/common-fields/#created_date), [`updated_date`](/data/common-fields/#updated_date)) are documented once on [Common fields](/data/common-fields/).
+The top-level fields on a **continent** object. Attributes shared with other entities ([`id`](/data/common-attributes/#id), [`ids`](/data/common-attributes/#ids), [`display_name`](/data/common-attributes/#display_name), [`created_date`](/data/common-attributes/#created_date), [`updated_date`](/data/common-attributes/#updated_date)) are documented once on [Common attributes](/data/common-attributes/).
 
 ### `id`
-*String.* The [OpenAlex ID](/data/overview/#the-openalex-id-scheme) for this continent, e.g. `https://openalex.org/continents/Q15`. The final path segment is the [Wikidata](https://www.wikidata.org/) QID. See [Common fields](/data/common-fields/#id).
+*String.* The [OpenAlex ID](/data/overview/#the-openalex-id-scheme) for this continent, e.g. `https://openalex.org/continents/Q15`. The final path segment is the [Wikidata](https://www.wikidata.org/) QID. See [Common attributes](/data/common-attributes/#id).
 
 ### `ids`
 *Object.* External identifiers for the continent: `openalex` and `wikidata`.
 
 ### `display_name`
-*String.* The continent's English name, e.g. `Africa`. See [Common fields](/data/common-fields/#display_name).
+*String.* The continent's English name, e.g. `Africa`. See [Common attributes](/data/common-attributes/#display_name).
 
 ### `description`
 *String.* A short one-line description (typically just "continent").
@@ -49,10 +49,10 @@ The top-level fields on a **continent** object. Fields shared with other entitie
 *List.* The [countries](/data/countries/) on this continent, each a dehydrated `{ id, display_name }`.
 
 ### `created_date`
-*String.* When the continent record was added to OpenAlex (`YYYY-MM-DD`). See [Common fields](/data/common-fields/#created_date).
+*String.* When the continent record was added to OpenAlex (`YYYY-MM-DD`). See [Common attributes](/data/common-attributes/#created_date).
 
 ### `updated_date`
-*String.* When the continent record last changed. See [Common fields](/data/common-fields/#updated_date).
+*String.* When the continent record last changed. See [Common attributes](/data/common-attributes/#updated_date).
 
 ## In the API
 

@@ -806,7 +806,7 @@ the [corpus](#the-case-corpus) asserts its code.
 
 (The engine's diagnostics registry is the authoritative code list.)
 
-## Fields and values
+## Attributes and values
 
 OQL field names, the columns they map to, value types, and valid operators are owned
 by the **properties registry**

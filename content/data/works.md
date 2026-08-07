@@ -31,4 +31,4 @@ How works cite each other — references, citation counts, and FWCI — has its 
 
 ## In the API
 
-The Works endpoint is at [`api.openalex.org/works`](https://api.openalex.org/works). Fetch a single work by ID — [`/works/W2741809807`](https://api.openalex.org/works/W2741809807) — or a list, and [filter](/api/filtering/), [search](/api/searching/), [sort](/api/sorting/), [group](/api/grouping/), and [page](/api/paging/) over the fields documented on the [Fields](/data/works/fields/) page. For the full list of endpoints see the [endpoints index](/api/endpoints/).
+The Works endpoint is at [`api.openalex.org/works`](https://api.openalex.org/works). Fetch a single work by ID — [`/works/W2741809807`](https://api.openalex.org/works/W2741809807) — or a list, and [filter](/api/filtering/), [search](/api/searching/), [sort](/api/sorting/), [group](/api/grouping/), and [page](/api/paging/) over the attributes documented on the [Attributes](/data/works/attributes/) page. For the full list of endpoints see the [endpoints index](/api/endpoints/).

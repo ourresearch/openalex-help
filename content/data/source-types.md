@@ -22,33 +22,33 @@ The complete controlled vocabulary (live from [`api.openalex.org/source-types`](
 | `conference` | Proceedings and abstracts from academic conferences, like IEEE and IOP Conference Series. |
 | `other` | Sources that don't fit the standard categories above. |
 
-## Fields
+## Attributes
 
-Each source type is a small object. Fields shared with other entities are documented once on [Common fields](/data/common-fields/).
+Each source type is a small object. Attributes shared with other entities are documented once on [Common attributes](/data/common-attributes/).
 
 ### `id`
-*String.* The [OpenAlex ID](/data/overview/#the-openalex-id-scheme) for this type, e.g. `https://openalex.org/source-types/journal`. See [Common fields](/data/common-fields/#id).
+*String.* The [OpenAlex ID](/data/overview/#the-openalex-id-scheme) for this type, e.g. `https://openalex.org/source-types/journal`. See [Common attributes](/data/common-attributes/#id).
 
 ### `display_name`
-*String.* The human-readable name of the type — identical to the ID's final segment (`journal`, `repository`). See [Common fields](/data/common-fields/#display_name).
+*String.* The human-readable name of the type — identical to the ID's final segment (`journal`, `repository`). See [Common attributes](/data/common-attributes/#display_name).
 
 ### `description`
 *String.* A one-line definition of the type (the same text shown in the [Values](#values) table above).
 
 ### `works_count`
-*Integer.* How many [works](/data/works/) have a location whose source is of this type. See [Common fields](/data/common-fields/#works_count).
+*Integer.* How many [works](/data/works/) have a location whose source is of this type. See [Common attributes](/data/common-attributes/#works_count).
 
 ### `cited_by_count`
-*Integer.* Total citations across all works hosted by sources of this type. See [Common fields](/data/common-fields/#cited_by_count).
+*Integer.* Total citations across all works hosted by sources of this type. See [Common attributes](/data/common-attributes/#cited_by_count).
 
 ### `works_api_url`
 *String.* A ready-made [Works](/data/works/) API URL listing every work hosted by a source of this type, e.g. `https://api.openalex.org/works?filter=locations.source.type:journal`.
 
 ### `created_date`
-*String.* The date this type was added to OpenAlex (`YYYY-MM-DD`). See [Common fields](/data/common-fields/#created_date).
+*String.* The date this type was added to OpenAlex (`YYYY-MM-DD`). See [Common attributes](/data/common-attributes/#created_date).
 
 ### `updated_date`
-*String.* The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) UTC timestamp of the last change to this type object. See [Common fields](/data/common-fields/#updated_date).
+*String.* The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) UTC timestamp of the last change to this type object. See [Common attributes](/data/common-attributes/#updated_date).
 
 ## In the API
 

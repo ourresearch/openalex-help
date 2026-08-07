@@ -1,6 +1,6 @@
 ---
 title: "Institutions"
-description: "What an institution is, how OpenAlex grounds them in ROR and matches raw affiliation strings to them, and what every field on an institution object means."
+description: "What an institution is, how OpenAlex grounds them in ROR and matches raw affiliation strings to them, and what every attribute on an institution object means."
 tags: ["reference"]
 ---
 An **institution** is an organization that [authors](/data/authors/) are affiliated with — a university, company, hospital, government agency, non-profit, and more. Institutions are how OpenAlex answers "who did this research, and where?": every [work](/data/works/) links to the institutions its authors named, so you can roll research up from a single paper to a lab, a university, or a whole country. OpenAlex holds about 135,000 institutions. An institution's OpenAlex ID looks like `I27837315`; fetch one at [`api.openalex.org/institutions/I27837315`](https://api.openalex.org/institutions/I27837315).
@@ -27,18 +27,18 @@ Country is assigned through the same affiliation matching. When a raw string mat
 
 The parser can miss or mis-assign institutions, especially for organizations added to ROR after the model was last trained (April 2023) — those depend on the rules pass and ROR matcher to be caught at all. Coverage of layered national systems is limited by ROR's own coverage: where a sub-unit has no ROR record, affiliations can only match its parent. Institutions can also be affected by author-disambiguation errors on the works that feed them. Institutions are [correctable through curation](/data/curations/); institutions can review and fix their own affiliations with the [works-magnet tool](https://works-magnet.esr.gouv.fr/).
 
-## Fields
+## Attributes
 
-This is the canonical dictionary of every field on an **institution** object. Fields shared with other entities ([`id`](/data/common-fields/#id), [`ids`](/data/common-fields/#ids), [`display_name`](/data/common-fields/#display_name), [`works_count`](/data/common-fields/#works_count), [`cited_by_count`](/data/common-fields/#cited_by_count), [`summary_stats`](/data/common-fields/#summary_stats), [`counts_by_year`](/data/common-fields/#counts_by_year), [`created_date`](/data/common-fields/#created_date), [`updated_date`](/data/common-fields/#updated_date)) are documented once on [Common fields](/data/common-fields/); institution-specific notes are below.
+This is the canonical dictionary of every attribute on an **institution** object. Attributes shared with other entities ([`id`](/data/common-attributes/#id), [`ids`](/data/common-attributes/#ids), [`display_name`](/data/common-attributes/#display_name), [`works_count`](/data/common-attributes/#works_count), [`cited_by_count`](/data/common-attributes/#cited_by_count), [`summary_stats`](/data/common-attributes/#summary_stats), [`counts_by_year`](/data/common-attributes/#counts_by_year), [`created_date`](/data/common-attributes/#created_date), [`updated_date`](/data/common-attributes/#updated_date)) are documented once on [Common attributes](/data/common-attributes/); institution-specific notes are below.
 
 ### `id`
-*String.* The [OpenAlex ID](/data/overview/#the-openalex-id-scheme) for this institution, e.g. `https://openalex.org/I27837315`. See [Common fields](/data/common-fields/#id).
+*String.* The [OpenAlex ID](/data/overview/#the-openalex-id-scheme) for this institution, e.g. `https://openalex.org/I27837315`. See [Common attributes](/data/common-attributes/#id).
 
 ### `ids`
 *Object.* All known external identifiers for this institution, as URIs where possible; keys with no value are omitted. Institution-specific keys: `openalex`, `ror`, `grid` (the legacy GRID ID that ROR superseded), `wikipedia`, `wikidata`, `mag`. Filterable via `ids.openalex`.
 
 ### `display_name`
-*String.* The institution's canonical name, from its ROR record. See [Common fields](/data/common-fields/#display_name). Filterable and sortable.
+*String.* The institution's canonical name, from its ROR record. See [Common attributes](/data/common-attributes/#display_name). Filterable and sortable.
 
 ### `display_name_acronyms`
 *List.* Known acronyms for the institution (e.g. `["UM"]` for the University of Michigan).
@@ -95,16 +95,16 @@ This is the canonical dictionary of every field on an **institution** object. Fi
 *List.* Like [`topics`](#topics), but ranked by this institution's *share* of each topic relative to all institutions — surfacing topics where the institution is disproportionately active rather than just high-volume. Filter with `topic_share.id`.
 
 ### `works_count`
-*Integer.* The number of works affiliated with this institution. See [Common fields](/data/common-fields/#works_count). Filterable, sortable, and groupable.
+*Integer.* The number of works affiliated with this institution. See [Common attributes](/data/common-attributes/#works_count). Filterable, sortable, and groupable.
 
 ### `cited_by_count`
-*Integer.* Total citations across this institution's works. See [Common fields](/data/common-fields/#cited_by_count). Filterable, sortable, and groupable.
+*Integer.* Total citations across this institution's works. See [Common attributes](/data/common-attributes/#cited_by_count). Filterable, sortable, and groupable.
 
 ### `summary_stats`
-*Object.* Precomputed bibliometric indicators — `2yr_mean_citedness`, `h_index`, `i10_index`. See [Common fields](/data/common-fields/#summary_stats). Each sub-metric is independently filterable, sortable, and groupable.
+*Object.* Precomputed bibliometric indicators — `2yr_mean_citedness`, `h_index`, `i10_index`. See [Common attributes](/data/common-attributes/#summary_stats). Each sub-metric is independently filterable, sortable, and groupable.
 
 ### `counts_by_year`
-*List.* Works and citations for this institution per year over roughly the last ten years. See [Common fields](/data/common-fields/#counts_by_year) — the array is returned newest-first for institutions, so sort by `year` before slicing.
+*List.* Works and citations for this institution per year over roughly the last ten years. See [Common attributes](/data/common-attributes/#counts_by_year) — the array is returned newest-first for institutions, so sort by `year` before slicing.
 
 ### `status`
 *String.* The institution's lifecycle status from ROR (e.g. `active`). Filterable, sortable, and groupable.
@@ -113,10 +113,10 @@ This is the canonical dictionary of every field on an **institution** object. Fi
 *String.* A ready-made [Works](/data/works/) API URL for every work affiliated with this institution — e.g. `https://api.openalex.org/works?filter=institutions.id:I27837315`. A convenience link, not a stored value; follow it to page through the actual works.
 
 ### `created_date`
-*String.* The date this institution was added to OpenAlex (`YYYY-MM-DD`). See [Common fields](/data/common-fields/#created_date).
+*String.* The date this institution was added to OpenAlex (`YYYY-MM-DD`). See [Common attributes](/data/common-attributes/#created_date).
 
 ### `updated_date`
-*String.* The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) UTC timestamp of the last change to anything in the institution object. See [Common fields](/data/common-fields/#updated_date).
+*String.* The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) UTC timestamp of the last change to anything in the institution object. See [Common attributes](/data/common-attributes/#updated_date).
 
 ### Deprecated fields
 - **`x_concepts`** — the top [concepts](/data/concepts/) associated with the institution. Concepts are a superseded classification; `x_concepts` is no longer populated on institution objects ([`topics`](#topics) and [`topic_share`](#topic_share) replace it). The `x_concepts.id`/`concepts.id` filters remain for continuity.

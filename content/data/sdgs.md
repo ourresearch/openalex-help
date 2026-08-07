@@ -1,6 +1,6 @@
 ---
 title: "Sustainable Development Goals"
-description: "The UN's 17 Sustainable Development Goals as OpenAlex entities, how works are tagged to them by an open-source machine-learning classifier, and what every field on an SDG object means."
+description: "The UN's 17 Sustainable Development Goals as OpenAlex entities, how works are tagged to them by an open-source machine-learning classifier, and what every attribute on an SDG object means."
 tags: ["reference"]
 source_id: "27972124390679"
 source_url: "https://help.openalex.org/hc/en-us/articles/27972124390679-How-do-you-classify-works-as-contributing-to-the-UN-SDGs"
@@ -12,7 +12,7 @@ The **Sustainable Development Goals** (SDGs) are the [17 global goals](https://s
 
 The 17 goals themselves are a fixed UN vocabulary, so this section is about the tagging: how OpenAlex decides which works contribute to which goal.
 
-OpenAlex runs the open-source [Aurora Universities SDG Classifier](https://aurora-universities.eu/sdg-research/classify/) over each work's title and abstract. For every goal, the model returns a predicted-probability score, and OpenAlex keeps the goals scoring above a relevancy threshold — attaching them to the work's [`sustainable_development_goals`](/data/works/#sustainable_development_goals) list (each with its `score`) and rolling them up into each SDG's [`works_count`](#works_count) and [`cited_by_count`](#cited_by_count).
+OpenAlex runs the open-source [Aurora Universities SDG Classifier](https://aurora-universities.eu/sdg-research/classify/) over each work's title and abstract. For every goal, the model returns a predicted-probability score, and OpenAlex keeps the goals scoring above a relevancy threshold — attaching them to the work's [`sustainable_development_goals`](/data/works/attributes/#sustainable_development_goals) list (each with its `score`) and rolling them up into each SDG's [`works_count`](#works_count) and [`cited_by_count`](#cited_by_count).
 
 The threshold is **0.4**. At launch the cutoff was 0.1, which gave high recall but poor precision — many works were tagged with goals they weren't really about. Working with universities in Canada and Europe to test results against expert expectations, we found 0.4 struck the best balance: higher values started to miss genuine matches, lower values pulled in too many spurious ones.
 
@@ -23,15 +23,15 @@ Two things to keep in mind:
 
 For the fuller write-up, see [How we classify works as contributing to the UN SDGs](/data/sdgs/).
 
-## Fields
+## Attributes
 
-This is the canonical dictionary of every field on an **SDG** object. Fields shared with other entities are documented once on [Common fields](/data/common-fields/) and linked below.
+This is the canonical dictionary of every attribute on an **SDG** object. Attributes shared with other entities are documented once on [Common attributes](/data/common-attributes/) and linked below.
 
 ### `id`
-*String.* The [OpenAlex ID](/data/overview/#the-openalex-id-scheme) for this goal, e.g. `https://openalex.org/sdgs/3`. Unlike most entities, the numeric part is just the goal number (1–17). See [Common fields](/data/common-fields/#id).
+*String.* The [OpenAlex ID](/data/overview/#the-openalex-id-scheme) for this goal, e.g. `https://openalex.org/sdgs/3`. Unlike most entities, the numeric part is just the goal number (1–17). See [Common attributes](/data/common-attributes/#id).
 
 ### `display_name`
-*String.* The goal's name, e.g. `Good health and well-being`. See [Common fields](/data/common-fields/#display_name).
+*String.* The goal's name, e.g. `Good health and well-being`. See [Common attributes](/data/common-attributes/#display_name).
 
 ### `description`
 *String.* A one-sentence statement of the goal, e.g. "Ensure healthy lives and promote well-being for all at all ages."
@@ -46,19 +46,19 @@ This is the canonical dictionary of every field on an **SDG** object. Fields sha
 *String.* The same icon as [`image_url`](#image_url), scaled down (`width=300`).
 
 ### `works_count`
-*Integer.* How many works are tagged with this goal (i.e. scored above 0.4 for it). See [Common fields](/data/common-fields/#works_count).
+*Integer.* How many works are tagged with this goal (i.e. scored above 0.4 for it). See [Common attributes](/data/common-attributes/#works_count).
 
 ### `cited_by_count`
-*Integer.* Total citations across all works tagged with this goal. See [Common fields](/data/common-fields/#cited_by_count).
+*Integer.* Total citations across all works tagged with this goal. See [Common attributes](/data/common-attributes/#cited_by_count).
 
 ### `works_api_url`
 *String.* A ready-made [Works API](/data/works/) URL that returns every work tagged with this goal — i.e. `works?filter=sustainable_development_goals.id:<un-uri>`.
 
 ### `created_date`
-*String.* The date this goal was added to OpenAlex (`YYYY-MM-DD`). See [Common fields](/data/common-fields/#created_date).
+*String.* The date this goal was added to OpenAlex (`YYYY-MM-DD`). See [Common attributes](/data/common-attributes/#created_date).
 
 ### `updated_date`
-*String.* The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) UTC timestamp of the last change to this object. See [Common fields](/data/common-fields/#updated_date).
+*String.* The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) UTC timestamp of the last change to this object. See [Common attributes](/data/common-attributes/#updated_date).
 
 Of these, [`works_count`](#works_count), [`cited_by_count`](#cited_by_count), [`display_name`](#display_name), and [`id`](#id) can be used as filters and sort keys; `works_count`, `cited_by_count`, and `id` also support `group_by`. The others are select-only columns.
 
@@ -66,7 +66,7 @@ Of these, [`works_count`](#works_count), [`cited_by_count`](#cited_by_count), [`
 
 The SDGs endpoint is at [`api.openalex.org/sdgs`](https://api.openalex.org/sdgs) — a short, fixed list of 17. Fetch a single goal by number — [`/sdgs/3`](https://api.openalex.org/sdgs/3) — or the whole list, and [filter](/api/filtering/), sort, and [group](/api/grouping/) over the fields above. For the full list of endpoints see the [endpoints index](/api/endpoints/).
 
-The more common way to use SDGs is from the works side: every [work](/data/works/) carries a [`sustainable_development_goals`](/data/works/#sustainable_development_goals) list, and you can filter works by goal.
+The more common way to use SDGs is from the works side: every [work](/data/works/) carries a [`sustainable_development_goals`](/data/works/attributes/#sustainable_development_goals) list, and you can filter works by goal.
 
 ```
 # List all 17 SDGs

@@ -32,4 +32,4 @@ For the topics hierarchy and keywords, you can supply your own custom text — t
 - [Topics](/data/topics/) — the four-level hierarchy and how it's assigned
 - [Keywords](/data/keywords/) — how keyword tagging works
 - [SDGs](/data/sdgs/) — the Sustainable Development Goals tagger
-- [FWCI](/data/works/#field-weighted-citation-impact) — the field-normalized citation metric built on subfields
+- [FWCI](/data/works/citations/#field-weighted-citation-impact) — the field-normalized citation metric built on subfields

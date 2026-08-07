@@ -1,6 +1,6 @@
 ---
 title: "Collections"
-description: "What a collection is, what it can hold, how public and private ones differ, and what every field on a collection object means."
+description: "What a collection is, what it can hold, how public and private ones differ, and what every attribute on a collection object means."
 tags: ["reference"]
 ---
 A **collection** is a saved, named list of OpenAlex entities of a single type — "Papers I'm tracking for this grant", "Authors at my consortium", "Journals in our Elsevier package". Unlike almost everything else in OpenAlex, a collection isn't minted by the pipeline; *you* create it, by picking entities you care about and giving the set a name. The payoff is a single ID you can drop into the [`filter` parameter](/api/filtering/) anywhere in the API instead of pasting hundreds of OpenAlex IDs into every request. A collection's ID looks like `col_beNWUTw6qY` (the prefix `col_` followed by 10 alphanumeric characters).
@@ -28,12 +28,12 @@ A collection doesn't change any native entity — it's a lens over them, not a c
 
 Either way the collection composes normally with other filters, sorting, grouping, selecting, and pagination, and can be negated with a leading `!` to *exclude* its members. The full mechanics, type-matching rules, and limits live in the [API guide](/api/collections/).
 
-## Fields
+## Attributes
 
-A collection object is small — it carries metadata about the set, not the members themselves (those are paged separately). Fields shared with other entities are documented once on [Common fields](/data/common-fields/).
+A collection object is small — it carries metadata about the set, not the members themselves (those are paged separately). Attributes shared with other entities are documented once on [Common attributes](/data/common-attributes/).
 
 ### `id`
-*String.* The collection's ID: the literal prefix `col_` followed by 10 alphanumeric characters, e.g. `col_beNWUTw6qY`. This is the value you pass to the `collection:` filter (or to an ID-valued filter field). Unlike native-entity [OpenAlex IDs](/data/common-fields/#id), it is not a resolvable `openalex.org` URL.
+*String.* The collection's ID: the literal prefix `col_` followed by 10 alphanumeric characters, e.g. `col_beNWUTw6qY`. This is the value you pass to the `collection:` filter (or to an ID-valued filter field). Unlike native-entity [OpenAlex IDs](/data/common-attributes/#id), it is not a resolvable `openalex.org` URL.
 
 ### `user_id`
 *String.* The ID of the user who owns the collection, e.g. `user-TSamuHxDbnhn`. Collections are private to this user; only the owner (or an admin) can read or filter on them.
@@ -42,7 +42,7 @@ A collection object is small — it carries metadata about the set, not the memb
 *String.* The single entity type every member of the collection must be — one of `works`, `authors`, `sources`, `institutions`, `topics`, `sdgs`, `funders`, `publishers`, `keywords`, or `concepts`. Fixed at creation, and changeable only while the collection is empty. Every ID you add must match it; a wrong-type ID (an `A…` in a `works` collection) is rejected with a `400`.
 
 ### `display_name`
-*String.* The human-readable name of the collection, 1–30 characters. Case-insensitively unique per user, so you can't own two collections with the same name. See [Common fields](/data/common-fields/#display_name).
+*String.* The human-readable name of the collection, 1–30 characters. Case-insensitively unique per user, so you can't own two collections with the same name. See [Common attributes](/data/common-attributes/#display_name).
 
 ### `description`
 *String.* An optional free-text note about the collection, 0–500 characters. Empty by default.

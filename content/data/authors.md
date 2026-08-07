@@ -1,6 +1,6 @@
 ---
 title: "Authors"
-description: "What an author is, how OpenAlex disambiguates them from raw authorship strings, and what every field on an author object means."
+description: "What an author is, how OpenAlex disambiguates them from raw authorship strings, and what every attribute on an author object means."
 tags: ["reference"]
 source_id: "24347048891543"
 source_url: "https://help.openalex.org/hc/en-us/articles/24347048891543-Author-disambiguation"
@@ -46,18 +46,18 @@ Two author IDs fall outside the normal disambiguation process; you may encounter
 
 Disambiguation isn't perfect. The two failure modes are **splitting** (one real person's works spread across several profiles) and **merging** (works from different people collapsed into one profile). Because a profile's attributes — alternate names, institutions, metrics, topics — are all derived from its linked works, they can't be edited directly. You fix an author by [correcting which works belong to them](/data/curations/): see [How can I fix errors in an OpenAlex author profile?](/help/how-can-i-fix-errors-in-an-openalex-author-profile/). Our methods, code, and trained models are fully open source ([openalex-name-disambiguation](https://github.com/ourresearch/openalex-name-disambiguation/tree/main/V3); [live pipeline](https://github.com/ourresearch/openalex-databricks/tree/main/jobs/author_name_disambiguation/v3)).
 
-## Fields
+## Attributes
 
-This is the canonical dictionary of every field on an **author** object. Fields shared with other entities ([`id`](/data/common-fields/#id), [`ids`](/data/common-fields/#ids), [`display_name`](/data/common-fields/#display_name), [`works_count`](/data/common-fields/#works_count), [`cited_by_count`](/data/common-fields/#cited_by_count), [`summary_stats`](/data/common-fields/#summary_stats), [`counts_by_year`](/data/common-fields/#counts_by_year), [`created_date`](/data/common-fields/#created_date), [`updated_date`](/data/common-fields/#updated_date)) are documented once on [Common fields](/data/common-fields/); author-specific notes on them are below.
+This is the canonical dictionary of every attribute on an **author** object. Attributes shared with other entities ([`id`](/data/common-attributes/#id), [`ids`](/data/common-attributes/#ids), [`display_name`](/data/common-attributes/#display_name), [`works_count`](/data/common-attributes/#works_count), [`cited_by_count`](/data/common-attributes/#cited_by_count), [`summary_stats`](/data/common-attributes/#summary_stats), [`counts_by_year`](/data/common-attributes/#counts_by_year), [`created_date`](/data/common-attributes/#created_date), [`updated_date`](/data/common-attributes/#updated_date)) are documented once on [Common attributes](/data/common-attributes/); author-specific notes on them are below.
 
 ### `id`
-*String.* The [OpenAlex ID](/data/overview/#the-openalex-id-scheme) for this author, e.g. `https://openalex.org/A5023888391`. See [Common fields](/data/common-fields/#id).
+*String.* The [OpenAlex ID](/data/overview/#the-openalex-id-scheme) for this author, e.g. `https://openalex.org/A5023888391`. See [Common attributes](/data/common-attributes/#id).
 
 ### `ids`
 *Object.* All known external identifiers for this author, as URIs where possible; keys with no value are omitted. Author keys are `openalex`, `orcid`, and (rarely) `scopus`. Filter, group_by, and sort on the `orcid` and `scopus` sub-keys.
 
 ### `display_name`
-*String.* The author's name — the single most-frequent, most-informative form observed across their works. See [Common fields](/data/common-fields/#display_name). Filterable and sortable; free-text name search uses the `search` parameter (the `display_name.search` filter is deprecated).
+*String.* The author's name — the single most-frequent, most-informative form observed across their works. See [Common attributes](/data/common-attributes/#display_name). Filterable and sortable; free-text name search uses the `search` parameter (the `display_name.search` filter is deprecated).
 
 ### `display_name_alternatives`
 *List.* Other name strings seen for this author, deduplicated (e.g. `["Jason Priem", "Priem, Jason"]`). Useful for matching against name forms that differ from the canonical [`display_name`](#display_name).
@@ -87,16 +87,16 @@ This is the canonical dictionary of every field on an **author** object. Fields 
 *List.* Legacy [concept](/data/concepts/) tags the author works on, each with a `score` (0–100). Concepts are a superseded classification retained for continuity; [`topics`](#topics) are the current one. Filter and group_by with `x_concepts.id`.
 
 ### `works_count`
-*Integer.* Number of [works](/data/works/) by this author. See [Common fields](/data/common-fields/#works_count). Filterable, sortable, and groupable. Authors with `works_count:0` (e.g. profiles emptied by curation) are hidden from list results by default.
+*Integer.* Number of [works](/data/works/) by this author. See [Common attributes](/data/common-attributes/#works_count). Filterable, sortable, and groupable. Authors with `works_count:0` (e.g. profiles emptied by curation) are hidden from list results by default.
 
 ### `cited_by_count`
-*Integer.* Total citations across all of this author's works. See [Common fields](/data/common-fields/#cited_by_count).
+*Integer.* Total citations across all of this author's works. See [Common attributes](/data/common-attributes/#cited_by_count).
 
 ### `summary_stats`
-*Object.* Precomputed bibliometric indicators — `2yr_mean_citedness`, `h_index`, `i10_index`. See [Common fields](/data/common-fields/#summary_stats). Each sub-field is filterable, sortable, and groupable (e.g. `summary_stats.h_index:>40`).
+*Object.* Precomputed bibliometric indicators — `2yr_mean_citedness`, `h_index`, `i10_index`. See [Common attributes](/data/common-attributes/#summary_stats). Each sub-field is filterable, sortable, and groupable (e.g. `summary_stats.h_index:>40`).
 
 ### `counts_by_year`
-*List.* Per-year `{ year, works_count, oa_works_count, cited_by_count }` for roughly the last ten years. See [Common fields](/data/common-fields/#counts_by_year) — including why the array's sort direction isn't consistent across entity types (sort by `year` yourself).
+*List.* Per-year `{ year, works_count, oa_works_count, cited_by_count }` for roughly the last ten years. See [Common attributes](/data/common-attributes/#counts_by_year) — including why the array's sort direction isn't consistent across entity types (sort by `year` yourself).
 
 ### `works_api_url`
 *String.* A ready-made [Works API](/data/works/) URL that returns this author's works — `https://api.openalex.org/works?filter=author.id:A…`. A convenience so you don't have to build the filter yourself.
@@ -105,10 +105,10 @@ This is the canonical dictionary of every field on an **author** object. Fields 
 *String.* An internal blocking key (a coarse name signature, e.g. `j priem`) used during [disambiguation](#how-its-made) to group candidate authorships before finer clustering. Exposed mainly for debugging; filterable/sortable/groupable.
 
 ### `created_date`
-*String.* The date this author was added to OpenAlex (`YYYY-MM-DD`). See [Common fields](/data/common-fields/#created_date).
+*String.* The date this author was added to OpenAlex (`YYYY-MM-DD`). See [Common attributes](/data/common-attributes/#created_date).
 
 ### `updated_date`
-*String.* The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) UTC timestamp of the last change to anything in the author object — including routine citation-count recomputation. See [Common fields](/data/common-fields/#updated_date).
+*String.* The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) UTC timestamp of the last change to anything in the author object — including routine citation-count recomputation. See [Common attributes](/data/common-attributes/#updated_date).
 
 ## In the API
 

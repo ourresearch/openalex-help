@@ -403,18 +403,18 @@
 /docs/where-do-works-in-openalex-come-from/  /data/works/  301
 /docs/paper-version-definitions  /data/locations/  301
 /docs/paper-version-definitions/  /data/locations/  301
-/docs/where-does-your-citation-information-come-from  /data/works/#citations-and-references  301
-/docs/where-does-your-citation-information-come-from/  /data/works/#citations-and-references  301
-/docs/the-reference-counts-in-openalex-seem-off-why-is-that  /data/works/#citations-and-references  301
-/docs/the-reference-counts-in-openalex-seem-off-why-is-that/  /data/works/#citations-and-references  301
-/docs/why-are-the-counts-by-year-numbers-different-than-the-count-of-works-i  /data/common-fields/#counts_by_year  301
-/docs/why-are-the-counts-by-year-numbers-different-than-the-count-of-works-i/  /data/common-fields/#counts_by_year  301
+/docs/where-does-your-citation-information-come-from  /data/works/citations/#citations-and-references  301
+/docs/where-does-your-citation-information-come-from/  /data/works/citations/#citations-and-references  301
+/docs/the-reference-counts-in-openalex-seem-off-why-is-that  /data/works/citations/#citations-and-references  301
+/docs/the-reference-counts-in-openalex-seem-off-why-is-that/  /data/works/citations/#citations-and-references  301
+/docs/why-are-the-counts-by-year-numbers-different-than-the-count-of-works-i  /data/common-attributes/#counts_by_year  301
+/docs/why-are-the-counts-by-year-numbers-different-than-the-count-of-works-i/  /data/common-attributes/#counts_by_year  301
 /docs/how-do-you-determine-work-type  /data/work-types/  301
 /docs/how-do-you-determine-work-type/  /data/work-types/  301
 /docs/what-does-is-paratext-mean-in-the-api  /data/work-types/  301
 /docs/what-does-is-paratext-mean-in-the-api/  /data/work-types/  301
-/docs/what-do-the-fields-in-the-api-response-and-snapshot-records-mean  /data/works/#fields  301
-/docs/what-do-the-fields-in-the-api-response-and-snapshot-records-mean/  /data/works/#fields  301
+/docs/what-do-the-fields-in-the-api-response-and-snapshot-records-mean  /data/works/attributes/  301
+/docs/what-do-the-fields-in-the-api-response-and-snapshot-records-mean/  /data/works/attributes/  301
 # <<< rewrite-pass-b <<<
 
 # >>> rewrite-pass-c >>>
@@ -455,8 +455,8 @@
 /docs/should-i-use-subfields-or-concepts-for-my-search/  /data/topics/  301
 /docs/how-do-you-classify-works-as-contributing-to-the-un-sdgs  /data/sdgs/  301
 /docs/how-do-you-classify-works-as-contributing-to-the-un-sdgs/  /data/sdgs/  301
-/docs/field-weighted-citation-impact-fwci  /data/works/#field-weighted-citation-impact  301
-/docs/field-weighted-citation-impact-fwci/  /data/works/#field-weighted-citation-impact  301
+/docs/field-weighted-citation-impact-fwci  /data/works/citations/#field-weighted-citation-impact  301
+/docs/field-weighted-citation-impact-fwci/  /data/works/citations/#field-weighted-citation-impact  301
 # <<< rewrite-pass-e <<<
 # >>> rewrite-pass-f >>>
 /docs/open-access-oa  /data/works/open-access/  301
@@ -578,16 +578,16 @@
 /docs/works/  /data/works/  301
 /docs/work-types  /data/work-types/  301
 /docs/work-types/  /data/work-types/  301
-/docs/work-fields  /data/works/#fields  301
-/docs/work-fields/  /data/works/#fields  301
+/docs/work-fields  /data/works/attributes/  301
+/docs/work-fields/  /data/works/attributes/  301
 /docs/versions  /data/locations/  301
 /docs/versions/  /data/locations/  301
-/docs/citations  /data/works/#citations-and-references  301
-/docs/citations/  /data/works/#citations-and-references  301
-/docs/fwci  /data/works/#field-weighted-citation-impact  301
-/docs/fwci/  /data/works/#field-weighted-citation-impact  301
-/docs/counts-by-year  /data/common-fields/#counts_by_year  301
-/docs/counts-by-year/  /data/common-fields/#counts_by_year  301
+/docs/citations  /data/works/citations/#citations-and-references  301
+/docs/citations/  /data/works/citations/#citations-and-references  301
+/docs/fwci  /data/works/citations/#field-weighted-citation-impact  301
+/docs/fwci/  /data/works/citations/#field-weighted-citation-impact  301
+/docs/counts-by-year  /data/common-attributes/#counts_by_year  301
+/docs/counts-by-year/  /data/common-attributes/#counts_by_year  301
 /docs/author-disambiguation  /data/authors/#how-its-made  301
 /docs/author-disambiguation/  /data/authors/#how-its-made  301
 /docs/affiliations  /data/raw-affiliation-strings/  301
@@ -668,6 +668,11 @@
 # <<< Pass S <<<
 
 # Entities tab renamed to Data (Jason 2026-08-07); open-access moved under Data > Works.
+# Fields -> Attributes rename (same day; avoids collision with the aboutness Fields entity).
+/data/works/fields  /data/works/attributes/  301
+/data/works/fields/  /data/works/attributes/  301
+/data/common-fields  /data/common-attributes/  301
+/data/common-fields/  /data/common-attributes/  301
 /docs/open-access  /data/works/open-access/  301
 /docs/open-access/  /data/works/open-access/  301
 /entities  /data/  301

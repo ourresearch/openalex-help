@@ -1,6 +1,6 @@
 ---
 title: "Keywords"
-description: "What a keyword is, how OpenAlex derives keywords from a work's topics, and what every field on a keyword object means."
+description: "What a keyword is, how OpenAlex derives keywords from a work's topics, and what every attribute on a keyword object means."
 tags: ["reference"]
 source_id: "24736201130391"
 source_url: "https://help.openalex.org/hc/en-us/articles/24736201130391-Keywords"
@@ -21,30 +21,30 @@ Each keyword on a work therefore carries a `score` — its similarity to that wo
 
 The keyword-extraction pipeline is open source: [openalex-keywords (v2)](https://github.com/ourresearch/openalex-keywords/tree/main/v2) on GitHub. See [Aboutness](/data/aboutness/) for how keywords compare to topics, SDGs, and text search.
 
-## Fields
+## Attributes
 
-This is the canonical dictionary of every field on a **keyword** object. Fields shared with other entities are documented once on [Common fields](/data/common-fields/); keyword-specific notes are below.
+This is the canonical dictionary of every attribute on a **keyword** object. Attributes shared with other entities are documented once on [Common attributes](/data/common-attributes/); keyword-specific notes are below.
 
 ### `id`
-*String.* The [OpenAlex ID](/data/overview/#the-openalex-id-scheme) for this keyword. Unlike most entities, a keyword's ID is a readable slug rather than a letter-and-number code, e.g. `https://openalex.org/keywords/machine-learning`. See [Common fields](/data/common-fields/#id).
+*String.* The [OpenAlex ID](/data/overview/#the-openalex-id-scheme) for this keyword. Unlike most entities, a keyword's ID is a readable slug rather than a letter-and-number code, e.g. `https://openalex.org/keywords/machine-learning`. See [Common attributes](/data/common-attributes/#id).
 
 ### `display_name`
-*String.* The keyword's human-readable label, e.g. `Machine learning`. See [Common fields](/data/common-fields/#display_name).
+*String.* The keyword's human-readable label, e.g. `Machine learning`. See [Common attributes](/data/common-attributes/#display_name).
 
 ### `works_count`
-*Integer.* The number of works tagged with this keyword. See [Common fields](/data/common-fields/#works_count).
+*Integer.* The number of works tagged with this keyword. See [Common attributes](/data/common-attributes/#works_count).
 
 ### `cited_by_count`
-*Integer.* The total citations received by all works tagged with this keyword. See [Common fields](/data/common-fields/#cited_by_count).
+*Integer.* The total citations received by all works tagged with this keyword. See [Common attributes](/data/common-attributes/#cited_by_count).
 
 ### `works_api_url`
-*String.* A ready-made [Works API](/data/works/#in-the-api) URL returning every work tagged with this keyword, e.g. `https://api.openalex.org/works?filter=keywords.id:keywords/machine-learning`. A convenience link — it's the same query you'd build with the [`keywords.id`](/data/works/#keywords) filter.
+*String.* A ready-made [Works API](/data/works/#in-the-api) URL returning every work tagged with this keyword, e.g. `https://api.openalex.org/works?filter=keywords.id:keywords/machine-learning`. A convenience link — it's the same query you'd build with the [`keywords.id`](/data/works/attributes/#keywords) filter.
 
 ### `created_date`
-*String.* The date this keyword was added to OpenAlex (`YYYY-MM-DD`). See [Common fields](/data/common-fields/#created_date).
+*String.* The date this keyword was added to OpenAlex (`YYYY-MM-DD`). See [Common attributes](/data/common-attributes/#created_date).
 
 ### `updated_date`
-*String.* The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) UTC timestamp of the last change to this keyword object. See [Common fields](/data/common-fields/#updated_date).
+*String.* The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) UTC timestamp of the last change to this keyword object. See [Common attributes](/data/common-attributes/#updated_date).
 
 ## In the API
 

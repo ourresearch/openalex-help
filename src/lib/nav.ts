@@ -43,8 +43,8 @@ export const NAV_GROUPS: Record<string, NavGroup[]> = {
       // (every reference tab opens with a Get started section, first page
       // "Overview"). The overview page still composes to "Entities Overview".
       label: 'Get started',
-      desc: 'What entities are and the fields they share.',
-      slugs: ['overview', 'common-fields'],
+      desc: 'What entities are and the attributes they share.',
+      slugs: ['overview', 'common-attributes'],
     },
     {
       label: 'Native',
@@ -53,7 +53,7 @@ export const NAV_GROUPS: Record<string, NavGroup[]> = {
       // pages — Citations, Open access (moved in from Docs), and Fields.
       slugs: [
         'native',
-        { label: 'Works', slug: 'works', children: ['works/citations', 'works/open-access', 'works/fields'] },
+        { label: 'Works', slug: 'works', children: ['works/citations', 'works/open-access', 'works/attributes'] },
         'authors',
         'sources',
         'publishers',

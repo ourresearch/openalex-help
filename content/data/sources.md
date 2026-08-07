@@ -1,6 +1,6 @@
 ---
 title: "Sources"
-description: "What a source is, where sources come from, how OpenAlex builds them and judges journal quality and open access, and what every field on a source object means."
+description: "What a source is, where sources come from, how OpenAlex builds them and judges journal quality and open access, and what every attribute on a source object means."
 tags: ["reference"]
 source_id: "24347057529623"
 source_url: "https://help.openalex.org/hc/en-us/articles/24347057529623-Sources-in-OpenAlex"
@@ -57,14 +57,14 @@ Not every fully-OA journal is in DOAJ — smaller titles and journals from the d
 
 ### APC data
 
-The [article processing charge](https://en.wikipedia.org/wiki/Article_processing_charge) (APC) is the fee some journals charge to publish a work OA. At the source level OpenAlex records the journal's **list price** in [`apc_prices`](#apc_prices) (per currency) and [`apc_usd`](#apc_usd); at the [work](/data/works/#apc_list) level it records both the list price and OpenAlex's best estimate of what was actually paid. List prices are sourced from DOAJ plus manual curation. Two caveats: OpenAlex stores one (current-year) list price per journal, so historical estimates apply today's price to an older year; and DOAJ coverage skews toward fully-OA journals, leaving hybrid journals — where much APC spending happens — thinly covered. For year-by-year list prices, [Butler et al. 2024](https://doi.org/10.7910/DVN/CR1MMV) (Harvard Dataverse, CC0) provides publisher price lists per journal per year (2019–2023, six large publishers, ~8,711 journals); OpenAlex is **evaluating** integrating this dataset but has **not** yet done so. See [Journal quality & OA status](/data/sources/#how-its-made) for the full APC discussion, including how to estimate institutional APC spend.
+The [article processing charge](https://en.wikipedia.org/wiki/Article_processing_charge) (APC) is the fee some journals charge to publish a work OA. At the source level OpenAlex records the journal's **list price** in [`apc_prices`](#apc_prices) (per currency) and [`apc_usd`](#apc_usd); at the [work](/data/works/attributes/#apc_list) level it records both the list price and OpenAlex's best estimate of what was actually paid. List prices are sourced from DOAJ plus manual curation. Two caveats: OpenAlex stores one (current-year) list price per journal, so historical estimates apply today's price to an older year; and DOAJ coverage skews toward fully-OA journals, leaving hybrid journals — where much APC spending happens — thinly covered. For year-by-year list prices, [Butler et al. 2024](https://doi.org/10.7910/DVN/CR1MMV) (Harvard Dataverse, CC0) provides publisher price lists per journal per year (2019–2023, six large publishers, ~8,711 journals); OpenAlex is **evaluating** integrating this dataset but has **not** yet done so. See [Journal quality & OA status](/data/sources/#how-its-made) for the full APC discussion, including how to estimate institutional APC spend.
 
-## Fields
+## Attributes
 
-This is the canonical dictionary of every field on a **source** object. Fields shared with other entities ([`id`](/data/common-fields/#id), [`ids`](/data/common-fields/#ids), [`display_name`](/data/common-fields/#display_name), [`works_count`](/data/common-fields/#works_count), [`cited_by_count`](/data/common-fields/#cited_by_count), [`summary_stats`](/data/common-fields/#summary_stats), [`counts_by_year`](/data/common-fields/#counts_by_year), [`created_date`](/data/common-fields/#created_date), [`updated_date`](/data/common-fields/#updated_date)) are documented once on [Common fields](/data/common-fields/); source-specific notes on them are below. The filter/sort/group_by operations each field supports come from the [properties catalog](https://api.openalex.org/properties/sources).
+This is the canonical dictionary of every attribute on a **source** object. Attributes shared with other entities ([`id`](/data/common-attributes/#id), [`ids`](/data/common-attributes/#ids), [`display_name`](/data/common-attributes/#display_name), [`works_count`](/data/common-attributes/#works_count), [`cited_by_count`](/data/common-attributes/#cited_by_count), [`summary_stats`](/data/common-attributes/#summary_stats), [`counts_by_year`](/data/common-attributes/#counts_by_year), [`created_date`](/data/common-attributes/#created_date), [`updated_date`](/data/common-attributes/#updated_date)) are documented once on [Common attributes](/data/common-attributes/); source-specific notes on them are below. The filter/sort/group_by operations each field supports come from the [properties catalog](https://api.openalex.org/properties/sources).
 
 ### `id`
-*String.* The [OpenAlex ID](/data/overview/#the-openalex-id-scheme) for this source, e.g. `https://openalex.org/S137773608`. See [Common fields](/data/common-fields/#id).
+*String.* The [OpenAlex ID](/data/overview/#the-openalex-id-scheme) for this source, e.g. `https://openalex.org/S137773608`. See [Common attributes](/data/common-attributes/#id).
 
 ### `ids`
 *Object.* All known external identifiers for this source, as URIs where possible. Source-specific keys: `openalex`, `issn_l`, `issn` (a list), `mag` (Microsoft Academic Graph integer ID), `wikidata`, `fatcat`. Filter/sort on `ids.openalex` and `ids.mag`.
@@ -130,7 +130,7 @@ This is the canonical dictionary of every field on a **source** object. Fields s
 *List.* The USD list price by year (`year`, `price`), where OpenAlex has year-specific data. Present on the object; the single-value [`apc_usd`](#apc_usd) is the filterable field.
 
 ### `oa_works_count`
-*Integer.* How many of the source's [`works_count`](/data/common-fields/#works_count) works are [open access](/data/works/open-access/). Also appears per-year inside [`counts_by_year`](#counts_by_year).
+*Integer.* How many of the source's [`works_count`](/data/common-attributes/#works_count) works are [open access](/data/works/open-access/). Also appears per-year inside [`counts_by_year`](#counts_by_year).
 
 ### `first_publication_year`
 *Integer.* The earliest publication year of any work in this source. Filter/sort.
@@ -160,25 +160,25 @@ This is the canonical dictionary of every field on a **source** object. Fields s
 *List.* Like [`topics`](#topics), but scored by the source's *share* of each topic relative to all sources — surfacing the topics this source is disproportionately central to, not just its most frequent. Filter/sort/group_by on `topic_share.id`.
 
 ### `counts_by_year`
-*List.* Per-year rollup of the source's `works_count`, `oa_works_count`, and `cited_by_count` for roughly the last ten years. See [Common fields](/data/common-fields/#counts_by_year), including why its sort direction isn't consistent across entity types.
+*List.* Per-year rollup of the source's `works_count`, `oa_works_count`, and `cited_by_count` for roughly the last ten years. See [Common attributes](/data/common-attributes/#counts_by_year), including why its sort direction isn't consistent across entity types.
 
 ### `summary_stats`
-*Object.* Precomputed bibliometric indicators for the source: `2yr_mean_citedness` (a [journal impact factor](https://en.wikipedia.org/wiki/Impact_factor)-style measure), `h_index`, and `i10_index`. Filter/sort/group_by on each. See [Common fields](/data/common-fields/#summary_stats).
+*Object.* Precomputed bibliometric indicators for the source: `2yr_mean_citedness` (a [journal impact factor](https://en.wikipedia.org/wiki/Impact_factor)-style measure), `h_index`, and `i10_index`. Filter/sort/group_by on each. See [Common attributes](/data/common-attributes/#summary_stats).
 
 ### `works_count`
-*Integer.* The number of [works](/data/works/) published in this source. See [Common fields](/data/common-fields/#works_count). Filter/sort/group_by.
+*Integer.* The number of [works](/data/works/) published in this source. See [Common attributes](/data/common-attributes/#works_count). Filter/sort/group_by.
 
 ### `cited_by_count`
-*Integer.* Total [citations](/data/works/#cited_by_count) received across all of the source's works. See [Common fields](/data/common-fields/#cited_by_count). Filter/sort/group_by.
+*Integer.* Total [citations](/data/works/attributes/#cited_by_count) received across all of the source's works. See [Common attributes](/data/common-attributes/#cited_by_count). Filter/sort/group_by.
 
 ### `works_api_url`
 *String.* A ready-made [Works API](/data/works/) URL that returns every work in this source — i.e. `api.openalex.org/works?filter=primary_location.source.id:S…`. A convenience link, not a filterable field.
 
 ### `created_date`
-*String.* The date the source was added to OpenAlex (`YYYY-MM-DD`). See [Common fields](/data/common-fields/#created_date).
+*String.* The date the source was added to OpenAlex (`YYYY-MM-DD`). See [Common attributes](/data/common-attributes/#created_date).
 
 ### `updated_date`
-*String.* The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) UTC timestamp of the last change to the source object. See [Common fields](/data/common-fields/#updated_date).
+*String.* The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) UTC timestamp of the last change to the source object. See [Common attributes](/data/common-attributes/#updated_date).
 
 ## In the API
 

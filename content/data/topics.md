@@ -1,6 +1,6 @@
 ---
 title: "Topics"
-description: "What a topic is, how OpenAlex assigns topics to works and rolls them up into a four-level hierarchy, and what every field on a topic object means."
+description: "What a topic is, how OpenAlex assigns topics to works and rolls them up into a four-level hierarchy, and what every attribute on a topic object means."
 tags: ["reference"]
 source_id: "24736129405719"
 source_url: "https://help.openalex.org/hc/en-us/articles/24736129405719-Topics"
@@ -18,11 +18,11 @@ The set of topics itself was built from the citation network. OpenAlex started w
 
 ### Assigning topics to works
 
-A deep-learning classifier assigns topics to any work from its **title, abstract, citations, and journal name**. The model handles missing data gracefully — it can classify a brand-new work that has no incoming citations yet from just its title, abstract, and source. It scores every candidate topic; the highest-scoring one becomes the work's [`primary_topic`](/data/works/#primary_topic), and the top few (up to three) appear in the work's [`topics`](/data/works/#topics) array, each with a `score`. Some works can't be classified at all — no title, no abstract, no citations means the model has nothing to work with. About 12% of works have no topic for this reason (39.6M of 322M as of mid-2026); count them with [`filter=primary_topic.id:null`](https://api.openalex.org/works?filter=primary_topic.id:null).
+A deep-learning classifier assigns topics to any work from its **title, abstract, citations, and journal name**. The model handles missing data gracefully — it can classify a brand-new work that has no incoming citations yet from just its title, abstract, and source. It scores every candidate topic; the highest-scoring one becomes the work's [`primary_topic`](/data/works/attributes/#primary_topic), and the top few (up to three) appear in the work's [`topics`](/data/works/attributes/#topics) array, each with a `score`. Some works can't be classified at all — no title, no abstract, no citations means the model has nothing to work with. About 12% of works have no topic for this reason (39.6M of 322M as of mid-2026); count them with [`filter=primary_topic.id:null`](https://api.openalex.org/works?filter=primary_topic.id:null).
 
 ### One primary subfield per work
 
-Because a work's topics roll up the hierarchy, every work also gets a single **primary subfield, field, and domain** — the ones its `primary_topic` maps to. This single-primary choice is deliberate: it lets OpenAlex normalize citation impact ([FWCI](/data/works/#field-weighted-citation-impact)) against works in the same subfield, and it means a work is classified from *its own text*, not from the catch-all subject of the journal it happened to appear in. The trade-off is precision over recall: a work about the statistics of cancer trials gets one primary subfield, even though it touches several.
+Because a work's topics roll up the hierarchy, every work also gets a single **primary subfield, field, and domain** — the ones its `primary_topic` maps to. This single-primary choice is deliberate: it lets OpenAlex normalize citation impact ([FWCI](/data/works/citations/#field-weighted-citation-impact)) against works in the same subfield, and it means a work is classified from *its own text*, not from the catch-all subject of the journal it happened to appear in. The trade-off is precision over recall: a work about the statistics of cancer trials gets one primary subfield, even though it touches several.
 
 ### Subfields vs. concepts
 
@@ -30,18 +30,18 @@ Before topics, OpenAlex classified works with [concepts](/data/concepts/) — a 
 
 You can also run the classifier on your own text — a draft abstract or a grant proposal — and get back the same topics, subfields, keywords, and SDGs OpenAlex would assign. See the [text aboutness endpoint](/api/tag-aboutness/).
 
-## Fields
+## Attributes
 
-This is the canonical dictionary of every field on a **topic** object. Fields shared with other entities ([`id`](/data/common-fields/#id), [`ids`](/data/common-fields/#ids), [`display_name`](/data/common-fields/#display_name), [`works_count`](/data/common-fields/#works_count), [`cited_by_count`](/data/common-fields/#cited_by_count), [`created_date`](/data/common-fields/#created_date), [`updated_date`](/data/common-fields/#updated_date)) are documented once on [Common fields](/data/common-fields/); topic-specific notes are below.
+This is the canonical dictionary of every attribute on a **topic** object. Attributes shared with other entities ([`id`](/data/common-attributes/#id), [`ids`](/data/common-attributes/#ids), [`display_name`](/data/common-attributes/#display_name), [`works_count`](/data/common-attributes/#works_count), [`cited_by_count`](/data/common-attributes/#cited_by_count), [`created_date`](/data/common-attributes/#created_date), [`updated_date`](/data/common-attributes/#updated_date)) are documented once on [Common attributes](/data/common-attributes/); topic-specific notes are below.
 
 ### `id`
-*String.* The [OpenAlex ID](/data/overview/#the-openalex-id-scheme) for this topic, e.g. `https://openalex.org/T11636`. Topics use the `T####` scheme (unlike domains, fields, and subfields, which use bare numeric IDs). See [Common fields](/data/common-fields/#id).
+*String.* The [OpenAlex ID](/data/overview/#the-openalex-id-scheme) for this topic, e.g. `https://openalex.org/T11636`. Topics use the `T####` scheme (unlike domains, fields, and subfields, which use bare numeric IDs). See [Common attributes](/data/common-attributes/#id).
 
 ### `ids`
 *Object.* External identifiers for this topic, as URIs. Topic-specific keys: `openalex` and (when a matching article exists) `wikipedia`.
 
 ### `display_name`
-*String.* The topic's name, e.g. "Artificial Intelligence in Healthcare and Education." Generated by an LLM from the topic's citation cluster. See [Common fields](/data/common-fields/#display_name).
+*String.* The topic's name, e.g. "Artificial Intelligence in Healthcare and Education." Generated by an LLM from the topic's citation cluster. See [Common attributes](/data/common-attributes/#display_name).
 
 ### `description`
 *String.* A paragraph describing what the topic's cluster of papers is about, also LLM-generated.
@@ -62,19 +62,19 @@ This is the canonical dictionary of every field on a **topic** object. Fields sh
 *List.* The other topics that share this topic's [`subfield`](#subfield) (`id`, `display_name`), useful for navigating laterally within a subfield. Empty for a topic that is the only one in its subfield.
 
 ### `works_count`
-*Integer.* How many works have this topic assigned (as their primary or a secondary topic). See [Common fields](/data/common-fields/#works_count).
+*Integer.* How many works have this topic assigned (as their primary or a secondary topic). See [Common attributes](/data/common-attributes/#works_count).
 
 ### `cited_by_count`
-*Integer.* Total citations across all works assigned this topic. See [Common fields](/data/common-fields/#cited_by_count).
+*Integer.* Total citations across all works assigned this topic. See [Common attributes](/data/common-attributes/#cited_by_count).
 
 ### `works_api_url`
 *String.* A ready-made [Works](/data/works/) API URL for every work tagged with this topic, e.g. `https://api.openalex.org/works?filter=topics.id:T11636`. A convenience link; OpenAlex doesn't store work IDs on the topic object.
 
 ### `created_date`
-*String.* The date this topic was added to OpenAlex (`YYYY-MM-DD`). See [Common fields](/data/common-fields/#created_date).
+*String.* The date this topic was added to OpenAlex (`YYYY-MM-DD`). See [Common attributes](/data/common-attributes/#created_date).
 
 ### `updated_date`
-*String.* The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) UTC timestamp of the last change to the topic object. See [Common fields](/data/common-fields/#updated_date).
+*String.* The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) UTC timestamp of the last change to the topic object. See [Common attributes](/data/common-attributes/#updated_date).
 
 ## In the API
 

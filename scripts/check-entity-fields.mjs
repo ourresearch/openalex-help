@@ -2,7 +2,7 @@
 // check-entity-fields.mjs — drift check for the Entities tab field dictionaries
 // (oxjob #354 Pass R §3). Precedent: sync-query-docs.mjs.
 //
-// For each entity page under content/entities/ that has a `## Fields` section,
+// For each entity page under content/entities/ that has an `## Attributes` section,
 // this compares the page's `### \`field\`` headings against:
 //   1. the real top-level keys of live API objects (union over a diverse sample), and
 //   2. the entity's property catalog at api.openalex.org/properties.
@@ -31,7 +31,7 @@ const API = 'https://api.openalex.org';
 // shape from the standalone /locations Walden row, so the list endpoint is the
 // wrong oracle for them. They're self-verified against a live work object.
 const ENTITIES = {
-  works: { page: 'works/fields' }, // dictionary split onto a child page (2026-08-07)
+  works: { page: 'works/attributes' }, // dictionary split onto a child page (2026-08-07)
   authors: {}, sources: {}, institutions: {}, publishers: {},
   funders: {}, topics: {}, keywords: {}, awards: {}, concepts: {},
   subfields: {}, fields: {}, domains: {}, sdgs: {},
@@ -66,7 +66,7 @@ async function sampleKeys(endpoint) {
 
 // The `### \`field\`` headings inside the page's `## Fields` section.
 function pageFields(md) {
-  const start = md.search(/^##\s+Fields\s*$/m);
+  const start = md.search(/^##\s+Attributes\s*$/m);
   if (start === -1) return null;
   const rest = md.slice(start + 1);
   const end = rest.search(/^##\s+(?!#)/m); // next H2
@@ -102,7 +102,7 @@ for (const slug of slugs) {
   const path = join(ROOT, 'content', 'data', `${cfg.page ?? slug}.md`);
   if (!existsSync(path)) { console.log(`· ${slug}: no page yet (skipped)`); continue; }
   const fields = pageFields(readFileSync(path, 'utf8'));
-  if (fields === null) { console.log(`· ${slug}: page has no "## Fields" section (skipped)`); continue; }
+  if (fields === null) { console.log(`· ${slug}: page has no "## Attributes" section (skipped)`); continue; }
 
   const endpoint = cfg.endpoint ?? slug;
   const pk = cfg.propKey ?? slug;

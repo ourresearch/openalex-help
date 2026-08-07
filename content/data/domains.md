@@ -1,6 +1,6 @@
 ---
 title: "Domains"
-description: "What a domain is, where it sits at the top of the OpenAlex classification hierarchy, and what every field on a domain object means."
+description: "What a domain is, where it sits at the top of the OpenAlex classification hierarchy, and what every attribute on a domain object means."
 tags: ["reference"]
 source_id: "24736129405719"
 source_url: "https://help.openalex.org/hc/en-us/articles/24736129405719-Topics"
@@ -12,20 +12,20 @@ A **domain** is the top, broadest level of OpenAlex's four-level classification 
 
 Domains aren't classified on their own — they're the top level of the same hierarchy [topics](/data/topics/) are built from. Each of the ~4,500 topics maps up through a [subfield](/data/subfields/) and [field](/data/fields/) to one of the four domains, following Scopus's [ASJC categories](https://service.elsevier.com/app/answers/detail/a_id/12007/supporthub/scopus/), and a work "belongs to" a domain through the topics assigned to it. The four domain **labels** are standardized, but a work lands in one only because a machine-learning model inferred its topic from the work's text — which is why domains, like the rest of the hierarchy, live under [Aboutness](/data/aboutness/) rather than [Vocabulary](/data/vocabulary/). See [Topics → How we build it](/data/topics/#how-its-made) for the full pipeline.
 
-A work's primary domain is the domain of its [`primary_topic`](/data/works/#primary_topic). To find works in a domain, filter [Works](/data/works/) by `topics.domain.id` (any assigned topic's domain) or `primary_topic.domain.id` (the primary only). Domains are the top of the tree — there's no level above them; one level down is a set of [fields](/data/fields/).
+A work's primary domain is the domain of its [`primary_topic`](/data/works/attributes/#primary_topic). To find works in a domain, filter [Works](/data/works/) by `topics.domain.id` (any assigned topic's domain) or `primary_topic.domain.id` (the primary only). Domains are the top of the tree — there's no level above them; one level down is a set of [fields](/data/fields/).
 
-## Fields
+## Attributes
 
-This is the canonical dictionary of every field on a **domain** object. Fields shared with other entities ([`id`](/data/common-fields/#id), [`ids`](/data/common-fields/#ids), [`display_name`](/data/common-fields/#display_name), [`works_count`](/data/common-fields/#works_count), [`cited_by_count`](/data/common-fields/#cited_by_count), [`created_date`](/data/common-fields/#created_date), [`updated_date`](/data/common-fields/#updated_date)) are documented once on [Common fields](/data/common-fields/); domain-specific notes are below.
+This is the canonical dictionary of every attribute on a **domain** object. Attributes shared with other entities ([`id`](/data/common-attributes/#id), [`ids`](/data/common-attributes/#ids), [`display_name`](/data/common-attributes/#display_name), [`works_count`](/data/common-attributes/#works_count), [`cited_by_count`](/data/common-attributes/#cited_by_count), [`created_date`](/data/common-attributes/#created_date), [`updated_date`](/data/common-attributes/#updated_date)) are documented once on [Common attributes](/data/common-attributes/); domain-specific notes are below.
 
 ### `id`
-*String.* The [OpenAlex ID](/data/overview/#the-openalex-id-scheme) for this domain, e.g. `https://openalex.org/domains/1`. Domains use a bare single-digit numeric ID (1–4), not the letter-prefixed scheme. See [Common fields](/data/common-fields/#id).
+*String.* The [OpenAlex ID](/data/overview/#the-openalex-id-scheme) for this domain, e.g. `https://openalex.org/domains/1`. Domains use a bare single-digit numeric ID (1–4), not the letter-prefixed scheme. See [Common attributes](/data/common-attributes/#id).
 
 ### `ids`
 *Object.* External identifiers for this domain, as URIs: `openalex`, plus `wikidata` and `wikipedia` where a matching article exists.
 
 ### `display_name`
-*String.* The domain's name — one of "Life Sciences," "Social Sciences," "Physical Sciences," or "Health Sciences." See [Common fields](/data/common-fields/#display_name).
+*String.* The domain's name — one of "Life Sciences," "Social Sciences," "Physical Sciences," or "Health Sciences." See [Common attributes](/data/common-attributes/#display_name).
 
 ### `display_name_alternatives`
 *List.* Other names the domain is known by (e.g. "bioscience," "biological science disciplines" for Life Sciences), for matching and search.
@@ -40,19 +40,19 @@ This is the canonical dictionary of every field on a **domain** object. Fields s
 *List.* The other three domains (`id`, `display_name`), for navigating laterally across the classification.
 
 ### `works_count`
-*Integer.* How many works fall in this domain (through their assigned topics). See [Common fields](/data/common-fields/#works_count).
+*Integer.* How many works fall in this domain (through their assigned topics). See [Common attributes](/data/common-attributes/#works_count).
 
 ### `cited_by_count`
-*Integer.* Total citations across all works in this domain. See [Common fields](/data/common-fields/#cited_by_count).
+*Integer.* Total citations across all works in this domain. See [Common attributes](/data/common-attributes/#cited_by_count).
 
 ### `works_api_url`
 *String.* A ready-made [Works](/data/works/) API URL for every work in this domain, e.g. `https://api.openalex.org/works?filter=topics.domain.id:1`. A convenience link; work IDs aren't stored on the domain object.
 
 ### `created_date`
-*String.* The date this domain was added to OpenAlex (`YYYY-MM-DD`). See [Common fields](/data/common-fields/#created_date).
+*String.* The date this domain was added to OpenAlex (`YYYY-MM-DD`). See [Common attributes](/data/common-attributes/#created_date).
 
 ### `updated_date`
-*String.* The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) UTC timestamp of the last change to the domain object. See [Common fields](/data/common-fields/#updated_date).
+*String.* The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) UTC timestamp of the last change to the domain object. See [Common attributes](/data/common-attributes/#updated_date).
 
 ## In the API
 

@@ -1,14 +1,14 @@
 ---
-title: "Fields"
-description: "The canonical dictionary of every field on a work object — what each one means, where it comes from, and its quirks."
+title: "Attributes"
+description: "The canonical dictionary of every attribute on a work object — what each one means, where it comes from, and its quirks."
 tags: ["reference"]
 ---
-This is the canonical dictionary of every field on a **work** object. Fields shared with other entities ([`id`](/data/common-fields/#id), [`ids`](/data/common-fields/#ids), [`display_name`](/data/common-fields/#display_name), [`created_date`](/data/common-fields/#created_date), [`updated_date`](/data/common-fields/#updated_date)) are documented once on [Common fields](/data/common-fields/); works-specific notes on them are below.
+This is the canonical dictionary of every attribute on a **work** object. Attributes shared with other entities ([`id`](/data/common-attributes/#id), [`ids`](/data/common-attributes/#ids), [`display_name`](/data/common-attributes/#display_name), [`created_date`](/data/common-attributes/#created_date), [`updated_date`](/data/common-attributes/#updated_date)) are documented once on [Common attributes](/data/common-attributes/); works-specific notes on them are below.
 
-## Fields
+## Attributes
 
 ### `id`
-*String.* The [OpenAlex ID](/data/overview/#the-openalex-id-scheme) for this work, e.g. `https://openalex.org/W2741809807`. See [Common fields](/data/common-fields/#id).
+*String.* The [OpenAlex ID](/data/overview/#the-openalex-id-scheme) for this work, e.g. `https://openalex.org/W2741809807`. See [Common attributes](/data/common-attributes/#id).
 
 ### `ids`
 *Object.* All known external identifiers for this work, as URIs where possible; keys for unknown IDs are omitted. Work-specific keys: `openalex`, `doi`, `mag` (Microsoft Academic Graph integer ID), `pmid` (PubMed), `pmcid` (PubMed Central).
@@ -112,7 +112,7 @@ See [Open access](/data/works/open-access/) for how these fields combine.
 *Integer.* The number of works that cite this work — the count of successful reference matches pointing at it (see [How we build it](#citations-and-references)).
 
 ### `counts_by_year`
-*List.* [`cited_by_count`](#cited_by_count) for each of the last ten years, binned by year (years with zero citations omitted; citations older than ten years excluded). See [Common fields](/data/common-fields/#counts_by_year), including why it can drift from a live count.
+*List.* [`cited_by_count`](#cited_by_count) for each of the last ten years, binned by year (years with zero citations omitted; citations older than ten years excluded). See [Common attributes](/data/common-attributes/#counts_by_year), including why it can drift from a live count.
 
 ### `cited_by_percentile_year`
 *Object.* The percentile rank of this work's citation count against other works from the same year, as a `min`/`max` range.
@@ -160,10 +160,10 @@ See [Open access](/data/works/open-access/) for how these fields combine.
 *List.* The [indexes](/data/indexes/) this work is indexed in. Possible values: `arxiv`, `crossref`, `doaj`, `pubmed`.
 
 ### `created_date`
-*String.* The date the work was added to OpenAlex (`YYYY-MM-DD`). See [Common fields](/data/common-fields/#created_date).
+*String.* The date the work was added to OpenAlex (`YYYY-MM-DD`). See [Common attributes](/data/common-attributes/#created_date).
 
 ### `updated_date`
-*String.* The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) UTC timestamp of the last change to anything in the work object — including citation-count increases. See [Common fields](/data/common-fields/#updated_date).
+*String.* The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) UTC timestamp of the last change to anything in the work object — including citation-count increases. See [Common attributes](/data/common-attributes/#updated_date).
 
 ### Deprecated fields
 - **`host_venue`** and **`alternate_host_venues`** — removed; use [`primary_location`](#primary_location) and [`locations`](#locations). Filtering or grouping on them errors.

@@ -9,7 +9,7 @@ source_updated: "2026-02-18"
 > **Note:**
 > This page is optimized for LLM agents and AI applications. For human-readable guides, see [Getting Started](/api/quickstart/).
 
-> **Field & vocabulary semantics live in Docs.** What each entity field *means*, and controlled-vocabulary definitions, are canonical under `/docs/` — e.g. the [work field dictionary](/data/works/#fields) and [work types](/data/work-types/). The API reference pages cover endpoint mechanics (filtering, sorting, grouping, syntax).
+> **Field & vocabulary semantics live in Docs.** What each entity field *means*, and controlled-vocabulary definitions, are canonical under `/docs/` — e.g. the [work attribute dictionary](/data/works/attributes/) and [work types](/data/work-types/). The API reference pages cover endpoint mechanics (filtering, sorting, grouping, syntax).
 
 ## Base URL and Authentication
 

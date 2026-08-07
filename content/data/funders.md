@@ -1,6 +1,6 @@
 ---
 title: "Funders"
-description: "What a funder is, how OpenAlex grounds funders in ROR and the Crossref funder registry, and what every field on a funder object means."
+description: "What a funder is, how OpenAlex grounds funders in ROR and the Crossref funder registry, and what every attribute on a funder object means."
 tags: ["reference"]
 source_id: "api-reference/funders"
 source_url: "https://developers.openalex.org/api-reference/funders"
@@ -26,18 +26,18 @@ Like [publishers](/data/publishers/), a funder can be the same real-world organi
 
 Because funders are inferred and matched, they can be wrong: a funder mentioned only by a noisy free-text string may not match (so a work that *was* funded shows no funder), two records for one funder may not yet be merged, or a small funder may be absent from the source registries and so missing here. These are [curatable](/data/curations/).
 
-## Fields
+## Attributes
 
-This is the canonical dictionary of every field on a **funder** object. Fields shared with other entities ([`id`](/data/common-fields/#id), [`ids`](/data/common-fields/#ids), [`display_name`](/data/common-fields/#display_name), [`works_count`](/data/common-fields/#works_count), [`cited_by_count`](/data/common-fields/#cited_by_count), [`summary_stats`](/data/common-fields/#summary_stats), [`counts_by_year`](/data/common-fields/#counts_by_year), [`created_date`](/data/common-fields/#created_date), [`updated_date`](/data/common-fields/#updated_date)) are documented once on [Common fields](/data/common-fields/); funder-specific notes are below.
+This is the canonical dictionary of every attribute on a **funder** object. Attributes shared with other entities ([`id`](/data/common-attributes/#id), [`ids`](/data/common-attributes/#ids), [`display_name`](/data/common-attributes/#display_name), [`works_count`](/data/common-attributes/#works_count), [`cited_by_count`](/data/common-attributes/#cited_by_count), [`summary_stats`](/data/common-attributes/#summary_stats), [`counts_by_year`](/data/common-attributes/#counts_by_year), [`created_date`](/data/common-attributes/#created_date), [`updated_date`](/data/common-attributes/#updated_date)) are documented once on [Common attributes](/data/common-attributes/); funder-specific notes are below.
 
 ### `id`
-*String.* The [OpenAlex ID](/data/overview/#the-openalex-id-scheme) for this funder, e.g. `https://openalex.org/F4320332161`. See [Common fields](/data/common-fields/#id).
+*String.* The [OpenAlex ID](/data/overview/#the-openalex-id-scheme) for this funder, e.g. `https://openalex.org/F4320332161`. See [Common attributes](/data/common-attributes/#id).
 
 ### `ids`
-*Object.* All known external identifiers for this funder, as URIs or bare values. Funder keys: `openalex`, `ror`, `wikidata`, `crossref` (the [Crossref funder registry](https://www.crossref.org/services/funder-registry/) ID), and `doi` (the Funder DOI). See [Common fields](/data/common-fields/#ids).
+*Object.* All known external identifiers for this funder, as URIs or bare values. Funder keys: `openalex`, `ror`, `wikidata`, `crossref` (the [Crossref funder registry](https://www.crossref.org/services/funder-registry/) ID), and `doi` (the Funder DOI). See [Common attributes](/data/common-attributes/#ids).
 
 ### `display_name`
-*String.* The funder's name, e.g. `National Institutes of Health`. See [Common fields](/data/common-fields/#display_name). Filterable and searchable; not available as a `group_by`.
+*String.* The funder's name, e.g. `National Institutes of Health`. See [Common attributes](/data/common-attributes/#display_name). Filterable and searchable; not available as a `group_by`.
 
 ### `alternate_titles`
 *List.* Other names the funder is known by, including acronyms (`NIH`) and names in other languages.
@@ -64,25 +64,25 @@ This is the canonical dictionary of every field on a **funder** object. Fields s
 *String.* Like [`image_url`](#image_url), but scaled down for a thumbnail (a `width` parameter is appended).
 
 ### `works_count`
-*Integer.* The number of works that name this funder. See [Common fields](/data/common-fields/#works_count).
+*Integer.* The number of works that name this funder. See [Common attributes](/data/common-attributes/#works_count).
 
 ### `cited_by_count`
-*Integer.* Total citations received across all works this funder funded. See [Common fields](/data/common-fields/#cited_by_count).
+*Integer.* Total citations received across all works this funder funded. See [Common attributes](/data/common-attributes/#cited_by_count).
 
 ### `summary_stats`
-*Object.* Precomputed bibliometric indicators (`2yr_mean_citedness`, `h_index`, `i10_index`) over the funder's works. See [Common fields](/data/common-fields/#summary_stats).
+*Object.* Precomputed bibliometric indicators (`2yr_mean_citedness`, `h_index`, `i10_index`) over the funder's works. See [Common attributes](/data/common-attributes/#summary_stats).
 
 ### `counts_by_year`
-*List.* Works and citations per year for roughly the last ten years; funder rollups also carry `oa_works_count` per year. See [Common fields](/data/common-fields/#counts_by_year).
+*List.* Works and citations per year for roughly the last ten years; funder rollups also carry `oa_works_count` per year. See [Common attributes](/data/common-attributes/#counts_by_year).
 
 ### `roles`
 *List.* The other OpenAlex entities that are the *same real-world organization* — each a `{ role, id, works_count }` object where `role` is one of `funder`, `institution`, or `publisher`. See [Roles](#roles). Filter on `roles.id`.
 
 ### `created_date`
-*String.* The date this funder was added to OpenAlex (`YYYY-MM-DD`). See [Common fields](/data/common-fields/#created_date).
+*String.* The date this funder was added to OpenAlex (`YYYY-MM-DD`). See [Common attributes](/data/common-attributes/#created_date).
 
 ### `updated_date`
-*String.* The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) UTC timestamp of the last change to this funder object. See [Common fields](/data/common-fields/#updated_date).
+*String.* The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) UTC timestamp of the last change to this funder object. See [Common attributes](/data/common-attributes/#updated_date).
 
 ## In the API
 

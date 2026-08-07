@@ -6,7 +6,7 @@ source_id: "api-reference/indexes"
 source_url: "https://developers.openalex.org/api-reference/indexes"
 source_updated: "2026-07-23"
 ---
-An **index** is an external bibliographic index or registry that a work can be listed in — Crossref, PubMed, DataCite, DOAJ, arXiv. Indexes are a [vocabulary](/data/vocabulary/): they're not native, judgment-call IDs, just consistent handles on crisply-existing external lists. A single work can appear in several indexes at once, so each work carries an [`indexed_in`](/data/works/#indexed_in) list, and a [source](/data/sources/) records which of these indexes cover it. An index's OpenAlex ID looks like `https://openalex.org/indexes/doaj`; fetch one at [`api.openalex.org/indexes/doaj`](https://api.openalex.org/indexes/doaj).
+An **index** is an external bibliographic index or registry that a work can be listed in — Crossref, PubMed, DataCite, DOAJ, arXiv. Indexes are a [vocabulary](/data/vocabulary/): they're not native, judgment-call IDs, just consistent handles on crisply-existing external lists. A single work can appear in several indexes at once, so each work carries an [`indexed_in`](/data/works/attributes/#indexed_in) list, and a [source](/data/sources/) records which of these indexes cover it. An index's OpenAlex ID looks like `https://openalex.org/indexes/doaj`; fetch one at [`api.openalex.org/indexes/doaj`](https://api.openalex.org/indexes/doaj).
 
 ## How it's made
 
@@ -26,33 +26,33 @@ The complete list of all 5 indexes:
 
 The live list is at [`api.openalex.org/indexes`](https://api.openalex.org/indexes).
 
-## Fields
+## Attributes
 
-The top-level fields on an **index** object. Fields shared with other entities ([`id`](/data/common-fields/#id), [`display_name`](/data/common-fields/#display_name), [`works_count`](/data/common-fields/#works_count), [`cited_by_count`](/data/common-fields/#cited_by_count), [`created_date`](/data/common-fields/#created_date), [`updated_date`](/data/common-fields/#updated_date)) are documented once on [Common fields](/data/common-fields/).
+The top-level fields on an **index** object. Attributes shared with other entities ([`id`](/data/common-attributes/#id), [`display_name`](/data/common-attributes/#display_name), [`works_count`](/data/common-attributes/#works_count), [`cited_by_count`](/data/common-attributes/#cited_by_count), [`created_date`](/data/common-attributes/#created_date), [`updated_date`](/data/common-attributes/#updated_date)) are documented once on [Common attributes](/data/common-attributes/).
 
 ### `id`
-*String.* The [OpenAlex ID](/data/overview/#the-openalex-id-scheme) for this index, e.g. `https://openalex.org/indexes/doaj`. See [Common fields](/data/common-fields/#id).
+*String.* The [OpenAlex ID](/data/overview/#the-openalex-id-scheme) for this index, e.g. `https://openalex.org/indexes/doaj`. See [Common attributes](/data/common-attributes/#id).
 
 ### `display_name`
-*String.* The index's name, e.g. `DOAJ`. See [Common fields](/data/common-fields/#display_name).
+*String.* The index's name, e.g. `DOAJ`. See [Common attributes](/data/common-attributes/#display_name).
 
 ### `description`
 *String.* A short one-line description of the index and what it covers.
 
 ### `works_count`
-*Integer.* How many works are listed in this index. See [Common fields](/data/common-fields/#works_count).
+*Integer.* How many works are listed in this index. See [Common attributes](/data/common-attributes/#works_count).
 
 ### `cited_by_count`
-*Integer.* Total citations across those works. See [Common fields](/data/common-fields/#cited_by_count).
+*Integer.* Total citations across those works. See [Common attributes](/data/common-attributes/#cited_by_count).
 
 ### `works_api_url`
 *String.* A ready-made [Works](/data/works/) API URL for every work in this index (`filter=indexed_in:<ID>`).
 
 ### `created_date`
-*String.* When the index record was added to OpenAlex (`YYYY-MM-DD`). See [Common fields](/data/common-fields/#created_date).
+*String.* When the index record was added to OpenAlex (`YYYY-MM-DD`). See [Common attributes](/data/common-attributes/#created_date).
 
 ### `updated_date`
-*String.* When the index record last changed. See [Common fields](/data/common-fields/#updated_date).
+*String.* When the index record last changed. See [Common attributes](/data/common-attributes/#updated_date).
 
 ## In the API
 

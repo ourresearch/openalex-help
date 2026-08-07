@@ -27,9 +27,9 @@ Some national research systems are layered — a French *unité mixte de recherc
 
 The parser can miss or mis-assign institutions, especially for organizations added to ROR after the April 2023 training cutoff (those depend entirely on the rules pass and ROR matcher). A raw string can also resolve to no institution at all while still yielding a country. Because the raw string is preserved verbatim, you can always see the original text even when matching fell short — and institutions can review and correct their own affiliations with the [works-magnet tool](https://works-magnet.esr.gouv.fr/). The parsing model, training data, and benchmarks are fully open ([openalex-institution-parsing](https://github.com/ourresearch/openalex-institution-parsing/tree/main/V2)); the monthly string-matching code lives in the [openalex-databricks repo](https://github.com/ourresearch/openalex-databricks/tree/main/jobs/string_matching_institutions).
 
-## Fields
+## Attributes
 
-A raw affiliation string is essentially a string plus its matched-institution mapping, both of which live on the [authorship](/data/authorships/). Being a component entity, it carries none of the [common fields](/data/common-fields/) and has no OpenAlex ID.
+A raw affiliation string is essentially a string plus its matched-institution mapping, both of which live on the [authorship](/data/authorships/). Being a component entity, it carries none of the [common attributes](/data/common-attributes/) and has no OpenAlex ID.
 
 ### `raw_affiliation_strings`
 *List of strings.* On an authorship, the exact affiliation text this author printed, one string per affiliation — e.g. `["Impactstory, Sanford, NC, USA"]`. The unparsed input to institution matching.
@@ -56,7 +56,7 @@ This is the authoritative record of *which printed string produced which institu
 
 ## In the API
 
-Raw affiliation strings aren't a top-level entity endpoint you list or fetch — they surface as fields on an [authorship](/data/authorships/) (select [`authorships`](/data/works/#authorships) on a work) and through two search surfaces:
+Raw affiliation strings aren't a top-level entity endpoint you list or fetch — they surface as fields on an [authorship](/data/authorships/) (select [`authorships`](/data/works/attributes/#authorships) on a work) and through two search surfaces:
 
 - **Search the raw text** with the `raw_affiliation_strings.search` filter on [works](/data/works/): `filter=raw_affiliation_strings.search:impactstory` returns works whose authors printed that affiliation text — matching on the *raw string*, before institution disambiguation. Useful for finding an organization's works when its name never resolved cleanly to a ROR-backed institution.
 - **Filter on the resolved mapping** with `authorships.affiliations.institution_ids`, which filters on the institution IDs a raw string produced.

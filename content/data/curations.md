@@ -49,12 +49,12 @@ An applied curation rewrites the native entity it targets:
 
 Every curated work is queued to re-export to the search index on the next sync, so the correction propagates to search results, not just the entity object. For the step-by-step data flow (Postgres → per-type views → warehouse Delta tables → the live entity tables), see [Author curation](/api/author-curation/#how-it-flows-under-the-hood).
 
-## Fields
+## Attributes
 
 A curation record is a compact statement of a correction: the target entity, the property to change, the change itself, and its review state. The shape below is what the curation endpoint returns; see [Author curation](/api/author-curation/) for how each field is built.
 
 ### `id`
-*String.* The curation's ID, e.g. `cur-9Fw3RtYxQ7nLpK`. Unlike native-entity [OpenAlex IDs](/data/common-fields/#id), it is not a resolvable `openalex.org` URL.
+*String.* The curation's ID, e.g. `cur-9Fw3RtYxQ7nLpK`. Unlike native-entity [OpenAlex IDs](/data/common-attributes/#id), it is not a resolvable `openalex.org` URL.
 
 ### `user_id`
 *String.* The ID of the user who submitted the curation, e.g. `usr-abc123`. This is the audit trail of who made the correction; it's stored on every row but not exposed on the public read API.

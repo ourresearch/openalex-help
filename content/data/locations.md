@@ -1,9 +1,9 @@
 ---
 title: "Locations"
-description: "Each place a version of a work is available — the publisher's site, a repository, a preprint server — with its version, license, and open-access status, and what every field on a location object means."
+description: "Each place a version of a work is available — the publisher's site, a repository, a preprint server — with its version, license, and open-access status, and what every attribute on a location object means."
 tags: ["reference"]
 ---
-A **location** is a place where a version of a [work](/data/works/) is available: the publisher's website, an institutional or subject repository, a preprint server. One work can have many locations — the same paper hosted as the version of record at the publisher, as an accepted manuscript in a repository, and as a submitted preprint on arXiv. Locations are a [component](/data/component/) entity: they don't get their own OpenAlex ID and mostly live inside a work object, in the [`locations`](/data/works/#locations) list plus the [`primary_location`](/data/works/#primary_location) and [`best_oa_location`](/data/works/#best_oa_location) pointers. There is also a standalone [`/locations`](https://api.openalex.org/locations) list endpoint (part of the Walden data), but you'll normally meet locations inline on a work.
+A **location** is a place where a version of a [work](/data/works/) is available: the publisher's website, an institutional or subject repository, a preprint server. One work can have many locations — the same paper hosted as the version of record at the publisher, as an accepted manuscript in a repository, and as a submitted preprint on arXiv. Locations are a [component](/data/component/) entity: they don't get their own OpenAlex ID and mostly live inside a work object, in the [`locations`](/data/works/attributes/#locations) list plus the [`primary_location`](/data/works/attributes/#primary_location) and [`best_oa_location`](/data/works/attributes/#best_oa_location) pointers. There is also a standalone [`/locations`](https://api.openalex.org/locations) list endpoint (part of the Walden data), but you'll normally meet locations inline on a work.
 
 ## How it's made
 
@@ -17,11 +17,11 @@ The publisher location comes from the work's own source record (the DOI's landin
 
 ### Best-OA selection
 
-From all of a work's locations, OpenAlex designates a [`primary_location`](/data/works/#primary_location) (the copy closest to the version of record — for a journal article, the published full text at the publisher) and a [`best_oa_location`](/data/works/#best_oa_location) (the best *freely readable* copy, or null if none). "Best OA" is scored: the location must be OA; publisher beats repository; `publishedVersion` beats `acceptedVersion` beats `submittedVersion`; a direct PDF link beats none; and major repositories (PubMed Central, arXiv) rank above others. This is what feeds the work's [`open_access`](/data/works/#open_access) `oa_url` and `oa_status`.
+From all of a work's locations, OpenAlex designates a [`primary_location`](/data/works/attributes/#primary_location) (the copy closest to the version of record — for a journal article, the published full text at the publisher) and a [`best_oa_location`](/data/works/attributes/#best_oa_location) (the best *freely readable* copy, or null if none). "Best OA" is scored: the location must be OA; publisher beats repository; `publishedVersion` beats `acceptedVersion` beats `submittedVersion`; a direct PDF link beats none; and major repositories (PubMed Central, arXiv) rank above others. This is what feeds the work's [`open_access`](/data/works/attributes/#open_access) `oa_url` and `oa_status`.
 
-## Fields
+## Attributes
 
-This is the dictionary of every field on a **location** object, as it appears in a work's [`locations`](/data/works/#locations), [`primary_location`](/data/works/#primary_location), and [`best_oa_location`](/data/works/#best_oa_location). Locations are a component entity, so they carry none of the [common fields](/data/common-fields/) — a location inside a work has no OpenAlex ID of its own. (You may see an internal `id` on a location, such as `doi:10.7717/peerj.4375`, but it's a hosting handle, not a mintable OpenAlex ID.)
+This is the dictionary of every attribute on a **location** object, as it appears in a work's [`locations`](/data/works/attributes/#locations), [`primary_location`](/data/works/attributes/#primary_location), and [`best_oa_location`](/data/works/attributes/#best_oa_location). Locations are a component entity, so they carry none of the [common attributes](/data/common-attributes/) — a location inside a work has no OpenAlex ID of its own. (You may see an internal `id` on a location, such as `doi:10.7717/peerj.4375`, but it's a hosting handle, not a mintable OpenAlex ID.)
 
 ### `is_oa`
 *Boolean.* True if this specific copy is a free-to-read full text (OpenAlex's broad definition: readable without paying or logging in). A work can have some OA locations and some not.
@@ -54,11 +54,11 @@ This is the dictionary of every field on a **location** object, as it appears in
 *String.* The hosting venue's name exactly as it arrived on the record, before it was matched to a [source](/data/sources/) — the unnormalized input behind [`source`](#source).
 
 ### `raw_type`
-*String.* The work's type as this location's source labeled it (e.g. `journal-article`), before normalization to the work's OpenAlex [`type`](/data/works/#type).
+*String.* The work's type as this location's source labeled it (e.g. `journal-article`), before normalization to the work's OpenAlex [`type`](/data/works/attributes/#type).
 
 ## In the API
 
-You reach locations by selecting [`locations`](/data/works/#locations), [`primary_location`](/data/works/#primary_location), or [`best_oa_location`](/data/works/#best_oa_location) on a [work](/data/works/) — they appear inline on each work object. There is also a standalone list endpoint at [`api.openalex.org/locations`](https://api.openalex.org/locations) (part of the Walden data) if you want to page over locations directly rather than through works.
+You reach locations by selecting [`locations`](/data/works/attributes/#locations), [`primary_location`](/data/works/attributes/#primary_location), or [`best_oa_location`](/data/works/attributes/#best_oa_location) on a [work](/data/works/) — they appear inline on each work object. There is also a standalone list endpoint at [`api.openalex.org/locations`](https://api.openalex.org/locations) (part of the Walden data) if you want to page over locations directly rather than through works.
 
 Works can be filtered on location attributes with dotted filter keys, available on all three location slots — for example:
 

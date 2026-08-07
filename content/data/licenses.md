@@ -6,7 +6,7 @@ source_id: "api-reference/licenses"
 source_url: "https://developers.openalex.org/api-reference/licenses"
 source_updated: "2026-04-26"
 ---
-A **license** describes the terms under which an open-access copy of a work may be reused — `cc-by`, `cc-by-nc-nd`, `public-domain`, and so on. Licenses are a [vocabulary](/data/vocabulary/): OpenAlex doesn't invent the concept of a CC-BY license, it just attaches a consistent handle to each recognized one. A license is a property of a [location](/data/locations/) (each copy of a work can have its own license), so you'll see a license on a work's [`primary_location`](/data/works/#primary_location) and in its [`locations`](/data/works/#locations). A license's OpenAlex ID looks like `https://openalex.org/licenses/cc-by`; fetch one at [`api.openalex.org/licenses/cc-by`](https://api.openalex.org/licenses/cc-by).
+A **license** describes the terms under which an open-access copy of a work may be reused — `cc-by`, `cc-by-nc-nd`, `public-domain`, and so on. Licenses are a [vocabulary](/data/vocabulary/): OpenAlex doesn't invent the concept of a CC-BY license, it just attaches a consistent handle to each recognized one. A license is a property of a [location](/data/locations/) (each copy of a work can have its own license), so you'll see a license on a work's [`primary_location`](/data/works/attributes/#primary_location) and in its [`locations`](/data/works/attributes/#locations). A license's OpenAlex ID looks like `https://openalex.org/licenses/cc-by`; fetch one at [`api.openalex.org/licenses/cc-by`](https://api.openalex.org/licenses/cc-by).
 
 ## How it's made
 
@@ -35,15 +35,15 @@ The complete list of all 14 licenses:
 
 The live list is at [`api.openalex.org/licenses`](https://api.openalex.org/licenses).
 
-## Fields
+## Attributes
 
-The top-level fields on a **license** object. Fields shared with other entities ([`id`](/data/common-fields/#id), [`display_name`](/data/common-fields/#display_name), [`works_count`](/data/common-fields/#works_count), [`cited_by_count`](/data/common-fields/#cited_by_count), [`created_date`](/data/common-fields/#created_date), [`updated_date`](/data/common-fields/#updated_date)) are documented once on [Common fields](/data/common-fields/).
+The top-level fields on a **license** object. Attributes shared with other entities ([`id`](/data/common-attributes/#id), [`display_name`](/data/common-attributes/#display_name), [`works_count`](/data/common-attributes/#works_count), [`cited_by_count`](/data/common-attributes/#cited_by_count), [`created_date`](/data/common-attributes/#created_date), [`updated_date`](/data/common-attributes/#updated_date)) are documented once on [Common attributes](/data/common-attributes/).
 
 ### `id`
-*String.* The [OpenAlex ID](/data/overview/#the-openalex-id-scheme) for this license, e.g. `https://openalex.org/licenses/cc-by`. See [Common fields](/data/common-fields/#id).
+*String.* The [OpenAlex ID](/data/overview/#the-openalex-id-scheme) for this license, e.g. `https://openalex.org/licenses/cc-by`. See [Common attributes](/data/common-attributes/#id).
 
 ### `display_name`
-*String.* The license's name, e.g. `CC-BY`. See [Common fields](/data/common-fields/#display_name).
+*String.* The license's name, e.g. `CC-BY`. See [Common attributes](/data/common-attributes/#display_name).
 
 ### `url`
 *String.* A link to the canonical license text (a [Creative Commons](https://creativecommons.org/) deed or an [SPDX](https://spdx.org/licenses/) page), or null for the catch-all licenses that have no single URL.
@@ -52,19 +52,19 @@ The top-level fields on a **license** object. Fields shared with other entities 
 *String.* A short plain-language summary of the reuse terms.
 
 ### `works_count`
-*Integer.* How many works have a location under this license. See [Common fields](/data/common-fields/#works_count).
+*Integer.* How many works have a location under this license. See [Common attributes](/data/common-attributes/#works_count).
 
 ### `cited_by_count`
-*Integer.* Total citations across those works. See [Common fields](/data/common-fields/#cited_by_count).
+*Integer.* Total citations across those works. See [Common attributes](/data/common-attributes/#cited_by_count).
 
 ### `works_api_url`
 *String.* A ready-made [Works](/data/works/) API URL for every work with a location under this license (`filter=locations.license_id:licenses/<ID>`).
 
 ### `created_date`
-*String.* When the license record was added to OpenAlex (`YYYY-MM-DD`). See [Common fields](/data/common-fields/#created_date).
+*String.* When the license record was added to OpenAlex (`YYYY-MM-DD`). See [Common attributes](/data/common-attributes/#created_date).
 
 ### `updated_date`
-*String.* When the license record last changed. See [Common fields](/data/common-fields/#updated_date).
+*String.* When the license record last changed. See [Common attributes](/data/common-attributes/#updated_date).
 
 ## In the API
 

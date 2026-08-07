@@ -31,18 +31,18 @@ The full list of 247 countries is at [`api.openalex.org/countries`](https://api.
 | `ES` | Spain | Europe |
 | `AU` | Australia | Oceania |
 
-## Fields
+## Attributes
 
-The top-level fields on a **country** object. Fields shared with other entities ([`id`](/data/common-fields/#id), [`ids`](/data/common-fields/#ids), [`display_name`](/data/common-fields/#display_name), [`works_count`](/data/common-fields/#works_count), [`cited_by_count`](/data/common-fields/#cited_by_count), [`created_date`](/data/common-fields/#created_date), [`updated_date`](/data/common-fields/#updated_date)) are documented once on [Common fields](/data/common-fields/).
+The top-level fields on a **country** object. Attributes shared with other entities ([`id`](/data/common-attributes/#id), [`ids`](/data/common-attributes/#ids), [`display_name`](/data/common-attributes/#display_name), [`works_count`](/data/common-attributes/#works_count), [`cited_by_count`](/data/common-attributes/#cited_by_count), [`created_date`](/data/common-attributes/#created_date), [`updated_date`](/data/common-attributes/#updated_date)) are documented once on [Common attributes](/data/common-attributes/).
 
 ### `id`
-*String.* The [OpenAlex ID](/data/overview/#the-openalex-id-scheme) for this country, e.g. `https://openalex.org/countries/US`. The final path segment is the ISO alpha-2 code. See [Common fields](/data/common-fields/#id).
+*String.* The [OpenAlex ID](/data/overview/#the-openalex-id-scheme) for this country, e.g. `https://openalex.org/countries/US`. The final path segment is the ISO alpha-2 code. See [Common attributes](/data/common-attributes/#id).
 
 ### `ids`
 *Object.* External identifiers for the country: `openalex`, `iso` (a link to the ISO 3166 registry entry), `wikidata`, and `wikipedia`.
 
 ### `display_name`
-*String.* The country's common English name, e.g. `United States`. See [Common fields](/data/common-fields/#display_name).
+*String.* The country's common English name, e.g. `United States`. See [Common attributes](/data/common-attributes/#display_name).
 
 ### `country_code`
 *String.* The [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) code, e.g. `US`. This is the value you filter on across the graph. Same as the last segment of [`id`](#id).
@@ -60,10 +60,10 @@ The top-level fields on a **country** object. Fields shared with other entities 
 *Boolean.* True if the country is part of the [Global South](https://en.wikipedia.org/wiki/Global_South), a grouping OpenAlex carries for equity-focused analysis.
 
 ### `works_count`
-*Integer.* How many works have an authorship affiliated with an institution in this country. See [Common fields](/data/common-fields/#works_count).
+*Integer.* How many works have an authorship affiliated with an institution in this country. See [Common attributes](/data/common-attributes/#works_count).
 
 ### `cited_by_count`
-*Integer.* Total citations across those works. See [Common fields](/data/common-fields/#cited_by_count).
+*Integer.* Total citations across those works. See [Common attributes](/data/common-attributes/#cited_by_count).
 
 ### `works_api_url`
 *String.* A ready-made [Works](/data/works/) API URL for every work affiliated with this country (`filter=authorships.countries:<CODE>`).
@@ -75,10 +75,10 @@ The top-level fields on a **country** object. Fields shared with other entities 
 *String.* A ready-made [Institutions](/data/institutions/) API URL for institutions in this country (`filter=country_code:<CODE>`).
 
 ### `created_date`
-*String.* When the country record was added to OpenAlex (`YYYY-MM-DD`). See [Common fields](/data/common-fields/#created_date).
+*String.* When the country record was added to OpenAlex (`YYYY-MM-DD`). See [Common attributes](/data/common-attributes/#created_date).
 
 ### `updated_date`
-*String.* When the country record last changed. See [Common fields](/data/common-fields/#updated_date).
+*String.* When the country record last changed. See [Common attributes](/data/common-attributes/#updated_date).
 
 ## In the API
 

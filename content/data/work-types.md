@@ -3,7 +3,7 @@ title: "Work types"
 description: "The controlled vocabulary of work types — article, preprint, dataset, book, and the rest — what each value means, and how to filter works by type."
 tags: ["reference"]
 ---
-A **work type** classifies the form of a scholarly document: a journal `article`, a `preprint`, a `dataset`, a `book`, and so on. Every [work](/data/works/) has exactly one type, exposed as its [`type`](/data/works/#type) field, and the type is one value from the controlled vocabulary below. Because the boundary between (say) an article and a dataset is already crisp in the real world, work types are a [vocabulary entity](/data/vocabulary/): OpenAlex doesn't adjudicate what a work *is*, it just standardizes the label so you can filter and group by it reliably. Work types use short, human-readable IDs (`article`, `dataset`) rather than the minted `W`/`A`/`S` scheme; a type's full ID looks like `https://openalex.org/types/article`.
+A **work type** classifies the form of a scholarly document: a journal `article`, a `preprint`, a `dataset`, a `book`, and so on. Every [work](/data/works/) has exactly one type, exposed as its [`type`](/data/works/attributes/#type) field, and the type is one value from the controlled vocabulary below. Because the boundary between (say) an article and a dataset is already crisp in the real world, work types are a [vocabulary entity](/data/vocabulary/): OpenAlex doesn't adjudicate what a work *is*, it just standardizes the label so you can filter and group by it reliably. Work types use short, human-readable IDs (`article`, `dataset`) rather than the minted `W`/`A`/`S` scheme; a type's full ID looks like `https://openalex.org/types/article`.
 
 ## How it's made
 
@@ -43,24 +43,24 @@ The complete controlled vocabulary (live from [`api.openalex.org/work-types`](ht
 
 > **Note:** `book-review`, `conference-abstract`, `conference-paper`, `data-paper`, and `software-paper` are newly added to the vocabulary. They are being rolled out, so coverage is currently low or zero and they may not yet appear under [`works?group_by=type`](https://api.openalex.org/works?group_by=type).
 
-## Fields
+## Attributes
 
-Each work type is a small object. Fields shared with other entities are documented once on [Common fields](/data/common-fields/).
+Each work type is a small object. Attributes shared with other entities are documented once on [Common attributes](/data/common-attributes/).
 
 ### `id`
-*String.* The [OpenAlex ID](/data/overview/#the-openalex-id-scheme) for this type, e.g. `https://openalex.org/types/article`. See [Common fields](/data/common-fields/#id).
+*String.* The [OpenAlex ID](/data/overview/#the-openalex-id-scheme) for this type, e.g. `https://openalex.org/types/article`. See [Common attributes](/data/common-attributes/#id).
 
 ### `display_name`
-*String.* The human-readable name of the type — identical to the ID's final segment (`article`, `dataset`). See [Common fields](/data/common-fields/#display_name).
+*String.* The human-readable name of the type — identical to the ID's final segment (`article`, `dataset`). See [Common attributes](/data/common-attributes/#display_name).
 
 ### `description`
 *String.* A one-line definition of the type (the same text shown in the [Values](#values) table above).
 
 ### `works_count`
-*Integer.* How many [works](/data/works/) carry this type. See [Common fields](/data/common-fields/#works_count).
+*Integer.* How many [works](/data/works/) carry this type. See [Common attributes](/data/common-attributes/#works_count).
 
 ### `cited_by_count`
-*Integer.* Total citations across all works of this type. See [Common fields](/data/common-fields/#cited_by_count).
+*Integer.* Total citations across all works of this type. See [Common attributes](/data/common-attributes/#cited_by_count).
 
 ### `works_api_url`
 *String.* A ready-made [Works](/data/works/) API URL listing every work of this type, e.g. `https://api.openalex.org/works?filter=type:article`.
@@ -69,10 +69,10 @@ Each work type is a small object. Fields shared with other entities are document
 *List.* The [Crossref](https://www.crossref.org/) type strings that map onto this OpenAlex type — the source-standard values this label standardizes. Available as a selectable column; not returned in the default object.
 
 ### `created_date`
-*String.* The date this type was added to OpenAlex (`YYYY-MM-DD`). See [Common fields](/data/common-fields/#created_date).
+*String.* The date this type was added to OpenAlex (`YYYY-MM-DD`). See [Common attributes](/data/common-attributes/#created_date).
 
 ### `updated_date`
-*String.* The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) UTC timestamp of the last change to this type object. See [Common fields](/data/common-fields/#updated_date).
+*String.* The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) UTC timestamp of the last change to this type object. See [Common attributes](/data/common-attributes/#updated_date).
 
 ## In the API
 

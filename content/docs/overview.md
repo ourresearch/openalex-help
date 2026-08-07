@@ -44,7 +44,7 @@ The records flowing in are messy and redundant, so the heart of OpenAlex is turn
 
 **Works get classified.** Text classifiers read each work's title and abstract to decide what it's *about*, tagging it with [topics](/data/topics/), subfields, keywords, and SDGs. See [Aboutness](/data/aboutness/) for the full set of subject signals and how to pick among them.
 
-**Citations get built.** Each work's reference list is extracted — from source metadata and, for open works, from the PDF — and matched to other works already in OpenAlex, producing both references and citation counts. See [Works: citations and references](/data/works/#citations-and-references).
+**Citations get built.** Each work's reference list is extracted — from source metadata and, for open works, from the PDF — and matched to other works already in OpenAlex, producing both references and citation counts. See [Works: citations and references](/data/works/citations/#citations-and-references).
 
 This pipeline is complex and changes frequently. In the interest of openness, we share our internal monitoring dashboard publicly: [view the pipeline dashboard](http://unpaywall-metabase.herokuapp.com/public/dashboard/8e114521-b74b-4e6c-bba8-3a8fc573fb64).
 

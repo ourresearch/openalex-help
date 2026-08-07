@@ -106,9 +106,9 @@ People often compare counts or fields between their snapshot copy and the live A
 
 | Difference | Why |
 |---|---|
-| **Works count: snapshot ~510M vs API default ~322M** | The snapshot contains **all** works, including the [expansion (XPAC) corpus](/api/key-concepts/#xpac-expansion-pack). The API **excludes XPAC works by default**; add `include_xpac=true` to match. Filter locally on the [`is_xpac`](/data/works/#is_xpac) field to reproduce the API's default view. |
+| **Works count: snapshot ~510M vs API default ~322M** | The snapshot contains **all** works, including the [expansion (XPAC) corpus](/api/key-concepts/#xpac-expansion-pack). The API **excludes XPAC works by default**; add `include_xpac=true` to match. Filter locally on the [`is_xpac`](/data/works/attributes/#is_xpac) field to reproduce the API's default view. |
 | **Freshness** | The snapshot is a point-in-time release (quarterly for the free public snapshot; daily on [paid plans](https://openalex.org/pricing)); the API updates continuously. Counts and records drift between releases — see [Sync](/docs/sync/). |
-| **`content_urls` is absent** | It's generated at serve time, API-only. The snapshot has [`has_content`](/data/works/#has_content); build download URLs via the [content archive](/docs/fulltext/) with work IDs. |
+| **`content_urls` is absent** | It's generated at serve time, API-only. The snapshot has [`has_content`](/data/works/attributes/#has_content); build download URLs via the [content archive](/docs/fulltext/) with work IDs. |
 | **Some works have `abstract_inverted_index: null`** | Not every work has an abstract (availability and publisher restrictions) — same as the API. |
 | **No n-grams** | The old n-grams dataset is retired and was never part of this snapshot layout. |
 

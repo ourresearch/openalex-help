@@ -1,9 +1,9 @@
 ---
 title: "Authorships"
-description: "The join between a work and its authors — the raw name each author printed, their position, whether they're corresponding, and the institutions they listed — and what every field on an authorship object means."
+description: "The join between a work and its authors — the raw name each author printed, their position, whether they're corresponding, and the institutions they listed — and what every attribute on an authorship object means."
 tags: ["reference"]
 ---
-An **authorship** is the join between a [work](/data/works/) and one of its [authors](/data/authors/): for a single author, it records their raw name as printed on the work, their position in the byline, whether they're the corresponding author, and the institutions they listed. Authorships are a [component](/data/component/) entity — they don't get their own OpenAlex ID and you never fetch one directly. They live inside a work object, one per author, in the [`authorships`](/data/works/#authorships) list. Fetch a work such as [`api.openalex.org/works/W2741809807`](https://api.openalex.org/works/W2741809807) and read its `authorships` array to see them.
+An **authorship** is the join between a [work](/data/works/) and one of its [authors](/data/authors/): for a single author, it records their raw name as printed on the work, their position in the byline, whether they're the corresponding author, and the institutions they listed. Authorships are a [component](/data/component/) entity — they don't get their own OpenAlex ID and you never fetch one directly. They live inside a work object, one per author, in the [`authorships`](/data/works/attributes/#authorships) list. Fetch a work such as [`api.openalex.org/works/W2741809807`](https://api.openalex.org/works/W2741809807) and read its `authorships` array to see them.
 
 ## How it's made
 
@@ -19,11 +19,11 @@ Each of the author's [`raw_affiliation_strings`](#raw_affiliation_strings) is ma
 
 ### The 100-author cap
 
-To keep works fast to serve, the `authorships` list is capped at the **first 100 authors**. Works with thousands of authors (large collaborations, consortium papers) are truncated to the first hundred by byline position; the rest are dropped from the list. Counts like [`countries_distinct_count`](/data/works/#countries_distinct_count) reflect only the authorships that survive the cap.
+To keep works fast to serve, the `authorships` list is capped at the **first 100 authors**. Works with thousands of authors (large collaborations, consortium papers) are truncated to the first hundred by byline position; the rest are dropped from the list. Counts like [`countries_distinct_count`](/data/works/attributes/#countries_distinct_count) reflect only the authorships that survive the cap.
 
-## Fields
+## Attributes
 
-This is the dictionary of every field on an **authorship** object, as it appears inside a work's [`authorships`](/data/works/#authorships) list. Authorships are a component entity, so they carry none of the [common fields](/data/common-fields/) (no `id`, `works_count`, etc.) — an authorship has no OpenAlex ID of its own.
+This is the dictionary of every attribute on an **authorship** object, as it appears inside a work's [`authorships`](/data/works/attributes/#authorships) list. Authorships are a component entity, so they carry none of the [common attributes](/data/common-attributes/) (no `id`, `works_count`, etc.) — an authorship has no OpenAlex ID of its own.
 
 ### `author_position`
 *String.* Where this author sits in the byline: `first`, `middle`, or `last`. Derived from byline order, so it tracks the printed sequence rather than any notion of credit or seniority.
@@ -38,7 +38,7 @@ This is the dictionary of every field on an **authorship** object, as it appears
 *List.* The distinct [country codes](/data/countries/) (ISO 3166-1 alpha-2) for this author's institutions, e.g. `["CA", "US"]`. Derived from the matched institutions, or assigned directly from the raw string's address when no institution matched.
 
 ### `is_corresponding`
-*Boolean.* True if this author is marked as a corresponding author on the work. Corresponding authors are also collected at the work level in [`corresponding_author_ids`](/data/works/#corresponding_author_ids).
+*Boolean.* True if this author is marked as a corresponding author on the work. Corresponding authors are also collected at the work level in [`corresponding_author_ids`](/data/works/attributes/#corresponding_author_ids).
 
 ### `raw_author_name`
 *String.* The author's name exactly as it appeared on the source record, before disambiguation — e.g. `"Heather Piwowar"`. The unnormalized input to author resolution; the resolved person is in [`author`](#author).
@@ -54,7 +54,7 @@ This is the dictionary of every field on an **authorship** object, as it appears
 
 ## In the API
 
-Authorships aren't a top-level endpoint — there's no `/authorships` you can list or fetch. You reach them by selecting the [`authorships`](/data/works/#authorships) field on [works](/data/works/), where they appear inline on each work object.
+Authorships aren't a top-level endpoint — there's no `/authorships` you can list or fetch. You reach them by selecting the [`authorships`](/data/works/attributes/#authorships) field on [works](/data/works/), where they appear inline on each work object.
 
 You can still filter works by authorship attributes using **dotted filter keys** on the works endpoint — the sub-fields flatten into filterable columns:
 

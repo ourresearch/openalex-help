@@ -1,6 +1,6 @@
 ---
 title: "Publishers"
-description: "What a publisher is, how OpenAlex builds the publisher hierarchy from ROR and Wikidata, how it connects to sources, and what every field on a publisher object means."
+description: "What a publisher is, how OpenAlex builds the publisher hierarchy from ROR and Wikidata, how it connects to sources, and what every attribute on a publisher object means."
 tags: ["reference"]
 source_id: "api-reference/publishers"
 source_url: "https://developers.openalex.org/api-reference/publishers"
@@ -30,18 +30,18 @@ A single real-world organization can act as more than one kind of OpenAlex entit
 
 Because publishers are inferred, they can be wrong: an imprint may be attached to the wrong parent, two records for one publisher may not yet be merged, or a small or new publisher may be missing from ROR/Wikidata and so absent here. Hierarchy is also incomplete — not every imprint has been slotted under its group. These are [curatable](/data/curations/).
 
-## Fields
+## Attributes
 
-This is the canonical dictionary of every field on a **publisher** object. Fields shared with other entities ([`id`](/data/common-fields/#id), [`ids`](/data/common-fields/#ids), [`display_name`](/data/common-fields/#display_name), [`works_count`](/data/common-fields/#works_count), [`cited_by_count`](/data/common-fields/#cited_by_count), [`summary_stats`](/data/common-fields/#summary_stats), [`counts_by_year`](/data/common-fields/#counts_by_year), [`created_date`](/data/common-fields/#created_date), [`updated_date`](/data/common-fields/#updated_date)) are documented once on [Common fields](/data/common-fields/); publisher-specific notes are below.
+This is the canonical dictionary of every attribute on a **publisher** object. Attributes shared with other entities ([`id`](/data/common-attributes/#id), [`ids`](/data/common-attributes/#ids), [`display_name`](/data/common-attributes/#display_name), [`works_count`](/data/common-attributes/#works_count), [`cited_by_count`](/data/common-attributes/#cited_by_count), [`summary_stats`](/data/common-attributes/#summary_stats), [`counts_by_year`](/data/common-attributes/#counts_by_year), [`created_date`](/data/common-attributes/#created_date), [`updated_date`](/data/common-attributes/#updated_date)) are documented once on [Common attributes](/data/common-attributes/); publisher-specific notes are below.
 
 ### `id`
-*String.* The [OpenAlex ID](/data/overview/#the-openalex-id-scheme) for this publisher, e.g. `https://openalex.org/P4310319965`. See [Common fields](/data/common-fields/#id).
+*String.* The [OpenAlex ID](/data/overview/#the-openalex-id-scheme) for this publisher, e.g. `https://openalex.org/P4310319965`. See [Common attributes](/data/common-attributes/#id).
 
 ### `ids`
-*Object.* All known external identifiers for this publisher, as URIs where possible. Publisher keys: `openalex`, `ror` ([ROR](https://ror.org/) ID), `wikidata`. See [Common fields](/data/common-fields/#ids).
+*Object.* All known external identifiers for this publisher, as URIs where possible. Publisher keys: `openalex`, `ror` ([ROR](https://ror.org/) ID), `wikidata`. See [Common attributes](/data/common-attributes/#ids).
 
 ### `display_name`
-*String.* The publisher's name, e.g. `Springer Nature`. See [Common fields](/data/common-fields/#display_name). Filterable and searchable; not available as a `group_by`.
+*String.* The publisher's name, e.g. `Springer Nature`. See [Common attributes](/data/common-attributes/#display_name). Filterable and searchable; not available as a `group_by`.
 
 ### `alternate_titles`
 *List.* Other names the publisher is known by, including names in other languages and former names.
@@ -68,16 +68,16 @@ This is the canonical dictionary of every field on a **publisher** object. Field
 *String.* Like [`image_url`](#image_url), but scaled down for a thumbnail (a `width` parameter is appended).
 
 ### `works_count`
-*Integer.* The number of works published across all the [sources](/data/sources/) this publisher hosts. See [Common fields](/data/common-fields/#works_count).
+*Integer.* The number of works published across all the [sources](/data/sources/) this publisher hosts. See [Common attributes](/data/common-attributes/#works_count).
 
 ### `cited_by_count`
-*Integer.* Total citations received across all works this publisher has published. See [Common fields](/data/common-fields/#cited_by_count).
+*Integer.* Total citations received across all works this publisher has published. See [Common attributes](/data/common-attributes/#cited_by_count).
 
 ### `summary_stats`
-*Object.* Precomputed bibliometric indicators (`2yr_mean_citedness`, `h_index`, `i10_index`) over the publisher's works. See [Common fields](/data/common-fields/#summary_stats).
+*Object.* Precomputed bibliometric indicators (`2yr_mean_citedness`, `h_index`, `i10_index`) over the publisher's works. See [Common attributes](/data/common-attributes/#summary_stats).
 
 ### `counts_by_year`
-*List.* Works published and citations received per year for roughly the last ten years. See [Common fields](/data/common-fields/#counts_by_year).
+*List.* Works published and citations received per year for roughly the last ten years. See [Common attributes](/data/common-attributes/#counts_by_year).
 
 ### `roles`
 *List.* The other OpenAlex entities that are the *same real-world organization* — each a `{ role, id, works_count }` object where `role` is one of `publisher`, `institution`, or `funder`. See [Roles](#roles). Filter on `roles.id` to find every entity sharing a role with a given ID.
@@ -86,10 +86,10 @@ This is the canonical dictionary of every field on a **publisher** object. Field
 *String.* A ready-made API URL listing every [source](/data/sources/) this publisher hosts (i.e. `sources?filter=host_organization.id:<id>`). A convenience link, not a stored value.
 
 ### `created_date`
-*String.* The date this publisher was added to OpenAlex (`YYYY-MM-DD`). See [Common fields](/data/common-fields/#created_date).
+*String.* The date this publisher was added to OpenAlex (`YYYY-MM-DD`). See [Common attributes](/data/common-attributes/#created_date).
 
 ### `updated_date`
-*String.* The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) UTC timestamp of the last change to this publisher object. See [Common fields](/data/common-fields/#updated_date).
+*String.* The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) UTC timestamp of the last change to this publisher object. See [Common attributes](/data/common-attributes/#updated_date).
 
 ## In the API
 

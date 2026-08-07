@@ -1,6 +1,6 @@
 ---
 title: "Awards"
-description: "What an award (grant) is, where its data comes from, how OpenAlex matches grants to funders and works, and what every field on an award object means."
+description: "What an award (grant) is, where its data comes from, how OpenAlex matches grants to funders and works, and what every attribute on an award object means."
 tags: ["reference"]
 source_id: "api-reference/awards"
 source_url: "https://developers.openalex.org/api-reference/awards"
@@ -25,15 +25,15 @@ Two links make an award useful, and both are built by matching:
 
 Because both links are matched, they can be incomplete: an award may list no works ([`funded_outputs_count`](#funded_outputs_count) of `0`) even when it funded some, if the grant was never named in a matchable work record; conversely a work may be missing its award. Fields also vary widely by source — a rich `nih_exporter` award carries amount, dates, scheme, and a lead investigator, while a bare Crossref grant may have little beyond a funder and a grant ID. Amounts arrive in the funder's own [`currency`](#currency) and are not converted.
 
-## Fields
+## Attributes
 
-This is the canonical dictionary of every field on an **award** object. Awards carry their own shape (they are grant records, not organizations), so most fields are award-specific; the shared [`id`](/data/common-fields/#id), [`display_name`](/data/common-fields/#display_name), [`created_date`](/data/common-fields/#created_date), and [`updated_date`](/data/common-fields/#updated_date) are documented once on [Common fields](/data/common-fields/).
+This is the canonical dictionary of every attribute on an **award** object. Awards carry their own shape (they are grant records, not organizations), so most fields are award-specific; the shared [`id`](/data/common-attributes/#id), [`display_name`](/data/common-attributes/#display_name), [`created_date`](/data/common-attributes/#created_date), and [`updated_date`](/data/common-attributes/#updated_date) are documented once on [Common attributes](/data/common-attributes/).
 
 ### `id`
-*String.* The [OpenAlex ID](/data/overview/#the-openalex-id-scheme) for this award, e.g. `https://openalex.org/G5066037109`. See [Common fields](/data/common-fields/#id).
+*String.* The [OpenAlex ID](/data/overview/#the-openalex-id-scheme) for this award, e.g. `https://openalex.org/G5066037109`. See [Common attributes](/data/common-attributes/#id).
 
 ### `display_name`
-*String.* The award's title, e.g. `Genetic analysis of dopaminergic neuron specification in C.elegans`. May be `null` when the source supplied no title. See [Common fields](/data/common-fields/#display_name).
+*String.* The award's title, e.g. `Genetic analysis of dopaminergic neuron specification in C.elegans`. May be `null` when the source supplied no title. See [Common attributes](/data/common-attributes/#display_name).
 
 ### `description`
 *String.* A longer abstract or narrative of the funded project, when the source provides one.
@@ -96,7 +96,7 @@ This is the canonical dictionary of every field on an **award** object. Awards c
 *List.* The [institutions](/data/institutions/) that received the award, each dehydrated (`id`, `display_name`, `ror`, `country_code`, `type`, `lineage`). Filter on the dotted subfields (`institution_awarded.id`, `institution_awarded.ror`, `institution_awarded.country_code`, `institution_awarded.type`).
 
 ### `primary_topic`
-*Object.* The top-ranked [topic](/data/topics/) inferred for the award, with its `subfield`, `field`, and `domain` — the same shape as a [work's](/data/works/#primary_topic). May be `null`.
+*Object.* The top-ranked [topic](/data/topics/) inferred for the award, with its `subfield`, `field`, and `domain` — the same shape as a [work's](/data/works/attributes/#primary_topic). May be `null`.
 
 ### `topics`
 *List.* Up to three ranked [topics](/data/topics/) for the award, each with a `score` and its subfield/field/domain. May be `null`.
@@ -105,10 +105,10 @@ This is the canonical dictionary of every field on an **award** object. Awards c
 *String.* A ready-made API URL listing every [work](/data/works/) this award funded (i.e. `works?filter=awards.id:<id>`). A convenience link, not a stored value.
 
 ### `created_date`
-*String.* The date this award was added to OpenAlex (`YYYY-MM-DD`). See [Common fields](/data/common-fields/#created_date).
+*String.* The date this award was added to OpenAlex (`YYYY-MM-DD`). See [Common attributes](/data/common-attributes/#created_date).
 
 ### `updated_date`
-*String.* The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) UTC timestamp of the last change to this award object. See [Common fields](/data/common-fields/#updated_date).
+*String.* The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) UTC timestamp of the last change to this award object. See [Common attributes](/data/common-attributes/#updated_date).
 
 ## In the API
 

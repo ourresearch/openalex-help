@@ -1,9 +1,9 @@
 ---
-title: "Common fields"
-description: "The fields that appear on nearly every OpenAlex entity — id, ids, display_name, counts_by_year, summary_stats, and the rest — documented once."
+title: "Common attributes"
+description: "The attributes that appear on nearly every OpenAlex entity — id, ids, display_name, counts_by_year, summary_stats, and the rest — documented once."
 tags: ["reference"]
 ---
-A handful of fields appear on nearly every OpenAlex entity. They mean the same thing everywhere, so they're documented here once; each entity's own [field dictionary](/data/works/#fields) links back to this page rather than repeating them.
+A handful of attributes appear on nearly every OpenAlex entity. They mean the same thing everywhere, so they're documented here once; each entity's own [attribute dictionary](/data/works/attributes/) links back to this page rather than repeating them.
 
 ## Identity
 
@@ -22,7 +22,7 @@ A handful of fields appear on nearly every OpenAlex entity. They mean the same t
 *Integer.* How many works are associated with this entity — authored by an author, published in a source, affiliated with an institution, tagged with a topic, and so on. For [works](/data/works/) themselves this field is absent.
 
 ### `cited_by_count`
-*Integer.* The total number of [citations](/data/works/#cited_by_count) this entity has received — summed across all of its works for non-work entities. Recomputed as the graph updates, so it drifts upward over time.
+*Integer.* The total number of [citations](/data/works/attributes/#cited_by_count) this entity has received — summed across all of its works for non-work entities. Recomputed as the graph updates, so it drifts upward over time.
 
 ### `summary_stats`
 *Object.* A few precomputed bibliometric indicators for the entity:
@@ -46,4 +46,4 @@ These are convenience metrics; for anything rigorous, compute over the underlyin
 
 ## In the API
 
-These fields are selectable, and most are filterable and sortable, on every entity endpoint — see [Selecting fields](/api/selecting-fields/) and [Filtering](/api/filtering/). The exact operations each field supports are listed in that entity's field dictionary.
+These fields are selectable, and most are filterable and sortable, on every entity endpoint — see [Selecting fields](/api/selecting-fields/) and [Filtering](/api/filtering/). The exact operations each field supports are listed in that entity's attribute dictionary.

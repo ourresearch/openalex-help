@@ -21,7 +21,7 @@ In between sit [**component**](/data/component/) entities — [authorships](/dat
 
 Every native entity has a stable **OpenAlex ID**: a single uppercase letter naming the entity type, followed by a number — `W` for works, `A` for authors, `S` for sources, `I` for institutions, `P` for publishers, `F` for funders, `T` for topics. The canonical form is a URL, e.g. `https://openalex.org/W2741809807`, which resolves to the entity's API record. The short form (`W2741809807`) works everywhere the long form does.
 
-Every entity also carries an [`ids`](/data/common-fields/#ids) object mapping it to the outside world's identifiers where they exist — DOIs, ORCIDs, RORs, ISSNs, Wikidata QIDs — so you can move between OpenAlex and the rest of the scholarly-metadata ecosystem.
+Every entity also carries an [`ids`](/data/common-attributes/#ids) object mapping it to the outside world's identifiers where they exist — DOIs, ORCIDs, RORs, ISSNs, Wikidata QIDs — so you can move between OpenAlex and the rest of the scholarly-metadata ecosystem.
 
 ## Merged entities
 
@@ -34,8 +34,8 @@ An entity appears in two shapes depending on where you meet it:
 - The **full object** is what you get when you fetch the entity directly (e.g. `GET /works/W2741809807`) — every field documented on its page.
 - A **dehydrated object** is a compact stub — usually just `id` and `display_name`, sometimes a few more fields — used when the entity is *referenced from inside another entity*. A work's `authorships` list embeds dehydrated authors and institutions; fetch the author directly to get the full object.
 
-Dehydrated objects keep responses small and avoid unbounded nesting. When a page's field dictionary says a field holds "a dehydrated [Author]", that's what it means.
+Dehydrated objects keep responses small and avoid unbounded nesting. When a page's attribute dictionary says a field holds "a dehydrated [Author]", that's what it means.
 
-## Common fields
+## Common attributes
 
-A handful of fields appear on nearly every entity — `id`, `ids`, `display_name`, `counts_by_year`, `summary_stats`, `works_count`, `cited_by_count`, and the `created_date` / `updated_date` timestamps. They're documented once, on [Common fields](/data/common-fields/); individual entity pages link there rather than repeating them.
+A handful of attributes appear on nearly every entity — `id`, `ids`, `display_name`, `counts_by_year`, `summary_stats`, `works_count`, `cited_by_count`, and the `created_date` / `updated_date` timestamps. They're documented once, on [Common attributes](/data/common-attributes/); individual entity pages link there rather than repeating them.

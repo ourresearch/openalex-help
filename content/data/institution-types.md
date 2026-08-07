@@ -24,33 +24,33 @@ The complete controlled vocabulary (live from [`api.openalex.org/institution-typ
 | `facility` | Specialized research facilities like national laboratories, telescopes, and particle accelerators. |
 | `other` | Organizations like university presses that don't fit the standard ROR categories. |
 
-## Fields
+## Attributes
 
-Each institution type is a small object. Fields shared with other entities are documented once on [Common fields](/data/common-fields/).
+Each institution type is a small object. Attributes shared with other entities are documented once on [Common attributes](/data/common-attributes/).
 
 ### `id`
-*String.* The [OpenAlex ID](/data/overview/#the-openalex-id-scheme) for this type, e.g. `https://openalex.org/institution-types/education`. See [Common fields](/data/common-fields/#id).
+*String.* The [OpenAlex ID](/data/overview/#the-openalex-id-scheme) for this type, e.g. `https://openalex.org/institution-types/education`. See [Common attributes](/data/common-attributes/#id).
 
 ### `display_name`
-*String.* The human-readable name of the type — identical to the ID's final segment (`education`, `company`). See [Common fields](/data/common-fields/#display_name).
+*String.* The human-readable name of the type — identical to the ID's final segment (`education`, `company`). See [Common attributes](/data/common-attributes/#display_name).
 
 ### `description`
 *String.* A one-line definition of the type (the same text shown in the [Values](#values) table above).
 
 ### `works_count`
-*Integer.* How many [works](/data/works/) have an affiliated institution of this type. See [Common fields](/data/common-fields/#works_count).
+*Integer.* How many [works](/data/works/) have an affiliated institution of this type. See [Common attributes](/data/common-attributes/#works_count).
 
 ### `cited_by_count`
-*Integer.* Total citations across all works affiliated with an institution of this type. See [Common fields](/data/common-fields/#cited_by_count).
+*Integer.* Total citations across all works affiliated with an institution of this type. See [Common attributes](/data/common-attributes/#cited_by_count).
 
 ### `works_api_url`
 *String.* A ready-made [Works](/data/works/) API URL listing every work affiliated with an institution of this type, e.g. `https://api.openalex.org/works?filter=authorships.institutions.type:education`.
 
 ### `created_date`
-*String.* The date this type was added to OpenAlex (`YYYY-MM-DD`). See [Common fields](/data/common-fields/#created_date).
+*String.* The date this type was added to OpenAlex (`YYYY-MM-DD`). See [Common attributes](/data/common-attributes/#created_date).
 
 ### `updated_date`
-*String.* The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) UTC timestamp of the last change to this type object. See [Common fields](/data/common-fields/#updated_date).
+*String.* The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) UTC timestamp of the last change to this type object. See [Common attributes](/data/common-attributes/#updated_date).
 
 ## In the API
 
