@@ -9,7 +9,7 @@ entity:
   example: "S137773608"
   api: "sources"
   linksTo:
-    - "works via locations"
+    - "locations"
     - "publishers"
     - "indexes"
 ---

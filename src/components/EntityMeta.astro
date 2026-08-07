@@ -1,12 +1,10 @@
 ---
-// Structured metadata block at the top of every Data-tab entity page
-// (oxjob #354 Pass Z, Jason's data-tab feedback 2026-08-07):
-//   Example  — shortest valid ID form, linked to the entity's page on openalex.org
-//   Count    — exact live count (fetched at build), linked to the openalex.org serp
-//   Links to — the entity types this one connects to, linked to their /data/ pages;
-//              indirect edges carry a muted "via <component>" (e.g. works via authorships)
-// Rows render only when their data exists: component entities get just Links to,
-// user-created entities just an unlinked Example.
+// Structured metadata line at the top of every Data-tab entity page
+// (oxjob #354 Pass Z, single-row form per Jason's red-pen 2026-08-07):
+//   Eg: indexes/doaj   Count: 5   Links to: works, sources
+// One row, no borders, all values plain monospace (no code chrome). Groups
+// render only when their data exists: component entities get just Links to,
+// user-created entities just an unlinked Eg.
 import { entityCount } from '../lib/entityCounts';
 
 interface Props {
@@ -28,76 +26,64 @@ if (example && /^[A-Z]\d+$/.test(example) && serp) {
 } else if (example && example.includes('/')) {
   exampleUrl = `https://openalex.org/${example}`;
 }
-
-// "authors" or "works via authorships" → entity link (+ optional via link)
-const links = linksTo.map((s) => {
-  const [target, via] = s.split(' via ');
-  return { target, via };
-});
 ---
 
-{(example || count !== null || links.length > 0) && (
-  <dl class="entity-meta">
+{(example || count !== null || linksTo.length > 0) && (
+  <p class="entity-meta">
     {example && (
-      <div class="row">
-        <dt>Example</dt>
-        <dd>{exampleUrl ? <a href={exampleUrl}><code>{example}</code></a> : <code>{example}</code>}</dd>
-      </div>
+      <span class="group">
+        <span class="label">Eg:</span>
+        {exampleUrl ? <a href={exampleUrl}>{example}</a> : <span>{example}</span>}
+      </span>
     )}
     {count !== null && (
-      <div class="row">
-        <dt>Count</dt>
-        <dd><a href={`https://openalex.org/${serp}`}>{count.toLocaleString('en-US')}</a></dd>
-      </div>
+      <span class="group">
+        <span class="label">Count:</span>
+        <a href={`https://openalex.org/${serp}`}>{count.toLocaleString('en-US')}</a>
+      </span>
     )}
-    {links.length > 0 && (
-      <div class="row">
-        <dt>Links to</dt>
-        <dd>
-          {links.map((l, i) => (
+    {linksTo.length > 0 && (
+      <span class="group links">
+        <span class="label">Links to:</span>
+        <span>
+          {linksTo.map((t, i) => (
             <>
               {i > 0 && ', '}
-              <a href={`/data/${l.target}/`}>{l.target.replace(/-/g, ' ')}</a>
-              {l.via && (
-                <span class="via"> via <a href={`/data/${l.via}/`}>{l.via.replace(/-/g, ' ')}</a></span>
-              )}
+              <a href={`/data/${t}/`}>{t.replace(/-/g, ' ')}</a>
             </>
           ))}
-        </dd>
-      </div>
+        </span>
+      </span>
     )}
-  </dl>
+  </p>
 )}
 
 <style>
   .entity-meta {
-    margin: 1.1rem 0 0;
-    padding: 0.35rem 0;
-    border-top: 1px solid var(--line);
-    border-bottom: 1px solid var(--line);
-    font-size: 0.84rem;
+    margin: 0.9rem 0 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.2rem 2rem;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
     line-height: 1.6;
   }
-  .row {
-    display: grid;
-    grid-template-columns: 5.5rem minmax(0, 1fr);
-    gap: 0 1rem;
-    padding: 0.18rem 0;
+  .group {
+    white-space: nowrap;
   }
-  dt {
+  /* The links list can be long (works has 6) — let it wrap within the line. */
+  .group.links {
+    white-space: normal;
+  }
+  .label {
     color: var(--muted);
+    margin-right: 0.6ch; /* Astro collapses the JSX whitespace after the label */
   }
-  dd {
-    margin: 0;
-  }
-  dd code {
-    font-size: 0.9em;
-  }
-  .via,
-  .via a {
-    color: var(--muted);
-  }
-  .via a:hover {
+  .entity-meta a {
     color: var(--ink);
+  }
+  .entity-meta a:hover {
+    color: var(--ink);
+    text-decoration: underline;
   }
 </style>

@@ -9,9 +9,8 @@ entity:
   example: "W2741809807"
   api: "works"
   linksTo:
-    - "authors via authorships"
-    - "institutions via authorships"
-    - "sources via locations"
+    - "authorships"
+    - "locations"
     - "topics"
     - "keywords"
     - "funders"
