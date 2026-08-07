@@ -64,8 +64,9 @@ if (bucket) {
     activeSlug={entry.id}
   >
     <article class="prose">
-      <PageHeader title={displayTitle} crumbs={crumbs} />
       {entry.data.entity && <EntityMeta {...entry.data.entity} />}
+      <PageHeader title={displayTitle} crumbs={crumbs} />
+      {entry.data.entity && <EntityMeta {...entry.data.entity} mobile />}
       <Content />
       <div class="article-foot">
         <a class="md-link" href={mdUrl}>View as Markdown</a>

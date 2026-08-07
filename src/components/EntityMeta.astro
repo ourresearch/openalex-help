@@ -12,8 +12,12 @@ interface Props {
   api?: string;
   serp?: string;
   linksTo?: string[];
+  // The card renders twice per page: a desktop copy BEFORE the page header
+  // (floated right, so the header + intro wrap around it) and a `mobile` copy
+  // after it (full width, shown only <700px where the float is hidden).
+  mobile?: boolean;
 }
-const { example, api, serp = Astro.props.api, linksTo = [] } = Astro.props;
+const { example, api, serp = Astro.props.api, linksTo = [], mobile = false } = Astro.props;
 
 const count = api ? await entityCount(api) : null;
 
@@ -29,7 +33,7 @@ if (example && /^[A-Z]\d+$/.test(example) && serp) {
 ---
 
 {(example || count !== null || linksTo.length > 0) && (
-  <p class="entity-meta">
+  <p class:list={['entity-meta', { mobile }]}>
     {example && (
       <span class="group">
         <span class="label">Eg:</span>
@@ -67,7 +71,7 @@ if (example && /^[A-Z]\d+$/.test(example) && serp) {
   .entity-meta {
     float: right;
     max-width: 19rem;
-    margin: 0.25rem 0 1rem 1.75rem;
+    margin: 0 0 1rem 1.75rem;
     padding: 0.65rem 1rem;
     background: var(--panel);
     border: 1px solid var(--line);
@@ -79,11 +83,18 @@ if (example && /^[A-Z]\d+$/.test(example) && serp) {
     font-size: 0.8rem;
     line-height: 1.7;
   }
+  .entity-meta.mobile {
+    display: none;
+    float: none;
+    max-width: none;
+    margin: 0 0 1.5rem;
+  }
   @media (max-width: 700px) {
     .entity-meta {
-      float: none;
-      max-width: none;
-      margin: 0 0 1.25rem;
+      display: none;
+    }
+    .entity-meta.mobile {
+      display: grid;
     }
   }
   .group {
