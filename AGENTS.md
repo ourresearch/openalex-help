@@ -27,17 +27,18 @@ INTENT, not whether learning occurs:
 - Every entity page follows the template in `content/data/authors.md`: intro (what it
   is + ID form + a live example link) → `## How it's made` (fixed heading/anchor
   `#how-its-made`; renamed from "How we build it" 2026-08-07: provenance, judgment
-  calls, failure modes; where the old deep-dive pages live now) → `## Fields` (one ``### `field` `` per top-level API field; common
-  fields get a one-liner + link to `/data/common-fields/`) → `## In the API`.
+  calls, failure modes; where the old deep-dive pages live now) → `## Attributes` (renamed from Fields 2026-08-07 to avoid colliding with the
+  aboutness Fields entity; one ``### `field` `` per top-level API field; common
+  attributes get a one-liner + link to `/data/common-attributes/`) → `## In the API`.
   Exception: **works** is a subgroup (Jason 2026-08-07) — overview at
   `content/data/works.md`, with child pages `works/citations.md`,
-  `works/open-access.md` (moved in from Docs), and `works/fields.md` (the
+  `works/open-access.md` (moved in from Docs), and `works/attributes.md` (the
   dictionary; `check-entity-fields.mjs` reads it via its `page` override).
   Vocabulary pages add a `## Values` section (the controlled list).
 - **Field dictionaries are gated, not hand-trusted.** `scripts/check-entity-fields.mjs`
   compares each page's ``### `field` `` headings against live API object keys +
   `/properties`. Run `node scripts/check-entity-fields.mjs [slug…]` after touching a
-  field dictionary; **0 drift is a gate**. Component entities (authorships/locations/
+  attribute dictionary; **0 drift is a gate**. Component entities (authorships/locations/
   raw-affiliation-strings) are intentionally NOT in its config — they document the
   work-embedded object shape, not a list-endpoint row.
 - Native vs. vocabulary framing (put in copy where it helps trust): **native** entities
