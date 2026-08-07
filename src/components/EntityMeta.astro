@@ -1,10 +1,12 @@
 ---
-// Structured metadata line at the top of every Data-tab entity page
-// (oxjob #354 Pass Z, single-row form per Jason's red-pen 2026-08-07):
-//   Eg: indexes/doaj   Count: 5   Links to: works, sources
-// One row, no borders, all values plain monospace (no code chrome). Groups
-// render only when their data exists: component entities get just Links to,
-// user-created entities just an unlinked Eg.
+// Structured metadata card beneath the header of every Data-tab entity page
+// (oxjob #354 Pass Z; float tried and dropped 2026-08-07):
+//   Eg:     F4320332161
+//   Count:  45,639
+//   Links:  awards, works
+// House card style, one label/value pair per line, values plain monospace
+// (no code chrome), label column table-aligned. Rows render only when their
+// data exists: component entities get just Links, user-created just Eg.
 import { entityCount } from '../lib/entityCounts';
 
 interface Props {
@@ -12,12 +14,8 @@ interface Props {
   api?: string;
   serp?: string;
   linksTo?: string[];
-  // The card renders twice per page: a desktop copy BEFORE the page header
-  // (floated right, so the header + intro wrap around it) and a `mobile` copy
-  // after it (full width, shown only <700px where the float is hidden).
-  mobile?: boolean;
 }
-const { example, api, serp = Astro.props.api, linksTo = [], mobile = false } = Astro.props;
+const { example, api, serp = Astro.props.api, linksTo = [] } = Astro.props;
 
 const count = api ? await entityCount(api) : null;
 
@@ -33,7 +31,7 @@ if (example && /^[A-Z]\d+$/.test(example) && serp) {
 ---
 
 {(example || count !== null || linksTo.length > 0) && (
-  <p class:list={['entity-meta', { mobile }]}>
+  <p class="entity-meta">
     {example && (
       <span class="group">
         <span class="label">Eg:</span>
@@ -69,9 +67,9 @@ if (example && /^[A-Z]\d+$/.test(example) && serp) {
      values all start at the same x. Each .group contributes its label + value
      as grid items via display: contents. */
   .entity-meta {
-    float: right;
-    max-width: 19rem;
-    margin: 0 0 1rem 1.75rem;
+    width: fit-content;
+    max-width: 100%;
+    margin: -0.5rem 0 2rem; /* tucks up toward the header, whose own margin is generous */
     padding: 0.65rem 1rem;
     background: var(--panel);
     border: 1px solid var(--line);
@@ -82,20 +80,6 @@ if (example && /^[A-Z]\d+$/.test(example) && serp) {
     font-family: var(--font-mono);
     font-size: 0.8rem;
     line-height: 1.7;
-  }
-  .entity-meta.mobile {
-    display: none;
-    float: none;
-    max-width: none;
-    margin: 0 0 1.5rem;
-  }
-  @media (max-width: 700px) {
-    .entity-meta {
-      display: none;
-    }
-    .entity-meta.mobile {
-      display: grid;
-    }
   }
   .group {
     display: contents;
