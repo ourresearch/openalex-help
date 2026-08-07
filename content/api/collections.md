@@ -320,7 +320,7 @@ Content-Type: application/json
 
 ```bash
 # Single remove via URL
-DELETE https://user.openalex.org/me/collections/{collection_id}/entities/W123…
+DELETE https://user.openalex.org/me/collections/{collection_id}/data/W123…
 ```
 
 ## Admin endpoints

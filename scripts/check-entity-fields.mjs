@@ -31,7 +31,8 @@ const API = 'https://api.openalex.org';
 // shape from the standalone /locations Walden row, so the list endpoint is the
 // wrong oracle for them. They're self-verified against a live work object.
 const ENTITIES = {
-  works: {}, authors: {}, sources: {}, institutions: {}, publishers: {},
+  works: { page: 'works/fields' }, // dictionary split onto a child page (2026-08-07)
+  authors: {}, sources: {}, institutions: {}, publishers: {},
   funders: {}, topics: {}, keywords: {}, awards: {}, concepts: {},
   subfields: {}, fields: {}, domains: {}, sdgs: {},
   'work-types': {}, 'source-types': {}, 'institution-types': {},
@@ -98,7 +99,7 @@ let checked = 0;
 for (const slug of slugs) {
   const cfg = ENTITIES[slug];
   if (!cfg) { console.error(`! ${slug}: not a configured entity`); drift++; continue; }
-  const path = join(ROOT, 'content', 'entities', `${slug}.md`);
+  const path = join(ROOT, 'content', 'data', `${cfg.page ?? slug}.md`);
   if (!existsSync(path)) { console.log(`· ${slug}: no page yet (skipped)`); continue; }
   const fields = pageFields(readFileSync(path, 'utf8'));
   if (fields === null) { console.log(`· ${slug}: page has no "## Fields" section (skipped)`); continue; }

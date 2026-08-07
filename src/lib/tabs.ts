@@ -2,7 +2,7 @@ import { getCollection, type CollectionEntry } from 'astro:content';
 
 // Order matches the header nav: practical (help, tutorials) then reference
 // (docs, entities, api) — this ordering flows into llms.txt and search.
-export const TABS = ['help', 'tutorials', 'docs', 'entities', 'api'] as const;
+export const TABS = ['help', 'tutorials', 'docs', 'data', 'api'] as const;
 export type Tab = (typeof TABS)[number];
 
 export type AnyEntry = CollectionEntry<Tab>;

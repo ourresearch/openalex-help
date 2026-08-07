@@ -8,7 +8,7 @@ source_updated: "2026-06-13"
 ---
 [Unpaywall](https://unpaywall.org) is OpenAlex's Open Access discovery surface: an API, dataset, and [browser extension](https://unpaywall.org/products/extension) that tell you whether a scholarly article has a free-to-read copy, and where. It's used by libraries, link resolvers, and thousands of applications.
 
-**Unpaywall is not a separate database.** Since the Walden rewrite, Unpaywall records are served from the **same OpenAlex data** that powers everything else — Unpaywall is a legacy-compatible *format* over that data, kept stable for the large ecosystem built on it. The OA facts in an Unpaywall record and in an OpenAlex [work's `open_access` object](/docs/open-access/) come from the same pipeline.
+**Unpaywall is not a separate database.** Since the Walden rewrite, Unpaywall records are served from the **same OpenAlex data** that powers everything else — Unpaywall is a legacy-compatible *format* over that data, kept stable for the large ecosystem built on it. The OA facts in an Unpaywall record and in an OpenAlex [work's `open_access` object](/data/works/open-access/) come from the same pipeline.
 
 ## The Unpaywall surfaces
 
@@ -46,6 +46,6 @@ For any new integration, use an OpenAlex-native sync method instead — they cov
 
 ## Related pages
 
-- [Open Access](/docs/open-access/) — how OpenAlex determines OA status, the taxonomy behind `oa_status`
+- [Open Access](/data/works/open-access/) — how OpenAlex determines OA status, the taxonomy behind `oa_status`
 - [API security](/api/introduction/#security) — displaying metadata text safely
 - [Sync](/docs/sync/#keeping-in-sync-with-openalex) — the OpenAlex-native ways to stay in sync

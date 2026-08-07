@@ -37,7 +37,7 @@ export const NAV_GROUPS: Record<string, NavGroup[]> = {
   // Entities tab (oxjob #354 Pass R). Group overviews use the group's own
   // `slug` so the overview renders as the subgroup's first child. Slugs are
   // added here as their pages land during the grind; unmapped ones warn.
-  entities: [
+  data: [
     {
       // Pass W: renamed "Overview" → "Get started" for cross-tab consistency
       // (every reference tab opens with a Get started section, first page
@@ -49,7 +49,18 @@ export const NAV_GROUPS: Record<string, NavGroup[]> = {
     {
       label: 'Native',
       desc: 'Entities where OpenAlex mints its own IDs and boundary judgments.',
-      slugs: ['native', 'works', 'authors', 'sources', 'publishers', 'funders', 'awards', 'institutions'],
+      // Works is a subgroup (Jason 2026-08-07): the central entity gets child
+      // pages — Citations, Open access (moved in from Docs), and Fields.
+      slugs: [
+        'native',
+        { label: 'Works', slug: 'works', children: ['works/citations', 'works/open-access', 'works/fields'] },
+        'authors',
+        'sources',
+        'publishers',
+        'funders',
+        'awards',
+        'institutions',
+      ],
     },
     {
       label: 'Component',
@@ -106,12 +117,12 @@ export const NAV_GROUPS: Record<string, NavGroup[]> = {
       // + open-access moved here from the dissolved "Open access" group;
       // `sustainability` is a new page.
       label: 'How it works',
-      desc: 'How OpenAlex is built — the pipeline, open access, repositories, and how it stays funded.',
+      desc: 'How OpenAlex is built — the pipeline, repositories, and how it stays funded.',
+      // open-access moved to Data > Works > Open access (Jason 2026-08-07).
       slugs: [
         'overview',
         'repositories',
         'sustainability',
-        'open-access',
       ],
     },
     {
@@ -288,7 +299,7 @@ export interface Crumb {
 const TAB_LABELS: Record<string, string> = {
   help: 'FAQ',
   docs: 'Docs',
-  entities: 'Entities',
+  data: 'Data',
   api: 'API',
   tutorials: 'Tutorials',
 };

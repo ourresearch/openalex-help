@@ -104,8 +104,8 @@ Check the `has_content.pdf` filter to find downloadable works.
 
 ## Next steps
 
-  - **[Works](/entities/works/)** — Journal articles, books, datasets, theses
-  - **[Authors](/entities/authors/)** — Researchers and their publications
+  - **[Works](/data/works/)** — Journal articles, books, datasets, theses
+  - **[Authors](/data/authors/)** — Researchers and their publications
   - **[Filtering](/api/filtering/)** — Narrow results with 150+ filter options
   - **[Recipes](/tutorials/quick-api-recipes/)** — Common API patterns and examples
 

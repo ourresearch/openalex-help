@@ -6,7 +6,7 @@ source_id: "guides/curation-authors"
 source_url: "https://developers.openalex.org/guides/curation-authors"
 source_updated: "2026-05-17"
 ---
-OpenAlex assigns [authors](/entities/authors/) to works automatically, but sometimes we get things wrong.
+OpenAlex assigns [authors](/data/authors/) to works automatically, but sometimes we get things wrong.
 Author curation lets you fix that: sign in, tell us what's wrong, and we'll make the change.
 
 > **Note:**
@@ -14,7 +14,7 @@ Author curation lets you fix that: sign in, tell us what's wrong, and we'll make
 
 ## What you can curate
 
-Four corrections are available. The first two correct the authors attributed to a [work](/entities/works/); the last two correct the names on an author profile.
+Four corrections are available. The first two correct the authors attributed to a [work](/data/works/); the last two correct the names on an author profile.
 
 | Action                 | Description                                                |
 | ---------------------- | ---------------------------------------------------------- |

@@ -10,7 +10,7 @@ Repositories — institutional repositories (IRs), subject repositories like arX
 
 Repository content enters OpenAlex through two channels:
 
-1. **As locations on existing works.** OpenAlex harvests repository records and matches them to works it already knows about (from Crossref, DataCite, PubMed, and other registration sources). A matched record becomes a [location](/entities/locations/) on that work — often the free-to-read copy that makes the work [green OA](/docs/open-access/).
+1. **As locations on existing works.** OpenAlex harvests repository records and matches them to works it already knows about (from Crossref, DataCite, PubMed, and other registration sources). A matched record becomes a [location](/data/locations/) on that work — often the free-to-read copy that makes the work [green OA](/data/works/open-access/).
 2. **As works in their own right.** Since the November 2025 Walden expansion, repository records that don't match any existing work can be minted as new works in the [expansion (XPAC) corpus](/api/key-concepts/#xpac-expansion-pack). These are excluded from API results by default; add `include_xpac=true` to see them.
 
 This page covers the harvesting pipeline: how records are matched, how full-text documents are located, and — the question repository managers ask most — why a repository's work count in OpenAlex can look much smaller than the repository itself.
@@ -61,10 +61,10 @@ Repositories can make both matching and full-text detection more reliable by fol
 
 ## Why a repository seems to be missing most of its works
 
-If you look at your repository as a [source](/entities/sources/) in OpenAlex, its work count is often much smaller than the number of records in the repository itself. That's usually not a harvesting failure — it follows from how the two channels above work:
+If you look at your repository as a [source](/data/sources/) in OpenAlex, its work count is often much smaller than the number of records in the repository itself. That's usually not a harvesting failure — it follows from how the two channels above work:
 
 - **By default you're seeing only the core corpus.** In the default (core) view, a repository record appears only when it matched an existing work — the repository is credited as the source of one *version* of that work, not as a standalone record. Records that didn't match anything (theses, reports, datasets, local collections) aren't in the core count.
-- **Unmatched records live in the expansion corpus.** Since November 2025, unmatched repository records can be minted as expansion (XPAC) works. Add [`include_xpac=true`](/api/key-concepts/#xpac-expansion-pack) to your API query to include them — for many repositories this changes the count dramatically. Data quality in the expansion corpus is lower on average and improving; see [`is_xpac`](/entities/works/#is_xpac).
+- **Unmatched records live in the expansion corpus.** Since November 2025, unmatched repository records can be minted as expansion (XPAC) works. Add [`include_xpac=true`](/api/key-concepts/#xpac-expansion-pack) to your API query to include them — for many repositories this changes the count dramatically. Data quality in the expansion corpus is lower on average and improving; see [`is_xpac`](/data/works/#is_xpac).
 - **Matching depends on metadata.** Records without a cleanly reported DOI (or a matchable title + first author) can fail to match — see the guidelines above.
 - **A historical wrinkle:** some pre-2022 records inherited from Microsoft Academic Graph list an institutional repository as their sole source. MAG minted those unsystematically, so that legacy coverage is not comprehensive either.
 
@@ -76,7 +76,7 @@ If you run a repository, two kinds of metadata make your records much more usefu
 
 ### License reporting
 
-OpenAlex reports the [license](/docs/open-access/#licenses) that articles in your repository are distributed under. If you know the license, you can include it in the OAI-PMH record in a _rights_ element like this:
+OpenAlex reports the [license](/data/works/open-access/#licenses) that articles in your repository are distributed under. If you know the license, you can include it in the OAI-PMH record in a _rights_ element like this:
 
 ```xml
 <dc:rights>https://creativecommons.org/licenses/by/4.0</dc:rights>
@@ -90,12 +90,12 @@ If an element like this isn't present, OpenAlex looks for a license statement in
 
 ### Version reporting
 
-OpenAlex reports the [version](/entities/locations/) of the full-text papers it finds. It determines the version automatically, but in some cases it can improve accuracy for repositories to report version information when they know it.
+OpenAlex reports the [version](/data/locations/) of the full-text papers it finds. It determines the version automatically, but in some cases it can improve accuracy for repositories to report version information when they know it.
 
 If your repository knows the version of the PDF it is hosting, we recommend you put version information in the metadata as follows (based on the [DRIVER Guidelines v2.0 VERSION standard](https://wiki.surfnet.nl/display/DRIVERguidelines/DRIVER-VERSION+Mappings)):
 
 - `<dc:type>publishedVersion</dc:type>` when you have verified that the PDF you are hosting is the version of record, with all publisher copyediting and formatting.
-- `<dc:type>acceptedVersion</dc:type>` when you have verified that the PDF you are hosting meets [the definition of acceptedVersion](/entities/locations/).
+- `<dc:type>acceptedVersion</dc:type>` when you have verified that the PDF you are hosting meets [the definition of acceptedVersion](/data/locations/).
 - `<dc:type>submittedVersion</dc:type>` when you know the PDF you are hosting does **NOT** meet the definitions for publishedVersion or acceptedVersion (for example if it was uploaded before the paper was accepted for publication).
 
 If you have not verified the version of the document you are hosting, don't specify version metadata — OpenAlex will determine it automatically.
@@ -104,6 +104,6 @@ In addition, if your repository has a policy of never hosting any submitted vers
 
 ## Related pages
 
-- [Open Access](/docs/open-access/) — how repository copies make works green OA, and how the best OA location is chosen
-- [Versions](/entities/locations/) — publishedVersion, acceptedVersion, and submittedVersion
-- [Sources](/entities/sources/) — what source records are and the source-type taxonomy
+- [Open Access](/data/works/open-access/) — how repository copies make works green OA, and how the best OA location is chosen
+- [Versions](/data/locations/) — publishedVersion, acceptedVersion, and submittedVersion
+- [Sources](/data/sources/) — what source records are and the source-type taxonomy

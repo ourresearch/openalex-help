@@ -96,9 +96,9 @@ The combined manifest has the same shape but nests one entry per entity under an
 
 ## Entity schemas
 
-Each record is a complete entity object in the same shape the API returns — the field dictionaries on the [Entities](/entities/) tab apply directly:
+Each record is a complete entity object in the same shape the API returns — the field dictionaries on the [Entities](/data/) tab apply directly:
 
-  - **[Works](/entities/works/)** · **[Authors](/entities/authors/)** · **[Sources](/entities/sources/)** · **[Institutions](/entities/institutions/)** · **[Topics](/entities/topics/)** · **[Publishers](/entities/publishers/)**
+  - **[Works](/data/works/)** · **[Authors](/data/authors/)** · **[Sources](/data/sources/)** · **[Institutions](/data/institutions/)** · **[Topics](/data/topics/)** · **[Publishers](/data/publishers/)**
 
 ## How the snapshot differs from the API
 
@@ -106,9 +106,9 @@ People often compare counts or fields between their snapshot copy and the live A
 
 | Difference | Why |
 |---|---|
-| **Works count: snapshot ~510M vs API default ~322M** | The snapshot contains **all** works, including the [expansion (XPAC) corpus](/api/key-concepts/#xpac-expansion-pack). The API **excludes XPAC works by default**; add `include_xpac=true` to match. Filter locally on the [`is_xpac`](/entities/works/#is_xpac) field to reproduce the API's default view. |
+| **Works count: snapshot ~510M vs API default ~322M** | The snapshot contains **all** works, including the [expansion (XPAC) corpus](/api/key-concepts/#xpac-expansion-pack). The API **excludes XPAC works by default**; add `include_xpac=true` to match. Filter locally on the [`is_xpac`](/data/works/#is_xpac) field to reproduce the API's default view. |
 | **Freshness** | The snapshot is a point-in-time release (quarterly for the free public snapshot; daily on [paid plans](https://openalex.org/pricing)); the API updates continuously. Counts and records drift between releases — see [Sync](/docs/sync/). |
-| **`content_urls` is absent** | It's generated at serve time, API-only. The snapshot has [`has_content`](/entities/works/#has_content); build download URLs via the [content archive](/docs/fulltext/) with work IDs. |
+| **`content_urls` is absent** | It's generated at serve time, API-only. The snapshot has [`has_content`](/data/works/#has_content); build download URLs via the [content archive](/docs/fulltext/) with work IDs. |
 | **Some works have `abstract_inverted_index: null`** | Not every work has an abstract (availability and publisher restrictions) — same as the API. |
 | **No n-grams** | The old n-grams dataset is retired and was never part of this snapshot layout. |
 

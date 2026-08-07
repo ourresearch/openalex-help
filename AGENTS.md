@@ -3,11 +3,13 @@
 Category vocabulary (Jason 2026-08-07; the Astro/MDN split). The split is reader
 INTENT, not whether learning occurs:
 
-- **Reference**: Docs / Entities / API — you know roughly what you're looking for
+- **Reference**: Docs / Data / API — you know roughly what you're looking for
   and want to look it up. One reference work split across three tabs to keep each
-  table of contents scannable. **Entities** = "what is this thing?" (the entity
-  graph). **Docs** = cross-cutting topics (querying, open access, getting the
-  data). **API** = wire mechanics + a one-page endpoints index.
+  table of contents scannable. **Data** (renamed from Entities 2026-08-07 —
+  everybody knows "data", not everybody knows "entity") = "what is this thing?"
+  — the graph of ~20 connected entity types, organized by entity. **Docs** =
+  cross-cutting topics (querying, getting the data). **API** = wire mechanics +
+  a one-page endpoints index.
 - **Learn**: FAQ (extended FAQ of real user questions) / Tutorials (worked
   step-by-step walkthroughs) — you arrive with a question or a job and want to be
   led to the answer.
@@ -15,18 +17,22 @@ INTENT, not whether learning occurs:
   Support / Ask AI — the conversation surfaces.
 - The site is MONOCHROME (category colors tried and dropped 2026-08-07). The
   grouping shows structurally: hairline dividers between the header tab groups
-  (home | faq tutorials | docs entities api) and labeled homepage columns.
-- Routing for writers: "What is this thing?" → Entities. "How does querying/OA/bulk
+  (home | faq tutorials | docs data api) and labeled homepage columns.
+- Routing for writers: "What is this thing?" → Data. "How does querying/OA/bulk
   access work?" → Docs. "Wire mechanics?" → API. "A question a real user asked?" → FAQ.
   "A worked walkthrough?" → Tutorials. NOT "FAQ = nontechnical, docs = technical".
 
 ### Entity pages
 
-- Every entity page follows the template in `content/entities/works.md`: intro (what it
-  is + ID form + a live example link) → `## How we build it` (fixed heading/anchor
-  `#how-we-build-it`: provenance, judgment calls, failure modes; where the old deep-dive
-  pages live now) → `## Fields` (one ``### `field` `` per top-level API field; common
-  fields get a one-liner + link to `/entities/common-fields/`) → `## In the API`.
+- Every entity page follows the template in `content/data/authors.md`: intro (what it
+  is + ID form + a live example link) → `## How it's made` (fixed heading/anchor
+  `#how-its-made`; renamed from "How we build it" 2026-08-07: provenance, judgment
+  calls, failure modes; where the old deep-dive pages live now) → `## Fields` (one ``### `field` `` per top-level API field; common
+  fields get a one-liner + link to `/data/common-fields/`) → `## In the API`.
+  Exception: **works** is a subgroup (Jason 2026-08-07) — overview at
+  `content/data/works.md`, with child pages `works/citations.md`,
+  `works/open-access.md` (moved in from Docs), and `works/fields.md` (the
+  dictionary; `check-entity-fields.mjs` reads it via its `page` override).
   Vocabulary pages add a `## Values` section (the controlled list).
 - **Field dictionaries are gated, not hand-trusted.** `scripts/check-entity-fields.mjs`
   compares each page's ``### `field` `` headings against live API object keys +

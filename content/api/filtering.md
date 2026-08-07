@@ -129,14 +129,14 @@ Each entity type has its own set of filterable fields. See the API reference for
 
 | Entity | Filters |
 |--------|---------|
-| [Works](/entities/works/) | `publication_year`, `type`, `open_access.is_oa`, `author.id`, `institutions.id`, `cited_by_count`, `doi`, `has_abstract`, and ~150 more |
-| [Authors](/entities/authors/) | `has_orcid`, `last_known_institutions.id`, `works_count`, `cited_by_count`, `orcid` |
-| [Sources](/entities/sources/) | `is_oa`, `is_in_doaj`, `type`, `country_code`, `host_organization`, `issn` |
-| [Institutions](/entities/institutions/) | `country_code`, `type`, `is_global_south`, `continent`, `ror`, `has_ror` |
-| [Topics](/entities/topics/) | `domain.id`, `field.id`, `subfield.id`, `works_count` |
-| [Keywords](/entities/keywords/) | `works_count`, `cited_by_count` |
-| [Publishers](/entities/publishers/) | `country_codes`, `hierarchy_level`, `ror`, `parent_publisher` |
-| [Funders](/entities/funders/) | `country_code`, `is_global_south`, `continent`, `ror`, `awards_count` |
+| [Works](/data/works/) | `publication_year`, `type`, `open_access.is_oa`, `author.id`, `institutions.id`, `cited_by_count`, `doi`, `has_abstract`, and ~150 more |
+| [Authors](/data/authors/) | `has_orcid`, `last_known_institutions.id`, `works_count`, `cited_by_count`, `orcid` |
+| [Sources](/data/sources/) | `is_oa`, `is_in_doaj`, `type`, `country_code`, `host_organization`, `issn` |
+| [Institutions](/data/institutions/) | `country_code`, `type`, `is_global_south`, `continent`, `ror`, `has_ror` |
+| [Topics](/data/topics/) | `domain.id`, `field.id`, `subfield.id`, `works_count` |
+| [Keywords](/data/keywords/) | `works_count`, `cited_by_count` |
+| [Publishers](/data/publishers/) | `country_codes`, `hierarchy_level`, `ror`, `parent_publisher` |
+| [Funders](/data/funders/) | `country_code`, `is_global_south`, `continent`, `ror`, `awards_count` |
 
 > **Info:**
 > **Looking for text search?** Filters match exact values. For full-text search in titles, abstracts, and other fields, see [Searching](/api/searching/).

@@ -33,6 +33,6 @@ export const collections = {
   help: makeCollection('help'),
   docs: makeCollection('docs'),
   api: makeCollection('api'),
-  entities: makeCollection('entities'),
+  data: makeCollection('data'),
   tutorials: makeCollection('tutorials'),
 };

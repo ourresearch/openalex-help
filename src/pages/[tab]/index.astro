@@ -28,10 +28,10 @@ const meta: Record<Tab, { label: string; h1: string; lede: string; empty?: strin
     h1: 'Documentation Overview',
     lede: 'How the dataset works and how to use it — querying, open access, and every way to get the data.',
   },
-  entities: {
-    label: 'Entities',
-    h1: 'Entities Overview',
-    lede: 'The people, papers, places, and concepts OpenAlex catalogs — works, authors, sources, institutions, topics, and more. Each page explains where the records come from, what judgment calls we make, and what every field means.',
+  data: {
+    label: 'Data',
+    h1: 'Data Overview',
+    lede: 'What is in OpenAlex, where it comes from, and what every field means.',
   },
   api: {
     label: 'API',
@@ -83,7 +83,7 @@ const sectionCards = groups
   .map((g) => ({ label: g.label, desc: g.desc, href: sectionTarget(g) }))
   .filter((c): c is { label: string; desc?: string; href: string } => Boolean(c.href));
 
-const isShell = tab === 'docs' || tab === 'api' || tab === 'entities';
+const isShell = tab === 'docs' || tab === 'api' || tab === 'data';
 
 // Bucket tabs (FAQ + Recipes, Pass U): a flat filterable list, no curated
 // hierarchy. Pass W: filtered by a facet sidebar AND Linear-style chip
@@ -130,6 +130,24 @@ const showSidebar = false;
   <DocsShell title={meta[tab].h1} description={meta[tab].lede} tab={tab} groups={groups}>
     <article class="prose">
       <PageHeader title={meta[tab].h1} lede={meta[tab].lede} crumbs={landingCrumbs(tab)} />
+
+      {tab === 'data' && (
+        <Fragment>
+          <p>
+            OpenAlex data is laid out as a <strong>graph</strong>: about twenty types of connected
+            entities. <a href="/data/works/">Works</a> — papers, books, datasets — sit at the
+            center, linked to the <a href="/data/authors/">authors</a> who wrote them, the{' '}
+            <a href="/data/sources/">sources</a> that published them, the{' '}
+            <a href="/data/institutions/">institutions</a> those authors belong to, the{' '}
+            <a href="/data/topics/">topics</a> they're about, and more.
+          </p>
+          <p>
+            This reference is organized by entity. Each page explains what one entity type is,
+            where its records come from — including the judgment calls we make — and what every
+            field on it means.
+          </p>
+        </Fragment>
+      )}
 
       <div class="card-grid">
         {sectionCards.map((c) => (

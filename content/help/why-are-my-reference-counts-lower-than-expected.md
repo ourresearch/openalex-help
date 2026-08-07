@@ -15,4 +15,4 @@ The usual reasons a reference doesn't appear:
 - The source record includes no references, and PDF parsing missed some.
 - The reference has no DOI, so metadata-only matching didn't find it.
 
-For the full explanation of how citation and reference data is built, see [Citations](/entities/works/#citations-and-references) in the docs.
+For the full explanation of how citation and reference data is built, see [Citations](/data/works/#citations-and-references) in the docs.

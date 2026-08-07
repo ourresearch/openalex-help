@@ -20,4 +20,4 @@ Some reasons you might see an error in open access status:
 
 To suggest a change to a work's Open Access status, [submit a correction request](https://unpaywall.org/fix) — and see [Why are my open access curation requests getting rejected?](/help/why-are-my-open-access-curation-requests-getting-rejected/) first for what reviewers check.
 
-For the full story of how OA statuses, locations, and licenses are determined, see [Open Access](/docs/open-access/) in the docs.
+For the full story of how OA statuses, locations, and licenses are determined, see [Open Access](/data/works/open-access/) in the docs.
