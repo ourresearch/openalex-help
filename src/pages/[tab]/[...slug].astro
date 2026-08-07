@@ -2,7 +2,7 @@
 import { render } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import DocsShell from '../../layouts/DocsShell.astro';
-import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import PageHeader from '../../components/PageHeader.astro';
 import { allEntries, mdUrlFor, type Tab } from '../../lib/tabs';
 import { groupEntries, breadcrumbsFor, displayTitleFor } from '../../lib/nav';
 import { facetConfig } from '../../lib/facets';
@@ -61,8 +61,7 @@ if (bucket) {
     activeSlug={entry.id}
   >
     <article class="prose">
-      <Breadcrumbs crumbs={crumbs} />
-      <h1>{displayTitle}</h1>
+      <PageHeader title={displayTitle} crumbs={crumbs} />
       <Content />
       <div class="article-foot">
         <a class="md-link" href={mdUrl}>View as Markdown</a>
@@ -82,17 +81,19 @@ if (bucket) {
 ) : (
   <Base title={docTitle} description={entry.data.description} wide>
     <div class="howto-shell">
+      <div class="gutter" aria-hidden="true"></div>
+      <div class="howto-content">
       <div class="howto-cols">
-        <article class="prose reveal main-col">
-          <Breadcrumbs crumbs={crumbs} />
-          <h1>{displayTitle}</h1>
-          {tagChips.length > 0 && (
-            <div class="howto-tags">
-              {tagChips.map((t) => (
-                <span class="tag">{t}</span>
-              ))}
-            </div>
-          )}
+        <article class="prose main-col">
+          <PageHeader title={displayTitle} crumbs={crumbs}>
+            {tagChips.length > 0 && (
+              <div class="howto-tags">
+                {tagChips.map((t) => (
+                  <span class="tag">{t}</span>
+                ))}
+              </div>
+            )}
+          </PageHeader>
           <Content />
           <div class="article-foot">
             <a class="md-link" href={mdUrl}>View as Markdown</a>
@@ -108,16 +109,29 @@ if (bucket) {
           )}
         </div>
       </div>
+      </div>
     </div>
   </Base>
 )}
 
 <style>
-  /* How-to article layout (FAQ + Tutorials, Pass W): reading column + a right
-     nav rail, centered — same 46rem reading column as the Docs/API shell
-     (Pass W.1: was var(--measure), now matches the other tabs). */
+  /* Pass X.2 uniform width: the column grids cap content at 46rem, so drop
+     the inner 68ch prose cap — every tab's content column is the same 46rem. */
+  article.prose {
+    max-width: none;
+  }
+  /* How-to article layout (FAQ + Tutorials): reading column + a right nav
+     rail. Pass X.2: exact DocsShell geometry (17.5rem phantom gutter +
+     centered 46rem/13rem columns, same paddings/breakpoints) so the content
+     column sits in the same place as on the Docs/Entities/API tabs. */
   .howto-shell {
+    display: grid;
+    grid-template-columns: 17.5rem minmax(0, 1fr);
+    min-height: calc(100dvh - var(--nav-h));
+  }
+  .howto-content {
     padding: 2.5rem 2rem 5rem;
+    min-width: 0;
   }
   .howto-cols {
     display: grid;
@@ -136,7 +150,7 @@ if (bucket) {
     display: flex;
     flex-wrap: wrap;
     gap: 0.4rem;
-    margin: -0.2rem 0 1.6rem;
+    margin-top: 0.7rem; /* sits inside PageHeader, under the H1 */
   }
   /* Monochrome tags: hairline outline, muted text (Pass W.1). */
   .tag {
@@ -159,6 +173,12 @@ if (bucket) {
   }
   @media (max-width: 900px) {
     .howto-shell {
+      grid-template-columns: 1fr;
+    }
+    .gutter {
+      display: none;
+    }
+    .howto-content {
       padding: 2rem 1.25rem 4rem;
     }
   }

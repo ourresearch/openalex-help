@@ -3,7 +3,7 @@ import Base from '../../layouts/Base.astro';
 import DocsShell from '../../layouts/DocsShell.astro';
 import Card from '../../components/Card.astro';
 import Icon from '../../components/Icon.astro';
-import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import PageHeader from '../../components/PageHeader.astro';
 import { TABS, allEntries, urlFor, type Tab } from '../../lib/tabs';
 import { groupEntries, landingCrumbs, type ResolvedGroup } from '../../lib/nav';
 import { facetConfig } from '../../lib/facets';
@@ -129,9 +129,7 @@ const showSidebar = false;
 {isShell ? (
   <DocsShell title={meta[tab].h1} description={meta[tab].lede} tab={tab} groups={groups}>
     <article class="prose">
-      <Breadcrumbs crumbs={landingCrumbs(tab)} />
-      <h1>{meta[tab].h1}</h1>
-      <p class="lede">{meta[tab].lede}</p>
+      <PageHeader title={meta[tab].h1} lede={meta[tab].lede} crumbs={landingCrumbs(tab)} />
 
       <div class="card-grid">
         {sectionCards.map((c) => (
@@ -145,8 +143,8 @@ const showSidebar = false;
   </DocsShell>
 ) : (
   <Base title={meta[tab].label} description={meta[tab].lede} wide>
-    <div class:list={['learn-shell', { 'no-sidebar': !showSidebar }]}>
-      {showSidebar && (
+    <div class="learn-shell">
+      {showSidebar ? (
         <aside class="facet-bar" aria-label={`Filter ${meta[tab].label}`}>
           {bucket!.facets.map((f) => (
             <div class="facet">
@@ -167,13 +165,14 @@ const showSidebar = false;
           ))}
           <button class="clear-facets" hidden>Clear filters</button>
         </aside>
+      ) : (
+        <div class="gutter" aria-hidden="true"></div>
       )}
 
-      <div class="learn-content">
-        <header class="tab-head">
-          <h1>{meta[tab].h1}</h1>
-          <p>{meta[tab].lede}</p>
-        </header>
+      <div class="l-content">
+        <div class="l-columns">
+          <div class="learn-content">
+        <PageHeader title={meta[tab].h1} lede={meta[tab].lede} />
 
         <div class="filter-row">
           {bucket!.facets.map((f) => (
@@ -238,6 +237,9 @@ const showSidebar = false;
         </ul>
         <p class="no-match" hidden>{meta[tab].empty ?? 'No articles match those filters.'}</p>
         <nav class="pager" aria-label="Pagination" hidden></nav>
+          </div>
+          <div class="rail-col" aria-hidden="true"></div>
+        </div>
       </div>
     </div>
   </Base>
@@ -245,15 +247,16 @@ const showSidebar = false;
 
 <style>
   /* --- Shell (docs/api/entities) landing --- */
-  .lede {
-    color: var(--muted);
-    font-size: 0.97rem;
+  /* Pass X.2 uniform width: the shell's grid caps the column at 46rem; drop
+     the inner 68ch prose cap so this matches the how-to tabs exactly. */
+  article.prose {
+    max-width: none;
   }
   .card-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(13rem, 1fr));
     gap: 0.9rem;
-    margin: 1rem 0 1.5rem;
+    margin: 0 0 1.5rem;
   }
   .toc {
     position: sticky;
@@ -276,27 +279,29 @@ const showSidebar = false;
     border-top: 1px solid var(--line);
   }
 
-  .tab-head {
-    margin-bottom: 2rem;
-  }
-  .tab-head h1 {
-    margin: 0 0 0.4rem;
-  }
-  .tab-head p {
-    color: var(--muted);
-    margin: 0;
-    font-size: 0.95rem;
-  }
-  /* --- Bucket tabs (FAQ + Tutorials): facet sidebar + filterable list --- */
+  /* --- Bucket tabs (FAQ + Tutorials): filterable list --- */
+  /* Pass X.2: exact DocsShell geometry (17.5rem gutter + centered
+     46rem-main/13rem-rail columns, same paddings/breakpoints) so the content
+     column and H1 sit in the same place as on the Docs/Entities/API tabs.
+     The gutter is the (hidden) facet sidebar's slot — flip showSidebar to
+     put the facet bar back in it. */
   .learn-shell {
     display: grid;
-    grid-template-columns: 16.5rem minmax(0, 1fr);
+    grid-template-columns: 17.5rem minmax(0, 1fr);
     min-height: calc(100dvh - var(--nav-h));
   }
-  /* Pass W.1: sidebar commented out — single centered column at the same
-     content width as the other tabs (~46rem). */
-  .learn-shell.no-sidebar {
-    grid-template-columns: 1fr;
+  .l-content {
+    padding: 2.5rem 2rem 5rem;
+    min-width: 0;
+  }
+  .l-columns {
+    display: grid;
+    grid-template-columns: minmax(0, 46rem) 13rem;
+    gap: 3.5rem;
+    justify-content: center;
+  }
+  .learn-content {
+    min-width: 0;
   }
   .facet-bar {
     border-right: 1px solid var(--line);
@@ -366,13 +371,6 @@ const showSidebar = false;
   .clear-facets:hover {
     color: var(--ink);
     border-color: var(--line-strong);
-  }
-  .learn-content {
-    padding: 2.5rem 2.5rem 5rem;
-    max-width: 46rem;
-  }
-  .no-sidebar .learn-content {
-    margin: 0 auto; /* centered when there's no sidebar */
   }
   .no-match {
     color: var(--muted);
@@ -623,9 +621,20 @@ const showSidebar = false;
     color: var(--faint);
     padding: 0 0.15rem;
   }
+  @media (max-width: 1180px) {
+    .l-columns {
+      grid-template-columns: minmax(0, 46rem);
+    }
+    .l-columns .rail-col {
+      display: none;
+    }
+  }
   @media (max-width: 900px) {
     .learn-shell {
       grid-template-columns: 1fr;
+    }
+    .gutter {
+      display: none;
     }
     .facet-bar {
       position: static;
@@ -636,7 +645,7 @@ const showSidebar = false;
       flex-wrap: wrap;
       gap: 1.5rem 2.5rem;
     }
-    .learn-content {
+    .l-content {
       padding: 2rem 1.25rem 4rem;
     }
   }

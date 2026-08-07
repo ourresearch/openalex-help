@@ -1,0 +1,50 @@
+---
+// The one page-header template (oxjob #354 Pass X.2): every non-home page —
+// tab landings AND articles — renders its heading through this, so the H1
+// sits at the exact same position on every page as you move tab to tab.
+// The breadcrumb row is a fixed-height slot: tabs without breadcrumbs (FAQ,
+// Tutorials) keep an empty placeholder so the H1 never bounces vertically.
+// Rhythm: tight crumbs→H1→lede spacing, generous margin before content.
+import Breadcrumbs from './Breadcrumbs.astro';
+import type { Crumb } from '../lib/nav';
+
+interface Props {
+  title: string;
+  lede?: string;
+  crumbs?: Crumb[];
+}
+const { title, lede, crumbs } = Astro.props;
+---
+
+<header class="page-head">
+  <div class="crumb-slot">{crumbs && crumbs.length > 0 && <Breadcrumbs crumbs={crumbs} />}</div>
+  <h1>{title}</h1>
+  {lede && <p class="lede">{lede}</p>}
+  <slot />
+</header>
+
+<style>
+  .page-head {
+    margin: 0 0 2.25rem;
+  }
+  /* FIXED-height breadcrumb slot — identical whether crumbs render or not
+     (FAQ/Tutorials have none), so the H1 sits at the same y on every page. */
+  .crumb-slot {
+    height: 1.66rem;
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.35rem;
+  }
+  .crumb-slot :global(.breadcrumbs) {
+    margin-bottom: 0;
+  }
+  .page-head h1 {
+    margin: 0;
+  }
+  .lede {
+    margin: 0.5rem 0 0;
+    color: var(--muted);
+    font-size: 0.97rem;
+    line-height: 1.6;
+  }
+</style>
