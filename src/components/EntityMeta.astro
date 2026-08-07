@@ -1,0 +1,103 @@
+---
+// Structured metadata block at the top of every Data-tab entity page
+// (oxjob #354 Pass Z, Jason's data-tab feedback 2026-08-07):
+//   Example  — shortest valid ID form, linked to the entity's page on openalex.org
+//   Count    — exact live count (fetched at build), linked to the openalex.org serp
+//   Links to — the entity types this one connects to, linked to their /data/ pages;
+//              indirect edges carry a muted "via <component>" (e.g. works via authorships)
+// Rows render only when their data exists: component entities get just Links to,
+// user-created entities just an unlinked Example.
+import { entityCount } from '../lib/entityCounts';
+
+interface Props {
+  example?: string;
+  api?: string;
+  serp?: string;
+  linksTo?: string[];
+}
+const { example, api, serp = Astro.props.api, linksTo = [] } = Astro.props;
+
+const count = api ? await entityCount(api) : null;
+
+// Example link: native short IDs (W2741809807) get the explicit GUI entity page;
+// namespaced IDs (countries/US) are already a path on openalex.org; anything
+// else (col_…, cur-…) has no public web page and renders unlinked.
+let exampleUrl: string | null = null;
+if (example && /^[A-Z]\d+$/.test(example) && serp) {
+  exampleUrl = `https://openalex.org/${serp}/${example}`;
+} else if (example && example.includes('/')) {
+  exampleUrl = `https://openalex.org/${example}`;
+}
+
+// "authors" or "works via authorships" → entity link (+ optional via link)
+const links = linksTo.map((s) => {
+  const [target, via] = s.split(' via ');
+  return { target, via };
+});
+---
+
+{(example || count !== null || links.length > 0) && (
+  <dl class="entity-meta">
+    {example && (
+      <div class="row">
+        <dt>Example</dt>
+        <dd>{exampleUrl ? <a href={exampleUrl}><code>{example}</code></a> : <code>{example}</code>}</dd>
+      </div>
+    )}
+    {count !== null && (
+      <div class="row">
+        <dt>Count</dt>
+        <dd><a href={`https://openalex.org/${serp}`}>{count.toLocaleString('en-US')}</a></dd>
+      </div>
+    )}
+    {links.length > 0 && (
+      <div class="row">
+        <dt>Links to</dt>
+        <dd>
+          {links.map((l, i) => (
+            <>
+              {i > 0 && ', '}
+              <a href={`/data/${l.target}/`}>{l.target.replace(/-/g, ' ')}</a>
+              {l.via && (
+                <span class="via"> via <a href={`/data/${l.via}/`}>{l.via.replace(/-/g, ' ')}</a></span>
+              )}
+            </>
+          ))}
+        </dd>
+      </div>
+    )}
+  </dl>
+)}
+
+<style>
+  .entity-meta {
+    margin: 1.1rem 0 0;
+    padding: 0.35rem 0;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    font-size: 0.84rem;
+    line-height: 1.6;
+  }
+  .row {
+    display: grid;
+    grid-template-columns: 5.5rem minmax(0, 1fr);
+    gap: 0 1rem;
+    padding: 0.18rem 0;
+  }
+  dt {
+    color: var(--muted);
+  }
+  dd {
+    margin: 0;
+  }
+  dd code {
+    font-size: 0.9em;
+  }
+  .via,
+  .via a {
+    color: var(--muted);
+  }
+  .via a:hover {
+    color: var(--ink);
+  }
+</style>

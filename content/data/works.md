@@ -5,6 +5,17 @@ tags: ["reference"]
 source_id: "24347019383191"
 source_url: "https://help.openalex.org/hc/en-us/articles/24347019383191-Where-do-works-in-OpenAlex-come-from"
 source_updated: "2025-01-09"
+entity:
+  example: "W2741809807"
+  api: "works"
+  linksTo:
+    - "authors via authorships"
+    - "institutions via authorships"
+    - "sources via locations"
+    - "topics"
+    - "keywords"
+    - "funders"
+    - "awards"
 ---
 A **work** is any scholarly document: a journal article, conference paper, book or book chapter, dataset, dissertation, preprint, and more. There are over 320 million works in OpenAlex, with tens of thousands added every day. A work's OpenAlex ID looks like `W2741809807`; fetch one at [`api.openalex.org/works/W2741809807`](https://api.openalex.org/works/W2741809807).
 

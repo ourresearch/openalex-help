@@ -5,6 +5,12 @@ tags: ["reference"]
 source_id: "24736129405719"
 source_url: "https://help.openalex.org/hc/en-us/articles/24736129405719-Topics"
 source_updated: "2026-03-06"
+entity:
+  example: "T11636"
+  api: "topics"
+  linksTo:
+    - "subfields"
+    - "works"
 ---
 A **topic** is a fine-grained research area — "Artificial Intelligence in Healthcare and Education," "Geological and Geochemical Analysis," and about 4,500 more. Topics are the bottom, most granular level of OpenAlex's classification hierarchy: 4 [domains](/data/domains/) → 26 [fields](/data/fields/) → 252 [subfields](/data/subfields/) → 4,516 topics. Every work with enough metadata is assigned up to three topics automatically, and those assignments aggregate up to characterize [authors](/data/authors/), [institutions](/data/institutions/), and [sources](/data/sources/). A topic's OpenAlex ID looks like `T11636`; fetch one at [`api.openalex.org/topics/T11636`](https://api.openalex.org/topics/T11636). Topics are one of several [aboutness](/data/aboutness/) signals — see that page to choose the right level of granularity for your question.
 

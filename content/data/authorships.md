@@ -2,6 +2,11 @@
 title: "Authorships"
 description: "The join between a work and its authors — the raw name each author printed, their position, whether they're corresponding, and the institutions they listed — and what every attribute on an authorship object means."
 tags: ["reference"]
+entity:
+  linksTo:
+    - "works"
+    - "authors"
+    - "institutions"
 ---
 An **authorship** is the join between a [work](/data/works/) and one of its [authors](/data/authors/): for a single author, it records their raw name as printed on the work, their position in the byline, whether they're the corresponding author, and the institutions they listed. Authorships are a [component](/data/component/) entity — they don't get their own OpenAlex ID and you never fetch one directly. They live inside a work object, one per author, in the [`authorships`](/data/works/attributes/#authorships) list. Fetch a work such as [`api.openalex.org/works/W2741809807`](https://api.openalex.org/works/W2741809807) and read its `authorships` array to see them.
 

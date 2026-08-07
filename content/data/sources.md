@@ -5,6 +5,13 @@ tags: ["reference"]
 source_id: "24347057529623"
 source_url: "https://help.openalex.org/hc/en-us/articles/24347057529623-Sources-in-OpenAlex"
 source_updated: "2024-07-26"
+entity:
+  example: "S137773608"
+  api: "sources"
+  linksTo:
+    - "works via locations"
+    - "publishers"
+    - "indexes"
 ---
 A **source** is a venue where [works](/data/works/) appear: a journal, a conference proceedings series, a preprint or institutional repository, an ebook platform, or a book series. Sources are how OpenAlex connects works to the places that host them — every work links to one or more sources through its [locations](/data/locations/), and each source aggregates the works it published. OpenAlex tracks about 255,000 sources; a source's OpenAlex ID looks like `S137773608`, and you can fetch one at [`api.openalex.org/sources/S137773608`](https://api.openalex.org/sources/S137773608).
 

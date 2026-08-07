@@ -5,6 +5,12 @@ tags: ["reference"]
 source_id: "24736129405719"
 source_url: "https://help.openalex.org/hc/en-us/articles/24736129405719-Topics"
 source_updated: "2026-03-06"
+entity:
+  example: "domains/1"
+  api: "domains"
+  linksTo:
+    - "fields"
+    - "works"
 ---
 A **domain** is the top, broadest level of OpenAlex's four-level classification hierarchy: 4 domains → 26 [fields](/data/fields/) → 252 [subfields](/data/subfields/) → 4,516 [topics](/data/topics/). There are only four domains — **Life Sciences**, **Social Sciences**, **Physical Sciences**, and **Health Sciences** — and each gathers a set of fields beneath it. A domain's OpenAlex ID is a single digit, e.g. `1` for Life Sciences; fetch one at [`api.openalex.org/domains/1`](https://api.openalex.org/domains/1). Domains are the coarsest of OpenAlex's [aboutness](/data/aboutness/) signals — highly familiar, low granularity — see that page to choose the right level for your question.
 

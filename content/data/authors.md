@@ -5,6 +5,12 @@ tags: ["reference"]
 source_id: "24347048891543"
 source_url: "https://help.openalex.org/hc/en-us/articles/24347048891543-Author-disambiguation"
 source_updated: "2026-03-06"
+entity:
+  example: "A5023888391"
+  api: "authors"
+  linksTo:
+    - "works via authorships"
+    - "institutions"
 ---
 An **author** is a person who creates [works](/data/works/) — a researcher, scholar, or anyone credited on a scholarly document. Authors are one of OpenAlex's [native entities](/data/native/): OpenAlex mints each a stable ID by *disambiguating* the messy author-name strings that appear on works into real-world people. There are over 120 million disambiguated authors. An author's OpenAlex ID looks like `A5023888391`; fetch one at [`api.openalex.org/authors/A5023888391`](https://api.openalex.org/authors/A5023888391).
 

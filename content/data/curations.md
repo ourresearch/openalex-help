@@ -2,6 +2,8 @@
 title: "Curations"
 description: "What a curation is, who can file one, the review states it moves through, and how an accepted curation flows into the entity it corrects."
 tags: ["reference"]
+entity:
+  example: "cur-9Fw3RtYxQ7nLpK"
 ---
 A **curation** is a user-submitted correction to a [native entity](/data/native/) — a fact you're telling OpenAlex it got wrong. OpenAlex mints its native entities by inference: it [disambiguates authors](/data/authors/#how-its-made) from raw name strings, reads [affiliations](/data/raw-affiliation-strings/) off works, decides which [work](/data/works/) each authorship belongs to. That inference is sometimes wrong, and a curation is how you push back on it: *this authorship is mine*, *that work isn't mine*, *my name should be displayed like this*. Each curation records **who** changed **what**, **when**, and its review state — and, once applied, flows into the entity it corrects. A curation's ID looks like `cur-9Fw3RtYxQ7nLpK`.
 

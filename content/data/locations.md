@@ -2,6 +2,10 @@
 title: "Locations"
 description: "Each place a version of a work is available — the publisher's site, a repository, a preprint server — with its version, license, and open-access status, and what every attribute on a location object means."
 tags: ["reference"]
+entity:
+  linksTo:
+    - "works"
+    - "sources"
 ---
 A **location** is a place where a version of a [work](/data/works/) is available: the publisher's website, an institutional or subject repository, a preprint server. One work can have many locations — the same paper hosted as the version of record at the publisher, as an accepted manuscript in a repository, and as a submitted preprint on arXiv. Locations are a [component](/data/component/) entity: they don't get their own OpenAlex ID and mostly live inside a work object, in the [`locations`](/data/works/attributes/#locations) list plus the [`primary_location`](/data/works/attributes/#primary_location) and [`best_oa_location`](/data/works/attributes/#best_oa_location) pointers. There is also a standalone [`/locations`](https://api.openalex.org/locations) list endpoint (part of the Walden data), but you'll normally meet locations inline on a work.
 

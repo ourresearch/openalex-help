@@ -5,6 +5,12 @@ tags: ["reference"]
 source_id: "api-reference/funders"
 source_url: "https://developers.openalex.org/api-reference/funders"
 source_updated: "2026-02-17"
+entity:
+  example: "F4320332161"
+  api: "funders"
+  linksTo:
+    - "awards"
+    - "works"
 ---
 A **funder** is an organization that funds research — a government agency, foundation, or charity. OpenAlex tracks about 45,000 funders, and each connects to the [works](/data/works/) it funded and to the specific [awards](/data/awards/) (grants) that funded them. A funder's OpenAlex ID looks like `F4320332161`; fetch one at [`api.openalex.org/funders/F4320332161`](https://api.openalex.org/funders/F4320332161) (the US National Institutes of Health).
 

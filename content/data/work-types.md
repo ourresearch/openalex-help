@@ -2,6 +2,12 @@
 title: "Work types"
 description: "The controlled vocabulary of work types — article, preprint, dataset, book, and the rest — what each value means, and how to filter works by type."
 tags: ["reference"]
+entity:
+  example: "types/article"
+  api: "work-types"
+  serp: "types"
+  linksTo:
+    - "works"
 ---
 A **work type** classifies the form of a scholarly document: a journal `article`, a `preprint`, a `dataset`, a `book`, and so on. Every [work](/data/works/) has exactly one type, exposed as its [`type`](/data/works/attributes/#type) field, and the type is one value from the controlled vocabulary below. Because the boundary between (say) an article and a dataset is already crisp in the real world, work types are a [vocabulary entity](/data/vocabulary/): OpenAlex doesn't adjudicate what a work *is*, it just standardizes the label so you can filter and group by it reliably. Work types use short, human-readable IDs (`article`, `dataset`) rather than the minted `W`/`A`/`S` scheme; a type's full ID looks like `https://openalex.org/types/article`.
 

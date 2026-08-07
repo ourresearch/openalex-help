@@ -5,6 +5,13 @@ tags: ["reference"]
 source_id: "24736129405719"
 source_url: "https://help.openalex.org/hc/en-us/articles/24736129405719-Topics"
 source_updated: "2026-03-06"
+entity:
+  example: "subfields/2718"
+  api: "subfields"
+  linksTo:
+    - "fields"
+    - "topics"
+    - "works"
 ---
 A **subfield** is the third level of OpenAlex's four-level classification hierarchy: 4 [domains](/data/domains/) → 26 [fields](/data/fields/) → 252 subfields → 4,516 [topics](/data/topics/). Subfields are groupings like "Health Informatics," "Geophysics," or "Oncology" — broader than a topic, narrower than a field. Each subfield sits under exactly one field and gathers a set of related topics beneath it. A subfield's OpenAlex ID is a bare number, e.g. `2718`; fetch one at [`api.openalex.org/subfields/2718`](https://api.openalex.org/subfields/2718). Subfields are the level OpenAlex uses to normalize citation impact ([FWCI](/data/works/citations/#field-weighted-citation-impact)) and are one of several [aboutness](/data/aboutness/) signals — see that page to pick the right granularity for your question.
 

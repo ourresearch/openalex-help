@@ -5,6 +5,13 @@ tags: ["reference"]
 source_id: "24736129405719"
 source_url: "https://help.openalex.org/hc/en-us/articles/24736129405719-Topics"
 source_updated: "2026-03-06"
+entity:
+  example: "fields/27"
+  api: "fields"
+  linksTo:
+    - "domains"
+    - "subfields"
+    - "works"
 ---
 A **field** is the second level of OpenAlex's four-level classification hierarchy: 4 [domains](/data/domains/) → 26 fields → 252 [subfields](/data/subfields/) → 4,516 [topics](/data/topics/). The 26 fields are broad disciplines — "Medicine," "Computer Science," "Arts and Humanities," "Physics and Astronomy," and so on — each sitting under one of the four domains and gathering a set of subfields beneath it. A field's OpenAlex ID is a bare number, e.g. `27` for Medicine; fetch one at [`api.openalex.org/fields/27`](https://api.openalex.org/fields/27). Fields are one of several [aboutness](/data/aboutness/) signals — high familiarity, coarse granularity — see that page to choose the right level for your question.
 

@@ -21,6 +21,18 @@ const article = z.object({
   // provenance material by design, capped at ≤3 paragraphs, and points to the
   // canonical section for depth. A future lint can verify the target resolves.
   canonical: z.string().optional(),
+  // Data-tab entity pages (oxjob #354 Pass Z): structured metadata block under
+  // the H1 — example ID, live count (fetched from the API at build), links-to.
+  // All fields optional: component entities have only linksTo, user-created
+  // entities only an (unlinked) example.
+  entity: z
+    .object({
+      example: z.string().optional(), // shortest valid ID form, e.g. "W2741809807" or "countries/US"
+      api: z.string().optional(), // api.openalex.org list path for the live count
+      serp: z.string().optional(), // openalex.org path for serp + entity-page links (defaults to api)
+      linksTo: z.array(z.string()).default([]), // "authors" or "works via authorships"
+    })
+    .optional(),
 });
 
 const makeCollection = (dir: string) =>

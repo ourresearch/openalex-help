@@ -3,6 +3,7 @@ import { render } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import DocsShell from '../../layouts/DocsShell.astro';
 import PageHeader from '../../components/PageHeader.astro';
+import EntityMeta from '../../components/EntityMeta.astro';
 import { allEntries, mdUrlFor, type Tab } from '../../lib/tabs';
 import { groupEntries, breadcrumbsFor, displayTitleFor } from '../../lib/nav';
 import { facetConfig } from '../../lib/facets';
@@ -63,7 +64,9 @@ if (bucket) {
     activeSlug={entry.id}
   >
     <article class="prose">
-      <PageHeader title={displayTitle} crumbs={crumbs} />
+      <PageHeader title={displayTitle} crumbs={crumbs}>
+        {entry.data.entity && <EntityMeta {...entry.data.entity} />}
+      </PageHeader>
       <Content />
       <div class="article-foot">
         <a class="md-link" href={mdUrl}>View as Markdown</a>

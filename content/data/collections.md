@@ -2,6 +2,8 @@
 title: "Collections"
 description: "What a collection is, what it can hold, how public and private ones differ, and what every attribute on a collection object means."
 tags: ["reference"]
+entity:
+  example: "col_beNWUTw6qY"
 ---
 A **collection** is a saved, named list of OpenAlex entities of a single type — "Papers I'm tracking for this grant", "Authors at my consortium", "Journals in our Elsevier package". Unlike almost everything else in OpenAlex, a collection isn't minted by the pipeline; *you* create it, by picking entities you care about and giving the set a name. The payoff is a single ID you can drop into the [`filter` parameter](/api/filtering/) anywhere in the API instead of pasting hundreds of OpenAlex IDs into every request. A collection's ID looks like `col_beNWUTw6qY` (the prefix `col_` followed by 10 alphanumeric characters).
 

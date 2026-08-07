@@ -5,6 +5,12 @@ tags: ["reference"]
 source_id: "api-reference/awards"
 source_url: "https://developers.openalex.org/api-reference/awards"
 source_updated: "2026-02-17"
+entity:
+  example: "G5066037109"
+  api: "awards"
+  linksTo:
+    - "funders"
+    - "works"
 ---
 An **award** is a single research grant: a specific pot of money a [funder](/data/funders/) gave for a project, with a title, an amount, a period, and a lead investigator. Awards are the fine-grained link between funders and the [works](/data/works/) their money produced — where a funder answers "who paid," an award answers "which grant." OpenAlex tracks over 17 million awards. An award's OpenAlex ID looks like `G5066037109`; fetch one at [`api.openalex.org/awards/G5066037109`](https://api.openalex.org/awards/G5066037109).
 

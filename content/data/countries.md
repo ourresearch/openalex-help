@@ -5,6 +5,12 @@ tags: ["reference"]
 source_id: "api-reference/countries"
 source_url: "https://developers.openalex.org/api-reference/countries"
 source_updated: "2026-02-17"
+entity:
+  example: "countries/US"
+  api: "countries"
+  linksTo:
+    - "works"
+    - "institutions"
 ---
 A **country** is a geographic nation, identified by its [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) code — `US` for the United States, `JP` for Japan, `BR` for Brazil. Countries are a [vocabulary](/data/vocabulary/): OpenAlex doesn't decide what a country is, it just attaches a consistent handle to each one so you can filter and group reliably. Country codes show up throughout the graph — on an [institution](/data/institutions/)'s `country_code`, inside a work's [authorships](/data/authorships/) (each author's affiliation carries the institution's country), and as the `last_known_institutions` country of an [author](/data/authors/). A country's OpenAlex ID looks like `https://openalex.org/countries/US`; fetch one at [`api.openalex.org/countries/US`](https://api.openalex.org/countries/US).
 

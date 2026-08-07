@@ -2,6 +2,10 @@
 title: "Raw affiliation strings"
 description: "The exact affiliation text an author printed on a work, before OpenAlex matches it to an institution — the raw input to institution disambiguation."
 tags: ["reference"]
+entity:
+  linksTo:
+    - "authorships"
+    - "institutions"
 ---
 A **raw affiliation string** (RAS) is the exact affiliation text an author printed on a work, before OpenAlex matches it to an [institution](/data/institutions/) — free text like `"Impactstory, Sanford, NC, USA"` or `"Massachusetts Institute of Technology"`, often messy and inconsistent. It's the raw input to institution disambiguation: the thing OpenAlex parses to figure out *which organizations* an author was affiliated with. Raw affiliation strings are a [component](/data/component/) entity — they don't get their own OpenAlex ID. They live inside an [authorship](/data/authorships/), in its [`raw_affiliation_strings`](/data/authorships/#raw_affiliation_strings) list and its [`affiliations`](/data/authorships/#affiliations) mapping. There's also a bespoke `raw_affiliation_strings.search` filter on [works](/data/works/) and a raw-affiliation-strings search surface for querying them directly.
 

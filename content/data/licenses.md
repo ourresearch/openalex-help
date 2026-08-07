@@ -5,6 +5,11 @@ tags: ["reference"]
 source_id: "api-reference/licenses"
 source_url: "https://developers.openalex.org/api-reference/licenses"
 source_updated: "2026-04-26"
+entity:
+  example: "licenses/cc-by"
+  api: "licenses"
+  linksTo:
+    - "works via locations"
 ---
 A **license** describes the terms under which an open-access copy of a work may be reused — `cc-by`, `cc-by-nc-nd`, `public-domain`, and so on. Licenses are a [vocabulary](/data/vocabulary/): OpenAlex doesn't invent the concept of a CC-BY license, it just attaches a consistent handle to each recognized one. A license is a property of a [location](/data/locations/) (each copy of a work can have its own license), so you'll see a license on a work's [`primary_location`](/data/works/attributes/#primary_location) and in its [`locations`](/data/works/attributes/#locations). A license's OpenAlex ID looks like `https://openalex.org/licenses/cc-by`; fetch one at [`api.openalex.org/licenses/cc-by`](https://api.openalex.org/licenses/cc-by).
 

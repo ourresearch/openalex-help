@@ -5,6 +5,12 @@ tags: ["reference"]
 source_id: "api-reference/publishers"
 source_url: "https://developers.openalex.org/api-reference/publishers"
 source_updated: "2026-02-17"
+entity:
+  example: "P4310319965"
+  api: "publishers"
+  linksTo:
+    - "sources"
+    - "works"
 ---
 A **publisher** is a company or organization that distributes works — the parent behind the [sources](/data/sources/) (journals, conference series, repositories) where works appear. OpenAlex tracks about 10,700 publishers, arranged in a parent/child hierarchy so that an imprint rolls up to its group. A publisher's OpenAlex ID looks like `P4310319965`; fetch one at [`api.openalex.org/publishers/P4310319965`](https://api.openalex.org/publishers/P4310319965) (Springer Nature).
 

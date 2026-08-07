@@ -5,6 +5,11 @@ tags: ["reference"]
 source_id: "api-reference/concepts"
 source_url: "https://developers.openalex.org/api-reference/concepts"
 source_updated: "2026-02-17"
+entity:
+  example: "C41008148"
+  api: "concepts"
+  linksTo:
+    - "works"
 ---
 > **Deprecated.** Concepts are superseded by [Topics](/data/topics/), OpenAlex's current subject-classification system. The concepts endpoints and the [`concepts`](/data/works/attributes/#concepts) field on works still work, but concepts are frozen — no longer recomputed or expanded — so new works are not tagged with them and the concept tree is not maintained. Use [topics](/data/topics/) (and the [aboutness](/data/aboutness/) hierarchy of [domains](/data/domains/), [fields](/data/fields/), and [subfields](/data/subfields/)) for anything new. This page is kept for the many links and workflows that still point at it.
 

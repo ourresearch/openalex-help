@@ -2,6 +2,11 @@
 title: "Institutions"
 description: "What an institution is, how OpenAlex grounds them in ROR and matches raw affiliation strings to them, and what every attribute on an institution object means."
 tags: ["reference"]
+entity:
+  example: "I27837315"
+  api: "institutions"
+  linksTo:
+    - "works via authorships"
 ---
 An **institution** is an organization that [authors](/data/authors/) are affiliated with — a university, company, hospital, government agency, non-profit, and more. Institutions are how OpenAlex answers "who did this research, and where?": every [work](/data/works/) links to the institutions its authors named, so you can roll research up from a single paper to a lab, a university, or a whole country. OpenAlex holds about 135,000 institutions. An institution's OpenAlex ID looks like `I27837315`; fetch one at [`api.openalex.org/institutions/I27837315`](https://api.openalex.org/institutions/I27837315).
 
