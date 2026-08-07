@@ -23,11 +23,14 @@
   --accent-wash: #eff6ff;
   --code-bg: #efeeea;
 
-  /* Nav group colors (oxjob #354): the two-sided model in the header.
-     Practical (FAQ, Tutorials) = green; reference (Docs, Entities, API) =
-     violet. Both deliberately ≠ link blue and ≠ ink; both ≥5:1 on --bg. */
-  --practical: #047857;
+  /* Category colors (oxjob #354): the site's sides, named Learn vs Reference
+     (Jason 2026-08-07; the Astro/MDN split). Learn (FAQ, Tutorials) = green;
+     Reference (Docs, Entities, API) = violet; Chat (forum/support/Ask AI,
+     homepage only) = amber. All deliberately ≠ link blue and ≠ ink; dark
+     enough to carry white text as a filled chip. */
+  --learn: #047857;
   --reference: #6d28d9;
+  --chat: #b45309;
 
   --font-body: 'Inter Variable', system-ui, -apple-system, sans-serif;
   --font-mono: 'JetBrains Mono Variable', ui-monospace, monospace;

@@ -1,14 +1,24 @@
-## The site is two-sided (oxjob #354 Pass R)
+## The site is two-sided: Learn vs Reference (oxjob #354)
 
-- **Look things up**: Docs / Entities / API — one reference work split across three
-  tabs to keep each table of contents scannable. **Entities** = "what is this thing?"
-  (the entity graph). **Docs** = cross-cutting topics (querying, open access, getting the
+Category vocabulary (Jason 2026-08-07; the Astro/MDN split). The split is reader
+INTENT, not whether learning occurs:
+
+- **Reference**: Docs / Entities / API — you know roughly what you're looking for
+  and want to look it up. One reference work split across three tabs to keep each
+  table of contents scannable. **Entities** = "what is this thing?" (the entity
+  graph). **Docs** = cross-cutting topics (querying, open access, getting the
   data). **API** = wire mechanics + a one-page endpoints index.
-- **Get things done**: Help (extended FAQ of real user questions) / Recipes (worked
-  tutorials).
+- **Learn**: FAQ (extended FAQ of real user questions) / Tutorials (worked
+  step-by-step walkthroughs) — you arrive with a question or a job and want to be
+  led to the answer.
+- **Chat** (homepage grouping only, not a tab side): Community Forum / Contact
+  Support / Ask AI — the conversation surfaces.
+- Category colors (tokens in `src/styles/global.css`): `--learn` green,
+  `--reference` violet, `--chat` amber. The header tabs and homepage columns are
+  coded with them.
 - Routing for writers: "What is this thing?" → Entities. "How does querying/OA/bulk
-  access work?" → Docs. "Wire mechanics?" → API. "A question a real user asked?" → Help.
-  "A worked walkthrough?" → Recipes. NOT "help = nontechnical, docs = technical".
+  access work?" → Docs. "Wire mechanics?" → API. "A question a real user asked?" → FAQ.
+  "A worked walkthrough?" → Tutorials. NOT "FAQ = nontechnical, docs = technical".
 
 ### Entity pages
 

@@ -1,9 +1,9 @@
 ---
-// Help Center homepage (oxjob #354 Pass U/V): the front door for the whole
-// site. We don't know what mode a visitor arrives in — asking a question,
-// reading reference, following a tutorial — so the homepage orients: a one-line
-// description, one search box, then a flat grid of cards for everywhere you can
-// go. No section headers, no second search box (Pass V, Jason 2026-08-06).
+// Help Center homepage (oxjob #354 Pass U/V/X): the front door for the whole
+// site. A big left-justified masthead, one full-width search box, then the
+// site's map in three color-coded columns matching the category model:
+// Learn (FAQ, Tutorials), Reference (Docs, Entities, API), and Chat (the
+// human/AI conversation surfaces).
 import Base from '../layouts/Base.astro';
 import Card from '../components/Card.astro';
 import Icon from '../components/Icon.astro';
@@ -18,30 +18,53 @@ const providers = [
   { label: 'Perplexity', href: `https://www.perplexity.ai/search?q=${encodeURIComponent(prompt)}` },
 ];
 
-// One card per destination — the five tabs plus the three support surfaces, all
-// the same design (Ask AI, below, is the eighth; it expands instead of links).
-const cards = [
-  { title: 'FAQ', href: '/help/', icon: 'help-circle-outline', blurb: 'Real questions answered plainly' },
-  { title: 'Tutorials', href: '/tutorials/', icon: 'play-filled', blurb: 'Step-by-step instructions for real use cases' },
-  { title: 'Docs', href: '/docs/', icon: 'notebook-outline', blurb: 'How OpenAlex works and how to use it' },
+// Three columns, one per category. Ask AI renders as the Chat column's last
+// card (it expands to a provider menu instead of navigating).
+const columns = [
   {
-    title: 'Entities',
-    href: '/entities/',
-    icon: 'shape-outline',
-    blurb: "Works, authors, etc: how they're made and what each field means",
-  },
-  { title: 'API', href: '/api/', icon: 'cog-outline', blurb: 'Endpoints, filters, auth, rate-limits, etc.' },
-  {
-    title: 'Community Forum',
-    href: 'https://groups.google.com/g/openalex-users',
-    icon: 'forum-outline',
-    blurb: 'Discuss with other users',
+    label: 'Learn',
+    tone: 'learn' as const,
+    cards: [
+      { title: 'FAQ', href: '/help/', icon: 'help-circle-outline', blurb: 'Real questions answered plainly' },
+      {
+        title: 'Tutorials',
+        href: '/tutorials/',
+        icon: 'play-filled',
+        blurb: 'Step-by-step instructions for real use cases',
+      },
+    ],
   },
   {
-    title: 'Contact Support',
-    href: 'https://openalex.org/contact',
-    icon: 'email-outline',
-    blurb: 'Get help from our team',
+    label: 'Reference',
+    tone: 'reference' as const,
+    cards: [
+      { title: 'Docs', href: '/docs/', icon: 'notebook-outline', blurb: 'How OpenAlex works and how to use it' },
+      {
+        title: 'Entities',
+        href: '/entities/',
+        icon: 'shape-outline',
+        blurb: "Works, authors, etc: how they're made and what each field means",
+      },
+      { title: 'API', href: '/api/', icon: 'cog-outline', blurb: 'Endpoints, filters, auth, rate-limits, etc.' },
+    ],
+  },
+  {
+    label: 'Chat',
+    tone: 'chat' as const,
+    cards: [
+      {
+        title: 'Community Forum',
+        href: 'https://groups.google.com/g/openalex-users',
+        icon: 'forum-outline',
+        blurb: 'Discuss with other users',
+      },
+      {
+        title: 'Contact Support',
+        href: 'https://openalex.org/contact',
+        icon: 'email-outline',
+        blurb: 'Get help from our team',
+      },
+    ],
   },
 ];
 ---
@@ -64,27 +87,34 @@ const cards = [
     </section>
 
     <section class="explore reveal" style="animation-delay: 0.08s">
-      <div class="card-grid">
-        {cards.map((c) => (
-          <Card title={c.title} href={c.href}>
-            <Icon name={c.icon} slot="icon" />
-            {c.blurb}
-          </Card>
-        ))}
-        <details class="ai-card ask-ai">
-          <summary>
-            <span class="ai-head">
-              <Icon name="creation" />
-              <span class="ai-title">Ask AI</span>
-            </span>
-            <span class="ai-body">Open your assistant, primed with our docs</span>
-          </summary>
-          <div class="providers">
-            {providers.map((p) => (
-              <a href={p.href} target="_blank" rel="noopener">{p.label} ↗</a>
+      <div class="columns">
+        {columns.map((col) => (
+          <section class:list={['col', col.tone]}>
+            <h2 class="col-head">{col.label}</h2>
+            {col.cards.map((c) => (
+              <Card title={c.title} href={c.href} tone={col.tone}>
+                <Icon name={c.icon} slot="icon" />
+                {c.blurb}
+              </Card>
             ))}
-          </div>
-        </details>
+            {col.tone === 'chat' && (
+              <details class="ai-card ask-ai">
+                <summary>
+                  <span class="ai-head">
+                    <Icon name="creation" />
+                    <span class="ai-title">Ask AI</span>
+                  </span>
+                  <span class="ai-body">Open your assistant, primed with our docs</span>
+                </summary>
+                <div class="providers">
+                  {providers.map((p) => (
+                    <a href={p.href} target="_blank" rel="noopener">{p.label} ↗</a>
+                  ))}
+                </div>
+              </details>
+            )}
+          </section>
+        ))}
       </div>
     </section>
   </div>
@@ -96,16 +126,21 @@ const cards = [
     margin: 0 auto;
     padding-top: 2.5rem;
   }
+  /* Masthead: big, bold, left-justified (Jason 2026-08-07, screenshot spec). */
   .hero {
-    text-align: center;
-    margin-bottom: 2.5rem;
+    text-align: left;
+    margin-bottom: 3rem;
   }
   .hero h1 {
-    margin: 0 0 0.75rem;
+    margin: 0 0 0.85rem;
+    font-size: 3.5rem;
+    font-weight: 700;
+    letter-spacing: -0.035em;
+    line-height: 1.05;
   }
   .subtitle {
     max-width: 38rem;
-    margin: 0 auto 2rem;
+    margin: 0 0 2rem;
     color: var(--muted);
     font-size: 0.98rem;
     line-height: 1.6;
@@ -115,8 +150,6 @@ const cards = [
     align-items: center;
     gap: 0.75rem;
     width: 100%;
-    max-width: 40rem;
-    margin: 0 auto;
     height: 3.4rem;
     padding: 0 1rem;
     font: inherit;
@@ -146,19 +179,49 @@ const cards = [
     background: var(--bg);
   }
 
-  /* The eight-card grid — five tabs + three support surfaces, all one design. */
-  .card-grid {
+  /* Three labeled category columns (Learn | Reference | Chat), cards stacked. */
+  .columns {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(13rem, 1fr));
-    gap: 0.9rem;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+    align-items: start;
     /* .reveal makes the section a stacking context; lift it so the Ask AI
        dropdown can't be covered by anything painted later. */
     position: relative;
     z-index: 10;
   }
+  .col {
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+  }
+  .col-head {
+    margin: 0;
+    font-size: 0.78rem;
+    font-weight: 650;
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+  }
+  .col.learn .col-head {
+    color: var(--learn);
+  }
+  .col.reference .col-head {
+    color: var(--reference);
+  }
+  .col.chat .col-head {
+    color: var(--chat);
+  }
+  @media (max-width: 680px) {
+    .columns {
+      grid-template-columns: 1fr;
+    }
+    .hero h1 {
+      font-size: 2.5rem;
+    }
+  }
 
-  /* Ask AI: matches Card.astro exactly, but it's a <details> that expands to a
-     provider menu instead of an <a> that navigates. */
+  /* Ask AI: matches Card.astro exactly (chat tone), but it's a <details> that
+     expands to a provider menu instead of an <a> that navigates. */
   .ai-card {
     display: flex;
     flex-direction: column;
@@ -173,7 +236,7 @@ const cards = [
     border-color: var(--line-strong);
   }
   .ai-card:hover .ai-title {
-    color: var(--accent);
+    color: var(--chat);
   }
   .ai-card summary {
     list-style: none;
@@ -190,11 +253,11 @@ const cards = [
     gap: 0.6rem;
     padding: 0.7rem 1rem;
     border-bottom: 1px solid var(--line);
-    background: var(--panel-strong);
+    background: color-mix(in srgb, var(--chat) 7%, var(--panel-strong));
   }
   .ai-head :global(svg) {
     flex-shrink: 0;
-    color: var(--muted);
+    color: var(--chat);
   }
   .ai-title {
     font-size: 0.92rem;
@@ -229,7 +292,7 @@ const cards = [
   .providers a:hover {
     background: var(--panel);
     text-decoration: none;
-    color: var(--accent);
+    color: var(--chat);
   }
 </style>
 

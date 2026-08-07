@@ -13,13 +13,14 @@ const { title, description, wide = false } = Astro.props;
 
 // Home first (the site front door — oxjob #354 Pass U: it gets a real tab so
 // there's never a no-tab state). Then the two-sided model (Pass R), now
-// expressed in the nav itself: FAQ + Tutorials = practical ("get things
-// done"), Docs/Entities/API = reference ("look things up" — one reference
-// work split across three tabs). Each side carries its own color.
+// expressed in the nav itself: FAQ + Tutorials = Learn ("I have a question
+// or a job — lead me"), Docs/Entities/API = Reference ("I know what I'm
+// looking for — let me look it up"; one reference work split across three
+// tabs). Each side carries its own color.
 const tabs = [
   { label: 'Home', href: '/', group: 'home' },
-  { label: 'FAQ', href: '/help/', group: 'practical' },
-  { label: 'Tutorials', href: '/tutorials/', group: 'practical' },
+  { label: 'FAQ', href: '/help/', group: 'learn' },
+  { label: 'Tutorials', href: '/tutorials/', group: 'learn' },
   { label: 'Docs', href: '/docs/', group: 'reference' },
   { label: 'Entities', href: '/entities/', group: 'reference' },
   { label: 'API', href: '/api/', group: 'reference' },
@@ -55,7 +56,7 @@ const isHome = path === '/';
         </div>
         <div class="nav-right">
           <Search button={!isHome} />
-          <a class="site-link" href="https://openalex.org">Main site ↗</a>
+          <a class="site-link" href="https://openalex.org">App</a>
           <button class="menu-toggle" aria-label="Menu" aria-expanded="false" aria-controls="mobile-menu">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
               <path d="M4 7h16M4 12h16M4 17h16" />
@@ -67,7 +68,7 @@ const isHome = path === '/';
         {tabs.map((t) => (
           <a href={t.href} class={t.group} aria-current={isActive(t.href) ? 'page' : undefined}>{t.label}</a>
         ))}
-        <a class="menu-site-link" href="https://openalex.org">Main site ↗</a>
+        <a class="menu-site-link" href="https://openalex.org">App</a>
       </div>
     </header>
 
@@ -159,60 +160,67 @@ const isHome = path === '/';
          17.5rem sidebar column), spreading the bar out Cursor-style. */
       .tabs {
         display: flex;
+        align-items: center;
+        gap: 2px;
         position: absolute;
         left: 17.5rem;
         top: 0;
         bottom: 0;
       }
-      /* Cursor-measured tabs: 14px, 12px side padding, active = full-color
-         text + a 2px underline spanning the full pill, sitting on the header's
-         bottom border. Group color-coding (oxjob #354): Home is ink; the
-         practical pair and the reference trio each carry a group color —
-         inactive tabs wear a muted mix of it, active/hover the full color. */
+      /* Chip tabs (Jason 2026-08-07): each tab is a ghost text button — light
+         bg on hover, selected = dark fill + white text, no underline. Category
+         color-coding: Home is ink; the Learn pair and Reference trio each
+         carry a category color — inactive = muted mix, hover = full color,
+         selected chip = filled with it. */
       .tabs a {
         display: flex;
         align-items: center;
+        height: 28px;
         color: var(--muted);
         font-size: 0.875rem;
         padding: 0 0.75rem;
-        border-radius: 4px;
+        border-radius: 6px;
         position: relative;
-        transition: color 0.15s;
+        transition: color 0.15s, background-color 0.15s;
       }
-      /* Small breathing room between the three groups (Home | practical | reference). */
-      .tabs a.home + .practical,
-      .tabs a.practical + .reference {
+      /* Small breathing room between the three groups (Home | Learn | Reference). */
+      .tabs a.home + .learn,
+      .tabs a.learn + .reference {
         margin-left: 0.875rem;
       }
-      .tabs a.practical {
-        color: color-mix(in srgb, var(--practical) 55%, var(--muted));
+      .tabs a.learn {
+        color: color-mix(in srgb, var(--learn) 55%, var(--muted));
       }
       .tabs a.reference {
         color: color-mix(in srgb, var(--reference) 55%, var(--muted));
       }
       .tabs a:hover {
         color: var(--ink);
+        background: var(--panel-strong);
         text-decoration: none;
       }
-      .tabs a.practical:hover,
-      .tabs a.practical[aria-current='page'] {
-        color: var(--practical);
+      .tabs a.learn:hover {
+        color: var(--learn);
       }
-      .tabs a.reference:hover,
-      .tabs a.reference[aria-current='page'] {
+      .tabs a.reference:hover {
         color: var(--reference);
       }
-      .tabs a[aria-current='page'] {
-        color: var(--ink);
+      /* Selected chip: dark fill, white text, no underline. After the hover
+         rules so a hovered selected chip keeps its fill. */
+      .tabs a[aria-current='page'],
+      .tabs a[aria-current='page']:hover {
+        color: var(--bg);
+        background: var(--ink);
       }
-      .tabs a[aria-current='page']::after {
-        content: '';
-        position: absolute;
-        left: 0;
-        right: 0;
-        bottom: -1px;
-        height: 2px;
-        background: currentColor;
+      .tabs a.learn[aria-current='page'],
+      .tabs a.learn[aria-current='page']:hover {
+        color: var(--bg);
+        background: var(--learn);
+      }
+      .tabs a.reference[aria-current='page'],
+      .tabs a.reference[aria-current='page']:hover {
+        color: var(--bg);
+        background: var(--reference);
       }
       .nav-right {
         margin-left: auto;
@@ -272,8 +280,8 @@ const isHome = path === '/';
         color: var(--ink);
         font-weight: 500;
       }
-      #mobile-menu a.practical[aria-current='page'] {
-        color: var(--practical);
+      #mobile-menu a.learn[aria-current='page'] {
+        color: var(--learn);
       }
       #mobile-menu a.reference[aria-current='page'] {
         color: var(--reference);
