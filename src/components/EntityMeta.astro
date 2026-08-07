@@ -69,11 +69,9 @@ if (example && /^[A-Z]\d+$/.test(example) && serp) {
   .entity-meta {
     width: fit-content;
     max-width: 100%;
-    margin: -0.5rem 0 2rem; /* tucks up toward the header, whose own margin is generous */
-    padding: 0.65rem 1rem;
-    background: var(--panel);
-    border: 1px solid var(--line);
-    border-radius: 5px;
+    /* No card chrome — a bare table tucked close under the header (whose own
+       margin-bottom is 2.25rem), small gap above, normal gap before the intro. */
+    margin: -1.75rem 0 2.25rem;
     display: grid;
     grid-template-columns: max-content minmax(0, 1fr);
     gap: 0 1ch;
