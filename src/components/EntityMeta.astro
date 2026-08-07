@@ -61,19 +61,12 @@ if (example && /^[A-Z]\d+$/.test(example) && serp) {
 <style>
   .entity-meta {
     margin: 0.9rem 0 0;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.2rem 2rem;
     font-family: var(--font-mono);
     font-size: 0.8rem;
-    line-height: 1.6;
+    line-height: 1.7;
   }
   .group {
-    white-space: nowrap;
-  }
-  /* The links list can be long (works has 6) — let it wrap within the line. */
-  .group.links {
-    white-space: normal;
+    display: block;
   }
   .label {
     color: var(--muted);
