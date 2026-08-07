@@ -38,11 +38,11 @@ const meta: Record<Tab, { label: string; h1: string; lede: string; empty?: strin
     h1: 'API Overview',
     lede: 'A fast, modern REST API for all of OpenAlex, plus OQL for expressive queries. Free for everyone, no key required to start. These pages cover endpoints, filters, paging, auth, and rate limits.',
   },
-  recipes: {
-    label: 'Recipes',
-    h1: 'Recipes',
-    lede: 'Step-by-step tutorials for real research questions — on the web, through the API, or with your agent.',
-    empty: 'No recipes match those filters yet — the library is growing.',
+  tutorials: {
+    label: 'Tutorials',
+    h1: 'Tutorials',
+    lede: 'Step-by-step instructions for real use cases — on the web, through the API, or with your agent.',
+    empty: 'No tutorials match those filters yet — the library is growing.',
   },
 };
 
@@ -118,7 +118,12 @@ if (bucket) {
     }
   }
 }
-const searchPlaceholder = tab === 'recipes' ? 'Search recipes…' : 'Search questions…';
+const searchPlaceholder = tab === 'tutorials' ? 'Search tutorials…' : 'Search questions…';
+
+// Pass W.1: Jason wants to see the how-to tabs WITHOUT the left facet sidebar
+// (chips + search may be enough). Flip to `true` to bring it back — the aside
+// markup + facet-bar CSS are kept, just not rendered.
+const showSidebar = false;
 ---
 
 {isShell ? (
@@ -140,27 +145,29 @@ const searchPlaceholder = tab === 'recipes' ? 'Search recipes…' : 'Search ques
   </DocsShell>
 ) : (
   <Base title={meta[tab].label} description={meta[tab].lede} wide>
-    <div class="learn-shell">
-      <aside class="facet-bar" aria-label={`Filter ${meta[tab].label}`}>
-        {bucket!.facets.map((f) => (
-          <div class="facet">
-            <span class="facet-label">{f.label}</span>
-            {f.values.map((v) => (
-              <button
-                class="facet-value"
-                data-facet={f.key}
-                data-value={v.id}
-                disabled={facetCounts[f.key][v.id] === 0}
-                aria-pressed="false"
-              >
-                <span>{v.label}</span>
-                <span class="count">{facetCounts[f.key][v.id]}</span>
-              </button>
-            ))}
-          </div>
-        ))}
-        <button class="clear-facets" hidden>Clear filters</button>
-      </aside>
+    <div class:list={['learn-shell', { 'no-sidebar': !showSidebar }]}>
+      {showSidebar && (
+        <aside class="facet-bar" aria-label={`Filter ${meta[tab].label}`}>
+          {bucket!.facets.map((f) => (
+            <div class="facet">
+              <span class="facet-label">{f.label}</span>
+              {f.values.map((v) => (
+                <button
+                  class="facet-value"
+                  data-facet={f.key}
+                  data-value={v.id}
+                  disabled={facetCounts[f.key][v.id] === 0}
+                  aria-pressed="false"
+                >
+                  <span>{v.label}</span>
+                  <span class="count">{facetCounts[f.key][v.id]}</span>
+                </button>
+              ))}
+            </div>
+          ))}
+          <button class="clear-facets" hidden>Clear filters</button>
+        </aside>
+      )}
 
       <div class="learn-content">
         <header class="tab-head">
@@ -174,6 +181,9 @@ const searchPlaceholder = tab === 'recipes' ? 'Search recipes…' : 'Search ques
               <button class="chip-btn" type="button" aria-haspopup="true" aria-expanded="false">
                 <span class="chip-text">{f.label}</span>
                 <svg class="caret" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9" /></svg>
+                <span class="chip-x" role="button" tabindex="0" aria-label={`Clear ${f.label} filter`}>
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" /></svg>
+                </span>
               </button>
               <div class="chip-menu" role="menu" hidden>
                 {f.values.map((v) => (
@@ -193,7 +203,15 @@ const searchPlaceholder = tab === 'recipes' ? 'Search recipes…' : 'Search ques
               </div>
             </div>
           ))}
-          <input class="filter-search" type="search" placeholder={searchPlaceholder} aria-label={searchPlaceholder} />
+          <div class="search-wrap">
+            <svg class="search-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8" /><line x1="21" y1="21" x2="16.65" y2="16.65" /></svg>
+            <input class="filter-search" type="search" placeholder={searchPlaceholder} aria-label={searchPlaceholder} />
+          </div>
+        </div>
+
+        <div class="results-row">
+          <span class="result-count" aria-live="polite"></span>
+          <button class="clear-facets" hidden>Clear filters</button>
         </div>
 
         <ul class="rows">
@@ -219,6 +237,7 @@ const searchPlaceholder = tab === 'recipes' ? 'Search recipes…' : 'Search ques
           ))}
         </ul>
         <p class="no-match" hidden>{meta[tab].empty ?? 'No articles match those filters.'}</p>
+        <nav class="pager" aria-label="Pagination" hidden></nav>
       </div>
     </div>
   </Base>
@@ -268,11 +287,16 @@ const searchPlaceholder = tab === 'recipes' ? 'Search recipes…' : 'Search ques
     margin: 0;
     font-size: 0.95rem;
   }
-  /* --- Bucket tabs (FAQ + Recipes): facet sidebar + article cards --- */
+  /* --- Bucket tabs (FAQ + Tutorials): facet sidebar + filterable list --- */
   .learn-shell {
     display: grid;
     grid-template-columns: 16.5rem minmax(0, 1fr);
     min-height: calc(100dvh - var(--nav-h));
+  }
+  /* Pass W.1: sidebar commented out — single centered column at the same
+     content width as the other tabs (~46rem). */
+  .learn-shell.no-sidebar {
+    grid-template-columns: 1fr;
   }
   .facet-bar {
     border-right: 1px solid var(--line);
@@ -345,7 +369,10 @@ const searchPlaceholder = tab === 'recipes' ? 'Search recipes…' : 'Search ques
   }
   .learn-content {
     padding: 2.5rem 2.5rem 5rem;
-    max-width: 62rem;
+    max-width: 46rem;
+  }
+  .no-sidebar .learn-content {
+    margin: 0 auto; /* centered when there's no sidebar */
   }
   .no-match {
     color: var(--muted);
@@ -379,13 +406,32 @@ const searchPlaceholder = tab === 'recipes' ? 'Search recipes…' : 'Search ques
   .chip-btn:hover {
     border-color: var(--line-strong);
   }
+  /* Selected chip = black with white text (monochrome "selected" convention). */
   .chip[data-active] .chip-btn {
-    color: var(--accent);
-    border-color: var(--accent);
-    background: var(--accent-wash);
+    color: #fff;
+    border-color: var(--ink);
+    background: var(--ink);
   }
   .chip-btn .caret {
     color: var(--faint);
+  }
+  /* When a facet is chosen the chevron becomes an X that clears the filter. */
+  .chip-x {
+    display: none;
+    align-items: center;
+    margin: -0.2rem -0.15rem -0.2rem 0;
+    padding: 0.2rem;
+    border-radius: 4px;
+    color: #fff;
+  }
+  .chip-x:hover {
+    background: rgb(255 255 255 / 18%);
+  }
+  .chip[data-active] .caret {
+    display: none;
+  }
+  .chip[data-active] .chip-x {
+    display: inline-flex;
   }
   .chip-menu {
     position: absolute;
@@ -423,11 +469,11 @@ const searchPlaceholder = tab === 'recipes' ? 'Search recipes…' : 'Search ques
     text-align: left;
   }
   .chip-option:hover {
-    background: var(--accent-wash);
+    background: var(--panel-strong);
   }
   .chip-option[aria-checked='true'] {
-    color: var(--accent);
-    font-weight: 550;
+    color: var(--ink);
+    font-weight: 600;
   }
   .chip-option:disabled {
     color: var(--faint);
@@ -440,20 +486,38 @@ const searchPlaceholder = tab === 'recipes' ? 'Search recipes…' : 'Search ques
     font-size: 0.75rem;
     color: var(--faint);
   }
+  /* Search: outlined (not a gray fill) with a leading magnifier, pushed to the
+     right so it reads as a search field distinct from the filter chips. */
+  .search-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex: 0 1 15rem;
+    min-width: 9rem;
+    margin-left: auto;
+  }
+  .search-icon {
+    position: absolute;
+    left: 0.6rem;
+    color: var(--faint);
+    pointer-events: none;
+  }
   .filter-search {
-    flex: 1 1 12rem;
-    min-width: 8rem;
+    width: 100%;
     font: inherit;
     font-size: 0.86rem;
     color: var(--ink);
-    background: var(--panel);
+    background: transparent;
     border: 1px solid var(--line);
     border-radius: 7px;
-    padding: 0.34rem 0.7rem;
+    padding: 0.36rem 0.7rem 0.36rem 2rem;
+  }
+  .filter-search::placeholder {
+    color: var(--faint);
   }
   .filter-search:focus {
     outline: none;
-    border-color: var(--accent);
+    border-color: var(--ink);
   }
 
   /* Three-row list items: title / one-line subtitle / small tags. */
@@ -496,17 +560,68 @@ const searchPlaceholder = tab === 'recipes' ? 'Search recipes…' : 'Search ques
   .row-tags {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.3rem;
-    margin-top: 0.45rem;
+    gap: 0.35rem;
+    margin-top: 0.5rem;
   }
+  /* Monochrome tags: hairline outline, muted text — no fill, no color. */
   .tag {
     font-size: 0.68rem;
-    line-height: 1.4;
+    line-height: 1.5;
     color: var(--muted);
-    background: var(--accent-wash);
+    background: none;
+    border: 1px solid var(--line);
     border-radius: 4px;
-    padding: 0.05rem 0.4rem;
+    padding: 0.02rem 0.42rem;
     white-space: nowrap;
+  }
+
+  /* Results count (Google-style) + pagination. */
+  .results-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+    min-height: 1.4rem;
+  }
+  .result-count {
+    font-size: 0.82rem;
+    color: var(--muted);
+  }
+  .pager {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.3rem;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+  }
+  .pager button {
+    font: inherit;
+    font-size: 0.84rem;
+    color: var(--ink);
+    background: none;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 0.3rem 0.62rem;
+    cursor: pointer;
+  }
+  .pager button:hover:not(:disabled):not([aria-current='true']) {
+    border-color: var(--line-strong);
+  }
+  .pager button[aria-current='true'] {
+    background: var(--ink);
+    color: #fff;
+    border-color: var(--ink);
+    cursor: default;
+  }
+  .pager button:disabled {
+    color: var(--faint);
+    cursor: default;
+  }
+  .pager .ellipsis {
+    color: var(--faint);
+    padding: 0 0.15rem;
   }
   @media (max-width: 900px) {
     .learn-shell {
@@ -535,10 +650,10 @@ const searchPlaceholder = tab === 'recipes' ? 'Search recipes…' : 'Search ques
 </style>
 
 <script>
-  // Bucket-tab filtering (Pass W): SINGLE-select per facet, driven by BOTH the
-  // left sidebar buttons and the top Linear-style chip dropdowns (kept in
-  // sync), plus a filter-as-you-type search box. AND across facets; substring
-  // match on title + subtitle for the search.
+  // Bucket-tab filtering (Pass W / W.1): SINGLE-select per facet via the
+  // Linear-style chip dropdowns (and the left sidebar when shown), a
+  // filter-as-you-type search box, a results count, and client-side pagination
+  // (20/page). AND across facets; substring match on title + subtitle.
   const root = document.querySelector<HTMLElement>('.learn-shell');
   if (root) {
     const rows = [...root.querySelectorAll<HTMLLIElement>('.rows > li')];
@@ -546,32 +661,81 @@ const searchPlaceholder = tab === 'recipes' ? 'Search recipes…' : 'Search ques
     const chipEls = [...root.querySelectorAll<HTMLElement>('.chip')];
     const chipOptions = [...root.querySelectorAll<HTMLButtonElement>('.chip-option')];
     const searchInput = root.querySelector<HTMLInputElement>('.filter-search');
-    const clearBtn = root.querySelector<HTMLButtonElement>('.clear-facets');
+    const clearBtns = [...root.querySelectorAll<HTMLButtonElement>('.clear-facets')];
     const noMatch = root.querySelector<HTMLElement>('.no-match');
+    const resultCount = root.querySelector<HTMLElement>('.result-count');
+    const pager = root.querySelector<HTMLElement>('.pager');
+    const content = root.querySelector<HTMLElement>('.learn-content');
 
+    const PER_PAGE = 20;
     const selected: Record<string, string | null> = {};
     let query = '';
+    let page = 1;
 
-    function apply() {
-      let any = false;
-      for (const v of Object.values(selected)) if (v) any = true;
-      let visible = 0;
-      for (const row of rows) {
-        let show = true;
-        for (const [facet, val] of Object.entries(selected)) {
-          if (!val) continue;
-          const cardVals = (row.dataset[facet] ?? '').split(' ').filter(Boolean);
-          if (!cardVals.includes(val)) {
-            show = false;
-            break;
-          }
-        }
-        if (show && query) show = (row.dataset.text ?? '').includes(query);
-        row.hidden = !show;
-        if (show) visible++;
+    const passes = (row: HTMLElement) => {
+      for (const [facet, val] of Object.entries(selected)) {
+        if (!val) continue;
+        const cardVals = (row.dataset[facet] ?? '').split(' ').filter(Boolean);
+        if (!cardVals.includes(val)) return false;
       }
-      if (clearBtn) clearBtn.hidden = !any && !query;
-      if (noMatch) noMatch.hidden = visible > 0;
+      if (query && !(row.dataset.text ?? '').includes(query)) return false;
+      return true;
+    };
+
+    function render() {
+      const filtered = rows.filter(passes);
+      const total = filtered.length;
+      const pages = Math.max(1, Math.ceil(total / PER_PAGE));
+      page = Math.min(Math.max(page, 1), pages);
+      const start = (page - 1) * PER_PAGE;
+      const end = Math.min(start + PER_PAGE, total);
+      const shown = new Set(filtered.slice(start, end));
+      for (const row of rows) row.hidden = !shown.has(row);
+
+      if (resultCount) resultCount.textContent = total === 0 ? '' : `Showing ${start + 1}–${end} of ${total}`;
+      if (noMatch) noMatch.hidden = total > 0;
+      const anyFilter = Object.values(selected).some(Boolean) || Boolean(query);
+      for (const cb of clearBtns) cb.hidden = !anyFilter;
+      renderPager(pages);
+    }
+
+    function renderPager(pages: number) {
+      if (!pager) return;
+      pager.textContent = '';
+      if (pages <= 1) {
+        pager.hidden = true;
+        return;
+      }
+      pager.hidden = false;
+      const mkBtn = (label: string, p: number, o: { current?: boolean; disabled?: boolean } = {}) => {
+        const b = document.createElement('button');
+        b.type = 'button';
+        b.textContent = label;
+        if (o.current) b.setAttribute('aria-current', 'true');
+        if (o.disabled) b.disabled = true;
+        if (!o.disabled && !o.current) {
+          b.addEventListener('click', () => {
+            page = p;
+            render();
+            content?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          });
+        }
+        return b;
+      };
+      pager.appendChild(mkBtn('‹ Prev', page - 1, { disabled: page === 1 }));
+      const nums = [...new Set([1, page - 1, page, page + 1, pages])].filter((n) => n >= 1 && n <= pages).sort((a, b) => a - b);
+      let prev = 0;
+      for (const n of nums) {
+        if (n - prev > 1) {
+          const e = document.createElement('span');
+          e.className = 'ellipsis';
+          e.textContent = '…';
+          pager.appendChild(e);
+        }
+        pager.appendChild(mkBtn(String(n), n, { current: n === page }));
+        prev = n;
+      }
+      pager.appendChild(mkBtn('Next ›', page + 1, { disabled: page === pages }));
     }
 
     function syncUI() {
@@ -596,10 +760,19 @@ const searchPlaceholder = tab === 'recipes' ? 'Search recipes…' : 'Search ques
       }
     }
 
+    function update() {
+      page = 1; // any filter/search change returns to the first page
+      syncUI();
+      render();
+    }
+
     function setFacet(key: string, value: string) {
       selected[key] = selected[key] === value ? null : value;
-      syncUI();
-      apply();
+      update();
+    }
+    function clearFacet(key: string) {
+      selected[key] = null;
+      update();
     }
 
     function closeMenus(except?: HTMLElement) {
@@ -622,12 +795,28 @@ const searchPlaceholder = tab === 'recipes' ? 'Search recipes…' : 'Search ques
     for (const chip of chipEls) {
       const btn = chip.querySelector<HTMLButtonElement>('.chip-btn')!;
       const menu = chip.querySelector<HTMLElement>('.chip-menu')!;
+      const x = chip.querySelector<HTMLElement>('.chip-x');
       btn.addEventListener('click', (e) => {
         e.stopPropagation();
         const willOpen = menu.hidden;
         closeMenus(chip);
         menu.hidden = !willOpen;
         btn.setAttribute('aria-expanded', String(willOpen));
+      });
+      // The X (shown only when the facet is chosen) clears it, without opening
+      // the menu.
+      x?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        clearFacet(chip.dataset.facet!);
+        closeMenus();
+      });
+      x?.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          e.stopPropagation();
+          clearFacet(chip.dataset.facet!);
+          closeMenus();
+        }
       });
     }
     document.addEventListener('click', () => closeMenus());
@@ -638,17 +827,18 @@ const searchPlaceholder = tab === 'recipes' ? 'Search recipes…' : 'Search ques
     if (searchInput) {
       searchInput.addEventListener('input', () => {
         query = searchInput.value.trim().toLowerCase();
-        apply();
+        update();
       });
     }
-    if (clearBtn) {
-      clearBtn.addEventListener('click', () => {
+    for (const cb of clearBtns) {
+      cb.addEventListener('click', () => {
         for (const k of Object.keys(selected)) selected[k] = null;
         query = '';
         if (searchInput) searchInput.value = '';
-        syncUI();
-        apply();
+        update();
       });
     }
+
+    render(); // initial paint (sets the count + first page)
   }
 </script>

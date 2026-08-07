@@ -14,7 +14,7 @@ sync-query-docs.mjs. Headings are de-numbered, internal provenance references
 purged, and section cross-references are anchor links. The elastic-api artifact
 remains the internal/normative original — port upstream changes here by hand. -->
 
-> This is the **formal specification** of OQL. If you want to get started right away, see the [overview](/docs/oql/) or the [Systematic reviews with OQL](/recipes/systematic-reviews-with-oql/) recipe.
+> This is the **formal specification** of OQL. If you want to get started right away, see the [overview](/docs/oql/) or the [Systematic reviews with OQL](/tutorials/systematic-reviews-with-oql/) recipe.
 
 OQL is the **human-readable surface over OQO**. It is defined and validated *in
 terms of* OQO (the canonical query object — see the [OQO page](/docs/oqo-schema/)) — not

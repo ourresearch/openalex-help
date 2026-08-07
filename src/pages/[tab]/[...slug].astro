@@ -113,15 +113,15 @@ if (bucket) {
 )}
 
 <style>
-  /* How-to article layout (FAQ + Recipes, Pass W): reading column + a right
-     nav rail, centered — same rail the Docs/API shell uses, minus the left
-     sidebar. */
+  /* How-to article layout (FAQ + Tutorials, Pass W): reading column + a right
+     nav rail, centered — same 46rem reading column as the Docs/API shell
+     (Pass W.1: was var(--measure), now matches the other tabs). */
   .howto-shell {
     padding: 2.5rem 2rem 5rem;
   }
   .howto-cols {
     display: grid;
-    grid-template-columns: minmax(0, var(--measure)) 13rem;
+    grid-template-columns: minmax(0, 46rem) 13rem;
     gap: 3.5rem;
     justify-content: center;
   }
@@ -138,18 +138,20 @@ if (bucket) {
     gap: 0.4rem;
     margin: -0.2rem 0 1.6rem;
   }
+  /* Monochrome tags: hairline outline, muted text (Pass W.1). */
   .tag {
     font-size: 0.72rem;
     line-height: 1.5;
     color: var(--muted);
-    background: var(--accent-wash);
+    background: none;
+    border: 1px solid var(--line);
     border-radius: 4px;
-    padding: 0.08rem 0.5rem;
+    padding: 0.05rem 0.5rem;
     white-space: nowrap;
   }
   @media (max-width: 1180px) {
     .howto-cols {
-      grid-template-columns: minmax(0, var(--measure));
+      grid-template-columns: minmax(0, 46rem);
     }
     .rail-col {
       display: none;

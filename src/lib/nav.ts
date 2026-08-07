@@ -290,7 +290,7 @@ const TAB_LABELS: Record<string, string> = {
   docs: 'Docs',
   entities: 'Entities',
   api: 'API',
-  recipes: 'Recipes',
+  tutorials: 'Tutorials',
 };
 
 /** A group's natural landing: a leading static link (e.g. Welcome → /docs/),

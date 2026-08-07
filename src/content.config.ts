@@ -34,5 +34,5 @@ export const collections = {
   docs: makeCollection('docs'),
   api: makeCollection('api'),
   entities: makeCollection('entities'),
-  recipes: makeCollection('recipes'),
+  tutorials: makeCollection('tutorials'),
 };

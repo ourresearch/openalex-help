@@ -19,7 +19,7 @@ https://api.openalex.org/works?filter=author.id:A5023888391&sort=-publication_da
 https://api.openalex.org/works?filter=author.id:A5023888391,cited_by_count:>10&sort=-cited_by_count
 ```
 
-To audit a profile end-to-end — find works that should be attached but aren't, plus works that are wrongly attached and should be removed — see the [Audit an Author Profile's Works recipe](/recipes/audit-an-author-profiles-works/).
+To audit a profile end-to-end — find works that should be attached but aren't, plus works that are wrongly attached and should be removed — see the [Audit an Author Profile's Works recipe](/tutorials/audit-an-author-profiles-works/).
 
 ## Find works from an institution (Under 1¢)
 

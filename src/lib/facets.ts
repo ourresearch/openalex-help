@@ -32,8 +32,11 @@ export interface Facet {
 // (CARD_FACETS rows keep their `task` tags harmlessly; they're just not shown.)
 export const FACETS: Facet[] = [
   {
+    // Pass W.1: relabeled "Variable" → "Topic" so both how-to tabs share the
+    // same axis names (Topic / Entity / Interface). Internal key stays
+    // `variable` (CARD_FACETS + data-variable attrs unchanged).
     key: 'variable',
-    label: 'Variable',
+    label: 'Topic',
     values: [
       { id: 'output', label: 'Output volume' },
       { id: 'citations', label: 'Citations' },
@@ -304,7 +307,7 @@ export function helpFacetsFor(slug: string): HelpTags {
 
 /** Facet set + tag lookup for a bucket tab (recipes | help). */
 export function facetConfig(tab: string): { facets: Facet[]; tagsFor: (slug: string) => Partial<Record<string, string[]>> } | undefined {
-  if (tab === 'recipes') return { facets: FACETS, tagsFor: facetsFor };
+  if (tab === 'tutorials') return { facets: FACETS, tagsFor: facetsFor };
   if (tab === 'help') return { facets: HELP_FACETS, tagsFor: helpFacetsFor };
   return undefined;
 }

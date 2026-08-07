@@ -236,6 +236,6 @@ https://api.openalex.org/works?filter=raw_author_name.search:"jason priem" OR "p
 https://api.openalex.org/works?filter=raw_author_name.search:"j priem" OR "priem j"
 ```
 
-For a step-by-step walkthrough that uses these patterns to audit and correct an author profile's works, see the [Audit an Author Profile's Works recipe](/recipes/audit-an-author-profiles-works/).
+For a step-by-step walkthrough that uses these patterns to audit and correct an author profile's works, see the [Audit an Author Profile's Works recipe](/tutorials/audit-an-author-profiles-works/).
 
 {/* Redeploy trigger 2026-05-17 — auto-deploy webhook missed 319f1d5 (#191.3) */}

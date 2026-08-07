@@ -6,7 +6,7 @@ source_id: "download/snapshot-format"
 source_url: "https://developers.openalex.org/download/snapshot-format"
 source_updated: "2026-08-05"
 ---
-The snapshot is the complete OpenAlex database as downloadable files. It's stored in [Amazon S3](https://aws.amazon.com/s3/) in the [`openalex`](https://openalex.s3.amazonaws.com/browse.html) bucket, under the `data/` prefix — free to download, no AWS account needed (see [Access & authentication](#access--authentication) below). For step-by-step download commands, see the [download recipe](/recipes/download-to-your-machine/).
+The snapshot is the complete OpenAlex database as downloadable files. It's stored in [Amazon S3](https://aws.amazon.com/s3/) in the [`openalex`](https://openalex.s3.amazonaws.com/browse.html) bucket, under the `data/` prefix — free to download, no AWS account needed (see [Access & authentication](#access--authentication) below). For step-by-step download commands, see the [download recipe](/tutorials/download-to-your-machine/).
 
 ## Two formats
 
@@ -26,7 +26,7 @@ Check the current size before downloading — it grows over time. As of the June
 | JSON Lines (`/data/jsonl/`) | ~750 GB (works alone: ~670 GB) |
 | Parquet (`/data/parquet/`) | ~780 GB |
 
-Decompressed, the JSON Lines data runs to several terabytes. The two formats are separate complete copies, so downloading both roughly doubles the transfer — most users want [a single format prefix](/recipes/download-to-your-machine/#download-a-single-format-or-entity-type). Live totals are always in each format's `manifest.json` (`content_length`, per entity and overall).
+Decompressed, the JSON Lines data runs to several terabytes. The two formats are separate complete copies, so downloading both roughly doubles the transfer — most users want [a single format prefix](/tutorials/download-to-your-machine/#download-a-single-format-or-entity-type). Live totals are always in each format's `manifest.json` (`content_length`, per entity and overall).
 
 ## Bucket structure
 
@@ -177,4 +177,4 @@ Still stuck? [Contact support](https://openalex.org/contact) with the exact comm
 ## Related pages
 
 - [Sync](/docs/sync/) — release cadence, partition semantics, deletions & merged entities
-- [Download to your machine](/recipes/download-to-your-machine/) — step-by-step recipe
+- [Download to your machine](/tutorials/download-to-your-machine/) — step-by-step recipe
