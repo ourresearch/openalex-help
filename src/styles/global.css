@@ -23,6 +23,12 @@
   --accent-wash: #eff6ff;
   --code-bg: #efeeea;
 
+  /* Nav group colors (oxjob #354): the two-sided model in the header.
+     Practical (FAQ, Tutorials) = green; reference (Docs, Entities, API) =
+     violet. Both deliberately ≠ link blue and ≠ ink; both ≥5:1 on --bg. */
+  --practical: #047857;
+  --reference: #6d28d9;
+
   --font-body: 'Inter Variable', system-ui, -apple-system, sans-serif;
   --font-mono: 'JetBrains Mono Variable', ui-monospace, monospace;
 

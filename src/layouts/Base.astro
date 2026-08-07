@@ -12,16 +12,17 @@ interface Props {
 const { title, description, wide = false } = Astro.props;
 
 // Home first (the site front door — oxjob #354 Pass U: it gets a real tab so
-// there's never a no-tab state). Then the two-sided model (Pass R): FAQ +
-// Recipes = "get things done"; Docs/Entities/API = "look things up" (one
-// reference work split across three tabs).
+// there's never a no-tab state). Then the two-sided model (Pass R), now
+// expressed in the nav itself: FAQ + Tutorials = practical ("get things
+// done"), Docs/Entities/API = reference ("look things up" — one reference
+// work split across three tabs). Each side carries its own color.
 const tabs = [
-  { label: 'Home', href: '/' },
-  { label: 'FAQ', href: '/help/' },
-  { label: 'Docs', href: '/docs/' },
-  { label: 'Entities', href: '/entities/' },
-  { label: 'API', href: '/api/' },
-  { label: 'Tutorials', href: '/tutorials/' },
+  { label: 'Home', href: '/', group: 'home' },
+  { label: 'FAQ', href: '/help/', group: 'practical' },
+  { label: 'Tutorials', href: '/tutorials/', group: 'practical' },
+  { label: 'Docs', href: '/docs/', group: 'reference' },
+  { label: 'Entities', href: '/entities/', group: 'reference' },
+  { label: 'API', href: '/api/', group: 'reference' },
 ];
 const path = Astro.url.pathname;
 const isActive = (href: string) => (href === '/' ? path === '/' : path.startsWith(href));
@@ -49,7 +50,7 @@ const isHome = path === '/';
         </a>
         <div class="tabs">
           {tabs.map((t) => (
-            <a href={t.href} aria-current={isActive(t.href) ? 'page' : undefined}>{t.label}</a>
+            <a href={t.href} class={t.group} aria-current={isActive(t.href) ? 'page' : undefined}>{t.label}</a>
           ))}
         </div>
         <div class="nav-right">
@@ -64,7 +65,7 @@ const isHome = path === '/';
       </nav>
       <div id="mobile-menu" hidden>
         {tabs.map((t) => (
-          <a href={t.href} aria-current={isActive(t.href) ? 'page' : undefined}>{t.label}</a>
+          <a href={t.href} class={t.group} aria-current={isActive(t.href) ? 'page' : undefined}>{t.label}</a>
         ))}
         <a class="menu-site-link" href="https://openalex.org">Main site ↗</a>
       </div>
@@ -163,9 +164,11 @@ const isHome = path === '/';
         top: 0;
         bottom: 0;
       }
-      /* Cursor-measured tabs: 14px, 12px side padding, active = accent text +
-         a 2px accent underline spanning the full pill, sitting on the header's
-         bottom border. */
+      /* Cursor-measured tabs: 14px, 12px side padding, active = full-color
+         text + a 2px underline spanning the full pill, sitting on the header's
+         bottom border. Group color-coding (oxjob #354): Home is ink; the
+         practical pair and the reference trio each carry a group color —
+         inactive tabs wear a muted mix of it, active/hover the full color. */
       .tabs a {
         display: flex;
         align-items: center;
@@ -176,12 +179,31 @@ const isHome = path === '/';
         position: relative;
         transition: color 0.15s;
       }
+      /* Small breathing room between the three groups (Home | practical | reference). */
+      .tabs a.home + .practical,
+      .tabs a.practical + .reference {
+        margin-left: 0.875rem;
+      }
+      .tabs a.practical {
+        color: color-mix(in srgb, var(--practical) 55%, var(--muted));
+      }
+      .tabs a.reference {
+        color: color-mix(in srgb, var(--reference) 55%, var(--muted));
+      }
       .tabs a:hover {
         color: var(--ink);
         text-decoration: none;
       }
+      .tabs a.practical:hover,
+      .tabs a.practical[aria-current='page'] {
+        color: var(--practical);
+      }
+      .tabs a.reference:hover,
+      .tabs a.reference[aria-current='page'] {
+        color: var(--reference);
+      }
       .tabs a[aria-current='page'] {
-        color: var(--accent);
+        color: var(--ink);
       }
       .tabs a[aria-current='page']::after {
         content: '';
@@ -190,7 +212,7 @@ const isHome = path === '/';
         right: 0;
         bottom: -1px;
         height: 2px;
-        background: var(--accent);
+        background: currentColor;
       }
       .nav-right {
         margin-left: auto;
@@ -247,7 +269,14 @@ const isHome = path === '/';
         text-decoration: none;
       }
       #mobile-menu a[aria-current='page'] {
-        color: var(--accent);
+        color: var(--ink);
+        font-weight: 500;
+      }
+      #mobile-menu a.practical[aria-current='page'] {
+        color: var(--practical);
+      }
+      #mobile-menu a.reference[aria-current='page'] {
+        color: var(--reference);
       }
       #mobile-menu .menu-site-link {
         color: var(--ink);
