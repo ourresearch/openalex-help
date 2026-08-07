@@ -394,13 +394,18 @@ const showSidebar = false;
     color: var(--muted);
     font-size: 0.92rem;
   }
-  /* Linear-style filter chips + search box, one row above the list. */
+  /* Linear-style filter chips + search box, one row above the list. Jason
+     2026-08-07: filters sit close under the page header (local override of
+     the shared 2.25rem header margin) and further from the results. */
+  .learn-content :global(.page-head) {
+    margin-bottom: 1rem;
+  }
   .filter-row {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     gap: 0.5rem;
-    margin-bottom: 1.5rem;
+    margin-bottom: 3rem;
   }
   .chip {
     position: relative;
