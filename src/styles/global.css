@@ -23,14 +23,10 @@
   --accent-wash: #eff6ff;
   --code-bg: #efeeea;
 
-  /* Category colors (oxjob #354): the site's sides, named Learn vs Reference
-     (Jason 2026-08-07; the Astro/MDN split). Learn (FAQ, Tutorials) = green;
-     Reference (Docs, Entities, API) = violet; Chat (forum/support/Ask AI,
-     homepage only) = amber. All deliberately ≠ link blue and ≠ ink; dark
-     enough to carry white text as a filled chip. */
-  --learn: #047857;
-  --reference: #6d28d9;
-  --chat: #b45309;
+  /* Category colors were tried and dropped same-day (Jason 2026-08-07 — site
+     is monochrome; Learn/Reference/Chat grouping is carried by nav dividers
+     and homepage column structure instead). If they return, the picks were:
+     learn #047857 (green), reference #6d28d9 (violet), chat #b45309 (amber). */
 
   --font-body: 'Inter Variable', system-ui, -apple-system, sans-serif;
   --font-mono: 'JetBrains Mono Variable', ui-monospace, monospace;

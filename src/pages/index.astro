@@ -1,9 +1,10 @@
 ---
 // Help Center homepage (oxjob #354 Pass U/V/X): the front door for the whole
 // site. A big left-justified masthead, one full-width search box, then the
-// site's map in three color-coded columns matching the category model:
-// Learn (FAQ, Tutorials), Reference (Docs, Entities, API), and Chat (the
-// human/AI conversation surfaces).
+// site's map in three labeled columns matching the category model: Learn
+// (FAQ, Tutorials), Reference (Docs, Entities, API), and Chat (the human/AI
+// conversation surfaces). Monochrome — category colors tried and dropped
+// (Jason 2026-08-07); the grouping is carried by the column structure.
 import Base from '../layouts/Base.astro';
 import Card from '../components/Card.astro';
 import Icon from '../components/Icon.astro';
@@ -92,7 +93,7 @@ const columns = [
           <section class:list={['col', col.tone]}>
             <h2 class="col-head">{col.label}</h2>
             {col.cards.map((c) => (
-              <Card title={c.title} href={c.href} tone={col.tone}>
+              <Card title={c.title} href={c.href}>
                 <Icon name={c.icon} slot="icon" />
                 {c.blurb}
               </Card>
@@ -201,15 +202,7 @@ const columns = [
     font-weight: 650;
     text-transform: uppercase;
     letter-spacing: 0.09em;
-  }
-  .col.learn .col-head {
-    color: var(--learn);
-  }
-  .col.reference .col-head {
-    color: var(--reference);
-  }
-  .col.chat .col-head {
-    color: var(--chat);
+    color: var(--muted);
   }
   @media (max-width: 680px) {
     .columns {
@@ -220,8 +213,8 @@ const columns = [
     }
   }
 
-  /* Ask AI: matches Card.astro exactly (chat tone), but it's a <details> that
-     expands to a provider menu instead of an <a> that navigates. */
+  /* Ask AI: matches Card.astro exactly, but it's a <details> that expands to
+     a provider menu instead of an <a> that navigates. */
   .ai-card {
     display: flex;
     flex-direction: column;
@@ -236,7 +229,7 @@ const columns = [
     border-color: var(--line-strong);
   }
   .ai-card:hover .ai-title {
-    color: var(--chat);
+    color: var(--accent);
   }
   .ai-card summary {
     list-style: none;
@@ -253,11 +246,11 @@ const columns = [
     gap: 0.6rem;
     padding: 0.7rem 1rem;
     border-bottom: 1px solid var(--line);
-    background: color-mix(in srgb, var(--chat) 7%, var(--panel-strong));
+    background: var(--panel-strong);
   }
   .ai-head :global(svg) {
     flex-shrink: 0;
-    color: var(--chat);
+    color: var(--muted);
   }
   .ai-title {
     font-size: 0.92rem;
@@ -292,7 +285,7 @@ const columns = [
   .providers a:hover {
     background: var(--panel);
     text-decoration: none;
-    color: var(--chat);
+    color: var(--accent);
   }
 </style>
 

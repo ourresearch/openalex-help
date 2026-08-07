@@ -168,10 +168,9 @@ const isHome = path === '/';
         bottom: 0;
       }
       /* Chip tabs (Jason 2026-08-07): each tab is a ghost text button — light
-         bg on hover, selected = dark fill + white text, no underline. Category
-         color-coding: Home is ink; the Learn pair and Reference trio each
-         carry a category color — inactive = muted mix, hover = full color,
-         selected chip = filled with it. */
+         bg on hover, selected = dark ink fill + white text, no underline.
+         Monochrome (category colors tried and dropped same day); the Learn /
+         Reference grouping is shown by hairline dividers instead. */
       .tabs a {
         display: flex;
         align-items: center;
@@ -183,44 +182,34 @@ const isHome = path === '/';
         position: relative;
         transition: color 0.15s, background-color 0.15s;
       }
-      /* Small breathing room between the three groups (Home | Learn | Reference). */
+      /* Vertical hairline dividers between the three groups:
+         home | faq tutorials | docs entities api (Jason 2026-08-07, B&W round). */
       .tabs a.home + .learn,
       .tabs a.learn + .reference {
-        margin-left: 0.875rem;
+        margin-left: 1.125rem;
       }
-      .tabs a.learn {
-        color: color-mix(in srgb, var(--learn) 55%, var(--muted));
-      }
-      .tabs a.reference {
-        color: color-mix(in srgb, var(--reference) 55%, var(--muted));
+      .tabs a.home + .learn::before,
+      .tabs a.learn + .reference::before {
+        content: '';
+        position: absolute;
+        left: -0.5625rem;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 1px;
+        height: 16px;
+        background: var(--line-strong);
       }
       .tabs a:hover {
         color: var(--ink);
         background: var(--panel-strong);
         text-decoration: none;
       }
-      .tabs a.learn:hover {
-        color: var(--learn);
-      }
-      .tabs a.reference:hover {
-        color: var(--reference);
-      }
       /* Selected chip: dark fill, white text, no underline. After the hover
-         rules so a hovered selected chip keeps its fill. */
+         rule so a hovered selected chip keeps its fill. */
       .tabs a[aria-current='page'],
       .tabs a[aria-current='page']:hover {
         color: var(--bg);
         background: var(--ink);
-      }
-      .tabs a.learn[aria-current='page'],
-      .tabs a.learn[aria-current='page']:hover {
-        color: var(--bg);
-        background: var(--learn);
-      }
-      .tabs a.reference[aria-current='page'],
-      .tabs a.reference[aria-current='page']:hover {
-        color: var(--bg);
-        background: var(--reference);
       }
       .nav-right {
         margin-left: auto;
@@ -279,12 +268,6 @@ const isHome = path === '/';
       #mobile-menu a[aria-current='page'] {
         color: var(--ink);
         font-weight: 500;
-      }
-      #mobile-menu a.learn[aria-current='page'] {
-        color: var(--learn);
-      }
-      #mobile-menu a.reference[aria-current='page'] {
-        color: var(--reference);
       }
       #mobile-menu .menu-site-link {
         color: var(--ink);

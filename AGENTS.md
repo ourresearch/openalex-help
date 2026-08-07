@@ -13,9 +13,9 @@ INTENT, not whether learning occurs:
   led to the answer.
 - **Chat** (homepage grouping only, not a tab side): Community Forum / Contact
   Support / Ask AI — the conversation surfaces.
-- Category colors (tokens in `src/styles/global.css`): `--learn` green,
-  `--reference` violet, `--chat` amber. The header tabs and homepage columns are
-  coded with them.
+- The site is MONOCHROME (category colors tried and dropped 2026-08-07). The
+  grouping shows structurally: hairline dividers between the header tab groups
+  (home | faq tutorials | docs entities api) and labeled homepage columns.
 - Routing for writers: "What is this thing?" → Entities. "How does querying/OA/bulk
   access work?" → Docs. "Wire mechanics?" → API. "A question a real user asked?" → FAQ.
   "A worked walkthrough?" → Tutorials. NOT "FAQ = nontechnical, docs = technical".
