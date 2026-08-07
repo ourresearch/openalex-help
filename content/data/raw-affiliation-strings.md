@@ -7,9 +7,9 @@ entity:
     - "authorships"
     - "institutions"
 ---
-A **raw affiliation string** (RAS) is the exact affiliation text an author printed on a work, before OpenAlex matches it to an [institution](/data/institutions/) — free text like `"Impactstory, Sanford, NC, USA"` or `"Massachusetts Institute of Technology"`, often messy and inconsistent. It's the raw input to institution disambiguation: the thing OpenAlex parses to figure out *which organizations* an author was affiliated with. Raw affiliation strings are a [component](/data/component/) entity — they don't get their own OpenAlex ID. They live inside an [authorship](/data/authorships/), in its [`raw_affiliation_strings`](/data/authorships/#raw_affiliation_strings) list and its [`affiliations`](/data/authorships/#affiliations) mapping. There's also a bespoke `raw_affiliation_strings.search` filter on [works](/data/works/) and a raw-affiliation-strings search surface for querying them directly.
+A **raw affiliation string** (RAS) is the exact affiliation text an author printed on a work, before OpenAlex matches it to an [institution](/data/institutions/) — free text like `"Impactstory, Sanford, NC, USA"` or `"Massachusetts Institute of Technology"`, often messy and inconsistent. It's the raw input to institution disambiguation: the thing OpenAlex parses to figure out *which organizations* an author was affiliated with. Raw affiliation strings are a [component](/data/component/) entity — they don't get their own OpenAlex ID. They live inside an [authorship](/data/authorships/), in its [`raw_affiliation_strings`](/data/authorships/#raw_affiliation_strings) list and its [`affiliations`](/data/authorships/#affiliations) mapping. They can also be queried in two other ways: a bespoke `raw_affiliation_strings.search` filter on [works](/data/works/), and a standalone [`/raw-affiliation-strings`](https://api.openalex.org/raw-affiliation-strings) list endpoint that pages over the distinct strings themselves.
 
-## How it's made
+## About
 
 OpenAlex preserves the affiliation text exactly as it arrived on the source record, then parses each string to extract the institutions it names — so both `"MIT, Boston, USA"` and `"Massachusetts Institute of Technology"` resolve to the same institution ([ror.org/042nb2s44](https://ror.org/042nb2s44)).
 
@@ -60,9 +60,10 @@ This is the authoritative record of *which printed string produced which institu
 
 ## In the API
 
-Raw affiliation strings aren't a top-level entity endpoint you list or fetch — they surface as fields on an [authorship](/data/authorships/) (select [`authorships`](/data/works/attributes/#authorships) on a work) and through two search surfaces:
+Raw affiliation strings are a [component](/data/component/) entity — they carry no OpenAlex ID and you'll usually meet them as fields on an [authorship](/data/authorships/) (select [`authorships`](/data/works/attributes/#authorships) on a work). There are three ways to reach them:
 
+- **The standalone list endpoint** at [`api.openalex.org/raw-affiliation-strings`](https://api.openalex.org/raw-affiliation-strings) pages over the *distinct* strings themselves, rather than through works. Each row is a raw string plus its `works_count`, the institution IDs it resolved to (`institution_ids_final`, and any curated `institution_ids_override`), and its `countries` — handy for auditing how a given affiliation string is being matched across the whole corpus.
 - **Search the raw text** with the `raw_affiliation_strings.search` filter on [works](/data/works/): `filter=raw_affiliation_strings.search:impactstory` returns works whose authors printed that affiliation text — matching on the *raw string*, before institution disambiguation. Useful for finding an organization's works when its name never resolved cleanly to a ROR-backed institution.
-- **Filter on the resolved mapping** with `authorships.affiliations.institution_ids`, which filters on the institution IDs a raw string produced.
+- **Filter on the resolved mapping** with `authorships.affiliations.institution_ids`, which filters works on the institution IDs a raw string produced.
 
 See [Filtering](/api/filtering/) for filter syntax and [Searching](/api/searching/) for how `.search` behaves. To filter on the resolved institution itself (rather than the raw text), use `authorships.institutions.id` on [works](/data/works/).

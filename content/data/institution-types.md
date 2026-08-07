@@ -10,7 +10,7 @@ entity:
 ---
 An **institution type** classifies the kind of organization: a university (`education`), a hospital (`healthcare`), a `company`, a `government` agency, and so on. Every [institution](/data/institutions/) has exactly one type, exposed as its `type` field, chosen from the short controlled vocabulary below. Because an organization's kind already exists crisply in the real world, institution types are a [vocabulary entity](/data/vocabulary/): OpenAlex doesn't adjudicate what an institution *is*, it just standardizes the label so you can filter and group by it reliably. Institution types use short, human-readable IDs (`education`, `company`) rather than the minted `W`/`A`/`S` scheme; a type's full ID looks like `https://openalex.org/institution-types/education`.
 
-## How it's made
+## About
 
 The vocabulary is derived directly from [ROR](https://ror.org/), the Research Organization Registry, which assigns each organization a type. OpenAlex adopts ROR's type for each [institution](/data/institutions/), mapping onto the fixed list below (with an `other` bucket for organizations that don't fit ROR's standard categories). We don't decide the boundary between an education and a healthcare institution; we standardize the label from the ROR standard. See the [Institutions guide](/data/institutions/) for more.
 

@@ -1,6 +1,6 @@
 ---
-title: "Sustainable Development Goals"
-description: "The UN's 17 Sustainable Development Goals as OpenAlex entities, how works are tagged to them by an open-source machine-learning classifier, and what every attribute on an SDG object means."
+title: "SDGs"
+description: "The UN's 17 SDGs as OpenAlex entities, how works are tagged to them by an open-source machine-learning classifier, and what every attribute on an SDG object means."
 tags: ["reference"]
 source_id: "27972124390679"
 source_url: "https://help.openalex.org/hc/en-us/articles/27972124390679-How-do-you-classify-works-as-contributing-to-the-UN-SDGs"
@@ -13,7 +13,7 @@ entity:
 ---
 The **Sustainable Development Goals** (SDGs) are the [17 global goals](https://sdgs.un.org/goals) the United Nations adopted in 2015 to address challenges like poverty, inequality, climate change, and environmental degradation — from *No poverty* (SDG 1) to *Partnerships for the goals* (SDG 17). OpenAlex tags each [work](/data/works/) with the SDGs its title and abstract are relevant to, so you can find and analyze research on a given global challenge — for example, pulling every work tagged with SDG 13 (*Climate action*) to study climate-research trends. There are exactly 17, one of [several aboutness signals](/data/aboutness/) OpenAlex offers. An SDG's OpenAlex ID looks like `https://openalex.org/sdgs/3`; list them all at [`api.openalex.org/sdgs`](https://api.openalex.org/sdgs).
 
-## How it's made
+## About
 
 The 17 goals themselves are a fixed UN vocabulary, so this section is about the tagging: how OpenAlex decides which works contribute to which goal.
 

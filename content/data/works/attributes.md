@@ -78,7 +78,7 @@ abstract_inverted_index: { "Despite": [0], "growing": [1], "interest": [2], "in"
 *Object.* The work's access status, an `OpenAccess` object:
 
 - **`is_oa`** *(Boolean)* — true if a free-to-read full text exists somewhere (OpenAlex uses a broad definition: readable without paying or logging in).
-- **`oa_status`** *(String)* — one of `diamond`, `gold`, `green`, `hybrid`, `bronze`, or `closed`. The bronze-vs-gold distinction depends on the journal's openness — see [Sources](/data/sources/#how-its-made).
+- **`oa_status`** *(String)* — one of `diamond`, `gold`, `green`, `hybrid`, `bronze`, or `closed`. The bronze-vs-gold distinction depends on the journal's openness — see [Sources](/data/sources/#about).
 - **`oa_url`** *(String)* — the best OA URL (closest to the version of record); may be a PDF or a landing page.
 - **`any_repository_has_fulltext`** *(Boolean)* — true if any location is both OA and hosted by a repository. Surfaces "shadowed green" OA that `oa_status` hides once a publisher-hosted copy exists.
 

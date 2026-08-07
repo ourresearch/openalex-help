@@ -24,7 +24,7 @@ This page will summarize important changes to our methodology and data sources t
 
   
 
-**2021-01-19:** Updated our list of "detected OA" journals, as described in [Journal quality & OA status](/data/sources/#how-its-made), for 2021. Added about 200,000 Gold articles from 9,000 journals.
+**2021-01-19:** Updated our list of "detected OA" journals, as described in [Journal quality & OA status](/data/sources/#about), for 2021. Added about 200,000 Gold articles from 9,000 journals.
 
   
 

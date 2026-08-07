@@ -15,7 +15,7 @@ entity:
 ---
 A **source** is a venue where [works](/data/works/) appear: a journal, a conference proceedings series, a preprint or institutional repository, an ebook platform, or a book series. Sources are how OpenAlex connects works to the places that host them — every work links to one or more sources through its [locations](/data/locations/), and each source aggregates the works it published. OpenAlex tracks about 255,000 sources; a source's OpenAlex ID looks like `S137773608`, and you can fetch one at [`api.openalex.org/sources/S137773608`](https://api.openalex.org/sources/S137773608).
 
-## How it's made
+## About
 
 ### Where sources come from
 
@@ -36,7 +36,7 @@ Every source carries exactly one [`type`](#type), assigned from its metadata and
 
 ### No quality bar, by design
 
-OpenAlex [deliberately does not impose a quality bar](/data/sources/#how-its-made) on which sources it indexes — its inclusion criteria are more like arXiv than Web of Science. There are good reasons to index everything: "lower-quality" sources are useful as objects of study; sources that are inadequate for one purpose are ideal for another (grey literature, regional literature, early-career work); low-power studies aggregate into high-power meta-analyses; and excellent work is too often excluded from traditional indexes merely for being non-English or from the Global South. Most importantly, "lower-quality" content can always be *filtered out* if it's included — it can't be added back if it's not.
+OpenAlex [deliberately does not impose a quality bar](/data/sources/#about) on which sources it indexes — its inclusion criteria are more like arXiv than Web of Science. There are good reasons to index everything: "lower-quality" sources are useful as objects of study; sources that are inadequate for one purpose are ideal for another (grey literature, regional literature, early-career work); low-power studies aggregate into high-power meta-analyses; and excellent work is too often excluded from traditional indexes merely for being non-English or from the Global South. Most importantly, "lower-quality" content can always be *filtered out* if it's included — it can't be added back if it's not.
 
 **Predatory journals** are handled the same way. There is no authoritative list of them, the lists change constantly, and the definition itself is contested — from faked peer review (obviously problematic) to any publisher that inflates accepted volume for revenue (a practice common even at "reputable" sources). Rather than maintain a deny list and play cat-and-mouse with bad actors who can simply rebrand, OpenAlex indexes everything and lets analysts narrow down.
 
@@ -64,7 +64,7 @@ Not every fully-OA journal is in DOAJ — smaller titles and journals from the d
 
 ### APC data
 
-The [article processing charge](https://en.wikipedia.org/wiki/Article_processing_charge) (APC) is the fee some journals charge to publish a work OA. At the source level OpenAlex records the journal's **list price** in [`apc_prices`](#apc_prices) (per currency) and [`apc_usd`](#apc_usd); at the [work](/data/works/attributes/#apc_list) level it records both the list price and OpenAlex's best estimate of what was actually paid. List prices are sourced from DOAJ plus manual curation. Two caveats: OpenAlex stores one (current-year) list price per journal, so historical estimates apply today's price to an older year; and DOAJ coverage skews toward fully-OA journals, leaving hybrid journals — where much APC spending happens — thinly covered. For year-by-year list prices, [Butler et al. 2024](https://doi.org/10.7910/DVN/CR1MMV) (Harvard Dataverse, CC0) provides publisher price lists per journal per year (2019–2023, six large publishers, ~8,711 journals); OpenAlex is **evaluating** integrating this dataset but has **not** yet done so. See [Journal quality & OA status](/data/sources/#how-its-made) for the full APC discussion, including how to estimate institutional APC spend.
+The [article processing charge](https://en.wikipedia.org/wiki/Article_processing_charge) (APC) is the fee some journals charge to publish a work OA. At the source level OpenAlex records the journal's **list price** in [`apc_prices`](#apc_prices) (per currency) and [`apc_usd`](#apc_usd); at the [work](/data/works/attributes/#apc_list) level it records both the list price and OpenAlex's best estimate of what was actually paid. List prices are sourced from DOAJ plus manual curation. Two caveats: OpenAlex stores one (current-year) list price per journal, so historical estimates apply today's price to an older year; and DOAJ coverage skews toward fully-OA journals, leaving hybrid journals — where much APC spending happens — thinly covered. For year-by-year list prices, [Butler et al. 2024](https://doi.org/10.7910/DVN/CR1MMV) (Harvard Dataverse, CC0) provides publisher price lists per journal per year (2019–2023, six large publishers, ~8,711 journals); OpenAlex is **evaluating** integrating this dataset but has **not** yet done so. See [Journal quality & OA status](/data/sources/#about) for the full APC discussion, including how to estimate institutional APC spend.
 
 ## Attributes
 

@@ -20,7 +20,7 @@ A **work** is any scholarly document: a journal article, conference paper, book 
 
 Works are the central entity in OpenAlex — everything connects to them. [Authors](/data/authors/) write works, [sources](/data/sources/) publish them, [institutions](/data/institutions/) get credit for them, [topics](/data/topics/) describe them, and [funders](/data/funders/) pay for them. Works also carry by far the most information of any entity: all twenty-ish entity types are first-class citizens, but works are the firstest class.
 
-## How it's made
+## About
 
 ### Where works come from
 

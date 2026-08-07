@@ -25,9 +25,10 @@ INTENT, not whether learning occurs:
 ### Entity pages
 
 - Every entity page follows the template in `content/data/authors.md`: intro (what it
-  is + ID form + a live example link) → `## How it's made` (fixed heading/anchor
-  `#how-its-made`; renamed from "How we build it" 2026-08-07: provenance, judgment
-  calls, failure modes; where the old deep-dive pages live now) → `## Attributes` (renamed from Fields 2026-08-07 to avoid colliding with the
+  is + ID form + a live example link) → `## About` (fixed heading/anchor
+  `#about`; renamed from "How it's made"→"About" 2026-08-07, was "How we build it":
+  provenance, judgment calls, failure modes; where the old deep-dive pages live
+  now) → `## Attributes` (renamed from Fields 2026-08-07 to avoid colliding with the
   aboutness Fields entity; one ``### `field` `` per top-level API field; common
   attributes get a one-liner + link to `/data/common-attributes/`) → `## In the API`.
   Exception: **works** is a subgroup (Jason 2026-08-07) — overview at

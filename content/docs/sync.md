@@ -103,11 +103,11 @@ All OpenAlex metadata is [CC0](https://creativecommons.org/publicdomain/zero/1.0
 
 ## Deletions and merged entities
 
-Records don't just get created and updated — they also disappear: works get merged when they're found to be duplicates, author profiles get [merged or deleted](/data/authors/#how-its-made), and bogus records get removed.
+Records don't just get created and updated — they also disappear: works get merged when they're found to be duplicates, author profiles get [merged or deleted](/data/authors/#about), and bogus records get removed.
 
 How that shows up today:
 
-- **In the API:** a deleted or merged-away ID returns **404**. There is no redirect to the surviving record. (Special case: works of removed author profiles point to the [null author `A9999999999`](/data/authors/#how-its-made), and `A5317838346` marks deleted authors.)
+- **In the API:** a deleted or merged-away ID returns **404**. There is no redirect to the surviving record. (Special case: works of removed author profiles point to the [null author `A9999999999`](/data/authors/#about), and `A5317838346` marks deleted authors.)
 - **In the snapshot:** the record is simply **gone from the current release** — it doesn't appear in any partition, and the vacated file space disappears from the manifest. This is true of every daily copy too, which is why reconciling against a snapshot is how mirrors pick up deletions.
 
 **To pick up deletions in a mirror**, reconcile against a full release periodically (daily-snapshot subscribers can do this any day):

@@ -299,8 +299,8 @@
 /hc/en-us/articles/24736129405719  /data/topics/  301
 /hc/en-us/articles/24735753007895-Field-Weighted-Citation-Impact-FWCI  /docs/field-weighted-citation-impact-fwci/  301
 /hc/en-us/articles/24735753007895  /docs/field-weighted-citation-impact-fwci/  301
-/hc/en-us/articles/24347048891543-Author-disambiguation  /data/authors/#how-its-made  301
-/hc/en-us/articles/24347048891543  /data/authors/#how-its-made  301
+/hc/en-us/articles/24347048891543-Author-disambiguation  /data/authors/#about  301
+/hc/en-us/articles/24347048891543  /data/authors/#about  301
 /hc/en-us/articles/24347057529623-Sources-in-OpenAlex  /data/sources/  301
 /hc/en-us/articles/24347057529623  /data/sources/  301
 /hc/en-us/articles/24347035046295-Open-Access-OA  /data/works/open-access/  301
@@ -421,8 +421,8 @@
 # Docs rewrite Pass C (oxjob #354, D07): Authors & institutions zone + deferred Works moves
 /docs/can-i-search-exact-terms  /api/searching/  301
 /docs/can-i-search-exact-terms/  /api/searching/  301
-/docs/why-are-some-authors-assigned-to-null-author-id-a9999999999  /data/authors/#how-its-made  301
-/docs/why-are-some-authors-assigned-to-null-author-id-a9999999999/  /data/authors/#how-its-made  301
+/docs/why-are-some-authors-assigned-to-null-author-id-a9999999999  /data/authors/#about  301
+/docs/why-are-some-authors-assigned-to-null-author-id-a9999999999/  /data/authors/#about  301
 /docs/institutions-and-raw-affiliation-string-parsing  /data/raw-affiliation-strings/  301
 /docs/institutions-and-raw-affiliation-string-parsing/  /data/raw-affiliation-strings/  301
 /docs/why-is-affiliation-history-metadata-incomplete  /data/raw-affiliation-strings/  301
@@ -439,12 +439,12 @@
 /docs/sources-in-openalex/  /data/sources/  301
 /docs/what-are-cwts-core-sources-and-how-are-they-different-from-web-of-scie  /data/sources/  301
 /docs/what-are-cwts-core-sources-and-how-are-they-different-from-web-of-scie/  /data/sources/  301
-/docs/how-does-openalex-handle-predatory-and-lower-quality-journals  /data/sources/#how-its-made  301
-/docs/how-does-openalex-handle-predatory-and-lower-quality-journals/  /data/sources/#how-its-made  301
-/docs/how-do-we-decide-if-a-given-journal-is-fully-oa  /data/sources/#how-its-made  301
-/docs/how-do-we-decide-if-a-given-journal-is-fully-oa/  /data/sources/#how-its-made  301
-/docs/where-do-you-get-apc-paid-metadata-from  /data/sources/#how-its-made  301
-/docs/where-do-you-get-apc-paid-metadata-from/  /data/sources/#how-its-made  301
+/docs/how-does-openalex-handle-predatory-and-lower-quality-journals  /data/sources/#about  301
+/docs/how-does-openalex-handle-predatory-and-lower-quality-journals/  /data/sources/#about  301
+/docs/how-do-we-decide-if-a-given-journal-is-fully-oa  /data/sources/#about  301
+/docs/how-do-we-decide-if-a-given-journal-is-fully-oa/  /data/sources/#about  301
+/docs/where-do-you-get-apc-paid-metadata-from  /data/sources/#about  301
+/docs/where-do-you-get-apc-paid-metadata-from/  /data/sources/#about  301
 # <<< rewrite-pass-d <<<
 
 # >>> rewrite-pass-e >>>
@@ -588,14 +588,14 @@
 /docs/fwci/  /data/works/citations/#field-weighted-citation-impact  301
 /docs/counts-by-year  /data/common-attributes/#counts_by_year  301
 /docs/counts-by-year/  /data/common-attributes/#counts_by_year  301
-/docs/author-disambiguation  /data/authors/#how-its-made  301
-/docs/author-disambiguation/  /data/authors/#how-its-made  301
+/docs/author-disambiguation  /data/authors/#about  301
+/docs/author-disambiguation/  /data/authors/#about  301
 /docs/affiliations  /data/raw-affiliation-strings/  301
 /docs/affiliations/  /data/raw-affiliation-strings/  301
 /docs/sources  /data/sources/  301
 /docs/sources/  /data/sources/  301
-/docs/journal-quality  /data/sources/#how-its-made  301
-/docs/journal-quality/  /data/sources/#how-its-made  301
+/docs/journal-quality  /data/sources/#about  301
+/docs/journal-quality/  /data/sources/#about  301
 /docs/topics  /data/topics/  301
 /docs/topics/  /data/topics/  301
 /docs/keywords  /data/keywords/  301

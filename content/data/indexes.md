@@ -14,7 +14,7 @@ entity:
 ---
 An **index** is an external bibliographic index or registry that a work can be listed in — Crossref, PubMed, DataCite, DOAJ, arXiv. Indexes are a [vocabulary](/data/vocabulary/): they're not native, judgment-call IDs, just consistent handles on crisply-existing external lists. A single work can appear in several indexes at once, so each work carries an [`indexed_in`](/data/works/attributes/#indexed_in) list, and a [source](/data/sources/) records which of these indexes cover it. An index's OpenAlex ID looks like `https://openalex.org/indexes/doaj`; fetch one at [`api.openalex.org/indexes/doaj`](https://api.openalex.org/indexes/doaj).
 
-## How it's made
+## About
 
 The list is the set of external indexes and registries OpenAlex tracks as sources of works: DOI-registration agencies (Crossref, DataCite), curated indexes (DOAJ, PubMed), and a preprint repository (arXiv). We record which of them lists each work; a work can be in more than one. There are 5 indexes.
 

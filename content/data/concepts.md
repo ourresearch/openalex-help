@@ -15,7 +15,7 @@ entity:
 
 A **concept** is a subject tag from OpenAlex's original, now-deprecated classification: a hierarchical taxonomy of research areas — `Computer science`, `Machine learning`, `Citation` — inherited from the [Microsoft Academic Graph (MAG)](https://en.wikipedia.org/wiki/Microsoft_Academic) and linked to [Wikidata](https://www.wikidata.org/). There are about 65,000 concepts, arranged in six levels from broad (`level: 0`, e.g. *Computer science*) to narrow (`level: 5`). A concept's OpenAlex ID looks like `C41008148`; fetch one at [`api.openalex.org/concepts/C41008148`](https://api.openalex.org/concepts/C41008148).
 
-## How it's made
+## About
 
 Concepts came out of the [Microsoft Academic Graph](https://en.wikipedia.org/wiki/Microsoft_Academic), whose final open dataset OpenAlex adopted when MAG was discontinued in 2021. Each concept maps to a [Wikidata](https://www.wikidata.org/) item, which supplied its description, image, and multilingual labels. Concepts were arranged into a tree — every concept records its `ancestors` (broader concepts above it) and `related_concepts` (siblings and neighbors) — and works were tagged with concepts by a machine-learning classifier that read each work's title, abstract, and other metadata, emitting a `score` per concept. Because ancestors of a tagged concept were also attached, a work's `concepts` list often included broad, low-scoring entries.
 

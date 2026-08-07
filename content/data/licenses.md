@@ -13,7 +13,7 @@ entity:
 ---
 A **license** describes the terms under which an open-access copy of a work may be reused — `cc-by`, `cc-by-nc-nd`, `public-domain`, and so on. Licenses are a [vocabulary](/data/vocabulary/): OpenAlex doesn't invent the concept of a CC-BY license, it just attaches a consistent handle to each recognized one. A license is a property of a [location](/data/locations/) (each copy of a work can have its own license), so you'll see a license on a work's [`primary_location`](/data/works/attributes/#primary_location) and in its [`locations`](/data/works/attributes/#locations). A license's OpenAlex ID looks like `https://openalex.org/licenses/cc-by`; fetch one at [`api.openalex.org/licenses/cc-by`](https://api.openalex.org/licenses/cc-by).
 
-## How it's made
+## About
 
 The list is the set of licenses OpenAlex recognizes: the [Creative Commons](https://creativecommons.org/) suite (CC-BY and its variants, plus CC0 / public domain), a handful of common software/open-source licenses (MIT, Apache 2.0, GPL, ISC), and two catch-alls (`other-oa`, `publisher-specific-oa`) for openly-readable copies whose exact terms we can't pin to a specific license. There are 14 licenses.
 

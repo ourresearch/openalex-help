@@ -15,7 +15,7 @@ There's no external authority we can just look up for these; the answer is OpenA
 ## The native entities
 
 - [**Works**](/data/works/) — every scholarly document. The core entity; everything else connects to works.
-- [**Authors**](/data/authors/) — the people who create works, [disambiguated](/data/authors/#how-its-made) from raw authorship strings.
+- [**Authors**](/data/authors/) — the people who create works, [disambiguated](/data/authors/#about) from raw authorship strings.
 - [**Sources**](/data/sources/) — journals, conferences, repositories, and other venues where works appear.
 - [**Publishers**](/data/publishers/) — the organizations behind sources, arranged in a hierarchy.
 - [**Funders**](/data/funders/) — the organizations that fund research.

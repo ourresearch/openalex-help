@@ -8,15 +8,15 @@ entity:
     - "authors"
     - "institutions"
 ---
-An **authorship** is the join between a [work](/data/works/) and one of its [authors](/data/authors/): for a single author, it records their raw name as printed on the work, their position in the byline, whether they're the corresponding author, and the institutions they listed. Authorships are a [component](/data/component/) entity — they don't get their own OpenAlex ID and you never fetch one directly. They live inside a work object, one per author, in the [`authorships`](/data/works/attributes/#authorships) list. Fetch a work such as [`api.openalex.org/works/W2741809807`](https://api.openalex.org/works/W2741809807) and read its `authorships` array to see them.
+An **authorship** is the join between a [work](/data/works/) and one of its [authors](/data/authors/): for a single author, it records their raw name as printed on the work, their position in the byline, whether they're the corresponding author, and the institutions they listed. Authorships are a [component](/data/component/) entity — they don't get their own OpenAlex ID. Today they live inside a work object, one per author, in the [`authorships`](/data/works/attributes/#authorships) list: fetch a work such as [`api.openalex.org/works/W2741809807`](https://api.openalex.org/works/W2741809807) and read its `authorships` array to see them. A standalone authorships list endpoint (like the ones the other two components — [locations](/data/locations/) and [raw affiliation strings](/data/raw-affiliation-strings/) — already have) is on the way.
 
-## How it's made
+## About
 
 An authorship starts with a work's **byline** — the author-and-affiliation block as it appears on the source record (Crossref, PubMed, ORCID, a repository, or a publisher website). OpenAlex preserves the raw text it received — the raw author name in [`raw_author_name`](#raw_author_name) and the raw affiliation text in [`raw_affiliation_strings`](#raw_affiliation_strings) — and then does two rounds of resolution on top of it.
 
 ### Resolving the author
 
-The raw author name is fed into **author disambiguation** — the process that clusters the messy name strings across millions of works into real-world people and assigns each a stable author ID. That resolved person is what fills the dehydrated [`author`](#author) object. See [authors](/data/authors/#how-its-made) for how disambiguation weighs its signals, why it can split or merge, and how to correct it.
+The raw author name is fed into **author disambiguation** — the process that clusters the messy name strings across millions of works into real-world people and assigns each a stable author ID. That resolved person is what fills the dehydrated [`author`](#author) object. See [authors](/data/authors/#about) for how disambiguation weighs its signals, why it can split or merge, and how to correct it.
 
 ### Resolving the institutions
 
@@ -59,7 +59,7 @@ This is the dictionary of every attribute on an **authorship** object, as it app
 
 ## In the API
 
-Authorships aren't a top-level endpoint — there's no `/authorships` you can list or fetch. You reach them by selecting the [`authorships`](/data/works/attributes/#authorships) field on [works](/data/works/), where they appear inline on each work object.
+There's no `/authorships` list endpoint yet — one is on the way, which will let you page over authorships directly the way you already can with [locations](/data/locations/) and [raw affiliation strings](/data/raw-affiliation-strings/). For now you reach authorships by selecting the [`authorships`](/data/works/attributes/#authorships) field on [works](/data/works/), where they appear inline on each work object.
 
 You can still filter works by authorship attributes using **dotted filter keys** on the works endpoint — the sub-fields flatten into filterable columns:
 

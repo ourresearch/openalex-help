@@ -14,7 +14,7 @@ entity:
 ---
 An **author** is a person who creates [works](/data/works/) — a researcher, scholar, or anyone credited on a scholarly document. Authors are one of OpenAlex's [native entities](/data/native/): OpenAlex mints each a stable ID by *disambiguating* the messy author-name strings that appear on works into real-world people. There are over 120 million disambiguated authors. An author's OpenAlex ID looks like `A5023888391`; fetch one at [`api.openalex.org/authors/A5023888391`](https://api.openalex.org/authors/A5023888391).
 
-## How it's made
+## About
 
 Scholarly works list author names in all sorts of ways. "J. Smith," "John Smith," and "John A. Smith" might all be the same person — or three different people. **Author disambiguation** — the process we call **author entity resolution (AER)** — is how OpenAlex decides which authorships across millions of works belong to the same real-world person, and assigns each a stable author ID. Author data comes from [Crossref](https://www.crossref.org/), [PubMed](https://pubmed.ncbi.nlm.nih.gov/), [ORCID](https://orcid.org/), publisher websites, and the legacy [Microsoft Academic Graph](https://en.wikipedia.org/wiki/Microsoft_Academic).
 
@@ -75,7 +75,7 @@ This is the canonical dictionary of every attribute on an **author** object. Att
 *String.* The author's full name as parsed from their works. In practice usually identical to [`display_name`](#display_name).
 
 ### `raw_author_names`
-*List.* The exact raw author-name strings, as they appeared on the source works, that were clustered into this author during [disambiguation](#how-its-made). The unnormalized inputs behind [`display_name_alternatives`](#display_name_alternatives).
+*List.* The exact raw author-name strings, as they appeared on the source works, that were clustered into this author during [disambiguation](#about). The unnormalized inputs behind [`display_name_alternatives`](#display_name_alternatives).
 
 ### `affiliations`
 *List.* The author's affiliation history: one entry per [institution](/data/institutions/), each `{ institution, years }`, where `institution` is a dehydrated institution (with `id`, `ror`, `display_name`, `country_code`, `type`, `lineage`) and `years` lists the publication years OpenAlex saw them there. Derived from the [`authorships`](/data/authorships/) on the author's works. Like other precomputed conveniences it's capped — it reflects roughly the last **10 years**; for a complete affiliation history, query [works](/data/works/) filtered by `author.id` and the institution and group by year. Filter/sort/group_by on the dotted sub-fields `affiliations.institution.id`, `.ror`, `.country_code`, `.type`, and `.lineage`.
@@ -108,7 +108,7 @@ This is the canonical dictionary of every attribute on an **author** object. Att
 *String.* A ready-made [Works API](/data/works/) URL that returns this author's works — `https://api.openalex.org/works?filter=author.id:A…`. A convenience so you don't have to build the filter yourself.
 
 ### `block_key`
-*String.* An internal blocking key (a coarse name signature, e.g. `j priem`) used during [disambiguation](#how-its-made) to group candidate authorships before finer clustering. Exposed mainly for debugging; filterable/sortable/groupable.
+*String.* An internal blocking key (a coarse name signature, e.g. `j priem`) used during [disambiguation](#about) to group candidate authorships before finer clustering. Exposed mainly for debugging; filterable/sortable/groupable.
 
 ### `created_date`
 *String.* The date this author was added to OpenAlex (`YYYY-MM-DD`). See [Common attributes](/data/common-attributes/#created_date).

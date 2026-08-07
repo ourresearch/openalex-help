@@ -10,7 +10,7 @@ entity:
 ---
 A **source type** classifies the kind of venue where works are hosted: a `journal`, a `repository`, a `conference` proceedings, a `book series`, an `ebook platform`. Every [source](/data/sources/) has exactly one type, exposed as its `type` field, chosen from the short controlled vocabulary below. Because a venue's kind already exists crisply in the real world, source types are a [vocabulary entity](/data/vocabulary/): OpenAlex doesn't adjudicate what a source *is*, it just standardizes the label so you can filter and group by it reliably. Source types use short, human-readable IDs (`journal`, `repository`) rather than the minted `W`/`A`/`S` scheme; a type's full ID looks like `https://openalex.org/source-types/journal`.
 
-## How it's made
+## About
 
 The vocabulary is a small, fixed set of venue kinds. OpenAlex assigns each [source](/data/sources/) a single type from the list below based on its metadata and origin (journals and their ISSNs from Crossref and the [DOAJ](https://doaj.org/), repositories from their harvested registries, and so on). We don't decide the boundary between a journal and a repository; we standardize the label. See the [Sources guide](/data/sources/) for more.
 

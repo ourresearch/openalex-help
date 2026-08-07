@@ -11,7 +11,7 @@ entity:
 ---
 A **work type** classifies the form of a scholarly document: a journal `article`, a `preprint`, a `dataset`, a `book`, and so on. Every [work](/data/works/) has exactly one type, exposed as its [`type`](/data/works/attributes/#type) field, and the type is one value from the controlled vocabulary below. Because the boundary between (say) an article and a dataset is already crisp in the real world, work types are a [vocabulary entity](/data/vocabulary/): OpenAlex doesn't adjudicate what a work *is*, it just standardizes the label so you can filter and group by it reliably. Work types use short, human-readable IDs (`article`, `dataset`) rather than the minted `W`/`A`/`S` scheme; a type's full ID looks like `https://openalex.org/types/article`.
 
-## How it's made
+## About
 
 The vocabulary derives from [Crossref](https://www.crossref.org/)'s work types, extended with a handful of OpenAlex additions (e.g. `preprint`, `dataset`, `libguides`, and the newer data/software/conference splits). Every upstream source — Crossref's `type`, DataCite's `resourceType`, PubMed's publication type, HAL, and others — uses its own taxonomy, so OpenAlex maps all of them onto the single vocabulary below, then applies internal heuristics (for example, titles like "Index" or "Cover Picture" become `paratext`). We don't decide the boundary between types; we standardize the label. Approved [curations](/data/works/) can override the assigned type for an individual work. Full detail on assignment and the `paratext` category is in [Work types](/data/work-types/).
 

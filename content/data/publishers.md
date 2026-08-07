@@ -14,13 +14,13 @@ entity:
 ---
 A **publisher** is a company or organization that distributes works — the parent behind the [sources](/data/sources/) (journals, conference series, repositories) where works appear. OpenAlex tracks about 10,700 publishers, arranged in a parent/child hierarchy so that an imprint rolls up to its group. A publisher's OpenAlex ID looks like `P4310319965`; fetch one at [`api.openalex.org/publishers/P4310319965`](https://api.openalex.org/publishers/P4310319965) (Springer Nature).
 
-## How it's made
+## About
 
 ### Where publishers come from
 
 Publishers are [native entities](/data/native/): OpenAlex decides which real-world organizations count as distinct publishers and mints an ID for each. The publisher list is grounded in two open registries — [ROR](https://ror.org/) (the Research Organization Registry) and [Wikidata](https://www.wikidata.org/) — which supply the canonical name, homepage, country, logo, and the external IDs OpenAlex carries in [`ids`](#ids). Grounding publishers in ROR/Wikidata is what keeps "Springer Nature," "Springer Verlag," and "Springer-Verlag" from splintering into three separate publishers.
 
-### The hierarchy
+### Lineage and hierarchy
 
 Publishers form a tree. A large publishing group sits at the top ([`hierarchy_level`](#hierarchy_level) `0`, [`parent_publisher`](#parent_publisher) `null`); its imprints and subsidiaries hang beneath it at higher levels, each pointing up at its parent. [`lineage`](#lineage) lists the full chain of ancestors from the publisher itself up to the root, so you can roll any imprint's works up to the group that owns it. This mirrors the messy reality of scholarly publishing, where one conglomerate may own dozens of imprints that still print under their own names.
 
@@ -53,10 +53,10 @@ This is the canonical dictionary of every attribute on a **publisher** object. A
 *List.* Other names the publisher is known by, including names in other languages and former names.
 
 ### `hierarchy_level`
-*Integer.* The publisher's depth in the [hierarchy](#the-hierarchy). `0` is a root (top-level) publisher; each step down toward an imprint adds one. Filterable, sortable, and groupable.
+*Integer.* The publisher's depth in the [hierarchy](#lineage-and-hierarchy). `0` is a root (top-level) publisher; each step down toward an imprint adds one. Filterable, sortable, and groupable.
 
 ### `parent_publisher`
-*String.* The OpenAlex ID of this publisher's immediate parent in the [hierarchy](#the-hierarchy), or `null` for a root publisher. Filterable, sortable, and groupable.
+*String.* The OpenAlex ID of this publisher's immediate parent in the [hierarchy](#lineage-and-hierarchy), or `null` for a root publisher. Filterable, sortable, and groupable.
 
 ### `lineage`
 *List.* OpenAlex IDs tracing the full ancestry, from this publisher up to its root — the publisher itself is always the first element. Filter `lineage:P4310319965` to find a group and all its imprints.

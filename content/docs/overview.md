@@ -20,7 +20,7 @@ OpenAlex gathers the world's research output from thousands of sources, organize
 
 When a researcher publishes an article, book, or dataset, information about it is registered with agencies like [Crossref](https://crossref.org) and [DataCite](https://datacite.org), or deposited in institutional and national repositories. OpenAlex pulls records from these sources continuously — the database evolves hourly. The catalog was seeded by the discontinued [Microsoft Academic Graph (MAG)](https://en.wikipedia.org/wiki/Microsoft_Academic), whose final open dataset OpenAlex adopted in 2021.
 
-We track the external [indexes](/data/indexes/) a record can come from — Crossref, PubMed, DataCite, DOAJ, arXiv — and the venues those records name become [sources](/data/sources/#how-its-made): journals, conference series, ebook platforms, and repositories. The core inputs we pull from today include:
+We track the external [indexes](/data/indexes/) a record can come from — Crossref, PubMed, DataCite, DOAJ, arXiv — and the venues those records name become [sources](/data/sources/#about): journals, conference series, ebook platforms, and repositories. The core inputs we pull from today include:
 
 - [Crossref](https://www.crossref.org/) and [DataCite](https://datacite.org/), the DOI registration agencies
 - [ORCID](https://orcid.org/) and [ROR](https://ror.org/), the open identifier systems for researchers and institutions
@@ -36,11 +36,11 @@ We track the external [indexes](/data/indexes/) a record can come from — Cross
 
 The records flowing in are messy and redundant, so the heart of OpenAlex is turning them into a clean, connected graph of [entities](/data/). Some of those entities are **native** — OpenAlex mints its own IDs by making judgment calls about fuzzy real-world boundaries — and some are a consistent **vocabulary** wrapped around things that already exist crisply; the [Entities overview](/data/overview/) explains that distinction and how much to trust each kind of ID.
 
-**Records become works.** Each incoming record is matched (by DOI or other metadata) against the [works](/data/works/#how-its-made) already in OpenAlex. If it matches, the record enriches the existing work; if nothing matches, it may seed a new one. Duplicate records of the same work are merged into a single work — the core node that every other entity connects to.
+**Records become works.** Each incoming record is matched (by DOI or other metadata) against the [works](/data/works/#about) already in OpenAlex. If it matches, the record enriches the existing work; if nothing matches, it may seed a new one. Duplicate records of the same work are merged into a single work — the core node that every other entity connects to.
 
-**Authors get disambiguated.** The name strings on a work ("J. Smith," "John A. Smith") are clustered into real people, each assigned a stable author ID. This is [author disambiguation](/data/authors/#how-its-made), a machine-learning process that weighs name, co-authors, affiliations, topics, citations, and ORCID.
+**Authors get disambiguated.** The name strings on a work ("J. Smith," "John A. Smith") are clustered into real people, each assigned a stable author ID. This is [author disambiguation](/data/authors/#about), a machine-learning process that weighs name, co-authors, affiliations, topics, citations, and ORCID.
 
-**Affiliations get matched.** The free-text [raw affiliation strings](/data/raw-affiliation-strings/) on each work ("MIT, Boston, USA") are parsed and linked to ROR-backed [institutions](/data/institutions/#how-its-made) and countries — which in turn feeds the affiliation signal used in author disambiguation.
+**Affiliations get matched.** The free-text [raw affiliation strings](/data/raw-affiliation-strings/) on each work ("MIT, Boston, USA") are parsed and linked to ROR-backed [institutions](/data/institutions/#about) and countries — which in turn feeds the affiliation signal used in author disambiguation.
 
 **Works get classified.** Text classifiers read each work's title and abstract to decide what it's *about*, tagging it with [topics](/data/topics/), subfields, keywords, and SDGs. See [Aboutness](/data/aboutness/) for the full set of subject signals and how to pick among them.
 

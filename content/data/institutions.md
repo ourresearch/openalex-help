@@ -10,7 +10,7 @@ entity:
 ---
 An **institution** is an organization that [authors](/data/authors/) are affiliated with — a university, company, hospital, government agency, non-profit, and more. Institutions are how OpenAlex answers "who did this research, and where?": every [work](/data/works/) links to the institutions its authors named, so you can roll research up from a single paper to a lab, a university, or a whole country. OpenAlex holds about 135,000 institutions. An institution's OpenAlex ID looks like `I27837315`; fetch one at [`api.openalex.org/institutions/I27837315`](https://api.openalex.org/institutions/I27837315).
 
-## How it's made
+## About
 
 ### Grounded in ROR
 
@@ -27,6 +27,10 @@ Because OpenAlex inherits ROR's lineage structure, an institution can roll up to
 ### Country assignment
 
 Country is assigned through the same affiliation matching. When a raw string matches a ROR record, OpenAlex takes the country from that record's metadata. When a string can't be matched to ROR but its address still names a country, OpenAlex assigns the [`country_code`](#country_code) directly, without ROR.
+
+### Roles
+
+A single real-world organization can act as more than one kind of OpenAlex entity: a university is an **institution**, but the same organization is often also a **[funder](/data/funders/)** (when it funds research) and sometimes a **[publisher](/data/publishers/)** (when it runs a university press). [`roles`](#roles) links those alter egos together, so you can hop from the institution record to the funder or publisher record for the same organization.
 
 ### Known failure modes
 

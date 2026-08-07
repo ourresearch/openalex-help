@@ -13,7 +13,7 @@ entity:
 ---
 A **language** is the language of a [work](/data/works/)'s metadata — its title and abstract — identified by a two-letter [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) code: `en` for English, `es` for Spanish, `zh` for Chinese. Languages are a [vocabulary](/data/vocabulary/): a fixed, standardized list OpenAlex attaches handles to rather than inventing. Each work carries a single [`language`](/data/works/attributes/#language), auto-detected with [langdetect](https://pypi.org/project/langdetect/) — so a language value reflects the metadata language, not necessarily the full text, and is unset when there aren't enough words to guess reliably. A language's OpenAlex ID looks like `https://openalex.org/languages/en`; fetch one at [`api.openalex.org/languages/en`](https://api.openalex.org/languages/en).
 
-## How it's made
+## About
 
 We don't build the list — we adopt [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes), the standard two-letter language codes, and add live counts of the works detected in each. Detection is per-work and automatic (see the work [`language`](/data/works/attributes/#language) field). There are 180 languages.
 

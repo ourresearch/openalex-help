@@ -13,7 +13,7 @@ entity:
 ---
 A **keyword** is a short phrase describing what a work is about — `machine-learning`, `type-1-diabetes`, `citation`. Keywords are one of OpenAlex's [aboutness](/data/aboutness/) signals: finer-grained than [topics](/data/topics/) and a good fit for narrow, specific slices of the literature. There are about 65,000 keywords in the system, and each work can be tagged with up to five. A keyword's OpenAlex ID is a readable slug rather than the usual letter-and-number code — `machine-learning` — so a keyword looks like `https://openalex.org/keywords/machine-learning`; fetch one at [`api.openalex.org/keywords/machine-learning`](https://api.openalex.org/keywords/machine-learning).
 
-## How it's made
+## About
 
 Keywords are derived from [topics](/data/topics/): every topic carries a curated set of associated keywords, and a work's keywords are drawn from the keyword sets of the topics it was assigned. Tagging a work runs in four steps:
 

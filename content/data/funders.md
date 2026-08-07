@@ -14,7 +14,7 @@ entity:
 ---
 A **funder** is an organization that funds research — a government agency, foundation, or charity. OpenAlex tracks about 45,000 funders, and each connects to the [works](/data/works/) it funded and to the specific [awards](/data/awards/) (grants) that funded them. A funder's OpenAlex ID looks like `F4320332161`; fetch one at [`api.openalex.org/funders/F4320332161`](https://api.openalex.org/funders/F4320332161) (the US National Institutes of Health).
 
-## How it's made
+## About
 
 ### Where funders come from
 
@@ -24,9 +24,13 @@ Funders are [native entities](/data/native/): OpenAlex decides which real-world 
 
 OpenAlex doesn't observe funding directly; it reads it off the works. When a [work's](/data/works/) metadata (from Crossref, a funder's own grant records, or other sources) names a funder or a grant, OpenAlex matches that mention to a funder in this list and to the specific [award](/data/awards/) if one is identified. Roll-up counts live on the funder: [`works_count`](#works_count) is how many works name this funder, [`awards_count`](#awards_count) is how many distinct grants OpenAlex has recorded for it, and [`cited_by_count`](#cited_by_count) sums citations across those works. See [Awards](/data/awards/) for how individual grants are built.
 
+### Lineage and hierarchy
+
+Unlike [publishers](/data/publishers/) and [institutions](/data/institutions/), funders are **flat** in OpenAlex: a funder object carries no parent, no children, and no `lineage` field, so there's no funder tree to roll a sub-agency up into its parent department the way you can roll an imprint up to its publishing group. (The underlying [Crossref funder registry](https://www.crossref.org/services/funder-registry/) does record some parent/child relationships between funders, but OpenAlex does not currently surface them.) To connect a funder to the *same* organization in another role, use [`roles`](#roles) below.
+
 ### Roles
 
-Like [publishers](/data/publishers/), a funder can be the same real-world organization as an [institution](/data/institutions/) or a publisher — a university that both funds and hosts research, for instance. [`roles`](#roles) links those alter egos together.
+A single real-world organization can act as more than one kind of OpenAlex entity: a national agency is a **funder**, but the same organization is often also an **[institution](/data/institutions/)** (when its own staff do research) and sometimes a **[publisher](/data/publishers/)**. [`roles`](#roles) links those alter egos together, so you can hop from the funder record to the institution or publisher record for the same organization.
 
 ### Failure modes
 

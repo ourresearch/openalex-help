@@ -14,7 +14,7 @@ entity:
 ---
 An **award** is a single research grant: a specific pot of money a [funder](/data/funders/) gave for a project, with a title, an amount, a period, and a lead investigator. Awards are the fine-grained link between funders and the [works](/data/works/) their money produced — where a funder answers "who paid," an award answers "which grant." OpenAlex tracks over 17 million awards. An award's OpenAlex ID looks like `G5066037109`; fetch one at [`api.openalex.org/awards/G5066037109`](https://api.openalex.org/awards/G5066037109).
 
-## How it's made
+## About
 
 ### Where grant data comes from
 
@@ -24,7 +24,7 @@ Awards are assembled from grant metadata published by funders and aggregators, t
 
 Two links make an award useful, and both are built by matching:
 
-- **Award → funder.** Each award records the [funder](/data/funders/) that made it in [`funder`](#funder), matched to OpenAlex's funder list (see [Funders](/data/funders/#how-its-made)). The funder's own grant ID for the award is kept in [`funder_award_id`](#funder_award_id).
+- **Award → funder.** Each award records the [funder](/data/funders/) that made it in [`funder`](#funder), matched to OpenAlex's funder list (see [Funders](/data/funders/#about)). The funder's own grant ID for the award is kept in [`funder_award_id`](#funder_award_id).
 - **Award → works.** OpenAlex links each award to the [works](/data/works/) it funded in [`funded_outputs`](#funded_outputs), by matching grant mentions in work metadata (or work lists in the funder's own grant records) to works already in OpenAlex. The reverse view — every work an award funded — is at [`works_api_url`](#works_api_url).
 
 ### Failure modes

@@ -14,7 +14,7 @@ entity:
 ---
 A **continent** is one of the major geographic regions of the world — Africa, Asia, Europe, and so on. Continents are a [vocabulary](/data/vocabulary/): a fixed, crisply-existing list that OpenAlex simply attaches a handle to. Each [country](/data/countries/) belongs to exactly one continent, so a continent is really a convenient roll-up of countries — handy for filtering works by geographic region or comparing research output across parts of the world. Continents are used on the same entities as countries: [institutions](/data/institutions/), [authors](/data/authors/), and [works](/data/works/). A continent's OpenAlex ID looks like `https://openalex.org/continents/Q15`; fetch one at [`api.openalex.org/continents/Q15`](https://api.openalex.org/continents/Q15).
 
-## How it's made
+## About
 
 Continents are the standard seven-continent model, with each [country](/data/countries/) assigned to one via its [ISO 3166](https://en.wikipedia.org/wiki/ISO_3166) code. OpenAlex keys each continent by its [Wikidata](https://www.wikidata.org/) QID (e.g. `Q15` for Africa) and adds live scholarly counts on top.
 

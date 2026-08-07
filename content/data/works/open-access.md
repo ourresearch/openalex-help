@@ -34,7 +34,7 @@ Beyond the yes/no of `is_oa`, OpenAlex assigns every work an **OA status** — t
 
 Two things follow from these definitions that often surprise people:
 
-- **Status depends on the journal, not just the article.** The same freely readable article is `gold` (or `diamond`) in a fully-OA journal but `hybrid` or `bronze` in a toll-access one. How OpenAlex determines whether a journal is fully OA — including journals that "flipped" to OA partway through their run — is covered in [Journal quality & OA status](/data/sources/#how-its-made).
+- **Status depends on the journal, not just the article.** The same freely readable article is `gold` (or `diamond`) in a fully-OA journal but `hybrid` or `bronze` in a toll-access one. How OpenAlex determines whether a journal is fully OA — including journals that "flipped" to OA partway through their run — is covered in [Journal quality & OA status](/data/sources/#about).
 - **The hybrid/bronze line is drawn by license.** A free-to-read article in a toll-access journal is `hybrid` if it carries an open license and `bronze` if it doesn't. What counts as an open license is defined below.
 
 You can filter and group works by status — for example, [group all works by `oa_status`](https://api.openalex.org/works?group_by=open_access.oa_status) — so the taxonomy is countable, not just descriptive.
@@ -90,11 +90,11 @@ OpenAlex's underlying data also tracks *when* a copy of a work first became avai
 
 ## Article processing charges
 
-The **article processing charge** (APC) is the fee some journals charge authors to make a work OA — relevant to `gold` and `hybrid` works. OpenAlex estimates APCs at both the work level (`apc_list`, `apc_paid`) and the source level. Where that data comes from, its limitations, and how to estimate an institution's APC spend are covered in [Journal quality & OA status](/data/sources/#how-its-made).
+The **article processing charge** (APC) is the fee some journals charge authors to make a work OA — relevant to `gold` and `hybrid` works. OpenAlex estimates APCs at both the work level (`apc_list`, `apc_paid`) and the source level. Where that data comes from, its limitations, and how to estimate an institution's APC spend are covered in [Journal quality & OA status](/data/sources/#about).
 
 ## Related pages
 
-- [Journal quality & OA status](/data/sources/#how-its-made) — how fully-OA journals are identified, flipped journals, and APC data
+- [Journal quality & OA status](/data/sources/#about) — how fully-OA journals are identified, flipped journals, and APC data
 - [Versions](/data/locations/) — submitted, accepted, and published versions and how they interact with OA
 - [Sources](/data/sources/) — how works connect to journals and repositories through locations
 - [Works API reference](/data/works/) — the `open_access` and location objects
