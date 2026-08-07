@@ -59,17 +59,32 @@ if (example && /^[A-Z]\d+$/.test(example) && serp) {
 )}
 
 <style>
-  /* Table alignment: label column auto-sizes to the widest label ("Links:"),
+  /* Card floated right of the intro; the first paragraph(s) wrap around it.
+     House card style (Card.astro): panel bg, 1px hairline, radius 5, no shadow.
+     Table alignment: label column auto-sizes to the widest label ("Links:"),
      values all start at the same x. Each .group contributes its label + value
      as grid items via display: contents. */
   .entity-meta {
-    margin: 0.9rem 0 0;
+    float: right;
+    max-width: 19rem;
+    margin: 0.25rem 0 1rem 1.75rem;
+    padding: 0.65rem 1rem;
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 5px;
     display: grid;
     grid-template-columns: max-content minmax(0, 1fr);
     gap: 0 1ch;
     font-family: var(--font-mono);
     font-size: 0.8rem;
     line-height: 1.7;
+  }
+  @media (max-width: 700px) {
+    .entity-meta {
+      float: none;
+      max-width: none;
+      margin: 0 0 1.25rem;
+    }
   }
   .group {
     display: contents;
