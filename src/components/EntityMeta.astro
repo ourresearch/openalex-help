@@ -44,7 +44,7 @@ if (example && /^[A-Z]\d+$/.test(example) && serp) {
     )}
     {linksTo.length > 0 && (
       <span class="group links">
-        <span class="label">Links to:</span>
+        <span class="label">Links:</span>
         <span>
           {linksTo.map((t, i) => (
             <>
@@ -59,18 +59,23 @@ if (example && /^[A-Z]\d+$/.test(example) && serp) {
 )}
 
 <style>
+  /* Table alignment: label column auto-sizes to the widest label ("Links:"),
+     values all start at the same x. Each .group contributes its label + value
+     as grid items via display: contents. */
   .entity-meta {
     margin: 0.9rem 0 0;
+    display: grid;
+    grid-template-columns: max-content minmax(0, 1fr);
+    gap: 0 1ch;
     font-family: var(--font-mono);
     font-size: 0.8rem;
     line-height: 1.7;
   }
   .group {
-    display: block;
+    display: contents;
   }
   .label {
     color: var(--muted);
-    margin-right: 0.6ch; /* Astro collapses the JSX whitespace after the label */
   }
   .entity-meta a {
     color: var(--ink);
