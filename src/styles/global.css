@@ -1,27 +1,30 @@
 /* ---------------------------------------------------------------------------
    OpenAlex Help Center — design tokens & base styles
-   Aesthetic: quiet engineering-manual minimalism (cursor.com-aligned).
-   Warm paper ground, near-black ink, one brand-blue accent (#2563EB, the
-   openalex.org link blue), Inter everywhere, structure from hairline
-   borders — not shadows or color fields.
+   Aesthetic: quiet engineering-manual minimalism (cursor.com/linear.app-
+   aligned). Pure white ground, light cool-neutral grays, near-black ink, one
+   brand-blue accent (#2563EB, the openalex.org link blue), Inter everywhere,
+   structure from hairline borders — not shadows or color fields.
 
    Light-mode only for now (dark support removed 2026-08-04, oxjob #354 —
    Jason's call: "ain't worth the trouble", can return later).
    --------------------------------------------------------------------------- */
 
 :root {
-  --bg: #ffffff; /* pure white (Jason 2026-08-07; was warm paper #f7f7f3) */
-  --panel: #efeeea;          /* recessed wells: cards, search, code */
-  --panel-strong: #e9e8e3;
-  --ink: #26251e;
-  --muted: #77756e;
-  --faint: #a3a099;
-  --line: #e3e2de;
-  --line-strong: #d2d1cb;
+  /* Pure white ground with light, cool Linear-style neutrals (Jason
+     2026-08-07; replaced the warm-paper palette). Grays are barely-there
+     fills + hairlines, à la linear.app light theme. */
+  --bg: #ffffff;
+  --panel: #f8f8f9;          /* recessed wells: cards, search, code */
+  --panel-strong: #f0f0f2;
+  --ink: #282a30;
+  --muted: #6f7076;
+  --faint: #9d9ea6;
+  --line: #e8e8ec;
+  --line-strong: #d9d9e0;
   --accent: #2563eb;
   --accent-hover: #1d4ed8;
   --accent-wash: #eff6ff;
-  --code-bg: #efeeea;
+  --code-bg: #f8f8f9;
 
   /* Category colors were tried and dropped same-day (Jason 2026-08-07 — site
      is monochrome; Learn/Reference/Chat grouping is carried by nav dividers
