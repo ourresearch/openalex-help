@@ -56,7 +56,7 @@ const isHome = path === '/';
         </div>
         <div class="nav-right">
           <Search button={!isHome} />
-          <a class="site-link" href="https://openalex.org">App</a>
+          <a class="site-link" href="https://openalex.org">App ↗</a>
           <button class="menu-toggle" aria-label="Menu" aria-expanded="false" aria-controls="mobile-menu">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
               <path d="M4 7h16M4 12h16M4 17h16" />
@@ -68,7 +68,7 @@ const isHome = path === '/';
         {tabs.map((t) => (
           <a href={t.href} class={t.group} aria-current={isActive(t.href) ? 'page' : undefined}>{t.label}</a>
         ))}
-        <a class="menu-site-link" href="https://openalex.org">App</a>
+        <a class="menu-site-link" href="https://openalex.org">App ↗</a>
       </div>
     </header>
 
@@ -217,23 +217,20 @@ const isHome = path === '/';
         align-items: center;
         gap: 0.75rem;
       }
-      /* Linear-style rounded rectangle, sized to match the search pill. */
+      /* Ghost button matching the tab chips exactly (Jason 2026-08-07). */
       .site-link {
         display: flex;
         align-items: center;
-        height: 36px;
+        height: 28px;
         font-size: 0.875rem;
-        color: var(--bg);
-        background: var(--ink);
-        border: 1px solid var(--ink);
-        border-radius: 8px;
-        padding: 0 0.9rem;
-        font-weight: 500;
-        transition: opacity 0.15s;
+        color: var(--muted);
+        border-radius: 6px;
+        padding: 0 0.75rem;
+        transition: color 0.15s, background-color 0.15s;
       }
       .site-link:hover {
-        opacity: 0.85;
-        color: var(--bg);
+        color: var(--ink);
+        background: var(--panel-strong);
         text-decoration: none;
       }
       .menu-toggle {
