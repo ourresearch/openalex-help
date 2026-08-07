@@ -43,12 +43,14 @@ const mdUrl = mdUrlFor(tab, entry);
 // How-to tabs (FAQ + Recipes, Pass W): the article carries its facet tags,
 // lined up under the H1 — the same tags shown on the tab's list rows.
 const bucket = facetConfig(tab);
-let tagChips: string[] = [];
+let tagChips: { facet: string; value: string; label: string }[] = [];
 if (bucket) {
   const tags = bucket.tagsFor(entry.id);
   const flabel: Record<string, Record<string, string>> = {};
   for (const f of bucket.facets) flabel[f.key] = Object.fromEntries(f.values.map((v) => [v.id, v.label]));
-  tagChips = bucket.facets.flatMap((f) => (tags[f.key] ?? []).map((v) => flabel[f.key]?.[v] ?? v));
+  tagChips = bucket.facets.flatMap((f) =>
+    (tags[f.key] ?? []).map((v) => ({ facet: f.key, value: v, label: flabel[f.key]?.[v] ?? v }))
+  );
 }
 ---
 
@@ -89,7 +91,7 @@ if (bucket) {
             {tagChips.length > 0 && (
               <div class="howto-tags">
                 {tagChips.map((t) => (
-                  <span class="tag">{t}</span>
+                  <a class="tag" href={`/${tab}/?${t.facet}=${encodeURIComponent(t.value)}`}>{t.label}</a>
                 ))}
               </div>
             )}
@@ -152,7 +154,13 @@ if (bucket) {
     gap: 0.4rem;
     margin-top: 0.7rem; /* sits inside PageHeader, under the H1 */
   }
-  /* Monochrome tags: hairline outline, muted text (Pass W.1). */
+  /* Monochrome tags: hairline outline, muted text (Pass W.1). Now links to
+     the tab's list filtered by that tag (Jason 2026-08-07). */
+  a.tag:hover {
+    color: var(--ink);
+    border-color: var(--line-strong);
+    text-decoration: none;
+  }
   .tag {
     font-size: 0.72rem;
     line-height: 1.5;

@@ -101,7 +101,9 @@ const bucketCards = bucket
       const subtitle = e.data.subtitle ?? e.data.description ?? '';
       // Visible tag chips: labels for each value across the SHOWN facets only
       // (dropped facets like Recipes' "task" are excluded).
-      const chips = bucket.facets.flatMap((f) => (tags[f.key] ?? []).map((v) => facetLabel[f.key]?.[v] ?? v));
+      const chips = bucket.facets.flatMap((f) =>
+        (tags[f.key] ?? []).map((v) => ({ facet: f.key, value: v, label: facetLabel[f.key]?.[v] ?? v }))
+      );
       const searchText = `${e.data.title} ${subtitle}`.toLowerCase();
       return { entry: e, tags, subtitle, chips, searchText };
     })
@@ -245,7 +247,14 @@ const showSidebar = false;
                 {chips.length > 0 && (
                   <span class="row-tags">
                     {chips.map((c) => (
-                      <span class="tag">{c}</span>
+                      <span
+                        class="tag"
+                        role="button"
+                        tabindex="0"
+                        data-facet={c.facet}
+                        data-value={c.value}
+                        aria-label={`Filter by ${c.label}`}
+                      >{c.label}</span>
                     ))}
                   </span>
                 )}
@@ -584,7 +593,15 @@ const showSidebar = false;
     gap: 0.35rem;
     margin-top: 0.5rem;
   }
-  /* Monochrome tags: hairline outline, muted text — no fill, no color. */
+  /* Monochrome tags: hairline outline, muted text — no fill, no color.
+     In list rows they're clickable: click = filter by that tag. */
+  .rows .tag {
+    cursor: pointer;
+  }
+  .rows .tag:hover {
+    color: var(--ink);
+    border-color: var(--line-strong);
+  }
   .tag {
     font-size: 0.68rem;
     line-height: 1.5;
@@ -792,11 +809,11 @@ const showSidebar = false;
       }
     }
 
-    function update() {
+    let update = () => {
       page = 1; // any filter/search change returns to the first page
       syncUI();
       render();
-    }
+    };
 
     function setFacet(key: string, value: string) {
       selected[key] = selected[key] === value ? null : value;
@@ -869,6 +886,55 @@ const showSidebar = false;
         if (searchInput) searchInput.value = '';
         update();
       });
+    }
+
+    // Row tags are clickable filters (Jason 2026-08-07). They live inside the
+    // row's link, so intercept before the navigation.
+    for (const t of root.querySelectorAll<HTMLElement>('.rows .tag')) {
+      const apply = (e: Event) => {
+        e.preventDefault();
+        e.stopPropagation();
+        setFacet(t.dataset.facet!, t.dataset.value!);
+      };
+      t.addEventListener('click', apply);
+      t.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') apply(e);
+      });
+    }
+
+    // URL params <-> filter state: `?<facet>=<value>&q=…` applies on load (so
+    // article-page tags can deep-link a filtered list) and is kept in sync as
+    // filters change (shareable URLs).
+    const facetKeys = chipEls.map((c) => c.dataset.facet!);
+    function writeParams() {
+      const params = new URLSearchParams();
+      for (const k of facetKeys) if (selected[k]) params.set(k, selected[k]!);
+      if (query) params.set('q', query);
+      const qs = params.toString();
+      history.replaceState(null, '', qs ? `?${qs}` : location.pathname);
+    }
+    const origUpdate = update;
+    update = () => {
+      origUpdate();
+      writeParams();
+    };
+    {
+      const params = new URLSearchParams(location.search);
+      let any = false;
+      for (const k of facetKeys) {
+        const v = params.get(k);
+        if (v && chipOptions.some((o) => o.dataset.facet === k && o.dataset.value === v)) {
+          selected[k] = v;
+          any = true;
+        }
+      }
+      const q = params.get('q');
+      if (q && searchInput) {
+        searchInput.value = q;
+        query = q.trim().toLowerCase();
+        any = true;
+      }
+      if (any) syncUI();
     }
 
     render(); // initial paint (sets the count + first page)
