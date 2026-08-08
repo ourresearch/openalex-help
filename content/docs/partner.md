@@ -34,4 +34,4 @@ A [daily-sync](/docs/sync/) pipeline for your own copy of the database, the [adm
 
 ## Add-ons
 
-Any plan can add the [PDF sync service](/docs/pricing/#the-pdf-sync-add-on) — persistent sync of our full open-access PDF archive (roughly 60 million documents) to your own storage. [Contact sales](mailto:sales@openalex.org) for a quote.
+Any plan can add the [PDF sync service](/docs/pricing/#the-pdf-sync-add-on) — persistent sync of our full open-access PDF archive (more than 50 million documents) to your own storage. [Contact sales](mailto:sales@openalex.org) for a quote.

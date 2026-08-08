@@ -24,6 +24,6 @@ There are many ways to get OpenAlex data, from point-and-click to whole-database
 
 **Want the whole database?** The [snapshot](/docs/snapshot/) is the entire dataset, free to download, refreshed quarterly. If quarterly isn't fresh enough, [sync](/docs/sync/) gets you a complete daily snapshot plus API filters for everything new or changed since any date — a benefit of the Member+ and Partner [plans](/docs/pricing/).
 
-**After the documents themselves?** [Fulltext](/docs/fulltext/) covers the content archive — roughly 60 million open-access PDFs and their machine-readable TEI XML — from single-file downloads up to syncing the complete archive to your own bucket.
+**After the documents themselves?** [Fulltext](/docs/fulltext/) covers the content archive — more than 50 million open-access PDFs and their machine-readable TEI XML — from single-file downloads up to syncing the complete archive to your own bucket.
 
 However you get it, the data itself is free and open under [CC0](https://creativecommons.org/public-domain/cc0/) — what costs money at the higher tiers is the *service* of serving and refreshing it. That story, and every plan, lives in [Pricing](/docs/pricing/).

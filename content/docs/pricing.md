@@ -34,7 +34,7 @@ Ready to talk? Email [sales@openalex.org](mailto:sales@openalex.org). If you're 
 
 ## The PDF sync add-on
 
-OpenAlex caches roughly **60 million open-access full-text PDFs** (plus machine-readable TEI XML). Any annual plan can add the **PDF sync service**: persistent read access to the content archive's S3-compatible bucket, so you can sync the complete archive to your own storage — and keep receiving new PDFs as they arrive, continuously.
+OpenAlex caches more than **50 million open-access full-text PDFs** (plus machine-readable TEI XML). Any annual plan can add the **PDF sync service**: persistent read access to the content archive's S3-compatible bucket, so you can sync the complete archive to your own storage — and keep receiving new PDFs as they arrive, continuously.
 
 Note what's for sale here: **sync, not PDFs**. In keeping with our [free data, paid services](#free-data-paid-services) model, we don't sell the documents — we sell the service of delivering the living, continuously-updated archive to your infrastructure. The add-on requires an active annual plan (any tier) and is priced separately; [contact sales](mailto:sales@openalex.org) for a quote. For the technical side — bucket layout, manifests, and smaller-scale download options — see [Fulltext](/docs/fulltext/).
 

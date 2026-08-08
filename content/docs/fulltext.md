@@ -6,11 +6,11 @@ source_id: "download/full-text-pdfs"
 source_url: "https://developers.openalex.org/download/full-text-pdfs"
 source_updated: "2026-06-24"
 ---
-The **content archive** is OpenAlex’s full-text collection: cached full-text content for about 60 million works.
+The **content archive** is OpenAlex’s full-text collection: cached full-text content for more than 50 million works.
 
 | Format | Files | Size |
 |--------|-------|------|
-| PDF | ~60M | ~250 TB |
+| PDF | 50M+ | ~250 TB |
 | TEI XML | ~43M | ~20 TB |
 
 TEI XML files are machine-readable structured text parsed by [Grobid](https://github.com/kermitt2/grobid).
@@ -96,7 +96,7 @@ Standard rates apply ($0.01 per content file; metadata is free). At full speed, 
 
 ### Option 3: Complete archive sync
 
-For the complete archive (all 60M files), the **PDF sync service** gives you persistent read access to the storage bucket, so you can sync everything to your own infrastructure — and keep receiving new PDFs as they arrive. Files are stored on [Cloudflare R2](https://developers.cloudflare.com/r2/), which is fully S3-compatible.
+For the complete archive (all 50M+ files), the **PDF sync service** gives you persistent read access to the storage bucket, so you can sync everything to your own infrastructure — and keep receiving new PDFs as they arrive. Files are stored on [Cloudflare R2](https://developers.cloudflare.com/r2/), which is fully S3-compatible.
 
 PDF sync is sold as a paid **add-on to any [annual plan](/docs/pricing/#annual-plans)** — what you're buying is the ongoing sync service, not the documents themselves (see [Pricing](/docs/pricing/#the-pdf-sync-add-on) for the reasoning). [Contact sales](mailto:sales@openalex.org) to get started.
 

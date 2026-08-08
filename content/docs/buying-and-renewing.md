@@ -22,7 +22,7 @@ We aren't able to offer free trials of the annual plans at this time. Remember t
 
 ## Renewing
 
-Plans run for one year. To renew, adjust your tier, or add the PDF sync service at renewal time, email [sales@openalex.org](mailto:sales@openalex.org). If you're on an older Premium or Institutional contract, see [Legacy plans](/docs/legacy-plans/) for how renewal works.
+Plans run for one year and **renew automatically** each year — you don't need to do anything to stay subscribed. To change tiers, add the PDF sync service, or cancel your renewal, email [sales@openalex.org](mailto:sales@openalex.org). If you're on an older Premium or Institutional contract, see [Legacy plans](/docs/legacy-plans/) for how renewal works.
 
 ## When your budget runs out
 
