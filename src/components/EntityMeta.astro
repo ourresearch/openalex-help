@@ -82,8 +82,10 @@ if (example && /^[A-Z]\d+$/.test(example) && serp) {
   .group {
     display: contents;
   }
+  /* Labels in the body face; only the values are monospace (Jason 2026-08-08). */
   .label {
     color: var(--muted);
+    font-family: var(--font-body);
   }
   .entity-meta a {
     color: var(--ink);
