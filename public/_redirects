@@ -282,8 +282,8 @@
 /hc/en-us/articles/10503491978135  /help/  301
 /hc/en-us/articles/24398041565207-API-and-Data-Snapshot  /docs/api-and-data-snapshot/  301
 /hc/en-us/articles/24398041565207  /docs/api-and-data-snapshot/  301
-/hc/en-us/articles/24397762024087-Pricing  /help/pricing/  301
-/hc/en-us/articles/24397762024087  /help/pricing/  301
+/hc/en-us/articles/24397762024087-Pricing  /docs/pricing/  301
+/hc/en-us/articles/24397762024087  /docs/pricing/  301
 # retired: Old KB landing page — superseded by new site home hero
 /hc/en-us/articles/24348257451671-Welcome-to-the-OpenAlex-help-center  /help/  301
 /hc/en-us/articles/24348257451671  /help/  301
@@ -371,10 +371,10 @@
 
 # >>> rewrite-pass-a >>>
 # Docs rewrite Pass A (oxjob #354, D07): merged/renamed Start-here zone
-/docs/how-does-openalex-work  /docs/overview/  301
-/docs/how-does-openalex-work/  /docs/overview/  301
-/docs/data-ingest-pipeline  /docs/overview/  301
-/docs/data-ingest-pipeline/  /docs/overview/  301
+/docs/how-does-openalex-work  /data/how-its-built/  301
+/docs/how-does-openalex-work/  /data/how-its-built/  301
+/docs/data-ingest-pipeline  /data/how-its-built/  301
+/docs/data-ingest-pipeline/  /data/how-its-built/  301
 /docs/api-and-data-snapshot  /docs/  301
 /docs/api-and-data-snapshot/  /docs/  301
 /docs/how-is-openalex-open  /help/what-is-openalexs-sustainability-model/  301
@@ -535,8 +535,8 @@
 /docs/coverage-and-accuracy/  /docs/  301
 /docs/openness-and-sustainability  /help/what-is-openalexs-sustainability-model/  301
 /docs/openness-and-sustainability/  /help/what-is-openalexs-sustainability-model/  301
-/docs/how-openalex-works  /docs/overview/  301
-/docs/how-openalex-works/  /docs/overview/  301
+/docs/how-openalex-works  /data/how-its-built/  301
+/docs/how-openalex-works/  /data/how-its-built/  301
 # <<< design-round-4 <<<
 
 # Retired 2026-08-05 (sidebar reorg round): change notes ~5y stale -> parent
@@ -685,6 +685,16 @@
 # sidebar item is now a cross-tab link.
 /docs/quickstart  /tutorials/quickstart/  301
 /docs/quickstart/  /tutorials/quickstart/  301
+
+# Pass AC.2 (Jason 2026-08-08): "How it works" dissolved. The pipeline article
+# moved to Data as "How it's built"; sustainability + the stale FAQ pricing
+# article were absorbed into the new Docs > Pricing section.
+/docs/overview  /data/how-its-built/  301
+/docs/overview/  /data/how-its-built/  301
+/docs/sustainability  /docs/pricing/  301
+/docs/sustainability/  /docs/pricing/  301
+/help/pricing  /docs/pricing/  301
+/help/pricing/  /docs/pricing/  301
 
 # >>> WILDCARDS LAST — do not move, do not add rules after this section >>>
 # CF Pages bug (oxjob #354, verified 2026-08-01): once a wildcard/splat rule

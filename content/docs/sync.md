@@ -13,7 +13,7 @@ This page is the authoritative reference for how the [snapshot](/docs/snapshot/)
 | Plan | What you get |
 |---|---|
 | **Free** (everyone) | New full releases of the public snapshot (`s3://openalex/data/`), released **quarterly**. Each release replaces the bucket contents in place. |
-| **Paid** ([Member+ and Partner plans](https://openalex.org/pricing)) | A **daily** full snapshot — the complete database, rebuilt and published every day (dated folders in the `openalex-snapshots` staging bucket) — plus the premium sync filters on the API. |
+| **Paid** ([Member+ and Partner plans](/docs/pricing/#annual-plans)) | A **daily** full snapshot — the complete database, rebuilt and published every day (dated folders in the `openalex-snapshots` staging bucket) — plus the premium sync filters on the API. |
 
 The authoritative history of what shipped when is [`RELEASE_NOTES.txt`](https://openalex.s3.amazonaws.com/RELEASE_NOTES.txt), at the root of the public bucket. Each entry summarizes the data changes in that release — new sources, quality fixes, schema additions. Check it (and the manifest `date`) rather than guessing from file timestamps.
 
@@ -54,9 +54,9 @@ There are four ways to keep a copy of OpenAlex current, from slowest-and-free to
 | Method | Freshness | Availability |
 |---|---|---|
 | [Public snapshot](#the-public-snapshot-free) | Quarterly | Free |
-| [Daily snapshot](#the-daily-snapshot-paid-plans) | Daily | [Paid plans](https://openalex.org/pricing) |
-| [Premium API filters](#premium-api-filters-paid-plans) | Continuous | [Paid plans](https://openalex.org/pricing) |
-| [Unpaywall Data Feed](#the-unpaywall-data-feed-paid-plans) | Daily (works only, legacy format) | [Paid plans](https://openalex.org/pricing) |
+| [Daily snapshot](#the-daily-snapshot-paid-plans) | Daily | [Paid plans](/docs/pricing/#annual-plans) |
+| [Premium API filters](#premium-api-filters-paid-plans) | Continuous | [Paid plans](/docs/pricing/#annual-plans) |
+| [Unpaywall Data Feed](#the-unpaywall-data-feed-paid-plans) | Daily (works only, legacy format) | [Paid plans](/docs/pricing/#annual-plans) |
 
 ### The public snapshot (free)
 
@@ -99,7 +99,7 @@ Poll with these and upsert the results by `id` — no bulk infrastructure needed
 
 ### Free data, paid services
 
-All OpenAlex metadata is [CC0](https://creativecommons.org/publicdomain/zero/1.0/) and free — anyone can download the whole database, forever, at no cost. What's paid is *freshness as a service*: rebuilding and publishing the full database every day costs us real money every day, so we pass that cost on to the users who need daily updates. That's not an accident of pricing — it's the sustainability model encouraged by [POSI](https://openscholarlyinfrastructure.org/), the Principles of Open Scholarly Infrastructure: keep the data open, charge for the services that fund it. Plans and pricing: [openalex.org/pricing](https://openalex.org/pricing).
+All OpenAlex metadata is [CC0](https://creativecommons.org/publicdomain/zero/1.0/) and free — anyone can download the whole database, forever, at no cost. What's paid is *freshness as a service*: rebuilding and publishing the full database every day costs us real money every day, so we pass that cost on to the users who need daily updates. That's not an accident of pricing — it's the sustainability model encouraged by [POSI](https://openscholarlyinfrastructure.org/), the Principles of Open Scholarly Infrastructure: keep the data open, charge for the services that fund it. Plans and pricing: [Pricing](/docs/pricing/).
 
 ## Deletions and merged entities
 

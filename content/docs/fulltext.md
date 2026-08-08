@@ -96,13 +96,9 @@ Standard rates apply ($0.01 per content file; metadata is free). At full speed, 
 
 ### Option 3: Complete archive sync
 
-For the complete archive (all 60M files), we provide direct access to the storage bucket via time-limited credentials. Files are stored on [Cloudflare R2](https://developers.cloudflare.com/r2/), which is fully S3-compatible.
+For the complete archive (all 60M files), the **PDF sync service** gives you persistent read access to the storage bucket, so you can sync everything to your own infrastructure — and keep receiving new PDFs as they arrive. Files are stored on [Cloudflare R2](https://developers.cloudflare.com/r2/), which is fully S3-compatible.
 
-**One-time download:** 30-day R2 read access to sync the complete archive.
-
-**Ongoing sync:** Persistent R2 read access is included with the enterprise subscription.
-
-See the [pricing page](https://openalex.org/pricing) for details, or [contact us](mailto:steve@ourresearch.org) to get started.
+PDF sync is sold as a paid **add-on to any [annual plan](/docs/pricing/#annual-plans)** — what you're buying is the ongoing sync service, not the documents themselves (see [Pricing](/docs/pricing/#the-pdf-sync-add-on) for the reasoning). [Contact sales](mailto:sales@openalex.org) to get started.
 
 **How it works:**
 

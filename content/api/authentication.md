@@ -62,7 +62,7 @@ Without a key you get $0.10/day—a tenth of the above, enough to try the API. [
 
 ### Increased Limits
 
-Need more than $1/day? [Paid plans](https://openalex.org/pricing) give you higher daily allowances and prepaid usage.
+Need more than $1/day? [Paid plans](/docs/pricing/) give you higher daily allowances and prepaid usage.
 
 Your daily budget refills every day at midnight UTC. A **prepaid balance** is a separate pool that automatically kicks in once your daily budget is spent for the day—buying prepaid credit doesn't change your daily budget, it just covers usage beyond it (and doesn't expire daily).
 

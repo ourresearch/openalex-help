@@ -43,8 +43,10 @@ export const NAV_GROUPS: Record<string, NavGroup[]> = {
       // (every reference tab opens with a Get started section, first page
       // "Overview"). The overview page still composes to "Entities Overview".
       label: 'Get started',
-      desc: 'What entities are and the attributes they share.',
-      slugs: ['overview', 'common-attributes'],
+      desc: 'What entities are, how the dataset is built, and the attributes all entities share.',
+      // how-its-built moved in from Docs (Jason 2026-08-08, Pass AC.2 — it's
+      // about how the DATA is made; sharing/access stays a Docs concern).
+      slugs: ['overview', 'how-its-built', 'common-attributes'],
     },
     {
       label: 'Native',
@@ -116,22 +118,9 @@ export const NAV_GROUPS: Record<string, NavGroup[]> = {
         { label: 'Overview', href: '/docs/' },
       ],
     },
-    {
-      // Pass W (2026-08-06): NEW section — how the dataset is built and the
-      // shape of the data. `overview` moved here from Get started; repositories
-      // + open-access moved here from the dissolved "Open access" group;
-      // `sustainability` is a new page.
-      label: 'How it works',
-      desc: 'How OpenAlex is built — the pipeline, repositories, and how it stays funded.',
-      // open-access moved to Data > Works > Open access (Jason 2026-08-07);
-      // repositories moved to Data > Sources (Jason 2026-08-08, Pass AC).
-      // This whole section is slated for dissolution once the Plans section
-      // lands (overview + sustainability get new homes — Pass AC discussion).
-      slugs: [
-        'overview',
-        'sustainability',
-      ],
-    },
+    // "How it works" dissolved (Jason 2026-08-08, Pass AC.2): `overview` →
+    // Data > Get started > How it's built; `repositories` → Data > Sources;
+    // `sustainability` absorbed into the Pricing overview.
     {
       // Pass W: Website subgroup moved out to "Get the data"; Querying is now
       // just the four query surfaces (all transpile to the same query object).
@@ -159,6 +148,8 @@ export const NAV_GROUPS: Record<string, NavGroup[]> = {
       label: 'Get the data',
       desc: 'Every way to get the data — the website, a query, the CLI, an agent, the whole database, or Unpaywall.',
       slugs: [
+        // Pass AC.2: method-picker overview page (skill/cost table).
+        'get-the-data',
         {
           label: 'Website',
           children: [
@@ -172,6 +163,22 @@ export const NAV_GROUPS: Record<string, NavGroup[]> = {
         'sync',
         'fulltext',
         'unpaywall',
+      ],
+    },
+    {
+      // Pass AC.2 (Jason 2026-08-08): the one canonical home for how paying
+      // for OpenAlex works. Prices stay on openalex.org/pricing; this section
+      // explains what you're buying. Absorbed docs/sustainability and the
+      // stale help/pricing FAQ article (consulting services dropped).
+      label: 'Pricing',
+      desc: 'How paying for OpenAlex works — the free tier, pay-as-you-go, annual plans and their benefits, and the PDF sync add-on.',
+      slugs: [
+        'pricing',
+        'member',
+        'member-plus',
+        'partner',
+        'legacy-plans',
+        'buying-and-renewing',
       ],
     },
   ],

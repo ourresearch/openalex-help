@@ -62,7 +62,7 @@ Error responses include a message explaining what went wrong:
 - Check rate limit headers to see your remaining allowance
 - Add delays between requests
 - Use `per_page=100` to reduce total requests
-- Consider a [paid plan](https://openalex.org/pricing) for higher limits
+- Consider a [paid plan](/docs/pricing/) for higher limits
 
 ### Entity Not Found
 

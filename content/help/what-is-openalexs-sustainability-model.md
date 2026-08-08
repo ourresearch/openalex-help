@@ -7,7 +7,7 @@ OpenAlex data is free to everyone, everywhere, under a No Rights Reserved licens
 
 ## Free data, paid services
 
-In a market where data is treated as "the new oil," value is usually captured by *limiting* access. We take the opposite view: scholarly metadata is critical to a thriving society, so the data itself is completely open and freely reusable. Value comes instead from our time and services — [higher-volume, faster access](/help/pricing/) for commercial providers and heavy users who need it. OpenAlex was established with a [grant from Arcadia](https://blog.ourresearch.org/ourresearch-receives-7-5m-grant-from-arcadia-to-establish-openalex-a-milestone-development-for-open-science/); through paid services, we expect to reach financial sustainability by 2028.
+In a market where data is treated as "the new oil," value is usually captured by *limiting* access. We take the opposite view: scholarly metadata is critical to a thriving society, so the data itself is completely open and freely reusable. Value comes instead from our time and services — [higher-volume, faster access](/docs/pricing/) for commercial providers and heavy users who need it. OpenAlex was established with a [grant from Arcadia](https://blog.ourresearch.org/ourresearch-receives-7-5m-grant-from-arcadia-to-establish-openalex-a-milestone-development-for-open-science/); through paid services, we expect to reach financial sustainability by 2028.
 
 Our co-founder and CEO Jason Priem discusses the approach, and the most common questions about it, in [this video](https://youtu.be/CZ5Q9To1zCc).
 
