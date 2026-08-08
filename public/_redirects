@@ -678,6 +678,11 @@
 /entities  /data/  301
 /entities/  /data/  301
 
+# Quick Start's one canonical home is Tutorials (Jason 2026-08-08); the Docs
+# sidebar item is now a cross-tab link.
+/docs/quickstart  /tutorials/quickstart/  301
+/docs/quickstart/  /tutorials/quickstart/  301
+
 # >>> WILDCARDS LAST — do not move, do not add rules after this section >>>
 # CF Pages bug (oxjob #354, verified 2026-08-01): once a wildcard/splat rule
 # appears, CF silently stops processing rules some distance later in the file

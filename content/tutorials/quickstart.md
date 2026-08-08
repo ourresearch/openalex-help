@@ -1,7 +1,8 @@
 ---
-title: "Quickstart"
+title: "Quick Start"
+subtitle: "Get real data out of OpenAlex in five minutes — on the website, through the API, or by asking your agent."
 description: "Get real data out of OpenAlex in five minutes — on the website, through the API, or by asking your agent."
-tags: ["reference"]
+tags: ["tutorials"]
 ---
 Let's get real data out of OpenAlex in about five minutes. We'll answer the same question three ways, moving up the power curve each time: on the website, through the API, and by handing the whole job to an AI agent.
 
@@ -54,7 +55,7 @@ It's very unusual for agents to hallucinate results here, since the API is so we
     <span class="ac-body">Friendly answers to common questions — accounts, exports, fixing your profile.</span>
   </a>
   <a class="access-card" href="/tutorials/">
-    <span class="ac-title">Recipes</span>
+    <span class="ac-title">More tutorials</span>
     <span class="ac-body">Step-by-step walkthroughs of real research questions.</span>
   </a>
   <a class="access-card" href="/api/">

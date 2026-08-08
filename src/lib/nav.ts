@@ -106,9 +106,11 @@ export const NAV_GROUPS: Record<string, NavGroup[]> = {
       // (slug `overview`) moved down to the "How it works" section.
       label: 'Get started',
       desc: 'What OpenAlex is and how to get going fast.',
+      // Quick Start lives in Tutorials (its one canonical home, Jason
+      // 2026-08-08) — this is a cross-tab static link, not an article slug.
       slugs: [
         { label: 'Overview', href: '/docs/' },
-        'quickstart',
+        { label: 'Quick Start', href: '/tutorials/quickstart/' },
       ],
     },
     {

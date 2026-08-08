@@ -94,8 +94,16 @@ const facetLabel: Record<string, Record<string, string>> = {};
 if (bucket) {
   for (const f of bucket.facets) facetLabel[f.key] = Object.fromEntries(f.values.map((v) => [v.id, v.label]));
 }
+// Pin the site-wide Quick Start to the top of the Tutorials list (Jason
+// 2026-08-08) — everything else keeps collection (alphabetical) order.
+const pinnedFirst = ['quickstart'];
+const pinRank = (id: string) => {
+  const i = pinnedFirst.indexOf(id);
+  return i === -1 ? pinnedFirst.length : i;
+};
+const bucketEntries = bucket ? [...entries].sort((a, b) => pinRank(a.id) - pinRank(b.id)) : entries;
 const bucketCards = bucket
-  ? entries.map((e) => {
+  ? bucketEntries.map((e) => {
       const tags = bucket.tagsFor(e.id);
       // Recipes get a hand-written subtitle; FAQ falls back to the description.
       const subtitle = e.data.subtitle ?? e.data.description ?? '';

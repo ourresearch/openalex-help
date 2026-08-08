@@ -72,6 +72,11 @@ export const FACETS: Facet[] = [
 type CardTags = Partial<Record<'task' | 'variable' | 'entity' | 'interface', string[]>>;
 
 export const CARD_FACETS: Record<string, CardTags> = {
+  // The site-wide Quick Start (moved in from Docs, Jason 2026-08-08): answers
+  // one question three ways — website, API, agent.
+  quickstart: {
+    interface: ['web', 'api', 'agents'],
+  },
   'analyze-a-funders-portfolio': {
     task: ['map'],
     variable: ['output'],
