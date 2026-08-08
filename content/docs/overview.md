@@ -28,7 +28,7 @@ We track the external [indexes](/data/indexes/) a record can come from — Cross
 - [DOAJ](https://doaj.org/) and [the ISSN International Centre](https://www.issn.org/)
 - [Unpaywall](https://unpaywall.org/) and the [Internet Archive](https://archive.org/details/GeneralIndex)
 - Aggregators and subject repositories: HAL, arXiv, Zenodo, Dergipark, OSTI, RePEc, and many more
-- Thousands of institutional [repositories](/docs/repositories/), from [UNC's CDR](https://cdr.lib.unc.edu/) to [Michigan's Deep Blue](https://deepblue.lib.umich.edu/documents) ([full list](https://unpaywall.org/sources))
+- Thousands of institutional [repositories](/data/sources/repositories/), from [UNC's CDR](https://cdr.lib.unc.edu/) to [Michigan's Deep Blue](https://deepblue.lib.umich.edu/documents) ([full list](https://unpaywall.org/sources))
 - Parsing of 60M+ open access PDFs, journal landing pages, and direct publisher feeds
 - Corrections from users through [community curation](/help/fix-errors-in-openalex/)
 

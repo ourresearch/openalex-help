@@ -64,14 +64,14 @@
 /hc/en-us/articles/41193838518807  https://docs.unsub.org/  301
 /hc/en-us/articles/41193838501783-Getting-Started  https://docs.unsub.org/  301
 /hc/en-us/articles/41193838501783  https://docs.unsub.org/  301
-/hc/en-us/articles/41193790460055-Recommendation-for-IRs-License-reporting  /docs/repositories/#license-reporting  301
-/hc/en-us/articles/41193790460055  /docs/repositories/#license-reporting  301
-/hc/en-us/articles/41193820666263-How-are-documents-located-from-repository-records  /docs/repositories/  301
-/hc/en-us/articles/41193820666263  /docs/repositories/  301
-/hc/en-us/articles/41193798254743-How-are-repository-records-matched-to-published-articles  /docs/repositories/  301
-/hc/en-us/articles/41193798254743  /docs/repositories/  301
-/hc/en-us/articles/41193790429975-Recommendation-for-IRs-Version-reporting  /docs/repositories/#version-reporting  301
-/hc/en-us/articles/41193790429975  /docs/repositories/#version-reporting  301
+/hc/en-us/articles/41193790460055-Recommendation-for-IRs-License-reporting  /data/sources/repositories/#license-reporting  301
+/hc/en-us/articles/41193790460055  /data/sources/repositories/#license-reporting  301
+/hc/en-us/articles/41193820666263-How-are-documents-located-from-repository-records  /data/sources/repositories/  301
+/hc/en-us/articles/41193820666263  /data/sources/repositories/  301
+/hc/en-us/articles/41193798254743-How-are-repository-records-matched-to-published-articles  /data/sources/repositories/  301
+/hc/en-us/articles/41193798254743  /data/sources/repositories/  301
+/hc/en-us/articles/41193790429975-Recommendation-for-IRs-Version-reporting  /data/sources/repositories/#version-reporting  301
+/hc/en-us/articles/41193790429975  /data/sources/repositories/#version-reporting  301
 /hc/en-us/articles/41193838350359-How-do-I-make-the-Unpaywall-extension-work-on-my-site  /docs/how-do-i-make-the-unpaywall-extension-work-on-my-site/  301
 /hc/en-us/articles/41193838350359  /docs/how-do-i-make-the-unpaywall-extension-work-on-my-site/  301
 /hc/en-us/articles/41193804772631-Preventing-Code-Injection-Using-Text-From-Unpaywall-Safely  /api/introduction/#security  301
@@ -473,12 +473,12 @@
 /docs/what-do-the-host-type-values-publisher-and-repository-mean/  /data/works/open-access/  301
 # <<< rewrite-pass-f <<<
 # >>> rewrite-pass-g >>>
-/docs/how-are-repository-records-matched-to-published-articles  /docs/repositories/  301
-/docs/how-are-repository-records-matched-to-published-articles/  /docs/repositories/  301
-/docs/how-are-documents-located-from-repository-records  /docs/repositories/  301
-/docs/how-are-documents-located-from-repository-records/  /docs/repositories/  301
-/docs/when-i-look-at-my-repository-as-a-source-in-openalex-why-is-it-missing  /docs/repositories/  301
-/docs/when-i-look-at-my-repository-as-a-source-in-openalex-why-is-it-missing/  /docs/repositories/  301
+/docs/how-are-repository-records-matched-to-published-articles  /data/sources/repositories/  301
+/docs/how-are-repository-records-matched-to-published-articles/  /data/sources/repositories/  301
+/docs/how-are-documents-located-from-repository-records  /data/sources/repositories/  301
+/docs/how-are-documents-located-from-repository-records/  /data/sources/repositories/  301
+/docs/when-i-look-at-my-repository-as-a-source-in-openalex-why-is-it-missing  /data/sources/repositories/  301
+/docs/when-i-look-at-my-repository-as-a-source-in-openalex-why-is-it-missing/  /data/sources/repositories/  301
 # <<< rewrite-pass-g <<<
 # >>> rewrite-pass-h >>>
 /docs/downloading-openalex-data  /docs/snapshot/  301
@@ -549,12 +549,15 @@
 # Sidebar reorg 2026-08-05 continued: repository-records -> repositories; the
 # two IR-recommendation pages merged into it as sections; link-resolver moved
 # to the Help tab.
-/docs/repository-records  /docs/repositories/  301
-/docs/repository-records/  /docs/repositories/  301
-/docs/recommendation-for-irs-license-reporting  /docs/repositories/#license-reporting  301
-/docs/recommendation-for-irs-license-reporting/  /docs/repositories/#license-reporting  301
-/docs/recommendation-for-irs-version-reporting  /docs/repositories/#version-reporting  301
-/docs/recommendation-for-irs-version-reporting/  /docs/repositories/#version-reporting  301
+/docs/repository-records  /data/sources/repositories/  301
+/docs/repository-records/  /data/sources/repositories/  301
+# Pass AC (2026-08-08): Repositories moved Docs → Data as a child of Sources
+/docs/repositories  /data/sources/repositories/  301
+/docs/repositories/  /data/sources/repositories/  301
+/docs/recommendation-for-irs-license-reporting  /data/sources/repositories/#license-reporting  301
+/docs/recommendation-for-irs-license-reporting/  /data/sources/repositories/#license-reporting  301
+/docs/recommendation-for-irs-version-reporting  /data/sources/repositories/#version-reporting  301
+/docs/recommendation-for-irs-version-reporting/  /data/sources/repositories/#version-reporting  301
 /docs/link-resolver-integrations  /help/link-resolver-integrations/  301
 /docs/link-resolver-integrations/  /help/link-resolver-integrations/  301
 

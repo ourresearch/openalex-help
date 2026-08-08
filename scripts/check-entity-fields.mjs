@@ -32,7 +32,8 @@ const API = 'https://api.openalex.org';
 // wrong oracle for them. They're self-verified against a live work object.
 const ENTITIES = {
   works: { page: 'works/attributes' }, // dictionary split onto a child page (2026-08-07)
-  authors: {}, sources: {}, institutions: {}, publishers: {},
+  sources: { page: 'sources/attributes' }, // same split (2026-08-08)
+  authors: {}, institutions: {}, publishers: {},
   funders: {}, topics: {}, keywords: {}, awards: {}, concepts: {},
   subfields: {}, fields: {}, domains: {}, sdgs: {},
   'work-types': {}, 'source-types': {}, 'institution-types': {},

@@ -55,7 +55,10 @@ export const NAV_GROUPS: Record<string, NavGroup[]> = {
         'native',
         { label: 'Works', slug: 'works', children: ['works/citations', 'works/open-access', 'works/attributes'] },
         'authors',
-        'sources',
+        // Sources is a subgroup (Jason 2026-08-08, Pass AC): Repositories moved
+        // in from the Docs tab's dissolved "How it works" section, and the
+        // attribute dictionary split onto a child page (works pattern).
+        { label: 'Sources', slug: 'sources', children: ['sources/repositories', 'sources/attributes'] },
         'publishers',
         'funders',
         'awards',
@@ -107,10 +110,10 @@ export const NAV_GROUPS: Record<string, NavGroup[]> = {
       label: 'Get started',
       desc: 'What OpenAlex is and how to get going fast.',
       // Quick Start lives in Tutorials (its one canonical home, Jason
-      // 2026-08-08) — this is a cross-tab static link, not an article slug.
+      // 2026-08-08); the sidebar cross-link was dropped in Pass AC — the
+      // homepage card + tutorials list are enough.
       slugs: [
         { label: 'Overview', href: '/docs/' },
-        { label: 'Quick Start', href: '/tutorials/quickstart/' },
       ],
     },
     {
@@ -120,10 +123,12 @@ export const NAV_GROUPS: Record<string, NavGroup[]> = {
       // `sustainability` is a new page.
       label: 'How it works',
       desc: 'How OpenAlex is built — the pipeline, repositories, and how it stays funded.',
-      // open-access moved to Data > Works > Open access (Jason 2026-08-07).
+      // open-access moved to Data > Works > Open access (Jason 2026-08-07);
+      // repositories moved to Data > Sources (Jason 2026-08-08, Pass AC).
+      // This whole section is slated for dissolution once the Plans section
+      // lands (overview + sustainability get new homes — Pass AC discussion).
       slugs: [
         'overview',
-        'repositories',
         'sustainability',
       ],
     },
