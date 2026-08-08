@@ -73,15 +73,19 @@ It's very unusual for agents to hallucinate results here, since the API is so we
   }
   .access-card {
     display: block;
-    background: var(--panel);
+    background: var(--bg);
     border: 1px solid var(--line);
-    border-radius: 8px;
+    border-radius: 12px;
     padding: 0.9rem 1rem;
     color: inherit;
-    transition: border-color 0.15s;
+    box-shadow: 0 1px 2px rgb(0 0 0 / 0.04);
+    transition: border-color 0.15s, box-shadow 0.15s;
   }
   .access-card:hover {
     border-color: var(--line-strong);
+    box-shadow:
+      0 2px 5px rgb(64 68 82 / 0.08),
+      0 3px 9px rgb(64 68 82 / 0.08);
     text-decoration: none;
     color: inherit;
   }

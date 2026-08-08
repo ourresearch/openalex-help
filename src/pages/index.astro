@@ -219,20 +219,25 @@ const columns = [
     }
   }
 
-  /* Ask AI: matches Card.astro exactly, but it's a <details> that expands to
-     a provider menu instead of an <a> that navigates. */
+  /* Ask AI: matches Card.astro exactly (single white surface, hairline,
+     12px radius — Pass AB), but it's a <details> that expands to a provider
+     menu instead of an <a> that navigates. */
   .ai-card {
     display: flex;
     flex-direction: column;
     color: inherit;
-    background: var(--panel);
+    background: var(--bg);
     border: 1px solid var(--line);
-    border-radius: 5px;
+    border-radius: 12px;
+    box-shadow: 0 1px 2px rgb(0 0 0 / 0.04);
     position: relative;
-    transition: border-color 0.15s;
+    transition: border-color 0.15s, box-shadow 0.15s;
   }
   .ai-card:hover {
     border-color: var(--line-strong);
+    box-shadow:
+      0 2px 5px rgb(64 68 82 / 0.08),
+      0 3px 9px rgb(64 68 82 / 0.08);
   }
   .ai-card:hover .ai-title {
     color: var(--accent);
@@ -242,6 +247,7 @@ const columns = [
     cursor: pointer;
     display: flex;
     flex-direction: column;
+    padding: 0.85rem 1rem 0.95rem;
   }
   .ai-card summary::-webkit-details-marker {
     display: none;
@@ -250,9 +256,7 @@ const columns = [
     display: flex;
     align-items: center;
     gap: 0.6rem;
-    padding: 0.7rem 1rem;
-    border-bottom: 1px solid var(--line);
-    background: var(--panel-strong);
+    margin-bottom: 0.3rem;
   }
   .ai-head :global(svg) {
     flex-shrink: 0;
@@ -263,7 +267,6 @@ const columns = [
     font-weight: 600;
   }
   .ai-body {
-    padding: 0.7rem 1rem 0.9rem;
     color: var(--muted);
     font-size: 0.87rem;
     line-height: 1.5;

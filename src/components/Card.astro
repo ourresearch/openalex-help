@@ -1,6 +1,9 @@
 ---
-// Cursor-style two-part card: icon + title header strip (slightly darker,
-// bottom hairline) over a muted body. Radius 4–6, 1px border, no shadow.
+// Single-surface link card (Pass AB, 2026-08-08): white on white, hairline
+// border, 12px radius, whisper shadow; hover darkens the border and lifts the
+// shadow softly. Hierarchy is typographic (semibold title, muted blurb) — the
+// old darker header strip + divider is gone (out of fashion per Linear/shadcn/
+// Tailwind research; none of them shade card headers).
 interface Props {
   title: string;
   href: string;
@@ -21,14 +24,18 @@ const { title, href } = Astro.props;
     display: flex;
     flex-direction: column;
     color: inherit;
-    background: var(--panel);
+    background: var(--bg);
     border: 1px solid var(--line);
-    border-radius: 5px;
-    overflow: hidden;
-    transition: border-color 0.15s;
+    border-radius: 12px;
+    padding: 0.85rem 1rem 0.95rem;
+    box-shadow: 0 1px 2px rgb(0 0 0 / 0.04);
+    transition: border-color 0.15s, box-shadow 0.15s;
   }
   .card:hover {
     border-color: var(--line-strong);
+    box-shadow:
+      0 2px 5px rgb(64 68 82 / 0.08),
+      0 3px 9px rgb(64 68 82 / 0.08);
     text-decoration: none;
   }
   .card:hover .card-title {
@@ -38,9 +45,7 @@ const { title, href } = Astro.props;
     display: flex;
     align-items: center;
     gap: 0.6rem;
-    padding: 0.7rem 1rem;
-    border-bottom: 1px solid var(--line);
-    background: var(--panel-strong);
+    margin-bottom: 0.3rem;
   }
   .card-head :global(svg) {
     flex-shrink: 0;
@@ -52,7 +57,6 @@ const { title, href } = Astro.props;
   }
   .card-body {
     flex: 1;
-    padding: 0.7rem 1rem 0.9rem;
     color: var(--muted);
     font-size: 0.87rem;
     line-height: 1.5;
