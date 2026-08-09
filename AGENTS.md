@@ -9,9 +9,15 @@ INTENT, not whether learning occurs:
   everybody knows "data", not everybody knows "entity") = "what is this thing?"
   — the graph of ~20 connected entity types, organized by entity. **Access**
   (renamed from Docs 2026-08-09, oxjob #750) = access in both directions: read
-  access (Querying, Get the data, Pricing) + write access (Fixing errors). Its
-  route stays `/docs/` — label ≠ route is fine (precedent: How-to lives at
-  `/help/`). **API** = wire mechanics + a one-page endpoints index.
+  access (Querying, Get the data, Pricing) + write access (Fixing errors).
+  **API** = wire mechanics + a one-page endpoints index.
+- **Tab URL = tab label = content dir = collection key** (oxjob #750): routes
+  `/how-to/ /tutorials/ /access/ /data/ /api/`. The old `/docs/*` and `/help/*`
+  namespaces were renamed wholesale — content dirs git-mv'd, every internal
+  link and the entire `_redirects` file (sources AND targets, chains intact)
+  sed'd together; no compatibility redirects kept (site was unlaunched).
+  openalex-gui's `HELP_DOCS_BASE` (MembersPage.vue, PricingPageNewer.vue)
+  points at `/access` — keep in sync if tabs move again.
 - **Learn**: FAQ (extended FAQ of real user questions) / Tutorials (worked
   step-by-step walkthroughs) — you arrive with a question or a job and want to be
   led to the answer.
