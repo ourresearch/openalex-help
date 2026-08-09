@@ -188,18 +188,18 @@
 /hc/en-us/articles/27550438952855  /docs/how-do-you-determine-work-type/  301
 /hc/en-us/articles/27547114373271-Why-is-this-publication-labeled-as-closed-when-it-is-clearly-Open-Access  /help/why-is-this-publication-labeled-as-closed-when-it-is-clearly-open-acce/  301
 /hc/en-us/articles/27547114373271  /help/why-is-this-publication-labeled-as-closed-when-it-is-clearly-open-acce/  301
-/hc/en-us/articles/27526853582999-How-do-I-find-the-OpenAlex-Source-ID  /help/how-do-i-find-the-openalex-source-id/  301
-/hc/en-us/articles/27526853582999  /help/how-do-i-find-the-openalex-source-id/  301
-/hc/en-us/articles/27526559172759-How-do-I-find-a-publication-s-OpenAlex-work-ID  /help/how-do-i-find-a-publications-openalex-work-id/  301
-/hc/en-us/articles/27526559172759  /help/how-do-i-find-a-publications-openalex-work-id/  301
-/hc/en-us/articles/27502654374551-How-do-I-find-the-Publisher-ID-for-a-journal-s-host-organization  /help/how-do-i-find-the-publisher-id-for-a-journals-host-organization/  301
-/hc/en-us/articles/27502654374551  /help/how-do-i-find-the-publisher-id-for-a-journals-host-organization/  301
+/hc/en-us/articles/27526853582999-How-do-I-find-the-OpenAlex-Source-ID  /help/finding-openalex-ids/#how-do-i-find-a-sources-id  301
+/hc/en-us/articles/27526853582999  /help/finding-openalex-ids/#how-do-i-find-a-sources-id  301
+/hc/en-us/articles/27526559172759-How-do-I-find-a-publication-s-OpenAlex-work-ID  /help/finding-openalex-ids/#how-do-i-find-a-works-id  301
+/hc/en-us/articles/27526559172759  /help/finding-openalex-ids/#how-do-i-find-a-works-id  301
+/hc/en-us/articles/27502654374551-How-do-I-find-the-Publisher-ID-for-a-journal-s-host-organization  /help/finding-openalex-ids/#how-do-i-find-a-publishers-id  301
+/hc/en-us/articles/27502654374551  /help/finding-openalex-ids/#how-do-i-find-a-publishers-id  301
 /hc/en-us/articles/27283405287319-How-can-I-fix-errors-in-an-OpenAlex-author-profile  /help/how-can-i-fix-errors-in-an-openalex-author-profile/  301
 /hc/en-us/articles/27283405287319  /help/how-can-i-fix-errors-in-an-openalex-author-profile/  301
 /hc/en-us/articles/27282148869399-What-are-alternate-names-and-how-I-do-change-them  /help/what-are-alternate-names-and-how-i-do-change-them/  301
 /hc/en-us/articles/27282148869399  /help/what-are-alternate-names-and-how-i-do-change-them/  301
-/hc/en-us/articles/27281068027031-How-do-I-find-my-OpenAlex-author-ID  /help/how-do-i-find-my-openalex-author-id/  301
-/hc/en-us/articles/27281068027031  /help/how-do-i-find-my-openalex-author-id/  301
+/hc/en-us/articles/27281068027031-How-do-I-find-my-OpenAlex-author-ID  /help/finding-openalex-ids/#how-do-i-find-my-author-id  301
+/hc/en-us/articles/27281068027031  /help/finding-openalex-ids/#how-do-i-find-my-author-id  301
 /hc/en-us/articles/27255333459991-What-is-the-difference-between-topics-and-topic-share-in-OpenAlex-entities  /docs/what-is-the-difference-between-topics-and-topic-share-in-openalex-enti/  301
 /hc/en-us/articles/27255333459991  /docs/what-is-the-difference-between-topics-and-topic-share-in-openalex-enti/  301
 /hc/en-us/articles/27250895840791-Why-are-the-counts-by-year-numbers-different-than-the-count-of-works-in-a-year  /docs/why-are-the-counts-by-year-numbers-different-than-the-count-of-works-i/  301
@@ -695,6 +695,17 @@
 /docs/sustainability/  /docs/pricing/  301
 /help/pricing  /docs/pricing/  301
 /help/pricing/  /docs/pricing/  301
+
+# >>> faq-to-how-to (oxjob #752): FAQ consolidated into ~12 How-to pages >>>
+/help/how-do-i-find-a-publications-openalex-work-id  /help/finding-openalex-ids/#how-do-i-find-a-works-id  301
+/help/how-do-i-find-a-publications-openalex-work-id/  /help/finding-openalex-ids/#how-do-i-find-a-works-id  301
+/help/how-do-i-find-my-openalex-author-id  /help/finding-openalex-ids/#how-do-i-find-my-author-id  301
+/help/how-do-i-find-my-openalex-author-id/  /help/finding-openalex-ids/#how-do-i-find-my-author-id  301
+/help/how-do-i-find-the-openalex-source-id  /help/finding-openalex-ids/#how-do-i-find-a-sources-id  301
+/help/how-do-i-find-the-openalex-source-id/  /help/finding-openalex-ids/#how-do-i-find-a-sources-id  301
+/help/how-do-i-find-the-publisher-id-for-a-journals-host-organization  /help/finding-openalex-ids/#how-do-i-find-a-publishers-id  301
+/help/how-do-i-find-the-publisher-id-for-a-journals-host-organization/  /help/finding-openalex-ids/#how-do-i-find-a-publishers-id  301
+# <<< faq-to-how-to <<<
 
 # >>> WILDCARDS LAST — do not move, do not add rules after this section >>>
 # CF Pages bug (oxjob #354, verified 2026-08-01): once a wildcard/splat rule
