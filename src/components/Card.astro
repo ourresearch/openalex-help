@@ -7,11 +7,15 @@
 interface Props {
   title: string;
   href: string;
+  // Opens elsewhere (new tab): show the app-bar-style ↗ in the top-right
+  // corner and add target=_blank (oxjob #750 — the homepage Chat cards).
+  external?: boolean;
 }
-const { title, href } = Astro.props;
+const { title, href, external = false } = Astro.props;
 ---
 
-<a class="card" href={href}>
+<a class="card" href={href} target={external ? '_blank' : undefined} rel={external ? 'noopener' : undefined}>
+  {external && <span class="ext" aria-hidden="true">↗</span>}
   <span class="card-head">
     <slot name="icon" />
     <span class="card-title">{title}</span>
@@ -21,6 +25,7 @@ const { title, href } = Astro.props;
 
 <style>
   .card {
+    position: relative;
     display: flex;
     flex-direction: column;
     color: inherit;
@@ -60,5 +65,16 @@ const { title, href } = Astro.props;
     color: var(--muted);
     font-size: 0.87rem;
     line-height: 1.5;
+  }
+  .ext {
+    position: absolute;
+    top: 0.7rem;
+    right: 0.85rem;
+    color: var(--faint);
+    font-size: 0.85rem;
+    line-height: 1;
+  }
+  .card:hover .ext {
+    color: var(--muted);
   }
 </style>

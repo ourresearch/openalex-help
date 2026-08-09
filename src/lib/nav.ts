@@ -13,7 +13,8 @@
 // may be either a plain slug (level 2) or a subgroup object
 // `{ label, slug?, children }` (level 2 with chevron-expandable level-3
 // children). `slug` optionally names the subgroup's own overview page, rendered
-// as the first child link. Help stays a shallow 2-level accordion on purpose.
+// as the first child link. (How-to joined the shell tabs in oxjob #750; its
+// groups are all flat 2-level.)
 
 export interface NavSubgroup {
   label: string;

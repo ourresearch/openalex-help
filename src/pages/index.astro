@@ -30,14 +30,14 @@ const columns = [
         title: 'Quick Start',
         href: '/tutorials/quickstart/',
         icon: 'rocket-launch-outline',
-        blurb: 'Get real data out in five minutes',
+        blurb: 'The five-minute introduction',
       },
-      { title: 'How-to', href: '/how-to/', icon: 'help-circle-outline', blurb: 'Short guides to the most common tasks' },
+      { title: 'How-to', href: '/how-to/', icon: 'help-circle-outline', blurb: 'Short guides to common tasks' },
       {
         title: 'Tutorials',
         href: '/tutorials/',
         icon: 'format-list-numbered',
-        blurb: 'Step-by-step instructions for real use cases',
+        blurb: 'Longer guides for more complex tasks',
       },
     ],
   },
@@ -45,12 +45,12 @@ const columns = [
     label: 'Reference',
     tone: 'reference' as const,
     cards: [
-      { title: 'Access', href: '/access/', icon: 'notebook-outline', blurb: 'Querying, ways to get the data, pricing, and fixing errors' },
+      { title: 'Access', href: '/access/', icon: 'notebook-outline', blurb: 'Getting data, pricing, fixing errors' },
       {
         title: 'Data',
         href: '/data/',
         icon: 'shape-outline',
-        blurb: "Works, authors, etc: how they're made and what each attribute means",
+        blurb: "What it means and how it's made",
       },
       { title: 'API', href: '/api/', icon: 'cog-outline', blurb: 'Endpoints, filters, auth, rate-limits, etc.' },
     ],
@@ -64,12 +64,14 @@ const columns = [
         href: 'https://groups.google.com/g/openalex-users',
         icon: 'forum-outline',
         blurb: 'Discuss with other users',
+        external: true,
       },
       {
         title: 'Contact Support',
         href: 'https://openalex.org/contact',
         icon: 'email-outline',
         blurb: 'Get help from our team',
+        external: true,
       },
     ],
   },
@@ -99,7 +101,7 @@ const columns = [
           <section class:list={['col', col.tone]}>
             <h2 class="col-head">{col.label}</h2>
             {col.cards.map((c) => (
-              <Card title={c.title} href={c.href}>
+              <Card title={c.title} href={c.href} external={'external' in c && c.external}>
                 <Icon name={c.icon} slot="icon" />
                 {c.blurb}
               </Card>
@@ -107,6 +109,7 @@ const columns = [
             {col.tone === 'chat' && (
               <details class="ai-card ask-ai">
                 <summary>
+                  <span class="ext" aria-hidden="true">↗</span>
                   <span class="ai-head">
                     <Icon name="creation" />
                     <span class="ai-title">Ask AI</span>
@@ -186,12 +189,14 @@ const columns = [
     background: var(--bg);
   }
 
-  /* Three labeled category columns (Learn | Reference | Chat), cards stacked. */
+  /* Three labeled category columns (Learn | Reference | Chat), cards stacked.
+     Columns stretch to the tallest and each card gets an equal share (flex
+     basis 0), so the nine cards render as a uniform 3×3 grid (Jason
+     2026-08-09, oxjob #750). */
   .columns {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 1.25rem;
-    align-items: start;
     /* .reveal makes the section a stacking context; lift it so the Ask AI
        dropdown can't be covered by anything painted later. */
     position: relative;
@@ -201,6 +206,10 @@ const columns = [
     display: flex;
     flex-direction: column;
     gap: 0.9rem;
+  }
+  .col > :global(.card),
+  .col > .ai-card {
+    flex: 1 1 0;
   }
   .col-head {
     margin: 0;
@@ -270,6 +279,19 @@ const columns = [
     color: var(--muted);
     font-size: 0.87rem;
     line-height: 1.5;
+  }
+  /* Same new-tab marker as Card's external prop — the providers open in a
+     new tab even though the card itself expands in place. */
+  .ai-card .ext {
+    position: absolute;
+    top: 0.7rem;
+    right: 0.85rem;
+    color: var(--faint);
+    font-size: 0.85rem;
+    line-height: 1;
+  }
+  .ai-card:hover .ext {
+    color: var(--muted);
   }
   .providers {
     position: absolute;

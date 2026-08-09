@@ -19,9 +19,10 @@ const tab = Astro.params.tab as Tab;
 const { entry } = Astro.props;
 const { Content, headings } = await render(entry);
 
-// Help + Learn articles read like a friendly answer: narrow column, back link,
-// no sidebar. Docs + API get the full app shell (grouped sidebar + right rail).
-const isShell = tab === 'access' || tab === 'api' || tab === 'data';
+// Tutorials read like a friendly answer: narrow column, back link, no sidebar.
+// Everything else — including How-to since oxjob #750 — gets the full app
+// shell (grouped sidebar + right rail).
+const isShell = tab === 'access' || tab === 'api' || tab === 'data' || tab === 'how-to';
 const groups = isShell
   ? groupEntries(tab, (await allEntries()).filter((e) => e.tab === tab).map((e) => e.entry))
   : [];

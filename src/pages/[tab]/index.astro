@@ -61,8 +61,13 @@ const groupIcons: Record<string, string> = {
   'Aboutness': 'tag',
   'Vocabulary': 'list',
   'User-created': 'edit',
-  // Docs-tab groups
+  // Access-tab groups
   'Get the data': 'download',
+  'Fixing errors': 'edit',
+  // How-to-tab groups (shell conversion, oxjob #750)
+  'Using OpenAlex': 'zap',
+  'Journals & repositories': 'book',
+  'Community & support': 'users',
   // API-tab groups
   'Endpoints': 'database',
 };
@@ -82,12 +87,10 @@ const sectionCards = groups
   .map((g) => ({ label: g.label, desc: g.desc, href: sectionTarget(g) }))
   .filter((c): c is { label: string; desc?: string; href: string } => Boolean(c.href));
 
-const isShell = tab === 'access' || tab === 'api' || tab === 'data';
-
-// How-to landing (oxjob #752): a grouped topic list (the cursor.com/help
-// "Browse by topic" pattern) — each nav group renders as a labeled section
-// listing its pages. Replaced the FAQ facet bucket when 47 articles became 12.
-const isTopicList = tab === 'how-to';
+// How-to joined the shell tabs (Jason 2026-08-09, oxjob #750): same nav-drawer
+// template as the reference tabs — its four groups each list their pages.
+// (Replaced the #752 grouped topic list, which had replaced the FAQ bucket.)
+const isShell = tab === 'access' || tab === 'api' || tab === 'data' || tab === 'how-to';
 
 // Bucket tabs (FAQ + Recipes, Pass U): a flat filterable list, no curated
 // hierarchy. Pass W: filtered by a facet sidebar AND Linear-style chip
@@ -187,36 +190,6 @@ const showSidebar = false;
       </div>
     </article>
   </DocsShell>
-) : isTopicList ? (
-  <Base title={meta[tab].label} description={meta[tab].lede} wide>
-    <div class="learn-shell">
-      <div class="gutter" aria-hidden="true"></div>
-      <div class="l-content">
-        <div class="l-columns">
-          <div class="learn-content">
-            <PageHeader title={meta[tab].h1} lede={meta[tab].lede} crumbs={landingCrumbs(tab)} />
-            {groups.map((g) => (
-              <section class="topic">
-                <h2 class="topic-label">{g.label}</h2>
-                {g.desc && <p class="topic-desc">{g.desc}</p>}
-                <ul class="rows">
-                  {g.entries.map((e) => (
-                    <li>
-                      <a href={urlFor(tab, e)}>
-                        <span class="row-title">{e.data.title}</span>
-                        {e.data.description && <span class="row-sub">{e.data.description}</span>}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </section>
-            ))}
-          </div>
-          <div class="rail-col" aria-hidden="true"></div>
-        </div>
-      </div>
-    </div>
-  </Base>
 ) : (
   <Base title={meta[tab].label} description={meta[tab].lede} wide>
     <div class="learn-shell">
@@ -604,21 +577,6 @@ const showSidebar = false;
   .filter-search:focus {
     outline: none;
     border-color: var(--ink);
-  }
-
-  /* How-to topic sections (grouped landing, oxjob #752). */
-  .topic {
-    margin-bottom: 2.5rem;
-  }
-  .topic-label {
-    font-size: 1.05rem;
-    font-weight: 600;
-    margin: 0 0 0.2rem;
-  }
-  .topic-desc {
-    color: var(--muted);
-    font-size: 0.88rem;
-    margin: 0 0 0.75rem;
   }
 
   /* Three-row list items: title / one-line subtitle / small tags. */
