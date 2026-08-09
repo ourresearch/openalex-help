@@ -17,21 +17,6 @@ interface Props {
   button?: boolean;
 }
 const { button = true } = Astro.props;
-
-// Example queries for the empty state (oxjob #750). This is a keyword index —
-// not semantic, not AI — so a typed-out question mostly whiffs. Showing real
-// two-word queries teaches the shape faster than any explanatory sentence.
-// Keep every one of these verified to return hits.
-const EXAMPLES = [
-  'open access',
-  'API key',
-  'rate limit',
-  'snapshot',
-  'ORCID',
-  'author profile',
-  'group_by',
-  'citation counts',
-];
 ---
 
 {button && (
@@ -53,7 +38,7 @@ const EXAMPLES = [
     <input
       id="sd-input"
       type="search"
-      placeholder="Search the help center"
+      placeholder={'Search (eg: "rate limit")'}
       autocomplete="off"
       autocorrect="off"
       spellcheck="false"
@@ -66,21 +51,12 @@ const EXAMPLES = [
     </button>
   </div>
 
-  <div class="sd-body" id="sd-body">
-    <div class="sd-intro">
-      <p class="sd-hint">
-        This searches the words on each page — it isn’t a chatbot, so a keyword or two beats a
-        full sentence.
-      </p>
-      <p class="sd-examples-label">Try:</p>
-      <ul class="sd-examples">
-        {EXAMPLES.map((q) => (
-          <li><button type="button" class="sd-example" data-q={q}>{q}</button></li>
-        ))}
-      </ul>
-      <p class="sd-fallback">Search runs on the deployed site — it’s unavailable in local dev.</p>
-    </div>
-  </div>
+  {/* Empty until you type — the placeholder carries the "keywords, not a
+      question" hint on its own (Jason, oxjob #750: no suggestion chips, no
+      explanatory copy). The dev-only note appears only if pagefind fails to
+      load, which on the deployed site means never. */}
+  <div class="sd-body" id="sd-body"></div>
+  <p class="sd-fallback">Search runs on the deployed site — it’s unavailable in local dev.</p>
 </dialog>
 
 <style>
@@ -201,6 +177,10 @@ const EXAMPLES = [
     border-radius: 6px;
     cursor: pointer;
   }
+  /* `display: flex` above would otherwise beat the UA rule for [hidden]. */
+  #sd-clear[hidden] {
+    display: none;
+  }
   #sd-clear:hover {
     color: var(--ink);
     background: var(--panel-strong);
@@ -212,53 +192,23 @@ const EXAMPLES = [
     overscroll-behavior: contain;
     padding: 0.9rem 1.1rem 1.1rem;
   }
-
-  /* ---- empty state -------------------------------------------------------- */
-  .sd-hint {
-    margin: 0.2rem 0 0;
-    font-size: 0.86rem;
-    line-height: 1.55;
-    color: var(--muted);
-  }
-  .sd-examples-label {
-    margin: 1rem 0 0.5rem;
-    font-size: 0.78rem;
-    font-weight: 500;
-    letter-spacing: 0.02em;
-    text-transform: uppercase;
-    color: var(--faint);
-  }
-  .sd-examples {
-    list-style: none;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.4rem;
-    margin: 0;
+  /* Nothing typed yet: the dialog is just the search box, no empty well. */
+  .sd-body:empty {
     padding: 0;
   }
-  .sd-example {
-    font: inherit;
-    font-size: 0.85rem;
-    color: var(--ink);
-    background: var(--panel);
-    border: 1px solid var(--line);
-    border-radius: 999px;
-    padding: 0.18rem 0.7rem;
-    cursor: pointer;
-    transition: border-color 0.15s, background-color 0.15s;
-  }
-  .sd-example:hover {
-    background: var(--panel-strong);
-    border-color: var(--line-strong);
-  }
+
+  /* Dev-only note — shown only when pagefind failed to load, which on the
+     deployed site means never. */
   .sd-fallback {
-    margin: 1.1rem 0 0;
+    display: none;
+    flex: none;
+    margin: 0;
+    padding: 0.8rem 1.1rem;
     font-size: 0.8rem;
     color: var(--faint);
   }
-  /* The dev-only note hides itself once pagefind has actually loaded. */
-  :global(#search-dialog.pf-ready) .sd-fallback {
-    display: none;
+  :global(#search-dialog.pf-failed) .sd-fallback {
+    display: block;
   }
 </style>
 
@@ -327,9 +277,6 @@ const EXAMPLES = [
   const input = document.getElementById('sd-input') as HTMLInputElement;
   const clearBtn = document.getElementById('sd-clear') as HTMLButtonElement;
   const body = document.getElementById('sd-body')!;
-  const intro = body.querySelector('.sd-intro') as HTMLElement;
-  const hint = intro.querySelector('.sd-hint') as HTMLElement;
-  const HINT_DEFAULT = hint.textContent ?? '';
 
   const PAGE = 8; // results rendered per chunk; more load as you scroll
 
@@ -361,10 +308,12 @@ const EXAMPLES = [
         await mod.options({ excerptLength: 28 });
         mod.init();
         pagefind = mod;
-        dialog.classList.add('pf-ready');
         return mod;
       })
-      .catch(() => null);
+      .catch(() => {
+        dialog.classList.add('pf-failed');
+        return null;
+      });
     return loading;
   }
 
@@ -511,24 +460,21 @@ const EXAMPLES = [
     if (body.scrollTop + body.clientHeight >= body.scrollHeight - 300) renderMore(token);
   });
 
-  function showIntro() {
+  /** Nothing typed (or nothing to search with): collapse back to the bare box. */
+  function clearBody() {
     list = null;
-    hint.textContent = HINT_DEFAULT;
-    body.replaceChildren(intro);
+    body.replaceChildren();
     body.scrollTop = 0;
   }
 
   async function runSearch(q: string) {
     const my = ++token;
     clearBtn.hidden = q.length === 0;
-    if (!q) return showIntro();
+    if (!q) return clearBody();
 
     const pf = await loadPagefind();
     if (my !== token) return;
-    if (!pf) {
-      // Dev server (no /pagefind assets): the intro carries the explanation.
-      return showIntro();
-    }
+    if (!pf) return clearBody(); // dev server: no /pagefind assets
 
     const search = await pf.debouncedSearch(q, {}, 200);
     if (search === null || my !== token) return; // superseded by a later keystroke
@@ -544,9 +490,6 @@ const EXAMPLES = [
         'beforeend',
         `<p class="sd-empty">No results for <strong>${esc(q)}</strong>.</p>`
       );
-      hint.textContent =
-        'Pages are matched on the words they contain — try fewer words, or a different one.';
-      body.appendChild(intro);
       body.scrollTop = 0;
       return;
     }
@@ -600,14 +543,6 @@ const EXAMPLES = [
     clearBtn.hidden = true;
     input.focus();
     runSearch('');
-  });
-
-  body.addEventListener('click', (e) => {
-    const ex = (e.target as Element).closest<HTMLButtonElement>('.sd-example');
-    if (!ex) return;
-    input.value = ex.dataset.q ?? '';
-    input.focus();
-    runSearch(input.value);
   });
 
   document.getElementById('search-open')?.addEventListener('click', openSearch);
