@@ -6,7 +6,7 @@ source_id: "download/snapshot-format"
 source_url: "https://developers.openalex.org/download/snapshot-format"
 source_updated: "2026-08-05"
 ---
-The snapshot is the complete OpenAlex database as downloadable files. It's stored in [Amazon S3](https://aws.amazon.com/s3/) in the [`openalex`](https://openalex.s3.amazonaws.com/browse.html) bucket, under the `data/` prefix — free to download, no AWS account needed (see [Access & authentication](#access--authentication) below). For step-by-step download commands, see the [download recipe](/tutorials/download-to-your-machine/).
+The snapshot is the complete OpenAlex database as downloadable files. It's stored in [Amazon S3](https://aws.amazon.com/s3/) in the [`openalex`](https://openalex.s3.amazonaws.com/browse.html) bucket, under the `data/` prefix — free to download, no AWS account needed (see [Access & authentication](#access--authentication) below). For step-by-step download commands, see the [download recipe](/tutorials/download-the-snapshot/).
 
 ## Two formats
 
@@ -26,7 +26,7 @@ Check the current size before downloading — it grows over time. As of the June
 | JSON Lines (`/data/jsonl/`) | ~750 GB (works alone: ~670 GB) |
 | Parquet (`/data/parquet/`) | ~780 GB |
 
-Decompressed, the JSON Lines data runs to several terabytes. The two formats are separate complete copies, so downloading both roughly doubles the transfer — most users want [a single format prefix](/tutorials/download-to-your-machine/#download-a-single-format-or-entity-type). Live totals are always in each format's `manifest.json` (`content_length`, per entity and overall).
+Decompressed, the JSON Lines data runs to several terabytes. The two formats are separate complete copies, so downloading both roughly doubles the transfer — most users want [a single format prefix](/tutorials/download-the-snapshot/#download-a-single-format-or-entity-type). Live totals are always in each format's `manifest.json` (`content_length`, per entity and overall).
 
 ## Bucket structure
 
@@ -99,6 +99,23 @@ The combined manifest has the same shape but nests one entry per entity under an
 Each record is a complete entity object in the same shape the API returns — the field dictionaries on the [Entities](/data/) tab apply directly:
 
   - **[Works](/data/works/)** · **[Authors](/data/authors/)** · **[Sources](/data/sources/)** · **[Institutions](/data/institutions/)** · **[Topics](/data/topics/)** · **[Publishers](/data/publishers/)**
+
+## Reading the JSONL files
+
+Each data file is [JSON Lines](https://jsonlines.org/) (JSONL): every line is one JSON object representing a single record. Because the decompressed snapshot runs to terabytes, this lets you process one record at a time without loading a whole file into memory. The catch: a JSONL file *as a whole* isn't valid JSON, so tools expecting one big JSON document choke on it. Treat each **line**, not the file, as the JSON object.
+
+Read gzipped part files directly, one line at a time — in Python:
+
+```python
+import gzip, json
+
+with gzip.open("part_0000.gz", "rt") as f:
+    for line in f:
+        work = json.loads(line)
+        print(work["id"], work["display_name"])
+```
+
+…or in R with `jsonlite` and `gzfile`. From there, load records into pandas, DuckDB, or whatever suits. DuckDB can query `.gz` JSONL directly (`read_json_auto('part_*.gz')`) — and if you'd rather skip JSONL entirely, the snapshot's [Parquet copy](#two-formats) loads straight into DuckDB, Spark, or BigQuery.
 
 ## How the snapshot differs from the API
 
@@ -177,4 +194,4 @@ Still stuck? [Contact support](https://openalex.org/contact) with the exact comm
 ## Related pages
 
 - [Sync](/access/sync/) — release cadence, partition semantics, deletions & merged entities
-- [Download to your machine](/tutorials/download-to-your-machine/) — step-by-step recipe
+- [Download to your machine](/tutorials/download-the-snapshot/) — step-by-step recipe

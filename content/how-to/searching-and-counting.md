@@ -1,8 +1,8 @@
 ---
 title: "Searching & counting"
-description: "Recipes for common search questions: most-cited works, top-100 lists, excluding retractions, query length, issue metadata, and why counts sometimes disagree."
+description: "Recipes for common search questions: most-cited works, top-100 lists, excluding retractions, counting citations to a result set, checking a journal's coverage, query length, issue metadata, and why counts sometimes disagree."
 tags: ["search"]
-synonyms: ["most cited", "top cited", "retracted works", "query length", "volume and issue", "counts by year"]
+synonyms: ["most cited", "top cited", "retracted works", "count citations", "journal coverage", "is a journal in openalex", "query length", "volume and issue", "counts by year"]
 ---
 Recipes for the search questions we hear most. For the full querying story — filters, search, sorting, and the rest — start with [Querying](/access/querying/) in the Docs.
 
@@ -23,6 +23,14 @@ Your results are now the top 100, ready to export or analyze. (If the count is s
 ## How do I omit retracted works from my analysis?
 
 Add a filter: click "Add filter", type "retracted", and select it. Then set the filter's dropdown to "is not". Retracted works are now excluded from your results. In the API, that's `filter=is_retracted:false`.
+
+## How do I count all the citations to a set of results?
+
+For any result set — whatever searches and filters you've applied — add the **citations sum** facet under **Stats** (click **"+"** next to *Stats* → *citations sum*). It shows the total citations received by every work in the set. Divide by the number of results for the average citations per work.
+
+## How do I check whether a journal's works are in OpenAlex?
+
+Search for the journal by name and click it — that filters to works whose primary location is that journal, so you can browse its coverage. If the name doesn't turn it up, search by [ISSN](/data/sources/attributes/#issn) instead. Still nothing? [Get in touch](https://openalex.org/support).
 
 ## Is there a limit to query length?
 

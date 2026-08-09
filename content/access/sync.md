@@ -68,7 +68,7 @@ Re-sync from each quarterly release using the manifest (per entity or combined):
 4. **Verify consistency** — re-download the manifest; if unchanged since step 1, no records moved mid-download.
 5. **Upsert by `id`** into your store.
 
-If you mirror *files* with `aws s3 sync`, always pass `--delete` — otherwise files vacated by records moving to newer partitions linger and you get duplicates. Full commands in the [download recipe](/tutorials/download-to-your-machine/).
+If you mirror *files* with `aws s3 sync`, always pass `--delete` — otherwise files vacated by records moving to newer partitions linger and you get duplicates. Full commands in the [download recipe](/tutorials/download-the-snapshot/).
 
 ### The daily snapshot (paid plans)
 
@@ -126,4 +126,4 @@ The public bucket holds only the **current** release — once a release lands, t
 
 - [Snapshot](/access/snapshot/) — formats, layout, manifests, and API parity
 - [Access & authentication](/access/snapshot/) — buckets and credentials
-- [Download the snapshot](/tutorials/download-to-your-machine/) — the hands-on recipe
+- [Download the snapshot](/tutorials/download-the-snapshot/) — the hands-on recipe

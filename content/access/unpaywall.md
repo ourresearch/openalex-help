@@ -22,6 +22,22 @@ source_updated: "2026-06-13"
 
 For new projects, consider the [OpenAlex API](/api/) directly — it exposes the same OA information plus everything else OpenAlex knows (works, authors, sources, topics, and more). The Unpaywall format is best when you're integrating with tools that already speak it.
 
+## Making the extension work on your own site
+
+The browser extension looks up open-access copies by [DOI](https://www.doi.org/), so it needs to find the DOI of the article a page is about. It reads the DOI from a `<meta>` element in the page's HTML — for example, on a Nature article page it finds:
+
+```html
+<meta name="citation_doi" content="10.1038/nature21360"/>
+```
+
+and looks up `10.1038/nature21360` in the API.
+
+If you run a publisher site, preprint server, institutional repository, or any other site with pages about DOI-bearing items, add one of these recognized `<meta>` names so the extension (and other applications) can find the DOI:
+
+`citation_doi` · `doi` · `dc.doi` · `dc.identifier` · `dc.identifier.doi` · `bepress_citation_doi` · `rft_id` · `dcsext.wt_doi`
+
+Repository software usually emits one of these automatically, often via a plugin; on a custom platform you'll need to add it yourself. Note that the extension recognizes a page as being about **one** DOI — for a page centered on content *related* to another DOI-bearing item (a book review, say), it may not be appropriate to present that DOI as the page's own, especially if the review has its own DOI.
+
 ## Which DOIs Unpaywall covers
 
 DOIs can be created by any of several [Registration Agencies](https://www.doi.org/registration_agencies.html). The Unpaywall dataset covers articles issued by one: [Crossref](https://www.crossref.org/). If a DOI isn't in Unpaywall, it might be invalid or created by a different agency — in either case the REST API returns 404, the Simple Query Tool gives a blank row, and it's absent from the dataset.

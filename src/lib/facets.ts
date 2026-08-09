@@ -23,30 +23,16 @@ export const INTERFACE_LABELS: Record<InterfaceId, string> = {
 // One tutorial can span several interfaces (Quick Start answers a question
 // three ways); most are a single surface.
 export const TUTORIAL_INTERFACES: Record<string, InterfaceId[]> = {
+  // Slimmed to the worked-tutorial keepers (oxjob #750, Aug 2026) — the recipe-
+  // shaped pages moved to How-to / Access; slugs are the shortened titles.
   quickstart: ['web', 'api', 'agents'],
-  'analyze-a-funders-portfolio': ['api'],
-  'audit-an-author-profiles-works': ['api'],
-  'break-down-of-my-institutions-outputs-by-subject-area-subfield': ['web'],
-  'check-if-a-journals-works-are-in-openalex': ['web'],
-  'count-incoming-citations-to-any-results-set': ['web'],
-  'estimate-the-apc-fees-my-institution-has-paid-to-make-research-open-ac': ['web'],
+  'map-sdg-research': ['api'],
+  'systematic-reviews': ['oql', 'web', 'api'],
+  'journals-you-cite': ['api'],
   'find-collaborators': ['api'],
-  'find-most-cited-journals': ['api'],
-  'how-many-of-each-type-of-output-does-my-institution-have': ['web'],
-  'how-many-outputs-does-my-institution-have': ['web'],
-  'how-much-is-my-institutions-work-cited': ['web'],
-  'identify-other-institutions-that-collaborate-with-researchers-from-my': ['web'],
-  'map-an-sdg-research-landscape': ['api'],
-  'quick-api-recipes': ['api'],
-  'track-open-access-trends': ['api'],
-  'what-percentage-of-my-institutions-outputs-are-open-access-oa': ['web'],
-  'which-journals-do-researchers-at-my-institution-publish-in': ['web'],
-  'which-of-my-institutions-outputs-are-contributions-to-un-sustainable-d': ['web'],
-  'systematic-reviews-with-oql': ['oql', 'web', 'api'],
-  'download-to-your-machine': ['snapshot'],
-  'how-do-i-read-jsonl-files': ['snapshot'],
-  'how-do-i-use-the-title-search-api': ['api'],
-  'how-do-i-make-the-unpaywall-extension-work-on-my-site': ['web'],
+  'audit-a-profile': ['api'],
+  'funder-portfolios': ['api'],
+  'download-the-snapshot': ['snapshot'],
 };
 
 /** Interface tag labels for a tutorial slug, in canonical order. */
