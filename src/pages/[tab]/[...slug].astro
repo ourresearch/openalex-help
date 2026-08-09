@@ -41,6 +41,12 @@ const mdUrl = mdUrlFor(tab, entry);
 // right under the H1, with non-clickable Interface tags (Web/API/…) below it.
 const isTutorial = tab === 'tutorials';
 const tags = isTutorial ? interfaceTagsFor(entry.id) : [];
+
+// Search eyebrow (oxjob #750): the breadcrumb trail, flattened, handed to
+// pagefind as page metadata so a search hit can show the same context line the
+// page itself shows ("Access › Fixing errors"). Search.astro renders it above
+// the result title, Google-style.
+const eyebrow = crumbs.map((c) => c.label).join(' › ');
 ---
 
 <DocsShell
@@ -50,7 +56,7 @@ const tags = isTutorial ? interfaceTagsFor(entry.id) : [];
   groups={groups}
   activeSlug={entry.id}
 >
-  <article class="prose">
+  <article class="prose" data-pagefind-body data-pagefind-meta={`eyebrow:${eyebrow}`}>
     <PageHeader title={displayTitle} lede={isTutorial ? entry.data.subtitle : undefined} crumbs={crumbs}>
       {tags.length > 0 && (
         <div class="tut-tags">
@@ -62,7 +68,7 @@ const tags = isTutorial ? interfaceTagsFor(entry.id) : [];
     </PageHeader>
     {entry.data.entity && <EntityMeta {...entry.data.entity} />}
     <Content />
-    <div class="article-foot">
+    <div class="article-foot" data-pagefind-ignore>
       <a class="md-link" href={mdUrl}>View as Markdown</a>
     </div>
   </article>

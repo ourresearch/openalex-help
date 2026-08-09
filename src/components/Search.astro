@@ -1,7 +1,13 @@
 ---
-// ⌘K search modal backed by pagefind. The pagefind assets (/pagefind/*) exist
-// only in the built site (`npm run build`); in `astro dev` the modal shows a
-// gentle fallback note instead.
+// ⌘K search modal. Backed by pagefind's JS API (`/pagefind/pagefind.js`) with
+// our OWN results UI — the stock PagefindUI was dropped in oxjob #750 because
+// it rendered nav chrome into every excerpt, highlighted single tokens all over
+// the page, and stacked sub-results into an unreadable wall. This renders a
+// Google-shaped list instead: eyebrow (the page's breadcrumb trail, carried in
+// as pagefind meta) → bold page title → one snippet with the query highlighted.
+//
+// The pagefind assets exist only in the built site (`npm run build`); in
+// `astro dev` the modal shows a gentle fallback note instead.
 //
 // `button` (default true) renders the visible navbar search pill. The homepage
 // passes button={false} so there's only one search box on that page (its hero
@@ -11,6 +17,21 @@ interface Props {
   button?: boolean;
 }
 const { button = true } = Astro.props;
+
+// Example queries for the empty state (oxjob #750). This is a keyword index —
+// not semantic, not AI — so a typed-out question mostly whiffs. Showing real
+// two-word queries teaches the shape faster than any explanatory sentence.
+// Keep every one of these verified to return hits.
+const EXAMPLES = [
+  'open access',
+  'API key',
+  'rate limit',
+  'snapshot',
+  'ORCID',
+  'author profile',
+  'group_by',
+  'citation counts',
+];
 ---
 
 {button && (
@@ -23,9 +44,42 @@ const { button = true } = Astro.props;
   </button>
 )}
 
-<dialog id="search-dialog">
-  <div id="pagefind-container">
-    <p class="search-fallback">Search loads on the deployed site.</p>
+<dialog id="search-dialog" aria-label="Search the help center">
+  {/* Header stays put while the results list scrolls under it. */}
+  <div class="sd-head">
+    <svg class="sd-head-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
+      <circle cx="11" cy="11" r="7" /><path d="m20 20-3.5-3.5" />
+    </svg>
+    <input
+      id="sd-input"
+      type="search"
+      placeholder="Search the help center"
+      autocomplete="off"
+      autocorrect="off"
+      spellcheck="false"
+      aria-controls="sd-body"
+    />
+    <button id="sd-clear" type="button" aria-label="Clear search" hidden>
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true">
+        <path d="M6 6l12 12M18 6L6 18" />
+      </svg>
+    </button>
+  </div>
+
+  <div class="sd-body" id="sd-body">
+    <div class="sd-intro">
+      <p class="sd-hint">
+        This searches the words on each page — it isn’t a chatbot, so a keyword or two beats a
+        full sentence.
+      </p>
+      <p class="sd-examples-label">Try:</p>
+      <ul class="sd-examples">
+        {EXAMPLES.map((q) => (
+          <li><button type="button" class="sd-example" data-q={q}>{q}</button></li>
+        ))}
+      </ul>
+      <p class="sd-fallback">Search runs on the deployed site — it’s unavailable in local dev.</p>
+    </div>
   </div>
 </dialog>
 
@@ -75,66 +129,486 @@ const { button = true } = Astro.props;
     border-radius: 4px;
     padding: 0.05rem 0.3rem;
   }
+
+  /* ---- dialog shell -------------------------------------------------------
+     Height is capped against the VIEWPORT (it used to grow with the result
+     list and run off the bottom of the screen — oxjob #750). The dialog is a
+     flex column: fixed head, scrolling body. `display` only becomes flex when
+     [open], or the browser can't hide a closed <dialog>. */
   #search-dialog {
-    width: min(38rem, calc(100vw - 2rem));
-    margin: 10vh auto auto;
-    padding: 1rem;
+    width: min(42rem, calc(100vw - 2rem));
+    max-height: min(42rem, calc(100dvh - 12dvh - 2rem));
+    margin: 6dvh auto auto;
+    padding: 0;
+    overflow: hidden;
     background: var(--bg);
     color: var(--ink);
     border: 1px solid var(--line);
     border-radius: 12px;
     box-shadow: 0 24px 60px rgb(0 0 0 / 0.18);
   }
+  #search-dialog[open] {
+    display: flex;
+    flex-direction: column;
+  }
   #search-dialog::backdrop {
     background: rgb(0 0 0 / 0.35);
     backdrop-filter: blur(2px);
   }
-  .search-fallback {
+
+  .sd-head {
+    flex: none;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0 0.9rem;
+    height: 3.25rem;
+    border-bottom: 1px solid var(--line);
+    background: var(--bg);
+  }
+  .sd-head-icon {
+    flex: none;
+    color: var(--faint);
+  }
+  #sd-input {
+    flex: 1;
+    min-width: 0;
+    font: inherit;
+    font-size: 1rem;
+    color: var(--ink);
+    background: none;
+    border: none;
+    outline: none;
+    padding: 0;
+  }
+  #sd-input::placeholder {
+    color: var(--faint);
+  }
+  /* Kill the browser's own search-field clear affordance — we render our own. */
+  #sd-input::-webkit-search-cancel-button {
+    display: none;
+  }
+  #sd-clear {
+    flex: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px;
+    height: 26px;
     color: var(--muted);
-    font-size: 0.9rem;
+    background: none;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  #sd-clear:hover {
+    color: var(--ink);
+    background: var(--panel-strong);
+  }
+
+  .sd-body {
+    flex: 1 1 auto;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding: 0.9rem 1.1rem 1.1rem;
+  }
+
+  /* ---- empty state -------------------------------------------------------- */
+  .sd-hint {
+    margin: 0.2rem 0 0;
+    font-size: 0.86rem;
+    line-height: 1.55;
+    color: var(--muted);
+  }
+  .sd-examples-label {
+    margin: 1rem 0 0.5rem;
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    color: var(--faint);
+  }
+  .sd-examples {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
     margin: 0;
+    padding: 0;
+  }
+  .sd-example {
+    font: inherit;
+    font-size: 0.85rem;
+    color: var(--ink);
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 0.18rem 0.7rem;
+    cursor: pointer;
+    transition: border-color 0.15s, background-color 0.15s;
+  }
+  .sd-example:hover {
+    background: var(--panel-strong);
+    border-color: var(--line-strong);
+  }
+  .sd-fallback {
+    margin: 1.1rem 0 0;
+    font-size: 0.8rem;
+    color: var(--faint);
+  }
+  /* The dev-only note hides itself once pagefind has actually loaded. */
+  :global(#search-dialog.pf-ready) .sd-fallback {
+    display: none;
+  }
+</style>
+
+<style is:global>
+  /* ---- results (Google-shaped: eyebrow → title → snippet) -----------------
+     Global because the result list is built in client JS, so scoped-style
+     hashes never reach it. */
+  #search-dialog .sd-count {
+    margin: 0 0 0.9rem;
+    font-size: 0.8rem;
+    color: var(--muted);
+  }
+  #search-dialog .sd-hit {
+    display: block;
+    padding: 0.55rem 0.6rem;
+    margin: 0 -0.6rem;
+    border-radius: 8px;
+    color: inherit;
+  }
+  #search-dialog .sd-hit + .sd-hit {
+    margin-top: 0.35rem;
+  }
+  #search-dialog .sd-hit:hover,
+  #search-dialog .sd-hit.is-active {
+    background: var(--panel);
+    text-decoration: none;
+  }
+  #search-dialog .sd-eyebrow {
+    font-size: 0.78rem;
+    line-height: 1.4;
+    color: var(--muted);
+  }
+  #search-dialog .sd-title {
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.4;
+    color: var(--ink);
+    margin-top: 0.05rem;
+  }
+  #search-dialog .sd-hit:hover .sd-title {
+    text-decoration: underline;
+  }
+  #search-dialog .sd-snippet {
+    margin: 0.15rem 0 0;
+    font-size: 0.875rem;
+    line-height: 1.55;
+    color: var(--muted);
+  }
+  /* Yellow highlighter on the matched phrase (Jason's call, oxjob #750) — a
+     highlight, deliberately not a link color. */
+  #search-dialog mark {
+    background: #fef08a;
+    color: var(--ink);
+    border-radius: 2px;
+    padding: 0 1px;
+  }
+  #search-dialog .sd-empty {
+    margin: 0.4rem 0 0;
+    font-size: 0.9rem;
+    color: var(--muted);
   }
 </style>
 
 <script>
   const dialog = document.getElementById('search-dialog') as HTMLDialogElement;
-  const container = document.getElementById('pagefind-container')!;
-  let loaded = false;
+  const input = document.getElementById('sd-input') as HTMLInputElement;
+  const clearBtn = document.getElementById('sd-clear') as HTMLButtonElement;
+  const body = document.getElementById('sd-body')!;
+  const intro = body.querySelector('.sd-intro') as HTMLElement;
+  const hint = intro.querySelector('.sd-hint') as HTMLElement;
+  const HINT_DEFAULT = hint.textContent ?? '';
 
-  function loadScript(src: string) {
-    return new Promise<void>((resolve, reject) => {
-      const s = document.createElement('script');
-      s.src = src;
-      s.onload = () => resolve();
-      s.onerror = reject;
-      document.head.appendChild(s);
-    });
+  const PAGE = 8; // results rendered per chunk; more load as you scroll
+
+  type PagefindResult = { id: string; data: () => Promise<PagefindDoc> };
+  type PagefindDoc = {
+    url: string;
+    excerpt: string;
+    content: string;
+    meta: Record<string, string>;
+  };
+
+  let pagefind: any = null;
+  let loading: Promise<any> | null = null;
+  let results: PagefindResult[] = [];
+  let query = '';
+  let shown = 0;
+  let token = 0; // guards against out-of-order async renders
+  let list: HTMLElement | null = null;
+  let loadingMore = false;
+
+  /** Load the pagefind ES module from the built site. The path is held in a
+   *  variable so Vite leaves the import alone — /pagefind/* only exists after
+   *  `pagefind --site dist`, never in the dev server. */
+  function loadPagefind() {
+    if (loading) return loading;
+    const path = '/pagefind/pagefind.js';
+    loading = import(/* @vite-ignore */ path)
+      .then(async (mod) => {
+        await mod.options({ excerptLength: 28 });
+        mod.init();
+        pagefind = mod;
+        dialog.classList.add('pf-ready');
+        return mod;
+      })
+      .catch(() => null);
+    return loading;
   }
 
-  async function openSearch() {
-    dialog.showModal();
-    if (loaded) return;
-    try {
-      // pagefind-ui.js is a classic script that attaches window.PagefindUI —
-      // not an ES module, so it can't be import()ed. Assets exist only in the
-      // built site; on the dev server this rejects and the fallback note stays.
-      const css = document.createElement('link');
-      css.rel = 'stylesheet';
-      css.href = '/pagefind/pagefind-ui.css';
-      document.head.appendChild(css);
-      await loadScript('/pagefind/pagefind-ui.js');
-      container.innerHTML = '<div id="pagefind-ui"></div>';
-      new (window as any).PagefindUI({
-        element: '#pagefind-ui',
-        showSubResults: true,
-        showImages: false,
-        autofocus: true,
-      });
-      loaded = true;
-    } catch {
-      /* dev server: keep fallback note */
+  function openSearch() {
+    if (!dialog.open) dialog.showModal();
+    loadPagefind();
+    input.focus();
+    input.select();
+  }
+
+  const esc = (s: string) =>
+    s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+
+  /** Pagefind excerpts arrive as HTML with its own <mark>s in them; we throw
+   *  those away and take the plain text. Pagefind marks every token it matched
+   *  — searching "open access" highlights the "Open" inside "OpenAlex" — which
+   *  reads as random highlighting (Jason, oxjob #750). We re-highlight below,
+   *  on whole words only, preferring the whole phrase. */
+  function plain(html: string) {
+    const div = document.createElement('div');
+    div.innerHTML = html;
+    return (div.textContent ?? '').replace(/\s+/g, ' ').trim();
+  }
+
+  const reEsc = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+
+  /** Only a plural/inflection tail is allowed after a term ("citation" lights
+   *  up "citations") — an open `\w*` would make "open" match "OpenAlex", which
+   *  is exactly the scattershot highlighting we're replacing. */
+  const TAIL = '(?:s|es|d|ed|ing)?\\b';
+
+  /** Highlight whole-word matches. Built by slicing the raw text so escaping
+   *  can never land inside an HTML entity. */
+  function highlight(text: string, patterns: string[]) {
+    if (patterns.length === 0) return esc(text);
+    const re = new RegExp(`(${patterns.join('|')})`, 'gi');
+    let out = '';
+    let last = 0;
+    let m: RegExpExecArray | null;
+    while ((m = re.exec(text))) {
+      if (m[0].length === 0) {
+        re.lastIndex++;
+        continue;
+      }
+      out += esc(text.slice(last, m.index)) + '<mark>' + esc(m[0]) + '</mark>';
+      last = m.index + m[0].length;
     }
+    return out + esc(text.slice(last));
   }
+
+  /** A readable window of `content` around the match at `i`: opens at a
+   *  sentence boundary when one is close behind, else at a word boundary. */
+  function windowAt(content: string, i: number, len: number) {
+    let start = Math.max(0, i - 120);
+    const lead = content.slice(start, i);
+    const sentence = /[.!?][")\]]?\s+(?=[A-Z0-9])/g;
+    let m: RegExpExecArray | null;
+    let boundary = -1;
+    while ((m = sentence.exec(lead))) boundary = start + m.index + m[0].length;
+    if (boundary >= 0) start = boundary;
+    else if (start > 0) start = content.indexOf(' ', start) + 1 || start;
+
+    let end = Math.min(content.length, i + len + 170);
+    if (end < content.length) {
+      const cut = content.lastIndexOf(' ', end);
+      if (cut > i + len) end = cut;
+    }
+    const text = content.slice(start, end).trim();
+    return (
+      (start > 0 && boundary < 0 ? '…' : '') +
+      text +
+      (end < content.length && !/[.!?:]$/.test(text) ? '…' : '')
+    );
+  }
+
+  // Code samples are indexed (people do search for `group_by` or an error
+  // string) but they read as noise in a snippet, so a window heavy in code
+  // punctuation loses to a prose one.
+  const CODEY = /[{}[\]()<>=;|\\/"`$]/g;
+  const codey = (s: string) => (s.match(CODEY)?.length ?? 0) / Math.max(1, s.length) > 0.045;
+
+  function snippetHtml(doc: PagefindDoc, q: string) {
+    const terms = q.split(/\s+/).filter(Boolean);
+    const patterns = [
+      ...(terms.length > 1 ? [`\\b${terms.map(reEsc).join('\\s+')}${TAIL}`] : []),
+      ...terms.map((t) => `\\b${reEsc(t)}${TAIL}`),
+    ];
+    const phraseRe = terms.length > 1 ? new RegExp(patterns[0], 'i') : null;
+
+    // Cut our own window rather than taking pagefind's: pagefind centres on the
+    // densest match, which is often mid-code-sample, and it can't be asked for
+    // the whole phrase. We score a handful of candidates instead — phrase beats
+    // single term, prose beats code — and fall back to its excerpt if the match
+    // was stemmed and we can't locate it ourselves.
+    const content = (doc.content ?? '').replace(/\s+/g, ' ').trim();
+    const finder = new RegExp(patterns.join('|'), 'gi');
+    let best: { text: string; score: number } | null = null;
+    let m: RegExpExecArray | null;
+    let tried = 0;
+    while ((m = finder.exec(content)) && tried < 8) {
+      tried++;
+      if (m[0].length === 0) {
+        finder.lastIndex++;
+        continue;
+      }
+      const text = windowAt(content, m.index, m[0].length);
+      const score = (phraseRe?.test(text) ? 3 : 0) - (codey(text) ? 4 : 0);
+      if (!best || score > best.score) best = { text, score };
+      if (best.score >= 3) break;
+    }
+    return highlight(best ? best.text : plain(doc.excerpt), patterns);
+  }
+
+  function hitHtml(doc: PagefindDoc, q: string) {
+    const eyebrow = doc.meta?.eyebrow ?? '';
+    const title = doc.meta?.title ?? doc.url;
+    return `<a class="sd-hit" href="${esc(doc.url)}">
+      ${eyebrow ? `<div class="sd-eyebrow">${esc(eyebrow)}</div>` : ''}
+      <div class="sd-title">${esc(title)}</div>
+      <p class="sd-snippet">${snippetHtml(doc, q)}</p>
+    </a>`;
+  }
+
+  async function renderMore(my: number) {
+    if (!list || loadingMore || shown >= results.length) return;
+    loadingMore = true;
+    try {
+      const slice = results.slice(shown, shown + PAGE);
+      const docs = await Promise.all(slice.map((r) => r.data()));
+      if (my !== token || !list) return;
+      shown += slice.length;
+      list.insertAdjacentHTML('beforeend', docs.map((d) => hitHtml(d, query)).join(''));
+    } finally {
+      loadingMore = false;
+    }
+    // The list may still be shorter than the scroll box — keep filling.
+    if (my === token && body.scrollHeight <= body.clientHeight) renderMore(my);
+  }
+
+  /** More results load as you near the bottom. A scroll listener, not an
+   *  IntersectionObserver: an IO whose root sits inside a top-layer <dialog>
+   *  never fires in Chrome (verified, oxjob #750). */
+  body.addEventListener('scroll', () => {
+    if (body.scrollTop + body.clientHeight >= body.scrollHeight - 300) renderMore(token);
+  });
+
+  function showIntro() {
+    list = null;
+    hint.textContent = HINT_DEFAULT;
+    body.replaceChildren(intro);
+    body.scrollTop = 0;
+  }
+
+  async function runSearch(q: string) {
+    const my = ++token;
+    clearBtn.hidden = q.length === 0;
+    if (!q) return showIntro();
+
+    const pf = await loadPagefind();
+    if (my !== token) return;
+    if (!pf) {
+      // Dev server (no /pagefind assets): the intro carries the explanation.
+      return showIntro();
+    }
+
+    const search = await pf.debouncedSearch(q, {}, 200);
+    if (search === null || my !== token) return; // superseded by a later keystroke
+
+    results = search.results;
+    query = q;
+    shown = 0;
+    list = null;
+
+    if (results.length === 0) {
+      body.replaceChildren();
+      body.insertAdjacentHTML(
+        'beforeend',
+        `<p class="sd-empty">No results for <strong>${esc(q)}</strong>.</p>`
+      );
+      hint.textContent =
+        'Pages are matched on the words they contain — try fewer words, or a different one.';
+      body.appendChild(intro);
+      body.scrollTop = 0;
+      return;
+    }
+
+    const count = results.length.toLocaleString();
+    body.replaceChildren();
+    body.insertAdjacentHTML(
+      'beforeend',
+      `<p class="sd-count">About ${count} result${results.length === 1 ? '' : 's'}</p>
+       <div class="sd-list"></div>`
+    );
+    list = body.querySelector('.sd-list');
+    body.scrollTop = 0;
+    await renderMore(my);
+  }
+
+  /* ---- keyboard: ↑/↓ through hits, Enter opens the highlighted one -------- */
+  function activeHit() {
+    return body.querySelector<HTMLAnchorElement>('.sd-hit.is-active');
+  }
+  function moveActive(dir: 1 | -1) {
+    const hits = Array.from(body.querySelectorAll<HTMLAnchorElement>('.sd-hit'));
+    if (hits.length === 0) return;
+    const cur = activeHit();
+    const i = cur ? hits.indexOf(cur) : -1;
+    const next = hits[Math.max(0, Math.min(hits.length - 1, i + dir))];
+    cur?.classList.remove('is-active');
+    next.classList.add('is-active');
+    next.scrollIntoView({ block: 'nearest' });
+  }
+
+  input.addEventListener('input', () => runSearch(input.value.trim()));
+  input.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      moveActive(1);
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      moveActive(-1);
+    } else if (e.key === 'Enter') {
+      const hit = activeHit();
+      if (hit) {
+        e.preventDefault();
+        location.href = hit.href;
+      }
+    }
+  });
+
+  clearBtn.addEventListener('click', () => {
+    input.value = '';
+    clearBtn.hidden = true;
+    input.focus();
+    runSearch('');
+  });
+
+  body.addEventListener('click', (e) => {
+    const ex = (e.target as Element).closest<HTMLButtonElement>('.sd-example');
+    if (!ex) return;
+    input.value = ex.dataset.q ?? '';
+    input.focus();
+    runSearch(input.value);
+  });
 
   document.getElementById('search-open')?.addEventListener('click', openSearch);
   // Any element with data-search-trigger (e.g. the landing page's big search
@@ -156,23 +630,3 @@ const { button = true } = Astro.props;
     if (e.target === dialog) dialog.close();
   });
 </script>
-
-<style is:global>
-  /* Pagefind UI theme — mapped onto our tokens. */
-  :root {
-    --pagefind-ui-scale: 0.9;
-    --pagefind-ui-primary: var(--accent);
-    --pagefind-ui-text: var(--ink);
-    --pagefind-ui-background: var(--bg);
-    --pagefind-ui-border: var(--line);
-    --pagefind-ui-border-width: 1px;
-    --pagefind-ui-border-radius: 8px;
-    --pagefind-ui-font: var(--font-body);
-  }
-  #search-dialog mark {
-    background: var(--accent-wash);
-    color: var(--accent);
-    border-radius: 3px;
-    padding: 0 2px;
-  }
-</style>

@@ -12,7 +12,10 @@ interface Props {
 const { crumbs } = Astro.props;
 ---
 
-<nav class="breadcrumbs" aria-label="Breadcrumb">
+{/* data-pagefind-ignore: the trail is navigation chrome, not page content — it
+    reaches search as the `eyebrow` meta instead (oxjob #750), so indexing it
+    here would only pad every excerpt with "Access Fixing errors". */}
+<nav class="breadcrumbs" aria-label="Breadcrumb" data-pagefind-ignore>
   <ol>
     {crumbs.map((c, i) => (
       <li>

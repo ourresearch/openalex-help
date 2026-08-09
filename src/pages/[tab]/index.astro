@@ -97,7 +97,7 @@ const sectionCards = groups
 ---
 
 <DocsShell title={meta[tab].h1} description={meta[tab].lede} tab={tab} groups={groups}>
-  <article class="prose">
+  <article class="prose" data-pagefind-body data-pagefind-meta={`eyebrow:${meta[tab].label}`}>
     <PageHeader title={meta[tab].h1} lede={meta[tab].lede} crumbs={landingCrumbs(tab)} />
 
     {tab === 'data' && (
@@ -118,7 +118,11 @@ const sectionCards = groups
       </Fragment>
     )}
 
-    <div class="card-grid">
+    {/* data-pagefind-ignore: the section cards ARE the nav drawer in card form
+        — indexing them puts run-together label+blurb text into search snippets
+        ("QueryingThe ways to ask OpenAlex…"). The landing is still findable by
+        its H1 and lede. (oxjob #750) */}
+    <div class="card-grid" data-pagefind-ignore>
       {sectionCards.map((c) => (
         <Card title={c.label} href={c.href}>
           <Icon name={groupIcons[c.label] ?? 'file-text'} slot="icon" />
