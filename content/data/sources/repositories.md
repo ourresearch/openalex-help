@@ -68,7 +68,7 @@ If you look at your repository as a [source](/data/sources/) in OpenAlex, its wo
 - **Matching depends on metadata.** Records without a cleanly reported DOI (or a matchable title + first author) can fail to match — see the guidelines above.
 - **A historical wrinkle:** some pre-2022 records inherited from Microsoft Academic Graph list an institutional repository as their sole source. MAG minted those unsystematically, so that legacy coverage is not comprehensive either.
 
-To get your repository harvested in the first place, add it at [unpaywall.org/sources](https://unpaywall.org/sources). To register interest in direct indexing of your repository's full contents, use the [repository registration form](https://forms.gle/LMmjdKw9HZJooxVT8).
+To get your repository harvested in the first place — or to register interest in direct indexing of your repository's full contents — see [Getting indexed](/help/getting-indexed/#how-do-i-get-my-repository-indexed-in-openalex): check whether we already harvest you, and [file a support request](https://openalex.org/contact) if not.
 
 ## Recommendations for repositories
 
