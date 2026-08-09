@@ -139,13 +139,13 @@ See [Open access](/data/works/open-access/) for how these fields combine.
 *List.* [Award](/data/awards/)/grant objects (`id`, `display_name`, `funder_award_id`, `funder_id`, `funder_display_name`, `doi`) linking the work to specific grants. Replaces the removed `grants` property.
 
 ### `has_content`
-*Object.* Whether downloadable full text exists in each format: `pdf` (Boolean) and `grobid_xml` (Boolean, TEI XML). More than 50 million works have `has_content.pdf: true`. See [Fulltext](/docs/fulltext/).
+*Object.* Whether downloadable full text exists in each format: `pdf` (Boolean) and `grobid_xml` (Boolean, TEI XML). More than 50 million works have `has_content.pdf: true`. See [Fulltext](/access/fulltext/).
 
 ### `has_fulltext`
 *Boolean.* A convenience flag: true if any downloadable full-text format exists for this work (i.e. either `has_content.pdf` or `has_content.grobid_xml`).
 
 ### `content_urls`
-*Object.* URLs for downloading full-text content, present when [`has_content`](#has_content) indicates the format is available: `pdf` and `grobid_xml`, each a URL under `content.openalex.org` (or null). Fetching requires your API key. Available only through the API, not in the [snapshot](/docs/snapshot/).
+*Object.* URLs for downloading full-text content, present when [`has_content`](#has_content) indicates the format is available: `pdf` and `grobid_xml`, each a URL under `content.openalex.org` (or null). Fetching requires your API key. Available only through the API, not in the [snapshot](/access/snapshot/).
 
 ### `is_retracted`
 *Boolean.* True if the work is known to be retracted, per the [Retraction Watch database](https://doi.org/10.13003/c23rw1d9).

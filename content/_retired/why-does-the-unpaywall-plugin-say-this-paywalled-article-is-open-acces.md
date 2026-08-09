@@ -16,4 +16,4 @@ This functionality was added because the plugin is focused tightly on helping us
 
 Of course, it could also be a bug. If the link we're providing doesn't work, please let us know about it at [openalex.org/contact](https://openalex.org/contact) or support@unpaywall.org.
 
-For what Unpaywall is and how it determines OA status, see [Unpaywall](/docs/unpaywall/) in the Docs.
+For what Unpaywall is and how it determines OA status, see [Unpaywall](/access/unpaywall/) in the Docs.

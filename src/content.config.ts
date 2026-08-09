@@ -42,8 +42,8 @@ const makeCollection = (dir: string) =>
   });
 
 export const collections = {
-  help: makeCollection('help'),
-  docs: makeCollection('docs'),
+  'how-to': makeCollection('how-to'),
+  access: makeCollection('access'),
   api: makeCollection('api'),
   data: makeCollection('data'),
   tutorials: makeCollection('tutorials'),

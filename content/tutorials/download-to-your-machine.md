@@ -79,7 +79,7 @@ openalex-snapshot/
         └── ...
 ```
 
-See [Snapshot data format](/docs/snapshot/) for the full entity list, the partition structure, and how to keep your copy up to date.
+See [Snapshot data format](/access/snapshot/) for the full entity list, the partition structure, and how to keep your copy up to date.
 
 ## Download a single format or entity type
 
@@ -106,7 +106,7 @@ If you don't want to download files locally, some services can read directly fro
 - **Amazon Redshift:** [Load from S3](https://docs.aws.amazon.com/redshift/latest/dg/tutorial-loading-data.html) using the manifest files
 - **ETL tools** with S3 connectors (Xplenty, Airbyte, etc.)
 
-For these approaches, the [snapshot data format](/docs/snapshot/) documentation should have enough detail to get started.
+For these approaches, the [snapshot data format](/access/snapshot/) documentation should have enough detail to get started.
 
 ## Download with an enterprise API key
 

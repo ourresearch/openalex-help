@@ -55,4 +55,4 @@ This page is the index. What each entity *is*, and what every field on it *means
 
 ## OQL and OQO
 
-Beyond REST, OpenAlex answers the same queries through [OQL](/docs/oql/) (a readable query language) and its machine-readable twin [OQO](/docs/oqo-schema/). Every query surface — REST, OQL, the web builder — transpiles to the same OQO under the hood; see [Querying](/docs/querying/).
+Beyond REST, OpenAlex answers the same queries through [OQL](/access/oql/) (a readable query language) and its machine-readable twin [OQO](/access/oqo-schema/). Every query surface — REST, OQL, the web builder — transpiles to the same OQO under the hood; see [Querying](/access/querying/).

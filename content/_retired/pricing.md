@@ -8,7 +8,7 @@ source_updated: "2026-03-02"
 ---
 # Learn about OpenAlex's premium offerings
 
-OpenAlex is free. The website, API, and data snapshot are all available at no charge. The data is licensed as [CC0](https://creativecommons.org/publicdomain/zero/1.0/) so it is free to use and distribute. As a [nonprofit,](https://ourresearch.org/) making this data free and open is part of our mission. [Being sustainable](/help/what-is-openalexs-sustainability-model/) is also part of our mission! Our sustainability depends on revenue from two value-add offerings: paid subscribers and consulting services. So if you’re looking for our services in addition to our data, or simply want to support open science, consider our paid services below. [Contact us to get a quote—and a free trial!](https://share.hsforms.com/1fEEj8qYrQAKpHWn3WgaIWA4iz53)
+OpenAlex is free. The website, API, and data snapshot are all available at no charge. The data is licensed as [CC0](https://creativecommons.org/publicdomain/zero/1.0/) so it is free to use and distribute. As a [nonprofit,](https://ourresearch.org/) making this data free and open is part of our mission. [Being sustainable](/how-to/what-is-openalexs-sustainability-model/) is also part of our mission! Our sustainability depends on revenue from two value-add offerings: paid subscribers and consulting services. So if you’re looking for our services in addition to our data, or simply want to support open science, consider our paid services below. [Contact us to get a quote—and a free trial!](https://share.hsforms.com/1fEEj8qYrQAKpHWn3WgaIWA4iz53)
 
 ## OpenAlex Paid Subscriptions
 
@@ -16,7 +16,7 @@ OpenAlex is free. The website, API, and data snapshot are all available at no ch
 
 #### Update frequency
 
-We release a new [snapshot](/docs/snapshot/) of OpenAlex every quarter, free. If you need fresher data, our paid plans include daily sync — a complete daily snapshot, plus API filters that return everything new or changed since any date. See [Keeping in sync with OpenAlex](/docs/sync/#keeping-in-sync-with-openalex).
+We release a new [snapshot](/access/snapshot/) of OpenAlex every quarter, free. If you need fresher data, our paid plans include daily sync — a complete daily snapshot, plus API filters that return everything new or changed since any date. See [Keeping in sync with OpenAlex](/access/sync/#keeping-in-sync-with-openalex).
 
 To do this, you [just use several API filters available only to subscribers,](https://github.com/ourresearch/openalex-api-tutorials/blob/main/notebooks/getting-started/premium.ipynb) along with a unique API key we give you as part of your subscription.
 

@@ -43,14 +43,14 @@ In July 2023, OpenAlex switched to a significantly improved disambiguation syste
 
 ### Special author IDs
 
-Two author IDs fall outside the normal disambiguation process; you may encounter them, especially in the [snapshot](/docs/snapshot/):
+Two author IDs fall outside the normal disambiguation process; you may encounter them, especially in the [snapshot](/access/snapshot/):
 
 - **`A9999999999` — the NULL author.** Assigned to authorships that never went through disambiguation: no author name was received, the name was too short or too long to disambiguate reliably, or the name matched an ignored phrase (like "Unknown Author"). If an author asks to have their disambiguated profile removed, their works are reassigned here — effectively removing the profile. These records are grouped under this single NULL author rather than real profiles.
 - **`A5317838346` — deleted authors.** Used when an author ID is removed from OpenAlex, usually because it no longer has any works (its works were merged into another author or deleted).
 
 ### Known failure modes
 
-Disambiguation isn't perfect. The two failure modes are **splitting** (one real person's works spread across several profiles) and **merging** (works from different people collapsed into one profile). Because a profile's attributes — alternate names, institutions, metrics, topics — are all derived from its linked works, they can't be edited directly. You fix an author by [correcting which works belong to them](/data/curations/): see [Fixing errors: Authors](/docs/fixing-errors/authors/). Our methods, code, and trained models are fully open source ([openalex-name-disambiguation](https://github.com/ourresearch/openalex-name-disambiguation/tree/main/V3); [live pipeline](https://github.com/ourresearch/openalex-databricks/tree/main/jobs/author_name_disambiguation/v3)).
+Disambiguation isn't perfect. The two failure modes are **splitting** (one real person's works spread across several profiles) and **merging** (works from different people collapsed into one profile). Because a profile's attributes — alternate names, institutions, metrics, topics — are all derived from its linked works, they can't be edited directly. You fix an author by [correcting which works belong to them](/data/curations/): see [Fixing errors: Authors](/access/fixing-errors/authors/). Our methods, code, and trained models are fully open source ([openalex-name-disambiguation](https://github.com/ourresearch/openalex-name-disambiguation/tree/main/V3); [live pipeline](https://github.com/ourresearch/openalex-databricks/tree/main/jobs/author_name_disambiguation/v3)).
 
 ## Attributes
 

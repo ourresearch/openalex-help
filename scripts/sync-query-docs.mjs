@@ -11,12 +11,12 @@
 //
 //   node scripts/sync-query-docs.mjs
 //
-// NOTE (2026-08-05, oxjob #354 Access reorg): content/docs/oql.md (the OQL
+// NOTE (2026-08-05, oxjob #354 Access reorg): content/access/oql.md (the OQL
 // Overview) is now HAND-MAINTAINED — an editorial synthesis of the upstream
 // guide + cheatsheet artifacts — and is deliberately NOT in PAGES below. When
 // the upstream artifacts change, port relevant changes into it by hand.
 //
-// NOTE (2026-08-05, oxjob #354 Pass S): content/docs/oql-spec.md is ALSO
+// NOTE (2026-08-05, oxjob #354 Pass S): content/access/oql-spec.md is ALSO
 // hand-maintained now — a user-facing editorial rendering of the upstream spec
 // + grammar artifacts (de-numbered headings, internal provenance refs purged).
 // Port upstream spec/grammar changes into it by hand; the elastic-api artifact
@@ -48,7 +48,7 @@ const PAGES = [
       "Executing and translating OQL over HTTP — endpoints, query formats, and reading results.",
     body: (t) =>
       stripH1(t)
-        .replaceAll("https://api.openalex.org/query/spec/schema", "/docs/oqo-schema/")
+        .replaceAll("https://api.openalex.org/query/spec/schema", "/access/oqo-schema/")
         // upstream anchor doesn't survive this site's heading slugger
         .replaceAll("#reading-results-meta-x-query", "#reading-results-metax_query")
         // OQL went GA (Pass S): strip the upstream alpha framing
@@ -56,13 +56,13 @@ const PAGES = [
         .replace("OQL and its API are in alpha and under active development", "OQL and its API are under active development"),
   },
   {
-    file: "content/docs/oqo-schema.md",
+    file: "content/access/oqo-schema.md",
     slug: "oqo",
     title: "OQO",
     description:
       "OQO (OpenAlex Query Objects) — the machine-readable JSON twin of OQL, built for agents and tools, with its JSON Schema.",
     json: true,
-    body: (t) => `OQO (OpenAlex Query Objects) is the machine-readable twin of [OQL](/docs/oql/): the same queries, expressed as JSON data instead of text.
+    body: (t) => `OQO (OpenAlex Query Objects) is the machine-readable twin of [OQL](/access/oql/): the same queries, expressed as JSON data instead of text.
 
 Every OQL query parses into an OQO object, and every OQO object renders back to canonical OQL — two views of one query. The difference is the audience. **OQL is built for humans**: you can read it aloud, type it in the search box, and paste it in an email. **OQO is built for machines — and especially for AI agents.** A JSON tree with a published schema is much easier for software to get right than a string: nothing to quote or escape, no parsing, and a query can be constructed, validated, and modified field by field.
 

@@ -3,7 +3,7 @@ title: "How it's built"
 description: "How the OpenAlex dataset is built: gathering records from thousands of sources and organizing them into one connected knowledge graph. A map that points into the entity pages where each step is documented in full."
 tags: ["reference"]
 ---
-OpenAlex gathers the world's research output from thousands of sources, organizes it into one connected knowledge graph, and shares it with everyone for free. This page is the map of how the first two steps — **gather** and **organize** — build the dataset, in broad strokes. Each step is documented in depth in the "About" section of the relevant [entity](/data/) page, and this page links into them as it goes. (The third step, **share**, is a [Docs](/docs/) concern rather than a data one: see [Get the data](/docs/get-the-data/) for every way to access the result.)
+OpenAlex gathers the world's research output from thousands of sources, organizes it into one connected knowledge graph, and shares it with everyone for free. This page is the map of how the first two steps — **gather** and **organize** — build the dataset, in broad strokes. Each step is documented in depth in the "About" section of the relevant [entity](/data/) page, and this page links into them as it goes. (The third step, **share**, is a [Docs](/access/) concern rather than a data one: see [Get the data](/access/get-the-data/) for every way to access the result.)
 
 ## Gather
 
@@ -19,7 +19,7 @@ We track the external [indexes](/data/indexes/) a record can come from — Cross
 - Aggregators and subject repositories: HAL, arXiv, Zenodo, Dergipark, OSTI, RePEc, and many more
 - Thousands of institutional [repositories](/data/sources/repositories/), from [UNC's CDR](https://cdr.lib.unc.edu/) to [Michigan's Deep Blue](https://deepblue.lib.umich.edu/documents) ([full list](https://unpaywall.org/sources))
 - Parsing of 50M+ open access PDFs, journal landing pages, and direct publisher feeds
-- Corrections from users through [community curation](/docs/fixing-errors/)
+- Corrections from users through [community curation](/access/fixing-errors/)
 
 ## Organize
 
@@ -39,4 +39,4 @@ This pipeline is complex and changes frequently. In the interest of openness, we
 
 ## Share
 
-Sharing the result is covered in the [Docs](/docs/): see [Get the data](/docs/get-the-data/) for every way to access the dataset — from the website to the API to whole-database downloads — and [Querying](/docs/querying/) for the ways to ask it questions. However you access it, the data is free: everything is released under a [CC0](https://creativecommons.org/public-domain/cc0/) public-domain license, with no "personal use only" carve-out and no permission to ask. Keeping it that way is a deliberate, funded plan — see [Pricing](/docs/pricing/).
+Sharing the result is covered in the [Docs](/access/): see [Get the data](/access/get-the-data/) for every way to access the dataset — from the website to the API to whole-database downloads — and [Querying](/access/querying/) for the ways to ask it questions. However you access it, the data is free: everything is released under a [CC0](https://creativecommons.org/public-domain/cc0/) public-domain license, with no "personal use only" carve-out and no permission to ask. Keeping it that way is a deliberate, funded plan — see [Pricing](/access/pricing/).

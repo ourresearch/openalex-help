@@ -7,7 +7,7 @@ source_id: "41193798040471"
 source_url: "https://help.openalex.org/hc/en-us/articles/41193798040471-How-do-I-read-JSONL-files"
 source_updated: "2026-06-13"
 ---
-The OpenAlex [snapshot](/docs/snapshot/) delivers data in the [JSON Lines](https://jsonlines.org/) text format (JSONL): each line of a file is one JSON object representing a single record.
+The OpenAlex [snapshot](/access/snapshot/) delivers data in the [JSON Lines](https://jsonlines.org/) text format (JSONL): each line of a file is one JSON object representing a single record.
 
 Since the decompressed snapshot runs to terabytes, this is a great advantage over plain JSON — you can process one line at a time without ever loading a whole file. The downside is that a JSONL file *as a whole* isn't valid JSON, so tools expecting one big JSON document can't read it directly. Treat each **line**, not the file, as the JSON object.
 
@@ -24,7 +24,7 @@ with gzip.open("part_0000.gz", "rt") as f:
         print(work["id"], work["display_name"])
 ```
 
-From there, load records into pandas, DuckDB, or whatever structure suits. (DuckDB can also query `.gz` JSONL files directly: `SELECT id, display_name FROM read_json_auto('part_*.gz')` — and if you'd rather skip JSONL entirely, the snapshot's [Parquet copy](/docs/snapshot/#two-formats) loads straight into DuckDB, Spark, or BigQuery.)
+From there, load records into pandas, DuckDB, or whatever structure suits. (DuckDB can also query `.gz` JSONL files directly: `SELECT id, display_name FROM read_json_auto('part_*.gz')` — and if you'd rather skip JSONL entirely, the snapshot's [Parquet copy](/access/snapshot/#two-formats) loads straight into DuckDB, Spark, or BigQuery.)
 
 ## R
 

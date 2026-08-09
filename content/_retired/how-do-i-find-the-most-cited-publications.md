@@ -14,4 +14,4 @@ If you want to change to sort by citation count, simply click the sort button ab
 
 If you want to only see journal publications, add work type = article and source type = journal to your filters, e.g., [https://openalex.org/works?page=1&filter=type%3Atypes%2Farticle,primary\_location.source.type%3Asource-types%2Fjournal](https://openalex.org/works?page=1&filter=type%3Atypes%2Farticle,primary_location.source.type%3Asource-types%2Fjournal) 
 
-If you want to limit your results to only the top cited works, [read how here](/help/how-do-i-limit-my-results-to-only-the-top-100-cited-publications/).
+If you want to limit your results to only the top cited works, [read how here](/how-to/how-do-i-limit-my-results-to-only-the-top-100-cited-publications/).

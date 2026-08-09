@@ -81,7 +81,7 @@ One pseudo-license to know about: **`implied-oa`** marks articles that the publi
 
 ## OA dates
 
-OpenAlex's underlying data also tracks *when* a copy of a work first became available at each location. This `oa_date` field is exposed through the [Unpaywall API format](/docs/unpaywall/) (a legacy-compatible view of the same OpenAlex data — see [its data-format reference](https://unpaywall.org/data-format#oa-location-object)) rather than on the OpenAlex work object itself. In brief:
+OpenAlex's underlying data also tracks *when* a copy of a work first became available at each location. This `oa_date` field is exposed through the [Unpaywall API format](/access/unpaywall/) (a legacy-compatible view of the same OpenAlex data — see [its data-format reference](https://unpaywall.org/data-format#oa-location-object)) rather than on the OpenAlex work object itself. In brief:
 
 - **Gold/diamond**: the article was free from day one, so `oa_date` is the publication date.
 - **Hybrid**: the publication date, or the manuscript license's effective date if a manuscript version was opened separately.
@@ -98,4 +98,4 @@ The **article processing charge** (APC) is the fee some journals charge authors 
 - [Versions](/data/locations/) — submitted, accepted, and published versions and how they interact with OA
 - [Sources](/data/sources/) — how works connect to journals and repositories through locations
 - [Works API reference](/data/works/) — the `open_access` and location objects
-- [Why is this publication labeled as 'closed' when it is clearly Open Access?](/help/fixing-data-errors/#how-do-i-fix-a-works-open-access-status)
+- [Why is this publication labeled as 'closed' when it is clearly Open Access?](/how-to/fixing-data-errors/#how-do-i-fix-a-works-open-access-status)

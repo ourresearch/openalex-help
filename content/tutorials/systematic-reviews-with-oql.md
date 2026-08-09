@@ -4,7 +4,7 @@ subtitle: "Build a reproducible systematic-review search in OQL — term blocks,
 description: "Build a real systematic-review search strategy in OQL — term blocks, exact vs. stemmed matching, scope filters, and a reproducible query you can paste straight into your appendix."
 tags: ["recipe", "oql"]
 ---
-A systematic-review search strategy is really a **term tree**: blocks of synonyms OR'd together, blocks AND'd with each other, a few exclusions, and some scope limits. That's exactly the shape [OQL](/docs/oql/) — the OpenAlex Query Language — is built to express. This recipe walks through building one, start to finish.
+A systematic-review search strategy is really a **term tree**: blocks of synonyms OR'd together, blocks AND'd with each other, a few exclusions, and some scope limits. That's exactly the shape [OQL](/access/oql/) — the OpenAlex Query Language — is built to express. This recipe walks through building one, start to finish.
 
 The payoff over exporting from a classic database interface: the finished query is **one readable string**. It runs on the [website](https://openalex.org) and the [API](/api/oql/) identically, it's trivially shareable with co-reviewers, and you can paste it into your methods appendix as-is.
 
@@ -83,12 +83,12 @@ works where … sample 200 seed 42
 
 ## Run, export, and document
 
-- **Website:** run the query in the OQL tab, then export your results to CSV. You can also flip between the visual [advanced builder](/docs/website-advanced/) and the OQL text — they're two views of the same query.
+- **Website:** run the query in the OQL tab, then export your results to CSV. You can also flip between the visual [advanced builder](/access/website-advanced/) and the OQL text — they're two views of the same query.
 - **API:** `https://api.openalex.org/?oql=<your query>` returns the same results as JSON — the query carries its own entity (`works where …`), so it goes to the API root. See the [OQL API](/api/oql/) page.
 - **Appendix:** the OQL string *is* your documented search strategy — one line of provenance covers database, interface, and query.
 
 ## Going deeper
 
-- **[OQL overview](/docs/oql/)** — every construct with a copyable example.
-- **[Specification](/docs/oql-spec/)** — the formal spec: every rule and edge case.
+- **[OQL overview](/access/oql/)** — every construct with a copyable example.
+- **[Specification](/access/oql-spec/)** — the formal spec: every rule and edge case.
 - **[Cases](https://openalex.org/query/oql/cases)** — a browsable library of worked examples, including real published systematic-review strategies rendered in OQL.

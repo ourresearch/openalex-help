@@ -102,7 +102,7 @@ export const NAV_GROUPS: Record<string, NavGroup[]> = {
   // help (How-to, oxjob #752): ~12 consolidated task pages (noun/gerund H1s,
   // question H2s — the cursor.com/help pattern), grouped by topic. Replaced
   // the flat FAQ facet bucket (#354 Pass U) when 47 articles became 12 pages.
-  help: [
+  'how-to': [
     {
       label: 'Using OpenAlex',
       desc: 'Finding IDs, common search recipes, and getting data into other tools.',
@@ -125,7 +125,7 @@ export const NAV_GROUPS: Record<string, NavGroup[]> = {
     },
   ],
 
-  docs: [
+  access: [
     {
       // Pass W (2026-08-06): the tab front door. "Overview" here is the /docs/
       // landing card page (former "Welcome"); the system how-it-works article
@@ -136,7 +136,7 @@ export const NAV_GROUPS: Record<string, NavGroup[]> = {
       // 2026-08-08); the sidebar cross-link was dropped in Pass AC — the
       // homepage card + tutorials list are enough.
       slugs: [
-        { label: 'Overview', href: '/docs/' },
+        { label: 'Overview', href: '/access/' },
       ],
     },
     // "How it works" dissolved (Jason 2026-08-08, Pass AC.2): `overview` →
@@ -342,8 +342,8 @@ export interface Crumb {
 }
 
 const TAB_LABELS: Record<string, string> = {
-  help: 'How-to',
-  docs: 'Access',
+  'how-to': 'How-to',
+  access: 'Access',
   data: 'Data',
   api: 'API',
   tutorials: 'Tutorials',

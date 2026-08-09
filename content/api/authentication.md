@@ -6,7 +6,7 @@ source_id: "api-reference/authentication"
 source_url: "https://developers.openalex.org/api-reference/authentication"
 source_updated: "2026-06-20"
 ---
-OpenAlex data is and will remain available at no cost. Our [data snapshot](/docs/snapshot/) is totally free for bulk download. The API is a freemium service with free daily usage—$0.10/day with no key, or 10× that ($1/day) with a [free API key](#getting-an-api-key)—and after that you pay for what you use. [We sell services, not data.](https://openscholarlyinfrastructure.org/)
+OpenAlex data is and will remain available at no cost. Our [data snapshot](/access/snapshot/) is totally free for bulk download. The API is a freemium service with free daily usage—$0.10/day with no key, or 10× that ($1/day) with a [free API key](#getting-an-api-key)—and after that you pay for what you use. [We sell services, not data.](https://openscholarlyinfrastructure.org/)
 
 ## Getting an API Key
 
@@ -29,7 +29,7 @@ curl "https://api.openalex.org/works?api_key=YOUR_KEY"
 | [List+Filter](/api/filtering/) | Query and filter entities | **$0.10** |
 | [Search](/api/searching/) | Full-text keyword search | **$1** |
 | [Semantic search](/api/searching/) | AI-powered semantic search | **$1** |
-| [Content download](/docs/fulltext/) | Cached PDF via content API | **$10** |
+| [Content download](/access/fulltext/) | Cached PDF via content API | **$10** |
 | [Text/Aboutness](/api/deprecations/) *(deprecated)* | Topic classification | **$10** |
 
 > **Note:**
@@ -62,7 +62,7 @@ Without a key you get $0.10/day—a tenth of the above, enough to try the API. [
 
 ### Increased Limits
 
-Need more than $1/day? [Paid plans](/docs/pricing/) give you higher daily allowances and prepaid usage.
+Need more than $1/day? [Paid plans](/access/pricing/) give you higher daily allowances and prepaid usage.
 
 Your daily budget refills every day at midnight UTC. A **prepaid balance** is a separate pool that automatically kicks in once your daily budget is spent for the day—buying prepaid credit doesn't change your daily budget, it just covers usage beyond it (and doesn't expire daily).
 

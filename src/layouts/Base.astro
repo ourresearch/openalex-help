@@ -19,12 +19,11 @@ const { title, description, wide = false } = Astro.props;
 // tabs). Each side carries its own color.
 const tabs = [
   { label: 'Home', href: '/', group: 'home' },
-  { label: 'How-to', href: '/help/', group: 'learn' },
+  { label: 'How-to', href: '/how-to/', group: 'learn' },
   { label: 'Tutorials', href: '/tutorials/', group: 'learn' },
   // "Access" (née Docs, oxjob #750 2026-08-09): read access (querying, data
-  // channels, pricing) + write access (fixing errors). Route stays /docs/ —
-  // precedent: the How-to tab lives at /help/.
-  { label: 'Access', href: '/docs/', group: 'reference' },
+  // channels, pricing) + write access (fixing errors).
+  { label: 'Access', href: '/access/', group: 'reference' },
   { label: 'Data', href: '/data/', group: 'reference' },
   { label: 'API', href: '/api/', group: 'reference' },
 ];

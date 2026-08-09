@@ -21,7 +21,7 @@ const { Content, headings } = await render(entry);
 
 // Help + Learn articles read like a friendly answer: narrow column, back link,
 // no sidebar. Docs + API get the full app shell (grouped sidebar + right rail).
-const isShell = tab === 'docs' || tab === 'api' || tab === 'data';
+const isShell = tab === 'access' || tab === 'api' || tab === 'data';
 const groups = isShell
   ? groupEntries(tab, (await allEntries()).filter((e) => e.tab === tab).map((e) => e.entry))
   : [];

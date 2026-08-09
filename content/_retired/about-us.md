@@ -41,7 +41,7 @@ Our sustainability model has two main parts:
 -   Usage-based pricing (for developers and UI users), and
 -   Institutional plans (for organizations). 
 
-Learn more about both on our [pricing page](/docs/pricing/).
+Learn more about both on our [pricing page](/access/pricing/).
 
 ## Acknowledgements
 

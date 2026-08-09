@@ -276,4 +276,4 @@ for work_id in work_ids:
 ```
 
 > **Info:**
-> **Downloading more than a few thousand files?** Use the [CLI tool](/docs/fulltext/#option-2-openalex-cli-up-to-a-few-million-files) for parallel downloads and automatic retries.
+> **Downloading more than a few thousand files?** Use the [CLI tool](/access/fulltext/#option-2-openalex-cli-up-to-a-few-million-files) for parallel downloads and automatic retries.

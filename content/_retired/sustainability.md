@@ -10,7 +10,7 @@ OpenAlex is governed by [OurResearch](https://ourresearch.org/), a US 501(c)(3) 
 
 ## Free data, paid services
 
-Scholarly metadata is treated in most markets as "the new oil" — value is captured by *limiting* access. OpenAlex takes the opposite position: the data is a public good and is completely open and freely reusable, and revenue comes from time and services layered on top rather than from the data itself. That means [higher-volume, faster access](/help/pricing/) for commercial providers and heavy users who need it, while the underlying data stays free for everyone. This mirrors the POSI principle of revenue based on services, not data.
+Scholarly metadata is treated in most markets as "the new oil" — value is captured by *limiting* access. OpenAlex takes the opposite position: the data is a public good and is completely open and freely reusable, and revenue comes from time and services layered on top rather than from the data itself. That means [higher-volume, faster access](/how-to/pricing/) for commercial providers and heavy users who need it, while the underlying data stays free for everyone. This mirrors the POSI principle of revenue based on services, not data.
 
 OpenAlex was established with a [$7.5M grant from Arcadia](https://blog.ourresearch.org/ourresearch-receives-7-5m-grant-from-arcadia-to-establish-openalex-a-milestone-development-for-open-science/); paid services are projected to reach full financial sustainability by 2028. Co-founder and CEO Jason Priem walks through the model, and the most common questions about it, in [this video](https://youtu.be/CZ5Q9To1zCc).
 
@@ -20,6 +20,6 @@ Open data and open source function as a guarantee to the community. As a nonprof
 
 ## What stays free
 
-The core OpenAlex data is free forever: hundreds of millions of works and all associated metadata, free to download, share, remix, and build on under CC0, with public [snapshots](/docs/snapshot/) released quarterly. Paid [services](/help/pricing/) — faster and higher-volume API access, daily [sync](/docs/sync/), and support — fund the open infrastructure without gating the data.
+The core OpenAlex data is free forever: hundreds of millions of works and all associated metadata, free to download, share, remix, and build on under CC0, with public [snapshots](/access/snapshot/) released quarterly. Paid [services](/how-to/pricing/) — faster and higher-volume API access, daily [sync](/access/sync/), and support — fund the open infrastructure without gating the data.
 
-For the short version of this page as a user question, see [What is OpenAlex's sustainability model?](/help/what-is-openalexs-sustainability-model/)
+For the short version of this page as a user question, see [What is OpenAlex's sustainability model?](/how-to/what-is-openalexs-sustainability-model/)

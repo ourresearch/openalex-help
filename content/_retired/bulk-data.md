@@ -2,7 +2,7 @@
 RETIRED 2026-08-05 (Jason, oxjob #354 Access reorg): the "Bulk data" sidebar
 section was replaced by the "Access" section (one page per access method), which
 supersedes this overview/chooser page. Preserved here (outside the build).
-/docs/bulk-data/ redirects to /docs/snapshot/.
+/access/bulk-data/ redirects to /access/snapshot/.
 -->
 ---
 title: "Bulk data"
@@ -18,15 +18,15 @@ Beyond the targeted access of the [API](/api/) and the [website](https://openale
 
 | Product | What it is | Format | Freshness | Cost |
 |---|---|---|---|---|
-| [Snapshot](/docs/snapshot/) | The complete OpenAlex database — every entity | gzipped [JSON Lines](https://jsonlines.org/) + [Apache Parquet](https://parquet.apache.org/) | Public releases quarterly; daily copies on [paid plans](https://openalex.org/pricing) | Free (public S3 bucket); daily is paid |
-| [Content archive](/docs/fulltext/) | Full-text PDFs (~60M) and Grobid TEI XML (~43M) for works | PDF, TEI XML | Continuously updated | Per-file via API/CLI; bucket sync on enterprise plans |
-| [OpenAlex CLI](/docs/cli/) | Command-line tool for downloading filtered subsets (metadata and content) | JSONL | Live (pulls from the API) | Free metadata; content per-file |
+| [Snapshot](/access/snapshot/) | The complete OpenAlex database — every entity | gzipped [JSON Lines](https://jsonlines.org/) + [Apache Parquet](https://parquet.apache.org/) | Public releases quarterly; daily copies on [paid plans](https://openalex.org/pricing) | Free (public S3 bucket); daily is paid |
+| [Content archive](/access/fulltext/) | Full-text PDFs (~60M) and Grobid TEI XML (~43M) for works | PDF, TEI XML | Continuously updated | Per-file via API/CLI; bucket sync on enterprise plans |
+| [OpenAlex CLI](/access/cli/) | Command-line tool for downloading filtered subsets (metadata and content) | JSONL | Live (pulls from the API) | Free metadata; content per-file |
 
 ## Bulk or targeted?
 
 - **Use the REST API** for lookups, searches, applications, and most analyses — it answers most questions with far less setup.
 - **Use the CLI** when you want a *subset* on disk — "all works on this topic," "these 50,000 DOIs" — without operating snapshot infrastructure.
-- **Use the snapshot** (plus a [sync method](/docs/sync/#keeping-in-sync-with-openalex) to stay current) when you need the *whole* database: data warehousing, machine-learning training, building your own search index, or offline analysis.
+- **Use the snapshot** (plus a [sync method](/access/sync/#keeping-in-sync-with-openalex) to stay current) when you need the *whole* database: data warehousing, machine-learning training, building your own search index, or offline analysis.
 - **Use the content archive** for text mining and corpus building at full-text scale.
 
 > **Warning:**
@@ -34,10 +34,10 @@ Beyond the targeted access of the [API](/api/) and the [website](https://openale
 
 ## Licensing
 
-OpenAlex metadata — the snapshot and everything the API returns — is [CC0](https://creativecommons.org/publicdomain/zero/1.0/): public domain, free to use for any purpose. The full-text files in the [content archive](/docs/fulltext/) are different: PDFs retain their original copyright, and OpenAlex grants no additional rights to them.
+OpenAlex metadata — the snapshot and everything the API returns — is [CC0](https://creativecommons.org/publicdomain/zero/1.0/): public domain, free to use for any purpose. The full-text files in the [content archive](/access/fulltext/) are different: PDFs retain their original copyright, and OpenAlex grants no additional rights to them.
 
 ## Getting started
 
-1. **Snapshot:** see [the snapshot reference](/docs/snapshot/), then follow the [download recipe](/recipes/download-to-your-machine/). To stay current afterward, pick a [sync method](/docs/sync/#keeping-in-sync-with-openalex).
-2. **Content archive:** see [Content archive](/docs/fulltext/) for the three download paths.
-3. **CLI:** `pip install openalex-official`, then `openalex download --help` ([CLI reference](/docs/cli/)).
+1. **Snapshot:** see [the snapshot reference](/access/snapshot/), then follow the [download recipe](/recipes/download-to-your-machine/). To stay current afterward, pick a [sync method](/access/sync/#keeping-in-sync-with-openalex).
+2. **Content archive:** see [Content archive](/access/fulltext/) for the three download paths.
+3. **CLI:** `pip install openalex-official`, then `openalex download --help` ([CLI reference](/access/cli/)).

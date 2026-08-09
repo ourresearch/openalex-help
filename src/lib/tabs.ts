@@ -1,8 +1,10 @@
 import { getCollection, type CollectionEntry } from 'astro:content';
 
-// Order matches the header nav: practical (help, tutorials) then reference
-// (docs, data, api) — this ordering flows into llms.txt and search.
-export const TABS = ['help', 'tutorials', 'docs', 'data', 'api'] as const;
+// Order matches the header nav: practical (how-to, tutorials) then reference
+// (access, data, api) — this ordering flows into llms.txt and search.
+// Tab keys ARE the URL segments and the content/ dir names (oxjob #750:
+// docs→access, help→how-to so every tab's route matches its label).
+export const TABS = ['how-to', 'tutorials', 'access', 'data', 'api'] as const;
 export type Tab = (typeof TABS)[number];
 
 export type AnyEntry = CollectionEntry<Tab>;

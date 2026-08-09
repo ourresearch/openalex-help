@@ -51,7 +51,7 @@ how much they can express:
 |---|---|---|
 | **Classic URL** | `/works?filter=publication_year:2020` | you want backwards compatibility with the API you already know |
 | **OQL** | `works where year is (2020)` | you're writing most applications — it reads and writes like a sentence |
-| **OQO** | `{"get_rows": "works", "filter_rows": […]}` | you're building queries from a program or an agent — it's JSON with a concrete, validatable [schema](/docs/oqo-schema/) |
+| **OQO** | `{"get_rows": "works", "filter_rows": […]}` | you're building queries from a program or an agent — it's JSON with a concrete, validatable [schema](/access/oqo-schema/) |
 
 How they relate:
 

@@ -5,7 +5,7 @@ tags: ["reference"]
 ---
 OpenAlex is a map of the global research system, and **entities** are the things on the map: [works](/data/works/), [authors](/data/authors/), [sources](/data/sources/), [institutions](/data/institutions/), [publishers](/data/publishers/), [funders](/data/funders/), [topics](/data/topics/), and more. Every entity connects to the works it produced, published, funded, or is about, and every one has a page here explaining where its records come from, what judgment calls we make in building it, and what each of its fields means.
 
-This is one half of the reference work: **Data** answers "what is this thing?", [Docs](/docs/) answers "how does querying / open access / getting the data work?", and the [API](/api/) covers the wire mechanics. They're split across tabs only to keep each table of contents scannable.
+This is one half of the reference work: **Data** answers "what is this thing?", [Docs](/access/) answers "how does querying / open access / getting the data work?", and the [API](/api/) covers the wire mechanics. They're split across tabs only to keep each table of contents scannable.
 
 ## Entity types
 

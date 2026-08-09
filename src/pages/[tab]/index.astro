@@ -17,12 +17,12 @@ const entries = (await allEntries()).filter((e) => e.tab === tab).map((e) => e.e
 const groups = groupEntries(tab, entries);
 
 const meta: Record<Tab, { label: string; h1: string; lede: string; empty?: string }> = {
-  help: {
+  'how-to': {
     label: 'How-to',
     h1: 'How-to guides',
     lede: 'Short, practical guides to the most common OpenAlex tasks.',
   },
-  docs: {
+  access: {
     label: 'Access',
     h1: 'Access Overview',
     lede: 'Every way in and out of OpenAlex — how to ask questions, how to get the data, what it costs, and how to fix what’s wrong.',
@@ -82,12 +82,12 @@ const sectionCards = groups
   .map((g) => ({ label: g.label, desc: g.desc, href: sectionTarget(g) }))
   .filter((c): c is { label: string; desc?: string; href: string } => Boolean(c.href));
 
-const isShell = tab === 'docs' || tab === 'api' || tab === 'data';
+const isShell = tab === 'access' || tab === 'api' || tab === 'data';
 
 // How-to landing (oxjob #752): a grouped topic list (the cursor.com/help
 // "Browse by topic" pattern) — each nav group renders as a labeled section
 // listing its pages. Replaced the FAQ facet bucket when 47 articles became 12.
-const isTopicList = tab === 'help';
+const isTopicList = tab === 'how-to';
 
 // Bucket tabs (FAQ + Recipes, Pass U): a flat filterable list, no curated
 // hierarchy. Pass W: filtered by a facet sidebar AND Linear-style chip
@@ -145,15 +145,15 @@ const showSidebar = false;
     <article class="prose">
       <PageHeader title={meta[tab].h1} lede={meta[tab].lede} crumbs={landingCrumbs(tab)} />
 
-      {tab === 'docs' && (
+      {tab === 'access' && (
         <Fragment>
           <p>
             This tab covers <strong>access</strong> to OpenAlex, in both directions. Most of it is
-            about <strong>read access</strong>: <a href="/docs/querying/">Querying</a> is how you
-            ask a question, <a href="/docs/get-the-data/">Get the data</a> covers the channels an
+            about <strong>read access</strong>: <a href="/access/querying/">Querying</a> is how you
+            ask a question, <a href="/access/get-the-data/">Get the data</a> covers the channels an
             answer can arrive through — from a website search to the full database — and{' '}
-            <a href="/docs/pricing/">Pricing</a> explains what that access costs (for most people,
-            nothing). The last section, <a href="/docs/fixing-errors/">Fixing errors</a>, is{' '}
+            <a href="/access/pricing/">Pricing</a> explains what that access costs (for most people,
+            nothing). The last section, <a href="/access/fixing-errors/">Fixing errors</a>, is{' '}
             <strong>write access</strong>: how to change the data when it's wrong.
           </p>
         </Fragment>

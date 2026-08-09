@@ -8,7 +8,7 @@ source_url: "https://help.openalex.org/hc/en-us/articles/41193820492951-How-do-I
 source_updated: "2026-06-13"
 ---
 > **Note:**
-> This recipe covers **Unpaywall's** title-search endpoint (`api.unpaywall.org/v2/search`), part of the [Unpaywall legacy-format surface](/docs/unpaywall/). For OpenAlex-native search — which covers titles, abstracts, and full text with more filters — see [Searching](/api/searching/).
+> This recipe covers **Unpaywall's** title-search endpoint (`api.unpaywall.org/v2/search`), part of the [Unpaywall legacy-format surface](/access/unpaywall/). For OpenAlex-native search — which covers titles, abstracts, and full text with more filters — see [Searching](/api/searching/).
 
 ## Unpaywall Title Search Endpoint
 

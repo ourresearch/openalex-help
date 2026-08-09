@@ -8,7 +8,7 @@ export const GET: APIRoute = async ({ site }) => {
   const entries = await allEntries();
   // Keys must track lib/tabs.ts TABS — the stale `entities` key here rendered
   // a literal "## undefined" heading for the data tab (caught oxjob #750).
-  const labels: Record<string, string> = { help: 'How-to', docs: 'Access', data: 'Data', api: 'API', tutorials: 'Tutorials' };
+  const labels: Record<string, string> = { 'how-to': 'How-to', access: 'Access', data: 'Data', api: 'API', tutorials: 'Tutorials' };
 
   const sections = TABS.map((tab) => {
     const rows = entries
@@ -33,8 +33,9 @@ export const GET: APIRoute = async ({ site }) => {
     'Field and vocabulary semantics (what each entity is, where its records come from,',
     'what every attribute means, controlled-vocabulary definitions) are canonical under',
     '`/data/` — e.g. the works field dictionary at `/data/works/` and work types',
-    'at `/data/work-types/`. The `/docs/` pages cover cross-cutting topics (querying,',
-    'open access, getting the data); the `/api/` pages cover endpoint mechanics (filtering,',
+    'at `/data/work-types/`. The `/access/` pages cover access to OpenAlex in both directions —',
+    'read access (querying, ways to get the data, pricing) and write access (fixing errors);',
+    'the `/api/` pages cover endpoint mechanics (filtering,',
     'sorting, grouping, query syntax).',
     '',
     ...sections,

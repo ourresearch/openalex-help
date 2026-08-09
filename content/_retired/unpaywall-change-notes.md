@@ -2,7 +2,7 @@
 RETIRED 2026-08-05 (Jason, oxjob #354): this change log is ~5 years out of
 date, so we no longer share it publicly. Preserved here (outside the content
 collections, so it does not build) in case we ever want to revive or mine it.
-/docs/unpaywall-change-notes/ redirects to /docs/unpaywall/.
+/access/unpaywall-change-notes/ redirects to /access/unpaywall/.
 -->
 ---
 title: "Unpaywall Change Notes"
