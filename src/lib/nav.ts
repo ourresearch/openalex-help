@@ -56,7 +56,7 @@ export const NAV_GROUPS: Record<string, NavGroup[]> = {
       // pages — Citations, Open access (moved in from Docs), and Fields.
       slugs: [
         'native',
-        { label: 'Works', slug: 'works', children: ['works/citations', 'works/open-access', 'works/attributes'] },
+        { label: 'Works', slug: 'works', children: ['works/citations', 'works/open-access', 'works/corpus', 'works/attributes'] },
         'authors',
         // Sources is a subgroup (Jason 2026-08-08, Pass AC): Repositories moved
         // in from the Docs tab's dissolved "How it works" section, and the

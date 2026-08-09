@@ -154,7 +154,7 @@ See [Open access](/data/works/open-access/) for how these fields combine.
 *Boolean.* True if the work is [paratext](/data/work-types/) (covers, tables of contents, mastheads, and similar). Now derived directly from `type` — true exactly when `type` is `paratext`. Filter with `type:paratext` instead.
 
 ### `is_xpac`
-*Boolean.* True if the work is part of the XPAC (Expansion Pack) dataset — the 190M+ works added in the Walden update, primarily datasets and single-repository records. Data quality on XPAC works is lower but improving. XPAC works are excluded from API results by default; include them with `include_xpac=true`.
+*Boolean.* True if the work belongs to the [expansion corpus](/data/works/corpus/) — the ~190M works added in the Walden update (primarily datasets and single-repository records), formerly called "XPAC" (Expansion Pack). Data quality is lower but improving. Expansion works are excluded from API results by default; include them with `include_xpac=true`. See [Expansion corpus](/data/works/corpus/) for core/expansion/all.
 
 ### `indexed_in`
 *List.* The [indexes](/data/indexes/) this work is indexed in. Possible values: `arxiv`, `crossref`, `doaj`, `pubmed`.

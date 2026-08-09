@@ -33,6 +33,20 @@ So in practice, native entities go by their short form (`W2741809807`) and every
 
 Every entity also carries an [`ids`](/data/common-attributes/#ids) object mapping it to the outside world's identifiers where they exist — DOIs, ORCIDs, RORs, ISSNs, Wikidata QIDs — so you can move between OpenAlex and the rest of the scholarly-metadata ecosystem.
 
+### Canonical external IDs
+
+Each entity type has a **canonical external ID**: the single most widely-adopted identifier for that kind of thing. It's the one OpenAlex leans on hardest when matching records, and usually the one you already have in hand — so it's the natural key for looking an entity up (you can [fetch by external ID](/api/get-single-entities/) directly, no search needed).
+
+| Entity | Canonical external ID |
+|--------|-----------------------|
+| [Works](/data/works/) | DOI |
+| [Authors](/data/authors/) | ORCID |
+| [Sources](/data/sources/) | ISSN-L |
+| [Institutions](/data/institutions/) | ROR |
+| [Publishers](/data/publishers/) | Wikidata |
+
+Not every type has one clean canonical ID — [funders](/data/funders/) carry both ROR and Crossref Funder Registry IDs, [topics](/data/topics/) link out to Wikipedia — but all known external IDs appear in an entity's `ids` object regardless. To go from an ID you hold to an OpenAlex entity, see [Finding OpenAlex IDs](/how-to/finding-openalex-ids/).
+
 ## Merged entities
 
 OpenAlex sometimes discovers that two IDs describe the same real-world thing — two author records that are actually one person, two work records for one paper. When that happens the entities are **merged**: one ID becomes canonical and the other becomes a *merged-away* ID that permanently redirects to it. Requesting a merged-away ID returns the canonical entity, so old IDs never break. Merges are a normal, ongoing part of keeping the map accurate.
