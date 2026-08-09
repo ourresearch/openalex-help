@@ -205,7 +205,9 @@ const columns = [
   .col {
     display: flex;
     flex-direction: column;
-    gap: 0.9rem;
+    /* Tight vertical gap so the nine cards read as three columns, not rows
+       (Jason 2026-08-09, oxjob #750); horizontal gap stays wide (.columns). */
+    gap: 0.3rem;
   }
   .col > :global(.card),
   .col > .ai-card {
