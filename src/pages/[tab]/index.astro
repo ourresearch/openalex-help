@@ -99,20 +99,6 @@ const sectionCards = groups
   <article class="prose">
     <PageHeader title={meta[tab].h1} lede={meta[tab].lede} crumbs={landingCrumbs(tab)} />
 
-    {tab === 'access' && (
-      <Fragment>
-        <p>
-          This tab covers <strong>access</strong> to OpenAlex, in both directions. Most of it is
-          about <strong>read access</strong>: <a href="/access/querying/">Querying</a> is how you
-          ask a question, <a href="/access/get-the-data/">Get the data</a> covers the channels an
-          answer can arrive through — from a website search to the full database — and{' '}
-          <a href="/access/pricing/">Pricing</a> explains what that access costs (for most people,
-          nothing). The last section, <a href="/access/fixing-errors/">Fixing errors</a>, is{' '}
-          <strong>write access</strong>: how to change the data when it's wrong.
-        </p>
-      </Fragment>
-    )}
-
     {tab === 'data' && (
       <Fragment>
         <p>

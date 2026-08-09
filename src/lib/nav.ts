@@ -105,6 +105,15 @@ export const NAV_GROUPS: Record<string, NavGroup[]> = {
   // the flat FAQ facet bucket (#354 Pass U) when 47 articles became 12 pages.
   'how-to': [
     {
+      // Get started (oxjob #750): every tab opens with a "Get started" section
+      // whose first page is "Overview" — the tab's own landing. Without this
+      // the How-to landing had no drawer entry, so the nav drawer never showed
+      // you were on it (Jason: the drawer should always tell you where you are).
+      label: 'Get started',
+      desc: 'What the How-to guides cover and how they’re organized.',
+      slugs: [{ label: 'Overview', href: '/how-to/' }],
+    },
+    {
       label: 'Using OpenAlex',
       desc: 'Finding IDs, common search recipes, and getting data into other tools.',
       slugs: ['finding-openalex-ids', 'searching-and-counting', 'integrations'],
@@ -133,9 +142,11 @@ export const NAV_GROUPS: Record<string, NavGroup[]> = {
   // (was pin-ranked in the old bucket).
   tutorials: [
     {
+      // Get started (oxjob #750): Overview (the tab landing) + Quick Start, so
+      // the drawer shows the landing and the reference-tab pattern holds here too.
       label: 'Get started',
       desc: 'Your first few minutes with OpenAlex.',
-      slugs: ['quickstart'],
+      slugs: [{ label: 'Overview', href: '/tutorials/' }, 'quickstart'],
     },
     {
       label: 'Output & subjects',
