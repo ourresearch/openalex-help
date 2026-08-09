@@ -267,11 +267,8 @@ export const HELP_CARD_FACETS: Record<string, HelpTags> = {
   'why-are-my-reference-counts-lower-than-expected': { topic: ['how-we-build-it'], entity: ['works'] },
   'why-does-the-abstract-field-have-text-that-isnt-part-of-the-abstract': { topic: ['how-we-build-it'], entity: ['works'] },
 
-  'fix-errors-in-openalex': { topic: ['fixing-errors'] },
-  'how-can-i-fix-errors-in-an-openalex-author-profile': { topic: ['fixing-errors'], entity: ['authors'] },
-  'how-can-i-fix-errors-in-an-openalex-source-profile': { topic: ['fixing-errors'], entity: ['sources'] },
-  'how-can-i-correct-institutional-affiliations-for-a-work': { topic: ['fixing-errors'], entity: ['institutions', 'works'] },
-  'how-can-i-correct-the-open-access-status-of-journals-in-unpaywall': { topic: ['fixing-errors'], entity: ['sources'] },
+  // (Pass AD, oxjob #750: the five superseded fixing-errors FAQ articles were
+  // retired — the topic now lives at /data/fixing-errors/.)
   'what-are-alternate-names-and-how-i-do-change-them': { topic: ['fixing-errors'], entity: ['authors'] },
   'why-are-my-open-access-curation-requests-getting-rejected': { topic: ['fixing-errors'], entity: ['works'] },
   'why-is-the-date-field-wrong-and-how-can-i-fix-it': { topic: ['fixing-errors'], entity: ['works'] },

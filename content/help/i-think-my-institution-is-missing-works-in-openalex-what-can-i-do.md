@@ -16,6 +16,6 @@ If you notice that affiliation metadata is inaccurate or missing, let the publis
 
 Check for your institution's ROR record by searching at [https://ror.org/search](https://ror.org/search) . If the record is inaccurate or incomplete (particularly if institution aliases or key sub-affiliation are missing, use the "suggest a change" link at the bottom of the page to let ROR know.
 
-If the affiliation text and ROR record are right and we failed to match some works to your institution, use the [works-magnet](https://works-magnet.esr.gouv.fr/) to find the errors and send corrections directly to OpenAlex. Here is the link to a tutorial that might help you do that: [https://www.youtube.com/watch?v=OIFHhz2OQPg](https://www.youtube.com/watch?v=OIFHhz2OQPg) 
+If the affiliation text and ROR record are right and we failed to match some works to your institution, the fix is an affiliation correction: member institutions can find and fix the errors themselves with the [Affiliation Editor](/data/fixing-errors/affiliations/), and anyone can [file a ticket](https://openalex.org/contact) with specific examples. 
 
 If you think there is another issue, let us know by emailing us at [support@openalex.org](mailto:support@openalex), including specific examples when possible.

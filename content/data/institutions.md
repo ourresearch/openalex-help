@@ -34,7 +34,7 @@ A single real-world organization can act as more than one kind of OpenAlex entit
 
 ### Known failure modes
 
-The parser can miss or mis-assign institutions, especially for organizations added to ROR after the model was last trained (April 2023) — those depend on the rules pass and ROR matcher to be caught at all. Coverage of layered national systems is limited by ROR's own coverage: where a sub-unit has no ROR record, affiliations can only match its parent. Institutions can also be affected by author-disambiguation errors on the works that feed them. Institutions are [correctable through curation](/data/curations/); institutions can review and fix their own affiliations with the [works-magnet tool](https://works-magnet.esr.gouv.fr/).
+The parser can miss or mis-assign institutions, especially for organizations added to ROR after the model was last trained (April 2023) — those depend on the rules pass and ROR matcher to be caught at all. Coverage of layered national systems is limited by ROR's own coverage: where a sub-unit has no ROR record, affiliations can only match its parent. Institutions can also be affected by author-disambiguation errors on the works that feed them. Institutions are [correctable through curation](/data/curations/); member institutions can review and fix their own affiliation matches with the [Affiliation Editor](/data/fixing-errors/affiliations/).
 
 ## Attributes
 

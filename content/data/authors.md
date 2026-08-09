@@ -50,7 +50,7 @@ Two author IDs fall outside the normal disambiguation process; you may encounter
 
 ### Known failure modes
 
-Disambiguation isn't perfect. The two failure modes are **splitting** (one real person's works spread across several profiles) and **merging** (works from different people collapsed into one profile). Because a profile's attributes — alternate names, institutions, metrics, topics — are all derived from its linked works, they can't be edited directly. You fix an author by [correcting which works belong to them](/data/curations/): see [How can I fix errors in an OpenAlex author profile?](/help/how-can-i-fix-errors-in-an-openalex-author-profile/). Our methods, code, and trained models are fully open source ([openalex-name-disambiguation](https://github.com/ourresearch/openalex-name-disambiguation/tree/main/V3); [live pipeline](https://github.com/ourresearch/openalex-databricks/tree/main/jobs/author_name_disambiguation/v3)).
+Disambiguation isn't perfect. The two failure modes are **splitting** (one real person's works spread across several profiles) and **merging** (works from different people collapsed into one profile). Because a profile's attributes — alternate names, institutions, metrics, topics — are all derived from its linked works, they can't be edited directly. You fix an author by [correcting which works belong to them](/data/curations/): see [Fixing errors: Authors](/data/fixing-errors/authors/). Our methods, code, and trained models are fully open source ([openalex-name-disambiguation](https://github.com/ourresearch/openalex-name-disambiguation/tree/main/V3); [live pipeline](https://github.com/ourresearch/openalex-databricks/tree/main/jobs/author_name_disambiguation/v3)).
 
 ## Attributes
 

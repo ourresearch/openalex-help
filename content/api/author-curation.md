@@ -9,8 +9,7 @@ source_updated: "2026-05-17"
 OpenAlex assigns [authors](/data/authors/) to works automatically, but sometimes we get things wrong.
 Author curation lets you fix that: sign in, tell us what's wrong, and we'll make the change.
 
-> **Note:**
-> The `POST /curations` endpoint is live. The website UI for submitting curations is still being built.
+This page covers the API mechanics; for the self-serve workflow (claiming your profile, split and merge, using AI agents), see [Fixing errors: Authors](/data/fixing-errors/authors/).
 
 ## What you can curate
 
@@ -33,7 +32,7 @@ POST https://user.openalex.org/curations
 
 The endpoint accepts a single JSON object or an array of objects.
 
-Requests are JWT-protected. Pass the token either as an `Authorization: Bearer <token>` header or as a `?jwt=<token>` query parameter. Site curators and organization owners/curators can submit; other authenticated users get a `403`.
+Requests are authenticated with your [API key](/api/authentication/), passed as an `Authorization: Bearer <api_key>` header. Owners of a claimed author profile can curate that profile; site curators and organization owners/curators can also submit.
 
 ### Claim a work
 

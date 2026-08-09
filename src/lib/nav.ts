@@ -97,6 +97,14 @@ export const NAV_GROUPS: Record<string, NavGroup[]> = {
       desc: 'Things users mint, not OpenAlex.',
       slugs: ['user-created', 'collections', 'curations'],
     },
+    {
+      // Pass AD (Jason 2026-08-08): the old structured curation tools (Google
+      // Forms, works-magnet, curate/journals) are all dead — the model is
+      // tickets processed by AI agents, plus two self-serve lanes.
+      label: 'Fixing errors',
+      desc: 'How to report errors, fix them yourself, and get help.',
+      slugs: ['fixing-errors', 'fixing-errors/works', 'fixing-errors/authors', 'fixing-errors/affiliations'],
+    },
   ],
 
   // help (FAQ) has NO nav groups (oxjob #354 Pass U, 2026-08-06): it's a flat
