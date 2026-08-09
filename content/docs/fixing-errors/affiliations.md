@@ -15,7 +15,7 @@ OpenAlex reads the [raw affiliation strings](/data/raw-affiliation-strings/) aut
 
 ## Using AI agents
 
-Like [author curation](/data/fixing-errors/authors/), affiliation curation is plain HTTP with your [API key](/api/authentication/) — an [AI agent](/docs/agents/) can do an entire cleanup for you. The loop an agent runs:
+Like [author curation](/docs/fixing-errors/authors/), affiliation curation is plain HTTP with your [API key](/api/authentication/) — an [AI agent](/docs/agents/) can do an entire cleanup for you. The loop an agent runs:
 
 1. **Find candidates**: `GET api.openalex.org/raw-affiliation-strings?q=<search>&unmatched-institutions=I123…` lists strings containing your search text that aren't yet linked to your institution (`matched-institutions=` audits existing links).
 2. **Submit corrections**: `POST user.openalex.org/curations` (with `Authorization: Bearer <api_key>`) — a JSON array of `{"entity": "ras", "entity_id": "<the exact string>", "property": "institution_ids", "action": "add", "value": "https://openalex.org/I123…"}` (or `"action": "remove"` to unlink). The response reports each item's outcome individually.

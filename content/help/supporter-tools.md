@@ -16,7 +16,7 @@ The Admin Dashboard shows OpenAlex usage data for your institution: how many of 
 
 ## How do I activate the Affiliation Editor?
 
-The Affiliation Editor lets you curate the affiliation strings OpenAlex matches to your institution — removing erroneous matches and adding missed ones — with your changes live in OpenAlex within about two days. (For what it does and how it fits into fixing affiliation errors generally, see [Affiliations](/data/fixing-errors/affiliations/).)
+The Affiliation Editor lets you curate the affiliation strings OpenAlex matches to your institution — removing erroneous matches and adding missed ones — with your changes live in OpenAlex within about two days. (For what it does and how it fits into fixing affiliation errors generally, see [Affiliations](/docs/fixing-errors/affiliations/).)
 
 To activate it, contact [kyle@openalex.org](mailto:kyle@openalex.org). We provide group training and video resources first, then enable the tool on specific accounts at your institution. We periodically monitor curation accuracy to keep quality high.
 

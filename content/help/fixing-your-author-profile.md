@@ -4,7 +4,7 @@ description: "Claim your OpenAlex author profile and fix it yourself: add and re
 tags: ["fixing"]
 synonyms: ["author profile", "claim profile", "merge profiles", "alternate names", "wrong works"]
 ---
-Your author profile is the big self-serve case in OpenAlex: you don't need to file a ticket — claim the profile and fix it yourself. This page is the recipes; the full story (everything you can change, how curations work, the API) is in the [Authors fixing-errors reference](/data/fixing-errors/authors/).
+Your author profile is the big self-serve case in OpenAlex: you don't need to file a ticket — claim the profile and fix it yourself. This page is the recipes; the full story (everything you can change, how curations work, the API) is in the [Authors fixing-errors reference](/docs/fixing-errors/authors/).
 
 ## How do I claim my profile?
 
@@ -32,8 +32,8 @@ The alternate names on a profile are the name variants that appear on its linked
 
 ## Can an AI agent do this for me?
 
-Yes — the curation API authenticates with just your [API key](/api/authentication/), so you can hand an agent your CV and author ID and let it do the whole cleanup. See [Using AI agents](/data/fixing-errors/authors/#using-ai-agents) for a ready-made prompt and [Author Curation](/api/author-curation/) for the mechanics.
+Yes — the curation API authenticates with just your [API key](/api/authentication/), so you can hand an agent your CV and author ID and let it do the whole cleanup. See [Using AI agents](/docs/fixing-errors/authors/#using-ai-agents) for a ready-made prompt and [Author Curation](/api/author-curation/) for the mechanics.
 
 ## Can I fix a profile that isn't mine?
 
-Claiming is for your own profile only. Cleaning up someone else's — as a librarian, co-author, or research-office staffer — goes through a [ticket](https://openalex.org/contact); see [the reference](/data/fixing-errors/authors/#fixing-a-profile-that-isnt-yours) for what to include.
+Claiming is for your own profile only. Cleaning up someone else's — as a librarian, co-author, or research-office staffer — goes through a [ticket](https://openalex.org/contact); see [the reference](/docs/fixing-errors/authors/#fixing-a-profile-that-isnt-yours) for what to include.

@@ -13,7 +13,7 @@ Pick the channel that fits:
 - **Come to office hours.** We host weekly office hours where anyone can show up and talk through questions with the team: [openalex.org/events](https://openalex.org/events).
 - **File a support ticket** at [openalex.org/contact](https://openalex.org/contact) — the right channel for account issues, data errors, and anything that needs us specifically.
 
-Reporting a data error? A ticket is the default lane for that too — see [Fixing errors](/data/fixing-errors/) for how error reports are handled and which fixes you can make yourself.
+Reporting a data error? A ticket is the default lane for that too — see [Fixing errors](/docs/fixing-errors/) for how error reports are handled and which fixes you can make yourself.
 
 ## How long does it take to get a response to a ticket?
 

@@ -19,7 +19,7 @@ We track the external [indexes](/data/indexes/) a record can come from — Cross
 - Aggregators and subject repositories: HAL, arXiv, Zenodo, Dergipark, OSTI, RePEc, and many more
 - Thousands of institutional [repositories](/data/sources/repositories/), from [UNC's CDR](https://cdr.lib.unc.edu/) to [Michigan's Deep Blue](https://deepblue.lib.umich.edu/documents) ([full list](https://unpaywall.org/sources))
 - Parsing of 50M+ open access PDFs, journal landing pages, and direct publisher feeds
-- Corrections from users through [community curation](/data/fixing-errors/)
+- Corrections from users through [community curation](/docs/fixing-errors/)
 
 ## Organize
 

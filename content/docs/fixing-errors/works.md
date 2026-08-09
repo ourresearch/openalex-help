@@ -3,7 +3,7 @@ title: "Works"
 description: "How to report errors on works — wrong open-access status, broken fulltext links, bad metadata — and what makes a report we can act on."
 tags: ["reference"]
 ---
-Errors on [works](/data/works/) — wrong open-access status, broken links, bad metadata, duplicates, missing works — are fixed by ticket: [file one at openalex.org/contact](https://openalex.org/contact). Our AI agents turn reports into structured corrections, verify them, and apply them (see the [overview](/data/fixing-errors/) for how that pipeline works).
+Errors on [works](/data/works/) — wrong open-access status, broken links, bad metadata, duplicates, missing works — are fixed by ticket: [file one at openalex.org/contact](https://openalex.org/contact). Our AI agents turn reports into structured corrections, verify them, and apply them (see the [overview](/docs/fixing-errors/) for how that pipeline works).
 
 What makes a report fixable:
 

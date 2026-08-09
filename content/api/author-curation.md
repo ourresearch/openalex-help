@@ -9,7 +9,7 @@ source_updated: "2026-05-17"
 OpenAlex assigns [authors](/data/authors/) to works automatically, but sometimes we get things wrong.
 Author curation lets you fix that: sign in, tell us what's wrong, and we'll make the change.
 
-This page covers the API mechanics; for the self-serve workflow (claiming your profile, split and merge, using AI agents), see [Fixing errors: Authors](/data/fixing-errors/authors/).
+This page covers the API mechanics; for the self-serve workflow (claiming your profile, split and merge, using AI agents), see [Fixing errors: Authors](/docs/fixing-errors/authors/).
 
 ## What you can curate
 

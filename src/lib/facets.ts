@@ -268,7 +268,7 @@ export const HELP_CARD_FACETS: Record<string, HelpTags> = {
   'why-does-the-abstract-field-have-text-that-isnt-part-of-the-abstract': { topic: ['how-we-build-it'], entity: ['works'] },
 
   // (Pass AD, oxjob #750: the five superseded fixing-errors FAQ articles were
-  // retired — the topic now lives at /data/fixing-errors/.)
+  // retired — the topic now lives at /docs/fixing-errors/.)
   'what-are-alternate-names-and-how-i-do-change-them': { topic: ['fixing-errors'], entity: ['authors'] },
   'why-are-my-open-access-curation-requests-getting-rejected': { topic: ['fixing-errors'], entity: ['works'] },
   'why-is-the-date-field-wrong-and-how-can-i-fix-it': { topic: ['fixing-errors'], entity: ['works'] },

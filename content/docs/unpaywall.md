@@ -40,7 +40,7 @@ For any new integration, use an OpenAlex-native sync method instead — they cov
 
 ## Fixing errors
 
-- **A specific article's OA status looks wrong:** [file a ticket](https://openalex.org/contact) — see [Fixing errors: Works](/data/fixing-errors/works/) for what to include (check from outside your university network first, and link the open copy).
+- **A specific article's OA status looks wrong:** [file a ticket](https://openalex.org/contact) — see [Fixing errors: Works](/docs/fixing-errors/works/) for what to include (check from outside your university network first, and link the open copy).
 - **A journal's OA status is wrong:** [file a ticket](https://openalex.org/contact) with the journal's ISSN and evidence.
 - **Anything else:** [support@unpaywall.org](mailto:support@unpaywall.org).
 

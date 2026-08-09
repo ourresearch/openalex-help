@@ -797,6 +797,18 @@
 /help/how-can-i-correct-the-open-access-status-of-journals-in-unpaywall  /help/fixing-data-errors/  301
 /help/how-can-i-correct-the-open-access-status-of-journals-in-unpaywall/  /help/fixing-data-errors/  301
 
+# Pass AD follow-up (Jason 2026-08-08): Fixing errors moved Data → Docs the
+# same day it shipped — it's a cross-cutting how-to topic, not entity
+# reference. The /data/ URLs were briefly live and linked.
+/data/fixing-errors  /docs/fixing-errors/  301
+/data/fixing-errors/  /docs/fixing-errors/  301
+/data/fixing-errors/works  /docs/fixing-errors/works/  301
+/data/fixing-errors/works/  /docs/fixing-errors/works/  301
+/data/fixing-errors/authors  /docs/fixing-errors/authors/  301
+/data/fixing-errors/authors/  /docs/fixing-errors/authors/  301
+/data/fixing-errors/affiliations  /docs/fixing-errors/affiliations/  301
+/data/fixing-errors/affiliations/  /docs/fixing-errors/affiliations/  301
+
 # >>> WILDCARDS LAST — do not move, do not add rules after this section >>>
 # CF Pages bug (oxjob #354, verified 2026-08-01): once a wildcard/splat rule
 # appears, CF silently stops processing rules some distance later in the file

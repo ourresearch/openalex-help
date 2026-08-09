@@ -4,7 +4,7 @@ description: "What to do when works are matched to the wrong institution — or 
 tags: ["fixing"]
 synonyms: ["wrong institution", "affiliation error", "missing works", "ROR", "affiliation editor"]
 ---
-"The affiliations are wrong" means one of two things: OpenAlex matched an affiliation string to the wrong institution (or missed it), or the institution's own record is wrong. The fixes are different, so start by figuring out which one you have. Full detail lives in the [Affiliations fixing-errors reference](/data/fixing-errors/affiliations/); this page is the recipes.
+"The affiliations are wrong" means one of two things: OpenAlex matched an affiliation string to the wrong institution (or missed it), or the institution's own record is wrong. The fixes are different, so start by figuring out which one you have. Full detail lives in the [Affiliations fixing-errors reference](/docs/fixing-errors/affiliations/); this page is the recipes.
 
 ## How do I fix a wrong or missing institution match?
 
@@ -26,4 +26,4 @@ Three causes, in the order to check them:
 
 ## Can an AI agent do this for me?
 
-Yes — affiliation curation is plain HTTP with your [API key](/api/authentication/), so an agent can run the whole find-candidates → submit-corrections → track loop for you. See [Using AI agents](/data/fixing-errors/affiliations/#using-ai-agents) in the reference.
+Yes — affiliation curation is plain HTTP with your [API key](/api/authentication/), so an agent can run the whole find-candidates → submit-corrections → track loop for you. See [Using AI agents](/docs/fixing-errors/affiliations/#using-ai-agents) in the reference.

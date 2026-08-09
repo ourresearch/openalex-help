@@ -4,7 +4,7 @@ description: "How to report anything wrong in OpenAlex — OA status, sources, d
 tags: ["fixing"]
 synonyms: ["report error", "wrong data", "open access status", "wrong date", "support ticket"]
 ---
-For your own [author profile](/help/fixing-your-author-profile/) and [affiliation matching](/help/fixing-affiliations/) there are self-serve fixes. For everything else, the fix is a **ticket**: [file it at openalex.org/contact](https://openalex.org/contact), and our AI agents turn it into a structured correction, verify it, and apply it. How that pipeline works is covered in the [Fixing errors reference](/data/fixing-errors/); this page is how to use it well.
+For your own [author profile](/help/fixing-your-author-profile/) and [affiliation matching](/help/fixing-affiliations/) there are self-serve fixes. For everything else, the fix is a **ticket**: [file it at openalex.org/contact](https://openalex.org/contact), and our AI agents turn it into a structured correction, verify it, and apply it. How that pipeline works is covered in the [Fixing errors reference](/docs/fixing-errors/); this page is how to use it well.
 
 ## How do I write a report that gets acted on?
 
@@ -21,7 +21,7 @@ Four things make a report fixable:
 
 The most common report — and about half of these reports are themselves wrong, usually because the reporter checked from inside their institution's network, where paywalled articles look free. So first, **check the article from outside your university network and VPN** (your phone on cellular data works well). It's really open if you can view the fulltext with no login, payment, or account creation, on a legal site (the publisher or a trusted repository). Watch the traps: journals that are open *now* but whose older content is closed; "PDF" buttons that lead to a paywall; free-with-an-account (not OA); Sci-Hub (also not OA).
 
-If it passes that test, [file a ticket](https://openalex.org/contact) and **include the URL of the free-to-read copy — that URL is the fix.** See [Works](/data/fixing-errors/works/) in the reference for more, and [Open access](/data/works/open-access/) for how statuses are determined.
+If it passes that test, [file a ticket](https://openalex.org/contact) and **include the URL of the free-to-read copy — that URL is the fix.** See [Works](/docs/fixing-errors/works/) in the reference for more, and [Open access](/data/works/open-access/) for how statuses are determined.
 
 ## How do I fix errors in a source or journal profile?
 

@@ -5,7 +5,7 @@ tags: ["reference"]
 ---
 OpenAlex assembles [author](/data/authors/) profiles algorithmically: it takes the author names on hundreds of millions of works and decides which names refer to the same real person. Modern disambiguation is very good, but at this scale it's never perfect — works get attached to the wrong profile, one person ends up split across duplicates, names display wrong.
 
-Authors are the big self-serve exception to the [ticket-based default](/data/fixing-errors/): **you can fix your own profile yourself, by claiming it.**
+Authors are the big self-serve exception to the [ticket-based default](/docs/fixing-errors/): **you can fix your own profile yourself, by claiming it.**
 
 ## Claim your profile
 
@@ -26,7 +26,7 @@ Every correction is a [curation](/data/curations/) — an auditable record of wh
 - **Change your match name** — the name used to match future works to you (API only).
 - **Set or correct your ORCID** (API only).
 
-Everything else on a profile — alternate names, institutional affiliations, topics, citation metrics — is *derived* from its works, so you don't (and can't) edit those directly: fix which works belong to you and the rest follows. (Wrong institution showing on one of your works? That's an [affiliation-matching fix](/data/fixing-errors/affiliations/), not an author fix.)
+Everything else on a profile — alternate names, institutional affiliations, topics, citation metrics — is *derived* from its works, so you don't (and can't) edit those directly: fix which works belong to you and the rest follows. (Wrong institution showing on one of your works? That's an [affiliation-matching fix](/docs/fixing-errors/affiliations/), not an author fix.)
 
 Curations don't apply instantly: each one is **pending** until the next data refresh picks it up, and your changes are typically live within about two days. You can track (and cancel) your pending curations from your account.
 
@@ -52,4 +52,4 @@ The agent reads your profile, submits the corrections as curations (a `POST` to 
 
 ## Fixing a profile that isn't yours
 
-Claiming is for your own profile. If you're a librarian, co-author, or research-office staffer cleaning up someone else's profile, [file a ticket](https://openalex.org/contact) — include the author ID, the specific works or names that are wrong, and evidence, per the [good-ticket guidance](/data/fixing-errors/).
+Claiming is for your own profile. If you're a librarian, co-author, or research-office staffer cleaning up someone else's profile, [file a ticket](https://openalex.org/contact) — include the author ID, the specific works or names that are wrong, and evidence, per the [good-ticket guidance](/docs/fixing-errors/).

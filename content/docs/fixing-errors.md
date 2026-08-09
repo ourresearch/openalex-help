@@ -9,10 +9,10 @@ OpenAlex is built by inference at enormous scale — [hundreds of millions of wo
 
 | What's wrong | What to do |
 |---|---|
-| A work (OA status, metadata, links, citations, duplicates, missing) | File a ticket — see [Works](/data/fixing-errors/works/) |
+| A work (OA status, metadata, links, citations, duplicates, missing) | File a ticket — see [Works](/docs/fixing-errors/works/) |
 | A source or journal (metadata, OA classification, missing journal) | File a [ticket](https://openalex.org/contact) |
-| Your author profile | Fix it yourself — see [Authors](/data/fixing-errors/authors/) |
-| Affiliation matching | Affiliation Editor (members) or ticket — see [Affiliations](/data/fixing-errors/affiliations/) |
+| Your author profile | Fix it yourself — see [Authors](/docs/fixing-errors/authors/) |
+| Affiliation matching | Affiliation Editor (members) or ticket — see [Affiliations](/docs/fixing-errors/affiliations/) |
 | Institution metadata (name, hierarchy, ROR record) | Fix it at [ROR](https://ror.org/) — we sync from ROR |
 | Anything else | File a [ticket](https://openalex.org/contact) — be specific, include URLs |
 
@@ -20,11 +20,11 @@ OpenAlex is built by inference at enormous scale — [hundreds of millions of wo
 
 There are two lanes:
 
-**Ticket-based — the default, and it works for everything.** [File a ticket](https://openalex.org/contact) describing what's wrong. There are no forms and no special tools to learn: our AI agents read every report, turn it into a structured correction where they can, verify it against the evidence, and apply it — or escalate to a human when a report points at a bigger bug (say, a repository we're not harvesting). Verification matters more than you'd think: in our tests, about half of user-submitted corrections were themselves wrong (see [Works](/data/fixing-errors/works/) for the most common reason).
+**Ticket-based — the default, and it works for everything.** [File a ticket](https://openalex.org/contact) describing what's wrong. There are no forms and no special tools to learn: our AI agents read every report, turn it into a structured correction where they can, verify it against the evidence, and apply it — or escalate to a human when a report points at a bigger bug (say, a repository we're not harvesting). Verification matters more than you'd think: in our tests, about half of user-submitted corrections were themselves wrong (see [Works](/docs/fixing-errors/works/) for the most common reason).
 
-**Self-serve — for the two highest-volume cases.** If it's *your author profile*, [claim it and fix it yourself](/data/fixing-errors/authors/). If it's *affiliation matching* and you're at a [member institution](/docs/pricing/), use the [Affiliation Editor](/data/fixing-errors/affiliations/). Both are also fully drivable by [AI agents](/docs/agents/) with just your API key.
+**Self-serve — for the two highest-volume cases.** If it's *your author profile*, [claim it and fix it yourself](/docs/fixing-errors/authors/). If it's *affiliation matching* and you're at a [member institution](/docs/pricing/), use the [Affiliation Editor](/docs/fixing-errors/affiliations/). Both are also fully drivable by [AI agents](/docs/agents/) with just your API key.
 
-One case doesn't belong to us at all: **institution metadata** — the institution's name, alternate names, parent/child hierarchy, or anything else on its ROR record. OpenAlex syncs institutions from [ROR](https://ror.org/), so the fix happens there; see [Affiliations](/data/fixing-errors/affiliations/) for details.
+One case doesn't belong to us at all: **institution metadata** — the institution's name, alternate names, parent/child hierarchy, or anything else on its ROR record. OpenAlex syncs institutions from [ROR](https://ror.org/), so the fix happens there; see [Affiliations](/docs/fixing-errors/affiliations/) for details.
 
 ## Writing a good ticket
 
