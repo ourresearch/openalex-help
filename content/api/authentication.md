@@ -1,148 +1,41 @@
 ---
-title: "Authentication & Pricing"
-description: "API keys, pricing tiers, and usage limits"
+title: "Authentication"
+description: "API keys, sending your key, rate limits, and keeping tabs on your usage"
 tags: ["api"]
 source_id: "api-reference/authentication"
 source_url: "https://developers.openalex.org/api-reference/authentication"
-source_updated: "2026-06-20"
+source_updated: "2026-08-09"
 ---
-OpenAlex data is and will remain available at no cost. Our [data snapshot](/access/snapshot/) is totally free for bulk download. The API is a freemium service with free daily usage—$0.10/day with no key, or 10× that ($1/day) with a [free API key](#getting-an-api-key)—and after that you pay for what you use. [We sell services, not data.](https://openscholarlyinfrastructure.org/)
+OpenAlex data is free, and so is casual use of the API — you can make basic queries with no key at all. To use the API at any real scale, though, you'll want a **free API key**: it raises your daily budget 10× and lets you track your usage. This page covers getting a key, sending it, and staying inside the rate limits. For **what the API costs** and how billing works — that's a separate concern — see [Pricing](/access/pricing/), with worked numbers on the [Example costs](/access/pricing/example-costs/) page.
 
-## Getting an API Key
+## Getting an API key
 
-To use the API at scale, you need a key. It's free—just [make an account](https://openalex.org/) (takes 30 seconds) and copy your key from [openalex.org/settings/api](https://openalex.org/settings/api). Then add `api_key=YOUR_KEY` to your API calls:
+It's free. [Make an account](https://openalex.org/) (about 30 seconds) and copy your key from [openalex.org/settings/api](https://openalex.org/settings/api).
+
+## Sending your key
+
+Add it as an `api_key` query parameter:
 
 ```bash
 curl "https://api.openalex.org/works?api_key=YOUR_KEY"
 ```
 
-## Costs
-
-### Pricing by Endpoint
-
-> **Tip:**
-> Use `per_page=100` to load many results per query--it makes your query budget go much further.
-
-| Operation | Description | **Cost per 1,000 calls** |
-|-----------|-------------|--------------------------|
-| [Get singleton](/api/get-single-entities/) | Retrieve a single entity by ID or DOI | **Free** |
-| [List+Filter](/api/filtering/) | Query and filter entities | **$0.10** |
-| [Search](/api/searching/) | Full-text keyword search | **$1** |
-| [Semantic search](/api/searching/) | AI-powered semantic search | **$1** |
-| [Content download](/access/fulltext/) | Cached PDF via content API | **$10** |
-| [Text/Aboutness](/api/deprecations/) *(deprecated)* | Topic classification | **$10** |
-
-> **Note:**
-> The [openalex.org](https://openalex.org) website runs on this same API, so browsing it draws from the same budget (anonymous browsing uses the $0.10/day no-key budget; sign in for $1/day). Viewing a single record's page (one work, author, source, etc.) is free, but a search or a results page loads several billable calls (the list of results plus its facets/charts).
->
-> **One website search costs more than one API call.** A single programmatic `/works?search=` call costs 10 credits, but one search *on the website* costs roughly 18 credits—the search itself plus ~5 facet/chart calls that fill the sidebar. So "$1/day ≈ 1,000 searches" holds for direct API calls; browsing the website is about 1.8× costlier per search (closer to ~550/day). A prepaid balance covers anything beyond your daily budget.
-
-### Common Activity Costs
-
-| Activity | Endpoint | Calls | Results | Cost |
-|----------|----------|-------|---------|------|
-| Search "climate change AND kelp" | Search | 103 | 10,205 | $0.10 |
-| All works from Harvard | List+Filter | 8,707 | 870,627 | $0.87 |
-| Retrieve works by DOI from a list | Singleton | 1,000,000 | 1,000,000 | Free |
-| Daily research (20 searches, 200 filters, 50 lookups) | Mixed | 270 | ~27,000 | $0.04 |
-| Download 1,000 PDFs | Content | 1,000 | 1,000 PDFs | $10.00 |
-
-### What You Can Do for Free Every Day
-
-Your free API key gives you $1 of free usage every day. With that, you can do a mix of:
-
-| Action | Calls | Results | Example |
-|--------|-------|---------|---------|
-| Get a single entity | Unlimited | Unlimited | Look up a work by DOI |
-| List+filter | 10,000 | 1,000,000 | All works from MIT in 2024 |
-| Search | 1,000 | 100,000 | Full-text search for "CRISPR" |
-| Content download | 100 | 100 PDFs | Download a paper's full text |
-
-Without a key you get $0.10/day—a tenth of the above, enough to try the API. [Get a free key](#getting-an-api-key) for 10× the budget.
-
-### Increased Limits
-
-Need more than $1/day? [Paid plans](/access/pricing/) give you higher daily allowances and prepaid usage.
-
-Your daily budget refills every day at midnight UTC. A **prepaid balance** is a separate pool that automatically kicks in once your daily budget is spent for the day—buying prepaid credit doesn't change your daily budget, it just covers usage beyond it (and doesn't expire daily).
-
-## Keeping Tabs on Costs
-
-### Per Call
-
-#### Rate Limit Headers
-
-Every API response includes headers showing your current status:
-
-| Header | Description |
-|--------|-------------|
-| `X-RateLimit-Limit` | Your total daily limit |
-| `X-RateLimit-Remaining` | Remaining for today |
-| `X-RateLimit-Credits-Used` | Cost of this request |
-| `X-RateLimit-Reset` | Seconds until reset (midnight UTC) |
-
-#### Response Meta
-
-Every response includes a `meta` object (see [Response Format](/api/introduction/#response-format)) with the cost of that request and the total result count, so you can estimate the cost of paginating through all results before committing:
-
-```json
-"meta": {
-  "count": 870627,
-  "db_response_time_ms": 19,
-  "page": 1,
-  "per_page": 100,
-  "groups_count": null,
-  "cost_usd": 0.0001
-}
-```
-
-Here, `cost_usd` tells you this call cost \$0.0001 (list+filter calls are \$0.10 per 1,000), and `count` tells you 870,627 results at 100 per page = 8,707 calls = \$0.87 total.
-
-### Overall
-
-#### Usage Dashboard
-
-Check your usage anytime at [openalex.org/settings/usage](https://openalex.org/settings/usage)—accessible from the battery icon in the lower left of [openalex.org](https://openalex.org).
-
-#### Rate Limit Endpoint
-
-You can also check programmatically via the `/rate-limit` endpoint:
+…or send it as a bearer token in the `Authorization` header:
 
 ```bash
-curl "https://api.openalex.org/rate-limit?api_key=YOUR_KEY"
+curl -H "Authorization: Bearer YOUR_KEY" "https://api.openalex.org/works"
 ```
 
-```json
-{
-  "api_key": "abc...xyz",
-  "rate_limit": {
-    "daily_budget_usd": 1,
-    "daily_used_usd": 0.05,
-    "daily_remaining_usd": 0.95,
-    "prepaid_balance_usd": 0,
-    "prepaid_remaining_usd": 0,
-    "prepaid_expires_at": null,
-    "resets_at": "2026-02-20T00:00:00.000Z",
-    "resets_in_seconds": 43200,
-    "endpoint_costs_usd": {
-      "singleton": 0,
-      "list": 0.0001,
-      "search": 0.001,
-      "semantic": 0.01,
-      "content": 0.01,
-      "text": 0.01
-    }
-  }
-}
-```
+Both work identically. The [openalex.org](https://openalex.org) website runs on this same API, so anonymous browsing draws from the keyless budget; sign in and it uses your own key.
 
-### Tips
+> **Tip:**
+> If a key ever leaks, rotate it in [Settings → API key](https://openalex.org/settings/api) — that invalidates the old one instantly.
 
-#### Exceeding Limits
+## Rate limits
 
-If you exceed your daily limit or make more than 100 requests per second, you'll get `429 Too Many Requests` errors.
+Basic use is free and generous, and a free key gives you 10× the keyless budget; you can raise it further with a [paid plan](/access/pricing/). Two things return `429 Too Many Requests`: exceeding your daily budget, or making more than **100 requests per second**. For the budget numbers themselves — and what typical activity actually uses — see [Example costs](/access/pricing/example-costs/).
 
-Individual queries also have these constraints:
+Individual queries also have hard limits:
 
 | Limit | Value |
 |-------|-------|
@@ -153,25 +46,27 @@ Individual queries also have these constraints:
 
 To retrieve more than 10,000 results, use [cursor paging](/api/paging/#cursor-paging).
 
-#### Usage Tips
+## Keeping tabs on your usage
 
-**Best practices:**
-- Use `per_page=100` to reduce the number of requests needed
-- Batch ID lookups using the [OR syntax](/api/filtering/#addition-or) (up to 100 values per filter)
-- Use `select=` to [limit returned fields](/api/selecting-fields/) for faster responses
-- Implement [exponential backoff](/api/errors/#retry-logic) when you hit rate limits
+Every response carries headers and a `meta` block showing where you stand:
 
-**Browser testing:** The API uses simple GET requests, so you can test any request in your browser. Install a JSON formatter extension for a better experience:
-- [JSONVue (Chrome)](https://chrome.google.com/webstore/detail/jsonvue/chklaanhfefbnpoihckbnefhakgolnmc)
-- [JSONView (Firefox)](https://addons.mozilla.org/en-US/firefox/addon/jsonview)
+| Header | Description |
+|--------|-------------|
+| `X-RateLimit-Limit` | Your total daily budget |
+| `X-RateLimit-Remaining` | Remaining for today |
+| `X-RateLimit-Credits-Used` | Cost of this request |
+| `X-RateLimit-Reset` | Seconds until reset (midnight UTC) |
 
-**Efficient bulk extraction:**
+The [`meta`](/api/introduction/#response-format) object also reports the cost of the call and the total result count, so you can estimate a full paginated pull before committing to it. For a running total, check the [usage dashboard](https://openalex.org/settings/usage) (the battery icon in the lower-left of [openalex.org](https://openalex.org)), or query it programmatically:
 
-```python
-# Use maximum page size
-requests.get("https://api.openalex.org/works?per_page=100&api_key=YOUR_KEY")
-
-# Batch DOI lookups (up to 100 at once)
-dois = "10.1234/a|10.1234/b|10.1234/c"
-requests.get(f"https://api.openalex.org/works?filter=doi:{dois}&api_key=YOUR_KEY")
+```bash
+curl "https://api.openalex.org/rate-limit?api_key=YOUR_KEY"
 ```
+
+## Best practices
+
+- Use `per_page=100` to get more per request — it makes your budget go much further.
+- Batch ID lookups with the [OR syntax](/api/filtering/#addition-or) (up to 100 values per filter).
+- Use [`select=`](/api/selecting-fields/) to return only the fields you need, for faster responses.
+- Implement [exponential backoff](/api/errors/#retry-logic) when you hit a `429`.
+- The API is plain GET requests, so you can test any query in your browser — a JSON formatter extension ([JSONVue](https://chrome.google.com/webstore/detail/jsonvue/chklaanhfefbnpoihckbnefhakgolnmc) for Chrome, [JSONView](https://addons.mozilla.org/en-US/firefox/addon/jsonview) for Firefox) makes responses easier to read.

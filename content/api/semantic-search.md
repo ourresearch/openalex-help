@@ -47,7 +47,7 @@ OpenAlex embeds the title and abstract of every work using [GTE Large EN](https:
 | Max input length | 2,000 characters |
 | Max results | 50 per query |
 | Rate limit | 1 request per second |
-| Pricing | See [pricing by endpoint](/api/authentication/#pricing-by-endpoint) |
+| Pricing | See [pricing by endpoint](/access/pricing/example-costs/) |
 
 > **Note:**
 > Only one search parameter is allowed per request: `search`, `search.exact`, or `search.semantic`.

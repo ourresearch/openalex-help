@@ -68,7 +68,7 @@ https://api.openalex.org/works?filter=raw_author_name.search:"jason r priem" OR 
 
 Two non-obvious query params worth knowing:
 
-- **`include_xpac=true`** — without this, the API silently drops [XPAC](/api/key-concepts/#xpac-expansion-pack) works, about 22% of byline-match candidates.
+- **`include_xpac=true`** — without this, the API silently drops [XPAC](/data/works/corpus/) works, about 22% of byline-match candidates.
 - **`type:!paratext`** — excludes issue covers, errata, and similar where bylines are conflated.
 
 Once you have the results, drop the works already on the profile (where some authorship's `author.id` is the target). Doing this client-side rather than via an `authorships.author.id:!A1234` filter clause lets you surface *duplicate* attributions too — the same paper attached to a different `J. Priem` entity, which a curator usually wants to see.

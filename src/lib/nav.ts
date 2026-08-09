@@ -279,6 +279,10 @@ export const NAV_GROUPS: Record<string, NavGroup[]> = {
       desc: 'How paying for OpenAlex works — the free tier, pay-as-you-go, annual plans and their benefits, and the PDF sync add-on.',
       slugs: [
         'pricing',
+        // 'example-costs' (oxjob #750): the rate card + worked cost examples,
+        // moved out of the API Authentication page (which no longer handles
+        // dollars). Linked from Authentication.
+        'example-costs',
         'member',
         'member-plus',
         'partner',
@@ -302,15 +306,16 @@ export const NAV_GROUPS: Record<string, NavGroup[]> = {
     {
       // Pass W: renamed "Getting started" → "Get started" for cross-tab
       // consistency. First page `introduction` is titled "API Overview".
+      // oxjob #750 (Jason): Quickstart deleted (folded into the one canonical
+      // Tutorials Quick Start) and Key Concepts dissolved into the Overview;
+      // Deprecations moved out to its own "Reference" section below (it isn't a
+      // getting-started concern).
       label: 'Get started',
-      desc: 'Auth, errors, and your first request.',
+      desc: 'The API in a nutshell: overview, keys, errors, and an agent cheat sheet.',
       slugs: [
         'introduction',
-        'quickstart',
-        'key-concepts',
         'authentication',
         'errors',
-        'deprecations',
         'llm-quick-reference',
       ],
     },
@@ -344,6 +349,14 @@ export const NAV_GROUPS: Record<string, NavGroup[]> = {
       label: 'Curation & special',
       desc: 'Curation, collections, and special-purpose endpoints.',
       slugs: ['author-curation', 'collections', 'tag-aboutness'],
+    },
+    {
+      // oxjob #750 (Jason): Deprecations doesn't belong in Get started — it's
+      // not something you read while getting going. Its own trailing "Reference"
+      // section keeps Get started clean.
+      label: 'Reference',
+      desc: 'Retired features and their replacements.',
+      slugs: ['deprecations'],
     },
   ],
 };

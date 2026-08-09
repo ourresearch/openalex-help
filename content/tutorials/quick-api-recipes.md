@@ -238,7 +238,7 @@ https://api.openalex.org/works?filter=openalex:W2052533833|W1982351946&per_page=
 Assemble a collection of full-text PDFs for analysis or AI synthesis.
 
 > **Warning:**
-> Content downloads require an API key and cost **$0.01 per file**. See [authentication](/api/authentication/) for details.
+> Content downloads require an API key and cost **$0.01 per file**. See [Example costs](/access/pricing/example-costs/) for the full rate card.
 
 ```bash
 # Step 1: Find works with downloadable PDFs using the has_content filter

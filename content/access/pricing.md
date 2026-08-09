@@ -8,7 +8,7 @@ The OpenAlex *data* is free — but serving it is not, so *usage* is what costs 
 
 ## Free: $1 per day
 
-Create a free OpenAlex account and you get an API key with **$1 of usage per day** — no payment method required. That's enough for most research and personal projects. The budget resets every midnight UTC; how usage maps to API calls is covered in the [API docs](/api/authentication/).
+Create a free OpenAlex account and you get an API key with **$1 of usage per day** — no payment method required. That's enough for most research and personal projects. The budget resets every midnight UTC; how usage maps to API calls is covered in [Example costs](/access/pricing/example-costs/).
 
 ## Pay as you go: prepaid usage
 

@@ -24,16 +24,21 @@ Everything the website can do, the [API](/api/) can do programmatically. The sam
 https://api.openalex.org/works?search=microplastics&filter=from_publication_date:2024-01-01&sort=cited_by_count:desc
 ```
 
-Paste that into your browser or `curl` it — you'll get JSON back, no key required.
+Paste that into your browser or `curl` it — you'll get JSON back, no key required. From there it's all small, composable moves: change the `sort`, stack on another `filter`, or turn any query into counts with `group_by`:
 
-To go past casual use, you'll want a **free API key**: it raises your daily request budget by 10×. Sign up at [openalex.org](https://openalex.org), copy your key from **Settings → API key**, and send it with each request:
-
-```bash
-curl "https://api.openalex.org/works?search=microplastics" \
-  -H "Authorization: Bearer YOUR_API_KEY"
+```
+https://api.openalex.org/works?search=microplastics&group_by=publication_year
 ```
 
-From here, see the [API quickstart](/api/quickstart/) and [authentication](/api/authentication/) pages.
+One habit worth building early: **don't filter by names — [look up the entity's ID](/how-to/finding-openalex-ids/) first**, since names like "Smith" or "MIT" are ambiguous.
+
+To go past casual use, you'll want a **free API key**: it raises your daily budget 10×. Sign up at [openalex.org](https://openalex.org), copy your key from **Settings → API key**, and send it with each request — as an `api_key` query parameter, or a bearer token (both work):
+
+```bash
+curl "https://api.openalex.org/works?search=microplastics&api_key=YOUR_API_KEY"
+```
+
+From here, see the [API Overview](/api/introduction/), [Authentication](/api/authentication/), and the [Querying](/api/filtering/) reference.
 
 ## 3. Or just ask your agent
 

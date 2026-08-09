@@ -6,7 +6,7 @@ source_id: "guides/searching"
 source_url: "https://developers.openalex.org/guides/searching"
 source_updated: "2026-06-24"
 ---
-The `search` parameter finds results matching a given text search. Search requests cost **\$1 per 1,000 calls** (vs. \$0.10 per 1,000 for list+filter requests). See [pricing](/api/authentication/#pricing-by-endpoint).
+The `search` parameter finds results matching a given text search. Search requests cost **\$1 per 1,000 calls** (vs. \$0.10 per 1,000 for list+filter requests). See [pricing](/access/pricing/example-costs/).
 
 ```bash
 # Works with "dna" in title, abstract, or fulltext

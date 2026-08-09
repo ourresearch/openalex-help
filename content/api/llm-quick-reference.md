@@ -7,7 +7,7 @@ source_url: "https://developers.openalex.org/guides/llm-quick-reference"
 source_updated: "2026-02-18"
 ---
 > **Note:**
-> This page is optimized for LLM agents and AI applications. For human-readable guides, see [Getting Started](/api/quickstart/).
+> This page is optimized for LLM agents and AI applications. For human-readable guides, see the [API Overview](/api/introduction/) and [Quick Start](/tutorials/quickstart/).
 
 > **Field & vocabulary semantics live in Data.** What each entity field *means*, and controlled-vocabulary definitions, are canonical under `/data/` — e.g. the [work attribute dictionary](/data/works/attributes/) and [work types](/data/work-types/). The API reference pages cover endpoint mechanics (filtering, sorting, grouping, syntax).
 
@@ -15,8 +15,11 @@ source_updated: "2026-02-18"
 
 ```
 Base: https://api.openalex.org
-Auth: API key required (free at openalex.org/settings/api)
-Rate: $1/day free usage with key, $0.01/day without
+Auth: API key free + strongly recommended (10x the no-key budget); openalex.org/settings/api
+      Send as ?api_key=KEY or header: Authorization: Bearer KEY
+Rate: $1/day free usage with key, $0.10/day without; 429 on over-budget or >100 req/sec
+Corpus: default = curated core (~324M works). include_xpac=true adds the ~193M-work
+        expansion corpus (formerly "XPAC"); each work has an is_xpac boolean.
 ```
 
 ## Entity Endpoints
@@ -26,7 +29,7 @@ Rate: $1/day free usage with key, $0.01/day without
 /authors        - Researcher profiles with disambiguated identities
 /sources        - Journals, repositories, conferences
 /institutions   - Universities, research organizations
-/topics         - Subject classifications (3-level hierarchy)
+/topics         - Subject classifications (4-level hierarchy: domain > field > subfield > topic)
 /publishers     - Publishing organizations
 /funders        - Funding agencies
 ```
@@ -61,7 +64,7 @@ This applies to: authors, institutions, sources, topics, publishers, funders.
 ## Query Parameters
 
 ```
-api_key=        - Required (get free at openalex.org/settings/api)
+api_key=        - Free, strongly recommended (get at openalex.org/settings/api)
 filter=         - Filter results (see syntax below)
 search=         - Full-text search across title/abstract/fulltext
 sort=           - Sort results (e.g., cited_by_count:desc)
@@ -71,6 +74,7 @@ sample=         - Random results (e.g., sample=50)
 seed=           - Seed for reproducible sampling
 select=         - Limit returned fields (e.g., select=id,title)
 group_by=       - Aggregate results by a field
+include_xpac=   - true to include the expansion corpus (default excludes it; /works only)
 ```
 
 > **Note:**
@@ -194,6 +198,7 @@ def fetch_with_retry(url, max_retries=5):
 | Sequential ID lookups | Batch with `\|` operator |
 | No error handling | Implement exponential backoff |
 | Fetching all fields | Use `select=` for needed fields |
+| Surprised by result counts | Default excludes the expansion corpus; add `include_xpac=true` to include it |
 
 ## Deprecated Features
 
@@ -208,4 +213,4 @@ See [Deprecations](/api/deprecations/) for full list. Key items:
 
 - Full docs: https://help.openalex.org (machine index: https://help.openalex.org/llms.txt)
 - API key: https://openalex.org/settings/api
-- Help: https://openalex.org/help
+- Help & support: https://help.openalex.org/how-to/support/

@@ -49,7 +49,7 @@ Error responses include a message explaining what went wrong:
 "Unknown filter field: author_name"
 ```
 
-**Fix:** Use the correct filter field. For authors, use `authorships.author.id` with an ID, not a name. See [Resolve IDs](/api/key-concepts/#resolve-ids).
+**Fix:** Use the correct filter field. For authors, use `authorships.author.id` with an ID, not a name. See [Resolve IDs](/how-to/finding-openalex-ids/).
 
 ### Rate Limit Exceeded
 
