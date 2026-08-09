@@ -38,7 +38,7 @@ This is the canonical dictionary of every attribute on a **work** object. Attrib
 *Object.* Old-style bibliographic pointers, mostly useful in citation contexts. All strings (values like "Spring" or "Inside cover" turn up): `volume`, `issue`, `first_page`, `last_page`.
 
 ### `abstract_inverted_index`
-*Object.* The abstract as an [inverted index](https://en.wikipedia.org/wiki/Inverted_index) — each word mapped to its positions. OpenAlex does not ship plaintext abstracts for legal reasons; reconstruct the abstract from the index. Newer works are more likely to have one (over 60% of 2022 works vs. ~45% of pre-2000 works).
+*Object.* The abstract as an [inverted index](https://en.wikipedia.org/wiki/Inverted_index) — each word mapped to its positions. OpenAlex does not ship plaintext abstracts for legal reasons; reconstruct the abstract from the index. Newer works are more likely to have one (over 60% of 2022 works vs. ~45% of pre-2000 works). Abstracts come from diverse sources, sometimes text-mined from the fulltext, so one can occasionally carry trailing text that isn't part of the abstract (section headings, keywords); [file a ticket](https://openalex.org/contact) if you spot this on a work.
 
 ```json
 abstract_inverted_index: { "Despite": [0], "growing": [1], "interest": [2], "in": [3, 57, 73] }

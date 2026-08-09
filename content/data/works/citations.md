@@ -11,7 +11,7 @@ Every work carries a list of the works it cites ([`referenced_works`](/data/work
 
 When OpenAlex creates a work record, it pulls the reference list from the record's source (Crossref, PubMed, and similar). When the work is open access, OpenAlex can also extract references directly from the PDF, which fills gaps for works whose source records omit references. Each extracted reference is then matched to an existing work — first by DOI (highly reliable) and, when no DOI is present, by other bibliographic metadata (less reliable). A successful match counts as a **reference** in the citing work and a **citation** of the cited work.
 
-Because citations are built by matching, a work's `referenced_works` can be *shorter* than the reference list printed in its PDF. The common reasons: the cited work isn't in OpenAlex (references to unknown works are dropped); the source record's references differ from the final PDF; many Crossref records include no references at all; or a reference has no DOI and metadata matching failed. The short version for end users is in the Help center: [Why are my reference counts lower than expected?](/help/why-are-my-reference-counts-lower-than-expected/)
+Because citations are built by matching, a work's `referenced_works` can be *shorter* than the reference list printed in its PDF. The common reasons: the cited work isn't in OpenAlex (references to unknown works are dropped); the source record's references differ from the final PDF; many Crossref records include no references at all; or a reference has no DOI and metadata matching failed.
 
 ## Field-Weighted Citation Impact
 

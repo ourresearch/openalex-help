@@ -126,12 +126,12 @@
 /hc/en-us/articles/29664870327447  /docs/why-is-affiliation-history-metadata-incomplete/  301
 /hc/en-us/articles/29664482972183-Why-is-the-date-field-wrong-and-how-can-I-fix-it  /help/fixing-data-errors/#why-is-the-date-wrong-and-how-do-i-fix-it  301
 /hc/en-us/articles/29664482972183  /help/fixing-data-errors/#why-is-the-date-wrong-and-how-do-i-fix-it  301
-/hc/en-us/articles/29663215171479-Why-can-t-I-find-the-right-publisher-for-a-journal-in-OpenAlex  /help/why-cant-i-find-the-right-publisher-for-a-journal-in-openalex/  301
-/hc/en-us/articles/29663215171479  /help/why-cant-i-find-the-right-publisher-for-a-journal-in-openalex/  301
+/hc/en-us/articles/29663215171479-Why-can-t-I-find-the-right-publisher-for-a-journal-in-OpenAlex  /data/publishers/#about  301
+/hc/en-us/articles/29663215171479  /data/publishers/#about  301
 /hc/en-us/articles/29659998070423-Where-do-you-get-APC-paid-metadata-from  /docs/where-do-you-get-apc-paid-metadata-from/  301
 /hc/en-us/articles/29659998070423  /docs/where-do-you-get-apc-paid-metadata-from/  301
-/hc/en-us/articles/29659650158999-Why-does-the-abstract-field-have-text-that-isn-t-part-of-the-abstract  /help/why-does-the-abstract-field-have-text-that-isnt-part-of-the-abstract/  301
-/hc/en-us/articles/29659650158999  /help/why-does-the-abstract-field-have-text-that-isnt-part-of-the-abstract/  301
+/hc/en-us/articles/29659650158999-Why-does-the-abstract-field-have-text-that-isn-t-part-of-the-abstract  /data/works/attributes/#abstract_inverted_index  301
+/hc/en-us/articles/29659650158999  /data/works/attributes/#abstract_inverted_index  301
 /hc/en-us/articles/29659476661527-Can-I-search-patents-in-OpenAlex  /docs/can-i-search-patents-in-openalex/  301
 /hc/en-us/articles/29659476661527  /docs/can-i-search-patents-in-openalex/  301
 /hc/en-us/articles/29659391338263-How-can-I-get-my-repository-indexed-in-OpenAlex  /help/getting-indexed/#how-do-i-get-my-repository-indexed-in-openalex  301
@@ -214,8 +214,8 @@
 /hc/en-us/articles/27204855162007  /help/fixing-affiliations/#i-think-my-institution-is-missing-works-what-do-i-check  301
 /hc/en-us/articles/27190301279127-What-content-does-OpenAlex-include-and-how-does-it-compare-to-other-databases  /docs/what-content-does-openalex-include-and-how-does-it-compare-to-other-da/  301
 /hc/en-us/articles/27190301279127  /docs/what-content-does-openalex-include-and-how-does-it-compare-to-other-da/  301
-/hc/en-us/articles/27190165185559-Where-can-I-find-a-non-technical-explanation-of-how-Open-Alex-works  /help/where-can-i-find-a-non-technical-explanation-of-how-open-alex-works/  301
-/hc/en-us/articles/27190165185559  /help/where-can-i-find-a-non-technical-explanation-of-how-open-alex-works/  301
+/hc/en-us/articles/27190165185559-Where-can-I-find-a-non-technical-explanation-of-how-Open-Alex-works  /data/how-its-built/  301
+/hc/en-us/articles/27190165185559  /data/how-its-built/  301
 /hc/en-us/articles/27188534567703-French-affiliation-structures-are-complex-how-does-OpenAlex-handle-them  /docs/french-affiliation-structures-are-complex-how-does-openalex-handle-the/  301
 /hc/en-us/articles/27188534567703  /docs/french-affiliation-structures-are-complex-how-does-openalex-handle-the/  301
 /hc/en-us/articles/27188355855639-Why-are-only-some-of-my-repository-records-showing-up-in-openalex  /help/repositories/#why-are-only-some-of-my-repositorys-records-showing-up  301
@@ -240,8 +240,8 @@
 /hc/en-us/articles/24397920994327  https://openalex.org/events  301
 /hc/en-us/articles/24397285563671-About-the-data  /docs/  301
 /hc/en-us/articles/24397285563671  /docs/  301
-/hc/en-us/articles/24396686889751-About-us  /help/about-us/  301
-/hc/en-us/articles/24396686889751  /help/about-us/  301
+/hc/en-us/articles/24396686889751-About-us  https://openalex.org/about  301
+/hc/en-us/articles/24396686889751  https://openalex.org/about  301
 /hc/en-us/articles/24346983449495-Check-if-a-journal-s-works-are-in-OpenAlex  /tutorials/check-if-a-journals-works-are-in-openalex/  301
 /hc/en-us/articles/24346983449495  /tutorials/check-if-a-journals-works-are-in-openalex/  301
 /hc/en-us/articles/24346939943191-Omit-retracted-works-from-my-analysis  /help/searching-and-counting/#how-do-i-omit-retracted-works-from-my-analysis  301
@@ -377,10 +377,10 @@
 /docs/data-ingest-pipeline/  /data/how-its-built/  301
 /docs/api-and-data-snapshot  /docs/  301
 /docs/api-and-data-snapshot/  /docs/  301
-/docs/how-is-openalex-open  /help/what-is-openalexs-sustainability-model/  301
-/docs/how-is-openalex-open/  /help/what-is-openalexs-sustainability-model/  301
-/docs/how-sustainable-is-openalex  /help/what-is-openalexs-sustainability-model/  301
-/docs/how-sustainable-is-openalex/  /help/what-is-openalexs-sustainability-model/  301
+/docs/how-is-openalex-open  /docs/pricing/  301
+/docs/how-is-openalex-open/  /docs/pricing/  301
+/docs/how-sustainable-is-openalex  /docs/pricing/  301
+/docs/how-sustainable-is-openalex/  /docs/pricing/  301
 /docs/how-accurate-is-openalex  /docs/  301
 /docs/how-accurate-is-openalex/  /docs/  301
 /docs/what-content-does-openalex-include-and-how-does-it-compare-to-other-da  /docs/  301
@@ -533,8 +533,8 @@
 /docs/changelog/  /docs/  301
 /docs/coverage-and-accuracy  /docs/  301
 /docs/coverage-and-accuracy/  /docs/  301
-/docs/openness-and-sustainability  /help/what-is-openalexs-sustainability-model/  301
-/docs/openness-and-sustainability/  /help/what-is-openalexs-sustainability-model/  301
+/docs/openness-and-sustainability  /docs/pricing/  301
+/docs/openness-and-sustainability/  /docs/pricing/  301
 /docs/how-openalex-works  /data/how-its-built/  301
 /docs/how-openalex-works/  /data/how-its-built/  301
 # <<< design-round-4 <<<
@@ -757,6 +757,30 @@
 /help/how-long-does-it-take-for-you-to-respond-to-support-tickets/  /help/support/#how-long-does-it-take-to-get-a-response-to-a-ticket  301
 /help/how-can-i-cite-openalex  /help/citing-openalex/  301
 /help/how-can-i-cite-openalex/  /help/citing-openalex/  301
+/help/how-does-author-name-disambiguation-work  /data/authors/#about  301
+/help/how-does-author-name-disambiguation-work/  /data/authors/#about  301
+/help/how-do-you-match-affiliations-to-institutions  /data/institutions/#about  301
+/help/how-do-you-match-affiliations-to-institutions/  /data/institutions/#about  301
+/help/how-do-you-decide-if-an-article-is-open-access  /data/works/open-access/  301
+/help/how-do-you-decide-if-an-article-is-open-access/  /data/works/open-access/  301
+/help/how-do-preprints-get-linked-to-published-versions  /data/locations/  301
+/help/how-do-preprints-get-linked-to-published-versions/  /data/locations/  301
+/help/what-is-fwci-and-how-is-it-calculated  /data/works/citations/#field-weighted-citation-impact  301
+/help/what-is-fwci-and-how-is-it-calculated/  /data/works/citations/#field-weighted-citation-impact  301
+/help/why-are-some-authors-assigned-to-null-author-id  /data/authors/#about  301
+/help/why-are-some-authors-assigned-to-null-author-id/  /data/authors/#about  301
+/help/why-are-my-reference-counts-lower-than-expected  /data/works/citations/#citations-and-references  301
+/help/why-are-my-reference-counts-lower-than-expected/  /data/works/citations/#citations-and-references  301
+/help/why-does-the-abstract-field-have-text-that-isnt-part-of-the-abstract  /data/works/attributes/#abstract_inverted_index  301
+/help/why-does-the-abstract-field-have-text-that-isnt-part-of-the-abstract/  /data/works/attributes/#abstract_inverted_index  301
+/help/why-cant-i-find-the-right-publisher-for-a-journal-in-openalex  /data/publishers/#about  301
+/help/why-cant-i-find-the-right-publisher-for-a-journal-in-openalex/  /data/publishers/#about  301
+/help/what-is-openalexs-sustainability-model  /docs/pricing/  301
+/help/what-is-openalexs-sustainability-model/  /docs/pricing/  301
+/help/where-can-i-find-a-non-technical-explanation-of-how-open-alex-works  /data/how-its-built/  301
+/help/where-can-i-find-a-non-technical-explanation-of-how-open-alex-works/  /data/how-its-built/  301
+/help/about-us  https://openalex.org/about  301
+/help/about-us/  https://openalex.org/about  301
 # <<< faq-to-how-to <<<
 
 # Pass AD (oxjob #750, 2026-08-08): "Fixing errors" section in the Data tab.

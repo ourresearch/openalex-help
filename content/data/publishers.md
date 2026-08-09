@@ -26,7 +26,7 @@ Publishers form a tree. A large publishing group sits at the top ([`hierarchy_le
 
 ### Relationship to sources
 
-A publisher doesn't publish works directly — it publishes them *through* [sources](/data/sources/). Each source records its publisher as its `host_organization`, and the reverse view (every source a publisher hosts) is available at the publisher's [`sources_api_url`](#sources_api_url). A publisher's [`works_count`](#works_count) and [`cited_by_count`](#cited_by_count) are the totals summed across all the sources it hosts.
+A publisher doesn't publish works directly — it publishes them *through* [sources](/data/sources/). Each source records its publisher as its `host_organization`, and the reverse view (every source a publisher hosts) is available at the publisher's [`sources_api_url`](#sources_api_url). The source→publisher link comes from the source's metadata profile in the [ISSN registry](https://portal.issn.org/), which names each journal's publisher; if a journal's publisher is missing or wrong, check its ISSN record, and if the publisher doesn't exist in [ROR](https://ror.org/search) yet you can submit a request there to add it. A publisher's [`works_count`](#works_count) and [`cited_by_count`](#cited_by_count) are the totals summed across all the sources it hosts.
 
 ### Roles
 

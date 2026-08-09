@@ -45,7 +45,7 @@ In July 2023, OpenAlex switched to a significantly improved disambiguation syste
 
 Two author IDs fall outside the normal disambiguation process; you may encounter them, especially in the [snapshot](/docs/snapshot/):
 
-- **`A9999999999` — the NULL author.** Assigned to authorships that never went through disambiguation: no author name was received, the name was too short or too long to disambiguate reliably, or the name matched an ignored phrase (like "Unknown Author"). If an author asks to have their disambiguated profile removed, their works are reassigned here — effectively removing the profile. These records are grouped under this single NULL author rather than real profiles. For the short version, see [Why are some authors assigned to NULL AUTHOR_ID (A9999999999)?](/help/why-are-some-authors-assigned-to-null-author-id/) in the Help center.
+- **`A9999999999` — the NULL author.** Assigned to authorships that never went through disambiguation: no author name was received, the name was too short or too long to disambiguate reliably, or the name matched an ignored phrase (like "Unknown Author"). If an author asks to have their disambiguated profile removed, their works are reassigned here — effectively removing the profile. These records are grouped under this single NULL author rather than real profiles.
 - **`A5317838346` — deleted authors.** Used when an author ID is removed from OpenAlex, usually because it no longer has any works (its works were merged into another author or deleted).
 
 ### Known failure modes
