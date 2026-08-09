@@ -98,4 +98,4 @@ The **article processing charge** (APC) is the fee some journals charge authors 
 - [Versions](/data/locations/) — submitted, accepted, and published versions and how they interact with OA
 - [Sources](/data/sources/) — how works connect to journals and repositories through locations
 - [Works API reference](/data/works/) — the `open_access` and location objects
-- [Why is this publication labeled as 'closed' when it is clearly Open Access?](/help/why-is-this-publication-labeled-as-closed-when-it-is-clearly-open-acce/)
+- [Why is this publication labeled as 'closed' when it is clearly Open Access?](/help/fixing-data-errors/#how-do-i-fix-a-works-open-access-status)

@@ -14,7 +14,7 @@ Our question: **what are the most-cited recent papers about microplastics?**
 2. Use the filters to narrow to works published since 2024.
 3. Sort by citation count, and export your results to CSV when you're happy with them.
 
-No code, no account, no charge. For most one-off questions, this is all you need — see [exporting results](/help/export-results-from-the-openalex-website/) for the details.
+No code, no account, no charge. For most one-off questions, this is all you need — see [exporting results](/help/integrations/#how-do-i-export-results-from-the-openalex-website) for the details.
 
 ## 2. Through the API
 

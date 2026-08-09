@@ -12,10 +12,10 @@ Before the current lineup, OpenAlex sold **Premium** (higher API limits and prio
 
 **If you have an existing Premium or Institutional contract, it will be honored** — nothing about your agreement changes out from under you. In addition, you now receive all the newer Member-tier benefits at no extra cost:
 
-- [Admin dashboard](/help/activate-your-admin-dashboard/) — manage your organization's users and billing
-- [Affiliation editor](/help/activate-the-affiliation-editor/) — curate how affiliation strings match to your institution (academic & government)
-- [Unsub access](/help/activate-unsub/) (academic & government)
-- [Advisory board nominations](/help/advisory-board-nominations/) and [quarterly supporter meetings](/help/quarterly-supporter-meetings/)
+- [Admin dashboard](/help/supporter-tools/#how-do-i-activate-the-admin-dashboard) — manage your organization's users and billing
+- [Affiliation editor](/help/supporter-tools/#how-do-i-activate-the-affiliation-editor) — curate how affiliation strings match to your institution (academic & government)
+- [Unsub access](/help/supporter-tools/#how-do-i-activate-unsub) (academic & government)
+- [Advisory board nominations](/help/getting-involved/#how-does-the-community-advisory-board-work) and [quarterly supporter meetings](/help/getting-involved/#what-are-the-quarterly-supporter-roundtables)
 
 When your contract comes up for renewal, you'll renew onto one of the current plans — your contact at OpenAlex will help you pick the tier that matches what you have today, or just email [sales@openalex.org](mailto:sales@openalex.org).
 

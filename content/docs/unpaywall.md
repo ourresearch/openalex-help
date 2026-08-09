@@ -18,7 +18,7 @@ source_updated: "2026-06-13"
 | [Simple Query Tool](https://unpaywall.org/products/simple-query-tool) | Paste up to 1,000 DOIs, get results by email — no code needed |
 | [Browser extension](https://unpaywall.org/products/extension) | Shows a green tab when the article you're viewing has a free copy |
 | [Data feed](#the-unpaywall-data-feed) | Change updates in the Unpaywall record format, for subscribers |
-| Link-resolver integrations | Unpaywall data inside SFX, EBSCO, 360 Link, and others — see [Link resolver integrations](/help/link-resolver-integrations/) |
+| Link-resolver integrations | Unpaywall data inside SFX, EBSCO, 360 Link, and others — see [Link resolver integrations](/help/integrations/#how-do-link-resolver-integrations-work) |
 
 For new projects, consider the [OpenAlex API](/api/) directly — it exposes the same OA information plus everything else OpenAlex knows (works, authors, sources, topics, and more). The Unpaywall format is best when you're integrating with tools that already speak it.
 

@@ -14,11 +14,11 @@ Every day, your organization gets $20 of API usage — 20× the free tier, worth
 
 ### Admin dashboard
 
-Manage your organization's users and billing in one place. [How to activate →](/help/activate-your-admin-dashboard/)
+Manage your organization's users and billing in one place. [How to activate →](/help/supporter-tools/#how-do-i-activate-the-admin-dashboard)
 
 ### Community representation
 
-Nominate candidates for the Community Advisory Board that helps guide OpenAlex's direction, and attend our quarterly supporter meetings — open-forum roundtables with the product team. [Advisory board nominations →](/help/advisory-board-nominations/) · [Quarterly supporter meetings →](/help/quarterly-supporter-meetings/)
+Nominate candidates for the Community Advisory Board that helps guide OpenAlex's direction, and attend our quarterly supporter meetings — open-forum roundtables with the product team. [Advisory board nominations →](/help/getting-involved/#how-does-the-community-advisory-board-work) · [Quarterly supporter meetings →](/help/getting-involved/#what-are-the-quarterly-supporter-roundtables)
 
 ### Support
 
@@ -30,11 +30,11 @@ Academic and government subscribers get two additional benefits on every plan ti
 
 ### Affiliation editor
 
-Curate how OpenAlex matches author affiliation statements to your institution — fixing your institution's profile at the source. [How to activate →](/help/activate-the-affiliation-editor/)
+Curate how OpenAlex matches author affiliation statements to your institution — fixing your institution's profile at the source. [How to activate →](/help/supporter-tools/#how-do-i-activate-the-affiliation-editor)
 
 ### Unsub access
 
-A free subscription to [Unsub](https://unsub.org/), our tool for forecasting and supporting toll-access journal cancellations, used by hundreds of libraries worldwide. [How to activate →](/help/activate-unsub/)
+A free subscription to [Unsub](https://unsub.org/), our tool for forecasting and supporting toll-access journal cancellations, used by hundreds of libraries worldwide. [How to activate →](/help/supporter-tools/#how-do-i-activate-unsub)
 
 ## Add-ons and upgrades
 
