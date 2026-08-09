@@ -208,108 +208,14 @@ export function facetsFor(slug: string): CardTags {
   return CARD_FACETS[slug] ?? {};
 }
 
-// --- FAQ tab (Pass U) ---
-
-export const HELP_FACETS: Facet[] = [
-  {
-    key: 'topic',
-    label: 'Topic',
-    values: [
-      { id: 'about', label: 'About OpenAlex' },
-      { id: 'how-we-build-it', label: 'How we build it' },
-      { id: 'fixing-errors', label: 'Fixing errors' },
-      { id: 'indexing', label: 'Getting indexed' },
-      { id: 'ids', label: 'Finding IDs' },
-      { id: 'searching', label: 'Searching & counts' },
-      { id: 'exporting', label: 'Exports & integrations' },
-      { id: 'supporters', label: 'Supporter benefits' },
-    ],
-  },
-  {
-    key: 'entity',
-    label: 'Entity',
-    values: [
-      { id: 'works', label: 'Works' },
-      { id: 'authors', label: 'Authors' },
-      { id: 'sources', label: 'Sources' },
-      { id: 'institutions', label: 'Institutions' },
-      { id: 'publishers', label: 'Publishers' },
-    ],
-  },
-  {
-    key: 'interface',
-    label: 'Interface',
-    values: [
-      { id: 'web', label: 'Web' },
-      { id: 'api', label: 'API' },
-    ],
-  },
-];
-
-type HelpTags = Partial<Record<'topic' | 'entity' | 'interface', string[]>>;
-
-export const HELP_CARD_FACETS: Record<string, HelpTags> = {
-  'about-us': { topic: ['about'] },
-  'how-can-i-cite-openalex': { topic: ['about'] },
-  'pricing': { topic: ['about'] },
-  'what-is-openalexs-sustainability-model': { topic: ['about'] },
-  'whats-on-openalexs-roadmap': { topic: ['about'] },
-  'how-long-does-it-take-for-you-to-respond-to-support-tickets': { topic: ['about'] },
-  'where-can-i-find-a-non-technical-explanation-of-how-open-alex-works': { topic: ['about'] },
-
-  'how-does-author-name-disambiguation-work': { topic: ['how-we-build-it'], entity: ['authors'] },
-  'how-do-you-match-affiliations-to-institutions': { topic: ['how-we-build-it'], entity: ['institutions'] },
-  'how-do-you-decide-if-an-article-is-open-access': { topic: ['how-we-build-it'], entity: ['works'] },
-  'how-do-preprints-get-linked-to-published-versions': { topic: ['how-we-build-it'], entity: ['works'] },
-  'what-is-fwci-and-how-is-it-calculated': { topic: ['how-we-build-it'], entity: ['works'] },
-  'why-are-some-authors-assigned-to-null-author-id': { topic: ['how-we-build-it'], entity: ['authors'] },
-  'why-cant-i-find-the-right-publisher-for-a-journal-in-openalex': { topic: ['how-we-build-it'], entity: ['publishers', 'sources'] },
-  'why-are-my-reference-counts-lower-than-expected': { topic: ['how-we-build-it'], entity: ['works'] },
-  'why-does-the-abstract-field-have-text-that-isnt-part-of-the-abstract': { topic: ['how-we-build-it'], entity: ['works'] },
-
-  // (Pass AD, oxjob #750: the five superseded fixing-errors FAQ articles were
-  // retired — the topic now lives at /docs/fixing-errors/.)
-  'what-are-alternate-names-and-how-i-do-change-them': { topic: ['fixing-errors'], entity: ['authors'] },
-  'why-are-my-open-access-curation-requests-getting-rejected': { topic: ['fixing-errors'], entity: ['works'] },
-  'why-is-the-date-field-wrong-and-how-can-i-fix-it': { topic: ['fixing-errors'], entity: ['works'] },
-  'why-is-this-publication-labeled-as-closed-when-it-is-clearly-open-acce': { topic: ['fixing-errors'], entity: ['works'] },
-  'i-think-my-institution-is-missing-works-in-openalex-what-can-i-do': { topic: ['fixing-errors'], entity: ['institutions', 'works'] },
-
-  'how-can-i-get-my-journal-indexed-in-openalex': { topic: ['indexing'], entity: ['sources'] },
-  'how-can-i-get-my-repository-indexed-in-openalex': { topic: ['indexing'], entity: ['sources'] },
-  'why-are-only-some-of-my-repository-records-showing-up-in-openalex': { topic: ['indexing', 'how-we-build-it'], entity: ['sources'] },
-
-  'how-do-i-find-a-publications-openalex-work-id': { topic: ['ids'], entity: ['works'], interface: ['web', 'api'] },
-  'how-do-i-find-my-openalex-author-id': { topic: ['ids'], entity: ['authors'], interface: ['web'] },
-  'how-do-i-find-the-openalex-source-id': { topic: ['ids'], entity: ['sources'], interface: ['web'] },
-  'how-do-i-find-the-publisher-id-for-a-journals-host-organization': { topic: ['ids'], entity: ['publishers', 'sources'], interface: ['web'] },
-
-  'how-do-i-find-the-most-cited-publications': { topic: ['searching'], entity: ['works'], interface: ['web', 'api'] },
-  'how-do-i-limit-my-results-to-only-the-top-100-cited-publications': { topic: ['searching'], entity: ['works'], interface: ['web'] },
-  'omit-retracted-works-from-my-analysis': { topic: ['searching'], entity: ['works'], interface: ['web', 'api'] },
-  'is-there-a-limit-to-the-length-of-queries-in-openalex': { topic: ['searching'], interface: ['api'] },
-  'where-can-i-find-information-about-which-issue-of-a-journal-an-article': { topic: ['searching'], entity: ['works'], interface: ['web', 'api'] },
-  'why-are-the-counts-by-year-numbers-different-than-what-i-see-in-the-us': { topic: ['searching', 'how-we-build-it'], interface: ['api'] },
-
-  'export-results-from-the-openalex-website': { topic: ['exporting'], entity: ['works'], interface: ['web'] },
-  'how-do-i-import-openalex-data-into-vosviewer': { topic: ['exporting'], interface: ['web'] },
-  'link-resolver-integrations': { topic: ['exporting'] },
-  'why-does-the-unpaywall-plugin-say-this-paywalled-article-is-open-acces': { topic: ['exporting'], entity: ['works'] },
-
-  'activate-your-admin-dashboard': { topic: ['supporters'], entity: ['institutions'] },
-  'activate-the-affiliation-editor': { topic: ['supporters'], entity: ['institutions'] },
-  'activate-unsub': { topic: ['supporters'] },
-  'advisory-board-nominations': { topic: ['supporters'] },
-  'quarterly-supporter-meetings': { topic: ['supporters'] },
-};
-
-export function helpFacetsFor(slug: string): HelpTags {
-  return HELP_CARD_FACETS[slug] ?? {};
-}
+// --- FAQ tab facets removed (oxjob #752) ---
+// The help tab's flat facet bucket (HELP_FACETS / HELP_CARD_FACETS, #354
+// Pass U) died with the How-to consolidation: 47 articles became ~12 task
+// pages, grouped by topic in nav.ts (NAV_GROUPS.help) — a facet UI over 12
+// items was chrome without power. Tutorials keeps the bucket pattern above.
 
 /** Facet set + tag lookup for a bucket tab (recipes | help). */
 export function facetConfig(tab: string): { facets: Facet[]; tagsFor: (slug: string) => Partial<Record<string, string[]>> } | undefined {
   if (tab === 'tutorials') return { facets: FACETS, tagsFor: facetsFor };
-  if (tab === 'help') return { facets: HELP_FACETS, tagsFor: helpFacetsFor };
   return undefined;
 }

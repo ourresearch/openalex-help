@@ -18,10 +18,9 @@ const groups = groupEntries(tab, entries);
 
 const meta: Record<Tab, { label: string; h1: string; lede: string; empty?: string }> = {
   help: {
-    label: 'FAQ',
-    h1: 'Frequently asked questions',
-    lede: 'Real questions from users, answered plainly.',
-    empty: 'No questions match those filters.',
+    label: 'How-to',
+    h1: 'How-to guides',
+    lede: 'Short, practical guides to the most common OpenAlex tasks.',
   },
   docs: {
     label: 'Docs',
@@ -84,6 +83,11 @@ const sectionCards = groups
   .filter((c): c is { label: string; desc?: string; href: string } => Boolean(c.href));
 
 const isShell = tab === 'docs' || tab === 'api' || tab === 'data';
+
+// How-to landing (oxjob #752): a grouped topic list (the cursor.com/help
+// "Browse by topic" pattern) — each nav group renders as a labeled section
+// listing its pages. Replaced the FAQ facet bucket when 47 articles became 12.
+const isTopicList = tab === 'help';
 
 // Bucket tabs (FAQ + Recipes, Pass U): a flat filterable list, no curated
 // hierarchy. Pass W: filtered by a facet sidebar AND Linear-style chip
@@ -169,6 +173,36 @@ const showSidebar = false;
       </div>
     </article>
   </DocsShell>
+) : isTopicList ? (
+  <Base title={meta[tab].label} description={meta[tab].lede} wide>
+    <div class="learn-shell">
+      <div class="gutter" aria-hidden="true"></div>
+      <div class="l-content">
+        <div class="l-columns">
+          <div class="learn-content">
+            <PageHeader title={meta[tab].h1} lede={meta[tab].lede} crumbs={landingCrumbs(tab)} />
+            {groups.map((g) => (
+              <section class="topic">
+                <h2 class="topic-label">{g.label}</h2>
+                {g.desc && <p class="topic-desc">{g.desc}</p>}
+                <ul class="rows">
+                  {g.entries.map((e) => (
+                    <li>
+                      <a href={urlFor(tab, e)}>
+                        <span class="row-title">{e.data.title}</span>
+                        {e.data.description && <span class="row-sub">{e.data.description}</span>}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </section>
+            ))}
+          </div>
+          <div class="rail-col" aria-hidden="true"></div>
+        </div>
+      </div>
+    </div>
+  </Base>
 ) : (
   <Base title={meta[tab].label} description={meta[tab].lede} wide>
     <div class="learn-shell">
@@ -556,6 +590,21 @@ const showSidebar = false;
   .filter-search:focus {
     outline: none;
     border-color: var(--ink);
+  }
+
+  /* How-to topic sections (grouped landing, oxjob #752). */
+  .topic {
+    margin-bottom: 2.5rem;
+  }
+  .topic-label {
+    font-size: 1.05rem;
+    font-weight: 600;
+    margin: 0 0 0.2rem;
+  }
+  .topic-desc {
+    color: var(--muted);
+    font-size: 0.88rem;
+    margin: 0 0 0.75rem;
   }
 
   /* Three-row list items: title / one-line subtitle / small tags. */

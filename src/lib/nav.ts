@@ -99,10 +99,31 @@ export const NAV_GROUPS: Record<string, NavGroup[]> = {
     },
   ],
 
-  // help (FAQ) has NO nav groups (oxjob #354 Pass U, 2026-08-06): it's a flat
-  // bucket of real user questions, filtered by facet tags in facets.ts
-  // (HELP_FACETS / HELP_CARD_FACETS) — the Recipes pattern. Article pages get a
-  // single "FAQ" breadcrumb.
+  // help (How-to, oxjob #752): ~12 consolidated task pages (noun/gerund H1s,
+  // question H2s — the cursor.com/help pattern), grouped by topic. Replaced
+  // the flat FAQ facet bucket (#354 Pass U) when 47 articles became 12 pages.
+  help: [
+    {
+      label: 'Using OpenAlex',
+      desc: 'Finding IDs, common search recipes, and getting data into other tools.',
+      slugs: ['finding-openalex-ids', 'searching-and-counting', 'integrations'],
+    },
+    {
+      label: 'Fixing errors',
+      desc: 'Fix your author profile, correct affiliations, and report anything else.',
+      slugs: ['fixing-your-author-profile', 'fixing-affiliations', 'fixing-data-errors'],
+    },
+    {
+      label: 'Journals & repositories',
+      desc: 'Getting your works into OpenAlex and troubleshooting coverage.',
+      slugs: ['getting-indexed', 'repositories'],
+    },
+    {
+      label: 'Community & support',
+      desc: 'Getting help, getting involved, supporter tools, and citing OpenAlex.',
+      slugs: ['support', 'getting-involved', 'supporter-tools', 'citing-openalex'],
+    },
+  ],
 
   docs: [
     {
@@ -321,7 +342,7 @@ export interface Crumb {
 }
 
 const TAB_LABELS: Record<string, string> = {
-  help: 'FAQ',
+  help: 'How-to',
   docs: 'Docs',
   data: 'Data',
   api: 'API',
