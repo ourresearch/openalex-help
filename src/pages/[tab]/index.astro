@@ -1,12 +1,10 @@
 ---
-import Base from '../../layouts/Base.astro';
 import DocsShell from '../../layouts/DocsShell.astro';
 import Card from '../../components/Card.astro';
 import Icon from '../../components/Icon.astro';
 import PageHeader from '../../components/PageHeader.astro';
 import { TABS, allEntries, urlFor, type Tab } from '../../lib/tabs';
 import { groupEntries, landingCrumbs, type ResolvedGroup } from '../../lib/nav';
-import { facetConfig } from '../../lib/facets';
 
 export async function getStaticPaths() {
   return TABS.map((tab) => ({ params: { tab } }));
@@ -16,7 +14,7 @@ const tab = Astro.params.tab as Tab;
 const entries = (await allEntries()).filter((e) => e.tab === tab).map((e) => e.entry);
 const groups = groupEntries(tab, entries);
 
-const meta: Record<Tab, { label: string; h1: string; lede: string; empty?: string }> = {
+const meta: Record<Tab, { label: string; h1: string; lede: string }> = {
   'how-to': {
     label: 'How-to',
     h1: 'How-to guides',
@@ -41,7 +39,6 @@ const meta: Record<Tab, { label: string; h1: string; lede: string; empty?: strin
     label: 'Tutorials',
     h1: 'Tutorials',
     lede: 'Step-by-step instructions for real use cases — on the web, through the API, or with your agent.',
-    empty: 'No tutorials match those filters yet — the library is growing.',
   },
 };
 
@@ -70,6 +67,13 @@ const groupIcons: Record<string, string> = {
   'Community & support': 'users',
   // API-tab groups
   'Endpoints': 'database',
+  // Tutorials-tab groups (shell conversion, oxjob #750)
+  'Output & subjects': 'shape-outline',
+  'Citations & impact': 'compass',
+  'Open access': 'unlock',
+  'Collaboration': 'users',
+  'Journals & profiles': 'book',
+  'Bulk data & API': 'download',
 };
 
 const landingHref = `/${tab}/`;
@@ -87,224 +91,61 @@ const sectionCards = groups
   .map((g) => ({ label: g.label, desc: g.desc, href: sectionTarget(g) }))
   .filter((c): c is { label: string; desc?: string; href: string } => Boolean(c.href));
 
-// How-to joined the shell tabs (Jason 2026-08-09, oxjob #750): same nav-drawer
-// template as the reference tabs — its four groups each list their pages.
-// (Replaced the #752 grouped topic list, which had replaced the FAQ bucket.)
-const isShell = tab === 'access' || tab === 'api' || tab === 'data' || tab === 'how-to';
-
-// Bucket tabs (FAQ + Recipes, Pass U): a flat filterable list, no curated
-// hierarchy. Pass W: filtered by a facet sidebar AND Linear-style chip
-// dropdowns + a filter-as-you-type search box, single-select per facet;
-// rendered as three-row list items (title / subtitle / small tags).
-const bucket = facetConfig(tab);
-const facetLabel: Record<string, Record<string, string>> = {};
-if (bucket) {
-  for (const f of bucket.facets) facetLabel[f.key] = Object.fromEntries(f.values.map((v) => [v.id, v.label]));
-}
-// Pin the site-wide Quick Start to the top of the Tutorials list (Jason
-// 2026-08-08) — everything else keeps collection (alphabetical) order.
-const pinnedFirst = ['quickstart'];
-const pinRank = (id: string) => {
-  const i = pinnedFirst.indexOf(id);
-  return i === -1 ? pinnedFirst.length : i;
-};
-const bucketEntries = bucket ? [...entries].sort((a, b) => pinRank(a.id) - pinRank(b.id)) : entries;
-const bucketCards = bucket
-  ? bucketEntries.map((e) => {
-      const tags = bucket.tagsFor(e.id);
-      // Recipes get a hand-written subtitle; FAQ falls back to the description.
-      const subtitle = e.data.subtitle ?? e.data.description ?? '';
-      // Visible tag chips: labels for each value across the SHOWN facets only
-      // (dropped facets like Recipes' "task" are excluded).
-      const chips = bucket.facets.flatMap((f) =>
-        (tags[f.key] ?? []).map((v) => ({ facet: f.key, value: v, label: facetLabel[f.key]?.[v] ?? v }))
-      );
-      const searchText = `${e.data.title} ${subtitle}`.toLowerCase();
-      return { entry: e, tags, subtitle, chips, searchText };
-    })
-  : [];
-const facetCounts: Record<string, Record<string, number>> = {};
-if (bucket) {
-  for (const f of bucket.facets) {
-    facetCounts[f.key] = Object.fromEntries(f.values.map((v) => [v.id, 0]));
-  }
-  for (const { tags } of bucketCards) {
-    for (const [key, vals] of Object.entries(tags)) {
-      if (!facetCounts[key]) continue; // skip dropped facets (e.g. task)
-      for (const v of vals ?? []) facetCounts[key][v] = (facetCounts[key][v] ?? 0) + 1;
-    }
-  }
-}
-const searchPlaceholder = tab === 'tutorials' ? 'Search tutorials…' : 'Search questions…';
-
-// Pass W.1: Jason wants to see the how-to tabs WITHOUT the left facet sidebar
-// (chips + search may be enough). Flip to `true` to bring it back — the aside
-// markup + facet-bar CSS are kept, just not rendered.
-const showSidebar = false;
+// Every tab now renders in the app shell (nav drawer + section cards) — Tutorials
+// joined the rest in oxjob #750, retiring the old facet/filter "bucket" list.
 ---
 
-{isShell ? (
-  <DocsShell title={meta[tab].h1} description={meta[tab].lede} tab={tab} groups={groups}>
-    <article class="prose">
-      <PageHeader title={meta[tab].h1} lede={meta[tab].lede} crumbs={landingCrumbs(tab)} />
+<DocsShell title={meta[tab].h1} description={meta[tab].lede} tab={tab} groups={groups}>
+  <article class="prose">
+    <PageHeader title={meta[tab].h1} lede={meta[tab].lede} crumbs={landingCrumbs(tab)} />
 
-      {tab === 'access' && (
-        <Fragment>
-          <p>
-            This tab covers <strong>access</strong> to OpenAlex, in both directions. Most of it is
-            about <strong>read access</strong>: <a href="/access/querying/">Querying</a> is how you
-            ask a question, <a href="/access/get-the-data/">Get the data</a> covers the channels an
-            answer can arrive through — from a website search to the full database — and{' '}
-            <a href="/access/pricing/">Pricing</a> explains what that access costs (for most people,
-            nothing). The last section, <a href="/access/fixing-errors/">Fixing errors</a>, is{' '}
-            <strong>write access</strong>: how to change the data when it's wrong.
-          </p>
-        </Fragment>
-      )}
+    {tab === 'access' && (
+      <Fragment>
+        <p>
+          This tab covers <strong>access</strong> to OpenAlex, in both directions. Most of it is
+          about <strong>read access</strong>: <a href="/access/querying/">Querying</a> is how you
+          ask a question, <a href="/access/get-the-data/">Get the data</a> covers the channels an
+          answer can arrive through — from a website search to the full database — and{' '}
+          <a href="/access/pricing/">Pricing</a> explains what that access costs (for most people,
+          nothing). The last section, <a href="/access/fixing-errors/">Fixing errors</a>, is{' '}
+          <strong>write access</strong>: how to change the data when it's wrong.
+        </p>
+      </Fragment>
+    )}
 
-      {tab === 'data' && (
-        <Fragment>
-          <p>
-            OpenAlex data is laid out as a <strong>graph</strong>: about twenty types of connected
-            entities. <a href="/data/works/">Works</a> — papers, books, datasets — sit at the
-            center, linked to the <a href="/data/authors/">authors</a> who wrote them, the{' '}
-            <a href="/data/sources/">sources</a> that published them, the{' '}
-            <a href="/data/institutions/">institutions</a> those authors belong to, the{' '}
-            <a href="/data/topics/">topics</a> they're about, and more.
-          </p>
-          <p>
-            This reference is organized by entity. Each page explains what one entity type is,
-            where its records come from — including the judgment calls we make — and what every
-            attribute on it means.
-          </p>
-        </Fragment>
-      )}
+    {tab === 'data' && (
+      <Fragment>
+        <p>
+          OpenAlex data is laid out as a <strong>graph</strong>: about twenty types of connected
+          entities. <a href="/data/works/">Works</a> — papers, books, datasets — sit at the
+          center, linked to the <a href="/data/authors/">authors</a> who wrote them, the{' '}
+          <a href="/data/sources/">sources</a> that published them, the{' '}
+          <a href="/data/institutions/">institutions</a> those authors belong to, the{' '}
+          <a href="/data/topics/">topics</a> they're about, and more.
+        </p>
+        <p>
+          This reference is organized by entity. Each page explains what one entity type is,
+          where its records come from — including the judgment calls we make — and what every
+          attribute on it means.
+        </p>
+      </Fragment>
+    )}
 
-      <div class="card-grid">
-        {sectionCards.map((c) => (
-          <Card title={c.label} href={c.href}>
-            <Icon name={groupIcons[c.label] ?? 'file-text'} slot="icon" />
-            {c.desc}
-          </Card>
-        ))}
-      </div>
-    </article>
-  </DocsShell>
-) : (
-  <Base title={meta[tab].label} description={meta[tab].lede} wide>
-    <div class="learn-shell">
-      {showSidebar ? (
-        <aside class="facet-bar" aria-label={`Filter ${meta[tab].label}`}>
-          {bucket!.facets.map((f) => (
-            <div class="facet">
-              <span class="facet-label">{f.label}</span>
-              {f.values.map((v) => (
-                <button
-                  class="facet-value"
-                  data-facet={f.key}
-                  data-value={v.id}
-                  disabled={facetCounts[f.key][v.id] === 0}
-                  aria-pressed="false"
-                >
-                  <span>{v.label}</span>
-                  <span class="count">{facetCounts[f.key][v.id]}</span>
-                </button>
-              ))}
-            </div>
-          ))}
-          <button class="clear-facets" hidden>Clear filters</button>
-        </aside>
-      ) : (
-        <div class="gutter" aria-hidden="true"></div>
-      )}
-
-      <div class="l-content">
-        <div class="l-columns">
-          <div class="learn-content">
-        <PageHeader title={meta[tab].h1} lede={meta[tab].lede} />
-
-        <div class="filter-row">
-          {bucket!.facets.map((f) => (
-            <div class="chip" data-facet={f.key} data-default={f.label}>
-              <button class="chip-btn" type="button" aria-haspopup="true" aria-expanded="false">
-                <span class="chip-text">{f.label}</span>
-                <svg class="caret" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9" /></svg>
-                <span class="chip-x" role="button" tabindex="0" aria-label={`Clear ${f.label} filter`}>
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" /></svg>
-                </span>
-              </button>
-              <div class="chip-menu" role="menu" hidden>
-                {f.values.map((v) => (
-                  <button
-                    class="chip-option"
-                    type="button"
-                    role="menuitemradio"
-                    aria-checked="false"
-                    data-facet={f.key}
-                    data-value={v.id}
-                    disabled={facetCounts[f.key][v.id] === 0}
-                  >
-                    <span class="opt-label">{v.label}</span>
-                    <span class="count">{facetCounts[f.key][v.id]}</span>
-                  </button>
-                ))}
-              </div>
-            </div>
-          ))}
-          <div class="search-wrap">
-            <svg class="search-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8" /><line x1="21" y1="21" x2="16.65" y2="16.65" /></svg>
-            <input class="filter-search" type="search" placeholder={searchPlaceholder} aria-label={searchPlaceholder} />
-          </div>
-        </div>
-
-        <div class="results-row">
-          <span class="result-count" aria-live="polite"></span>
-          <button class="clear-facets" hidden>Clear filters</button>
-        </div>
-
-        <ul class="rows">
-          {bucketCards.map(({ entry, tags, subtitle, chips, searchText }) => (
-            <li
-              data-text={searchText}
-              {...Object.fromEntries(
-                bucket!.facets.map((f) => [`data-${f.key}`, (tags[f.key] ?? []).join(' ')])
-              )}
-            >
-              <a href={urlFor(tab, entry)}>
-                <span class="row-title">{entry.data.title}</span>
-                {subtitle && <span class="row-sub">{subtitle}</span>}
-                {chips.length > 0 && (
-                  <span class="row-tags">
-                    {chips.map((c) => (
-                      <span
-                        class="tag"
-                        role="button"
-                        tabindex="0"
-                        data-facet={c.facet}
-                        data-value={c.value}
-                        aria-label={`Filter by ${c.label}`}
-                      >{c.label}</span>
-                    ))}
-                  </span>
-                )}
-              </a>
-            </li>
-          ))}
-        </ul>
-        <p class="no-match" hidden>{meta[tab].empty ?? 'No articles match those filters.'}</p>
-        <nav class="pager" aria-label="Pagination" hidden></nav>
-          </div>
-          <div class="rail-col" aria-hidden="true"></div>
-        </div>
-      </div>
+    <div class="card-grid">
+      {sectionCards.map((c) => (
+        <Card title={c.label} href={c.href}>
+          <Icon name={groupIcons[c.label] ?? 'file-text'} slot="icon" />
+          {c.desc}
+        </Card>
+      ))}
     </div>
-  </Base>
-)}
+  </article>
+</DocsShell>
 
 <style>
-  /* --- Shell (docs/api/entities) landing --- */
+  /* Shell landing (all tabs): header + one card per sidebar section. */
   /* Pass X.2 uniform width: the shell's grid caps the column at 46rem; drop
-     the inner 68ch prose cap so this matches the how-to tabs exactly. */
+     the inner prose cap so this matches the article pages exactly. */
   article.prose {
     max-width: none;
   }
@@ -314,658 +155,4 @@ const showSidebar = false;
     gap: 0.9rem;
     margin: 0 0 1.5rem;
   }
-  .toc {
-    position: sticky;
-    top: calc(var(--nav-h) + 2.5rem);
-    display: flex;
-    flex-direction: column;
-    gap: 0.35rem;
-  }
-  .toc a {
-    color: var(--muted);
-  }
-  .toc a:hover {
-    color: var(--ink);
-    text-decoration: none;
-  }
-  .article-foot {
-    display: flex;
-    margin-top: 3rem;
-    padding-top: 1.25rem;
-    border-top: 1px solid var(--line);
-  }
-
-  /* --- Bucket tabs (FAQ + Tutorials): filterable list --- */
-  /* Pass X.2: exact DocsShell geometry (17.5rem gutter + centered
-     46rem-main/13rem-rail columns, same paddings/breakpoints) so the content
-     column and H1 sit in the same place as on the Docs/Entities/API tabs.
-     The gutter is the (hidden) facet sidebar's slot — flip showSidebar to
-     put the facet bar back in it. */
-  .learn-shell {
-    display: grid;
-    grid-template-columns: 17.5rem minmax(0, 1fr);
-    min-height: calc(100dvh - var(--nav-h));
-  }
-  .l-content {
-    padding: 2.5rem 2rem 5rem;
-    min-width: 0;
-  }
-  .l-columns {
-    display: grid;
-    grid-template-columns: minmax(0, 46rem) 13rem;
-    gap: 3.5rem;
-    justify-content: center;
-  }
-  .learn-content {
-    min-width: 0;
-  }
-  .facet-bar {
-    border-right: 1px solid var(--line);
-    position: sticky;
-    top: var(--nav-h);
-    height: calc(100dvh - var(--nav-h));
-    overflow-y: auto;
-    padding: 1.75rem 1.25rem 2.5rem 1.5rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    scrollbar-width: thin;
-  }
-  .facet {
-    display: flex;
-    flex-direction: column;
-    gap: 0.1rem;
-  }
-  .facet-label {
-    font-size: 0.8rem;
-    color: var(--muted);
-    margin-bottom: 0.4rem;
-  }
-  .facet-value {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 0.5rem;
-    font: inherit;
-    font-size: 0.86rem;
-    color: var(--ink);
-    background: none;
-    border: none;
-    border-radius: 6px;
-    padding: 0.22rem 0.5rem;
-    margin-left: -0.5rem;
-    cursor: pointer;
-    text-align: left;
-  }
-  .facet-value:hover {
-    color: var(--accent);
-  }
-  .facet-value[aria-pressed='true'] {
-    color: var(--accent);
-    background: var(--accent-wash);
-    font-weight: 550;
-  }
-  .facet-value:disabled {
-    color: var(--faint);
-    cursor: default;
-  }
-  .facet-value .count {
-    font-size: 0.75rem;
-    color: var(--faint);
-  }
-  .clear-facets {
-    align-self: flex-start;
-    font: inherit;
-    font-size: 0.82rem;
-    color: var(--muted);
-    background: none;
-    border: 1px solid var(--line);
-    border-radius: 999px;
-    padding: 0.25rem 0.8rem;
-    cursor: pointer;
-  }
-  .clear-facets:hover {
-    color: var(--ink);
-    border-color: var(--line-strong);
-  }
-  .no-match {
-    color: var(--muted);
-    font-size: 0.92rem;
-  }
-  /* Linear-style filter chips + search box, one row above the list. Jason
-     2026-08-07: filters sit close under the page header (local override of
-     the shared 2.25rem header margin) and further from the results. */
-  .learn-content :global(.page-head) {
-    margin-bottom: 1rem;
-  }
-  .filter-row {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 0.5rem;
-    margin-bottom: 3rem;
-  }
-  .chip {
-    position: relative;
-  }
-  .chip-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.3rem;
-    font: inherit;
-    font-size: 0.84rem;
-    color: var(--ink);
-    background: var(--panel);
-    border: 1px solid var(--line);
-    border-radius: 7px;
-    padding: 0.32rem 0.6rem;
-    cursor: pointer;
-    white-space: nowrap;
-  }
-  .chip-btn:hover {
-    border-color: var(--line-strong);
-  }
-  /* Selected chip = black with white text (monochrome "selected" convention). */
-  .chip[data-active] .chip-btn {
-    color: #fff;
-    border-color: var(--ink);
-    background: var(--ink);
-  }
-  .chip-btn .caret {
-    color: var(--faint);
-  }
-  /* When a facet is chosen the chevron becomes an X that clears the filter. */
-  .chip-x {
-    display: none;
-    align-items: center;
-    margin: -0.2rem -0.15rem -0.2rem 0;
-    padding: 0.2rem;
-    border-radius: 4px;
-    color: #fff;
-  }
-  .chip-x:hover {
-    background: rgb(255 255 255 / 18%);
-  }
-  .chip[data-active] .caret {
-    display: none;
-  }
-  .chip[data-active] .chip-x {
-    display: inline-flex;
-  }
-  .chip-menu {
-    position: absolute;
-    z-index: 20;
-    top: calc(100% + 0.3rem);
-    left: 0;
-    min-width: 12rem;
-    max-height: 18rem;
-    overflow-y: auto;
-    background: var(--panel);
-    border: 1px solid var(--line);
-    border-radius: 8px;
-    box-shadow: 0 8px 28px rgb(0 0 0 / 12%);
-    padding: 0.3rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.05rem;
-  }
-  .chip-menu[hidden] {
-    display: none; /* author display:flex would otherwise beat the [hidden] UA rule */
-  }
-  .chip-option {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 0.75rem;
-    font: inherit;
-    font-size: 0.85rem;
-    color: var(--ink);
-    background: none;
-    border: none;
-    border-radius: 6px;
-    padding: 0.32rem 0.5rem;
-    cursor: pointer;
-    text-align: left;
-  }
-  .chip-option:hover {
-    background: var(--panel-strong);
-  }
-  .chip-option[aria-checked='true'] {
-    color: var(--ink);
-    font-weight: 600;
-  }
-  .chip-option:disabled {
-    color: var(--faint);
-    cursor: default;
-  }
-  .chip-option:disabled:hover {
-    background: none;
-  }
-  .chip-option .count {
-    font-size: 0.75rem;
-    color: var(--faint);
-  }
-  /* Search: outlined (not a gray fill) with a leading magnifier, pushed to the
-     right so it reads as a search field distinct from the filter chips. */
-  .search-wrap {
-    position: relative;
-    display: flex;
-    align-items: center;
-    flex: 0 1 15rem;
-    min-width: 9rem;
-    margin-left: auto;
-  }
-  .search-icon {
-    position: absolute;
-    left: 0.6rem;
-    color: var(--faint);
-    pointer-events: none;
-  }
-  .filter-search {
-    width: 100%;
-    font: inherit;
-    font-size: 0.86rem;
-    color: var(--ink);
-    background: transparent;
-    border: 1px solid var(--line);
-    border-radius: 7px;
-    padding: 0.36rem 0.7rem 0.36rem 2rem;
-  }
-  .filter-search::placeholder {
-    color: var(--faint);
-  }
-  .filter-search:focus {
-    outline: none;
-    border-color: var(--ink);
-  }
-
-  /* Three-row list items: title / one-line subtitle / small tags. */
-  .rows {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-  .rows li {
-    border-top: 1px solid var(--line);
-  }
-  .rows li:last-child {
-    border-bottom: 1px solid var(--line);
-  }
-  .rows li a {
-    display: block;
-    color: inherit;
-    padding: 0.85rem 0.4rem;
-  }
-  .rows li a:hover {
-    text-decoration: none;
-  }
-  .rows li a:hover .row-title {
-    color: var(--accent);
-  }
-  .row-title {
-    display: block;
-    font-weight: 500;
-    font-size: 0.95rem;
-  }
-  .row-sub {
-    display: block;
-    color: var(--muted);
-    font-size: 0.86rem;
-    margin-top: 0.15rem;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-  .row-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.35rem;
-    margin-top: 0.5rem;
-  }
-  /* Monochrome tags: hairline outline, muted text — no fill, no color.
-     In list rows they're clickable: click = filter by that tag. */
-  .rows .tag {
-    cursor: pointer;
-  }
-  .rows .tag:hover {
-    color: var(--ink);
-    border-color: var(--line-strong);
-  }
-  .tag {
-    font-size: 0.68rem;
-    line-height: 1.5;
-    color: var(--muted);
-    background: none;
-    border: 1px solid var(--line);
-    border-radius: 4px;
-    padding: 0.02rem 0.42rem;
-    white-space: nowrap;
-  }
-
-  /* Results count (Google-style) + pagination. */
-  .results-row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
-    margin-bottom: 0.5rem;
-    min-height: 1.4rem;
-  }
-  .result-count {
-    font-size: 0.82rem;
-    color: var(--muted);
-  }
-  .pager {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.3rem;
-    flex-wrap: wrap;
-    margin-top: 2rem;
-  }
-  .pager button {
-    font: inherit;
-    font-size: 0.84rem;
-    color: var(--ink);
-    background: none;
-    border: 1px solid var(--line);
-    border-radius: 6px;
-    padding: 0.3rem 0.62rem;
-    cursor: pointer;
-  }
-  .pager button:hover:not(:disabled):not([aria-current='true']) {
-    border-color: var(--line-strong);
-  }
-  .pager button[aria-current='true'] {
-    background: var(--ink);
-    color: #fff;
-    border-color: var(--ink);
-    cursor: default;
-  }
-  .pager button:disabled {
-    color: var(--faint);
-    cursor: default;
-  }
-  .pager .ellipsis {
-    color: var(--faint);
-    padding: 0 0.15rem;
-  }
-  @media (max-width: 1180px) {
-    .l-columns {
-      grid-template-columns: minmax(0, 46rem);
-    }
-    .l-columns .rail-col {
-      display: none;
-    }
-  }
-  @media (max-width: 900px) {
-    .learn-shell {
-      grid-template-columns: 1fr;
-    }
-    .gutter {
-      display: none;
-    }
-    .facet-bar {
-      position: static;
-      height: auto;
-      border-right: none;
-      border-bottom: 1px solid var(--line);
-      flex-direction: row;
-      flex-wrap: wrap;
-      gap: 1.5rem 2.5rem;
-    }
-    .l-content {
-      padding: 2rem 1.25rem 4rem;
-    }
-  }
-  .page-foot {
-    display: flex;
-    justify-content: center;
-    margin-top: 3rem;
-    padding-top: 1.5rem;
-    border-top: 1px solid var(--line);
-  }
 </style>
-
-<script>
-  // Bucket-tab filtering (Pass W / W.1): SINGLE-select per facet via the
-  // Linear-style chip dropdowns (and the left sidebar when shown), a
-  // filter-as-you-type search box, a results count, and client-side pagination
-  // (20/page). AND across facets; substring match on title + subtitle.
-  const root = document.querySelector<HTMLElement>('.learn-shell');
-  if (root) {
-    const rows = [...root.querySelectorAll<HTMLLIElement>('.rows > li')];
-    const sidebarBtns = [...root.querySelectorAll<HTMLButtonElement>('.facet-value')];
-    const chipEls = [...root.querySelectorAll<HTMLElement>('.chip')];
-    const chipOptions = [...root.querySelectorAll<HTMLButtonElement>('.chip-option')];
-    const searchInput = root.querySelector<HTMLInputElement>('.filter-search');
-    const clearBtns = [...root.querySelectorAll<HTMLButtonElement>('.clear-facets')];
-    const noMatch = root.querySelector<HTMLElement>('.no-match');
-    const resultCount = root.querySelector<HTMLElement>('.result-count');
-    const pager = root.querySelector<HTMLElement>('.pager');
-    const content = root.querySelector<HTMLElement>('.learn-content');
-
-    const PER_PAGE = 20;
-    const selected: Record<string, string | null> = {};
-    let query = '';
-    let page = 1;
-
-    const passes = (row: HTMLElement) => {
-      for (const [facet, val] of Object.entries(selected)) {
-        if (!val) continue;
-        const cardVals = (row.dataset[facet] ?? '').split(' ').filter(Boolean);
-        if (!cardVals.includes(val)) return false;
-      }
-      if (query && !(row.dataset.text ?? '').includes(query)) return false;
-      return true;
-    };
-
-    function render() {
-      const filtered = rows.filter(passes);
-      const total = filtered.length;
-      const pages = Math.max(1, Math.ceil(total / PER_PAGE));
-      page = Math.min(Math.max(page, 1), pages);
-      const start = (page - 1) * PER_PAGE;
-      const end = Math.min(start + PER_PAGE, total);
-      const shown = new Set(filtered.slice(start, end));
-      for (const row of rows) row.hidden = !shown.has(row);
-
-      if (resultCount) resultCount.textContent = total === 0 ? '' : `Showing ${start + 1}–${end} of ${total}`;
-      if (noMatch) noMatch.hidden = total > 0;
-      const anyFilter = Object.values(selected).some(Boolean) || Boolean(query);
-      for (const cb of clearBtns) cb.hidden = !anyFilter;
-      renderPager(pages);
-    }
-
-    function renderPager(pages: number) {
-      if (!pager) return;
-      pager.textContent = '';
-      if (pages <= 1) {
-        pager.hidden = true;
-        return;
-      }
-      pager.hidden = false;
-      const mkBtn = (label: string, p: number, o: { current?: boolean; disabled?: boolean } = {}) => {
-        const b = document.createElement('button');
-        b.type = 'button';
-        b.textContent = label;
-        if (o.current) b.setAttribute('aria-current', 'true');
-        if (o.disabled) b.disabled = true;
-        if (!o.disabled && !o.current) {
-          b.addEventListener('click', () => {
-            page = p;
-            render();
-            content?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          });
-        }
-        return b;
-      };
-      pager.appendChild(mkBtn('‹ Prev', page - 1, { disabled: page === 1 }));
-      const nums = [...new Set([1, page - 1, page, page + 1, pages])].filter((n) => n >= 1 && n <= pages).sort((a, b) => a - b);
-      let prev = 0;
-      for (const n of nums) {
-        if (n - prev > 1) {
-          const e = document.createElement('span');
-          e.className = 'ellipsis';
-          e.textContent = '…';
-          pager.appendChild(e);
-        }
-        pager.appendChild(mkBtn(String(n), n, { current: n === page }));
-        prev = n;
-      }
-      pager.appendChild(mkBtn('Next ›', page + 1, { disabled: page === pages }));
-    }
-
-    function syncUI() {
-      for (const b of sidebarBtns) {
-        b.setAttribute('aria-pressed', selected[b.dataset.facet!] === b.dataset.value ? 'true' : 'false');
-      }
-      for (const o of chipOptions) {
-        o.setAttribute('aria-checked', selected[o.dataset.facet!] === o.dataset.value ? 'true' : 'false');
-      }
-      for (const chip of chipEls) {
-        const key = chip.dataset.facet!;
-        const val = selected[key];
-        const textEl = chip.querySelector<HTMLElement>('.chip-text')!;
-        if (val) {
-          const opt = chipOptions.find((o) => o.dataset.facet === key && o.dataset.value === val);
-          textEl.textContent = opt?.querySelector('.opt-label')?.textContent ?? chip.dataset.default!;
-          chip.setAttribute('data-active', '');
-        } else {
-          textEl.textContent = chip.dataset.default!;
-          chip.removeAttribute('data-active');
-        }
-      }
-    }
-
-    let update = () => {
-      page = 1; // any filter/search change returns to the first page
-      syncUI();
-      render();
-    };
-
-    function setFacet(key: string, value: string) {
-      selected[key] = selected[key] === value ? null : value;
-      update();
-    }
-    function clearFacet(key: string) {
-      selected[key] = null;
-      update();
-    }
-
-    function closeMenus(except?: HTMLElement) {
-      for (const chip of chipEls) {
-        if (chip === except) continue;
-        chip.querySelector<HTMLElement>('.chip-menu')!.hidden = true;
-        chip.querySelector<HTMLButtonElement>('.chip-btn')!.setAttribute('aria-expanded', 'false');
-      }
-    }
-
-    for (const b of sidebarBtns) {
-      b.addEventListener('click', () => setFacet(b.dataset.facet!, b.dataset.value!));
-    }
-    for (const o of chipOptions) {
-      o.addEventListener('click', () => {
-        setFacet(o.dataset.facet!, o.dataset.value!);
-        closeMenus();
-      });
-    }
-    for (const chip of chipEls) {
-      const btn = chip.querySelector<HTMLButtonElement>('.chip-btn')!;
-      const menu = chip.querySelector<HTMLElement>('.chip-menu')!;
-      const x = chip.querySelector<HTMLElement>('.chip-x');
-      btn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        const willOpen = menu.hidden;
-        closeMenus(chip);
-        menu.hidden = !willOpen;
-        btn.setAttribute('aria-expanded', String(willOpen));
-      });
-      // The X (shown only when the facet is chosen) clears it, without opening
-      // the menu.
-      x?.addEventListener('click', (e) => {
-        e.stopPropagation();
-        clearFacet(chip.dataset.facet!);
-        closeMenus();
-      });
-      x?.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          e.stopPropagation();
-          clearFacet(chip.dataset.facet!);
-          closeMenus();
-        }
-      });
-    }
-    document.addEventListener('click', () => closeMenus());
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') closeMenus();
-    });
-
-    if (searchInput) {
-      searchInput.addEventListener('input', () => {
-        query = searchInput.value.trim().toLowerCase();
-        update();
-      });
-    }
-    for (const cb of clearBtns) {
-      cb.addEventListener('click', () => {
-        for (const k of Object.keys(selected)) selected[k] = null;
-        query = '';
-        if (searchInput) searchInput.value = '';
-        update();
-      });
-    }
-
-    // Row tags are clickable filters (Jason 2026-08-07). They live inside the
-    // row's link, so intercept before the navigation.
-    for (const t of root.querySelectorAll<HTMLElement>('.rows .tag')) {
-      const apply = (e: Event) => {
-        e.preventDefault();
-        e.stopPropagation();
-        setFacet(t.dataset.facet!, t.dataset.value!);
-      };
-      t.addEventListener('click', apply);
-      t.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') apply(e);
-      });
-    }
-
-    // URL params <-> filter state: `?<facet>=<value>&q=…` applies on load (so
-    // article-page tags can deep-link a filtered list) and is kept in sync as
-    // filters change (shareable URLs).
-    const facetKeys = chipEls.map((c) => c.dataset.facet!);
-    function writeParams() {
-      const params = new URLSearchParams();
-      for (const k of facetKeys) if (selected[k]) params.set(k, selected[k]!);
-      if (query) params.set('q', query);
-      const qs = params.toString();
-      history.replaceState(null, '', qs ? `?${qs}` : location.pathname);
-    }
-    const origUpdate = update;
-    update = () => {
-      origUpdate();
-      writeParams();
-    };
-    {
-      const params = new URLSearchParams(location.search);
-      let any = false;
-      for (const k of facetKeys) {
-        const v = params.get(k);
-        if (v && chipOptions.some((o) => o.dataset.facet === k && o.dataset.value === v)) {
-          selected[k] = v;
-          any = true;
-        }
-      }
-      const q = params.get('q');
-      if (q && searchInput) {
-        searchInput.value = q;
-        query = q.trim().toLowerCase();
-        any = true;
-      }
-      if (any) syncUI();
-    }
-
-    render(); // initial paint (sets the count + first page)
-  }
-</script>

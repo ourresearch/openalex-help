@@ -1,5 +1,5 @@
 ---
-title: "Download to your machine"
+title: "Download the Snapshot"
 subtitle: "Pull the full OpenAlex snapshot onto your computer with the AWS CLI."
 description: "Get the OpenAlex snapshot files onto your local machine using the AWS CLI"
 tags: ["recipes", "downloads"]

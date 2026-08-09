@@ -1,5 +1,5 @@
 ---
-title: "Which Journals Does Your Institution Cite?"
+title: "Journals You Cite"
 subtitle: "Walk your researchers' reference lists to see which journals they cite the most."
 description: "Map the journals your researchers reference most by walking their citation lists"
 tags: ["recipes","api"]

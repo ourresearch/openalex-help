@@ -1,5 +1,5 @@
 ---
-title: "Estimate the APC fees my institution has paid to make research Open Access"
+title: "Estimate APC Spend"
 subtitle: "Approximate what an institution has spent on article-processing charges, using OA status and journal prices."
 description: "Calculating the exact amount of money an institution has spent on APC fees is not currently possible. We outline below an approach that estimates these spends:"
 tags: ["libraries"]

@@ -1,5 +1,5 @@
 ---
-title: "Check if a journal’s works are in OpenAlex"
+title: "Journal Coverage"
 subtitle: "Search a journal and see how many of its articles OpenAlex has indexed."
 description: "1. Search for the journal name. 2. If it appears, click on it: this will apply a filter for the works whose primary location is in the selected.journal. You can browse through t…"
 tags: ["publishers"]

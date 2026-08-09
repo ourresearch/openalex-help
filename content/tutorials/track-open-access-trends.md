@@ -1,5 +1,5 @@
 ---
-title: "Open Access Trends by Year"
+title: "Open Access Trends"
 subtitle: "Chart the rise of open-access publishing over the past decade through the API."
 description: "Track the growth of open access publishing over the last decade"
 tags: ["recipes","api"]

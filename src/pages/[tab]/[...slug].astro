@@ -1,12 +1,11 @@
 ---
 import { render } from 'astro:content';
-import Base from '../../layouts/Base.astro';
 import DocsShell from '../../layouts/DocsShell.astro';
 import PageHeader from '../../components/PageHeader.astro';
 import EntityMeta from '../../components/EntityMeta.astro';
 import { allEntries, mdUrlFor, type Tab } from '../../lib/tabs';
 import { groupEntries, breadcrumbsFor, displayTitleFor } from '../../lib/nav';
-import { facetConfig } from '../../lib/facets';
+import { interfaceTagsFor } from '../../lib/facets';
 
 export async function getStaticPaths() {
   return (await allEntries()).map(({ tab, entry }) => ({
@@ -19,13 +18,9 @@ const tab = Astro.params.tab as Tab;
 const { entry } = Astro.props;
 const { Content, headings } = await render(entry);
 
-// Tutorials read like a friendly answer: narrow column, back link, no sidebar.
-// Everything else — including How-to since oxjob #750 — gets the full app
-// shell (grouped sidebar + right rail).
-const isShell = tab === 'access' || tab === 'api' || tab === 'data' || tab === 'how-to';
-const groups = isShell
-  ? groupEntries(tab, (await allEntries()).filter((e) => e.tab === tab).map((e) => e.entry))
-  : [];
+// Every tab now renders in the app shell (grouped sidebar + right TOC rail) —
+// Tutorials joined the rest in oxjob #750, retiring the old facet/filter list.
+const groups = groupEntries(tab, (await allEntries()).filter((e) => e.tab === tab).map((e) => e.entry));
 const crumbs = breadcrumbsFor(tab, entry.id);
 // Overview pages compose their parent's name into the H1 ("Querying Overview")
 // — Jason's Pass S round 2 call. Other context-free titles ("Basic") keep the
@@ -42,127 +37,60 @@ const docTitle =
 const toc = headings.filter((h) => h.depth === 2);
 const mdUrl = mdUrlFor(tab, entry);
 
-// How-to tabs (FAQ + Recipes, Pass W): the article carries its facet tags,
-// lined up under the H1 — the same tags shown on the tab's list rows.
-const bucket = facetConfig(tab);
-let tagChips: { facet: string; value: string; label: string }[] = [];
-if (bucket) {
-  const tags = bucket.tagsFor(entry.id);
-  const flabel: Record<string, Record<string, string>> = {};
-  for (const f of bucket.facets) flabel[f.key] = Object.fromEntries(f.values.map((v) => [v.id, v.label]));
-  tagChips = bucket.facets.flatMap((f) =>
-    (tags[f.key] ?? []).map((v) => ({ facet: f.key, value: v, label: flabel[f.key]?.[v] ?? v }))
-  );
-}
+// Tutorials (oxjob #750): titles are terse, so the subtitle carries the detail
+// right under the H1, with non-clickable Interface tags (Web/API/…) below it.
+const isTutorial = tab === 'tutorials';
+const tags = isTutorial ? interfaceTagsFor(entry.id) : [];
 ---
 
-{isShell ? (
-  <DocsShell
-    title={docTitle}
-    description={entry.data.description}
-    tab={tab}
-    groups={groups}
-    activeSlug={entry.id}
-  >
-    <article class="prose">
-      <PageHeader title={displayTitle} crumbs={crumbs} />
-      {entry.data.entity && <EntityMeta {...entry.data.entity} />}
-      <Content />
-      <div class="article-foot">
-        <a class="md-link" href={mdUrl}>View as Markdown</a>
-      </div>
-    </article>
-
-    <div class="rail" slot="rail">
-      {toc.length > 1 && (
-        <nav class="toc" aria-label="On this page">
-          {toc.map((h) => (
-            <a href={`#${h.slug}`}>{h.text}</a>
+<DocsShell
+  title={docTitle}
+  description={entry.data.description}
+  tab={tab}
+  groups={groups}
+  activeSlug={entry.id}
+>
+  <article class="prose">
+    <PageHeader title={displayTitle} lede={isTutorial ? entry.data.subtitle : undefined} crumbs={crumbs}>
+      {tags.length > 0 && (
+        <div class="tut-tags">
+          {tags.map((t) => (
+            <span class="tag">{t}</span>
           ))}
-        </nav>
-      )}
-    </div>
-  </DocsShell>
-) : (
-  <Base title={docTitle} description={entry.data.description} wide>
-    <div class="howto-shell">
-      <div class="gutter" aria-hidden="true"></div>
-      <div class="howto-content">
-      <div class="howto-cols">
-        <article class="prose main-col">
-          <PageHeader title={displayTitle} crumbs={crumbs}>
-            {tagChips.length > 0 && (
-              <div class="howto-tags">
-                {tagChips.map((t) => (
-                  <a class="tag" href={`/${tab}/?${t.facet}=${encodeURIComponent(t.value)}`}>{t.label}</a>
-                ))}
-              </div>
-            )}
-          </PageHeader>
-          <Content />
-          <div class="article-foot">
-            <a class="md-link" href={mdUrl}>View as Markdown</a>
-          </div>
-        </article>
-        <div class="rail-col">
-          {toc.length > 1 && (
-            <nav class="toc" aria-label="On this page">
-              {toc.map((h) => (
-                <a href={`#${h.slug}`}>{h.text}</a>
-              ))}
-            </nav>
-          )}
         </div>
-      </div>
-      </div>
+      )}
+    </PageHeader>
+    {entry.data.entity && <EntityMeta {...entry.data.entity} />}
+    <Content />
+    <div class="article-foot">
+      <a class="md-link" href={mdUrl}>View as Markdown</a>
     </div>
-  </Base>
-)}
+  </article>
+
+  <div class="rail" slot="rail">
+    {toc.length > 1 && (
+      <nav class="toc" aria-label="On this page">
+        {toc.map((h) => (
+          <a href={`#${h.slug}`}>{h.text}</a>
+        ))}
+      </nav>
+    )}
+  </div>
+</DocsShell>
 
 <style>
-  /* Pass X.2 uniform width: the column grids cap content at 46rem, so drop
-     the inner 68ch prose cap — every tab's content column is the same 46rem. */
+  /* Pass X.2 uniform width: the DocsShell column grid caps content at 46rem, so
+     drop the inner prose cap — every tab's content column is the same 46rem. */
   article.prose {
     max-width: none;
   }
-  /* How-to article layout (FAQ + Tutorials): reading column + a right nav
-     rail. Pass X.2: exact DocsShell geometry (17.5rem phantom gutter +
-     centered 46rem/13rem columns, same paddings/breakpoints) so the content
-     column sits in the same place as on the Docs/Entities/API tabs. */
-  .howto-shell {
-    display: grid;
-    grid-template-columns: 17.5rem minmax(0, 1fr);
-    min-height: calc(100dvh - var(--nav-h));
-  }
-  .howto-content {
-    padding: 2.5rem 2rem 5rem;
-    min-width: 0;
-  }
-  .howto-cols {
-    display: grid;
-    grid-template-columns: minmax(0, 46rem) 13rem;
-    gap: 3.5rem;
-    justify-content: center;
-  }
-  .rail-col {
-    font-size: 0.84rem;
-  }
-  .rail-col .toc {
-    position: sticky;
-    top: calc(var(--nav-h) + 2.5rem);
-  }
-  .howto-tags {
+  /* Tutorials: non-clickable Interface tags under the subtitle (oxjob #750).
+     Monochrome — hairline outline, muted text. */
+  .tut-tags {
     display: flex;
     flex-wrap: wrap;
     gap: 0.4rem;
-    margin-top: 0.7rem; /* sits inside PageHeader, under the H1 */
-  }
-  /* Monochrome tags: hairline outline, muted text (Pass W.1). Now links to
-     the tab's list filtered by that tag (Jason 2026-08-07). */
-  a.tag:hover {
-    color: var(--ink);
-    border-color: var(--line-strong);
-    text-decoration: none;
+    margin-top: 0.7rem; /* sits inside PageHeader, under the subtitle */
   }
   .tag {
     font-size: 0.72rem;
@@ -173,25 +101,6 @@ if (bucket) {
     border-radius: 4px;
     padding: 0.05rem 0.5rem;
     white-space: nowrap;
-  }
-  @media (max-width: 1180px) {
-    .howto-cols {
-      grid-template-columns: minmax(0, 46rem);
-    }
-    .rail-col {
-      display: none;
-    }
-  }
-  @media (max-width: 900px) {
-    .howto-shell {
-      grid-template-columns: 1fr;
-    }
-    .gutter {
-      display: none;
-    }
-    .howto-content {
-      padding: 2rem 1.25rem 4rem;
-    }
   }
   .rail {
     position: sticky;

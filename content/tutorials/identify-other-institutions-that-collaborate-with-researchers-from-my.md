@@ -1,5 +1,5 @@
 ---
-title: "Identify other institutions that collaborate with researchers from my institution"
+title: "Institution Collaborators"
 subtitle: "Rank the institutions your researchers co-publish with most."
 description: "1. Search for your institution by typing it into the search bar. 2. Select your institution; this will create a filter. 3. Under “Stats,” look for a panel labeled “institution”.…"
 tags: ["partnership-development"]

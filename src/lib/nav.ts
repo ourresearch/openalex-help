@@ -126,6 +126,78 @@ export const NAV_GROUPS: Record<string, NavGroup[]> = {
     },
   ],
 
+  // Tutorials (oxjob #750): folded into the shell template — split on ONE
+  // axis, topic. Titles are tightened (2–4 words) so they read in the drawer;
+  // each tutorial's subtitle + Interface tag carry the detail on its own page.
+  // Replaced the facet/filter "bucket" list. Quick Start is first by nav order
+  // (was pin-ranked in the old bucket).
+  tutorials: [
+    {
+      label: 'Get started',
+      desc: 'Your first few minutes with OpenAlex.',
+      slugs: ['quickstart'],
+    },
+    {
+      label: 'Output & subjects',
+      desc: 'How much your institution publishes, and on what.',
+      slugs: [
+        'how-many-outputs-does-my-institution-have',
+        'how-many-of-each-type-of-output-does-my-institution-have',
+        'break-down-of-my-institutions-outputs-by-subject-area-subfield',
+        'which-of-my-institutions-outputs-are-contributions-to-un-sustainable-d',
+        'map-an-sdg-research-landscape',
+      ],
+    },
+    {
+      label: 'Citations & impact',
+      desc: 'Measure the reach of research.',
+      slugs: [
+        'count-incoming-citations-to-any-results-set',
+        'how-much-is-my-institutions-work-cited',
+        'find-most-cited-journals',
+      ],
+    },
+    {
+      label: 'Open access',
+      desc: 'Track open access and what it costs.',
+      slugs: [
+        'what-percentage-of-my-institutions-outputs-are-open-access-oa',
+        'track-open-access-trends',
+        'estimate-the-apc-fees-my-institution-has-paid-to-make-research-open-ac',
+      ],
+    },
+    {
+      label: 'Collaboration',
+      desc: 'Find partners and map co-authorship.',
+      slugs: [
+        'find-collaborators',
+        'identify-other-institutions-that-collaborate-with-researchers-from-my',
+      ],
+    },
+    {
+      label: 'Journals & profiles',
+      desc: 'Check journal coverage and clean up profiles.',
+      slugs: [
+        'check-if-a-journals-works-are-in-openalex',
+        'which-journals-do-researchers-at-my-institution-publish-in',
+        'audit-an-author-profiles-works',
+      ],
+    },
+    {
+      label: 'Bulk data & API',
+      desc: 'Work with the whole dataset and the API directly.',
+      slugs: [
+        'download-to-your-machine',
+        'how-do-i-read-jsonl-files',
+        'quick-api-recipes',
+        'systematic-reviews-with-oql',
+        'how-do-i-use-the-title-search-api',
+        'analyze-a-funders-portfolio',
+        'how-do-i-make-the-unpaywall-extension-work-on-my-site',
+      ],
+    },
+  ],
+
   access: [
     {
       // Pass W (2026-08-06): the tab front door. "Overview" here is the /docs/

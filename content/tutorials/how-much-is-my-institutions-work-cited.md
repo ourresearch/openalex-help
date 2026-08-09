@@ -1,5 +1,5 @@
 ---
-title: "How much is my institution’s work cited?"
+title: "Institution Citations"
 subtitle: "Find the total number of citations an institution's research has earned."
 description: "1. Search for your institution by typing it into the search bar. 2. Select your institution; this will create a filter. 3. Under “Stats,” look for a panel listing the total numb…"
 tags: ["summarize-research-impacts"]

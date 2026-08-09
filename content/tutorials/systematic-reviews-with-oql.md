@@ -1,5 +1,5 @@
 ---
-title: "Systematic reviews with OQL"
+title: "Systematic Reviews"
 subtitle: "Build a reproducible systematic-review search in OQL — term blocks, exact vs. stemmed matching, and scope filters."
 description: "Build a real systematic-review search strategy in OQL — term blocks, exact vs. stemmed matching, scope filters, and a reproducible query you can paste straight into your appendix."
 tags: ["recipe", "oql"]

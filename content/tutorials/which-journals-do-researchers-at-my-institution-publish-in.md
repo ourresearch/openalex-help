@@ -1,5 +1,5 @@
 ---
-title: "Which journals do researchers at my institution publish in?"
+title: "Where You Publish"
 subtitle: "List the journals an institution's researchers publish in most often."
 description: "1. Search for your institution by typing it into the search bar 2. Select your institution; this will create a filter. 3. Filter for only works that are in journals: click the “…"
 tags: ["summarize-research"]

@@ -1,5 +1,5 @@
 ---
-title: "How do I make the Unpaywall extension work on my site?"
+title: "Unpaywall Extension"
 subtitle: "Wire the Unpaywall extension's open-access lookups into your own website."
 description: "The Unpaywall browser extension(https://unpaywall.org/products/extension) gets open access locations by calling our REST API.(https://unpaywall.org/products/api) The API is call…"
 tags: ["recipes", "unpaywall"]
