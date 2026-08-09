@@ -3,13 +3,15 @@
 Category vocabulary (Jason 2026-08-07; the Astro/MDN split). The split is reader
 INTENT, not whether learning occurs:
 
-- **Reference**: Docs / Data / API — you know roughly what you're looking for
+- **Reference**: Access / Data / API — you know roughly what you're looking for
   and want to look it up. One reference work split across three tabs to keep each
   table of contents scannable. **Data** (renamed from Entities 2026-08-07 —
   everybody knows "data", not everybody knows "entity") = "what is this thing?"
-  — the graph of ~20 connected entity types, organized by entity. **Docs** =
-  cross-cutting topics (querying, getting the data). **API** = wire mechanics +
-  a one-page endpoints index.
+  — the graph of ~20 connected entity types, organized by entity. **Access**
+  (renamed from Docs 2026-08-09, oxjob #750) = access in both directions: read
+  access (Querying, Get the data, Pricing) + write access (Fixing errors). Its
+  route stays `/docs/` — label ≠ route is fine (precedent: How-to lives at
+  `/help/`). **API** = wire mechanics + a one-page endpoints index.
 - **Learn**: FAQ (extended FAQ of real user questions) / Tutorials (worked
   step-by-step walkthroughs) — you arrive with a question or a job and want to be
   led to the answer.
@@ -18,8 +20,8 @@ INTENT, not whether learning occurs:
 - The site is MONOCHROME (category colors tried and dropped 2026-08-07). The
   grouping shows structurally: hairline dividers between the header tab groups
   (home | faq tutorials | docs data api) and labeled homepage columns.
-- Routing for writers: "What is this thing?" → Data. "How does querying/OA/bulk
-  access work?" → Docs. "Wire mechanics?" → API. "A question a real user asked?" → FAQ.
+- Routing for writers: "What is this thing?" → Data. "How does querying/pricing/bulk
+  access/error-fixing work?" → Access. "Wire mechanics?" → API. "A question a real user asked?" → FAQ.
   "A worked walkthrough?" → Tutorials. NOT "FAQ = nontechnical, docs = technical".
 
 ### Entity pages

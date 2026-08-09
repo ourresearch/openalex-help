@@ -343,7 +343,7 @@ export interface Crumb {
 
 const TAB_LABELS: Record<string, string> = {
   help: 'How-to',
-  docs: 'Docs',
+  docs: 'Access',
   data: 'Data',
   api: 'API',
   tutorials: 'Tutorials',

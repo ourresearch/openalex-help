@@ -14,14 +14,17 @@ const { title, description, wide = false } = Astro.props;
 // Home first (the site front door — oxjob #354 Pass U: it gets a real tab so
 // there's never a no-tab state). Then the two-sided model (Pass R), now
 // expressed in the nav itself: FAQ + Tutorials = Learn ("I have a question
-// or a job — lead me"), Docs/Data/API = Reference ("I know what I'm
+// or a job — lead me"), Access/Data/API = Reference ("I know what I'm
 // looking for — let me look it up"; one reference work split across three
 // tabs). Each side carries its own color.
 const tabs = [
   { label: 'Home', href: '/', group: 'home' },
   { label: 'How-to', href: '/help/', group: 'learn' },
   { label: 'Tutorials', href: '/tutorials/', group: 'learn' },
-  { label: 'Docs', href: '/docs/', group: 'reference' },
+  // "Access" (née Docs, oxjob #750 2026-08-09): read access (querying, data
+  // channels, pricing) + write access (fixing errors). Route stays /docs/ —
+  // precedent: the How-to tab lives at /help/.
+  { label: 'Access', href: '/docs/', group: 'reference' },
   { label: 'Data', href: '/data/', group: 'reference' },
   { label: 'API', href: '/api/', group: 'reference' },
 ];

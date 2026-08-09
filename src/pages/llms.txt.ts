@@ -6,7 +6,9 @@ import { TABS, allEntries, mdUrlFor, urlFor } from '../lib/tabs';
 export const GET: APIRoute = async ({ site }) => {
   const base = (site ?? new URL('https://help.openalex.org')).href.replace(/\/$/, '');
   const entries = await allEntries();
-  const labels: Record<string, string> = { help: 'How-to', docs: 'Docs', entities: 'Entities', api: 'API', tutorials: 'Tutorials' };
+  // Keys must track lib/tabs.ts TABS — the stale `entities` key here rendered
+  // a literal "## undefined" heading for the data tab (caught oxjob #750).
+  const labels: Record<string, string> = { help: 'How-to', docs: 'Access', data: 'Data', api: 'API', tutorials: 'Tutorials' };
 
   const sections = TABS.map((tab) => {
     const rows = entries

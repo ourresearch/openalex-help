@@ -2,7 +2,7 @@
 // Help Center homepage (oxjob #354 Pass U/V/X): the front door for the whole
 // site. A big left-justified masthead, one full-width search box, then the
 // site's map in three labeled columns matching the category model: Learn
-// (FAQ, Tutorials), Reference (Docs, Entities, API), and Chat (the human/AI
+// (FAQ, Tutorials), Reference (Access, Data, API), and Chat (the human/AI
 // conversation surfaces). Monochrome — category colors tried and dropped
 // (Jason 2026-08-07); the grouping is carried by the column structure.
 import Base from '../layouts/Base.astro';
@@ -45,7 +45,7 @@ const columns = [
     label: 'Reference',
     tone: 'reference' as const,
     cards: [
-      { title: 'Docs', href: '/docs/', icon: 'notebook-outline', blurb: 'How OpenAlex works and how to use it' },
+      { title: 'Access', href: '/docs/', icon: 'notebook-outline', blurb: 'Querying, ways to get the data, pricing, and fixing errors' },
       {
         title: 'Data',
         href: '/data/',
