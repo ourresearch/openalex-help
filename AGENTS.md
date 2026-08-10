@@ -68,6 +68,32 @@ Pages bug silently drops rules when wildcard/splat rules sit early in the file (
 (expect FIRE-OK for all; FIRE-WRONG rows whose location == expected_target are fine —
 that's the classifier on absolute external targets).
 
+## Search is hand-rolled on pagefind (oxjob #750)
+
+`src/components/Search.astro` is the whole search feature — dialog, results, highlighting.
+It uses the pagefind **JS API**, not `PagefindUI` (dropped 2026-08-09: it put the header tab
+strip in every excerpt, marked every matched token wherever it appeared, and stacked
+sub-results). Two rules matter outside that file:
+
+- **A new page TYPE must carry `data-pagefind-body`** on its content element, or it silently
+  disappears from search — once *any* page has that tag, pagefind indexes only tagged pages.
+  Add `data-pagefind-meta={`eyebrow:${…}`}` too (the breadcrumb trail, flattened with ` › `);
+  it renders as the result's eyebrow line. `data-pagefind-ignore` anything that's navigation
+  rather than content — that's already on Breadcrumbs, the "View as Markdown" foot, and the
+  landing card grid.
+- **Assets only exist after a build.** `/pagefind/*` is produced by `pagefind --site dist`
+  (wired into `npm run build`), so search cannot be tested on the dev server — use
+  `npm run build && npx astro preview` instead. The dialog shows a dev-only note when the
+  module fails to load.
+
+Snippets and highlighting are deliberately ours, not pagefind's: we cut and score our own
+excerpt window (whole phrase beats a lone term, prose beats a code sample, opens at a
+sentence boundary) and highlight whole words only. Don't "simplify" back to `result.excerpt`.
+
+Two traps found the hard way: an `IntersectionObserver` rooted **inside a top-layer
+`<dialog>` never fires in Chrome** (infinite scroll uses a `scroll` listener), and a
+`<dialog>` styled `display: flex` must scope it to `[open]` or it can't close.
+
 ## Development
 
 When starting the dev server, use background mode:
