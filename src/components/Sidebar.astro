@@ -129,9 +129,14 @@ const path = Astro.url.pathname;
     display: flex;
     flex-direction: column;
   }
+  /* Pass AL (oxjob #750): headers bolder + ink so the hierarchy reads
+     header > pages (Kyle: it read INVERTED — "I had no idea sections were a
+     thing"). Smallest change first (weight/color/size); collapsible accordions
+     are the fallback if this fails Jason's red pen. */
   .group-label {
-    font-size: 0.75rem; /* 12px, cursor-measured */
-    color: var(--muted);
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--ink);
     margin-bottom: 0.45rem;
   }
   a {

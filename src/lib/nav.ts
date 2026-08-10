@@ -139,7 +139,9 @@ export const NAV_GROUPS: Record<string, NavGroup[]> = {
     {
       label: 'Community & support',
       desc: 'Getting help, getting involved, supporter tools, and citing OpenAlex.',
-      slugs: ['support', 'getting-involved', 'supporter-tools', 'citing-openalex'],
+      // 'unsub' (Pass AL): a small page of its own so searching "unsub" finds
+      // the docs.unsub.org link (it was only a section inside supporter-tools).
+      slugs: ['support', 'getting-involved', 'supporter-tools', 'unsub', 'citing-openalex'],
     },
   ],
 
@@ -426,7 +428,7 @@ const TAB_LABELS: Record<string, string> = {
 
 /** A group's natural landing: a leading static link (e.g. Welcome → /docs/),
  * else its first article. */
-function groupTarget(tab: string, g: NavGroup): string | undefined {
+export function groupTarget(tab: string, g: NavGroup): string | undefined {
   const first = g.slugs[0];
   if (first && typeof first === 'object' && 'href' in first) return first.href;
   const slug = flatSlugs(g)[0];

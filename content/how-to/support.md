@@ -12,6 +12,7 @@ Pick the channel that fits:
 - **Ask an AI agent.** This whole site is built to be read by agents (every page has a [Markdown twin](/llms.txt)), so asking your AI assistant is often the fastest route to an answer — see [Agents](/access/agents/).
 - **Ask the community.** The [OpenAlex Community group](https://groups.google.com/g/openalex-community) is our public forum — other users are often quick with answers. (For announcements from us, join the [OpenAlex User Group](https://groups.google.com/g/openalex-users).)
 - **Come to office hours.** We host weekly office hours where anyone can show up and talk through questions with the team: [openalex.org/events](https://openalex.org/events).
+- **Watch a video.** [Our YouTube channel](https://www.youtube.com/@openalex) has training tutorials, town-hall recordings, and user presentations.
 - **File a support ticket** at [openalex.org/contact](https://openalex.org/contact) — the right channel for account issues, data errors, and anything that needs us specifically.
 
 Reporting a data error? A ticket is the default lane for that too — see [Fixing errors](/access/fixing-errors/) for how error reports are handled and which fixes you can make yourself.

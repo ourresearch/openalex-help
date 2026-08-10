@@ -35,7 +35,25 @@
   --font-mono: 'JetBrains Mono Variable', ui-monospace, monospace;
 
   --measure: 68ch;
-  --nav-h: 3rem; /* 48px content + 1px border, matching cursor.com */
+  /* Two-level header (oxjob #750 Pass AL): --nav-h is the TOTAL sticky header
+     height — everything that offsets against the header (sidebar, rail,
+     scroll-padding) keys off it. The first row is --navrow-h; pages inside a
+     tab add a second-level section row (--subnav-h) via html.has-subnav. */
+  --navrow-h: 3rem; /* 48px content + 1px border, matching cursor.com */
+  --subnav-h: 2.375rem;
+  --nav-h: var(--navrow-h);
+}
+
+html.has-subnav {
+  --nav-h: calc(var(--navrow-h) + var(--subnav-h));
+}
+
+/* The second row hides with the tab strip on mobile (hamburger takes over) —
+   keep this width in sync with Base.astro's collapse breakpoint. */
+@media (max-width: 1170px) {
+  html.has-subnav {
+    --nav-h: var(--navrow-h);
+  }
 }
 
 * {

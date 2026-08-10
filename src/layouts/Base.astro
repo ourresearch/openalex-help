@@ -3,6 +3,7 @@ import '@fontsource-variable/inter';
 import '@fontsource-variable/jetbrains-mono';
 import '../styles/global.css';
 import Search from '../components/Search.astro';
+import { NAV_GROUPS, flatSlugs, groupTarget } from '../lib/nav';
 
 interface Props {
   title: string;
@@ -13,10 +14,12 @@ const { title, description, wide = false } = Astro.props;
 
 // Home first (the site front door — oxjob #354 Pass U: it gets a real tab so
 // there's never a no-tab state). Then the two-sided model (Pass R), now
-// expressed in the nav itself: FAQ + Tutorials = Learn ("I have a question
+// expressed in the nav itself: How-to + Tutorials = Learn ("I have a question
 // or a job — lead me"), Access/Data/API = Reference ("I know what I'm
 // looking for — let me look it up"; one reference work split across three
-// tabs). Each side carries its own color.
+// tabs). Pass AL (oxjob #750, 2026-08-10): the roles are LABELED in the strip
+// — the hairline-divider-only grouping made the coupling with the homepage
+// columns invisible (Kyle's review).
 const tabs = [
   { label: 'Home', href: '/', group: 'home' },
   { label: 'How-to', href: '/how-to/', group: 'learn' },
@@ -27,15 +30,35 @@ const tabs = [
   { label: 'Data', href: '/data/', group: 'reference' },
   { label: 'API', href: '/api/', group: 'reference' },
 ];
+// Role labels rendered inline before each labeled cluster (Chat has no tab —
+// its surfaces are the homepage column + Ask AI).
+const ROLE_LABELS: Record<string, string> = { learn: 'Learn', reference: 'Reference' };
 const path = Astro.url.pathname;
 const isActive = (href: string) => (href === '/' ? path === '/' : path.startsWith(href));
 // The homepage has its own hero search box, so hide the navbar one there — two
 // search boxes on one page reads as "these must do different things" (Pass V).
 const isHome = path === '/';
+
+// Second-level nav (oxjob #750 Pass AL): inside a tab, the header grows a
+// second row listing the tab's SECTIONS (the nav groups), so section structure
+// is visible without the homepage cards or prior sidebar knowledge (Kyle: "I
+// had no idea sections were a thing"). The active section gets an underline.
+const activeTab = tabs.find((t) => t.href !== '/' && path.startsWith(t.href));
+const tabKey = activeTab ? activeTab.href.replaceAll('/', '') : undefined;
+const slug = activeTab ? path.slice(activeTab.href.length).replace(/\/$/, '') : '';
+const sections = (tabKey && NAV_GROUPS[tabKey]
+  ? NAV_GROUPS[tabKey].map((g) => ({
+      label: g.label,
+      href: groupTarget(tabKey, g),
+      active: groupTarget(tabKey, g) === path || flatSlugs(g).includes(slug),
+    }))
+  : []
+).filter((s): s is { label: string; href: string; active: boolean } => Boolean(s.href));
+const hasSubnav = sections.length > 0;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" class:list={{ 'has-subnav': hasSubnav }}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -54,8 +77,13 @@ const isHome = path === '/';
           <span class="logo-help">Help</span>
         </a>
         <div class="tabs">
-          {tabs.map((t) => (
-            <a href={t.href} class={t.group} aria-current={isActive(t.href) ? 'page' : undefined}>{t.label}</a>
+          {tabs.map((t, i) => (
+            <>
+              {ROLE_LABELS[t.group] && tabs[i - 1]?.group !== t.group && (
+                <span class="role-label">{ROLE_LABELS[t.group]}</span>
+              )}
+              <a href={t.href} class={t.group} aria-current={isActive(t.href) ? 'page' : undefined}>{t.label}</a>
+            </>
           ))}
         </div>
         <div class="nav-right">
@@ -68,9 +96,21 @@ const isHome = path === '/';
           </button>
         </div>
       </nav>
+      {hasSubnav && (
+        <nav class="subnav" aria-label="Sections">
+          {sections.map((s) => (
+            <a href={s.href} aria-current={s.active ? 'location' : undefined}>{s.label}</a>
+          ))}
+        </nav>
+      )}
       <div id="mobile-menu" hidden>
-        {tabs.map((t) => (
-          <a href={t.href} class={t.group} aria-current={isActive(t.href) ? 'page' : undefined}>{t.label}</a>
+        {tabs.map((t, i) => (
+          <>
+            {ROLE_LABELS[t.group] && tabs[i - 1]?.group !== t.group && (
+              <span class="menu-role">{ROLE_LABELS[t.group]}</span>
+            )}
+            <a href={t.href} class={t.group} aria-current={isActive(t.href) ? 'page' : undefined}>{t.label}</a>
+          </>
         ))}
         <a class="menu-site-link" href="https://openalex.org">App ↗</a>
       </div>
@@ -134,8 +174,48 @@ const isHome = path === '/';
         display: flex;
         align-items: center;
         gap: 1.5rem;
-        height: var(--nav-h);
+        height: var(--navrow-h);
         padding: 0 1.5rem;
+      }
+      /* Second-level section row (Pass AL): the active tab's sections, GitHub
+         docs style — muted links, active = ink + a 2px underline sitting on the
+         header's bottom hairline. Left-aligned with the tab strip / drawer. */
+      .subnav {
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+        height: var(--subnav-h);
+        padding: 0 1.5rem 0 17.5rem;
+        border-top: 1px solid var(--line);
+        overflow-x: auto;
+        scrollbar-width: none;
+      }
+      .subnav a {
+        position: relative;
+        display: flex;
+        align-items: center;
+        height: 100%;
+        padding: 0 0.75rem;
+        font-size: 0.8125rem;
+        color: var(--muted);
+        white-space: nowrap;
+      }
+      .subnav a:hover {
+        color: var(--ink);
+        text-decoration: none;
+      }
+      .subnav a[aria-current] {
+        color: var(--ink);
+        font-weight: 550;
+      }
+      .subnav a[aria-current]::after {
+        content: '';
+        position: absolute;
+        left: 0.75rem;
+        right: 0.75rem;
+        bottom: -1px;
+        height: 2px;
+        background: var(--ink);
       }
       .logo {
         display: flex;
@@ -186,14 +266,23 @@ const isHome = path === '/';
         position: relative;
         transition: color 0.15s, background-color 0.15s;
       }
-      /* Vertical hairline dividers between the three groups:
-         home | faq tutorials | docs data api (Jason 2026-08-07, B&W round). */
-      .tabs a.home + .learn,
-      .tabs a.learn + .reference {
+      /* Role labels (Pass AL, replacing the bare hairline dividers): each
+         labeled cluster opens with a small uppercase overline label — the same
+         Learn/Reference vocabulary as the homepage columns — preceded by the
+         hairline. Matches .col-head on the homepage, sized for the 28px strip. */
+      .role-label {
+        position: relative;
         margin-left: 1.125rem;
+        padding-right: 0.4rem;
+        font-size: 0.66rem;
+        font-weight: 650;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--faint);
+        user-select: none;
+        white-space: nowrap;
       }
-      .tabs a.home + .learn::before,
-      .tabs a.learn + .reference::before {
+      .role-label::before {
         content: '';
         position: absolute;
         left: -0.5625rem;
@@ -266,6 +355,14 @@ const isHome = path === '/';
         color: var(--ink);
         text-decoration: none;
       }
+      #mobile-menu .menu-role {
+        padding: 0.75rem 0.25rem 0.1rem;
+        font-size: 0.66rem;
+        font-weight: 650;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--faint);
+      }
       #mobile-menu a[aria-current='page'] {
         color: var(--ink);
         font-weight: 500;
@@ -288,10 +385,10 @@ const isHome = path === '/';
         padding: 0;
       }
       /* Mobile (Cursor pattern): tabs collapse into a hamburger; the main-site
-         button moves into the menu. 1010 (was 940): the Home tab (Pass U)
-         added ~64px, so the labeled search pill + Main site need ~980px to
-         clear the absolutely-positioned tabs. */
-      @media (max-width: 1010px) {
+         button moves into the menu. 1170 (was 1010): the Pass AL role labels
+         added ~160px to the strip. The second-level row hides with the strip
+         (global.css collapses --nav-h back to one row at the same width). */
+      @media (max-width: 1170px) {
         nav {
           gap: 1rem;
         }
@@ -304,6 +401,9 @@ const isHome = path === '/';
         }
         #mobile-menu.open {
           display: flex;
+        }
+        .subnav {
+          display: none;
         }
       }
     </style>

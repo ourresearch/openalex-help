@@ -25,9 +25,20 @@ const { button = true } = Astro.props;
       <circle cx="11" cy="11" r="7" /><path d="m20 20-3.5-3.5" />
     </svg>
     <span class="search-label">Search help center…</span>
-    <kbd>⌘K</kbd>
+    <kbd data-kbd-shortcut>⌘K</kbd>
   </button>
 )}
+
+{/* ⌘ is Mac-only vocabulary — swap the hint to "Ctrl K" off-Mac (oxjob #750
+    Pass AL; Kyle caught the ⌘ on his PC). The keydown handler below already
+    accepts both metaKey and ctrlKey; only the hints need to know. */}
+<script>
+  if (!/mac|iphone|ipad|ipod/i.test(navigator.platform || '')) {
+    for (const k of document.querySelectorAll('[data-kbd-shortcut]')) k.textContent = 'Ctrl K';
+    const open = document.getElementById('search-open');
+    if (open) open.title = 'Search (Ctrl K)';
+  }
+</script>
 
 <dialog id="search-dialog" aria-label="Search the help center">
   {/* Header stays put while the results list scrolls under it. */}
@@ -85,9 +96,10 @@ const { button = true } = Astro.props;
   }
   /* Full-width pill only when the header has room; below that it stays at
      natural width, and on phones it collapses to just the icon. */
-  /* 1120 (was 1024): with the Home tab (Pass U) the tab row ends ~600px, so a
-     320px pill + Main site button needs ~1090px to clear it. */
-  @media (min-width: 1120px) {
+  /* 1310 (was 1120): the Pass AL role labels widened the tab strip ~160px —
+     measured: strip ends at 842px and the full pill + App button need ~445px
+     + margins to clear it. */
+  @media (min-width: 1310px) {
     #search-open {
       width: 320px; /* cursor-measured */
     }

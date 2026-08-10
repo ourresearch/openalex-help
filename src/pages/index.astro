@@ -27,7 +27,10 @@ const columns = [
     tone: 'learn' as const,
     cards: [
       {
-        title: 'Quick Start',
+        // "Tutorial" in the label on purpose (Pass AL): the tile deep-links
+        // into the Tutorials tab, and the jump surprised Kyle — say where it
+        // goes ("oh, I see, it goes to the Quick Start tutorial").
+        title: 'Quick Start Tutorial',
         href: '/tutorials/quickstart/',
         icon: 'rocket-launch-outline',
         blurb: 'The five-minute introduction',
@@ -91,7 +94,7 @@ const columns = [
           <circle cx="11" cy="11" r="7" /><path d="m20 20-3.5-3.5" />
         </svg>
         <span class="placeholder">Search the help center</span>
-        <kbd>⌘K</kbd>
+        <kbd data-kbd-shortcut>⌘K</kbd>
       </button>
     </section>
 
