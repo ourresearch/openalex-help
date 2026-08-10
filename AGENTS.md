@@ -54,6 +54,27 @@ INTENT, not whether learning occurs:
   (W/A/S…) encode OpenAlex judgment calls about fuzzy real-world boundaries (curatable);
   **vocabulary** entities are consistent handles on crisply-existing things (no judgment).
 
+## Two-level header (oxjob #750 Pass AL)
+
+The sticky header is two rows inside a tab: the role-labeled tab strip
+(`Home │ LEARN How-to Tutorials │ REFERENCE Access Data API`) plus a second-level
+row of the active tab's SECTIONS (from `NAV_GROUPS`, targets via `groupTarget`),
+rendered in `Base.astro`. Rules that matter when touching header/nav sizing:
+
+- **`--nav-h` is the TOTAL sticky header height, not the first row's.** The first
+  row is `--navrow-h`; pages with a section row add `--subnav-h` via
+  `html.has-subnav` (set in `Base.astro`, computed in `global.css`). Everything
+  that offsets against the header (sidebar top/height, right rail,
+  scroll-padding) must key off `--nav-h` and then adjusts for free.
+- **Three breakpoints must move together**: the strip/hamburger collapse
+  (`Base.astro`, 1170px), the `html.has-subnav` reset (`global.css`, 1170px —
+  the section row hides with the strip), and the full-width search pill
+  (`Search.astro`, 1310px — measured: the labeled strip ends ~842px and the
+  pill + App button need ~445px).
+- The active section underline keys on `groupTarget(g) === path ||
+  flatSlugs(g).includes(slug)` — a new nav group needs no extra wiring, but a
+  group whose first item is a static `href` link gets that href as its target.
+
 ## Content: `content/` is canonical
 
 The migration generators (`scripts/migrate.mjs`, `scripts/mintlify-port.mjs`) are
