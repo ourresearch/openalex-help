@@ -278,7 +278,16 @@ export const NAV_GROUPS: Record<string, NavGroup[]> = {
       // self-serve lanes.
       label: 'Fixing errors',
       desc: 'How to report errors, fix them yourself, and get help.',
-      slugs: ['fixing-errors', 'fixing-errors/works', 'fixing-errors/authors', 'fixing-errors/affiliations'],
+      // ai-curation-guide (Pass AL item 4): the judgment rules an agent must
+      // read before curating affiliation matches — mined from our own bulk
+      // cleanups. Sits right after the Affiliations page it backs.
+      slugs: [
+        'fixing-errors',
+        'fixing-errors/works',
+        'fixing-errors/authors',
+        'fixing-errors/affiliations',
+        'fixing-errors/ai-curation-guide',
+      ],
     },
   ],
 

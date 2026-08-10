@@ -27,4 +27,4 @@ Three causes, in the order to check them:
 
 ## Can an AI agent do this for me?
 
-Yes — affiliation curation is plain HTTP with your [API key](/api/authentication/), so an agent can run the whole find-candidates → submit-corrections → track loop for you. See [Using AI agents](/access/fixing-errors/affiliations/#using-ai-agents) in the reference.
+Yes — affiliation curation is plain HTTP with your [API key](/api/authentication/), so an agent can run the whole find-candidates → submit-corrections → track loop for you. **Have your agent read the [AI curation guide](/access/fixing-errors/ai-curation-guide/) first** — it's the judgment rules that keep a bulk cleanup from causing new damage. Mechanics: [Using AI agents](/access/fixing-errors/affiliations/#using-ai-agents) in the reference.
