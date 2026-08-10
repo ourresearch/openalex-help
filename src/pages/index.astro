@@ -61,22 +61,33 @@ const columns = [
   {
     label: 'Chat',
     tone: 'chat' as const,
-    cards: [
-      {
-        title: 'Community Forum',
-        href: 'https://groups.google.com/g/openalex-community',
-        icon: 'forum-outline',
-        blurb: 'Discuss with other users',
-        external: true,
-      },
-      {
-        title: 'Report an Issue',
-        href: 'https://openalex.org/contact',
-        icon: 'email-outline',
-        blurb: 'Tell our team about bugs and data errors',
-        external: true,
-      },
-    ],
+    cards: [],
+  },
+];
+
+// The Chat column is ONE combined box (Jason's pick, Pass AL 2026-08-10): its
+// entries are all external conversation surfaces, so rendering them as three
+// nav-card siblings of Learn/Reference overstated them (Kyle's review). Ask AI
+// renders as the first row (expands to the provider menu); the rest are plain
+// external rows. YouTube joined the cluster the same pass.
+const chatRows = [
+  {
+    title: 'Community Forum',
+    href: 'https://groups.google.com/g/openalex-community',
+    icon: 'forum-outline',
+    blurb: 'Discuss with other users',
+  },
+  {
+    title: 'Report an Issue',
+    href: 'https://openalex.org/contact',
+    icon: 'email-outline',
+    blurb: 'Bugs and data errors',
+  },
+  {
+    title: 'YouTube',
+    href: 'https://www.youtube.com/@openalex',
+    icon: 'youtube',
+    blurb: 'Tutorials and town halls',
   },
 ];
 ---
@@ -103,28 +114,41 @@ const columns = [
         {columns.map((col) => (
           <section class:list={['col', col.tone]}>
             <h2 class="col-head">{col.label}</h2>
-            {col.cards.map((c) => (
-              <Card title={c.title} href={c.href} external={'external' in c && c.external}>
-                <Icon name={c.icon} slot="icon" />
-                {c.blurb}
-              </Card>
-            ))}
-            {col.tone === 'chat' && (
-              <details class="ai-card ask-ai">
-                <summary>
-                  <span class="ext" aria-hidden="true">↗</span>
-                  <span class="ai-head">
-                    <Icon name="creation" />
-                    <span class="ai-title">Ask AI</span>
-                  </span>
-                  <span class="ai-body">Open your assistant, primed with our docs</span>
-                </summary>
-                <div class="providers">
-                  {providers.map((p) => (
-                    <a href={p.href} target="_blank" rel="noopener">{p.label} ↗</a>
-                  ))}
-                </div>
-              </details>
+            {col.tone === 'chat' ? (
+              <div class="chat-box">
+                <details class="ask-ai chat-row">
+                  <summary>
+                    <span class="row-head">
+                      <Icon name="creation" />
+                      <span class="row-title">Ask AI</span>
+                      <span class="ext" aria-hidden="true">↗</span>
+                    </span>
+                    <span class="row-blurb">Your assistant, primed with our docs</span>
+                  </summary>
+                  <div class="providers">
+                    {providers.map((p) => (
+                      <a href={p.href} target="_blank" rel="noopener">{p.label} ↗</a>
+                    ))}
+                  </div>
+                </details>
+                {chatRows.map((r) => (
+                  <a class="chat-row" href={r.href} target="_blank" rel="noopener">
+                    <span class="row-head">
+                      <Icon name={r.icon} />
+                      <span class="row-title">{r.title}</span>
+                      <span class="ext" aria-hidden="true">↗</span>
+                    </span>
+                    <span class="row-blurb">{r.blurb}</span>
+                  </a>
+                ))}
+              </div>
+            ) : (
+              col.cards.map((c) => (
+                <Card title={c.title} href={c.href} external={'external' in c && c.external}>
+                  <Icon name={c.icon} slot="icon" />
+                  {c.blurb}
+                </Card>
+              ))
             )}
           </section>
         ))}
@@ -212,8 +236,7 @@ const columns = [
        (Jason 2026-08-09, oxjob #750); horizontal gap stays wide (.columns). */
     gap: 0.3rem;
   }
-  .col > :global(.card),
-  .col > .ai-card {
+  .col > :global(.card) {
     flex: 1 1 0;
   }
   .col-head {
@@ -233,10 +256,13 @@ const columns = [
     }
   }
 
-  /* Ask AI: matches Card.astro exactly (single white surface, hairline,
-     12px radius — Pass AB), but it's a <details> that expands to a provider
-     menu instead of an <a> that navigates. */
-  .ai-card {
+  /* Chat = ONE combined box (Jason's pick, Pass AL 2026-08-10): same card
+     surface as Card.astro (white, hairline, 12px radius), but holding compact
+     link ROWS — the chat surfaces are all external and shouldn't render as
+     three nav-card siblings of Learn/Reference. Rows split the box height
+     evenly, separated by internal hairlines; hover accents the row only. */
+  .chat-box {
+    flex: 1 1 0;
     display: flex;
     flex-direction: column;
     color: inherit;
@@ -244,59 +270,62 @@ const columns = [
     border: 1px solid var(--line);
     border-radius: 12px;
     box-shadow: 0 1px 2px rgb(0 0 0 / 0.04);
+  }
+  .chat-row {
     position: relative;
-    transition: border-color 0.15s, box-shadow 0.15s;
+    flex: 1 1 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0.5rem 1rem;
+    color: inherit;
   }
-  .ai-card:hover {
-    border-color: var(--line-strong);
-    box-shadow:
-      0 2px 5px rgb(64 68 82 / 0.08),
-      0 3px 9px rgb(64 68 82 / 0.08);
+  .chat-row + .chat-row {
+    border-top: 1px solid var(--line);
   }
-  .ai-card:hover .ai-title {
+  a.chat-row:hover {
+    text-decoration: none;
+  }
+  .chat-row:hover .row-title {
     color: var(--accent);
   }
-  .ai-card summary {
+  details.chat-row summary {
     list-style: none;
     cursor: pointer;
     display: flex;
     flex-direction: column;
-    padding: 0.85rem 1rem 0.95rem;
   }
-  .ai-card summary::-webkit-details-marker {
+  details.chat-row summary::-webkit-details-marker {
     display: none;
   }
-  .ai-head {
+  .row-head {
     display: flex;
     align-items: center;
     gap: 0.6rem;
-    margin-bottom: 0.3rem;
   }
-  .ai-head :global(svg) {
+  .row-head :global(svg) {
     flex-shrink: 0;
     color: var(--muted);
   }
-  .ai-title {
+  .row-title {
     font-size: 0.92rem;
     font-weight: 600;
   }
-  .ai-body {
-    color: var(--muted);
-    font-size: 0.87rem;
-    line-height: 1.5;
-  }
-  /* Same new-tab marker as Card's external prop — the providers open in a
-     new tab even though the card itself expands in place. */
-  .ai-card .ext {
-    position: absolute;
-    top: 0.7rem;
-    right: 0.85rem;
+  .row-head .ext {
+    margin-left: auto;
     color: var(--faint);
     font-size: 0.85rem;
     line-height: 1;
   }
-  .ai-card:hover .ext {
+  .chat-row:hover .ext {
     color: var(--muted);
+  }
+  .row-blurb {
+    color: var(--muted);
+    font-size: 0.82rem;
+    line-height: 1.4;
+    margin-top: 0.1rem;
+    padding-left: calc(15px + 0.6rem);
   }
   .providers {
     position: absolute;
