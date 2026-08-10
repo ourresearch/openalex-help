@@ -66,7 +66,15 @@ Pages bug silently drops rules when wildcard/splat rules sit early in the file (
 #354, 2026-08-01). After any deploy that changes `_redirects`, verify every rule fires:
 `python3 scripts/sweep-redirects.py public/_redirects https://<deploy>.openalex-help.pages.dev /tmp/sweep.tsv`
 (expect FIRE-OK for all; FIRE-WRONG rows whose location == expected_target are fine —
-that's the classifier on absolute external targets).
+that's the classifier on absolute external targets). **Sweep the immutable per-deploy URL,
+NOT the shared `openalex-help.pages.dev` alias:** right after a push the alias serves the
+PREVIOUS deploy's `_redirects` from edge cache for a minute+, so freshly-changed rules show
+false FIRE-WRONG (location = the OLD target). Grab the real URL from
+`gh run view <run-id> --log | grep -oiE 'https://[a-z0-9]+\.openalex-help\.pages\.dev'` and
+sweep that (oxjob #750, 2026-08-09). Also: when moving an article into a section of an
+existing page, **retarget every inbound redirect DIRECTLY to the new `page/#anchor`** (no
+double hops) — anchors are rehype-slug of the H2 (lowercase, punctuation stripped); verify
+each `id="…"` exists in the built HTML before trusting the redirect.
 
 ## Search is hand-rolled on pagefind (oxjob #750)
 
