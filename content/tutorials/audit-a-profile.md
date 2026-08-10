@@ -6,6 +6,7 @@ tags: ["recipes","api"]
 source_id: "guides/recipe-audit-author-profile-works"
 source_url: "https://developers.openalex.org/guides/recipe-audit-author-profile-works"
 source_updated: "2026-05-26"
+card: "Find the works a profile is missing — and the ones that belong to someone else. Under 1¢."
 ---
 OpenAlex's author entity resolution is good but imperfect. A profile (`A1234...`) can be missing real works (the byline used a name variant the resolver didn't link), and can also include works that belong to someone else (a different person with a similar byline got attached). This recipe finds both kinds of candidate so you can correct the profile. (Under 1¢ per profile)
 

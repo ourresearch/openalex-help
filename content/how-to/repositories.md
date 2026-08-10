@@ -3,6 +3,7 @@ title: "Repositories"
 description: "How-tos for repository managers: getting harvested, troubleshooting coverage, and making your records match better."
 tags: ["data"]
 synonyms: ["institutional repository", "OAI-PMH", "expansion corpus", "coverage"]
+card: "We’re probably harvesting you already — make your records match completely and cleanly."
 ---
 If you run a repository, OpenAlex is probably already harvesting it — and there's a lot you can do to make your records show up more completely and accurately. The full story of how harvesting and matching work lives in the [Repositories reference](/data/sources/repositories/); this page is the recipes.
 

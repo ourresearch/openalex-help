@@ -3,6 +3,7 @@ title: "Finding OpenAlex IDs"
 description: "Every entity in OpenAlex has an ID. Here's how to find the ID for a work, author, source, publisher, or anything else — on the website or via the API."
 tags: ["how-do-i"]
 synonyms: ["work ID", "author ID", "source ID", "publisher ID", "OpenAlex ID"]
+card: "Click any entity and read its ID straight off the URL bar — one scheme covers everything."
 ---
 Everything in OpenAlex — works, authors, sources, institutions, publishers, funders, and more — has its own OpenAlex ID: a letter for the entity type followed by a number, like `W2884670852` (a work) or `A5086928770` (an author). You'll need an ID whenever you want to link to an entity, look it up in the [API](/api/), or report an error. The full ID scheme is described in the [Data overview](/data/overview/).
 

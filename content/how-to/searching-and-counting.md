@@ -3,6 +3,7 @@ title: "Searching & counting"
 description: "Recipes for common search questions: most-cited works, top-100 lists, excluding retractions, counting citations to a result set, checking a journal's coverage, query length, issue metadata, and why counts sometimes disagree."
 tags: ["search"]
 synonyms: ["most cited", "top cited", "retracted works", "count citations", "journal coverage", "is a journal in openalex", "query length", "volume and issue", "counts by year"]
+card: "Most-cited lists, excluding retractions, and why two counts of the same thing disagree."
 ---
 Recipes for the search questions we hear most. For the full querying story — filters, search, sorting, and the rest — start with [Querying](/access/querying/) in the Docs.
 

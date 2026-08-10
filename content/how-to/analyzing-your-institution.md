@@ -3,6 +3,7 @@ title: "Analyzing your institution"
 description: "Count an institution's outputs on the OpenAlex website and break them down by type, subject, SDG, open access, citations, collaborators, and journals — plus APC spend and open-access trends."
 tags: ["analytics"]
 synonyms: ["institution outputs", "count publications", "outputs by type", "outputs by subfield", "SDG", "open access percentage", "APC fees", "citations", "collaborators", "journals published in"]
+card: "One search plus the Stats panel: outputs by subject, SDG, and OA — even your APC spend."
 ---
 Most of these questions are answered the same way, on [openalex.org](https://openalex.org): **search for your institution in the search bar and select it.** That creates a filter scoping the results to its works. Then open the **Stats** panel above the results — each panel below is one of the facets you can add there with the **"+"** button next to *Stats*.
 

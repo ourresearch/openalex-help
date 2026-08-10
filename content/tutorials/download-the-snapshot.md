@@ -6,6 +6,7 @@ tags: ["recipes", "downloads"]
 source_id: "download/download-to-machine"
 source_url: "https://developers.openalex.org/download/download-to-machine"
 source_updated: "2026-06-26"
+card: "All of OpenAlex from S3, no AWS account — Amazon covers the ~$70 transfer fee."
 ---
 The OpenAlex snapshot is hosted on [Amazon S3](https://aws.amazon.com/s3/) and is **free to download**. You don't need an AWS account.
 

@@ -3,6 +3,7 @@ title: "API recipes"
 description: "Copy-paste URL patterns for the most common OpenAlex API questions — finding works, filtering, grouping, batch-fetching, sampling, and following citations."
 tags: ["api"]
 synonyms: ["api examples", "filter examples", "group_by", "batch fetch", "sample", "citation network"]
+card: "Live URLs you paste into a browser: filter, group, sample, batch-fetch — mostly under 1¢."
 ---
 Short URL patterns for questions we hear a lot. Every one is a live API call — paste it into a browser to see the JSON. Most read queries cost well under 1¢; see [Example costs](/access/pricing/example-costs/) for the rate card. For the full querying story, start with [Querying](/access/querying/).
 

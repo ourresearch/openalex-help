@@ -6,6 +6,7 @@ tags: ["recipes","api"]
 source_id: "guides/recipe-find-collaborators"
 source_url: "https://developers.openalex.org/guides/recipe-find-collaborators"
 source_updated: "2026-02-23"
+card: "Cross your top topics with your co-author list to find leaders you’ve never worked with."
 ---
 Which institutions are leaders in your fields that you haven't yet collaborated with? This recipe identifies who publishes in your top research areas, checks how much you already co-author with them, and flags rising stars. We'll use MIT as the example throughout. (Under 1¢)
 

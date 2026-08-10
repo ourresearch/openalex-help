@@ -121,7 +121,7 @@ const indexGroups = !isTaskIndex
             return {
               href,
               title: it.entry?.data.title ?? it.label,
-              sub: it.entry?.data.subtitle ?? it.entry?.data.description,
+              sub: it.entry?.data.card ?? it.entry?.data.subtitle ?? it.entry?.data.description,
             };
           })
           .filter((r): r is IndexRow => Boolean(r)),
@@ -181,16 +181,13 @@ const indexGroups = !isTaskIndex
           <section class="topic">
             <h2 id={g.id}>{g.label}</h2>
             {g.desc && <p class="topic-desc">{g.desc}</p>}
-            <ul class="rows">
+            <div class="article-grid">
               {g.rows.map((r) => (
-                <li>
-                  <a href={r.href}>
-                    <span class="row-title">{r.title}</span>
-                    {r.sub && <span class="row-sub">{r.sub}</span>}
-                  </a>
-                </li>
+                <Card title={r.title} href={r.href}>
+                  {r.sub}
+                </Card>
               ))}
-            </ul>
+            </div>
           </section>
         ))}
       </div>
@@ -222,49 +219,19 @@ const indexGroups = !isTaskIndex
   }
 
   /* Task-tab grouped index (How-to + Tutorials, oxjob #750). Section h2s keep
-     the prose heading look; rows are the #752 hairline list. */
+     the prose heading look; articles render as 2-up cards (wider than the
+     3-up section card-grid so a ~90-char `card` blurb stays under 3 lines). */
   .topic {
     margin-bottom: 2.25rem;
   }
   .topic-desc {
     color: var(--muted);
     font-size: 0.88rem;
-    margin: -0.35rem 0 0.75rem;
+    margin: -0.35rem 0 0.9rem;
   }
-  .rows {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-  .rows li {
-    border-top: 1px solid var(--line);
-  }
-  .rows li:last-child {
-    border-bottom: 1px solid var(--line);
-  }
-  .rows li a {
-    display: block;
-    color: inherit;
-    padding: 0.8rem 0.4rem;
-  }
-  .rows li a:hover {
-    text-decoration: none;
-  }
-  .rows li a:hover .row-title {
-    color: var(--accent);
-  }
-  .row-title {
-    display: block;
-    font-weight: 500;
-    font-size: 0.95rem;
-  }
-  .row-sub {
-    display: block;
-    color: var(--muted);
-    font-size: 0.86rem;
-    margin-top: 0.15rem;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+  .article-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+    gap: 0.9rem;
   }
 </style>

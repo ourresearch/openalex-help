@@ -6,6 +6,7 @@ tags: ["recipes","api"]
 source_id: "guides/recipe-sdg-landscape"
 source_url: "https://developers.openalex.org/guides/recipe-sdg-landscape"
 source_updated: "2026-02-23"
+card: "Every work carries automatic SDG tags — map global priorities with a few group_by calls."
 ---
 The [UN Sustainable Development Goals](https://sdgs.un.org/goals) give a shared framework for classifying research by societal impact. OpenAlex tags works with SDGs automatically, so you can map the global landscape with a handful of `group_by` calls. We'll compare India and Brazil to show how national research priorities diverge. (Under 1¢)
 

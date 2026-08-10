@@ -12,6 +12,11 @@ const article = z.object({
   // (oxjob #354 Pass W). Recipes get a bespoke subtitle explaining the recipe;
   // FAQ rows fall back to `description`.
   subtitle: z.string().optional(),
+  // Card blurb for the task-tab landing index (How-to + Tutorials, oxjob
+  // #750): deliberately NON-obvious — lead with the surprising or concrete
+  // detail the title doesn't carry, not a restatement of it. Keep it ≤ ~90
+  // chars so it stays under three lines on a 2-up card.
+  card: z.string().optional(),
   tags: z.array(z.string()).default([]),
   synonyms: z.array(z.string()).default([]),
   source_id: z.string().optional(),

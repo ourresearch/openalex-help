@@ -3,6 +3,7 @@ title: "Getting involved"
 description: "Following the roadmap, joining the community, and shaping OpenAlex's direction — town halls, mailing lists, the advisory board, and supporter roundtables."
 tags: ["general"]
 synonyms: ["roadmap", "town hall", "advisory board", "mailing list", "user group", "community"]
+card: "Town halls, mailing lists, and the advisory board — see and shape what’s coming next."
 ---
 OpenAlex is built with its community — here's how to follow along and have a say.
 

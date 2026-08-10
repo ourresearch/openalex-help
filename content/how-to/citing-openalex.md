@@ -3,6 +3,7 @@ title: "Citing OpenAlex"
 description: "The citation to use when you use OpenAlex in your research."
 tags: ["general"]
 synonyms: ["citation", "cite", "reference"]
+card: "The one citation to use — and why citing us genuinely helps keep OpenAlex free."
 ---
 ## How do I cite OpenAlex?
 

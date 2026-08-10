@@ -3,6 +3,7 @@ title: "Getting indexed"
 description: "How to get your journal's or repository's works into OpenAlex."
 tags: ["general"]
 synonyms: ["journal indexing", "repository indexing", "add my journal", "add my repository"]
+card: "We don’t index journals directly — we harvest Crossref and friends, so get in there first."
 ---
 OpenAlex indexes works — publications, datasets, theses, and so on — by harvesting the big scholarly [indexes](/data/indexes/): Crossref, DataCite, PubMed, and others, plus thousands of repositories. So "getting indexed" means getting your works into a place we already harvest.
 

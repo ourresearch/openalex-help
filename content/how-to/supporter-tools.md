@@ -3,6 +3,7 @@ title: "Supporter tools"
 description: "Activating the tools that come with institutional plans: the Admin Dashboard, the Affiliation Editor, and Unsub."
 tags: ["supporters"]
 synonyms: ["admin dashboard", "affiliation editor", "unsub", "member benefits"]
+card: "Activate the Admin Dashboard, Affiliation Editor, and Unsub on your institution’s plan."
 ---
 Institutional supporters — [Member, Member+, and Partner plans](/access/pricing/) — get access to three tools. This page covers activating each one. For the other ways supporters shape OpenAlex (advisory board nominations, quarterly roundtables), see [Getting involved](/how-to/getting-involved/).
 

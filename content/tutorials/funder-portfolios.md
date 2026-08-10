@@ -6,6 +6,7 @@ tags: ["recipes","api"]
 source_id: "guides/recipe-funder-portfolio"
 source_url: "https://developers.openalex.org/guides/recipe-funder-portfolio"
 source_updated: "2026-02-23"
+card: "Watch a funder’s priorities drift over a decade — and who wins the most support."
 ---
 What does a funder actually invest in? How has their portfolio shifted over the past decade? This recipe maps a funder's research output by field, detects shifting priorities, and identifies the top institutions receiving funding. We'll use the US National Science Foundation as the example. (Under 1¢)
 

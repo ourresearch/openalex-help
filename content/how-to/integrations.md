@@ -3,6 +3,7 @@ title: "Integrations"
 description: "Getting OpenAlex data into other tools: website exports, VOSviewer, link resolvers, and the Unpaywall browser extension."
 tags: ["downloads"]
 synonyms: ["export", "CSV", "RIS", "VOSviewer", "link resolver", "SFX", "EBSCO", "Unpaywall extension"]
+card: "Export to VOSviewer, wire up your link resolver, or spot OA copies as you browse."
 ---
 OpenAlex data flows into a lot of other tools. This page covers exporting from the website and the most common third-party integrations. For programmatic access, see [Get the data](/access/get-the-data/).
 

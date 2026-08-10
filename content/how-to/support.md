@@ -3,6 +3,7 @@ title: "Support"
 description: "All the ways to get help with OpenAlex — and what to expect when you file a ticket."
 tags: ["general"]
 synonyms: ["help", "contact", "ticket", "office hours", "response time"]
+card: "Often fastest: ask your own AI agent — every page here has a Markdown twin built for it."
 ---
 ## How do I get help?
 

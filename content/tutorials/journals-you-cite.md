@@ -6,6 +6,7 @@ tags: ["recipes","api"]
 source_id: "guides/recipe-cited-journals"
 source_url: "https://developers.openalex.org/guides/recipe-cited-journals"
 source_updated: "2026-02-23"
+card: "No single API call answers this — cursor paging and batching build the picture, for ~2¢."
 ---
 There's no single API call that answers "which journals does institution X cite most?" — the `referenced_works` field on each work contains outgoing citations as raw IDs, not journal names. But with cursor paging and batching, you can build the full picture. We'll use the Santa Fe Institute (496 works in 2024) as the example. (~2¢)
 

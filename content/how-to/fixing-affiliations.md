@@ -3,6 +3,7 @@ title: "Fixing affiliations"
 description: "What to do when works are matched to the wrong institution — or your institution's own record is wrong."
 tags: ["fixing"]
 synonyms: ["wrong institution", "affiliation error", "missing works", "ROR", "affiliation editor"]
+card: "“The affiliations are wrong” is two different bugs — the fix depends on which one you have."
 ---
 "The affiliations are wrong" means one of two things: OpenAlex matched an affiliation string to the wrong institution (or missed it), or the institution's own record is wrong. The fixes are different, so start by figuring out which one you have. Full detail lives in the [Affiliations fixing-errors reference](/access/fixing-errors/affiliations/); this page is the recipes.
 
