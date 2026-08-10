@@ -20,8 +20,13 @@ Two properties help you choose. **Granularity** (the number of groups) sets how 
 | [Keywords](/data/keywords/) | ~65,000 | Medium | High |
 | [Concepts](/data/concepts/) (deprecated) | ~65,000 | High | Variable |
 | [Text search](/api/searching/) | ∞ | Low | High |
+| [Semantic search](/api/semantic-search/) | ∞ | Low | High |
 
 A rough guide: the **topics hierarchy** ([domains](/data/domains/) → [fields](/data/fields/) → [subfields](/data/subfields/) → [topics](/data/topics/)) is the supported general-purpose system — pick the level whose granularity matches your question. **Keywords** fit narrower, more specific slices. **SDGs** map research onto the UN Sustainable Development Goals and little else. **Concepts** are deprecated — kept for continuity with Microsoft Academic Graph, no longer maintained; see [Concepts](/data/concepts/). **Text search** fits custom areas no scheme covers, at the cost of comparability.
+
+## Embeddings and semantic search
+
+Aboutness doesn't have to go through a labeling scheme at all. OpenAlex embeds the title and abstract of every work as a vector using an open-source embedding model, so works that are about similar things sit near each other in vector space — no categories required. [Semantic search](/api/semantic-search/) queries these embeddings directly: describe what you're looking for in plain language (a sentence, or even a whole abstract or grant description) and get back the works closest in meaning, even when the wording differs. It's the best fit when your research area doesn't line up with any predefined scheme and keyword matching is too brittle. The embeddings also power parts of aboutness assignment itself — [keyword tagging](/data/keywords/) scores candidate keywords against the work's text using embeddings.
 
 ## Aboutness for your own text
 

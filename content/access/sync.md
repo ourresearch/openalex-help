@@ -49,14 +49,16 @@ Consequences:
 
 ## Keeping in sync with OpenAlex
 
-There are four ways to keep a copy of OpenAlex current, from slowest-and-free to freshest:
+There are four ways to keep a copy of OpenAlex current. They differ in freshness, in how much infrastructure they demand, and in how much of the database they suit — pick by what you're mirroring:
 
-| Method | Freshness | Availability |
-|---|---|---|
-| [Public snapshot](#the-public-snapshot-free) | Quarterly | Free |
-| [Daily snapshot](#the-daily-snapshot-paid-plans) | Daily | [Paid plans](/access/pricing/#annual-plans) |
-| [Premium API filters](#premium-api-filters-paid-plans) | Continuous | [Paid plans](/access/pricing/#annual-plans) |
-| [Unpaywall Data Feed](#the-unpaywall-data-feed-paid-plans) | Daily (works only, legacy format) | [Paid plans](/access/pricing/#annual-plans) |
+| Method | Freshness | Best for | Availability |
+|---|---|---|---|
+| [Public snapshot](#the-public-snapshot-free) | Quarterly | Full mirrors where quarterly is fresh enough | Free |
+| [Daily snapshot](#the-daily-snapshot-paid-plans) | Daily | Full-database mirrors | [Paid plans](/access/pricing/#annual-plans) |
+| [Premium API filters](#premium-api-filters-paid-plans) | Continuous | Keeping a **subset** fresh (e.g. one institution's works) with no bulk infrastructure | [Paid plans](/access/pricing/#annual-plans) |
+| [Unpaywall Data Feed](#the-unpaywall-data-feed-paid-plans) | Daily (works only, legacy format) | Existing integrations that speak the Unpaywall schema | [Paid plans](/access/pricing/#annual-plans) |
+
+The two snapshot methods move the whole database in bulk; the API-filter method needs nothing but HTTP requests, which makes it the right fit when you only care about a slice of OpenAlex.
 
 ### The public snapshot (free)
 
@@ -91,7 +93,15 @@ Paid plans unlock two filters on every entity type that make the API itself a sy
 https://api.openalex.org/works?filter=from_updated_date:2026-07-30
 ```
 
-Poll with these and upsert the results by `id` — no bulk infrastructure needed. This is the freshest view of the data (the API updates continuously) and works well when the volume of changes you track is modest; for full-database mirrors, use the daily snapshot. See [filtering](/api/filtering/) for filter mechanics.
+Poll with these and upsert the results by `id` — no snapshot downloads, no bulk infrastructure, just HTTP requests. It's also the freshest view of the data, since the API updates continuously rather than on a release schedule.
+
+The real superpower is that they **combine with any other filter**, which makes this the method for keeping a *subset* of OpenAlex synced. Most mirrors don't need the whole database: an institution tracking its own research output, say, only needs its own works, and standing up snapshot infrastructure for that is wild overkill. One polling loop covers it:
+
+```
+https://api.openalex.org/works?filter=institutions.id:I27837315,from_updated_date:2026-07-30
+```
+
+Trade-offs: paging through the API is slower per record than bulk files, so this method fits modest change volumes — for full-database mirrors, use the daily snapshot. And the filters only surface records that exist: deleted or merged-away records just stop appearing (and their IDs [404](#deletions-and-merged-entities)), so reconcile your ID set against a snapshot periodically if deletions matter to you. Filter mechanics: [Sync filters](/api/filtering/#sync-filters-paid-plans) in the API reference.
 
 ### The Unpaywall Data Feed (paid plans)
 

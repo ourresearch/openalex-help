@@ -42,10 +42,10 @@ The first names one record, one problem, and links proof — an agent can act on
 
 ## How support works
 
-Support requests go through [openalex.org/contact](https://openalex.org/contact) (the **Contact Support** button on this site's homepage goes there too). Some honesty about what to expect: we read every ticket, but we're a small team getting hundreds of tickets a month, so we can't respond to all of them. Tickets still matter even when they don't get a reply — they're a key input into what we prioritize and fix.
+Support requests go through [openalex.org/contact](https://openalex.org/contact) (the **Report an Issue** button on this site's homepage goes there too). Some honesty about what to expect: we read every ticket, but we're a small team getting hundreds of tickets a month, so we can't respond to all of them. Tickets still matter even when they don't get a reply — they're a key input into what we prioritize and fix.
 
 Other ways to get help:
 
 - **Paid support.** Organizations that rely on OpenAlex can [subscribe to a plan](/access/pricing/) that includes guaranteed, timely support.
-- **The community.** The [OpenAlex User Group](https://groups.google.com/g/openalex-users) is where users help each other and where we post announcements.
+- **The community.** The [OpenAlex Community group](https://groups.google.com/g/openalex-community) is where users help each other; the [OpenAlex User Group](https://groups.google.com/g/openalex-users) is where we post announcements.
 - **AI agents.** This entire site is built to be read by agents ([llms.txt](/llms.txt), a Markdown twin of every page) — asking your agent is often the fastest way to an answer. See [Agents](/access/agents/).

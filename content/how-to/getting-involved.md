@@ -13,9 +13,10 @@ Come to our quarterly town halls, where CEO Jason Priem walks through recent rel
 
 ## How do I join the community?
 
-There are two Google groups:
+There are three Google groups:
 
-- **[OpenAlex User Group](https://groups.google.com/g/openalex-users)** — the main community forum: user discussion, questions, and our announcements.
+- **[OpenAlex Community](https://groups.google.com/g/openalex-community)** — the main community forum: user discussion and questions.
+- **[OpenAlex User Group](https://groups.google.com/g/openalex-users)** — our announcement list.
 - **[Unpaywall group](https://groups.google.com/g/unpaywall)** — announcements for the Unpaywall data surface, if you use [Unpaywall](/access/unpaywall/) integrations.
 
 ## How does the Community Advisory Board work?

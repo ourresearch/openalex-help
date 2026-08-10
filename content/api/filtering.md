@@ -106,17 +106,38 @@ https://api.openalex.org/works?filter=doi:https://doi.org/10.1371/journal.pone.0
 > https://api.openalex.org/works?filter=institutions.country_code:fr|primary_location.source.issn:0957-1558
 > ```
 
+## Sync filters (paid plans)
+
+[Paid plans](/access/pricing/#annual-plans) unlock two premium filters, available on every entity type, that select records by when they changed in OpenAlex:
+
+- `from_created_date` — records **created** since a date
+- `from_updated_date` — records **updated** (or created) since a date
+
+```bash
+# Works that changed since July 30
+https://api.openalex.org/works?filter=from_updated_date:2026-07-30
+```
+
+These make the API itself a sync mechanism: poll on your own schedule and upsert the results by `id`. Because they combine with any other filter, they're especially good at keeping a **subset** of OpenAlex fresh without any bulk infrastructure — for example, just your institution's works:
+
+```bash
+# Works from one institution that changed since July 30
+https://api.openalex.org/works?filter=institutions.id:I27837315,from_updated_date:2026-07-30
+```
+
+For how this method compares with the snapshot-based approaches (and how to handle deletions and merges), see [Sync](/access/sync/#premium-api-filters-paid-plans).
+
 ## Filter by saved collection
 
 The `collection:` filter narrows results to the entities you've saved in one
 of your [collections](/api/collections/). It's available on every entity
 type collections support — `/works`, `/authors`, `/sources`, `/institutions`,
 `/topics`, `/sdgs`, `/funders`, `/publishers`, `/keywords`, `/concepts` —
-and requires a `Bearer` API key or JWT for the user who owns the collection.
+and requires a `Bearer` API key for the user who owns the collection.
 
 ```bash
 GET https://api.openalex.org/works?filter=collection:col_beNWUTw6qY
-Authorization: Bearer <jwt>
+Authorization: Bearer <api_key>
 ```
 
 Negation with `!` is supported, and `collection:` combines with any other

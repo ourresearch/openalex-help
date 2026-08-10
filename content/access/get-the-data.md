@@ -22,7 +22,7 @@ There are many ways to get OpenAlex data, from point-and-click to whole-database
 
 **Building something?** The [API](/api/) is the workhorse: fast, well-documented, and free for most uses — every account gets $1 of usage per day, which covers most research and personal projects. When you outgrow it, [usage pricing](/access/pricing/) is pay-as-you-go. The [CLI](/access/cli/) wraps the same API for bulk work in your terminal, handling parallelism, checkpointing, and resume for you.
 
-**Want the whole database?** The [snapshot](/access/snapshot/) is the entire dataset, free to download, refreshed quarterly. If quarterly isn't fresh enough, [sync](/access/sync/) gets you a complete daily snapshot plus API filters for everything new or changed since any date — a benefit of the Member+ and Partner [plans](/access/pricing/).
+**Want the whole database?** The [snapshot](/access/snapshot/) is the entire dataset, free to download, refreshed quarterly. If quarterly isn't fresh enough, [sync](/access/sync/) gets you a complete daily snapshot plus API filters for everything new or changed since any date — a benefit of the Member+ and Partner [plans](/access/pricing/). (Only mirroring a slice of OpenAlex, like your own institution's works? Those [API filters](/access/sync/#premium-api-filters-paid-plans) can keep a subset fresh with no snapshot infrastructure at all.)
 
 **After the documents themselves?** [Fulltext](/access/fulltext/) covers the content archive — more than 50 million open-access PDFs and their machine-readable TEI XML — from single-file downloads up to syncing the complete archive to your own bucket.
 
