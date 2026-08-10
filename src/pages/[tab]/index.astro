@@ -92,8 +92,44 @@ const sectionCards = groups
   .map((g) => ({ label: g.label, desc: g.desc, href: sectionTarget(g) }))
   .filter((c): c is { label: string; desc?: string; href: string } => Boolean(c.href));
 
-// Every tab now renders in the app shell (nav drawer + section cards) — Tutorials
-// joined the rest in oxjob #750, retiring the old facet/filter "bucket" list.
+// Task tabs (How-to + Tutorials, oxjob #750): the landing IS the section
+// overview. Cards are for sections that have something to say (a reference
+// section's overview page); these sections are just groupings of tasks, so a
+// card had nowhere to point — it fell through to the section's *first
+// article*, a mislabeled link. Instead the landing renders the full grouped
+// index: every page, under its section heading. Headings carry stable ids
+// (github-slugger form, same as article heading anchors) so the homepage and
+// reference pages can deep-link a section, e.g. /how-to/#fixing-errors.
+const isTaskIndex = tab === 'how-to' || tab === 'tutorials';
+// Mirrors github-slugger for our label alphabet ("Journals & repositories" →
+// "journals--repositories") so section anchors match markdown heading anchors.
+const slugifyLabel = (label: string) =>
+  label.toLowerCase().replace(/[^a-z0-9 -]/g, '').replace(/ /g, '-');
+interface IndexRow { href: string; title: string; sub?: string }
+const indexGroups = !isTaskIndex
+  ? []
+  : groups
+      .map((g) => ({
+        label: g.label,
+        desc: g.desc,
+        id: slugifyLabel(g.label),
+        rows: g.items
+          .map((it): IndexRow | undefined => {
+            const href = it.href ?? (it.entry ? urlFor(tab, it.entry) : undefined);
+            // Skip the "Get started" Overview self-link — it IS this page.
+            if (!href || href === landingHref) return undefined;
+            return {
+              href,
+              title: it.entry?.data.title ?? it.label,
+              sub: it.entry?.data.subtitle ?? it.entry?.data.description,
+            };
+          })
+          .filter((r): r is IndexRow => Boolean(r)),
+      }))
+      .filter((g) => g.rows.length > 0);
+
+// Every tab now renders in the app shell (nav drawer + grouped landing) —
+// Tutorials joined the rest in oxjob #750, retiring the facet "bucket" list.
 ---
 
 <DocsShell title={meta[tab].h1} description={meta[tab].lede} tab={tab} groups={groups}>
@@ -118,18 +154,56 @@ const sectionCards = groups
       </Fragment>
     )}
 
-    {/* data-pagefind-ignore: the section cards ARE the nav drawer in card form
-        — indexing them puts run-together label+blurb text into search snippets
-        ("QueryingThe ways to ask OpenAlex…"). The landing is still findable by
-        its H1 and lede. (oxjob #750) */}
-    <div class="card-grid" data-pagefind-ignore>
-      {sectionCards.map((c) => (
-        <Card title={c.label} href={c.href}>
-          <Icon name={groupIcons[c.label] ?? 'file-text'} slot="icon" />
-          {c.desc}
-        </Card>
-      ))}
-    </div>
+    {tab === 'how-to' && (
+      <p>
+        Each guide here answers one practical question — finding an ID, fixing a bad record,
+        getting your journal indexed — in a few minutes of reading. If you want a worked,
+        end-to-end walkthrough of a whole project instead, head to the{' '}
+        <a href="/tutorials/">Tutorials</a>.
+      </p>
+    )}
+
+    {tab === 'tutorials' && (
+      <p>
+        Each tutorial walks a real project end to end, step by step — new to OpenAlex, start
+        with the <a href="/tutorials/quickstart/">Quick Start</a>. If you're after a fast
+        answer to a single task instead, the <a href="/how-to/">How-to guides</a> are shorter.
+      </p>
+    )}
+
+    {/* data-pagefind-ignore on the index/cards: their label+blurb text runs
+        together in search snippets ("QueryingThe ways to ask OpenAlex…"), and
+        every row's page is indexed on its own. The landing is still findable
+        by its H1, lede, and intro prose. (oxjob #750) */}
+    {isTaskIndex ? (
+      <div data-pagefind-ignore>
+        {indexGroups.map((g) => (
+          <section class="topic">
+            <h2 id={g.id}>{g.label}</h2>
+            {g.desc && <p class="topic-desc">{g.desc}</p>}
+            <ul class="rows">
+              {g.rows.map((r) => (
+                <li>
+                  <a href={r.href}>
+                    <span class="row-title">{r.title}</span>
+                    {r.sub && <span class="row-sub">{r.sub}</span>}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </section>
+        ))}
+      </div>
+    ) : (
+      <div class="card-grid" data-pagefind-ignore>
+        {sectionCards.map((c) => (
+          <Card title={c.label} href={c.href}>
+            <Icon name={groupIcons[c.label] ?? 'file-text'} slot="icon" />
+            {c.desc}
+          </Card>
+        ))}
+      </div>
+    )}
   </article>
 </DocsShell>
 
@@ -145,5 +219,52 @@ const sectionCards = groups
     grid-template-columns: repeat(auto-fill, minmax(13rem, 1fr));
     gap: 0.9rem;
     margin: 0 0 1.5rem;
+  }
+
+  /* Task-tab grouped index (How-to + Tutorials, oxjob #750). Section h2s keep
+     the prose heading look; rows are the #752 hairline list. */
+  .topic {
+    margin-bottom: 2.25rem;
+  }
+  .topic-desc {
+    color: var(--muted);
+    font-size: 0.88rem;
+    margin: -0.35rem 0 0.75rem;
+  }
+  .rows {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .rows li {
+    border-top: 1px solid var(--line);
+  }
+  .rows li:last-child {
+    border-bottom: 1px solid var(--line);
+  }
+  .rows li a {
+    display: block;
+    color: inherit;
+    padding: 0.8rem 0.4rem;
+  }
+  .rows li a:hover {
+    text-decoration: none;
+  }
+  .rows li a:hover .row-title {
+    color: var(--accent);
+  }
+  .row-title {
+    display: block;
+    font-weight: 500;
+    font-size: 0.95rem;
+  }
+  .row-sub {
+    display: block;
+    color: var(--muted);
+    font-size: 0.86rem;
+    margin-top: 0.15rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 </style>
