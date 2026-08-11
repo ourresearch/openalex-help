@@ -70,6 +70,20 @@ const accordionGroups = !isTaskIndex
           .filter((r): r is IndexRow => Boolean(r)),
       }))
       .filter((g) => g.rows.length > 0);
+
+// Advance organizer (Jason, Pass AS.2): one short line between the intro
+// prose and the section list, naming how many sections follow. The count is
+// computed so the copy can't drift when sections change.
+const WORDS = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten'];
+const sectionCount = isTaskIndex ? accordionGroups.length : sectionParas.length;
+const n = WORDS[sectionCount] ?? String(sectionCount);
+const organizer: Record<Tab, string> = {
+  data: `There are ${n} types of entities:`,
+  access: `This reference is split into ${n} sections:`,
+  api: `This API reference is split into ${n} sections:`,
+  'how-to': `The guides are organized into ${n} sections:`,
+  tutorials: `The tutorials are organized into ${n} sections:`,
+};
 ---
 
 <DocsShell title={meta[tab].h1} description={meta[tab].lede} tab={tab} groups={groups}>
@@ -91,8 +105,6 @@ const accordionGroups = !isTaskIndex
           where its records come from — including the judgment calls we make — and what every
           attribute on it means.
         </p>
-        {/* Advance organizer for the section list below (Jason, Pass AS.2). */}
-        <p>There are five types of entities:</p>
       </Fragment>
     )}
 
@@ -112,6 +124,8 @@ const accordionGroups = !isTaskIndex
         answer to a single task instead, the <a href="/how-to/">How-to guides</a> are shorter.
       </p>
     )}
+
+    <p>{organizer[tab]}</p>
 
     {/* data-pagefind-ignore on the index: label+blurb text runs together in
         search snippets, and every row's page is indexed on its own. */}
