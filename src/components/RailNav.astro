@@ -12,9 +12,10 @@
 //                            secondary Sidebar. There is NO hover flyout (Pass
 //                            AN — it overlapped the secondary drawer and read
 //                            as confusing); instead each icon shows a popover
-//                            TOOLTIP: the destination's name in bold over the
-//                            same one-liner its tab overview uses as a
-//                            subheader.
+//                            TOOLTIP: the destination's name in bold over a
+//                            few-word description (`tip`/`blurb` in
+//                            nav-primary.ts), with an open-in-new marker on
+//                            the external rows.
 //
 // Rail/drawer geometry is deliberately IDENTICAL between the two states: rows
 // are fixed-height and the section headings keep their exact vertical slot in
@@ -46,7 +47,7 @@ const active = (href: string) => (isPrimaryActive(href, path) ? 'page' : undefin
   <div class="rail-scroll">
     <div class="sect">
       {top.map((t) => (
-        <a href={t.href} class="row" aria-current={active(t.href)} data-tip-title={t.label} data-tip-desc={t.desc}>
+        <a href={t.href} class="row" aria-current={active(t.href)} data-tip-title={t.label} data-tip-desc={t.tip}>
           <Icon name={t.icon} size={18} />
           <span class="label">{t.label}</span>
         </a>
@@ -56,7 +57,7 @@ const active = (href: string) => (isPrimaryActive(href, path) ? 'page' : undefin
     <div class="sect">
       <span class="sect-head"><span class="sect-head-text">{ROLE_LABELS.learn}</span></span>
       {learn.map((t) => (
-        <a href={t.href} class="row" aria-current={active(t.href)} data-tip-title={t.label} data-tip-desc={t.desc}>
+        <a href={t.href} class="row" aria-current={active(t.href)} data-tip-title={t.label} data-tip-desc={t.tip}>
           <Icon name={t.icon} size={18} />
           <span class="label">{t.label}</span>
         </a>
@@ -66,7 +67,7 @@ const active = (href: string) => (isPrimaryActive(href, path) ? 'page' : undefin
     <div class="sect">
       <span class="sect-head"><span class="sect-head-text">{ROLE_LABELS.reference}</span></span>
       {reference.map((t) => (
-        <a href={t.href} class="row" aria-current={active(t.href)} data-tip-title={t.label} data-tip-desc={t.desc}>
+        <a href={t.href} class="row" aria-current={active(t.href)} data-tip-title={t.label} data-tip-desc={t.tip}>
           <Icon name={t.icon} size={18} />
           <span class="label">{t.label}</span>
         </a>
@@ -79,22 +80,22 @@ const active = (href: string) => (isPrimaryActive(href, path) ? 'page' : undefin
           Expanded: the menu opens inline under the row. Rail mode: it opens as
           a floating popover next to the icon (positioned by the script). */}
       <details class="ask-ai">
-        <summary class="row" data-tip-title="Ask AI" data-tip-desc={ASK_AI_DESC}>
+        <summary class="row" data-tip-title="Ask AI" data-tip-desc={ASK_AI_DESC} data-tip-ext>
           <Icon name="creation" size={18} />
           <span class="label">Ask AI</span>
-          <span class="ext" aria-hidden="true">↗</span>
+          <span class="ext" aria-hidden="true"><Icon name="open-in-new" size={12} /></span>
         </summary>
         <div class="providers">
           {ASK_AI_PROVIDERS.map((p) => (
-            <a href={p.href} target="_blank" rel="noopener">{p.label} ↗</a>
+            <a href={p.href} target="_blank" rel="noopener">{p.label} <Icon name="open-in-new" size={11} /></a>
           ))}
         </div>
       </details>
       {CHAT_ROWS.map((r) => (
-        <a href={r.href} class="row" target="_blank" rel="noopener" data-tip-title={r.title} data-tip-desc={r.blurb}>
+        <a href={r.href} class="row" target="_blank" rel="noopener" data-tip-title={r.title} data-tip-desc={r.blurb} data-tip-ext>
           <Icon name={r.icon} size={18} />
           <span class="label">{r.title}</span>
-          <span class="ext" aria-hidden="true">↗</span>
+          <span class="ext" aria-hidden="true"><Icon name="open-in-new" size={12} /></span>
         </a>
       ))}
     </div>
@@ -140,8 +141,12 @@ const active = (href: string) => (isPrimaryActive(href, path) ? 'page' : undefin
     });
   }
 
-  // Icon-rail tooltips (Pass AN, replacing the hover flyout): destination name
-  // in bold over the same description its tab overview shows as a subheader.
+  // Icon-rail tooltips (Pass AN, replacing the hover flyout; copy shortened in
+  // Pass AO): destination name in bold over a few-word description. Rows that
+  // open a new tab (data-tip-ext) show the MDI open-in-new glyph beside the
+  // name.
+  const EXT_ICON =
+    '<svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z"/></svg>';
   const tip = document.querySelector<HTMLElement>('.rail-tip');
   if (rail && tip) {
     const title = tip.querySelector('.rail-tip-title')!;
@@ -157,6 +162,7 @@ const active = (href: string) => (isPrimaryActive(href, path) ? 'page' : undefin
         clearTimeout(timer);
         timer = window.setTimeout(() => {
           title.textContent = row.dataset.tipTitle ?? '';
+          if ('tipExt' in row.dataset) title.insertAdjacentHTML('beforeend', EXT_ICON);
           desc.textContent = row.dataset.tipDesc ?? '';
           tip.hidden = false;
           const r = row.getBoundingClientRect();
@@ -217,11 +223,11 @@ const active = (href: string) => (isPrimaryActive(href, path) ? 'page' : undefin
     flex-direction: column;
     gap: 1px;
   }
-  /* Section headings: bold, ink, ALL CAPS — the same treatment as the
-     secondary Sidebar's group labels (Pass AN: the two drawers must match).
-     FIXED height, identical in both rail states, so the icons below never
-     shift: in rail mode the text hides and the slot renders as whitespace +
-     a centered hairline divider. */
+  /* Section headings: bold, ALL CAPS, mid-gray (Pass AO knocked the ink down
+     — headings shouldn't compete with the pages) — the same treatment as the
+     secondary Sidebar's group labels. FIXED height, identical in both rail
+     states, so the icons below never shift: in rail mode the text hides and
+     the slot renders as whitespace + a centered hairline divider. */
   .sect-head {
     display: flex;
     align-items: center;
@@ -232,7 +238,7 @@ const active = (href: string) => (isPrimaryActive(href, path) ? 'page' : undefin
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.06em;
-    color: var(--ink);
+    color: var(--muted);
     white-space: nowrap;
   }
   .row {
@@ -259,29 +265,34 @@ const active = (href: string) => (isPrimaryActive(href, path) ? 'page' : undefin
   .row:hover :global(svg) {
     color: var(--accent);
   }
-  /* Selected page: ink-on-white inverted to white-on-ink (Pass AN — Jason:
-     the light blue wash was too easy to miss, in both rail states). */
+  /* Selected page (Pass AO): blue in the EXPANDED drawer (icon + word), but
+     white-on-ink in the icon rail — the blue doesn't read at icon size (the
+     in-tab override lives in the rail-mode block below). */
   .row[aria-current='page'],
   .row[aria-current='page']:hover {
-    background: var(--ink);
-    color: #fff;
+    background: var(--accent-wash);
+    color: var(--accent);
     font-weight: 550;
   }
   .row[aria-current='page'] :global(svg),
   .row[aria-current='page']:hover :global(svg) {
-    color: #fff;
+    color: var(--accent);
   }
   .label {
     display: block;
-    flex: 1 1 auto;
+    flex: 0 1 auto;
     min-width: 0;
     overflow: hidden;
     text-overflow: ellipsis;
   }
+  /* The MDI open-in-new marker sits right next to the word (Pass AO — no
+     more right-aligned ↗ text arrows). */
   .ext {
     flex: none;
+    display: inline-flex;
+    align-items: center;
+    margin-left: -0.3rem; /* tuck in against the row's 0.7rem gap */
     color: var(--faint);
-    font-size: 0.8rem;
     line-height: 1;
   }
   .row:hover .ext {
@@ -306,10 +317,16 @@ const active = (href: string) => (isPrimaryActive(href, path) ? 'page' : undefin
     border-radius: 8px;
   }
   .providers a {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
     padding: 0.35rem 0.6rem;
     border-radius: 6px;
     color: var(--ink);
     font-size: 0.86rem;
+  }
+  .providers a :global(svg) {
+    color: var(--faint);
   }
   .providers a:hover {
     background: var(--panel);
@@ -326,6 +343,17 @@ const active = (href: string) => (isPrimaryActive(href, path) ? 'page' : undefin
     justify-content: center;
     padding: 0;
     margin: 0 0.5rem;
+  }
+  /* Rail-mode selected stays white-on-ink: an accent-wash square around a
+     small blue icon doesn't read (Pass AO — Jason kept black here only). */
+  html.in-tab .rail .row[aria-current='page'],
+  html.in-tab .rail .row[aria-current='page']:hover {
+    background: var(--ink);
+    color: #fff;
+  }
+  html.in-tab .rail .row[aria-current='page'] :global(svg),
+  html.in-tab .rail .row[aria-current='page']:hover :global(svg) {
+    color: #fff;
   }
   /* Section-heading slots keep their exact height (whitespace parity with the
      expanded drawer) and show a hairline divider between the icon groups. */
@@ -368,11 +396,17 @@ const active = (href: string) => (isPrimaryActive(href, path) ? 'page' : undefin
     pointer-events: none;
   }
   .rail-tip-title {
-    display: block;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
     font-size: 0.84rem;
     font-weight: 650;
     color: var(--ink);
     margin-bottom: 0.15rem;
+  }
+  .rail-tip-title :global(svg) {
+    flex: none;
+    color: var(--faint);
   }
   .rail-tip-desc {
     display: block;

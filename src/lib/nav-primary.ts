@@ -15,10 +15,11 @@ export interface PrimaryTab {
   href: string;
   icon: string; // Icon.astro name (MDI glyph)
   group: 'top' | 'learn' | 'reference';
-  // One-liner shown in the rail tooltip AND as the tab landing's lede (same
-  // string by design — Jason, Pass AN: the tooltip reuses the tab overview's
-  // subheader). [tab]/index.astro reads it via tabDesc().
+  // The tab landing's lede ([tab]/index.astro reads it via tabDesc()).
   desc: string;
+  // Rail-tooltip one-liner (Pass AO: tooltips got their own SHORTER copy,
+  // Jason's exact strings — no longer the same string as the landing lede).
+  tip: string;
 }
 
 // Home + Quickstart sit above the two labeled clusters. Quickstart is a real
@@ -32,6 +33,7 @@ export const PRIMARY_TABS: PrimaryTab[] = [
     icon: 'home-outline',
     group: 'top',
     desc: 'The Help Center front door: search, plus a map of everything here.',
+    tip: 'Table of contents',
   },
   {
     label: 'Quickstart',
@@ -39,20 +41,23 @@ export const PRIMARY_TABS: PrimaryTab[] = [
     icon: 'rocket-launch-outline',
     group: 'top',
     desc: 'Get real data out of OpenAlex in five minutes — on the website, through the API, or by asking your agent.',
+    tip: 'Five-minute intro tutorial',
   },
   {
     label: 'How-to',
     href: '/how-to/',
-    icon: 'compass-outline',
+    icon: 'help-circle-outline',
     group: 'learn',
     desc: 'Short, practical guides to the most common OpenAlex tasks.',
+    tip: 'Short, simple answers',
   },
   {
     label: 'Tutorials',
     href: '/tutorials/',
-    icon: 'school-outline',
+    icon: 'human-male-board',
     group: 'learn',
     desc: 'Step-by-step instructions for real use cases — on the web, through the API, or with your agent.',
+    tip: 'Longer, step-by-step guides',
   },
   {
     label: 'Access',
@@ -60,6 +65,7 @@ export const PRIMARY_TABS: PrimaryTab[] = [
     icon: 'tray-arrow-down',
     group: 'reference',
     desc: 'Every way in and out of OpenAlex — how to ask questions, how to get the data, what it costs, and how to fix what’s wrong.',
+    tip: 'Getting data in and out',
   },
   {
     label: 'Data',
@@ -67,6 +73,7 @@ export const PRIMARY_TABS: PrimaryTab[] = [
     icon: 'shape-outline',
     group: 'reference',
     desc: 'What is in OpenAlex, where it comes from, and what every attribute means.',
+    tip: 'Contents and construction',
   },
   {
     label: 'API',
@@ -74,6 +81,7 @@ export const PRIMARY_TABS: PrimaryTab[] = [
     icon: 'cog-outline',
     group: 'reference',
     desc: 'A fast, modern REST API for all of OpenAlex — plus OQL for more expressive queries. Free to start, no key required.',
+    tip: 'Automated access',
   },
 ];
 
@@ -83,7 +91,7 @@ export const ROLE_LABELS: Record<PrimaryTab['group'], string> = {
   reference: 'Reference',
 };
 
-/** The tab-overview lede / rail-tooltip line for a primary destination. */
+/** The tab-overview lede for a primary destination. */
 export function tabDesc(href: string): string {
   return PRIMARY_TABS.find((t) => t.href === href)?.desc ?? '';
 }
@@ -107,7 +115,7 @@ export const ASK_AI_PROVIDERS = [
   { label: 'Perplexity', href: `https://www.perplexity.ai/search?q=${encodeURIComponent(ASK_AI_PROMPT)}` },
 ];
 
-export const ASK_AI_DESC = 'Open your favorite AI assistant, primed with the OpenAlex docs.';
+export const ASK_AI_DESC = 'Use your agent';
 
 export interface ChatRow {
   title: string;
@@ -121,13 +129,13 @@ export const CHAT_ROWS: ChatRow[] = [
     title: 'Forum',
     href: 'https://groups.google.com/g/openalex-community',
     icon: 'forum-outline',
-    blurb: 'Discuss OpenAlex with other users.',
+    blurb: 'Ask other users',
   },
   {
     title: 'Report Bug',
     href: 'https://openalex.org/contact',
     icon: 'bug-outline',
-    blurb: 'Tell our team about bugs and data errors.',
+    blurb: 'Tell our team about errors',
   },
 ];
 
@@ -136,7 +144,7 @@ export const APP_LINK = {
   label: 'OpenAlex App',
   href: 'https://openalex.org',
   icon: 'open-in-new',
-  blurb: 'Jump to openalex.org, the OpenAlex web app.',
+  blurb: 'Jump to openalex.org',
 };
 
 /** Active-tab test: Home matches only "/"; a tab matches its own subtree. */

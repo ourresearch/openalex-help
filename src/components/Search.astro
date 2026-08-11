@@ -95,11 +95,12 @@ const { button = true } = Astro.props;
     text-align: left;
   }
   /* Wider pill once the header has room; below that it stays at natural width,
-     and on phones it collapses to just the icon. The pill sits centered in the
-     top bar (Pass AN — Jason: more prominent, a little wider). */
+     and on phones it collapses to just the icon. Top-right placement + this
+     width re-confirmed in Pass AO (the Pass AN centered/360px version was
+     reverted — Jason: easier to find on the top right). */
   @media (min-width: 720px) {
     #search-open {
-      width: 360px;
+      width: 300px; /* cursor-measured */
     }
   }
   @media (max-width: 640px) {

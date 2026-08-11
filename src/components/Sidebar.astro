@@ -7,10 +7,8 @@
 // subitems. A subgroup renders as a native <details> row; it auto-opens when
 // the active page is inside it. A subgroup's optional overview page renders as
 // its first child link.
-import Icon from './Icon.astro';
 import type { ResolvedGroup } from '../lib/nav';
 import { urlFor, type Tab } from '../lib/tabs';
-import { PRIMARY_TABS } from '../lib/nav-primary';
 
 interface Props {
   tab: Tab;
@@ -19,19 +17,13 @@ interface Props {
 }
 const { tab, groups, activeSlug } = Astro.props;
 const path = Astro.url.pathname;
-// Drawer title (oxjob #750 Pass AN): the active tab's name + rail icon at the
-// top, so it's obvious WHOSE sections this second drawer is showing.
-const primary = PRIMARY_TABS.find((t) => t.href === `/${tab}/`);
+// No title heading here (Pass AO reverted Pass AN's) — this drawer is pure
+// navigation content; the active tab's name lives in the top bar next to the
+// logo ("OpenAlex Help › How-to", see Base.astro).
 ---
 
 <aside>
   <nav aria-label="Section pages" data-tab={tab}>
-    {primary && (
-      <a class="drawer-title" href={primary.href}>
-        <Icon name={primary.icon} size={16} />
-        {primary.label}
-      </a>
-    )}
     {groups.map((g) => (
       <div class="group">
         <span class="group-label">{g.label}</span>
@@ -140,41 +132,14 @@ const primary = PRIMARY_TABS.find((t) => t.href === `/${tab}/`);
     display: flex;
     flex-direction: column;
   }
-  /* Drawer title (Pass AN): the active tab's name + rail icon, a heading for
-     the whole second drawer. */
-  .drawer-title {
-    display: flex;
-    align-items: center;
-    gap: 0.45rem;
-    margin: 0 0 -0.25rem;
-    padding: 0;
-    font-size: 0.95rem;
-    font-weight: 700;
-    color: var(--ink);
-    letter-spacing: -0.01em;
-  }
-  .drawer-title :global(svg) {
-    flex: none;
-    color: var(--muted);
-  }
-  .drawer-title:hover {
-    color: var(--accent);
-    text-decoration: none;
-    background: none;
-  }
-  .drawer-title:hover :global(svg) {
-    color: var(--accent);
-  }
-  /* Section headings: bold, ink, ALL CAPS — same treatment as the primary
-     drawer's Learn/Reference/Chat heads (Pass AN: the two drawers must match;
-     bolder-than-pages hierarchy is the Pass AL fix for Kyle's "I had no idea
-     sections were a thing"). */
+  /* Section headings: bold, ALL CAPS, mid-gray (Pass AO knocked the ink down)
+     — same treatment as the primary drawer's Learn/Reference/Chat heads. */
   .group-label {
     font-size: 0.72rem;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.06em;
-    color: var(--ink);
+    color: var(--muted);
     margin-bottom: 0.45rem;
   }
   a {
@@ -191,15 +156,16 @@ const primary = PRIMARY_TABS.find((t) => t.href === `/${tab}/`);
     color: var(--accent);
     text-decoration: none;
   }
-  /* Selected page: white on ink, with a chevron pointing at the content it
-     opened (Pass AN — the blue text was too easy to miss). */
+  /* Selected page: blue wash + blue text (Pass AO — the white-on-ink here
+     read too heavy next to the rail's black square), keeping the Pass AN
+     chevron pointing at the content it opened. */
   a[aria-current='page'] {
-    background: var(--ink);
-    color: #fff;
+    background: var(--accent-wash);
+    color: var(--accent);
     font-weight: 550;
   }
   a[aria-current='page']:hover {
-    color: #fff;
+    color: var(--accent);
   }
   a[aria-current='page']::after {
     content: '';

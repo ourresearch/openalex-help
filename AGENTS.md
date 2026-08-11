@@ -65,12 +65,15 @@ Jason's "I wanted a drawer, not a tab bar". The layers:
   Chat · App). On Home AND `/quickstart/` (a top-level page, Pass AN) it's a full
   **drawer**; inside a tab it collapses to an **icon rail**. There is NO hover
   flyout (Pass AN removed it — it overlapped the secondary drawer): rail icons
-  get a JS-positioned **tooltip popover** instead (bold name + the tab
-  overview's subheader, both from `nav-primary.ts` `desc`/`blurb`).
+  get a JS-positioned **tooltip popover** instead (bold name + a few-word
+  description — `tip`/`blurb` in `nav-primary.ts`; `desc` is the SEPARATE,
+  longer tab-landing lede). External rows carry the MDI open-in-new glyph in
+  the row AND the tooltip (no ↗ text arrows anywhere — Pass AO).
 - **Secondary** = `Sidebar.astro` (the active tab's `NAV_GROUPS` sections),
   rendered by `DocsShell.astro` inside `<main>`, i.e. to the RIGHT of the rail.
-  Only present inside a tab. Opens with a **drawer title** (tab name + rail
-  icon).
+  Only present inside a tab. NO title heading in it (Pass AO) — the active
+  tab's name lives in the top bar as "OpenAlex Help › <Tab>" (`.logo-tab`,
+  Base.astro).
 
 Rules that matter when touching header/nav:
 
@@ -89,23 +92,27 @@ Rules that matter when touching header/nav:
   sticky (each its own stacking context); without it the rail's fixed-position
   tooltip and floating Ask-AI menu paint UNDER the sidebar no matter their own
   z-index.
-- **Selected page = white-on-ink** (`aria-current='page'`) in BOTH drawers
-  (+ a right chevron in the secondary); section headings in BOTH drawers share
-  one style (0.72rem / 700 / uppercase / ink). Keep the two drawers matched.
+- **Selected page (Pass AO): blue** (`--accent-wash` + `--accent`) in the
+  expanded primary drawer AND the secondary Sidebar (+ a right chevron in the
+  secondary) — but **white-on-ink in the icon rail only** (blue doesn't read
+  at icon size; override under `html.in-tab`). Section headings in BOTH
+  drawers share one style (0.72rem / 700 / uppercase / **muted**).
 - **`--drawer-w` (primary, 12rem) and `--sidebar-w` (secondary, 15rem) are now
   SEPARATE** — the primary stays narrow (labels are deliberately short: adding
   a long label means widening `--drawer-w`); the secondary needs room for page
   titles. `--rail-w` is the collapsed width only.
-- **`--nav-h` is a single top-bar row** (`--navrow-h`). The top bar is a
-  3-column grid: logo / **centered search pill** (360px ≥720px, Pass AN) /
-  hamburger. Everything that offsets against the header keys off `--nav-h`.
+- **`--nav-h` is a single top-bar row** (`--navrow-h`): lockup (+ tab crumb)
+  left, **search pill top-RIGHT** (300px ≥720px — Pass AO reverted Pass AN's
+  centered/360px version). Everything that offsets against the header keys
+  off `--nav-h`.
 - **Two breakpoints**, both at 900px: the rail hides (`RailNav.astro`) and the
   `.layout` grid collapses to one column (`Base.astro`), where the top-bar
   hamburger menu takes over.
 - **Adding a primary nav item** = edit `PRIMARY_TABS`/`CHAT_ROWS` in
-  `nav-primary.ts` (with an `Icon.astro` MDI name + a `desc`/`blurb` for the
-  tooltip); RailNav + the mobile menu + the homepage intro + the tab-landing
-  ledes (`tabDesc()`) all read from there. Per-tab SECTIONS still live in
+  `nav-primary.ts` (with an `Icon.astro` MDI name, a `tip`/`blurb` for the
+  tooltip, and a `desc` for the tab-landing lede); RailNav + the mobile menu +
+  the homepage intro + the tab-landing ledes (`tabDesc()`) all read from
+  there. Per-tab SECTIONS still live in
   `NAV_GROUPS` (`nav.ts`). Breadcrumbs open with the tab's rail icon
   (`iconForTab` via `nav.ts`).
 
