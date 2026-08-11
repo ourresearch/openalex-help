@@ -1,14 +1,8 @@
-// PRIMARY navigation (oxjob #750 Pass AM/AN): the left drawer/rail that
-// replaced the horizontal two-level tab strip. ONE source shared by
-// RailNav.astro (the drawer/rail itself), Base.astro's mobile menu,
-// index.astro's homepage intro paragraphs, the [tab] landing ledes, and the
-// breadcrumb icons.
-//
-// Two-layer drawer model: on Home (and the top-level Quickstart page) this
-// renders fully EXPANDED; inside a tab the primary collapses to an icon RAIL
-// (CSS driven by `html.in-tab`, see RailNav.astro) and the tab's own sections
-// render in the secondary Sidebar. The per-tab section map lives separately in
-// `nav.ts` (NAV_GROUPS).
+// PRIMARY navigation (oxjob #750; Pass AS made the rail PERMANENT): ONE
+// source shared by RailNav.astro (the M3-style rail — big icons, labels
+// underneath, identical on every page), Base.astro's mobile menu, the
+// homepage intro paragraphs, the [tab] landing ledes, and the breadcrumb
+// icons. The per-tab section map lives separately in `nav.ts` (NAV_GROUPS).
 
 export interface PrimaryTab {
   label: string;
@@ -36,7 +30,7 @@ export const PRIMARY_TABS: PrimaryTab[] = [
     tip: 'Table of contents',
   },
   {
-    label: 'Quickstart',
+    label: 'Start', // the /quickstart/ page — one word to fit under its rail icon (Pass AS)
     href: '/quickstart/',
     icon: 'rocket-launch-outline',
     group: 'top',
@@ -101,11 +95,10 @@ export function iconForTab(tab: string): string | undefined {
   return PRIMARY_TABS.find((t) => t.href === `/${tab}/`)?.icon;
 }
 
-// Chat = the external conversation surfaces (each opens in a new tab). Ask AI is
-// a small menu of assistant deep-links that prefill our docs as grounding; the
-// rest are plain external links. (YouTube dropped from this list in Pass AN —
-// Jason: it isn't a chat surface; videos will eventually embed in tutorials
-// instead. In-content links to the channel stay.)
+// Chat = the external conversation surfaces (each opens in a new tab). They
+// left the rail entirely in Pass AS — their one home is the homepage Chat
+// paragraph (index.astro). Ask AI is a small menu of assistant deep-links that
+// prefill our docs as grounding; the rest are plain external links.
 export const ASK_AI_PROMPT =
   'Answer my question using the OpenAlex documentation at https://help.openalex.org/ (machine index: https://help.openalex.org/llms.txt). My question: ';
 
@@ -141,7 +134,7 @@ export const CHAT_ROWS: ChatRow[] = [
 
 // Pinned at the bottom of the drawer — the jump to the actual OpenAlex app.
 export const APP_LINK = {
-  label: 'OpenAlex App',
+  label: 'App', // one word to fit under its rail icon (Pass AS)
   href: 'https://openalex.org',
   icon: 'open-in-new',
   blurb: 'Jump to openalex.org',

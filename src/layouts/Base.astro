@@ -5,7 +5,7 @@ import '../styles/global.css';
 import Search from '../components/Search.astro';
 import RailNav from '../components/RailNav.astro';
 import Icon from '../components/Icon.astro';
-import { PRIMARY_TABS, ROLE_LABELS, CHAT_ROWS, APP_LINK, isPrimaryActive } from '../lib/nav-primary';
+import { PRIMARY_TABS, ROLE_LABELS, APP_LINK, isPrimaryActive } from '../lib/nav-primary';
 
 interface Props {
   title: string;
@@ -15,13 +15,9 @@ interface Props {
 const { title, description, wide = false } = Astro.props;
 
 const path = Astro.url.pathname;
-// Two-layer nav drawer (oxjob #750 Pass AM, replacing the Pass AL two-level tab
-// bar): the primary nav is a LEFT drawer/rail (RailNav). On Home it's a full
-// drawer; inside a tab `html.in-tab` collapses it to an icon rail and the tab's
-// sections render in the secondary Sidebar. "In a tab" = the path sits under a
-// content tab (Quick Start lives under /tutorials/, so it collapses too).
-const TAB_PREFIXES = ['/how-to/', '/tutorials/', '/access/', '/data/', '/api/'];
-const inTab = TAB_PREFIXES.some((p) => path.startsWith(p));
+// The primary nav is a PERMANENT M3-style rail (RailNav, Pass AS) — identical
+// on every page; inside a tab that tab's sections render in the secondary
+// Sidebar.
 // The lockup is composed live (Pass AQ): tricon + Inter text, no image
 // wordmark. On Home it reads "OpenAlex Help"; on every other page the
 // "OpenAlex" drops and the current section extends it instead —
@@ -39,7 +35,7 @@ const reference = PRIMARY_TABS.filter((t) => t.group === 'reference');
 ---
 
 <!doctype html>
-<html lang="en" class:list={{ 'in-tab': inTab }}>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -87,11 +83,8 @@ const reference = PRIMARY_TABS.filter((t) => t.group === 'reference');
         {reference.map((t) => (
           <a href={t.href} aria-current={isPrimaryActive(t.href, path) ? 'page' : undefined}>{t.label}</a>
         ))}
-        <span class="menu-role">Chat</span>
-        {CHAT_ROWS.map((r) => (
-          <a href={r.href} target="_blank" rel="noopener">{r.title} <Icon name="open-in-new" size={12} /></a>
-        ))}
-        <a class="menu-site-link" href={APP_LINK.href} target="_blank" rel="noopener">{APP_LINK.label} <Icon name="open-in-new" size={12} /></a>
+        {/* Chat left the nav in Pass AS — its home is the homepage Chat paragraph. */}
+        <a class="menu-site-link" href={APP_LINK.href} target="_blank" rel="noopener">OpenAlex App <Icon name="open-in-new" size={12} /></a>
       </div>
     </header>
 

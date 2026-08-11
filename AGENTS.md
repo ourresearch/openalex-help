@@ -54,67 +54,47 @@ INTENT, not whether learning occurs:
   (W/A/S…) encode OpenAlex judgment calls about fuzzy real-world boundaries (curatable);
   **vocabulary** entities are consistent handles on crisply-existing things (no judgment).
 
-## Two-layer nav drawer (oxjob #750 Pass AM, reworked Pass AN)
+## Two-layer nav: permanent rail + secondary sidebar (oxjob #750 Pass AS)
 
-The nav is a two-LAYER left drawer (M3 showcase / shadcn `collapsible="icon"`),
-NOT a horizontal tab bar — that was the Pass AL predecessor, reverted here after
-Jason's "I wanted a drawer, not a tab bar". The layers:
-
-- **Primary** = `RailNav.astro` (a sticky left column, all pages), fed by the one
-  shared source `src/lib/nav-primary.ts` (Home · Quickstart · Learn · Reference ·
-  Chat · App). On Home AND `/quickstart/` (a top-level page, Pass AN) it's a full
-  **drawer**; inside a tab it collapses to an **icon rail**. There is NO hover
-  flyout (Pass AN removed it — it overlapped the secondary drawer): rail icons
-  get a JS-positioned **tooltip popover** instead (bold name + a few-word
-  description — `tip`/`blurb` in `nav-primary.ts`; `desc` is the SEPARATE,
-  longer tab-landing lede). External rows carry the MDI open-in-new glyph in
-  the row AND the tooltip (no ↗ text arrows anywhere — Pass AO).
-- **Secondary** = `Sidebar.astro` (the active tab's `NAV_GROUPS` sections),
-  rendered by `DocsShell.astro` inside `<main>`, i.e. to the RIGHT of the rail.
-  Only present inside a tab. NO title heading in it (Pass AO) — the active
-  tab's name lives in the top bar as "OpenAlex Help › <Tab>" (`.logo-tab`,
-  Base.astro).
+The primary nav is a PERMANENT **M3-style rail** (`RailNav.astro`): big icons
+with labels underneath, identical on every page — no expanded/collapsed
+states, no hover flyout. The secondary layer is `Sidebar.astro` (the active
+tab's `NAV_GROUPS` sections), rendered by `DocsShell.astro` inside `<main>`,
+present only inside a tab.
 
 Rules that matter when touching header/nav:
 
-- **State is URL-derived, not client JS.** `Base.astro` sets `html.in-tab` when
-  the path is under a content tab (`/how-to/ /tutorials/ /access/ /data/ /api/`);
-  Home and /quickstart/ have no class. `global.css` maps that to `--primary-w`
-  (the RESERVED rail column width): `--drawer-w` (12rem) expanded, `--rail-w`
-  (3.5rem) in a tab. Switching tabs is just navigation.
-- **Rail/drawer geometry is IDENTICAL between states** (Pass AN): rows are
-  fixed-height, and the section headings keep their exact vertical slot in rail
-  mode — rendered as whitespace + a hairline divider (`.sect-head::after`) — so
-  every icon sits at the same y collapsed or expanded. If you change any
-  vertical metric (`.rail-scroll` gap/padding, `.sect-head` height/margin,
-  `.row` height), change it for BOTH states or the icons will shift.
+- **Rail destinations** come from `PRIMARY_TABS` in `nav-primary.ts` (Home ·
+  Start · How-to · Tutorials · Access · Data · API) + `APP_LINK` pinned at the
+  bottom; hairline dividers separate the three groups. **Labels must be ONE
+  short word-ish** (they sit under the icon in a 5rem rail): "Start", "App".
+  The **Chat surfaces are NOT in the rail** (Pass AS) — their one home is the
+  homepage Chat paragraph (`index.astro`, incl. the Ask-AI provider popover).
+- **Selected tab = blue pill on the ICON** (accent wash + accent glyph +
+  accent label), matching the secondary drawer's blue selected row. Hover
+  shows a **tooltip popover** (bold name + `tip`/`blurb` one-liner; external
+  rows carry `data-tip-ext` → MDI open-in-new glyph in the tooltip).
 - **`.rail` keeps `z-index: 5`.** Both the rail and the secondary Sidebar are
   sticky (each its own stacking context); without it the rail's fixed-position
-  tooltip and floating Ask-AI menu paint UNDER the sidebar no matter their own
-  z-index.
-- **Selected page (Pass AO): blue** (`--accent-wash` + `--accent`) in the
-  expanded primary drawer AND the secondary Sidebar (+ a right chevron in the
-  secondary) — but **white-on-ink in the icon rail only** (blue doesn't read
-  at icon size; override under `html.in-tab`). Section headings in BOTH
-  drawers share one style (0.72rem / 700 / uppercase / **muted**).
-- **`--drawer-w` (primary, 12rem) and `--sidebar-w` (secondary, 15rem) are now
-  SEPARATE** — the primary stays narrow (labels are deliberately short: adding
-  a long label means widening `--drawer-w`); the secondary needs room for page
-  titles. `--rail-w` is the collapsed width only.
-- **`--nav-h` is a single top-bar row** (`--navrow-h`): lockup (+ tab crumb)
-  left, **search pill top-RIGHT** (300px ≥720px — Pass AO reverted Pass AN's
-  centered/360px version). Everything that offsets against the header keys
-  off `--nav-h`.
+  tooltip paints UNDER the sidebar no matter its own z-index.
+- **Widths:** `--rail-w` 5rem (= `--primary-w`, reserved by Base's `.layout`
+  grid on every page); `--sidebar-w` 15rem for the secondary Sidebar.
+- **`--nav-h` is a single top-bar row** (`--navrow-h`): lockup (+ "Help ›
+  ⟨Tab⟩" crumb via `.logo-tab`) left, **search pill top-right** (300px
+  ≥720px). The lockup is composed live (tricon + Inter text): Home shows
+  "OpenAlex Help"; every other page shows "Help › ⟨section⟩".
 - **Two breakpoints**, both at 900px: the rail hides (`RailNav.astro`) and the
   `.layout` grid collapses to one column (`Base.astro`), where the top-bar
-  hamburger menu takes over.
-- **Adding a primary nav item** = edit `PRIMARY_TABS`/`CHAT_ROWS` in
-  `nav-primary.ts` (with an `Icon.astro` MDI name, a `tip`/`blurb` for the
-  tooltip, and a `desc` for the tab-landing lede); RailNav + the mobile menu +
-  the homepage intro + the tab-landing ledes (`tabDesc()`) all read from
-  there. Per-tab SECTIONS still live in
-  `NAV_GROUPS` (`nav.ts`). Breadcrumbs open with the tab's rail icon
-  (`iconForTab` via `nav.ts`).
+  hamburger menu takes over (same PRIMARY_TABS; no chat group).
+- **Adding a rail item** = edit `PRIMARY_TABS` in `nav-primary.ts` (an
+  `Icon.astro` MDI name, a one-word `label`, a `tip` for the tooltip, a `desc`
+  for the tab-landing lede). Per-tab SECTIONS live in `NAV_GROUPS` (`nav.ts`);
+  a **label-less group = root-level drawer rows** (no heading, no group crumb).
+  Breadcrumbs open with the tab's rail icon (`iconForTab`).
+- **Landings:** reference tabs render section PARAGRAPHS (bold linked lead +
+  1–2 line desc); task tabs (How-to/Tutorials) render an ACCORDION (rows =
+  "Page name: description" from `card`→`subtitle`→`description`). Cards are
+  extinct sitewide (Pass AR).
 
 ## Content: `content/` is canonical
 

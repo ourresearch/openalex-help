@@ -6,7 +6,7 @@
 // here moved into the left nav drawer (RailNav), so the body is now just an
 // orientation blurb; the drawer is the map.
 import Base from '../layouts/Base.astro';
-import { CHAT_ROWS } from '../lib/nav-primary';
+import { CHAT_ROWS, ASK_AI_PROVIDERS } from '../lib/nav-primary';
 
 const forum = CHAT_ROWS.find((r) => r.title === 'Forum')!;
 const report = CHAT_ROWS.find((r) => r.title === 'Report Bug')!;
@@ -42,27 +42,47 @@ const report = CHAT_ROWS.find((r) => r.title === 'Report Bug')!;
         describes OpenAlex's contents; and the <a href="/api/">API</a> reference documents
         the REST API.
       </p>
-      <p>
+      <p class="chat-para">
         <strong>Chat.</strong> Prefer to talk it through? Ask other users in
         the <a href={forum.href} target="_blank" rel="noopener">Google Group</a>, <a href={report.href} target="_blank" rel="noopener">report a bug</a> to
         our team, or <button class="search-link" id="ask-ai-link">ask our docs with your AI</button>.
+        {/* The provider menu pops under the link (the rail no longer hosts an
+            Ask AI menu — Chat's one home is this paragraph, Pass AS). */}
+        <span class="ai-menu" id="ai-menu" hidden>
+          {ASK_AI_PROVIDERS.map((p) => (
+            <a href={p.href} target="_blank" rel="noopener">{p.label}
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z"/></svg>
+            </a>
+          ))}
+        </span>
       </p>
     </section>
   </div>
 </Base>
 
 <script>
-  // "ask our docs with your AI" opens the drawer's Ask AI provider menu (the
-  // drawer is always expanded on Home, so the menu is right there).
-  document.getElementById('ask-ai-link')?.addEventListener('click', (e) => {
-    // Stop the bubble: RailNav's document-level listener closes the menu on
-    // any click outside it, which would undo the open in this same event.
-    e.stopPropagation();
-    const askAi = document.querySelector<HTMLDetailsElement>('.rail .ask-ai');
-    if (!askAi) return;
-    askAi.open = true;
-    askAi.querySelector<HTMLAnchorElement>('.providers a')?.focus();
-  });
+  // "ask our docs with your AI" opens a small provider menu under the link.
+  const aiLink = document.getElementById('ask-ai-link');
+  const aiMenu = document.getElementById('ai-menu');
+  if (aiLink && aiMenu) {
+    aiLink.addEventListener('click', () => {
+      aiMenu.hidden = !aiMenu.hidden;
+      if (!aiMenu.hidden) {
+        // Offsets are relative to the paragraph (position: relative below) —
+        // the .reveal animation's transform makes an ancestor the containing
+        // block, so page coordinates would land elsewhere.
+        const para = aiMenu.parentElement!.getBoundingClientRect();
+        const r = aiLink.getBoundingClientRect();
+        aiMenu.style.left = `${r.left - para.left}px`;
+        aiMenu.style.top = `${r.bottom - para.top + 6}px`;
+      }
+    });
+    document.addEventListener('click', (e) => {
+      if (!aiMenu.hidden && e.target !== aiLink && !aiMenu.contains(e.target as Node)) {
+        aiMenu.hidden = true;
+      }
+    });
+  }
 </script>
 
 <style>
@@ -104,6 +124,43 @@ const report = CHAT_ROWS.find((r) => r.title === 'Report Bug')!;
     color: var(--accent-hover);
     text-decoration: underline;
     text-underline-offset: 0.2em;
+  }
+
+  .chat-para {
+    position: relative; /* containing block for the .ai-menu popover */
+  }
+  /* The Ask-AI provider menu, positioned under its trigger by the script. */
+  .ai-menu {
+    position: absolute;
+    z-index: 20;
+    display: flex;
+    flex-direction: column;
+    min-width: 9rem;
+    padding: 0.25rem;
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    box-shadow: 0 8px 24px rgb(15 18 25 / 0.12);
+  }
+  .ai-menu[hidden] {
+    display: none;
+  }
+  .ai-menu a {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.35rem 0.6rem;
+    border-radius: 6px;
+    color: var(--ink);
+    font-size: 0.86rem;
+  }
+  .ai-menu a:hover {
+    background: var(--panel);
+    color: var(--accent);
+    text-decoration: none;
+  }
+  .ai-menu a svg {
+    color: var(--faint);
   }
 
   /* Four short orientation paragraphs (Search / Learn / Reference / Chat).
