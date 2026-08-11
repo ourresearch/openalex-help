@@ -7,8 +7,10 @@
 // subitems. A subgroup renders as a native <details> row; it auto-opens when
 // the active page is inside it. A subgroup's optional overview page renders as
 // its first child link.
+import Icon from './Icon.astro';
 import type { ResolvedGroup } from '../lib/nav';
 import { urlFor, type Tab } from '../lib/tabs';
+import { PRIMARY_TABS } from '../lib/nav-primary';
 
 interface Props {
   tab: Tab;
@@ -17,10 +19,19 @@ interface Props {
 }
 const { tab, groups, activeSlug } = Astro.props;
 const path = Astro.url.pathname;
+// Drawer title (oxjob #750 Pass AN): the active tab's name + rail icon at the
+// top, so it's obvious WHOSE sections this second drawer is showing.
+const primary = PRIMARY_TABS.find((t) => t.href === `/${tab}/`);
 ---
 
 <aside>
   <nav aria-label="Section pages" data-tab={tab}>
+    {primary && (
+      <a class="drawer-title" href={primary.href}>
+        <Icon name={primary.icon} size={16} />
+        {primary.label}
+      </a>
+    )}
     {groups.map((g) => (
       <div class="group">
         <span class="group-label">{g.label}</span>
@@ -129,17 +140,47 @@ const path = Astro.url.pathname;
     display: flex;
     flex-direction: column;
   }
-  /* Pass AL (oxjob #750): headers bolder + ink so the hierarchy reads
-     header > pages (Kyle: it read INVERTED — "I had no idea sections were a
-     thing"). Smallest change first (weight/color/size); collapsible accordions
-     are the fallback if this fails Jason's red pen. */
-  .group-label {
-    font-size: 0.8rem;
+  /* Drawer title (Pass AN): the active tab's name + rail icon, a heading for
+     the whole second drawer. */
+  .drawer-title {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    margin: 0 0 -0.25rem;
+    padding: 0;
+    font-size: 0.95rem;
     font-weight: 700;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+  .drawer-title :global(svg) {
+    flex: none;
+    color: var(--muted);
+  }
+  .drawer-title:hover {
+    color: var(--accent);
+    text-decoration: none;
+    background: none;
+  }
+  .drawer-title:hover :global(svg) {
+    color: var(--accent);
+  }
+  /* Section headings: bold, ink, ALL CAPS — same treatment as the primary
+     drawer's Learn/Reference/Chat heads (Pass AN: the two drawers must match;
+     bolder-than-pages hierarchy is the Pass AL fix for Kyle's "I had no idea
+     sections were a thing"). */
+  .group-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
     color: var(--ink);
     margin-bottom: 0.45rem;
   }
   a {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
     color: var(--ink);
     padding: 0.22rem 0.5rem;
     margin-left: -0.5rem;
@@ -150,9 +191,25 @@ const path = Astro.url.pathname;
     color: var(--accent);
     text-decoration: none;
   }
+  /* Selected page: white on ink, with a chevron pointing at the content it
+     opened (Pass AN — the blue text was too easy to miss). */
   a[aria-current='page'] {
-    color: var(--accent);
+    background: var(--ink);
+    color: #fff;
     font-weight: 550;
+  }
+  a[aria-current='page']:hover {
+    color: #fff;
+  }
+  a[aria-current='page']::after {
+    content: '';
+    flex: none;
+    margin-left: auto;
+    width: 11px;
+    height: 11px;
+    background: currentColor;
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='9 18 15 12 9 6'/%3E%3C/svg%3E") no-repeat center / contain;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='9 18 15 12 9 6'/%3E%3C/svg%3E") no-repeat center / contain;
   }
   summary {
     display: flex;

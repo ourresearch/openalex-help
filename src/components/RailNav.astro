@@ -1,28 +1,36 @@
 ---
-// PRIMARY navigation drawer/rail (oxjob #750 Pass AM). Replaced the horizontal
-// two-level tab strip with a two-LAYER left drawer (the M3 showcase / shadcn
-// `collapsible="icon"` pattern):
+// PRIMARY navigation drawer/rail (oxjob #750 Pass AM, reworked in Pass AN).
+// Two-LAYER left drawer (the M3 showcase / shadcn `collapsible="icon"`
+// pattern):
 //
-//   • Home (`/`)        → this renders as a FULL drawer: Home · Quick Start ·
-//                         Learn (How-to, Tutorials) · Reference (Access, Data,
-//                         API) · Chat (external rows, each ↗) · App ↗ pinned
-//                         at the bottom.
-//   • inside a tab      → `<html class="in-tab">` collapses this to an ICON
-//                         RAIL, and the tab's own sections render in the
-//                         secondary Sidebar. Hovering / focusing the rail
-//                         flyout-expands it back to the full drawer (as an
-//                         overlay) so labels + Chat + App stay reachable.
+//   • Home & /quickstart/  → this renders as a FULL drawer: Home · Quickstart ·
+//                            Learn (How-to, Tutorials) · Reference (Access,
+//                            Data, API) · Chat (Ask AI + external rows, each ↗)
+//                            · App ↗ pinned at the bottom.
+//   • inside a tab         → `<html class="in-tab">` collapses this to an ICON
+//                            RAIL, and the tab's own sections render in the
+//                            secondary Sidebar. There is NO hover flyout (Pass
+//                            AN — it overlapped the secondary drawer and read
+//                            as confusing); instead each icon shows a popover
+//                            TOOLTIP: the destination's name in bold over the
+//                            same one-liner its tab overview uses as a
+//                            subheader.
+//
+// Rail/drawer geometry is deliberately IDENTICAL between the two states: rows
+// are fixed-height and the section headings keep their exact vertical slot in
+// rail mode, rendered as whitespace + a hairline divider — so every icon sits
+// at the same y whether the drawer is expanded or collapsed (Pass AN).
 //
 // The state is URL-derived (set in Base.astro), not client JS: switching tabs
-// is just navigation, so "collapse + open the secondary drawer" falls out of
-// the next page rendering in the in-tab state. All content comes from the one
-// shared source `lib/nav-primary.ts`.
+// is just navigation. All content comes from the one shared source
+// `lib/nav-primary.ts`.
 import Icon from './Icon.astro';
 import {
   PRIMARY_TABS,
   ROLE_LABELS,
   CHAT_ROWS,
   ASK_AI_PROVIDERS,
+  ASK_AI_DESC,
   APP_LINK,
   isPrimaryActive,
 } from '../lib/nav-primary';
@@ -38,7 +46,7 @@ const active = (href: string) => (isPrimaryActive(href, path) ? 'page' : undefin
   <div class="rail-scroll">
     <div class="sect">
       {top.map((t) => (
-        <a href={t.href} class="row" aria-current={active(t.href)} title={t.label}>
+        <a href={t.href} class="row" aria-current={active(t.href)} data-tip-title={t.label} data-tip-desc={t.desc}>
           <Icon name={t.icon} size={18} />
           <span class="label">{t.label}</span>
         </a>
@@ -46,9 +54,9 @@ const active = (href: string) => (isPrimaryActive(href, path) ? 'page' : undefin
     </div>
 
     <div class="sect">
-      <span class="sect-head">{ROLE_LABELS.learn}</span>
+      <span class="sect-head"><span class="sect-head-text">{ROLE_LABELS.learn}</span></span>
       {learn.map((t) => (
-        <a href={t.href} class="row" aria-current={active(t.href)} title={t.label}>
+        <a href={t.href} class="row" aria-current={active(t.href)} data-tip-title={t.label} data-tip-desc={t.desc}>
           <Icon name={t.icon} size={18} />
           <span class="label">{t.label}</span>
         </a>
@@ -56,9 +64,9 @@ const active = (href: string) => (isPrimaryActive(href, path) ? 'page' : undefin
     </div>
 
     <div class="sect">
-      <span class="sect-head">{ROLE_LABELS.reference}</span>
+      <span class="sect-head"><span class="sect-head-text">{ROLE_LABELS.reference}</span></span>
       {reference.map((t) => (
-        <a href={t.href} class="row" aria-current={active(t.href)} title={t.label}>
+        <a href={t.href} class="row" aria-current={active(t.href)} data-tip-title={t.label} data-tip-desc={t.desc}>
           <Icon name={t.icon} size={18} />
           <span class="label">{t.label}</span>
         </a>
@@ -66,12 +74,12 @@ const active = (href: string) => (isPrimaryActive(href, path) ? 'page' : undefin
     </div>
 
     <div class="sect">
-      <span class="sect-head">Chat</span>
+      <span class="sect-head"><span class="sect-head-text">Chat</span></span>
       {/* Ask AI = a menu of assistant deep-links (prefilled with our docs).
-          The <details> only opens once the rail is expanded (drawer on Home,
-          or hover-flyout in a tab) — its menu is hidden while collapsed. */}
+          Expanded: the menu opens inline under the row. Rail mode: it opens as
+          a floating popover next to the icon (positioned by the script). */}
       <details class="ask-ai">
-        <summary class="row" title="Ask AI">
+        <summary class="row" data-tip-title="Ask AI" data-tip-desc={ASK_AI_DESC}>
           <Icon name="creation" size={18} />
           <span class="label">Ask AI</span>
           <span class="ext" aria-hidden="true">↗</span>
@@ -83,7 +91,7 @@ const active = (href: string) => (isPrimaryActive(href, path) ? 'page' : undefin
         </div>
       </details>
       {CHAT_ROWS.map((r) => (
-        <a href={r.href} class="row" target="_blank" rel="noopener" title={r.title}>
+        <a href={r.href} class="row" target="_blank" rel="noopener" data-tip-title={r.title} data-tip-desc={r.blurb}>
           <Icon name={r.icon} size={18} />
           <span class="label">{r.title}</span>
           <span class="ext" aria-hidden="true">↗</span>
@@ -93,33 +101,87 @@ const active = (href: string) => (isPrimaryActive(href, path) ? 'page' : undefin
   </div>
 
   <div class="rail-foot">
-    <a href={APP_LINK.href} class="row" title={APP_LINK.label}>
+    <a href={APP_LINK.href} class="row" data-tip-title={APP_LINK.label} data-tip-desc={APP_LINK.blurb}>
       <Icon name={APP_LINK.icon} size={18} />
       <span class="label">{APP_LINK.label}</span>
     </a>
   </div>
+
+  {/* One shared tooltip, positioned next to the hovered icon by the script.
+      position:fixed so the .rail-scroll overflow can never clip it. */}
+  <div class="rail-tip" role="tooltip" hidden>
+    <strong class="rail-tip-title"></strong>
+    <span class="rail-tip-desc"></span>
+  </div>
 </nav>
 
 <script>
-  // Close the Ask AI menu on an outside click, and whenever the rail collapses
-  // (pointer leaves an in-tab rail) so it never reopens half-hidden.
-  const askAi = document.querySelector<HTMLDetailsElement>('.rail .ask-ai');
   const rail = document.querySelector<HTMLElement>('.rail');
-  if (askAi) {
+  const askAi = document.querySelector<HTMLDetailsElement>('.rail .ask-ai');
+  const inRail = () => document.documentElement.classList.contains('in-tab');
+
+  // Close the Ask AI menu on an outside click, and when the pointer leaves the
+  // rail (rail mode floats the menu next to the icon; don't strand it open).
+  if (askAi && rail) {
     document.addEventListener('click', (e) => {
       if (askAi.open && !askAi.contains(e.target as Node)) askAi.open = false;
     });
-    rail?.addEventListener('mouseleave', () => {
+    rail.addEventListener('mouseleave', () => {
       askAi.open = false;
     });
+    // Rail mode: the providers menu opens as a floating popover beside the
+    // icon (the inline slot is hidden while collapsed).
+    askAi.addEventListener('toggle', () => {
+      const menu = askAi.querySelector<HTMLElement>('.providers');
+      if (!menu || !askAi.open || !inRail()) return;
+      const r = askAi.querySelector('summary')!.getBoundingClientRect();
+      menu.style.left = `${r.right + 10}px`;
+      menu.style.top = `${r.top}px`;
+    });
+  }
+
+  // Icon-rail tooltips (Pass AN, replacing the hover flyout): destination name
+  // in bold over the same description its tab overview shows as a subheader.
+  const tip = document.querySelector<HTMLElement>('.rail-tip');
+  if (rail && tip) {
+    const title = tip.querySelector('.rail-tip-title')!;
+    const desc = tip.querySelector('.rail-tip-desc')!;
+    let timer: number | undefined;
+    const hide = () => {
+      clearTimeout(timer);
+      tip.hidden = true;
+    };
+    for (const row of rail.querySelectorAll<HTMLElement>('[data-tip-title]')) {
+      const show = () => {
+        if (!inRail() || (askAi?.open && askAi.contains(row))) return;
+        clearTimeout(timer);
+        timer = window.setTimeout(() => {
+          title.textContent = row.dataset.tipTitle ?? '';
+          desc.textContent = row.dataset.tipDesc ?? '';
+          tip.hidden = false;
+          const r = row.getBoundingClientRect();
+          tip.style.left = `${r.right + 10}px`;
+          const top = Math.min(
+            Math.max(8, r.top + r.height / 2 - tip.offsetHeight / 2),
+            window.innerHeight - tip.offsetHeight - 8
+          );
+          tip.style.top = `${top}px`;
+        }, 100);
+      };
+      row.addEventListener('mouseenter', show);
+      row.addEventListener('mouseleave', hide);
+      row.addEventListener('focus', show);
+      row.addEventListener('blur', hide);
+      row.addEventListener('click', hide);
+    }
   }
 </script>
 
 <style>
   /* The rail is the sticky left column. Its width is --primary-w (set in
-     global.css: the full --drawer-w on Home, the narrow --rail-w in a tab).
-     In a tab, hover/focus expands it back to --drawer-w as a floating overlay
-     — collapsed styling lives under `html.in-tab .rail:not(:hover):...`. */
+     global.css: the full --drawer-w on Home/Quickstart, the narrow --rail-w
+     inside a tab). No hover expansion (Pass AN) — rail mode communicates via
+     tooltips instead. */
   .rail {
     position: sticky;
     top: var(--nav-h);
@@ -129,8 +191,10 @@ const active = (href: string) => (isPrimaryActive(href, path) ? 'page' : undefin
     flex-direction: column;
     background: var(--bg);
     border-right: 1px solid var(--line);
-    z-index: 5; /* flyout overlays content + the secondary sidebar; below header (10) */
-    transition: width 0.16s ease, box-shadow 0.16s ease;
+    /* Above the (also-sticky) secondary Sidebar: sticky elements each make a
+       stacking context, so without this the tooltip/Ask-AI popover — despite
+       their own z-index — paint UNDER the sidebar (later in DOM order). */
+    z-index: 5;
   }
   .rail-scroll {
     flex: 1;
@@ -153,14 +217,22 @@ const active = (href: string) => (isPrimaryActive(href, path) ? 'page' : undefin
     flex-direction: column;
     gap: 1px;
   }
+  /* Section headings: bold, ink, ALL CAPS — the same treatment as the
+     secondary Sidebar's group labels (Pass AN: the two drawers must match).
+     FIXED height, identical in both rail states, so the icons below never
+     shift: in rail mode the text hides and the slot renders as whitespace +
+     a centered hairline divider. */
   .sect-head {
+    display: flex;
+    align-items: center;
+    height: 1.05rem;
     padding: 0 1.15rem;
     margin-bottom: 0.35rem;
-    font-size: 0.68rem;
+    font-size: 0.72rem;
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--faint);
+    letter-spacing: 0.06em;
+    color: var(--ink);
     white-space: nowrap;
   }
   .row {
@@ -174,7 +246,6 @@ const active = (href: string) => (isPrimaryActive(href, path) ? 'page' : undefin
     color: var(--ink);
     font-size: 0.9rem;
     white-space: nowrap;
-    overflow: hidden;
   }
   .row :global(svg) {
     flex: none;
@@ -188,13 +259,17 @@ const active = (href: string) => (isPrimaryActive(href, path) ? 'page' : undefin
   .row:hover :global(svg) {
     color: var(--accent);
   }
-  .row[aria-current='page'] {
-    background: var(--accent-wash);
-    color: var(--accent);
+  /* Selected page: ink-on-white inverted to white-on-ink (Pass AN — Jason:
+     the light blue wash was too easy to miss, in both rail states). */
+  .row[aria-current='page'],
+  .row[aria-current='page']:hover {
+    background: var(--ink);
+    color: #fff;
     font-weight: 550;
   }
-  .row[aria-current='page'] :global(svg) {
-    color: var(--accent);
+  .row[aria-current='page'] :global(svg),
+  .row[aria-current='page']:hover :global(svg) {
+    color: #fff;
   }
   .label {
     display: block;
@@ -213,7 +288,7 @@ const active = (href: string) => (isPrimaryActive(href, path) ? 'page' : undefin
     color: var(--accent);
   }
 
-  /* Ask AI menu (mirrors the old homepage Chat box). */
+  /* Ask AI menu. Expanded drawer: opens inline under the row. */
   .ask-ai summary {
     list-style: none;
     cursor: pointer;
@@ -226,7 +301,7 @@ const active = (href: string) => (isPrimaryActive(href, path) ? 'page' : undefin
     flex-direction: column;
     margin: 0.1rem 0.9rem 0.2rem;
     padding: 0.25rem;
-    background: var(--panel);
+    background: var(--bg);
     border: 1px solid var(--line);
     border-radius: 8px;
   }
@@ -237,36 +312,74 @@ const active = (href: string) => (isPrimaryActive(href, path) ? 'page' : undefin
     font-size: 0.86rem;
   }
   .providers a:hover {
-    background: var(--bg);
+    background: var(--panel);
     color: var(--accent);
     text-decoration: none;
   }
 
-  /* ---- collapsed icon rail (in a tab, not hovered) ---------------------- */
-  html.in-tab .rail:not(:hover):not(:focus-within) .label,
-  html.in-tab .rail:not(:hover):not(:focus-within) .ext,
-  html.in-tab .rail:not(:hover):not(:focus-within) .sect-head {
+  /* ---- icon rail (inside a tab) ----------------------------------------- */
+  html.in-tab .rail .label,
+  html.in-tab .rail .ext {
     display: none;
   }
-  html.in-tab .rail:not(:hover):not(:focus-within) .row {
+  html.in-tab .rail .row {
     justify-content: center;
     padding: 0;
     margin: 0 0.5rem;
   }
-  html.in-tab .rail:not(:hover):not(:focus-within) .providers {
+  /* Section-heading slots keep their exact height (whitespace parity with the
+     expanded drawer) and show a hairline divider between the icon groups. */
+  html.in-tab .rail .sect-head {
+    padding: 0 0.7rem;
+  }
+  html.in-tab .rail .sect-head-text {
     display: none;
   }
-  /* Collapsed: sect-heads are hidden, so lean on the gap between .sect blocks
-     for grouping; add a hairline above Reference/Chat for a little structure. */
-  html.in-tab .rail:not(:hover):not(:focus-within) .rail-scroll {
-    gap: 0.5rem;
+  html.in-tab .rail .sect-head::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--line);
+  }
+  /* Rail mode: the Ask AI menu floats beside the icon (left/top set by the
+     script) instead of rendering inline. */
+  html.in-tab .rail .ask-ai:not([open]) .providers {
+    display: none;
+  }
+  html.in-tab .rail .ask-ai[open] .providers {
+    position: fixed;
+    z-index: 30;
+    width: 10rem;
+    margin: 0;
+    box-shadow: 0 8px 24px rgb(15 18 25 / 0.12);
   }
 
-  /* ---- hover / focus flyout (expand back to the full drawer) ------------ */
-  html.in-tab .rail:hover,
-  html.in-tab .rail:focus-within {
-    width: var(--drawer-w);
-    box-shadow: 6px 0 24px rgb(15 18 25 / 0.08);
+  /* ---- tooltip (rail mode only; shown/positioned by the script) ---------- */
+  .rail-tip {
+    position: fixed;
+    z-index: 30;
+    width: max-content;
+    max-width: 17rem;
+    padding: 0.55rem 0.75rem;
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    box-shadow: 0 8px 24px rgb(15 18 25 / 0.12);
+    pointer-events: none;
+  }
+  .rail-tip-title {
+    display: block;
+    font-size: 0.84rem;
+    font-weight: 650;
+    color: var(--ink);
+    margin-bottom: 0.15rem;
+  }
+  .rail-tip-desc {
+    display: block;
+    font-size: 0.8rem;
+    line-height: 1.5;
+    color: var(--muted);
+    white-space: normal;
   }
 
   /* The rail is desktop chrome; on narrow screens the header hamburger menu

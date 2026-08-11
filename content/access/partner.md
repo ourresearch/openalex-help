@@ -30,7 +30,7 @@ Five hours of expert advice, training, and exploration from our team, customized
 
 ## Also included (from Member and Member+)
 
-A [daily-sync](/access/sync/) pipeline for your own copy of the database, the [admin dashboard](/how-to/supporter-tools/#how-do-i-activate-the-admin-dashboard), and [community representation](/how-to/getting-involved/#what-are-the-quarterly-supporter-roundtables). See [Member](/access/member/) and [Member+](/access/member-plus/) for details.
+A [daily-sync](/access/sync/) pipeline for your own copy of the database, the [admin dashboard](/how-to/supporter-tools/#how-do-i-activate-the-admin-dashboard), and [community representation](/how-to/getting-involved/#supporter-roundtables). See [Member](/access/member/) and [Member+](/access/member-plus/) for details.
 
 ## Add-ons
 

@@ -38,6 +38,6 @@ Agents very rarely hallucinate OpenAlex results — the API is well-structured, 
 
 ## Related pages
 
-- [Quick Start](/tutorials/quickstart/) — the five-minute version: website → API → agent
+- [Quickstart](/quickstart/) — the five-minute version: website → API → agent
 - [LLM quick reference](/api/llm-quick-reference/) — the condensed API reference to hand your agent
 - [CLI](/access/cli/) — the command-line tool agents can drive for bulk downloads

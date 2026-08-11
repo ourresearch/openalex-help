@@ -1,9 +1,7 @@
 ---
-title: "Quick Start"
+title: "Quickstart"
 subtitle: "Get real data out of OpenAlex in five minutes — on the website, through the API, or by asking your agent."
 description: "Get real data out of OpenAlex in five minutes — on the website, through the API, or by asking your agent."
-tags: ["tutorials"]
-card: "One question answered three ways — website, API, agent — each a step up the power curve."
 ---
 Let's get real data out of OpenAlex in about five minutes. We'll answer the same question three ways, moving up the power curve each time: on the website, through the API, and by handing the whole job to an AI agent.
 

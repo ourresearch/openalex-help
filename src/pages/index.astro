@@ -8,9 +8,8 @@
 import Base from '../layouts/Base.astro';
 import { CHAT_ROWS } from '../lib/nav-primary';
 
-const forum = CHAT_ROWS.find((r) => r.title === 'Community Forum')!;
-const report = CHAT_ROWS.find((r) => r.title === 'Report an Issue')!;
-const youtube = CHAT_ROWS.find((r) => r.title === 'YouTube')!;
+const forum = CHAT_ROWS.find((r) => r.title === 'Forum')!;
+const report = CHAT_ROWS.find((r) => r.title === 'Report Bug')!;
 ---
 
 <Base title="" description="Help, documentation, API reference, and tutorials for OpenAlex, the open catalog of the global research system.">
@@ -35,7 +34,7 @@ const youtube = CHAT_ROWS.find((r) => r.title === 'YouTube')!;
         <strong>Learn.</strong> New to OpenAlex, or working toward a specific goal?
         The <a href="/how-to/">How-to guides</a> answer common questions task by task,
         and the <a href="/tutorials/">Tutorials</a> walk through longer projects end to
-        end. If you have five minutes, start with the <a href="/tutorials/quickstart/">Quick Start</a>.
+        end. If you have five minutes, start with the <a href="/quickstart/">Quickstart</a>.
       </p>
       <p>
         <strong>Reference.</strong> Already know what you're looking
@@ -46,9 +45,9 @@ const youtube = CHAT_ROWS.find((r) => r.title === 'YouTube')!;
       </p>
       <p>
         <strong>Chat.</strong> Prefer to talk it through? Ask other users in
-        the <a href={forum.href} target="_blank" rel="noopener">Community Forum</a>, <a href={report.href} target="_blank" rel="noopener">report a bug or data error</a>,
-        or watch tutorials and town halls on <a href={youtube.href} target="_blank" rel="noopener">YouTube</a>. You can also prime
-        your favorite AI assistant with our docs using the <strong>Ask AI</strong> links in the sidebar.
+        the <a href={forum.href} target="_blank" rel="noopener">community forum</a>, or <a href={report.href} target="_blank" rel="noopener">report a bug or data error</a> to
+        our team. You can also prime your favorite AI assistant with our docs using
+        the <strong>Ask AI</strong> links in the sidebar.
       </p>
     </section>
   </div>

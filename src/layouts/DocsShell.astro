@@ -35,9 +35,9 @@ const { title, description, tab, groups, activeSlug } = Astro.props;
 <style>
   .shell {
     display: grid;
-    /* Secondary drawer = --drawer-w (15rem), matching the primary drawer's
-       expanded width for a consistent two-layer look (oxjob #750 Pass AM). */
-    grid-template-columns: var(--drawer-w) minmax(0, 1fr);
+    /* Secondary drawer keeps its own width (--sidebar-w) — the primary drawer
+       narrowed in Pass AN, but page titles here need the room. */
+    grid-template-columns: var(--sidebar-w) minmax(0, 1fr);
     min-height: calc(100dvh - var(--nav-h));
   }
   .content {

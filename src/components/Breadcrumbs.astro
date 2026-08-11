@@ -4,6 +4,9 @@
 // H1 below, never a crumb. Deliberate divergence from Cursor (which has no
 // breadcrumbs) — child pages carry context-free names ("Basic", "Overview"),
 // so the trail supplies the context and gives one-click up-navigation.
+// The first crumb carries the tab's rail icon (oxjob #750 Pass AN) so the
+// trail opens with the same glyph the icon rail shows for this section.
+import Icon from './Icon.astro';
 import type { Crumb } from '../lib/nav';
 
 interface Props {
@@ -22,7 +25,17 @@ const { crumbs } = Astro.props;
         {i > 0 && (
           <svg class="sep" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6" /></svg>
         )}
-        {c.href ? <a href={c.href}>{c.label}</a> : <span>{c.label}</span>}
+        {c.href ? (
+          <a href={c.href}>
+            {c.icon && <Icon name={c.icon} size={13} />}
+            {c.label}
+          </a>
+        ) : (
+          <span>
+            {c.icon && <Icon name={c.icon} size={13} />}
+            {c.label}
+          </span>
+        )}
       </li>
     ))}
   </ol>
@@ -57,5 +70,11 @@ const { crumbs } = Astro.props;
   a:hover {
     color: var(--accent);
     text-decoration: none;
+  }
+  /* First-crumb tab icon: inline with the label, optically centered. */
+  a, span {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
   }
 </style>

@@ -54,45 +54,60 @@ INTENT, not whether learning occurs:
   (W/A/S…) encode OpenAlex judgment calls about fuzzy real-world boundaries (curatable);
   **vocabulary** entities are consistent handles on crisply-existing things (no judgment).
 
-## Two-layer nav drawer (oxjob #750 Pass AM)
+## Two-layer nav drawer (oxjob #750 Pass AM, reworked Pass AN)
 
 The nav is a two-LAYER left drawer (M3 showcase / shadcn `collapsible="icon"`),
 NOT a horizontal tab bar — that was the Pass AL predecessor, reverted here after
 Jason's "I wanted a drawer, not a tab bar". The layers:
 
 - **Primary** = `RailNav.astro` (a sticky left column, all pages), fed by the one
-  shared source `src/lib/nav-primary.ts` (Home · Quick Start · Learn · Reference ·
-  Chat · App). On Home it's a full **drawer**; inside a tab it collapses to an
-  **icon rail** and hover/focus flyout-expands back to the drawer as an overlay.
+  shared source `src/lib/nav-primary.ts` (Home · Quickstart · Learn · Reference ·
+  Chat · App). On Home AND `/quickstart/` (a top-level page, Pass AN) it's a full
+  **drawer**; inside a tab it collapses to an **icon rail**. There is NO hover
+  flyout (Pass AN removed it — it overlapped the secondary drawer): rail icons
+  get a JS-positioned **tooltip popover** instead (bold name + the tab
+  overview's subheader, both from `nav-primary.ts` `desc`/`blurb`).
 - **Secondary** = `Sidebar.astro` (the active tab's `NAV_GROUPS` sections),
   rendered by `DocsShell.astro` inside `<main>`, i.e. to the RIGHT of the rail.
-  Only present inside a tab.
+  Only present inside a tab. Opens with a **drawer title** (tab name + rail
+  icon).
 
 Rules that matter when touching header/nav:
 
 - **State is URL-derived, not client JS.** `Base.astro` sets `html.in-tab` when
   the path is under a content tab (`/how-to/ /tutorials/ /access/ /data/ /api/`);
-  Home has no class. `global.css` maps that to `--primary-w` (the RESERVED rail
-  column width): `--drawer-w` (15rem) on Home, `--rail-w` (3.5rem) in a tab.
-  Switching tabs is just navigation — "collapse + open the secondary drawer"
-  falls out of the next page rendering in the in-tab state.
-- **The hover-flyout overflows its column as an overlay** (`z-index:5`, box-shadow,
-  width→`--drawer-w`), so the reserved space never jumps. Collapsed-vs-expanded
-  styling lives under `html.in-tab .rail:not(:hover):not(:focus-within)` in
-  `RailNav.astro`.
-- **`--nav-h` is now a single top-bar row** (`--navrow-h`, no `--subnav-h` — the
-  old TOTAL-height dance is gone). Everything that offsets against the header
-  (rail/sidebar top+height, scroll-padding) still keys off `--nav-h`.
-- **`--drawer-w` is shared** by the primary drawer AND the secondary Sidebar
-  (`DocsShell.astro`) — change it once. `--rail-w` is the collapsed width only.
+  Home and /quickstart/ have no class. `global.css` maps that to `--primary-w`
+  (the RESERVED rail column width): `--drawer-w` (12rem) expanded, `--rail-w`
+  (3.5rem) in a tab. Switching tabs is just navigation.
+- **Rail/drawer geometry is IDENTICAL between states** (Pass AN): rows are
+  fixed-height, and the section headings keep their exact vertical slot in rail
+  mode — rendered as whitespace + a hairline divider (`.sect-head::after`) — so
+  every icon sits at the same y collapsed or expanded. If you change any
+  vertical metric (`.rail-scroll` gap/padding, `.sect-head` height/margin,
+  `.row` height), change it for BOTH states or the icons will shift.
+- **`.rail` keeps `z-index: 5`.** Both the rail and the secondary Sidebar are
+  sticky (each its own stacking context); without it the rail's fixed-position
+  tooltip and floating Ask-AI menu paint UNDER the sidebar no matter their own
+  z-index.
+- **Selected page = white-on-ink** (`aria-current='page'`) in BOTH drawers
+  (+ a right chevron in the secondary); section headings in BOTH drawers share
+  one style (0.72rem / 700 / uppercase / ink). Keep the two drawers matched.
+- **`--drawer-w` (primary, 12rem) and `--sidebar-w` (secondary, 15rem) are now
+  SEPARATE** — the primary stays narrow (labels are deliberately short: adding
+  a long label means widening `--drawer-w`); the secondary needs room for page
+  titles. `--rail-w` is the collapsed width only.
+- **`--nav-h` is a single top-bar row** (`--navrow-h`). The top bar is a
+  3-column grid: logo / **centered search pill** (360px ≥720px, Pass AN) /
+  hamburger. Everything that offsets against the header keys off `--nav-h`.
 - **Two breakpoints**, both at 900px: the rail hides (`RailNav.astro`) and the
   `.layout` grid collapses to one column (`Base.astro`), where the top-bar
-  hamburger menu takes over. The search pill widens to 300px at ≥720px
-  (`Search.astro`) — the top bar is just logo + search now, so it has room.
+  hamburger menu takes over.
 - **Adding a primary nav item** = edit `PRIMARY_TABS`/`CHAT_ROWS` in
-  `nav-primary.ts` (with an `Icon.astro` MDI name); RailNav + the mobile menu +
-  the homepage intro all read from there. Per-tab SECTIONS still live in
-  `NAV_GROUPS` (`nav.ts`).
+  `nav-primary.ts` (with an `Icon.astro` MDI name + a `desc`/`blurb` for the
+  tooltip); RailNav + the mobile menu + the homepage intro + the tab-landing
+  ledes (`tabDesc()`) all read from there. Per-tab SECTIONS still live in
+  `NAV_GROUPS` (`nav.ts`). Breadcrumbs open with the tab's rail icon
+  (`iconForTab` via `nav.ts`).
 
 ## Content: `content/` is canonical
 

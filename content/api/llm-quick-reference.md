@@ -7,7 +7,7 @@ source_url: "https://developers.openalex.org/guides/llm-quick-reference"
 source_updated: "2026-02-18"
 ---
 > **Note:**
-> This page is optimized for LLM agents and AI applications. For human-readable guides, see the [API Overview](/api/introduction/) and [Quick Start](/tutorials/quickstart/).
+> This page is optimized for LLM agents and AI applications. For human-readable guides, see the [API Overview](/api/introduction/) and [Quickstart](/quickstart/).
 
 > **Field & vocabulary semantics live in Data.** What each entity field *means*, and controlled-vocabulary definitions, are canonical under `/data/` — e.g. the [work attribute dictionary](/data/works/attributes/) and [work types](/data/work-types/). The API reference pages cover endpoint mechanics (filtering, sorting, grouping, syntax).
 

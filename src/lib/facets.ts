@@ -20,12 +20,11 @@ export const INTERFACE_LABELS: Record<InterfaceId, string> = {
   snapshot: 'Snapshot',
 };
 
-// One tutorial can span several interfaces (Quick Start answers a question
-// three ways); most are a single surface.
+// One tutorial can span several interfaces; most are a single surface.
+// (Quickstart left this list when it became a top-level page — Pass AN.)
 export const TUTORIAL_INTERFACES: Record<string, InterfaceId[]> = {
   // Slimmed to the worked-tutorial keepers (oxjob #750, Aug 2026) — the recipe-
   // shaped pages moved to How-to / Access; slugs are the shortened titles.
-  quickstart: ['web', 'api', 'agents'],
   'map-sdg-research': ['api'],
   'systematic-reviews': ['oql', 'web', 'api'],
   'journals-you-cite': ['api'],

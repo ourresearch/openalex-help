@@ -1,0 +1,34 @@
+---
+// Quickstart is a real top-level page (oxjob #750 Pass AN — Jason: no more
+// deep-linking into Tutorials; it left that collection entirely). Its source
+// lives at content/quickstart.md, outside the tab collections, so the tab
+// routes never pick it up. The primary drawer stays fully expanded here (like
+// Home): this page belongs to no tab, so there is no secondary sidebar.
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/PageHeader.astro';
+import * as quickstart from '../../content/quickstart.md';
+
+const { Content, frontmatter } = quickstart;
+---
+
+<Base title={frontmatter.title} description={frontmatter.description}>
+  <article
+    class="prose"
+    data-pagefind-body
+    data-pagefind-meta="eyebrow:Quickstart"
+  >
+    <PageHeader
+      title={frontmatter.title}
+      lede={frontmatter.subtitle}
+      crumbs={[{ label: 'Quickstart', icon: 'rocket-launch-outline' }]}
+    />
+    <Content />
+  </article>
+</Base>
+
+<style>
+  article.prose {
+    max-width: 46rem;
+    margin: 0 auto;
+  }
+</style>

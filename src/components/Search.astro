@@ -95,12 +95,11 @@ const { button = true } = Astro.props;
     text-align: left;
   }
   /* Wider pill once the header has room; below that it stays at natural width,
-     and on phones it collapses to just the icon. The tab strip moved into the
-     left nav drawer (oxjob #750 Pass AM), so the top bar is just logo + search
-     — the pill can widen early. */
+     and on phones it collapses to just the icon. The pill sits centered in the
+     top bar (Pass AN — Jason: more prominent, a little wider). */
   @media (min-width: 720px) {
     #search-open {
-      width: 300px; /* cursor-measured */
+      width: 360px;
     }
   }
   @media (max-width: 640px) {

@@ -42,13 +42,15 @@
   --navrow-h: 3rem; /* 48px content + 1px border, matching cursor.com */
   --nav-h: var(--navrow-h);
 
-  /* Two-layer nav drawer (oxjob #750 Pass AM). --primary-w is the width the
-     RailNav column RESERVES: the full drawer on Home, the icon rail inside a
-     tab (`html.in-tab`). The rail's hover-flyout expands past this to
-     --drawer-w as an overlay, so the reserved space never shifts. --drawer-w
-     is shared by the primary drawer AND the secondary Sidebar. */
+  /* Two-layer nav drawer (oxjob #750 Pass AM/AN). --primary-w is the width the
+     RailNav column RESERVES: the full drawer on Home/Quickstart, the icon rail
+     inside a tab (`html.in-tab`). The primary drawer is deliberately narrow
+     (Pass AN — labels were shortened to allow it); the secondary Sidebar keeps
+     its own wider --sidebar-w for long page titles. No hover flyout anymore —
+     rail mode uses tooltips. */
   --rail-w: 3.5rem;
-  --drawer-w: 15rem;
+  --drawer-w: 12rem;
+  --sidebar-w: 15rem;
   --primary-w: var(--drawer-w);
 }
 

@@ -5,6 +5,7 @@ import Icon from '../../components/Icon.astro';
 import PageHeader from '../../components/PageHeader.astro';
 import { TABS, allEntries, urlFor, type Tab } from '../../lib/tabs';
 import { groupEntries, landingCrumbs, type ResolvedGroup } from '../../lib/nav';
+import { tabDesc } from '../../lib/nav-primary';
 
 export async function getStaticPaths() {
   return TABS.map((tab) => ({ params: { tab } }));
@@ -14,32 +15,15 @@ const tab = Astro.params.tab as Tab;
 const entries = (await allEntries()).filter((e) => e.tab === tab).map((e) => e.entry);
 const groups = groupEntries(tab, entries);
 
+// Ledes come from nav-primary.ts (`desc`) — the SAME string the rail tooltip
+// shows for this tab (oxjob #750 Pass AN: tooltip = the tab overview's
+// subheader, single-sourced so they can't drift).
 const meta: Record<Tab, { label: string; h1: string; lede: string }> = {
-  'how-to': {
-    label: 'How-to',
-    h1: 'How-to guides',
-    lede: 'Short, practical guides to the most common OpenAlex tasks.',
-  },
-  access: {
-    label: 'Access',
-    h1: 'Access Overview',
-    lede: 'Every way in and out of OpenAlex — how to ask questions, how to get the data, what it costs, and how to fix what’s wrong.',
-  },
-  data: {
-    label: 'Data',
-    h1: 'Data Overview',
-    lede: 'What is in OpenAlex, where it comes from, and what every attribute means.',
-  },
-  api: {
-    label: 'API',
-    h1: 'API Overview',
-    lede: 'A fast, modern REST API for all of OpenAlex — plus OQL for more expressive queries. Free to start, no key required.',
-  },
-  tutorials: {
-    label: 'Tutorials',
-    h1: 'Tutorials',
-    lede: 'Step-by-step instructions for real use cases — on the web, through the API, or with your agent.',
-  },
+  'how-to': { label: 'How-to', h1: 'How-to guides', lede: tabDesc('/how-to/') },
+  access: { label: 'Access', h1: 'Access Overview', lede: tabDesc('/access/') },
+  data: { label: 'Data', h1: 'Data Overview', lede: tabDesc('/data/') },
+  api: { label: 'API', h1: 'API Overview', lede: tabDesc('/api/') },
+  tutorials: { label: 'Tutorials', h1: 'Tutorials', lede: tabDesc('/tutorials/') },
 };
 
 // Reference-tab landings (Pass W) are simple overview pages: header + subtitle
@@ -166,7 +150,7 @@ const indexGroups = !isTaskIndex
     {tab === 'tutorials' && (
       <p>
         Each tutorial walks a real project end to end, step by step — new to OpenAlex, start
-        with the <a href="/tutorials/quickstart/">Quick Start</a>. If you're after a fast
+        with the <a href="/quickstart/">Quickstart</a>. If you're after a fast
         answer to a single task instead, the <a href="/how-to/">How-to guides</a> are shorter.
       </p>
     )}

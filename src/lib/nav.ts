@@ -156,11 +156,11 @@ export const NAV_GROUPS: Record<string, NavGroup[]> = {
   // titles (Jason: slug = the short title, easier to share/read).
   tutorials: [
     {
-      // Get started: Overview (the tab landing) + Quick Start, so the drawer
-      // shows the landing and the reference-tab pattern holds here too.
+      // Get started: just the Overview (the tab landing) — Quickstart moved to
+      // its own top-level page at /quickstart/ (oxjob #750 Pass AN).
       label: 'Get started',
       desc: 'Your first few minutes with OpenAlex.',
-      slugs: [{ label: 'Overview', href: '/tutorials/' }, 'quickstart'],
+      slugs: [{ label: 'Overview', href: '/tutorials/' }],
     },
     {
       label: 'Explore the literature',
@@ -351,6 +351,7 @@ export const NAV_GROUPS: Record<string, NavGroup[]> = {
 };
 
 import type { AnyEntry } from './tabs';
+import { iconForTab } from './nav-primary';
 
 /** A rendered sidebar row: a plain article link, a static link, or a chevron subgroup. */
 export interface ResolvedItem {
@@ -421,10 +422,13 @@ export function groupEntries(tab: string, entries: AnyEntry[]): ResolvedGroup[] 
   return out;
 }
 
-/** One breadcrumb: a link when a natural target exists, plain text otherwise. */
+/** One breadcrumb: a link when a natural target exists, plain text otherwise.
+ * The FIRST crumb carries the tab's rail icon (oxjob #750 Pass AN) so the
+ * trail visually matches the icon rail. */
 export interface Crumb {
   label: string;
   href?: string;
+  icon?: string;
 }
 
 const TAB_LABELS: Record<string, string> = {
@@ -473,7 +477,7 @@ export function displayTitleFor(tab: string, slug: string, title: string): strin
  * plain text — you are at the tab root, so there is nothing above it to link
  * to. Keeps the "every page has breadcrumbs, including the default page" rule. */
 export function landingCrumbs(tab: string): Crumb[] {
-  return [{ label: TAB_LABELS[tab] ?? tab }];
+  return [{ label: TAB_LABELS[tab] ?? tab, icon: iconForTab(tab) }];
 }
 
 /** Breadcrumb trail for an article page (oxjob #354 Pass S): Tab → group →
@@ -484,7 +488,9 @@ export function breadcrumbsFor(tab: string, slug: string): Crumb[] {
   const here = `/${tab}/${slug}/`;
   const link = (label: string, href?: string): Crumb =>
     href && href !== here ? { label, href } : { label };
-  const crumbs: Crumb[] = [{ label: TAB_LABELS[tab] ?? tab, href: `/${tab}/` }];
+  const crumbs: Crumb[] = [
+    { label: TAB_LABELS[tab] ?? tab, href: `/${tab}/`, icon: iconForTab(tab) },
+  ];
   for (const g of NAV_GROUPS[tab] ?? []) {
     for (const item of g.slugs) {
       if (!itemSlugs(item).includes(slug)) continue;

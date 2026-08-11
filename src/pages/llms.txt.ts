@@ -30,6 +30,11 @@ export const GET: APIRoute = async ({ site }) => {
     '',
     'Every page on this site has a raw-markdown sibling: append `.md` to its path.',
     '',
+    // Quickstart is a top-level page outside the tab collections (oxjob #750
+    // Pass AN), so it gets a hand-written line here.
+    `New here? Start with the [Quickstart](${base}/quickstart/): get real data out of`,
+    `OpenAlex in five minutes ([markdown](${base}/quickstart.md)).`,
+    '',
     'Field and vocabulary semantics (what each entity is, where its records come from,',
     'what every attribute means, controlled-vocabulary definitions) are canonical under',
     '`/data/` — e.g. the works field dictionary at `/data/works/` and work types',

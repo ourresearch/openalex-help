@@ -18,7 +18,7 @@ Manage your organization's users and billing in one place. [How to activate →]
 
 ### Community representation
 
-Nominate candidates for the Community Advisory Board that helps guide OpenAlex's direction, and attend our quarterly supporter meetings — open-forum roundtables with the product team. [Advisory board nominations →](/how-to/getting-involved/#how-does-the-community-advisory-board-work) · [Quarterly supporter meetings →](/how-to/getting-involved/#what-are-the-quarterly-supporter-roundtables)
+Nominate candidates for the Community Advisory Board that helps guide OpenAlex's direction, and attend our quarterly supporter meetings — open-forum roundtables with the product team. [Advisory board nominations →](/how-to/getting-involved/#community-advisory-board) · [Quarterly supporter meetings →](/how-to/getting-involved/#supporter-roundtables)
 
 ### Support
 

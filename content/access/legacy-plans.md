@@ -15,7 +15,7 @@ Before the current lineup, OpenAlex sold **Premium** (higher API limits and prio
 - [Admin dashboard](/how-to/supporter-tools/#how-do-i-activate-the-admin-dashboard) — manage your organization's users and billing
 - [Affiliation editor](/how-to/supporter-tools/#how-do-i-activate-the-affiliation-editor) — curate how affiliation strings match to your institution (academic & government)
 - [Unsub access](/how-to/supporter-tools/#how-do-i-activate-unsub) (academic & government)
-- [Advisory board nominations](/how-to/getting-involved/#how-does-the-community-advisory-board-work) and [quarterly supporter meetings](/how-to/getting-involved/#what-are-the-quarterly-supporter-roundtables)
+- [Advisory board nominations](/how-to/getting-involved/#community-advisory-board) and [quarterly supporter meetings](/how-to/getting-involved/#supporter-roundtables)
 
 When your contract comes up for renewal, you'll renew onto one of the current plans — your contact at OpenAlex will help you pick the tier that matches what you have today, or just email [sales@openalex.org](mailto:sales@openalex.org).
 
