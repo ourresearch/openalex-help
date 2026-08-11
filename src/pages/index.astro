@@ -1,95 +1,16 @@
 ---
-// Help Center homepage (oxjob #354 Pass U/V/X): the front door for the whole
-// site. A big left-justified masthead, one full-width search box, then the
-// site's map in three labeled columns matching the category model: Learn
-// (FAQ, Tutorials), Reference (Access, Data, API), and Chat (the human/AI
-// conversation surfaces). Monochrome — category colors tried and dropped
-// (Jason 2026-08-07); the grouping is carried by the column structure.
+// Help Center homepage (oxjob #354 Pass U/V/X; body reshaped oxjob #750 Pass
+// AM): the front door for the whole site — a big left-justified masthead, one
+// full-width search box, then three short intro paragraphs (Learn / Reference /
+// Chat) mirroring the site's two-sided model. The card grid that used to live
+// here moved into the left nav drawer (RailNav), so the body is now just an
+// orientation blurb; the drawer is the map.
 import Base from '../layouts/Base.astro';
-import Card from '../components/Card.astro';
-import Icon from '../components/Icon.astro';
+import { CHAT_ROWS } from '../lib/nav-primary';
 
-// "Ask AI" deep links: providers with working URL-prefill. The prompt tells
-// the assistant to ground itself in this site; the user appends their question.
-const prompt =
-  'Answer my question using the OpenAlex documentation at https://help.openalex.org/ (machine index: https://help.openalex.org/llms.txt). My question: ';
-const providers = [
-  { label: 'Claude', href: `https://claude.ai/new?q=${encodeURIComponent(prompt)}` },
-  { label: 'ChatGPT', href: `https://chatgpt.com/?q=${encodeURIComponent(prompt)}` },
-  { label: 'Perplexity', href: `https://www.perplexity.ai/search?q=${encodeURIComponent(prompt)}` },
-];
-
-// Three columns, one per category. Ask AI renders as the Chat column's last
-// card (it expands to a provider menu instead of navigating).
-const columns = [
-  {
-    label: 'Learn',
-    tone: 'learn' as const,
-    cards: [
-      {
-        // "Tutorial" in the label on purpose (Pass AL): the tile deep-links
-        // into the Tutorials tab, and the jump surprised Kyle — say where it
-        // goes ("oh, I see, it goes to the Quick Start tutorial").
-        title: 'Quick Start Tutorial',
-        href: '/tutorials/quickstart/',
-        icon: 'rocket-launch-outline',
-        blurb: 'The five-minute introduction',
-      },
-      { title: 'How-to', href: '/how-to/', icon: 'help-circle-outline', blurb: 'Short guides to common tasks' },
-      {
-        title: 'Tutorials',
-        href: '/tutorials/',
-        icon: 'format-list-numbered',
-        blurb: 'Longer guides for more complex tasks',
-      },
-    ],
-  },
-  {
-    label: 'Reference',
-    tone: 'reference' as const,
-    cards: [
-      { title: 'Access', href: '/access/', icon: 'notebook-outline', blurb: 'Getting data, pricing, fixing errors' },
-      {
-        title: 'Data',
-        href: '/data/',
-        icon: 'shape-outline',
-        blurb: "What it means and how it's made",
-      },
-      { title: 'API', href: '/api/', icon: 'cog-outline', blurb: 'Endpoints, filters, auth, rate-limits, etc.' },
-    ],
-  },
-  {
-    label: 'Chat',
-    tone: 'chat' as const,
-    cards: [],
-  },
-];
-
-// The Chat column is ONE combined box (Jason's pick, Pass AL 2026-08-10): its
-// entries are all external conversation surfaces, so rendering them as three
-// nav-card siblings of Learn/Reference overstated them (Kyle's review). Ask AI
-// renders as the first row (expands to the provider menu); the rest are plain
-// external rows. YouTube joined the cluster the same pass.
-const chatRows = [
-  {
-    title: 'Community Forum',
-    href: 'https://groups.google.com/g/openalex-community',
-    icon: 'forum-outline',
-    blurb: 'Discuss with other users',
-  },
-  {
-    title: 'Report an Issue',
-    href: 'https://openalex.org/contact',
-    icon: 'email-outline',
-    blurb: 'Bugs and data errors',
-  },
-  {
-    title: 'YouTube',
-    href: 'https://www.youtube.com/@openalex',
-    icon: 'youtube',
-    blurb: 'Tutorials and town halls',
-  },
-];
+const forum = CHAT_ROWS.find((r) => r.title === 'Community Forum')!;
+const report = CHAT_ROWS.find((r) => r.title === 'Report an Issue')!;
+const youtube = CHAT_ROWS.find((r) => r.title === 'YouTube')!;
 ---
 
 <Base title="" description="Help, documentation, API reference, and tutorials for OpenAlex, the open catalog of the global research system.">
@@ -109,50 +30,26 @@ const chatRows = [
       </button>
     </section>
 
-    <section class="explore reveal" style="animation-delay: 0.08s">
-      <div class="columns">
-        {columns.map((col) => (
-          <section class:list={['col', col.tone]}>
-            <h2 class="col-head">{col.label}</h2>
-            {col.tone === 'chat' ? (
-              <div class="chat-box">
-                <details class="ask-ai chat-row">
-                  <summary>
-                    <span class="row-head">
-                      <Icon name="creation" />
-                      <span class="row-title">Ask AI</span>
-                      <span class="ext" aria-hidden="true">↗</span>
-                    </span>
-                    <span class="row-blurb">Your assistant, primed with our docs</span>
-                  </summary>
-                  <div class="providers">
-                    {providers.map((p) => (
-                      <a href={p.href} target="_blank" rel="noopener">{p.label} ↗</a>
-                    ))}
-                  </div>
-                </details>
-                {chatRows.map((r) => (
-                  <a class="chat-row" href={r.href} target="_blank" rel="noopener">
-                    <span class="row-head">
-                      <Icon name={r.icon} />
-                      <span class="row-title">{r.title}</span>
-                      <span class="ext" aria-hidden="true">↗</span>
-                    </span>
-                    <span class="row-blurb">{r.blurb}</span>
-                  </a>
-                ))}
-              </div>
-            ) : (
-              col.cards.map((c) => (
-                <Card title={c.title} href={c.href} external={'external' in c && c.external}>
-                  <Icon name={c.icon} slot="icon" />
-                  {c.blurb}
-                </Card>
-              ))
-            )}
-          </section>
-        ))}
-      </div>
+    <section class="intro reveal" style="animation-delay: 0.08s">
+      <p>
+        <strong>Learn.</strong> New to OpenAlex, or working toward a specific goal?
+        The <a href="/how-to/">How-to guides</a> answer common questions task by task,
+        and the <a href="/tutorials/">Tutorials</a> walk through longer projects end to
+        end. If you have five minutes, start with the <a href="/tutorials/quickstart/">Quick Start</a>.
+      </p>
+      <p>
+        <strong>Reference.</strong> Already know what you're looking
+        for? <a href="/access/">Access</a> covers getting the data, pricing, and
+        fixing errors; <a href="/data/">Data</a> explains what each entity means and how it's
+        built; and the <a href="/api/">API</a> reference documents the endpoints, filters,
+        and authentication.
+      </p>
+      <p>
+        <strong>Chat.</strong> Prefer to talk it through? Ask other users in
+        the <a href={forum.href} target="_blank" rel="noopener">Community Forum</a>, <a href={report.href} target="_blank" rel="noopener">report a bug or data error</a>,
+        or watch tutorials and town halls on <a href={youtube.href} target="_blank" rel="noopener">YouTube</a>. You can also prime
+        your favorite AI assistant with our docs using the <strong>Ask AI</strong> links in the sidebar.
+      </p>
     </section>
   </div>
 </Base>
@@ -166,7 +63,7 @@ const chatRows = [
   /* Masthead: big, bold, left-justified (Jason 2026-08-07, screenshot spec). */
   .hero {
     text-align: left;
-    margin-bottom: 3rem;
+    margin-bottom: 2.5rem;
   }
   .hero h1 {
     margin: 0 0 0.85rem;
@@ -216,150 +113,28 @@ const chatRows = [
     background: var(--bg);
   }
 
-  /* Three labeled category columns (Learn | Reference | Chat), cards stacked.
-     Columns stretch to the tallest and each card gets an equal share (flex
-     basis 0), so the nine cards render as a uniform 3×3 grid (Jason
-     2026-08-09, oxjob #750). */
-  .columns {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.25rem;
-    /* .reveal makes the section a stacking context; lift it so the Ask AI
-       dropdown can't be covered by anything painted later. */
-    position: relative;
-    z-index: 10;
-  }
-  .col {
+  /* Three short orientation paragraphs (Learn / Reference / Chat), oxjob #750
+     Pass AM. The nav lives in the drawer now; this is just the "what is this
+     for" blurb. Lead word bolded so the three roles scan at a glance. */
+  .intro {
     display: flex;
     flex-direction: column;
-    /* Tight vertical gap so the nine cards read as three columns, not rows
-       (Jason 2026-08-09, oxjob #750); horizontal gap stays wide (.columns). */
-    gap: 0.3rem;
+    gap: 1.15rem;
+    max-width: 40rem;
   }
-  .col > :global(.card) {
-    flex: 1 1 0;
-  }
-  .col-head {
+  .intro p {
     margin: 0;
-    font-size: 0.78rem;
-    font-weight: 650;
-    text-transform: uppercase;
-    letter-spacing: 0.09em;
     color: var(--muted);
+    font-size: 0.98rem;
+    line-height: 1.65;
+  }
+  .intro strong {
+    color: var(--ink);
+    font-weight: 650;
   }
   @media (max-width: 680px) {
-    .columns {
-      grid-template-columns: 1fr;
-    }
     .hero h1 {
       font-size: 2.5rem;
     }
   }
-
-  /* Chat = ONE combined box (Jason's pick, Pass AL 2026-08-10): same card
-     surface as Card.astro (white, hairline, 12px radius), but holding compact
-     link ROWS — the chat surfaces are all external and shouldn't render as
-     three nav-card siblings of Learn/Reference. Rows split the box height
-     evenly, separated by internal hairlines; hover accents the row only. */
-  .chat-box {
-    flex: 1 1 0;
-    display: flex;
-    flex-direction: column;
-    color: inherit;
-    background: var(--bg);
-    border: 1px solid var(--line);
-    border-radius: 12px;
-    box-shadow: 0 1px 2px rgb(0 0 0 / 0.04);
-  }
-  .chat-row {
-    position: relative;
-    flex: 1 1 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 0.5rem 1rem;
-    color: inherit;
-  }
-  .chat-row + .chat-row {
-    border-top: 1px solid var(--line);
-  }
-  a.chat-row:hover {
-    text-decoration: none;
-  }
-  .chat-row:hover .row-title {
-    color: var(--accent);
-  }
-  details.chat-row summary {
-    list-style: none;
-    cursor: pointer;
-    display: flex;
-    flex-direction: column;
-  }
-  details.chat-row summary::-webkit-details-marker {
-    display: none;
-  }
-  .row-head {
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-  }
-  .row-head :global(svg) {
-    flex-shrink: 0;
-    color: var(--muted);
-  }
-  .row-title {
-    font-size: 0.92rem;
-    font-weight: 600;
-  }
-  .row-head .ext {
-    margin-left: auto;
-    color: var(--faint);
-    font-size: 0.85rem;
-    line-height: 1;
-  }
-  .chat-row:hover .ext {
-    color: var(--muted);
-  }
-  .row-blurb {
-    color: var(--muted);
-    font-size: 0.82rem;
-    line-height: 1.4;
-    margin-top: 0.1rem;
-    padding-left: calc(15px + 0.6rem);
-  }
-  .providers {
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: calc(100% + 0.4rem);
-    z-index: 5;
-    background: var(--bg);
-    border: 1px solid var(--line);
-    border-radius: 10px;
-    box-shadow: 0 12px 32px rgb(0 0 0 / 0.12);
-    padding: 0.35rem;
-  }
-  .providers a {
-    display: block;
-    padding: 0.45rem 0.75rem;
-    border-radius: 7px;
-    color: var(--ink);
-    font-size: 0.9rem;
-    text-align: left;
-  }
-  .providers a:hover {
-    background: var(--panel);
-    text-decoration: none;
-    color: var(--accent);
-  }
 </style>
-
-<script>
-  // Close the Ask AI menu when clicking elsewhere.
-  const askAi = document.querySelector<HTMLDetailsElement>('.ask-ai');
-  if (askAi) {
-    document.addEventListener('click', (e) => {
-      if (askAi.open && !askAi.contains(e.target as Node)) askAi.open = false;
-    });
-  }
-</script>

@@ -54,26 +54,45 @@ INTENT, not whether learning occurs:
   (W/A/S…) encode OpenAlex judgment calls about fuzzy real-world boundaries (curatable);
   **vocabulary** entities are consistent handles on crisply-existing things (no judgment).
 
-## Two-level header (oxjob #750 Pass AL)
+## Two-layer nav drawer (oxjob #750 Pass AM)
 
-The sticky header is two rows inside a tab: the role-labeled tab strip
-(`Home │ LEARN How-to Tutorials │ REFERENCE Access Data API`) plus a second-level
-row of the active tab's SECTIONS (from `NAV_GROUPS`, targets via `groupTarget`),
-rendered in `Base.astro`. Rules that matter when touching header/nav sizing:
+The nav is a two-LAYER left drawer (M3 showcase / shadcn `collapsible="icon"`),
+NOT a horizontal tab bar — that was the Pass AL predecessor, reverted here after
+Jason's "I wanted a drawer, not a tab bar". The layers:
 
-- **`--nav-h` is the TOTAL sticky header height, not the first row's.** The first
-  row is `--navrow-h`; pages with a section row add `--subnav-h` via
-  `html.has-subnav` (set in `Base.astro`, computed in `global.css`). Everything
-  that offsets against the header (sidebar top/height, right rail,
-  scroll-padding) must key off `--nav-h` and then adjusts for free.
-- **Three breakpoints must move together**: the strip/hamburger collapse
-  (`Base.astro`, 1170px), the `html.has-subnav` reset (`global.css`, 1170px —
-  the section row hides with the strip), and the full-width search pill
-  (`Search.astro`, 1310px — measured: the labeled strip ends ~842px and the
-  pill + App button need ~445px).
-- The active section underline keys on `groupTarget(g) === path ||
-  flatSlugs(g).includes(slug)` — a new nav group needs no extra wiring, but a
-  group whose first item is a static `href` link gets that href as its target.
+- **Primary** = `RailNav.astro` (a sticky left column, all pages), fed by the one
+  shared source `src/lib/nav-primary.ts` (Home · Quick Start · Learn · Reference ·
+  Chat · App). On Home it's a full **drawer**; inside a tab it collapses to an
+  **icon rail** and hover/focus flyout-expands back to the drawer as an overlay.
+- **Secondary** = `Sidebar.astro` (the active tab's `NAV_GROUPS` sections),
+  rendered by `DocsShell.astro` inside `<main>`, i.e. to the RIGHT of the rail.
+  Only present inside a tab.
+
+Rules that matter when touching header/nav:
+
+- **State is URL-derived, not client JS.** `Base.astro` sets `html.in-tab` when
+  the path is under a content tab (`/how-to/ /tutorials/ /access/ /data/ /api/`);
+  Home has no class. `global.css` maps that to `--primary-w` (the RESERVED rail
+  column width): `--drawer-w` (15rem) on Home, `--rail-w` (3.5rem) in a tab.
+  Switching tabs is just navigation — "collapse + open the secondary drawer"
+  falls out of the next page rendering in the in-tab state.
+- **The hover-flyout overflows its column as an overlay** (`z-index:5`, box-shadow,
+  width→`--drawer-w`), so the reserved space never jumps. Collapsed-vs-expanded
+  styling lives under `html.in-tab .rail:not(:hover):not(:focus-within)` in
+  `RailNav.astro`.
+- **`--nav-h` is now a single top-bar row** (`--navrow-h`, no `--subnav-h` — the
+  old TOTAL-height dance is gone). Everything that offsets against the header
+  (rail/sidebar top+height, scroll-padding) still keys off `--nav-h`.
+- **`--drawer-w` is shared** by the primary drawer AND the secondary Sidebar
+  (`DocsShell.astro`) — change it once. `--rail-w` is the collapsed width only.
+- **Two breakpoints**, both at 900px: the rail hides (`RailNav.astro`) and the
+  `.layout` grid collapses to one column (`Base.astro`), where the top-bar
+  hamburger menu takes over. The search pill widens to 300px at ≥720px
+  (`Search.astro`) — the top bar is just logo + search now, so it has room.
+- **Adding a primary nav item** = edit `PRIMARY_TABS`/`CHAT_ROWS` in
+  `nav-primary.ts` (with an `Icon.astro` MDI name); RailNav + the mobile menu +
+  the homepage intro all read from there. Per-tab SECTIONS still live in
+  `NAV_GROUPS` (`nav.ts`).
 
 ## Content: `content/` is canonical
 

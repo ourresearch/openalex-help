@@ -35,25 +35,25 @@
   --font-mono: 'JetBrains Mono Variable', ui-monospace, monospace;
 
   --measure: 68ch;
-  /* Two-level header (oxjob #750 Pass AL): --nav-h is the TOTAL sticky header
-     height — everything that offsets against the header (sidebar, rail,
-     scroll-padding) keys off it. The first row is --navrow-h; pages inside a
-     tab add a second-level section row (--subnav-h) via html.has-subnav. */
+  /* Single-row sticky header (oxjob #750 Pass AM): nav moved into the left
+     drawer/rail, so --nav-h is just the one top-bar row. Everything that
+     offsets against the header (rail/sidebar top+height, scroll-padding) keys
+     off it. */
   --navrow-h: 3rem; /* 48px content + 1px border, matching cursor.com */
-  --subnav-h: 2.375rem;
   --nav-h: var(--navrow-h);
+
+  /* Two-layer nav drawer (oxjob #750 Pass AM). --primary-w is the width the
+     RailNav column RESERVES: the full drawer on Home, the icon rail inside a
+     tab (`html.in-tab`). The rail's hover-flyout expands past this to
+     --drawer-w as an overlay, so the reserved space never shifts. --drawer-w
+     is shared by the primary drawer AND the secondary Sidebar. */
+  --rail-w: 3.5rem;
+  --drawer-w: 15rem;
+  --primary-w: var(--drawer-w);
 }
 
-html.has-subnav {
-  --nav-h: calc(var(--navrow-h) + var(--subnav-h));
-}
-
-/* The second row hides with the tab strip on mobile (hamburger takes over) —
-   keep this width in sync with Base.astro's collapse breakpoint. */
-@media (max-width: 1170px) {
-  html.has-subnav {
-    --nav-h: var(--navrow-h);
-  }
+html.in-tab {
+  --primary-w: var(--rail-w);
 }
 
 * {

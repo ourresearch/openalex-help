@@ -94,14 +94,13 @@ const { button = true } = Astro.props;
     flex: 1;
     text-align: left;
   }
-  /* Full-width pill only when the header has room; below that it stays at
-     natural width, and on phones it collapses to just the icon. */
-  /* 1310 (was 1120): the Pass AL role labels widened the tab strip ~160px —
-     measured: strip ends at 842px and the full pill + App button need ~445px
-     + margins to clear it. */
-  @media (min-width: 1310px) {
+  /* Wider pill once the header has room; below that it stays at natural width,
+     and on phones it collapses to just the icon. The tab strip moved into the
+     left nav drawer (oxjob #750 Pass AM), so the top bar is just logo + search
+     — the pill can widen early. */
+  @media (min-width: 720px) {
     #search-open {
-      width: 320px; /* cursor-measured */
+      width: 300px; /* cursor-measured */
     }
   }
   @media (max-width: 640px) {

@@ -3,7 +3,8 @@ import '@fontsource-variable/inter';
 import '@fontsource-variable/jetbrains-mono';
 import '../styles/global.css';
 import Search from '../components/Search.astro';
-import { NAV_GROUPS, flatSlugs, groupTarget } from '../lib/nav';
+import RailNav from '../components/RailNav.astro';
+import { PRIMARY_TABS, ROLE_LABELS, CHAT_ROWS, APP_LINK, isPrimaryActive } from '../lib/nav-primary';
 
 interface Props {
   title: string;
@@ -12,53 +13,26 @@ interface Props {
 }
 const { title, description, wide = false } = Astro.props;
 
-// Home first (the site front door — oxjob #354 Pass U: it gets a real tab so
-// there's never a no-tab state). Then the two-sided model (Pass R), now
-// expressed in the nav itself: How-to + Tutorials = Learn ("I have a question
-// or a job — lead me"), Access/Data/API = Reference ("I know what I'm
-// looking for — let me look it up"; one reference work split across three
-// tabs). Pass AL (oxjob #750, 2026-08-10): the roles are LABELED in the strip
-// — the hairline-divider-only grouping made the coupling with the homepage
-// columns invisible (Kyle's review).
-const tabs = [
-  { label: 'Home', href: '/', group: 'home' },
-  { label: 'How-to', href: '/how-to/', group: 'learn' },
-  { label: 'Tutorials', href: '/tutorials/', group: 'learn' },
-  // "Access" (née Docs, oxjob #750 2026-08-09): read access (querying, data
-  // channels, pricing) + write access (fixing errors).
-  { label: 'Access', href: '/access/', group: 'reference' },
-  { label: 'Data', href: '/data/', group: 'reference' },
-  { label: 'API', href: '/api/', group: 'reference' },
-];
-// Role labels rendered inline before each labeled cluster (Chat has no tab —
-// its surfaces are the homepage column + Ask AI).
-const ROLE_LABELS: Record<string, string> = { learn: 'Learn', reference: 'Reference' };
 const path = Astro.url.pathname;
-const isActive = (href: string) => (href === '/' ? path === '/' : path.startsWith(href));
-// The homepage has its own hero search box, so hide the navbar one there — two
+// Two-layer nav drawer (oxjob #750 Pass AM, replacing the Pass AL two-level tab
+// bar): the primary nav is a LEFT drawer/rail (RailNav). On Home it's a full
+// drawer; inside a tab `html.in-tab` collapses it to an icon rail and the tab's
+// sections render in the secondary Sidebar. "In a tab" = the path sits under a
+// content tab (Quick Start lives under /tutorials/, so it collapses too).
+const TAB_PREFIXES = ['/how-to/', '/tutorials/', '/access/', '/data/', '/api/'];
+const inTab = TAB_PREFIXES.some((p) => path.startsWith(p));
+// The homepage has its own hero search box, so hide the top-bar one there — two
 // search boxes on one page reads as "these must do different things" (Pass V).
 const isHome = path === '/';
 
-// Second-level nav (oxjob #750 Pass AL): inside a tab, the header grows a
-// second row listing the tab's SECTIONS (the nav groups), so section structure
-// is visible without the homepage cards or prior sidebar knowledge (Kyle: "I
-// had no idea sections were a thing"). The active section gets an underline.
-const activeTab = tabs.find((t) => t.href !== '/' && path.startsWith(t.href));
-const tabKey = activeTab ? activeTab.href.replaceAll('/', '') : undefined;
-const slug = activeTab ? path.slice(activeTab.href.length).replace(/\/$/, '') : '';
-const sections = (tabKey && NAV_GROUPS[tabKey]
-  ? NAV_GROUPS[tabKey].map((g) => ({
-      label: g.label,
-      href: groupTarget(tabKey, g),
-      active: groupTarget(tabKey, g) === path || flatSlugs(g).includes(slug),
-    }))
-  : []
-).filter((s): s is { label: string; href: string; active: boolean } => Boolean(s.href));
-const hasSubnav = sections.length > 0;
+// Mobile menu (< 900px, where the rail hides): the same primary items, grouped.
+const top = PRIMARY_TABS.filter((t) => t.group === 'top');
+const learn = PRIMARY_TABS.filter((t) => t.group === 'learn');
+const reference = PRIMARY_TABS.filter((t) => t.group === 'reference');
 ---
 
 <!doctype html>
-<html lang="en" class:list={{ 'has-subnav': hasSubnav }}>
+<html lang="en" class:list={{ 'in-tab': inTab }}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -71,54 +45,46 @@ const hasSubnav = sections.length > 0;
   </head>
   <body>
     <header>
-      <nav aria-label="Main">
+      <div class="topbar">
         <a href="/" class="logo">
           <img src="/brand/openalex-lockup.png" alt="OpenAlex" height="22" />
           <span class="logo-help">Help</span>
         </a>
-        <div class="tabs">
-          {tabs.map((t, i) => (
-            <>
-              {ROLE_LABELS[t.group] && tabs[i - 1]?.group !== t.group && (
-                <span class="role-label">{ROLE_LABELS[t.group]}</span>
-              )}
-              <a href={t.href} class={t.group} aria-current={isActive(t.href) ? 'page' : undefined}>{t.label}</a>
-            </>
-          ))}
-        </div>
         <div class="nav-right">
           <Search button={!isHome} />
-          <a class="site-link" href="https://openalex.org">App ↗</a>
           <button class="menu-toggle" aria-label="Menu" aria-expanded="false" aria-controls="mobile-menu">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
               <path d="M4 7h16M4 12h16M4 17h16" />
             </svg>
           </button>
         </div>
-      </nav>
-      {hasSubnav && (
-        <nav class="subnav" aria-label="Sections">
-          {sections.map((s) => (
-            <a href={s.href} aria-current={s.active ? 'location' : undefined}>{s.label}</a>
-          ))}
-        </nav>
-      )}
+      </div>
       <div id="mobile-menu" hidden>
-        {tabs.map((t, i) => (
-          <>
-            {ROLE_LABELS[t.group] && tabs[i - 1]?.group !== t.group && (
-              <span class="menu-role">{ROLE_LABELS[t.group]}</span>
-            )}
-            <a href={t.href} class={t.group} aria-current={isActive(t.href) ? 'page' : undefined}>{t.label}</a>
-          </>
+        {top.map((t) => (
+          <a href={t.href} aria-current={isPrimaryActive(t.href, path) ? 'page' : undefined}>{t.label}</a>
         ))}
-        <a class="menu-site-link" href="https://openalex.org">App ↗</a>
+        <span class="menu-role">{ROLE_LABELS.learn}</span>
+        {learn.map((t) => (
+          <a href={t.href} aria-current={isPrimaryActive(t.href, path) ? 'page' : undefined}>{t.label}</a>
+        ))}
+        <span class="menu-role">{ROLE_LABELS.reference}</span>
+        {reference.map((t) => (
+          <a href={t.href} aria-current={isPrimaryActive(t.href, path) ? 'page' : undefined}>{t.label}</a>
+        ))}
+        <span class="menu-role">Chat</span>
+        {CHAT_ROWS.map((r) => (
+          <a href={r.href} target="_blank" rel="noopener">{r.title} ↗</a>
+        ))}
+        <a class="menu-site-link" href={APP_LINK.href} target="_blank" rel="noopener">{APP_LINK.label} ↗</a>
       </div>
     </header>
 
-    <main class:list={{ wide }}>
-      <slot />
-    </main>
+    <div class="layout">
+      <RailNav />
+      <main class:list={{ wide }}>
+        <slot />
+      </main>
+    </div>
 
     <script>
       // Heading anchor links (oxjob #354 Pass S): every article section heading
@@ -169,53 +135,12 @@ const hasSubnav = sections.length > 0;
         background: var(--bg);
         border-bottom: 1px solid var(--line);
       }
-      nav {
-        position: relative;
+      .topbar {
         display: flex;
         align-items: center;
         gap: 1.5rem;
         height: var(--navrow-h);
-        padding: 0 1.5rem;
-      }
-      /* Second-level section row (Pass AL): the active tab's sections, GitHub
-         docs style — muted links, active = ink + a 2px underline sitting on the
-         header's bottom hairline. Left-aligned with the tab strip / drawer. */
-      .subnav {
-        display: flex;
-        align-items: center;
-        gap: 0.25rem;
-        height: var(--subnav-h);
-        padding: 0 1.5rem 0 17.5rem;
-        border-top: 1px solid var(--line);
-        overflow-x: auto;
-        scrollbar-width: none;
-      }
-      .subnav a {
-        position: relative;
-        display: flex;
-        align-items: center;
-        height: 100%;
-        padding: 0 0.75rem;
-        font-size: 0.8125rem;
-        color: var(--muted);
-        white-space: nowrap;
-      }
-      .subnav a:hover {
-        color: var(--ink);
-        text-decoration: none;
-      }
-      .subnav a[aria-current] {
-        color: var(--ink);
-        font-weight: 550;
-      }
-      .subnav a[aria-current]::after {
-        content: '';
-        position: absolute;
-        left: 0.75rem;
-        right: 0.75rem;
-        bottom: -1px;
-        height: 2px;
-        background: var(--ink);
+        padding: 0 1.25rem;
       }
       .logo {
         display: flex;
@@ -240,91 +165,11 @@ const hasSubnav = sections.length > 0;
       .logo:hover {
         text-decoration: none;
       }
-      /* Tabs left-align with the nav drawer's right border (DocsShell's
-         17.5rem sidebar column), spreading the bar out Cursor-style. */
-      .tabs {
-        display: flex;
-        align-items: center;
-        gap: 2px;
-        position: absolute;
-        left: 17.5rem;
-        top: 0;
-        bottom: 0;
-      }
-      /* Chip tabs (Jason 2026-08-07): each tab is a ghost text button — light
-         bg on hover, selected = dark ink fill + white text, no underline.
-         Monochrome (category colors tried and dropped same day); the Learn /
-         Reference grouping is shown by hairline dividers instead. */
-      .tabs a {
-        display: flex;
-        align-items: center;
-        height: 28px;
-        color: var(--muted);
-        font-size: 0.875rem;
-        padding: 0 0.75rem;
-        border-radius: 6px;
-        position: relative;
-        transition: color 0.15s, background-color 0.15s;
-      }
-      /* Role labels (Pass AL, replacing the bare hairline dividers): each
-         labeled cluster opens with a small uppercase overline label — the same
-         Learn/Reference vocabulary as the homepage columns — preceded by the
-         hairline. Matches .col-head on the homepage, sized for the 28px strip. */
-      .role-label {
-        position: relative;
-        margin-left: 1.125rem;
-        padding-right: 0.4rem;
-        font-size: 0.66rem;
-        font-weight: 650;
-        text-transform: uppercase;
-        letter-spacing: 0.08em;
-        color: var(--faint);
-        user-select: none;
-        white-space: nowrap;
-      }
-      .role-label::before {
-        content: '';
-        position: absolute;
-        left: -0.5625rem;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 1px;
-        height: 16px;
-        background: var(--line-strong);
-      }
-      .tabs a:hover {
-        color: var(--ink);
-        background: var(--panel-strong);
-        text-decoration: none;
-      }
-      /* Selected chip: dark fill, white text, no underline. After the hover
-         rule so a hovered selected chip keeps its fill. */
-      .tabs a[aria-current='page'],
-      .tabs a[aria-current='page']:hover {
-        color: var(--bg);
-        background: var(--ink);
-      }
       .nav-right {
         margin-left: auto;
         display: flex;
         align-items: center;
         gap: 0.75rem;
-      }
-      /* Ghost button matching the tab chips exactly (Jason 2026-08-07). */
-      .site-link {
-        display: flex;
-        align-items: center;
-        height: 28px;
-        font-size: 0.875rem;
-        color: var(--muted);
-        border-radius: 6px;
-        padding: 0 0.75rem;
-        transition: color 0.15s, background-color 0.15s;
-      }
-      .site-link:hover {
-        color: var(--ink);
-        background: var(--panel-strong);
-        text-decoration: none;
       }
       .menu-toggle {
         display: none;
@@ -372,8 +217,17 @@ const hasSubnav = sections.length > 0;
         font-weight: 500;
         border-bottom: none;
       }
+
+      /* Two-column shell: primary rail/drawer + the page. --primary-w tracks
+         the rail's reserved width (drawer on Home, icon rail in a tab — set in
+         global.css); the rail's hover-flyout overflows this column as an
+         overlay, so the reserved space never jumps. */
+      .layout {
+        display: grid;
+        grid-template-columns: var(--primary-w) minmax(0, 1fr);
+        align-items: start;
+      }
       main {
-        flex: 1;
         width: 100%;
         max-width: 84rem;
         margin: 0 auto;
@@ -384,26 +238,18 @@ const hasSubnav = sections.length > 0;
         margin: 0;
         padding: 0;
       }
-      /* Mobile (Cursor pattern): tabs collapse into a hamburger; the main-site
-         button moves into the menu. 1170 (was 1010): the Pass AL role labels
-         added ~160px to the strip. The second-level row hides with the strip
-         (global.css collapses --nav-h back to one row at the same width). */
-      @media (max-width: 1170px) {
-        nav {
-          gap: 1rem;
-        }
-        .tabs,
-        .site-link {
-          display: none;
+
+      /* Mobile: the rail hides (RailNav's own media query) and the layout
+         collapses to one column; the top-bar hamburger drives the menu. */
+      @media (max-width: 900px) {
+        .layout {
+          grid-template-columns: 1fr;
         }
         .menu-toggle {
           display: flex;
         }
         #mobile-menu.open {
           display: flex;
-        }
-        .subnav {
-          display: none;
         }
       }
     </style>

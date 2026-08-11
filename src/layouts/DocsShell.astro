@@ -1,7 +1,10 @@
 ---
-// Full-bleed app shell for the Docs and API tabs (landings AND articles):
-// sidebar pinned to the viewport's left edge, content+rail block centered in
-// the remaining space — the Cursor docs layout.
+// Full-bleed app shell for the reference/learn tabs (landings AND articles):
+// the SECONDARY nav drawer (Sidebar — the active tab's sections/pages) pinned
+// to the left, content+rail block centered in the rest. This whole block lives
+// in <main>, i.e. to the RIGHT of the primary rail (oxjob #750 Pass AM): on a
+// tab page the primary drawer is collapsed to an icon rail in Base.astro, and
+// this secondary drawer is the second layer.
 import Base from './Base.astro';
 import Sidebar from '../components/Sidebar.astro';
 import type { ResolvedGroup } from '../lib/nav';
@@ -32,7 +35,9 @@ const { title, description, tab, groups, activeSlug } = Astro.props;
 <style>
   .shell {
     display: grid;
-    grid-template-columns: 17.5rem minmax(0, 1fr); /* 280px, cursor-measured */
+    /* Secondary drawer = --drawer-w (15rem), matching the primary drawer's
+       expanded width for a consistent two-layer look (oxjob #750 Pass AM). */
+    grid-template-columns: var(--drawer-w) minmax(0, 1fr);
     min-height: calc(100dvh - var(--nav-h));
   }
   .content {
