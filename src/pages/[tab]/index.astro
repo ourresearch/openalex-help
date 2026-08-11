@@ -1,7 +1,5 @@
 ---
 import DocsShell from '../../layouts/DocsShell.astro';
-import Card from '../../components/Card.astro';
-import Icon from '../../components/Icon.astro';
 import PageHeader from '../../components/PageHeader.astro';
 import { TABS, allEntries, urlFor, type Tab } from '../../lib/tabs';
 import { groupEntries, landingCrumbs, type ResolvedGroup } from '../../lib/nav';
@@ -15,9 +13,7 @@ const tab = Astro.params.tab as Tab;
 const entries = (await allEntries()).filter((e) => e.tab === tab).map((e) => e.entry);
 const groups = groupEntries(tab, entries);
 
-// Ledes come from nav-primary.ts (`desc`) — the SAME string the rail tooltip
-// shows for this tab (oxjob #750 Pass AN: tooltip = the tab overview's
-// subheader, single-sourced so they can't drift).
+// Ledes come from nav-primary.ts (`desc`).
 const meta: Record<Tab, { label: string; h1: string; lede: string }> = {
   'how-to': { label: 'How-to', h1: 'How-to guides', lede: tabDesc('/how-to/') },
   access: { label: 'Access', h1: 'Access Overview', lede: tabDesc('/access/') },
@@ -26,45 +22,13 @@ const meta: Record<Tab, { label: string; h1: string; lede: string }> = {
   tutorials: { label: 'Tutorials', h1: 'Tutorials', lede: tabDesc('/tutorials/') },
 };
 
-// Reference-tab landings (Pass W) are simple overview pages: header + subtitle
-// + one card per sidebar section (no "Start here"/"Browse by topic" split).
-// Each card links to its section's natural landing (a static link, else the
-// section's first article). A section whose target IS this landing (docs'
-// "Get started" → /docs/) is skipped so the overview never links to itself.
-const groupIcons: Record<string, string> = {
-  'Get started': 'compass',
-  'How it works': 'cpu',
-  'Querying': 'filter',
-  'Curation & special': 'edit',
-  // Entities-tab groups
-  'Native': 'database',
-  'Component': 'layers',
-  'Aboutness': 'tag',
-  'Vocabulary': 'list',
-  'User-created': 'edit',
-  // Access-tab groups
-  'Get the data': 'download',
-  'Fixing errors': 'edit',
-  // How-to-tab groups (shell conversion, oxjob #750)
-  'Using OpenAlex': 'zap',
-  'Journals & repositories': 'book',
-  'Community & support': 'users',
-  // API-tab groups
-  'Endpoints': 'database',
-  'Reference': 'book',
-  // Tutorials-tab groups (shell conversion, oxjob #750)
-  'Output & subjects': 'shape-outline',
-  'Citations & impact': 'compass',
-  'Open access': 'unlock',
-  'Collaboration': 'users',
-  'Journals & profiles': 'book',
-  'Bulk data & API': 'download',
-};
-
 const landingHref = `/${tab}/`;
-// First item target in a section that isn't the landing itself, so e.g. docs'
-// "Get started" card (whose Overview link IS this landing) falls through to
-// Quickstart rather than pointing back at this page.
+
+// Reference-tab landings (Pass AR — cards are gone sitewide, Jason: "prettier
+// than the cards and more readable"): one homepage-style paragraph per sidebar
+// section — bold linked section name, then its one-to-two-line description.
+// A section whose target IS this landing (Get started → Overview) is skipped
+// so the overview never links to itself.
 const sectionTarget = (g: ResolvedGroup): string | undefined => {
   for (const it of g.items) {
     const href = it.href ?? (it.entry ? urlFor(tab, it.entry) : it.children[0] ? urlFor(tab, it.children[0]) : undefined);
@@ -72,30 +36,25 @@ const sectionTarget = (g: ResolvedGroup): string | undefined => {
   }
   return undefined;
 };
-const sectionCards = groups
+const sectionParas = groups
+  .filter((g) => g.label) // label-less root groups live in the drawer only
   .map((g) => ({ label: g.label, desc: g.desc, href: sectionTarget(g) }))
   .filter((c): c is { label: string; desc?: string; href: string } => Boolean(c.href));
 
-// Task tabs (How-to + Tutorials, oxjob #750): the landing IS the section
-// overview. Cards are for sections that have something to say (a reference
-// section's overview page); these sections are just groupings of tasks, so a
-// card had nowhere to point — it fell through to the section's *first
-// article*, a mislabeled link. Instead the landing renders the full grouped
-// index: every page, under its section heading. Headings carry stable ids
-// (github-slugger form, same as article heading anchors) so the homepage and
-// reference pages can deep-link a section, e.g. /how-to/#fixing-errors.
+// Task tabs (How-to + Tutorials, Pass AR): an ACCORDION — one <details> per
+// section, holding one row per page: bold page name, colon, regular-weight
+// description (the cursor.com/help shape). Section descriptions are dropped
+// deliberately (Jason: "the sections themselves are not that important").
 const isTaskIndex = tab === 'how-to' || tab === 'tutorials';
-// Mirrors github-slugger for our label alphabet ("Journals & repositories" →
-// "journals--repositories") so section anchors match markdown heading anchors.
 const slugifyLabel = (label: string) =>
   label.toLowerCase().replace(/[^a-z0-9 -]/g, '').replace(/ /g, '-');
 interface IndexRow { href: string; title: string; sub?: string }
-const indexGroups = !isTaskIndex
+const accordionGroups = !isTaskIndex
   ? []
   : groups
+      .filter((g) => g.label) // label-less root groups live in the drawer only
       .map((g) => ({
         label: g.label,
-        desc: g.desc,
         id: slugifyLabel(g.label),
         rows: g.items
           .map((it): IndexRow | undefined => {
@@ -111,9 +70,6 @@ const indexGroups = !isTaskIndex
           .filter((r): r is IndexRow => Boolean(r)),
       }))
       .filter((g) => g.rows.length > 0);
-
-// Every tab now renders in the app shell (nav drawer + grouped landing) —
-// Tutorials joined the rest in oxjob #750, retiring the facet "bucket" list.
 ---
 
 <DocsShell title={meta[tab].h1} description={meta[tab].lede} tab={tab} groups={groups}>
@@ -155,33 +111,32 @@ const indexGroups = !isTaskIndex
       </p>
     )}
 
-    {/* data-pagefind-ignore on the index/cards: their label+blurb text runs
-        together in search snippets ("QueryingThe ways to ask OpenAlex…"), and
-        every row's page is indexed on its own. The landing is still findable
-        by its H1, lede, and intro prose. (oxjob #750) */}
+    {/* data-pagefind-ignore on the index: label+blurb text runs together in
+        search snippets, and every row's page is indexed on its own. */}
     {isTaskIndex ? (
-      <div data-pagefind-ignore>
-        {indexGroups.map((g) => (
-          <section class="topic">
-            <h2 id={g.id}>{g.label}</h2>
-            {g.desc && <p class="topic-desc">{g.desc}</p>}
-            <div class="article-grid">
+      <div class="accordion" data-pagefind-ignore>
+        {accordionGroups.map((g) => (
+          <details id={g.id}>
+            <summary>
+              <span>{g.label}</span>
+              <svg class="chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6" /></svg>
+            </summary>
+            <div class="rows">
               {g.rows.map((r) => (
-                <Card title={r.title} href={r.href}>
-                  {r.sub}
-                </Card>
+                <a class="row" href={r.href}>
+                  <strong>{r.title}</strong>{r.sub && <Fragment>: <span class="row-sub">{r.sub}</span></Fragment>}
+                </a>
               ))}
             </div>
-          </section>
+          </details>
         ))}
       </div>
     ) : (
-      <div class="card-grid" data-pagefind-ignore>
-        {sectionCards.map((c) => (
-          <Card title={c.label} href={c.href}>
-            <Icon name={groupIcons[c.label] ?? 'file-text'} slot="icon" />
-            {c.desc}
-          </Card>
+      <div class="sections" data-pagefind-ignore>
+        {sectionParas.map((c) => (
+          <p class="section-p">
+            <strong><a href={c.href}>{c.label}.</a></strong> {c.desc}
+          </p>
         ))}
       </div>
     )}
@@ -189,33 +144,92 @@ const indexGroups = !isTaskIndex
 </DocsShell>
 
 <style>
-  /* Shell landing (all tabs): header + one card per sidebar section. */
-  /* Pass X.2 uniform width: the shell's grid caps the column at 46rem; drop
-     the inner prose cap so this matches the article pages exactly. */
+  /* Shell landing (all tabs). Pass X.2 uniform width: the shell's grid caps
+     the column at 46rem; drop the inner prose cap so this matches articles. */
   article.prose {
     max-width: none;
   }
-  .card-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(13rem, 1fr));
-    gap: 0.9rem;
-    margin: 0 0 1.5rem;
+
+  /* Reference tabs: homepage-style section paragraphs (bold linked lead +
+     one-to-two-line description) — the card grid is gone (Pass AR). */
+  .sections {
+    display: flex;
+    flex-direction: column;
+    gap: 1.15rem;
+    margin: 1.75rem 0 1.5rem;
+    max-width: 40rem;
+  }
+  .section-p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.98rem;
+    line-height: 1.65;
+  }
+  .section-p strong a {
+    color: var(--ink);
+    font-weight: 650;
+  }
+  .section-p strong a:hover {
+    color: var(--accent);
+    text-decoration: none;
   }
 
-  /* Task-tab grouped index (How-to + Tutorials, oxjob #750). Section h2s keep
-     the prose heading look; articles render as 2-up cards (wider than the
-     3-up section card-grid so a ~90-char `card` blurb stays under 3 lines). */
-  .topic {
-    margin-bottom: 2.25rem;
+  /* Task tabs: the accordion (Pass AR — cursor.com/help shape). */
+  .accordion {
+    margin: 1.75rem 0 1.5rem;
+    border-top: 1px solid var(--line);
   }
-  .topic-desc {
+  .accordion details {
+    border-bottom: 1px solid var(--line);
+  }
+  .accordion summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding: 0.85rem 0.25rem;
+    font-size: 0.98rem;
+    font-weight: 600;
+    color: var(--ink);
+    cursor: pointer;
+    list-style: none;
+    user-select: none;
+  }
+  .accordion summary::-webkit-details-marker {
+    display: none;
+  }
+  .accordion summary:hover {
+    color: var(--accent);
+  }
+  .chev {
+    flex: none;
+    color: var(--faint);
+    transition: transform 0.15s;
+  }
+  .accordion details[open] > summary .chev {
+    transform: rotate(90deg);
+  }
+  .rows {
+    display: flex;
+    flex-direction: column;
+    padding: 0 0.25rem 0.85rem;
+  }
+  .row {
+    padding: 0.4rem 0;
+    color: var(--ink);
+    font-size: 0.92rem;
+    line-height: 1.55;
+  }
+  .row:hover {
+    text-decoration: none;
+  }
+  .row strong {
+    font-weight: 650;
+  }
+  .row:hover strong {
+    color: var(--accent);
+  }
+  .row-sub {
     color: var(--muted);
-    font-size: 0.88rem;
-    margin: -0.35rem 0 0.9rem;
-  }
-  .article-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
-    gap: 0.9rem;
   }
 </style>

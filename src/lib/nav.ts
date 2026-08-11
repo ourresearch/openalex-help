@@ -43,8 +43,7 @@ export const NAV_GROUPS: Record<string, NavGroup[]> = {
       // Pass W: renamed "Overview" → "Get started" for cross-tab consistency
       // (every reference tab opens with a Get started section, first page
       // "Overview"). The overview page still composes to "Entities Overview".
-      label: 'Get started',
-      desc: 'What entities are, how the dataset is built, and the attributes all entities share.',
+      label: '', // root-level rows — "Get started" dissolved tab-wide (Pass AR)
       // how-its-built moved in from Docs (Jason 2026-08-08, Pass AC.2 — it's
       // about how the DATA is made; sharing/access stays a Docs concern).
       slugs: ['overview', 'how-its-built', 'common-attributes'],
@@ -109,39 +108,40 @@ export const NAV_GROUPS: Record<string, NavGroup[]> = {
       // whose first page is "Overview" — the tab's own landing. Without this
       // the How-to landing had no drawer entry, so the nav drawer never showed
       // you were on it (Jason: the drawer should always tell you where you are).
-      label: 'Get started',
-      desc: 'What the How-to guides cover and how they’re organized.',
+      label: '', // root-level rows — "Get started" dissolved tab-wide (Pass AR)
       slugs: [{ label: 'Overview', href: '/how-to/' }],
     },
+    // Six activity sections (Jason, Pass AR — his picks: no generic
+    // "Using OpenAlex", no one-page sections, no ampersands in names).
     {
-      label: 'Using OpenAlex',
-      desc: 'Finding IDs, common search recipes, API patterns, and getting data into other tools.',
-      slugs: ['finding-openalex-ids', 'searching-and-counting', 'api-recipes', 'integrations'],
+      label: 'Searching',
+      desc: 'Finding IDs, common search recipes, and result-set questions.',
+      slugs: ['finding-openalex-ids', 'searching', 'counting'],
     },
     {
-      // Analytics (oxjob #750): the institution-analysis walkthroughs that used
-      // to live in Tutorials, consolidated into one Q&A page in the How-to
-      // pattern (cursor.com/help shape).
-      label: 'Analytics',
-      desc: 'Measure an institution’s output, impact, open access, and collaborators.',
-      slugs: ['analyzing-your-institution'],
+      label: 'Working with data',
+      desc: 'API patterns, getting data into other tools, and institution analysis.',
+      slugs: ['api-recipes', 'integrations', 'analyzing-your-institution'],
     },
     {
       label: 'Fixing errors',
-      desc: 'Fix your author profile, correct affiliations, and report anything else.',
-      slugs: ['fixing-your-author-profile', 'fixing-affiliations', 'fixing-data-errors'],
+      desc: 'Fix authors and affiliations yourself; report everything else.',
+      slugs: ['fixing-authors', 'fixing-affiliations', 'fixing-data-errors'],
     },
     {
-      label: 'Journals & repositories',
+      label: 'Sources',
       desc: 'Getting your works into OpenAlex and troubleshooting coverage.',
       slugs: ['getting-indexed', 'repositories'],
     },
     {
-      label: 'Community & support',
-      desc: 'Getting help, getting involved, supporter tools, and citing OpenAlex.',
-      // 'unsub' (Pass AL): a small page of its own so searching "unsub" finds
-      // the docs.unsub.org link (it was only a section inside supporter-tools).
-      slugs: ['support', 'getting-involved', 'supporter-tools', 'unsub', 'citing-openalex'],
+      label: 'Supporters',
+      desc: 'The tools that come with an institutional plan.',
+      slugs: ['supporter-tools', 'unsub'],
+    },
+    {
+      label: 'General',
+      desc: 'Getting help, getting involved, and citing OpenAlex.',
+      slugs: ['support', 'getting-involved', 'citing-openalex'],
     },
   ],
 
@@ -158,8 +158,7 @@ export const NAV_GROUPS: Record<string, NavGroup[]> = {
     {
       // Get started: just the Overview (the tab landing) — Quickstart moved to
       // its own top-level page at /quickstart/ (oxjob #750 Pass AN).
-      label: 'Get started',
-      desc: 'Your first few minutes with OpenAlex.',
+      label: '', // root-level rows — "Get started" dissolved tab-wide (Pass AR)
       slugs: [{ label: 'Overview', href: '/tutorials/' }],
     },
     {
@@ -194,8 +193,7 @@ export const NAV_GROUPS: Record<string, NavGroup[]> = {
       // Pass W (2026-08-06): the tab front door. "Overview" here is the /docs/
       // landing card page (former "Welcome"); the system how-it-works article
       // (slug `overview`) moved down to the "How it works" section.
-      label: 'Get started',
-      desc: 'What OpenAlex is and how to get going fast.',
+      label: '', // root-level rows — "Get started" dissolved tab-wide (Pass AR)
       // Quick Start lives in Tutorials (its one canonical home, Jason
       // 2026-08-08); the sidebar cross-link was dropped in Pass AC — the
       // homepage card + tutorials list are enough.
@@ -299,8 +297,7 @@ export const NAV_GROUPS: Record<string, NavGroup[]> = {
       // Tutorials Quick Start) and Key Concepts dissolved into the Overview;
       // Deprecations moved out to its own "Reference" section below (it isn't a
       // getting-started concern).
-      label: 'Get started',
-      desc: 'The API in a nutshell: overview, keys, errors, and an agent cheat sheet.',
+      label: '', // root-level rows — "Get started" dissolved tab-wide (Pass AR)
       slugs: [
         'introduction',
         'authentication',
@@ -465,7 +462,7 @@ export function displayTitleFor(tab: string, slug: string, title: string): strin
         return item.slug === slug ? `${item.label} Overview` : title;
       }
       if (flatSlugs(g)[0] !== slug) return title; // mid-group page, not a section overview
-      const catchAll = g.label === 'Get started';
+      const catchAll = g.label === '' || g.label === 'Get started';
       const parent = catchAll || g.label === title ? (TAB_LABELS[tab] ?? tab) : g.label;
       return `${parent} Overview`;
     }
@@ -494,7 +491,8 @@ export function breadcrumbsFor(tab: string, slug: string): Crumb[] {
   for (const g of NAV_GROUPS[tab] ?? []) {
     for (const item of g.slugs) {
       if (!itemSlugs(item).includes(slug)) continue;
-      crumbs.push(link(g.label, groupTarget(tab, g)));
+      // Root-level pages (label-less group, Pass AR) get no group crumb.
+      if (g.label) crumbs.push(link(g.label, groupTarget(tab, g)));
       if (typeof item === 'object' && !('href' in item)) {
         // Inside a subgroup: crumb for the parent, targeting its overview
         // page when it has one, else its first child.

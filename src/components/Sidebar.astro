@@ -26,13 +26,16 @@ const path = Astro.url.pathname;
   <nav aria-label="Section pages" data-tab={tab}>
     {groups.map((g) => (
       <div class="group">
-        <span class="group-label">{g.label}</span>
+        {/* A label-less group = root-level pages (Pass AR dissolved the
+            "Get started" sections): rows with no heading above them. */}
+        {g.label && <span class="group-label">{g.label}</span>}
         {g.items.map((item) =>
           item.children.length ? (
             <details
               open={
-                item.entry?.id === activeSlug ||
-                item.children.some((c) => c.id === activeSlug) ||
+                (activeSlug !== undefined &&
+                  (item.entry?.id === activeSlug ||
+                    item.children.some((c) => c.id === activeSlug))) ||
                 undefined
               }
             >
@@ -158,8 +161,8 @@ const path = Astro.url.pathname;
     text-decoration: none;
   }
   /* Selected page: blue wash + blue text (Pass AO — the white-on-ink here
-     read too heavy next to the rail's black square), keeping the Pass AN
-     chevron pointing at the content it opened. */
+     read too heavy next to the rail's black square). No chevron marker (Pass
+     AR cut it — it collided with the subgroup expand/collapse chevrons). */
   a[aria-current='page'] {
     background: var(--accent-wash);
     color: var(--accent);
@@ -167,16 +170,6 @@ const path = Astro.url.pathname;
   }
   a[aria-current='page']:hover {
     color: var(--accent);
-  }
-  a[aria-current='page']::after {
-    content: '';
-    flex: none;
-    margin-left: auto;
-    width: 11px;
-    height: 11px;
-    background: currentColor;
-    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='9 18 15 12 9 6'/%3E%3C/svg%3E") no-repeat center / contain;
-    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='9 18 15 12 9 6'/%3E%3C/svg%3E") no-repeat center / contain;
   }
   summary {
     display: flex;

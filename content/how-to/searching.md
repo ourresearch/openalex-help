@@ -1,11 +1,11 @@
 ---
-title: "Searching & counting"
-description: "Recipes for common search questions: most-cited works, top-100 lists, excluding retractions, counting citations to a result set, checking a journal's coverage, query length, issue metadata, and why counts sometimes disagree."
+title: "Searching"
+description: "Recipes for common search questions: most-cited works, top-100 lists, excluding retractions, query length, and finding issue metadata."
 tags: ["search"]
-synonyms: ["most cited", "top cited", "retracted works", "count citations", "journal coverage", "is a journal in openalex", "query length", "volume and issue", "counts by year"]
-card: "Most-cited lists, excluding retractions, and why two counts of the same thing disagree."
+synonyms: ["most cited", "top cited", "retracted works", "query length", "volume and issue"]
+card: "Most-cited lists, top-100 thresholds, excluding retractions, and the query-length ceiling."
 ---
-Recipes for the search questions we hear most. For the full querying story — filters, search, sorting, and the rest — start with [Querying](/access/querying/) in the Docs.
+Recipes for the search questions we hear most. For the full querying story — filters, search, sorting, and the rest — start with [Querying](/access/querying/). For counting what you've found, see [Counting](/how-to/counting/).
 
 ## How do I find the most-cited works?
 
@@ -25,14 +25,6 @@ Your results are now the top 100, ready to export or analyze. (If the count is s
 
 Add a filter: click "Add filter", type "retracted", and select it. Then set the filter's dropdown to "is not". Retracted works are now excluded from your results. In the API, that's `filter=is_retracted:false`.
 
-## How do I count all the citations to a set of results?
-
-For any result set — whatever searches and filters you've applied — add the **citations sum** facet under **Stats** (click **"+"** next to *Stats* → *citations sum*). It shows the total citations received by every work in the set. Divide by the number of results for the average citations per work.
-
-## How do I check whether a journal's works are in OpenAlex?
-
-Search for the journal by name and click it — that filters to works whose primary location is that journal, so you can browse its coverage. If the name doesn't turn it up, search by [ISSN](/data/sources/attributes/#issn) instead. Still nothing? [Get in touch](https://openalex.org/support).
-
 ## Is there a limit to query length?
 
 Yes — queries are URLs, and the total URL is limited to 2,048 characters. If your query won't fit, break it into several smaller queries combined with OR logic, export each result set, and combine them — deduplicating on the OpenAlex work ID to remove any overlap.
@@ -40,7 +32,3 @@ Yes — queries are URLs, and the total URL is limited to 2,048 characters. If y
 ## Where do I find the volume and issue of an article?
 
 Issue-level metadata lives in the work's [`biblio`](/data/works/attributes/#biblio) attribute — volume, issue, first page, and last page. You'll see it in exports from the website, or in the API response for any single work, e.g. [api.openalex.org/works/W2016949000](https://api.openalex.org/works/W2016949000).
-
-## Why do the counts-by-year numbers differ from what I see in the interface?
-
-The `counts_by_year`, `works_count`, and `cited_by_count` numbers nested inside an entity (an author, institution, or source) are **precomputed** and refreshed only every few months, so they drift — especially for entities that publish a lot. A live works query is always current, which is why the two can disagree. If you need an exact count, run a works search filtered by the entity (e.g. `openalex.org/works?filter=authorships.author.id:A5086928770`) instead of reading the nested number. Full explanation: [Counts by year](/data/common-attributes/#counts_by_year).

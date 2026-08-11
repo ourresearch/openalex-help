@@ -5,7 +5,7 @@ tags: ["fixing"]
 synonyms: ["report error", "wrong data", "open access status", "wrong date", "support ticket"]
 card: "File a ticket; AI agents verify and apply the fix. Four things make a report move fast."
 ---
-For your own [author profile](/how-to/fixing-your-author-profile/) and [affiliation matching](/how-to/fixing-affiliations/) there are self-serve fixes. For everything else, the fix is a **ticket**: [file it at openalex.org/contact](https://openalex.org/contact), and our AI agents turn it into a structured correction, verify it, and apply it. How that pipeline works is covered in the [Fixing errors reference](/access/fixing-errors/); this page is how to use it well.
+For your own [author profile](/how-to/fixing-authors/) and [affiliation matching](/how-to/fixing-affiliations/) there are self-serve fixes. For everything else, the fix is a **ticket**: [file it at openalex.org/contact](https://openalex.org/contact), and our AI agents turn it into a structured correction, verify it, and apply it. How that pipeline works is covered in the [Fixing errors reference](/access/fixing-errors/); this page is how to use it well.
 
 ## How do I write a report that gets acted on?
 
