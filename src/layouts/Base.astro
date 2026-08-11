@@ -28,9 +28,9 @@ const inTab = TAB_PREFIXES.some((p) => path.startsWith(p));
 const activeTab = PRIMARY_TABS.find(
   (t) => t.href !== '/' && path.startsWith(t.href) && t.href !== '/quickstart/'
 );
-// The homepage has its own hero search box, so hide the top-bar one there — two
-// search boxes on one page reads as "these must do different things" (Pass V).
-const isHome = path === '/';
+// The top-bar search pill shows on every page, including Home (Pass AP — the
+// homepage's own hero search box is gone; its Search paragraph triggers the
+// same dialog).
 
 // Mobile menu (< 900px, where the rail hides): the same primary items, grouped.
 const top = PRIMARY_TABS.filter((t) => t.group === 'top');
@@ -66,7 +66,7 @@ const reference = PRIMARY_TABS.filter((t) => t.group === 'reference');
           </span>
         )}
         <div class="nav-right">
-          <Search button={!isHome} />
+          <Search />
           <button class="menu-toggle" aria-label="Menu" aria-expanded="false" aria-controls="mobile-menu">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
               <path d="M4 7h16M4 12h16M4 17h16" />

@@ -20,33 +20,32 @@ const report = CHAT_ROWS.find((r) => r.title === 'Report Bug')!;
         Get help with <a href="https://openalex.org">OpenAlex</a>, a comprehensive index of the
         world's research.
       </p>
-      <button class="big-search" data-search-trigger aria-label="Search the help center">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
-          <circle cx="11" cy="11" r="7" /><path d="m20 20-3.5-3.5" />
-        </svg>
-        <span class="placeholder">Search the help center</span>
-        <kbd data-kbd-shortcut>⌘K</kbd>
-      </button>
     </section>
 
+    {/* Four orientation paragraphs (Search / Learn / Reference / Chat), Jason's
+        copy (Pass AP — the hero search box became the Search paragraph; the
+        top-bar pill now shows here like everywhere else). The bold lead words
+        are the scan anchors, mirroring the drawer's sections. */}
     <section class="intro reveal" style="animation-delay: 0.08s">
       <p>
-        <strong>Learn.</strong> New to OpenAlex, or working toward a specific goal?
-        The <a href="/how-to/">How-to guides</a> answer common questions task by task,
-        and the <a href="/tutorials/">Tutorials</a> walk through longer projects end to
-        end. If you have five minutes, start with the <a href="/quickstart/">Quickstart</a>.
+        <strong>Search.</strong> The fastest way to answer a specific
+        question — <button class="search-link" data-search-trigger>search the full help center</button>.
       </p>
       <p>
-        <strong>Reference.</strong> Already know what you're looking
-        for? <a href="/access/">Access</a> covers getting the data, pricing, and
-        fixing errors; <a href="/data/">Data</a> explains what each entity means and how it's
-        built; and the <a href="/api/">API</a> reference documents the endpoints, filters,
-        and authentication.
+        <strong>Learn.</strong> Just starting? Work through the five-minute <a href="/quickstart/">Quickstart</a>,
+        browse the <a href="/how-to/">How-to guides</a> for simple answers, or follow
+        the <a href="/tutorials/">Tutorials</a> for longer, step-by-step recipes.
+      </p>
+      <p>
+        <strong>Reference.</strong> Dig into the details: <a href="/access/">Access</a> covers
+        getting the data, pricing, and fixing errors; <a href="/data/">Data</a> defines and
+        describes everything in OpenAlex; and the <a href="/api/">API</a> reference documents
+        the REST API.
       </p>
       <p>
         <strong>Chat.</strong> Prefer to talk it through? Ask other users in
-        the <a href={forum.href} target="_blank" rel="noopener">community forum</a>, or <a href={report.href} target="_blank" rel="noopener">report a bug or data error</a> to
-        our team. You can also prime your favorite AI assistant with our docs using
+        the <a href={forum.href} target="_blank" rel="noopener">Google Group</a>, <a href={report.href} target="_blank" rel="noopener">report a bug</a> to
+        our team, or ask your AI agent to answer from our docs — use
         the <strong>Ask AI</strong> links in the sidebar.
       </p>
     </section>
@@ -73,48 +72,30 @@ const report = CHAT_ROWS.find((r) => r.title === 'Report Bug')!;
   }
   .subtitle {
     max-width: 38rem;
-    margin: 0 0 2rem;
+    margin: 0;
     color: var(--muted);
     font-size: 0.98rem;
     line-height: 1.6;
   }
-  .big-search {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    width: 100%;
-    height: 3.4rem;
-    padding: 0 1rem;
+  /* The Search paragraph's trigger: a button that reads as a link and opens
+     the ⌘K dialog (wired by Search.astro's [data-search-trigger]). */
+  .search-link {
+    padding: 0;
+    border: none;
+    background: none;
     font: inherit;
-    font-size: 0.95rem;
-    color: var(--faint);
-    background: var(--panel);
-    border: 1px solid var(--line);
-    border-radius: 14px;
-    box-shadow: 0 1px 2px rgb(0 0 0 / 0.05);
-    cursor: text;
-    transition: border-color 0.15s;
+    color: var(--accent);
+    cursor: pointer;
   }
-  .big-search:hover {
-    border-color: var(--line-strong);
-  }
-  .placeholder {
-    flex: 1;
-    text-align: left;
-  }
-  .big-search kbd {
-    font-family: var(--font-mono);
-    font-size: 0.72rem;
-    color: var(--faint);
-    border: 1px solid var(--line);
-    border-radius: 4px;
-    padding: 0.1rem 0.35rem;
-    background: var(--bg);
+  .search-link:hover {
+    color: var(--accent-hover);
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
   }
 
-  /* Three short orientation paragraphs (Learn / Reference / Chat), oxjob #750
-     Pass AM. The nav lives in the drawer now; this is just the "what is this
-     for" blurb. Lead word bolded so the three roles scan at a glance. */
+  /* Four short orientation paragraphs (Search / Learn / Reference / Chat).
+     The nav lives in the drawer; this is just the "what is this for" blurb.
+     Lead word bolded so the roles scan at a glance. */
   .intro {
     display: flex;
     flex-direction: column;
