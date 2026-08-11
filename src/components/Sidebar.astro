@@ -116,7 +116,7 @@ const path = Astro.url.pathname;
     overflow-y: auto;
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 2rem; /* roomier section separation (Jason, Pass AQ) */
     padding: 1.5rem 1rem 2.5rem 1.5rem;
     /* Cursor overrides Tailwind's text-base with --font-size-base: 15px /
        140% line-height / .005em tracking — measured on the inner span, not
@@ -132,14 +132,15 @@ const path = Astro.url.pathname;
     display: flex;
     flex-direction: column;
   }
-  /* Section headings: bold, ALL CAPS, mid-gray (Pass AO knocked the ink down)
-     — same treatment as the primary drawer's Learn/Reference/Chat heads. */
+  /* Section headings: bold, ALL CAPS, light gray (~muted at 0.6 opacity ≈
+     the faint token — Jason's pick) — same treatment as the primary drawer's
+     Learn/Reference/Chat heads. */
   .group-label {
     font-size: 0.72rem;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.06em;
-    color: var(--muted);
+    color: var(--faint);
     margin-bottom: 0.45rem;
   }
   a {

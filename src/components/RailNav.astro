@@ -209,7 +209,7 @@ const active = (href: string) => (isPrimaryActive(href, path) ? 'page' : undefin
     overflow-x: hidden;
     display: flex;
     flex-direction: column;
-    gap: 1.15rem;
+    gap: 1.75rem; /* roomier section separation (Jason, Pass AQ) */
     padding: 1.15rem 0 1rem;
     scrollbar-width: thin;
   }
@@ -223,8 +223,8 @@ const active = (href: string) => (isPrimaryActive(href, path) ? 'page' : undefin
     flex-direction: column;
     gap: 1px;
   }
-  /* Section headings: bold, ALL CAPS, mid-gray (Pass AO knocked the ink down
-     — headings shouldn't compete with the pages) — the same treatment as the
+  /* Section headings: bold, ALL CAPS, light gray (Jason set the lightness —
+     ~muted at 0.6 opacity ≈ the faint token) — the same treatment as the
      secondary Sidebar's group labels. FIXED height, identical in both rail
      states, so the icons below never shift: in rail mode the text hides and
      the slot renders as whitespace + a centered hairline divider. */
@@ -238,7 +238,7 @@ const active = (href: string) => (isPrimaryActive(href, path) ? 'page' : undefin
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.06em;
-    color: var(--muted);
+    color: var(--faint);
     white-space: nowrap;
   }
   .row {

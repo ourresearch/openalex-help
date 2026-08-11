@@ -29,7 +29,7 @@ const report = CHAT_ROWS.find((r) => r.title === 'Report Bug')!;
     <section class="intro reveal" style="animation-delay: 0.08s">
       <p>
         <strong>Search.</strong> The fastest way to answer a specific
-        question — <button class="search-link" data-search-trigger>search the full help center</button>.
+        question: <button class="search-link" data-search-trigger>search the full help center</button>.
       </p>
       <p>
         <strong>Learn.</strong> Just starting? Work through the five-minute <a href="/quickstart/">Quickstart</a>,
@@ -39,18 +39,31 @@ const report = CHAT_ROWS.find((r) => r.title === 'Report Bug')!;
       <p>
         <strong>Reference.</strong> Dig into the details: <a href="/access/">Access</a> covers
         getting the data, pricing, and fixing errors; <a href="/data/">Data</a> defines and
-        describes everything in OpenAlex; and the <a href="/api/">API</a> reference documents
+        describes OpenAlex's contents; and the <a href="/api/">API</a> reference documents
         the REST API.
       </p>
       <p>
         <strong>Chat.</strong> Prefer to talk it through? Ask other users in
         the <a href={forum.href} target="_blank" rel="noopener">Google Group</a>, <a href={report.href} target="_blank" rel="noopener">report a bug</a> to
-        our team, or ask your AI agent to answer from our docs — use
-        the <strong>Ask AI</strong> links in the sidebar.
+        our team, or <button class="search-link" id="ask-ai-link">ask our docs with your AI</button>.
       </p>
     </section>
   </div>
 </Base>
+
+<script>
+  // "ask our docs with your AI" opens the drawer's Ask AI provider menu (the
+  // drawer is always expanded on Home, so the menu is right there).
+  document.getElementById('ask-ai-link')?.addEventListener('click', (e) => {
+    // Stop the bubble: RailNav's document-level listener closes the menu on
+    // any click outside it, which would undo the open in this same event.
+    e.stopPropagation();
+    const askAi = document.querySelector<HTMLDetailsElement>('.rail .ask-ai');
+    if (!askAi) return;
+    askAi.open = true;
+    askAi.querySelector<HTMLAnchorElement>('.providers a')?.focus();
+  });
+</script>
 
 <style>
   .wrap.home {

@@ -22,12 +22,12 @@ const path = Astro.url.pathname;
 // content tab (Quick Start lives under /tutorials/, so it collapses too).
 const TAB_PREFIXES = ['/how-to/', '/tutorials/', '/access/', '/data/', '/api/'];
 const inTab = TAB_PREFIXES.some((p) => path.startsWith(p));
-// Inside a tab the lockup extends to "OpenAlex Help › <Tab>" (Pass AO —
-// replaces the Pass AN title heading inside the secondary drawer, which should
-// hold only navigation content).
-const activeTab = PRIMARY_TABS.find(
-  (t) => t.href !== '/' && path.startsWith(t.href) && t.href !== '/quickstart/'
-);
+// The lockup is composed live (Pass AQ): tricon + Inter text, no image
+// wordmark. On Home it reads "OpenAlex Help"; on every other page the
+// "OpenAlex" drops and the current section extends it instead —
+// "Help › <Tab>" — including Quickstart.
+const isHome = path === '/';
+const activeTab = PRIMARY_TABS.find((t) => t.href !== '/' && path.startsWith(t.href));
 // The top-bar search pill shows on every page, including Home (Pass AP — the
 // homepage's own hero search box is gone; its Search paragraph triggers the
 // same dialog).
@@ -53,11 +53,12 @@ const reference = PRIMARY_TABS.filter((t) => t.group === 'reference');
   <body>
     <header>
       <div class="topbar">
-        <a href="/" class="logo">
-          <img src="/brand/openalex-lockup.png" alt="OpenAlex" height="22" />
+        <a href="/" class="logo" aria-label="OpenAlex Help home">
+          <img src="/favicon.svg" alt="" height="22" />
+          {isHome && <span class="logo-name">OpenAlex</span>}
           <span class="logo-help">Help</span>
         </a>
-        {/* "OpenAlex Help › <Tab>" (Pass AO): the current tab extends the
+        {/* "Help › <Tab>" (Pass AO/AQ): the current section extends the
             lockup — the secondary drawer holds only navigation now. */}
         {activeTab && (
           <span class="logo-tab">
@@ -167,15 +168,24 @@ const reference = PRIMARY_TABS.filter((t) => t.group === 'reference');
         width: auto;
         display: block;
       }
-      /* "Help" extends the wordmark: Inter at the wordmark's optical size and
-         tracking, normal weight so it reads as a quieter suffix. */
+      /* The wordmark is set live in Inter (Pass AQ — no more lockup image):
+         bold + tight tracking to match the brand wordmark's look. "Help" is
+         the quieter normal-weight suffix. */
+      .logo-name {
+        font-size: 21px;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        color: var(--ink);
+        line-height: 1;
+        transform: translateY(-1px); /* optical baseline match with the tricon */
+      }
       .logo-help {
         font-size: 21px;
         font-weight: 400;
         letter-spacing: -0.02em;
         color: var(--ink);
         line-height: 1;
-        transform: translateY(-1px); /* optical baseline match with the lockup */
+        transform: translateY(-1px);
       }
       .logo:hover {
         text-decoration: none;
