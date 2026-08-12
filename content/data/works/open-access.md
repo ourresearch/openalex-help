@@ -41,7 +41,7 @@ You can filter and group works by status — for example, [group all works by `o
 
 ## OA locations
 
-A work's OA evidence lives in its [locations](/data/sources/) — the individual places (journal pages, repositories) where copies of the work are hosted. Each location records whether that copy is OA (`is_oa`), plus its `landing_page_url`, `pdf_url`, `license`, [`version`](/data/locations/), and host `source`.
+A work's OA evidence lives in its [locations](/data/locations/) — the individual places (journal pages, repositories) where copies of the work are hosted. Each location records whether that copy is OA (`is_oa`), plus its `landing_page_url`, `pdf_url`, `license`, [`version`](/data/locations/), and host `source`.
 
 **What counts as an OA location?** OpenAlex is flexible: in general, if a page makes the full text of an article available for free — directly on the page, through a PDF link, or in an embedded reader — it counts. There are two deliberate exceptions, both about keeping links usable and machine-readable:
 

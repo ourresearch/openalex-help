@@ -27,6 +27,8 @@ The complete controlled vocabulary (live from [`api.openalex.org/source-types`](
 | `conference` | Proceedings and abstracts from academic conferences, like IEEE and IOP Conference Series. |
 | `other` | Sources that don't fit the standard categories above. |
 
+One wrinkle: you'll also meet sources with `type: metadata` — metadata-only records — even though `metadata` isn't a value in the `/source-types` registry. See [Sources](/data/sources/) for how it's used.
+
 ## Attributes
 
 Each source type is a small object. Attributes shared with other entities are documented once on [Common attributes](/data/common-attributes/).

@@ -134,42 +134,39 @@ Curations apply on the next end-to-end refresh of the pipeline, which runs once 
 
 The pipeline has four steps. The first two live in the OpenAlex users API (Heroku Postgres); the last two live in the OpenAlex data warehouse (Databricks / Delta).
 
-  **1. Save the request to public.curations**
+1. **Save the request to public.curations**
 
-    The `POST /curations` request lands as one row in the `public.curations` Postgres table on the OpenAlex users API.
-  
+   The `POST /curations` request lands as one row in the `public.curations` Postgres table on the OpenAlex users API.
 
-  **2. Split into views by curation type**
+2. **Split into views by curation type**
 
-    Four views in the users-api Postgres database split `public.curations` into one view per curation type:
+   Four views in the users-api Postgres database split `public.curations` into one view per curation type:
 
-    - `work_author_claim_curations`
-    - `work_author_remove_curations`
-    - `author_display_name_curations`
-    - `author_full_name_curations`
-  
+   - `work_author_claim_curations`
+   - `work_author_remove_curations`
+   - `author_display_name_curations`
+   - `author_full_name_curations`
 
-  **3. Sync nightly to Delta tables**
+3. **Sync nightly to Delta tables**
 
-    A nightly Databricks job copies each view into a Delta table in the OpenAlex data warehouse:
+   A nightly Databricks job copies each view into a Delta table in the OpenAlex data warehouse:
 
-    - `openalex.works.work_author_claim_curations`
-    - `openalex.works.work_author_remove_curations`
-    - `openalex.authors.author_names_curations` (one row per author, both name fields joined)
-  
+   - `openalex.works.work_author_claim_curations`
+   - `openalex.works.work_author_remove_curations`
+   - `openalex.authors.author_names_curations` (one row per author, both name fields joined)
 
-  **4. Apply curations**
+4. **Apply curations**
 
-    Each pipeline run applies the curations to the live entity tables.
+   Each pipeline run applies the curations to the live entity tables.
 
-    **Work curations** are applied during the works pipeline, between the `MatchAuthors` and `UpdateWorkAuthorships` steps. They modify `openalex.works.work_authors`:
+   **Work curations** are applied during the works pipeline, between the `MatchAuthors` and `UpdateWorkAuthorships` steps. They modify `openalex.works.work_authors`:
 
-    - A **claim** overwrites the `author_id` at the matching `(work_id, raw_author_name)`.
-    - A **remove** sets the `author_id` to NULL at `(work_id, author_id)`.
+   - A **claim** overwrites the `author_id` at the matching `(work_id, raw_author_name)`.
+   - A **remove** sets the `author_id` to NULL at `(work_id, author_id)`.
 
-    Both run every cycle, so a removed author stays removed even if the matcher tries to re-attach it. Every curated `work_id` is queued in `openalex.works.curated_work_ids_pending_sync` so the work re-exports to the search index on the next sync.
+   Both run every cycle, so a removed author stays removed even if the matcher tries to re-attach it. Every curated `work_id` is queued in `openalex.works.curated_work_ids_pending_sync` so the work re-exports to the search index on the next sync.
 
-    **Author name curations** are applied during the authors pipeline. They modify `openalex.authors.authors`:
+   **Author name curations** are applied during the authors pipeline. They modify `openalex.authors.authors`:
 
-    - A **display_name** change overwrites the profile's `display_name`, then queues every work that lists the author in `curated_work_ids_pending_sync` so the new name appears in the API.
-    - A **full_name** change overwrites the profile's matching `full_name`.
+   - A **display_name** change overwrites the profile's `display_name`, then queues every work that lists the author in `curated_work_ids_pending_sync` so the new name appears in the API.
+   - A **full_name** change overwrites the profile's matching `full_name`.

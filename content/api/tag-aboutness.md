@@ -1,15 +1,15 @@
 ---
 title: "Tag Aboutness"
-description: "Tag your own text with OpenAlex topics, keywords, and concepts"
+description: "Tag your own text with OpenAlex keywords and concepts"
 tags: ["api"]
 source_id: "guides/aboutness"
 source_url: "https://developers.openalex.org/guides/aboutness"
 source_updated: "2026-02-18"
 ---
 > **Warning:**
-> **Deprecated endpoint.** The `/text/topics` endpoint is deprecated. Use the `/text/keywords` endpoint instead.
+> **Deprecated.** The `/text` endpoints are deprecated and not recommended for new projects. See [Deprecations](/api/deprecations/).
 
-The `/text` endpoint lets you tag free text with OpenAlex's "aboutness" assignments: topics, keywords, and concepts.
+The `/text` endpoint lets you tag free text with OpenAlex's "aboutness" assignments: keywords and concepts.
 
 ## Request format
 

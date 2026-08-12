@@ -13,7 +13,7 @@ A **location** is a place where a version of a [work](/data/works/) is available
 
 ### One location per version
 
-A work exists in several forms — the author's **submitted** manuscript, the peer-reviewed **accepted** manuscript, and the publisher's **published** version of record — often hosted in different places. Each location carries a [`version`](#version) field recording which of these it holds, following the [DRIVER Guidelines](https://wiki.surfnet.nl/display/DRIVERguidelines/DRIVER-VERSION+Mappings) standard: `publishedVersion` (most authoritative), `acceptedVersion`, then `submittedVersion`. See [Versions](/data/locations/) for the full definitions.
+A work exists in several forms — the author's **submitted** manuscript, the peer-reviewed **accepted** manuscript, and the publisher's **published** version of record — often hosted in different places. Each location carries a [`version`](#version) field recording which of these it holds, following the [DRIVER Guidelines](https://wiki.surfnet.nl/display/DRIVERguidelines/DRIVER-VERSION+Mappings) standard: `publishedVersion` (most authoritative), `acceptedVersion`, then `submittedVersion`.
 
 ### Where locations come from
 
@@ -46,7 +46,7 @@ This is the dictionary of every attribute on a **location** object, as it appear
 *String.* The OpenAlex ID for the [license](/data/licenses/), e.g. `https://openalex.org/licenses/cc-by` — the canonical handle for the same license named in [`license`](#license).
 
 ### `version`
-*String.* Which version this copy holds: `publishedVersion`, `acceptedVersion`, or `submittedVersion` (or null when it can't be determined). See [Versions](/data/locations/).
+*String.* Which version this copy holds: `publishedVersion`, `acceptedVersion`, or `submittedVersion` (or null when it can't be determined). See [One location per version](#one-location-per-version) for what each value means.
 
 ### `is_accepted`
 *Boolean.* True if this copy is at least an accepted manuscript — i.e. `version` is `acceptedVersion` or `publishedVersion`. A convenience flag so you don't have to compare version strings.

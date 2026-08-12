@@ -385,11 +385,11 @@ curl -X POST "https://api.openalex.org/" \
             {"column_id": "open_access.is_oa", "value": true},
             {"column_id": "type", "value": "review"}
           ]}
-        ],
-        "sort_by": [{"column_id": "cited_by_count", "direction": "desc"}],
-        "select": ["id", "display_name", "cited_by_count"],
-        "per_page": 5
-      }}'
+        ]
+      },
+      "sort": "cited_by_count:desc",
+      "select": ["id", "display_name", "cited_by_count"],
+      "per_page": 5}'
 ```
 
 Column ids are the machine names from the **properties registry** — list them at

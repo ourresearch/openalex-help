@@ -41,7 +41,7 @@ This is the canonical dictionary of every attribute on a **work** object. Attrib
 *Object.* The abstract as an [inverted index](https://en.wikipedia.org/wiki/Inverted_index) — each word mapped to its positions. OpenAlex does not ship plaintext abstracts for legal reasons; reconstruct the abstract from the index. Newer works are more likely to have one (over 60% of 2022 works vs. ~45% of pre-2000 works). Abstracts come from diverse sources, sometimes text-mined from the fulltext, so one can occasionally carry trailing text that isn't part of the abstract (section headings, keywords); [file a ticket](https://openalex.org/contact) if you spot this on a work.
 
 ```json
-abstract_inverted_index: { "Despite": [0], "growing": [1], "interest": [2], "in": [3, 57, 73] }
+{ "abstract_inverted_index": { "Despite": [0], "growing": [1], "interest": [2], "in": [3, 57, 73] } }
 ```
 
 ### `authorships`
@@ -109,7 +109,7 @@ See [Open access](/data/works/open-access/) for how these fields combine.
 *List.* [MeSH](https://www.nlm.nih.gov/mesh/meshhome.html) tag objects. Present only for works sourced from [PubMed](https://pubmed.ncbi.nlm.nih.gov/); an empty list otherwise.
 
 ### `cited_by_count`
-*Integer.* The number of works that cite this work — the count of successful reference matches pointing at it (see [How we build it](#citations-and-references)).
+*Integer.* The number of works that cite this work — the count of successful reference matches pointing at it (see [Citations and references](/data/works/citations/#citations-and-references)).
 
 ### `counts_by_year`
 *List.* [`cited_by_count`](#cited_by_count) for each of the last ten years, binned by year (years with zero citations omitted; citations older than ten years excluded). See [Common attributes](/data/common-attributes/#counts_by_year), including why it can drift from a live count.
@@ -118,13 +118,13 @@ See [Open access](/data/works/open-access/) for how these fields combine.
 *Object.* The percentile rank of this work's citation count against other works from the same year, as a `min`/`max` range.
 
 ### `fwci`
-*Float.* The [Field-Weighted Citation Impact](#field-weighted-citation-impact): citations received divided by citations expected for works of the same type, year, and subfield. 1.0 is world average.
+*Float.* The [Field-Weighted Citation Impact](/data/works/citations/#field-weighted-citation-impact): citations received divided by citations expected for works of the same type, year, and subfield. 1.0 is world average.
 
 ### `citation_normalized_percentile`
 *Object.* The same information as [`fwci`](#fwci) expressed as a percentile (`value`, `is_in_top_1_percent`, `is_in_top_10_percent`).
 
 ### `referenced_works`
-*List.* OpenAlex IDs of the works this work cites (this work ➞ others). See [How we build it](#citations-and-references).
+*List.* OpenAlex IDs of the works this work cites (this work ➞ others). See [Citations and references](/data/works/citations/#citations-and-references).
 
 ### `referenced_works_count`
 *Integer.* The length of [`referenced_works`](#referenced_works).

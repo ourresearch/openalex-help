@@ -4,11 +4,11 @@ description: "How OpenAlex pricing works: $1 of free API usage every day, pay-as
 tags: ["reference"]
 synonyms: ["plans", "subscriptions", "premium", "membership", "cost", "credits", "prepaid usage"]
 ---
-The OpenAlex *data* is free — but serving it is not, so *usage* is what costs money. Pricing is simple and transparent: every account gets **$1 of API usage per day for free**, and if you need more than that, there are exactly two ways to get it — **pay as you go**, or an **annual plan**. One of those three covers everyone, and the vast majority of users never leave the free tier. (Current prices always live on the [pricing page](https://openalex.org/pricing); this section explains what you're buying.)
+The OpenAlex *data* is free — but serving it is not, so *usage* is what costs money. Pricing is simple and transparent: every account gets **$1 of API usage per day for free**, and if you need more than that, there are exactly two ways to get it — **pay as you go**, or an **annual plan**. Between the free tier and those two, one of those three covers everyone, and the vast majority of users never leave the free tier. (Current prices always live on the [pricing page](https://openalex.org/pricing); this section explains what you're buying.)
 
 ## Free: $1 per day
 
-Create a free OpenAlex account and you get an API key with **$1 of usage per day** — no payment method required. That's enough for most research and personal projects. The budget resets every midnight UTC; how usage maps to API calls is covered in [Example costs](/access/pricing/example-costs/).
+Create a free OpenAlex account and you get an API key with **$1 of usage per day** — no payment method required. That's enough for most research and personal projects. The budget resets every midnight UTC; how usage maps to API calls is covered in [Example costs](/access/example-costs/).
 
 ## Pay as you go: prepaid usage
 

@@ -11,7 +11,7 @@ entity:
   linksTo:
     - "works"
 ---
-The **Sustainable Development Goals** (SDGs) are the [17 global goals](https://sdgs.un.org/goals) the United Nations adopted in 2015 to address challenges like poverty, inequality, climate change, and environmental degradation — from *No poverty* (SDG 1) to *Partnerships for the goals* (SDG 17). OpenAlex tags each [work](/data/works/) with the SDGs its title and abstract are relevant to, so you can find and analyze research on a given global challenge — for example, pulling every work tagged with SDG 13 (*Climate action*) to study climate-research trends. There are exactly 17, one of [several aboutness signals](/data/aboutness/) OpenAlex offers. An SDG's OpenAlex ID looks like `https://openalex.org/sdgs/3`; list them all at [`api.openalex.org/sdgs`](https://api.openalex.org/sdgs).
+The **Sustainable Development Goals** (SDGs) are the [17 global goals](https://sdgs.un.org/goals) the United Nations adopted in 2015 to address challenges like poverty, inequality, climate change, and environmental degradation — from *No poverty* (SDG 1) to *Partnerships for the goals* (SDG 17). OpenAlex tags each [work](/data/works/) with the SDGs its title and abstract are relevant to, so you can find and analyze research on a given global challenge — for example, pulling every work tagged with SDG 13 (*Climate action*) to study climate-research trends. There are exactly 17; SDGs are one of [several aboutness signals](/data/aboutness/) OpenAlex offers. An SDG's OpenAlex ID looks like `https://openalex.org/sdgs/3`; list them all at [`api.openalex.org/sdgs`](https://api.openalex.org/sdgs).
 
 ## About
 
@@ -25,8 +25,6 @@ Two things to keep in mind:
 
 - **It's a text classifier, so it inherits text-classifier limits.** Tags come only from the title and abstract; a work with no abstract has less signal, and the model can still mislabel. Treat SDG tags as a broad, comparable filter, not a precise verdict on a single paper.
 - **The classifier is open source.** Because Aurora is public, you can run the identical model on documents OpenAlex doesn't index — course syllabi, grant proposals, unpublished research — and get tags in the same form. OpenAlex also exposes it directly through the [text aboutness endpoint](/api/tag-aboutness/).
-
-For the fuller write-up, see [How we classify works as contributing to the UN SDGs](/data/sdgs/).
 
 ## Attributes
 
@@ -42,7 +40,7 @@ This is the canonical dictionary of every attribute on an **SDG** object. Attrib
 *String.* A one-sentence statement of the goal, e.g. "Ensure healthy lives and promote well-being for all at all ages."
 
 ### `ids`
-*Object.* External identifiers for this goal as URIs. SDG-specific keys: `openalex`, `un` (the goal's [UN metadata](https://metadata.un.org/sdg/) URI, e.g. `https://metadata.un.org/sdg/3`), and `wikidata`.
+*Object.* External identifiers for this goal as URIs. SDG-specific keys: `openalex`, `un` (the goal's [UN metadata](https://metadata.un.org/sdg) URI, e.g. `https://metadata.un.org/sdg/3`), and `wikidata`.
 
 ### `image_url`
 *String.* URL of the goal's official UN icon (an SVG on Wikimedia Commons).
@@ -83,5 +81,3 @@ https://api.openalex.org/sdgs/13
 # Works tagged with SDG 3 (Good health and well-being)
 https://api.openalex.org/works?filter=sustainable_development_goals.id:3
 ```
-
-See the [SDGs API reference](/data/sdgs/) for the filter/sort/group_by table.

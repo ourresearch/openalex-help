@@ -175,6 +175,5 @@ Before February 2026, OpenAlex used a "polite pool" system where you could get h
 ## Staying Updated
 
 For announcements about deprecations and breaking changes:
-- Join the [OpenAlex User Group](https://groups.google.com/g/openalex-users)
+- Join the [OpenAlex User Group](https://groups.google.com/g/openalex-users) for announcements
 - Follow [@OpenAlex_org](https://twitter.com/openalex_org) on Twitter
-- Check the [OpenAlex User Group](https://groups.google.com/g/openalex-users) for announcements

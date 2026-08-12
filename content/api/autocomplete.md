@@ -22,7 +22,7 @@ See it in action at [explore.openalex.org](https://explore.openalex.org/).
 
 | Parameter | Required | Description |
 |-----------|----------|-------------|
-| `entity_type` | Optional | `works`, `authors`, `sources`, `institutions`, `concepts`, `publishers`, or `funders` |
+| `entity_type` | Optional | `works`, `authors`, `sources`, `institutions`, `topics`, `keywords`, `concepts` (deprecated), `publishers`, or `funders` |
 | `q` | Yes | The search string |
 
 ## Response format
@@ -55,7 +55,7 @@ See it in action at [explore.openalex.org](https://explore.openalex.org/).
 | `id` | OpenAlex ID |
 | `external_id` | Canonical external ID (DOI, ORCID, ROR, etc.) |
 | `display_name` | Entity name |
-| `entity_type` | `work`, `author`, `source`, `institution`, `concept`, `publisher`, `funder` |
+| `entity_type` | `work`, `author`, `source`, `institution`, `topic`, `keyword`, `concept`, `publisher`, `funder` |
 | `cited_by_count` | Citation count (for works) or sum of citations for linked works |
 | `works_count` | Number of associated works (`null` for works) |
 | `hint` | Additional context to help identify the result |

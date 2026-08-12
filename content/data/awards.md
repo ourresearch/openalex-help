@@ -75,7 +75,7 @@ This is the canonical dictionary of every attribute on an **award** object. Awar
 *Integer.* The year the award ended. Filterable, sortable, and groupable.
 
 ### `funded_outputs`
-*List.* OpenAlex IDs of the [works](/data/works/) this award funded (see [How we build it](#matching-awards-to-funders-and-works)). Can be empty even for a real grant.
+*List.* OpenAlex IDs of the [works](/data/works/) this award funded (see [Matching awards to funders and works](#matching-awards-to-funders-and-works)). Can be empty even for a real grant.
 
 ### `funded_outputs_count`
 *Integer.* The number of [`funded_outputs`](#funded_outputs). Filterable and sortable.

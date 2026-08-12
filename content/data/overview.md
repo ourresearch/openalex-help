@@ -23,7 +23,7 @@ One consistent tell is cardinality: native entities are all huge (hundreds of th
 
 Every OpenAlex ID comes in up to three forms, from most to least verbose:
 
-- **Fully-qualified** — `https://openalex.org/works/W2741809807`, `https://openalex.org/sdgs/2`. The canonical form: a real URL that resolves to the entity, and what you'll find in every entity's [`id`](/data/common-attributes/#id) attribute. Every entity has one.
+- **Fully-qualified** — `https://openalex.org/works/W2741809807`, `https://openalex.org/sdgs/2`. The canonical form: a real URL that resolves to the entity. Every entity has one. (In an entity's [`id`](/data/common-attributes/#id) attribute, native entities use their short form after the domain — `https://openalex.org/W2741809807` — while non-native entities use this namespaced form.)
 - **Namespaced** — the same thing minus the domain: `works/W2741809807`, `sdgs/2`. The entity type, then the ID within it. This form is valid for every entity, but for native entities it's needlessly verbose (the `W` already says "work"), so in practice you'll only see it on non-native ones.
 - **Short** — just the ID: `W2741809807`. Only native entities have a short form, because their IDs carry the entity type as a leading letter — `W` for works, `A` for authors, `S` for sources, `I` for institutions, `P` for publishers, `F` for funders, `G` for awards (grants), `T` for topics — so the ID is unambiguous on its own. Non-native IDs have no short form: a bare `2` or `US` could mean anything without its namespace.
 

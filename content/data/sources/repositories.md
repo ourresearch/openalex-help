@@ -95,7 +95,7 @@ OpenAlex reports the [version](/data/locations/) of the full-text papers it find
 If your repository knows the version of the PDF it is hosting, we recommend you put version information in the metadata as follows (based on the [DRIVER Guidelines v2.0 VERSION standard](https://wiki.surfnet.nl/display/DRIVERguidelines/DRIVER-VERSION+Mappings)):
 
 - `<dc:type>publishedVersion</dc:type>` when you have verified that the PDF you are hosting is the version of record, with all publisher copyediting and formatting.
-- `<dc:type>acceptedVersion</dc:type>` when you have verified that the PDF you are hosting meets [the definition of acceptedVersion](/data/locations/).
+- `<dc:type>acceptedVersion</dc:type>` when you have verified that the PDF you are hosting meets [the definition of acceptedVersion](/data/locations/#one-location-per-version).
 - `<dc:type>submittedVersion</dc:type>` when you know the PDF you are hosting does **NOT** meet the definitions for publishedVersion or acceptedVersion (for example if it was uploaded before the paper was accepted for publication).
 
 If you have not verified the version of the document you are hosting, don't specify version metadata — OpenAlex will determine it automatically.

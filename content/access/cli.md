@@ -95,13 +95,13 @@ At full speed, you can download thousands of works per hour.
 
 | Download type | Cost |
 |---------------|------|
-| Metadata | Free |
+| Metadata | Nearly free (~$0.10 per 1,000 requests; single works by ID are free) |
 | PDFs | $0.01 each |
 | TEI XML | $0.01 each |
 
-With a free API key ($1/day), you can download unlimited metadata and about 100 content files per day.
+With a free API key ($1/day), metadata is effectively almost free — list requests cost about $0.10 per 1,000, and fetching single works by ID costs nothing — and you can download about 100 content files per day. See [Example costs](/access/example-costs/) for the full rate card.
 
-Need more content? [Contact us](mailto:steve@ourresearch.org) about enterprise pricing for large-scale projects.
+Need more content? [Contact us](mailto:sales@openalex.org) about enterprise pricing for large-scale projects.
 
 ## Full documentation
 

@@ -10,7 +10,7 @@ tags: ["reference"]
 - Is "Springer Nature" the same [publisher](/data/publishers/) as "Springer Verlag"?
 - Does this affiliation string mean the University of Washington or Washington University?
 
-There's no external authority we can just look up for these; the answer is OpenAlex's best inference, and it can be wrong. That's why native entities are the ones you can [correct through curation](/data/curations/), and why every native entity page has a **How we build it** section explaining where the records come from, what we do to disambiguate them, and the known failure modes.
+There's no external authority we can just look up for these; the answer is OpenAlex's best inference, and it can be wrong. That's why native entities are the ones you can [correct through curation](/data/curations/), and why every native entity page has an **About** section explaining where the records come from, what we do to disambiguate them, and the known failure modes.
 
 ## The native entities
 

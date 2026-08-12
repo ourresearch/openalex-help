@@ -44,17 +44,17 @@ https://api.openalex.org/works?filter=authorships.institutions.country_code:BR&g
 
 Each call returns the same shape — SDGs ranked by output. The rankings reveal different national priorities:
 
-<div style={{display: 'flex', justifyContent: 'center'}}>
-<table style={{width: 'auto', borderLeft: '3px solid var(--primary)', paddingLeft: '1rem'}}>
+<div style="display: flex; justify-content: center;">
+<table style="width: auto; border-left: 3px solid var(--primary); padding-left: 1rem;">
   <thead>
-    <tr><th style={{textAlign: 'right'}}>#</th><th>India</th><th>Brazil</th></tr>
+    <tr><th style="text-align: right;">#</th><th>India</th><th>Brazil</th></tr>
   </thead>
   <tbody>
-    <tr><td style={{textAlign: 'right'}}>1</td><td>Good health and well-being</td><td>Good health and well-being</td></tr>
-    <tr><td style={{textAlign: 'right'}}>2</td><td><strong>Affordable and clean energy</strong></td><td><strong>Quality education</strong></td></tr>
-    <tr><td style={{textAlign: 'right'}}>3</td><td><strong>Zero hunger</strong></td><td><strong>Zero hunger</strong></td></tr>
-    <tr><td style={{textAlign: 'right'}}>4</td><td><strong>Clean water and sanitation</strong></td><td><strong>Life on land</strong></td></tr>
-    <tr><td style={{textAlign: 'right'}}>5</td><td>Life on land</td><td>Peace, justice, and strong institutions</td></tr>
+    <tr><td style="text-align: right;">1</td><td>Good health and well-being</td><td>Good health and well-being</td></tr>
+    <tr><td style="text-align: right;">2</td><td><strong>Affordable and clean energy</strong></td><td><strong>Quality education</strong></td></tr>
+    <tr><td style="text-align: right;">3</td><td><strong>Zero hunger</strong></td><td><strong>Zero hunger</strong></td></tr>
+    <tr><td style="text-align: right;">4</td><td><strong>Clean water and sanitation</strong></td><td><strong>Life on land</strong></td></tr>
+    <tr><td style="text-align: right;">5</td><td>Life on land</td><td>Peace, justice, and strong institutions</td></tr>
   </tbody>
 </table>
 </div>
@@ -66,7 +66,7 @@ Both countries lead with health and food security, but India's #2 is energy whil
 Pick an SDG and group by year to see growth trends. Here's SDG 13 (Climate Action):
 
 ```bash
-https://api.openalex.org/works?filter=sustainable_development_goals.id:https://metadata.un.org/sdg/13,publication_year:2015-2025&group_by=publication_year
+https://api.openalex.org/works?filter=sustainable_development_goals.id:https://openalex.org/sdgs/13,publication_year:2015-2025&group_by=publication_year
 ```
 
 ```json
@@ -85,7 +85,7 @@ Climate research output grew steadily from 2015 to 2019, dipped briefly, then su
 Group by institution within an SDG to find who's producing the most research:
 
 ```bash
-https://api.openalex.org/works?filter=sustainable_development_goals.id:https://metadata.un.org/sdg/13&group_by=authorships.institutions.id&per_page=5
+https://api.openalex.org/works?filter=sustainable_development_goals.id:https://openalex.org/sdgs/13&group_by=authorships.institutions.id&per_page=5
 ```
 
 ```json
@@ -97,6 +97,8 @@ https://api.openalex.org/works?filter=sustainable_development_goals.id:https://m
   {"key": "https://openalex.org/I4210164339", "key_display_name": "Oldham Council", "count": 8833}
 ]
 ```
+
+That surprise in the top five (a UK borough council) is real output, not a typo — it's an affiliation-matching artifact, and you should expect occasional oddities like it in institution-level results.
 
 ## Full script
 

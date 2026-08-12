@@ -132,4 +132,4 @@ aws s3 sync s3://openalex-snapshots/full/2026-04-29/jsonl/ ./openalex-snapshot-j
 aws s3 sync s3://openalex-snapshots/full/2026-04-29/parquet/ ./openalex-snapshot-parquet --profile openalex
 ```
 
-Each dated folder under `full/` is a complete snapshot built that day, so you can pull a fresh full copy daily rather than waiting for the quarterly public release. Both formats are included; Parquet is also being added to the free quarterly public snapshot beginning June 2026. If you're interested in a daily-refreshed enterprise snapshot, contact [sales@openalex.org](mailto:sales@openalex.org).
+Each dated folder under `full/` is a complete snapshot built that day, so you can pull a fresh full copy daily rather than waiting for the quarterly public release. Both formats are included; Parquet was also added to the free quarterly public snapshot in June 2026. If you're interested in a daily-refreshed enterprise snapshot, contact [sales@openalex.org](mailto:sales@openalex.org).

@@ -20,7 +20,7 @@ Four things make a report fixable:
 
 ## How do I fix a work's open-access status?
 
-The most common report — and about half of these reports are themselves wrong, usually because the reporter checked from inside their institution's network, where paywalled articles look free. So first, **check the article from outside your university network and VPN** (your phone on cellular data works well). It's really open if you can view the fulltext with no login, payment, or account creation, on a legal site (the publisher or a trusted repository). Watch the traps: journals that are open *now* but whose older content is closed; "PDF" buttons that lead to a paywall; free-with-an-account (not OA); Sci-Hub (also not OA).
+This is our most common report — and about half of these reports are themselves wrong, usually because the reporter checked from inside their institution's network, where paywalled articles look free. So first, **check the article from outside your university network and VPN** (your phone on cellular data works well). It's really open if you can view the fulltext with no login, payment, or account creation, on a legal site (the publisher or a trusted repository). Watch the traps: journals that are open *now* but whose older content is closed; "PDF" buttons that lead to a paywall; free-with-an-account (not OA); Sci-Hub (also not OA).
 
 If it passes that test, [file a ticket](https://openalex.org/contact) and **include the URL of the free-to-read copy — that URL is the fix.** See [Works](/access/fixing-errors/works/) in the reference for more, and [Open access](/data/works/open-access/) for how statuses are determined.
 

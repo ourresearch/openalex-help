@@ -13,7 +13,7 @@ For any result set — whatever searches and filters you've applied — add the 
 
 ## How do I check whether a journal's works are in OpenAlex?
 
-Search for the journal by name and click it — that filters to works whose primary location is that journal, so you can browse its coverage. If the name doesn't turn it up, search by [ISSN](/data/sources/attributes/#issn) instead. Still nothing? [Get in touch](https://openalex.org/support).
+Search for the journal by name and click it — that filters to works whose primary location is that journal, so you can browse its coverage. If the name doesn't turn it up, search by [ISSN](/data/sources/attributes/#issn) instead. Still nothing? [Get in touch](https://openalex.org/contact).
 
 ## Why do the counts-by-year numbers differ from what I see in the interface?
 

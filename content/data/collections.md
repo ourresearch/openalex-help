@@ -1,6 +1,6 @@
 ---
 title: "Collections"
-description: "What a collection is, what it can hold, how public and private ones differ, and what every attribute on a collection object means."
+description: "What a collection is, what it can hold, why collections are private to their owner, and what every attribute on a collection object means."
 tags: ["reference"]
 entity:
   example: "col_beNWUTw6qY"
@@ -9,7 +9,7 @@ A **collection** is a saved, named list of OpenAlex entities of a single type â€
 
 ## Who creates it, and how it's used
 
-Collections are made by users, so they have no "How we build it" provenance story. Instead:
+Collections are made by users, so they have no "About" provenance story. Instead:
 
 ### Who creates them
 

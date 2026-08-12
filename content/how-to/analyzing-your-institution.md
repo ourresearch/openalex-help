@@ -21,7 +21,7 @@ Add the **subfield** facet under **Stats** (**"+"** → *subfield*) to chart the
 
 ## Which outputs contribute to UN Sustainable Development Goals?
 
-Add the **Sustainable Development Goal** facet under **Stats** (**"+"** → *Sustainable Development Goal*) to see outputs counted by [SDG](/data/aboutness/sdgs/). Select any goal to see the works contributing to it.
+Add the **Sustainable Development Goal** facet under **Stats** (**"+"** → *Sustainable Development Goal*) to see outputs counted by [SDG](/data/sdgs/). Select any goal to see the works contributing to it.
 
 ## What percentage of its outputs are open access?
 

@@ -17,15 +17,18 @@ filter=attribute:value,attribute2:value2
 
 ## Examples
 
-```bash Works by type
+```bash
+# Works by type
 curl "https://api.openalex.org/works?filter=type:book"
 ```
 
-```bash Authors by ORCID status
+```bash
+# Authors by ORCID status
 curl "https://api.openalex.org/authors?filter=has_orcid:true,works_count:>100"
 ```
 
-```bash Sources with many works
+```bash
+# Sources with many works
 curl "https://api.openalex.org/sources?filter=works_count:>1000"
 ```
 
@@ -67,12 +70,14 @@ https://api.openalex.org/works?filter=cited_by_count:>1,is_oa:true
 
 For AND within a single attribute, repeat the filter or use `+`:
 
-```bash Repeating filters
+```bash
+# Repeating filters
 # Works with authors from France AND UK
 https://api.openalex.org/works?filter=institutions.country_code:fr,institutions.country_code:gb
 ```
 
-```bash Using + symbol
+```bash
+# Using + symbol
 # Works with authors from France AND UK
 https://api.openalex.org/works?filter=institutions.country_code:fr+gb
 ```

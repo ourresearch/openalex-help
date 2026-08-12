@@ -30,7 +30,7 @@ A publisher doesn't publish works directly — it publishes them *through* [sour
 
 ### Roles
 
-A single real-world organization can act as more than one kind of OpenAlex entity: a university press is a **publisher**, but the university is also an **[institution](/data/institutions/)** and sometimes a **[funder](/data/funders/)**. [`roles`](#roles) links those alter egos together, so you can hop from the publisher record to the institution or funder record for the same organization.
+A single real-world organization can act as more than one kind of OpenAlex entity: a university press is a **publisher**, but the university is also an **[institution](/data/institutions/)** and sometimes a **[funder](/data/funders/)**. [`roles`](#roles-1) links those alter egos together, so you can hop from the publisher record to the institution or funder record for the same organization.
 
 ### Failure modes
 

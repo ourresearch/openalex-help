@@ -1,0 +1,42 @@
+---
+// Custom 404 (oxjob #750 fine-tooth-comb): Cloudflare Pages serves dist/404.html
+// for any unmatched path, so visitors keep the site chrome instead of the bare
+// platform 404. Deliberately NOT tagged data-pagefind-body — it must never be
+// indexed by search.
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/PageHeader.astro';
+---
+
+<Base title="Page not found">
+  <article class="prose notfound">
+    <PageHeader
+      title="Page not found"
+      lede="There's no page at this address. It may have moved during a reorganization, or the link may have a typo."
+    />
+    <p>
+      The fastest fix is to
+      <button class="search-link" data-search-trigger>search the help center</button>
+      for what you were after — or start from the <a href="/">table of contents</a>.
+    </p>
+    <p>
+      Still stuck? <a href="https://openalex.org/contact">Get in touch</a> and
+      tell us the link that brought you here, so we can repair it.
+    </p>
+  </article>
+</Base>
+
+<style>
+  article.notfound {
+    max-width: 46rem;
+    margin: 0 auto;
+  }
+  .search-link {
+    padding: 0;
+    border: none;
+    background: none;
+    font: inherit;
+    color: inherit;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+</style>

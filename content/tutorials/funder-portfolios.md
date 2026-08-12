@@ -81,21 +81,21 @@ https://api.openalex.org/works?filter=awards.funder_id:F4320306076,publication_y
 
 Compare each field's share of total output across the two periods:
 
-<div style={{display: 'flex', justifyContent: 'center'}}>
-<table style={{width: 'auto', borderLeft: '3px solid var(--primary)', paddingLeft: '1rem'}}>
+<div style="display: flex; justify-content: center;">
+<table style="width: auto; border-left: 3px solid var(--primary); padding-left: 1rem;">
   <thead>
-    <tr><th>Field</th><th style={{textAlign: 'right'}}>2015–17</th><th style={{textAlign: 'right'}}>2023–25</th><th style={{textAlign: 'right'}}>Change</th></tr>
+    <tr><th>Field</th><th style="text-align: right;">2015–17</th><th style="text-align: right;">2023–25</th><th style="text-align: right;">Change</th></tr>
   </thead>
   <tbody>
-    <tr><td>Engineering</td><td style={{textAlign: 'right'}}>16.9%</td><td style={{textAlign: 'right'}}>18.0%</td><td style={{textAlign: 'right'}}>+1.1%</td></tr>
-    <tr><td>Physics and Astronomy</td><td style={{textAlign: 'right'}}>13.9%</td><td style={{textAlign: 'right'}}>15.4%</td><td style={{textAlign: 'right'}}>+1.5%</td></tr>
-    <tr><td>Computer Science</td><td style={{textAlign: 'right'}}>11.9%</td><td style={{textAlign: 'right'}}>12.1%</td><td style={{textAlign: 'right'}}>+0.2%</td></tr>
-    <tr><td>Environmental Science</td><td style={{textAlign: 'right'}}>9.1%</td><td style={{textAlign: 'right'}}>8.3%</td><td style={{textAlign: 'right'}}>-0.8%</td></tr>
-    <tr><td>Materials Science</td><td style={{textAlign: 'right'}}>8.2%</td><td style={{textAlign: 'right'}}>7.1%</td><td style={{textAlign: 'right'}}>-1.1%</td></tr>
-    <tr><td>Biochemistry / Mol. Bio.</td><td style={{textAlign: 'right'}}>8.2%</td><td style={{textAlign: 'right'}}>7.4%</td><td style={{textAlign: 'right'}}>-0.8%</td></tr>
-    <tr><td>Earth and Planetary Sciences</td><td style={{textAlign: 'right'}}>6.7%</td><td style={{textAlign: 'right'}}>5.8%</td><td style={{textAlign: 'right'}}>-0.9%</td></tr>
-    <tr><td>Mathematics</td><td style={{textAlign: 'right'}}>3.1%</td><td style={{textAlign: 'right'}}>3.8%</td><td style={{textAlign: 'right'}}>+0.7%</td></tr>
-    <tr><td>Social Sciences</td><td style={{textAlign: 'right'}}>—</td><td style={{textAlign: 'right'}}>3.5%</td><td style={{textAlign: 'right'}}><strong>new</strong></td></tr>
+    <tr><td>Engineering</td><td style="text-align: right;">16.9%</td><td style="text-align: right;">18.0%</td><td style="text-align: right;">+1.1%</td></tr>
+    <tr><td>Physics and Astronomy</td><td style="text-align: right;">13.9%</td><td style="text-align: right;">15.4%</td><td style="text-align: right;">+1.5%</td></tr>
+    <tr><td>Computer Science</td><td style="text-align: right;">11.9%</td><td style="text-align: right;">12.1%</td><td style="text-align: right;">+0.2%</td></tr>
+    <tr><td>Environmental Science</td><td style="text-align: right;">9.1%</td><td style="text-align: right;">8.3%</td><td style="text-align: right;">-0.8%</td></tr>
+    <tr><td>Materials Science</td><td style="text-align: right;">8.2%</td><td style="text-align: right;">7.1%</td><td style="text-align: right;">-1.1%</td></tr>
+    <tr><td>Biochemistry / Mol. Bio.</td><td style="text-align: right;">8.2%</td><td style="text-align: right;">7.4%</td><td style="text-align: right;">-0.8%</td></tr>
+    <tr><td>Earth and Planetary Sciences</td><td style="text-align: right;">6.7%</td><td style="text-align: right;">5.8%</td><td style="text-align: right;">-0.9%</td></tr>
+    <tr><td>Mathematics</td><td style="text-align: right;">3.1%</td><td style="text-align: right;">3.8%</td><td style="text-align: right;">+0.7%</td></tr>
+    <tr><td>Social Sciences</td><td style="text-align: right;">—</td><td style="text-align: right;">3.5%</td><td style="text-align: right;"><strong>new</strong></td></tr>
   </tbody>
 </table>
 </div>

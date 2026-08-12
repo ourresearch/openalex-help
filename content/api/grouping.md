@@ -75,11 +75,13 @@ For non-entity values (like `level`), both `key` and `key_display_name` are the 
 
 The "unknown" group (entities without a value) is hidden by default. Add `:include_unknown` to include it:
 
-```bash Without unknowns (default)
+```bash
+# Without unknowns (default)
 https://api.openalex.org/works?group_by=authorships.countries
 ```
 
-```bash With unknowns
+```bash
+# With unknowns
 https://api.openalex.org/works?group_by=authorships.countries:include_unknown
 ```
 

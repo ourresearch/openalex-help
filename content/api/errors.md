@@ -15,9 +15,9 @@ The OpenAlex API uses standard HTTP status codes to indicate success or failure.
 | `200` | Success | Request completed successfully |
 | `301` | Moved Permanently | Entity was merged; follow the redirect |
 | `400` | Bad Request | Check your filter syntax or parameters |
-| `403` | Forbidden | Rate limit exceeded; slow down |
+| `403` | Forbidden | You don't have access to this resource — for example, another user's collection |
 | `404` | Not Found | Entity doesn't exist |
-| `429` | Too Many Requests | Daily limit exceeded |
+| `429` | Too Many Requests | Rate limit or daily credit budget exceeded; slow down or wait for the reset |
 | `500` | Server Error | Temporary issue; retry with backoff |
 
 ## Error Response Format

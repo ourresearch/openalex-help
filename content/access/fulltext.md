@@ -50,7 +50,7 @@ https://api.openalex.org/works?filter=has_content.pdf:true,publication_year:2024
 https://api.openalex.org/works?filter=has_content.pdf:true,best_oa_location.license:cc-by
 ```
 
-You can also check the `content_url` field on any work object to see if content is available.
+You can also check the `content_urls` field on any work object to see if content is available.
 
 With a free API key ($1/day), you can download about 100 files per day. Good for research projects, building small corpora, or sampling.
 
@@ -92,7 +92,7 @@ openalex download \
   --content pdf,xml
 ```
 
-Standard rates apply ($0.01 per content file; metadata is free). At full speed, you can download a few million files in a few days.
+Standard rates apply ($0.01 per content file; the accompanying metadata list calls are nearly free at ~$0.10 per 1,000). At full speed, you can download a few million files in a few days.
 
 ### Option 3: Complete archive sync
 
@@ -100,23 +100,14 @@ For the complete archive (all 50M+ files), the **PDF sync service** gives you pe
 
 PDF sync is sold as a paid **add-on to any [annual plan](/access/pricing/#annual-plans)** — what you're buying is the ongoing sync service, not the documents themselves (see [Pricing](/access/pricing/#the-pdf-sync-add-on) for the reasoning). [Contact sales](mailto:sales@openalex.org) to get started.
 
-**How it works:**
+**How it works:** we generate R2 API credentials with read-only access, and you sync with the AWS CLI:
 
-  **1. Get credentials**
+```bash
+aws s3 sync s3://openalex-pdfs ./pdfs \
+  --endpoint-url https://a452eddbbe06eb7d02f4879cee70d29c.r2.cloudflarestorage.com
+```
 
-    We generate R2 API credentials with read-only access.
-  
-  **2. Sync with AWS CLI**
-
-    ```bash
-    aws s3 sync s3://openalex-pdfs ./pdfs \
-      --endpoint-url https://a452eddbbe06eb7d02f4879cee70d29c.r2.cloudflarestorage.com
-    ```
-  
-  **3. Stay current**
-
-    For ongoing sync, run periodically to get new files.
-  
+To stay current, run the same command periodically — it picks up new files as they arrive.
 
 At typical network speeds, expect **1–2 weeks** to download the full archive.
 
@@ -199,7 +190,7 @@ Filter your candidate set with `has_content.pdf:true` (available in the [snapsho
 
 ## TEI XML quality and limitations
 
-GROBID ([project](https://github.com/kermitt2/grobid), [docs](https://grobid.readthedocs.io/)) is the state of the art for converting scholarly PDFs to structured TEI XML. But PDF parsing is genuinely hard, and a meaningful share of files will contain errors — missing or duplicated references, occasional self-references (the paper's own DOI picked up from its header or footer), wrong or partial header metadata, and the odd truncated section. You can see how GROBID performs field-by-field in [the project's own benchmarks](https://grobid.readthedocs.io/en/latest/Benchmarking/).
+GROBID ([project](https://github.com/kermitt2/grobid), [docs](https://grobid.readthedocs.io/)) is the state of the art for converting scholarly PDFs to structured TEI XML. But PDF parsing is genuinely hard, and a meaningful share of files will contain errors — missing or duplicated references, occasional self-references (the paper's own DOI picked up from its header or footer), wrong or partial header metadata, and the odd truncated section. You can see how GROBID performs field-by-field in [the project's own benchmarks](https://grobid.readthedocs.io/en/latest/benchmarks/Benchmarking/).
 
 GROBID also can't parse every PDF. It doesn't do OCR, so scanned or image-only PDFs produce little or nothing useful, and unusual or malformed PDFs can fail outright. Filter on `has_content.grobid_xml:true` to limit your set to works where we have a parse.
 

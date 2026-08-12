@@ -6,7 +6,7 @@ source_id: "api-reference/authentication"
 source_url: "https://developers.openalex.org/api-reference/authentication"
 source_updated: "2026-08-09"
 ---
-OpenAlex data is free, and so is casual use of the API — you can make basic queries with no key at all. To use the API at any real scale, though, you'll want a **free API key**: it raises your daily budget 10× and lets you track your usage. This page covers getting a key, sending it, and staying inside the rate limits. For **what the API costs** and how billing works — that's a separate concern — see [Pricing](/access/pricing/), with worked numbers on the [Example costs](/access/pricing/example-costs/) page.
+OpenAlex data is free, and so is casual use of the API — you can make basic queries with no key at all. To use the API at any real scale, though, you'll want a **free API key**: it raises your daily budget 10× and lets you track your usage. This page covers getting a key, sending it, and staying inside the rate limits. For **what the API costs** and how billing works — that's a separate concern — see [Pricing](/access/pricing/), with worked numbers on the [Example costs](/access/example-costs/) page.
 
 ## Getting an API key
 
@@ -33,7 +33,7 @@ Both work identically. The [openalex.org](https://openalex.org) website runs on 
 
 ## Rate limits
 
-Basic use is free and generous, and a free key gives you 10× the keyless budget; you can raise it further with a [paid plan](/access/pricing/). Two things return `429 Too Many Requests`: exceeding your daily budget, or making more than **100 requests per second**. For the budget numbers themselves — and what typical activity actually uses — see [Example costs](/access/pricing/example-costs/).
+Basic use is free and generous, and a free key gives you 10× the keyless budget; you can raise it further with a [paid plan](/access/pricing/). Two things return `429 Too Many Requests`: exceeding your daily budget, or making more than **100 requests per second**. For the budget numbers themselves — and what typical activity actually uses — see [Example costs](/access/example-costs/).
 
 Individual queries also have hard limits:
 

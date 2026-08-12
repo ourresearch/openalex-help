@@ -112,20 +112,20 @@ for journal, count in journal_counts.most_common(15):
 
 Top journals cited by Santa Fe Institute authors in 2024 (from a sample of references):
 
-<div style={{display: 'flex', justifyContent: 'center'}}>
-<table style={{width: 'auto', borderLeft: '3px solid var(--primary)', paddingLeft: '1rem'}}>
+<div style="display: flex; justify-content: center;">
+<table style="width: auto; border-left: 3px solid var(--primary); padding-left: 1rem;">
   <thead>
-    <tr><th>Journal</th><th style={{textAlign: 'right'}}>References</th></tr>
+    <tr><th>Journal</th><th style="text-align: right;">References</th></tr>
   </thead>
   <tbody>
-    <tr><td>Proceedings of the National Academy of Sciences</td><td style={{textAlign: 'right'}}>14</td></tr>
-    <tr><td>Science</td><td style={{textAlign: 'right'}}>13</td></tr>
-    <tr><td>PLoS ONE</td><td style={{textAlign: 'right'}}>12</td></tr>
-    <tr><td>Nature</td><td style={{textAlign: 'right'}}>7</td></tr>
-    <tr><td>Environmental Science &amp; Technology</td><td style={{textAlign: 'right'}}>4</td></tr>
-    <tr><td>Nature Plants</td><td style={{textAlign: 'right'}}>3</td></tr>
-    <tr><td>Forest Ecology and Management</td><td style={{textAlign: 'right'}}>3</td></tr>
-    <tr><td>Frontiers in Ecology and Evolution</td><td style={{textAlign: 'right'}}>3</td></tr>
+    <tr><td>Proceedings of the National Academy of Sciences</td><td style="text-align: right;">14</td></tr>
+    <tr><td>Science</td><td style="text-align: right;">13</td></tr>
+    <tr><td>PLoS ONE</td><td style="text-align: right;">12</td></tr>
+    <tr><td>Nature</td><td style="text-align: right;">7</td></tr>
+    <tr><td>Environmental Science &amp; Technology</td><td style="text-align: right;">4</td></tr>
+    <tr><td>Nature Plants</td><td style="text-align: right;">3</td></tr>
+    <tr><td>Forest Ecology and Management</td><td style="text-align: right;">3</td></tr>
+    <tr><td>Frontiers in Ecology and Evolution</td><td style="text-align: right;">3</td></tr>
   </tbody>
 </table>
 </div>
@@ -133,4 +133,4 @@ Top journals cited by Santa Fe Institute authors in 2024 (from a sample of refer
 These counts are from a small sample — running the full script produces a complete ranking across all 496 works and their thousands of outgoing references. The interdisciplinary spread (PNAS, Science, Nature alongside ecology journals) is characteristic of SFI's research.
 
 > **Note:**
-> This recipe requires many API calls — roughly one per 100 referenced works. For an institution with 500 works averaging 30 references each, expect ~150 calls. Add an `api_key` parameter and a brief `time.sleep(0.1)` between batches to stay within [rate limits](/api/authentication/).
+> This recipe requires many API calls — roughly one per 100 referenced works. For an institution with 500 works averaging 30 references each, expect ~150 calls. Use your free [API key](/api/authentication/) — it raises your daily credit budget to 10× the keyless budget. A brief `time.sleep(0.1)` between batches is optional politeness to the API, not a rate-limit tool: limits are daily credit budgets, so sleeping doesn't stretch them.

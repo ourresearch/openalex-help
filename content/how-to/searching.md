@@ -27,7 +27,7 @@ Add a filter: click "Add filter", type "retracted", and select it. Then set the 
 
 ## Is there a limit to query length?
 
-Yes — queries are URLs, and the total URL is limited to 2,048 characters. If your query won't fit, break it into several smaller queries combined with OR logic, export each result set, and combine them — deduplicating on the OpenAlex work ID to remove any overlap.
+Yes — queries are URLs, and the total URL is limited to about 4,000 characters. If your query won't fit, break it into several smaller queries combined with OR logic, export each result set, and combine them — deduplicating on the OpenAlex work ID to remove any overlap.
 
 ## Where do I find the volume and issue of an article?
 

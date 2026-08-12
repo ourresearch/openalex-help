@@ -28,6 +28,7 @@ Every entity has a unique OpenAlex ID with a letter prefix indicating the type:
 | K | Keyword |
 | P | Publisher |
 | F | Funder |
+| G | Award |
 
 You can use the full URL or just the key:
 

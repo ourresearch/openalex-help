@@ -12,8 +12,10 @@ Use `page` and `per_page` to navigate results:
 
 | Parameter | Default | Range | Description |
 |-----------|---------|-------|-------------|
-| `page` | 1 | 1-500 | Page number |
+| `page` | 1 | see note below | Page number |
 | `per_page` | 25 | 1-100 | Results per page |
+
+There is no fixed cap on `page` itself — the limit is on how deep you can go: `page × per_page` must not exceed 10,000 (see the warning below).
 
 ```bash
 # Page 2 with 100 results per page
@@ -22,6 +24,9 @@ https://api.openalex.org/works?page=2&per_page=100
 
 > **Warning:**
 > **Basic paging limit:** You can only access the first 10,000 results (`page * per_page` must not exceed 10,000). Use cursor paging for more.
+
+> **Note:**
+> The API currently accepts `per_page=200` as legacy behavior, but this is deprecated and will be removed — don't rely on it. **100 is the supported maximum.**
 
 ## Cursor paging
 

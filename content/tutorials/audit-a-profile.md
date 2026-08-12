@@ -152,8 +152,6 @@ The gate above keeps recall high in both directions; ranking the survivors by co
 
 ## Full Python script
 
- (~$0.005 per profile)
-
 ```python
 import requests, unicodedata, re
 

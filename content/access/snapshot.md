@@ -174,7 +174,7 @@ See [Sync](/access/sync/#the-daily-snapshot-paid-plans) for what the daily snaps
 
 ### Content archive
 
-Per-file downloads use your API key directly ($0.01/file): `https://content.openalex.org/works/W2741809807.pdf?api_key=YOUR_KEY`. For full-archive sync we issue read-only Cloudflare R2 credentials — 30-day access for a one-time download, persistent access with an enterprise subscription. Details on the [content archive page](/access/fulltext/).
+Per-file downloads use your API key directly ($0.01/file): `https://content.openalex.org/works/W2741809807.pdf?api_key=YOUR_KEY`. For full-archive sync, the **PDF sync add-on** (available with any [annual plan](/access/pricing/#the-pdf-sync-add-on)) gives you persistent read-only Cloudflare R2 credentials, so you can sync the complete archive and keep receiving new files as they arrive. Details on the [content archive page](/access/fulltext/).
 
 ### Where's my API key?
 

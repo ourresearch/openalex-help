@@ -6,7 +6,7 @@ source_id: "guides/searching"
 source_url: "https://developers.openalex.org/guides/searching"
 source_updated: "2026-06-24"
 ---
-The `search` parameter finds results matching a given text search. Search requests cost **\$1 per 1,000 calls** (vs. \$0.10 per 1,000 for list+filter requests). See [pricing](/access/pricing/example-costs/).
+The `search` parameter finds results matching a given text search. Search requests cost **\$1 per 1,000 calls** (vs. \$0.10 per 1,000 for list+filter requests). See [pricing](/access/example-costs/).
 
 ```bash
 # Works with "dna" in title, abstract, or fulltext
@@ -78,7 +78,7 @@ search=(termA OR ... OR termM) AND climate
 search=(termN OR ... OR termZ) AND climate
 ```
 
-Keep each chunk's full request URL under ~4 KB. Combining results is exact because `(X AND (a OR b OR c OR d))` equals `(X AND (a OR b)) ∪ (X AND (c OR d))`. Putting `api_key` and `mailto` in request headers instead of the URL frees a little extra room, but for a large Boolean query you will still need to split it.
+Keep each chunk's full request URL under ~4 KB. Combining results is exact because `(X AND (a OR b OR c OR d))` equals `(X AND (a OR b)) ∪ (X AND (c OR d))`. Sending your `api_key` in the `Authorization` header instead of the URL frees a little extra room, but for a large Boolean query you will still need to split it.
 
 > **Tip:**
 > Each chunked request is billed independently, just like any other request. Splitting is only needed to stay under the URL length limit — it is not a way to reduce cost.
@@ -89,11 +89,13 @@ Keep each chunk's full request URL under ~4 KB. Combining results is exact becau
 
 Use double quotes to search for an exact phrase. Multi-word searches without quotes rank results higher when words appear close together.
 
-```bash Exact phrase (few results)
+```bash
+# Exact phrase (few results)
 https://api.openalex.org/works?search="fierce creatures"
 ```
 
-```bash Words anywhere (more results)
+```bash
+# Words anywhere (more results)
 https://api.openalex.org/works?search=fierce creatures
 ```
 
@@ -132,7 +134,7 @@ Use `*` to match zero or more characters and `?` to match exactly one character:
 
 The search term must have at least 3 characters before the wildcard. Leading wildcards (e.g., `*ology`) are not supported.
 
-Wildcards require the **exact (unstemmed)** search — use `search.exact` (or the `default.search.exact` filter), not the default `search`. The default `search` is stemmed, which strips the literal text before the wildcard at index time, so a wildcard there would return wrong results; OpenAlex rejects it with a `400` rather than return misleading matches.
+Wildcards require the **exact (unstemmed)** search — use `search.exact` (or the `fulltext.search.exact` filter), not the default `search`. The default `search` is stemmed, which strips the literal text before the wildcard at index time, so a wildcard there would return wrong results; OpenAlex rejects it with a `400` rather than return misleading matches.
 
 ```bash
 https://api.openalex.org/works?search.exact=machin*
@@ -237,5 +239,3 @@ https://api.openalex.org/works?filter=raw_author_name.search:"j priem" OR "priem
 ```
 
 For a step-by-step walkthrough that uses these patterns to audit and correct an author profile's works, see the [Audit an Author Profile's Works recipe](/tutorials/audit-a-profile/).
-
-{/* Redeploy trigger 2026-05-17 — auto-deploy webhook missed 319f1d5 (#191.3) */}

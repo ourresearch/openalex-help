@@ -2,7 +2,7 @@
 title: "Systematic Reviews"
 subtitle: "Build a reproducible systematic-review search in OQL — term blocks, exact vs. stemmed matching, and scope filters."
 description: "Build a real systematic-review search strategy in OQL — term blocks, exact vs. stemmed matching, scope filters, and a reproducible query you can paste straight into your appendix."
-tags: ["recipe", "oql"]
+tags: ["recipes", "oql"]
 card: "A search strategy is a term tree, and OQL speaks it: one string for your methods appendix."
 ---
 A systematic-review search strategy is really a **term tree**: blocks of synonyms OR'd together, blocks AND'd with each other, a few exclusions, and some scope limits. That's exactly the shape [OQL](/access/oql/) — the OpenAlex Query Language — is built to express. This recipe walks through building one, start to finish.

@@ -91,4 +91,4 @@ To find the works carrying a concept, filter on the [Works](/data/works/) endpoi
 https://api.openalex.org/works?filter=concepts.id:C41008148
 ```
 
-For the full list of filterable, sortable, and groupable fields see the [Concepts API reference](/data/concepts/); for all endpoints see the [endpoints index](/api/endpoints/).
+For the full list of endpoints see the [endpoints index](/api/endpoints/).

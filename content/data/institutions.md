@@ -92,7 +92,7 @@ This is the canonical dictionary of every attribute on an **institution** object
 *Object.* Intended to hold the institution's display name in multiple languages. Currently unpopulated (an empty object) on essentially all institutions.
 
 ### `repositories`
-*List.* Dehydrated [source](/data/sources/) objects for the [repositories](/data/source-types/) this institution hosts (e.g. the University of Michigan's Deep Blue), each with `id`, `display_name`, `host_organization`, `host_organization_name`, and `host_organization_lineage`. Available as a column; the `repositories.id`, `repositories.host_organization`, and `repositories.host_organization_lineage` filters let you select institutions by the repositories they host.
+*List.* Dehydrated [source](/data/sources/) objects for the [repositories](/data/sources/repositories/) this institution hosts (e.g. the University of Michigan's Deep Blue), each with `id`, `display_name`, `host_organization`, `host_organization_name`, and `host_organization_lineage`. Available as a column; the `repositories.id`, `repositories.host_organization`, and `repositories.host_organization_lineage` filters let you select institutions by the repositories they host.
 
 ### `roles`
 *List.* The other entity roles this organization plays across OpenAlex — an organization can be an [institution](/data/institutions/), a [funder](/data/funders/), and a [publisher](/data/publishers/) at once. Each entry has `role`, `id` (the OpenAlex ID of that role's entity), and `works_count`. Filter institutions by a co-role's ID with `roles.id`.
@@ -127,7 +127,7 @@ This is the canonical dictionary of every attribute on an **institution** object
 ### `updated_date`
 *String.* The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) UTC timestamp of the last change to anything in the institution object. See [Common attributes](/data/common-attributes/#updated_date).
 
-### Deprecated fields
+### Deprecated attributes
 - **`x_concepts`** — the top [concepts](/data/concepts/) associated with the institution. Concepts are a superseded classification; `x_concepts` is no longer populated on institution objects ([`topics`](#topics) and [`topic_share`](#topic_share) replace it). The `x_concepts.id`/`concepts.id` filters remain for continuity.
 
 ## In the API

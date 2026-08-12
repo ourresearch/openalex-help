@@ -9,7 +9,7 @@ A **curation** is a user-submitted correction to a [native entity](/data/native/
 
 ## Who creates it, what states it moves through, and how it flows back
 
-Curations come from users, not from the pipeline, so they have no "How we build it" provenance story. Instead:
+Curations come from users, not from the pipeline, so they have no "About" provenance story. Instead:
 
 ### What you can curate
 
@@ -59,7 +59,7 @@ A curation record is a compact statement of a correction: the target entity, the
 *String.* The curation's ID, e.g. `cur-9Fw3RtYxQ7nLpK`. Unlike native-entity [OpenAlex IDs](/data/common-attributes/#id), it is not a resolvable `openalex.org` URL.
 
 ### `user_id`
-*String.* The ID of the user who submitted the curation, e.g. `usr-abc123`. This is the audit trail of who made the correction; it's stored on every row but not exposed on the public read API.
+*String.* The ID of the user who submitted the curation, e.g. `user-abc123`. This is the audit trail of who made the correction; it's stored on every row but not exposed on the public read API.
 
 ### `user_name`
 *String.* The display name of the submitting user, e.g. `Casey M`.

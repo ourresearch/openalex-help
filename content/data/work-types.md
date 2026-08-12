@@ -13,7 +13,7 @@ A **work type** classifies the form of a scholarly document: a journal `article`
 
 ## About
 
-The vocabulary derives from [Crossref](https://www.crossref.org/)'s work types, extended with a handful of OpenAlex additions (e.g. `preprint`, `dataset`, `libguides`, and the newer data/software/conference splits). Every upstream source — Crossref's `type`, DataCite's `resourceType`, PubMed's publication type, HAL, and others — uses its own taxonomy, so OpenAlex maps all of them onto the single vocabulary below, then applies internal heuristics (for example, titles like "Index" or "Cover Picture" become `paratext`). We don't decide the boundary between types; we standardize the label. Approved [curations](/data/works/) can override the assigned type for an individual work. Full detail on assignment and the `paratext` category is in [Work types](/data/work-types/).
+The vocabulary derives from [Crossref](https://www.crossref.org/)'s work types, extended with a handful of OpenAlex additions (e.g. `preprint`, `dataset`, `libguides`, and the newer data/software/conference splits). Every upstream source — Crossref's `type`, DataCite's `resourceType`, PubMed's publication type, HAL, and others — uses its own taxonomy, so OpenAlex maps all of them onto the single vocabulary below, then applies internal heuristics (for example, titles like "Index" or "Cover Picture" become `paratext`). We don't decide the boundary between types; we standardize the label. Approved [curations](/data/curations/) can override the assigned type for an individual work.
 
 ## Values
 
