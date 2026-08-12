@@ -140,6 +140,25 @@ If you need topic classification, consider:
 - Using the Topics already assigned to works in OpenAlex
 - Building your own classifier using OpenAlex Topics as training data
 
+### `include_xpac` parameter and `is_xpac` filter
+
+> **Warning:**
+> The legacy corpus controls are deprecated in favor of the first-class `corpus` parameter (added August 2026). They still work, but new code should use `corpus=` — and a request that combines `corpus=` with either legacy control returns an error.
+
+**Replacement:** Use [`corpus=core|expansion|all`](/data/works/corpus/) instead.
+
+**Migration:**
+
+```diff
+- /works?include_xpac=true
++ /works?corpus=all
+
+- /works?filter=is_xpac:true&include_xpac=true
++ /works?corpus=expansion
+```
+
+The [`is_xpac`](/data/works/attributes/#is_xpac) *attribute* on work objects is not deprecated — it's still the way to tell which results in a `corpus=all` response came from the expansion.
+
 ## Filter Aliases (Deprecated)
 
 These filter aliases still work but use the canonical form instead:
@@ -171,6 +190,7 @@ Before February 2026, OpenAlex used a "polite pool" system where you could get h
 | `x_concepts` | Deprecated | Will be removed soon |
 | `/text` endpoint | Deprecated | Not recommended |
 | Polite pool | Replaced | Use API keys |
+| `include_xpac` / `is_xpac` filter | Deprecated | Migrate to `corpus=` |
 
 ## Staying Updated
 
