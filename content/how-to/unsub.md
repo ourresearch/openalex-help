@@ -7,14 +7,14 @@ card: "The journal-package forecasting tool — its documentation, access, and s
 ---
 [Unsub](https://unsub.org) is our free tool for analyzing library journal subscriptions. It gives you data-driven forecasts of the true cost and value of your journal packages to guide subscription decisions, and it's used by hundreds of libraries worldwide.
 
-## Where is the Unsub documentation?
+## Documentation
 
 Unsub has its own comprehensive help center at **[docs.unsub.org](https://docs.unsub.org/)** — start there for everything about using the tool itself.
 
-## How do I get access to Unsub?
+## Getting access
 
-Unsub logins come with OpenAlex [institutional plans](/access/pricing/). Send the names and email addresses of up to 3 users at your institution (typically collections librarians) to [kyle@openalex.org](mailto:kyle@openalex.org) and we'll create their accounts — details in [Supporter tools](/how-to/supporter-tools/#how-do-i-activate-unsub).
+Unsub logins come with OpenAlex [institutional plans](/access/pricing/). Send the names and email addresses of up to 3 users at your institution (typically collections librarians) to [kyle@openalex.org](mailto:kyle@openalex.org) and we'll create their accounts — details in [Supporter tools](/how-to/supporter-tools/#unsub).
 
-## Where can I get help with Unsub?
+## Getting help
 
 The [documentation](https://docs.unsub.org/) and shared training videos cover most questions; we don't offer direct Unsub support beyond that. If you want consulting help with analyses and implementation, we recommend Eric Schares ([scharesdatascience@gmail.com](mailto:scharesdatascience@gmail.com)), an experienced Unsub super-user.

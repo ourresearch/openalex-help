@@ -9,7 +9,7 @@ card: "“The affiliations are wrong” is two different bugs — the fix depend
 
 ## How do I fix a wrong or missing institution match?
 
-**At a [member institution](/access/pricing/)?** Fix it yourself with the **Affiliation Editor**: it lists every raw affiliation string, and you link strings to your institution or unlink wrong matches — one at a time or thousands in bulk, live within about two days. ([How to activate it](/how-to/supporter-tools/#how-do-i-activate-the-affiliation-editor).)
+**At a [member institution](/access/pricing/)?** Fix it yourself with the **Affiliation Editor**: it lists every raw affiliation string, and you link strings to your institution or unlink wrong matches — one at a time or thousands in bulk, live within about two days. ([How to activate it](/how-to/supporter-tools/#affiliation-editor).)
 
 **Anyone** can report a one-off — a single work showing the wrong institution — by [filing a ticket](https://openalex.org/contact). Include the work's URL, the affiliation string, and the institution it should (or shouldn't) match.
 
@@ -25,6 +25,6 @@ Three causes, in the order to check them:
 2. **The ROR record is incomplete.** If your institution's [ROR record](https://ror.org/search) is missing aliases or key sub-units, matching suffers — suggest the change at ROR.
 3. **The metadata and ROR record are fine, and we just mismatched.** That's an affiliation correction: use the Affiliation Editor if you're at a member institution, or [file a ticket](https://openalex.org/contact) with specific example works.
 
-## Can an AI agent do this for me?
+## Using an AI agent
 
 Yes — affiliation curation is plain HTTP with your [API key](/api/authentication/), so an agent can run the whole find-candidates → submit-corrections → track loop for you. **Have your agent read the [AI curation guide](/access/fixing-errors/ai-curation-guide/) first** — it's the judgment rules that keep a bulk cleanup from causing new damage. Mechanics: [Using AI agents](/access/fixing-errors/affiliations/#using-ai-agents) in the reference.

@@ -94,8 +94,8 @@
 /hc/en-us/articles/41193798112151  /data/works/open-access/  301
 /hc/en-us/articles/41193838188439-What-does-is-paratext-mean-in-the-API  /data/work-types/  301
 /hc/en-us/articles/41193838188439  /data/work-types/  301
-/hc/en-us/articles/41193820448023-Link-Resolver-Integrations  /how-to/integrations/#how-do-link-resolver-integrations-work  301
-/hc/en-us/articles/41193820448023  /how-to/integrations/#how-do-link-resolver-integrations-work  301
+/hc/en-us/articles/41193820448023-Link-Resolver-Integrations  /how-to/integrations/#link-resolver-integrations  301
+/hc/en-us/articles/41193820448023  /how-to/integrations/#link-resolver-integrations  301
 /hc/en-us/articles/41193798060439-Unpaywall-Change-Notes  /access/unpaywall/  301
 /hc/en-us/articles/41193798060439  /access/unpaywall/  301
 /hc/en-us/articles/41193798040471-How-do-I-read-JSONL-files  /access/snapshot/#reading-the-jsonl-files  301
@@ -196,8 +196,8 @@
 /hc/en-us/articles/27502654374551  /how-to/finding-openalex-ids/#how-do-i-find-a-publishers-id  301
 /hc/en-us/articles/27283405287319-How-can-I-fix-errors-in-an-OpenAlex-author-profile  /how-to/fixing-authors/  301
 /hc/en-us/articles/27283405287319  /how-to/fixing-authors/  301
-/hc/en-us/articles/27282148869399-What-are-alternate-names-and-how-I-do-change-them  /how-to/fixing-authors/#what-are-alternate-names-and-how-do-i-change-them  301
-/hc/en-us/articles/27282148869399  /how-to/fixing-authors/#what-are-alternate-names-and-how-do-i-change-them  301
+/hc/en-us/articles/27282148869399-What-are-alternate-names-and-how-I-do-change-them  /how-to/fixing-authors/#alternate-names  301
+/hc/en-us/articles/27282148869399  /how-to/fixing-authors/#alternate-names  301
 /hc/en-us/articles/27281068027031-How-do-I-find-my-OpenAlex-author-ID  /how-to/finding-openalex-ids/#how-do-i-find-my-author-id  301
 /hc/en-us/articles/27281068027031  /how-to/finding-openalex-ids/#how-do-i-find-my-author-id  301
 /hc/en-us/articles/27255333459991-What-is-the-difference-between-topics-and-topic-share-in-OpenAlex-entities  /data/topics/  301
@@ -563,8 +563,8 @@
 /access/recommendation-for-irs-license-reporting/  /data/sources/repositories/#license-reporting  301
 /access/recommendation-for-irs-version-reporting  /data/sources/repositories/#version-reporting  301
 /access/recommendation-for-irs-version-reporting/  /data/sources/repositories/#version-reporting  301
-/access/link-resolver-integrations  /how-to/integrations/#how-do-link-resolver-integrations-work  301
-/access/link-resolver-integrations/  /how-to/integrations/#how-do-link-resolver-integrations-work  301
+/access/link-resolver-integrations  /how-to/integrations/#link-resolver-integrations  301
+/access/link-resolver-integrations/  /how-to/integrations/#link-resolver-integrations  301
 
 # Access-section reorg 2026-08-05: bulk-data retired (superseded by the Access
 # nav section); OQL cheatsheet merged into the OQL overview; OQL grammar merged
@@ -712,8 +712,8 @@
 /how-to/how-do-i-find-the-openalex-source-id/  /how-to/finding-openalex-ids/#how-do-i-find-a-sources-id  301
 /how-to/how-do-i-find-the-publisher-id-for-a-journals-host-organization  /how-to/finding-openalex-ids/#how-do-i-find-a-publishers-id  301
 /how-to/how-do-i-find-the-publisher-id-for-a-journals-host-organization/  /how-to/finding-openalex-ids/#how-do-i-find-a-publishers-id  301
-/how-to/what-are-alternate-names-and-how-i-do-change-them  /how-to/fixing-authors/#what-are-alternate-names-and-how-do-i-change-them  301
-/how-to/what-are-alternate-names-and-how-i-do-change-them/  /how-to/fixing-authors/#what-are-alternate-names-and-how-do-i-change-them  301
+/how-to/what-are-alternate-names-and-how-i-do-change-them  /how-to/fixing-authors/#alternate-names  301
+/how-to/what-are-alternate-names-and-how-i-do-change-them/  /how-to/fixing-authors/#alternate-names  301
 /how-to/why-is-the-date-field-wrong-and-how-can-i-fix-it  /how-to/fixing-data-errors/#why-is-the-date-wrong-and-how-do-i-fix-it  301
 /how-to/why-is-the-date-field-wrong-and-how-can-i-fix-it/  /how-to/fixing-data-errors/#why-is-the-date-wrong-and-how-do-i-fix-it  301
 /how-to/why-is-this-publication-labeled-as-closed-when-it-is-clearly-open-acce  /how-to/fixing-data-errors/#how-do-i-fix-a-works-open-access-status  301
@@ -744,16 +744,16 @@
 /how-to/export-results-from-the-openalex-website/  /how-to/integrations/#how-do-i-export-results-from-the-openalex-website  301
 /how-to/how-do-i-import-openalex-data-into-vosviewer  /how-to/integrations/#how-do-i-import-openalex-data-into-vosviewer  301
 /how-to/how-do-i-import-openalex-data-into-vosviewer/  /how-to/integrations/#how-do-i-import-openalex-data-into-vosviewer  301
-/how-to/link-resolver-integrations  /how-to/integrations/#how-do-link-resolver-integrations-work  301
-/how-to/link-resolver-integrations/  /how-to/integrations/#how-do-link-resolver-integrations-work  301
+/how-to/link-resolver-integrations  /how-to/integrations/#link-resolver-integrations  301
+/how-to/link-resolver-integrations/  /how-to/integrations/#link-resolver-integrations  301
 /how-to/why-does-the-unpaywall-plugin-say-this-paywalled-article-is-open-acces  /how-to/integrations/#why-does-the-unpaywall-extension-say-a-paywalled-article-is-open-access  301
 /how-to/why-does-the-unpaywall-plugin-say-this-paywalled-article-is-open-acces/  /how-to/integrations/#why-does-the-unpaywall-extension-say-a-paywalled-article-is-open-access  301
-/how-to/activate-your-admin-dashboard  /how-to/supporter-tools/#how-do-i-activate-the-admin-dashboard  301
-/how-to/activate-your-admin-dashboard/  /how-to/supporter-tools/#how-do-i-activate-the-admin-dashboard  301
-/how-to/activate-the-affiliation-editor  /how-to/supporter-tools/#how-do-i-activate-the-affiliation-editor  301
-/how-to/activate-the-affiliation-editor/  /how-to/supporter-tools/#how-do-i-activate-the-affiliation-editor  301
-/how-to/activate-unsub  /how-to/supporter-tools/#how-do-i-activate-unsub  301
-/how-to/activate-unsub/  /how-to/supporter-tools/#how-do-i-activate-unsub  301
+/how-to/activate-your-admin-dashboard  /how-to/supporter-tools/#admin-dashboard  301
+/how-to/activate-your-admin-dashboard/  /how-to/supporter-tools/#admin-dashboard  301
+/how-to/activate-the-affiliation-editor  /how-to/supporter-tools/#affiliation-editor  301
+/how-to/activate-the-affiliation-editor/  /how-to/supporter-tools/#affiliation-editor  301
+/how-to/activate-unsub  /how-to/supporter-tools/#unsub  301
+/how-to/activate-unsub/  /how-to/supporter-tools/#unsub  301
 # Pass AR (oxjob #750): Searching & counting split into two pages; the
 # author-profile page renamed for parallelism with the other Fixing pages.
 # Pass AT (oxjob #750): the tab-overview articles merged into their landings.

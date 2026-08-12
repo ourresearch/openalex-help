@@ -27,11 +27,11 @@ If your works are spread across two profiles and you've claimed one: add the oth
 
 Remove them. The disambiguation algorithm re-homes removed works to the right profile — that part isn't your problem.
 
-## What are alternate names, and how do I change them?
+## Alternate names
 
 The alternate names on a profile are the name variants that appear on its linked publications — "K Demes", "Kyle W. Demes", "Kyle Demes". They're derived from the works, so they update automatically when you fix which works belong to you. If a name variant on your profile simply isn't you, remove that name directly — doing so detaches every work carrying it.
 
-## Can an AI agent do this for me?
+## Using an AI agent
 
 Yes — the curation API authenticates with just your [API key](/api/authentication/), so you can hand an agent your CV and author ID and let it do the whole cleanup. See [Using AI agents](/access/fixing-errors/authors/#using-ai-agents) for a ready-made prompt and [Author Curation](/api/author-curation/) for the mechanics.
 

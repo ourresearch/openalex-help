@@ -18,7 +18,7 @@ Full ticket-based support from our team, for all issues — API and data alike.
 
 ## For academic & government institutions
 
-On top of the academic/government benefits every plan carries (the [affiliation editor](/how-to/supporter-tools/#how-do-i-activate-the-affiliation-editor) and [Unsub access](/how-to/supporter-tools/#how-do-i-activate-unsub)), Partner adds:
+On top of the academic/government benefits every plan carries (the [affiliation editor](/how-to/supporter-tools/#affiliation-editor) and [Unsub access](/how-to/supporter-tools/#unsub)), Partner adds:
 
 ### 3 power-user accounts
 
@@ -30,7 +30,7 @@ Five hours of expert advice, training, and exploration from our team, customized
 
 ## Also included (from Member and Member+)
 
-A [daily-sync](/access/sync/) pipeline for your own copy of the database, the [admin dashboard](/how-to/supporter-tools/#how-do-i-activate-the-admin-dashboard), and [community representation](/how-to/getting-involved/#supporter-roundtables). See [Member](/access/member/) and [Member+](/access/member-plus/) for details.
+A [daily-sync](/access/sync/) pipeline for your own copy of the database, the [admin dashboard](/how-to/supporter-tools/#admin-dashboard), and [community representation](/how-to/getting-involved/#supporter-roundtables). See [Member](/access/member/) and [Member+](/access/member-plus/) for details.
 
 ## Add-ons
 

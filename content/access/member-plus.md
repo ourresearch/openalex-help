@@ -22,7 +22,7 @@ Ticket-based help from our team for critical API bugs that have a clear resoluti
 
 ## Also included (from Member)
 
-The [admin dashboard](/how-to/supporter-tools/#how-do-i-activate-the-admin-dashboard), [community representation](/how-to/getting-involved/#supporter-roundtables), and — for academic and government institutions — the [affiliation editor](/how-to/supporter-tools/#how-do-i-activate-the-affiliation-editor) and [Unsub access](/how-to/supporter-tools/#how-do-i-activate-unsub). See the [Member page](/access/member/) for details on each.
+The [admin dashboard](/how-to/supporter-tools/#admin-dashboard), [community representation](/how-to/getting-involved/#supporter-roundtables), and — for academic and government institutions — the [affiliation editor](/how-to/supporter-tools/#affiliation-editor) and [Unsub access](/how-to/supporter-tools/#unsub). See the [Member page](/access/member/) for details on each.
 
 ## Add-ons and upgrades
 

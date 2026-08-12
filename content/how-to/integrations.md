@@ -27,7 +27,7 @@ The system prepares the file and gives you a download link — large result sets
 
 Note that VOSviewer supports up to 50,000 records per analysis, so you may need to narrow your query with extra filters.
 
-## How do link-resolver integrations work?
+## Link-resolver integrations
 
 Several link resolvers — SFX, EBSCO Discovery Service, 360 Link — use Unpaywall (OpenAlex's legacy-format API surface, same underlying data) to route users to open-access copies: **OA copies → Unpaywall data → link resolver → your users**. They use one of two free services: a redirect service (`unpaywall.org/<DOI>` sends you to the best OA location, or the publisher page if there isn't one) and the [Unpaywall REST API](/access/unpaywall/), which returns the best OA location as metadata instead of redirecting.
 

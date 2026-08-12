@@ -32,6 +32,6 @@ Wrong metadata on a journal, a missing journal, a source's OA classification —
 
 Date metadata is genuinely messy — a paper can have a DOI-mint date, an acceptance date, a publication date, and an issue date, and preprints can precede the journal version by years. OpenAlex consistently uses the **earliest** date available on the record, which occasionally looks wrong even when it's working as designed. We don't support user curation of dates. If the underlying metadata is wrong, check [Crossref](https://search.crossref.org/) first — fixes there flow into OpenAlex automatically. If you believe the error is on our end, [file a ticket](https://openalex.org/contact).
 
-## What about missing works?
+## Missing works
 
 If *your institution* seems to be missing works, that's usually an affiliation-matching question — see [the checklist](/how-to/fixing-affiliations/#i-think-my-institution-is-missing-works-what-do-i-check). If a specific work is missing from OpenAlex entirely, file a ticket with its DOI; if it's a whole journal or repository that's missing, see [Getting indexed](/how-to/getting-indexed/).

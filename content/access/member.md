@@ -14,7 +14,7 @@ Every day, your organization gets $20 of API usage — 20× the free tier, worth
 
 ### Admin dashboard
 
-Manage your organization's users and billing in one place. [How to activate →](/how-to/supporter-tools/#how-do-i-activate-the-admin-dashboard)
+Manage your organization's users and billing in one place. [How to activate →](/how-to/supporter-tools/#admin-dashboard)
 
 ### Community representation
 
@@ -30,11 +30,11 @@ Academic and government subscribers get two additional benefits on every plan ti
 
 ### Affiliation editor
 
-Curate how OpenAlex matches author affiliation statements to your institution — fixing your institution's profile at the source. [How to activate →](/how-to/supporter-tools/#how-do-i-activate-the-affiliation-editor)
+Curate how OpenAlex matches author affiliation statements to your institution — fixing your institution's profile at the source. [How to activate →](/how-to/supporter-tools/#affiliation-editor)
 
 ### Unsub access
 
-A free subscription to [Unsub](https://unsub.org/), our tool for forecasting and supporting toll-access journal cancellations, used by hundreds of libraries worldwide. [How to activate →](/how-to/supporter-tools/#how-do-i-activate-unsub)
+A free subscription to [Unsub](https://unsub.org/), our tool for forecasting and supporting toll-access journal cancellations, used by hundreds of libraries worldwide. [How to activate →](/how-to/supporter-tools/#unsub)
 
 ## Add-ons and upgrades
 
