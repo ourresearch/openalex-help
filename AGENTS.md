@@ -79,10 +79,11 @@ Rules that matter when touching header/nav:
   tooltip paints UNDER the sidebar no matter its own z-index.
 - **Widths:** `--rail-w` 5rem (= `--primary-w`, reserved by Base's `.layout`
   grid on every page); `--sidebar-w` 15rem for the secondary Sidebar.
-- **`--nav-h` is a single top-bar row** (`--navrow-h`): lockup (+ "Help ›
-  ⟨Tab⟩" crumb via `.logo-tab`) left, **search pill top-right** (300px
-  ≥720px). The lockup is composed live (tricon + Inter text): Home shows
-  "OpenAlex Help"; every other page shows "Help › ⟨section⟩".
+- **`--nav-h` is a single top-bar row** (`--navrow-h`): STATIC lockup left,
+  **search pill top-right** (300px ≥720px). The lockup is composed live
+  (tricon + Inter text) and reads "OpenAlex Help" on EVERY page (Pass AV —
+  the "Help › ⟨Tab⟩" crumb and the Home-only "OpenAlex" are gone; Jason: too
+  cute).
 - **Two breakpoints**, both at 900px: the rail hides (`RailNav.astro`) and the
   `.layout` grid collapses to one column (`Base.astro`), where the top-bar
   hamburger menu takes over (same PRIMARY_TABS; no chat group).
@@ -97,8 +98,16 @@ Rules that matter when touching header/nav:
   extinct sitewide (Pass AR). **Data + API have NO separate overview article**
   (Pass AT): `TAB_OVERVIEW_SLUGS` in `tabs.ts` renders `data/overview.md` /
   `api/introduction.md` ON the landing (article route + drawer row excluded;
-  `.md` twin at `/data.md` / `/api.md`; llms.txt links the landing). The data
-  landing shows NO auto-ToC (its article's entity list covers it).
+  `.md` twin at `/data.md` / `/api.md`; llms.txt links the landing). These
+  landings DO carry the right-rail "On this page" TOC from their overview's
+  H2s (Pass AV — supersedes Pass AT's no-ToC note).
+- **Column alignment contract (Pass AV):** DocsShell's `.content` top padding
+  (1.5rem) equals the Sidebar's top padding, and the rail's `.rail-head`
+  ("On this page", both article + landing templates) mirrors PageHeader's
+  `.crumb-slot` height (1.66rem, flex-centered) — so the breadcrumbs, the
+  sidebar's first row, and the rail label all sit on one line. The `.rail`
+  sticky top is `calc(var(--nav-h) + 1.5rem)` to match. Change any of these
+  metrics in ALL places together.
 
 ## Content: `content/` is canonical
 

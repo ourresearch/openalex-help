@@ -9,14 +9,14 @@ Here's the key idea that ties them together: **every one of these surfaces trans
 
 ## The ways to query, compared
 
-| Way | What it is | Best for | Tradeoffs |
-|---|---|---|---|
-| **Web (basic)** | Point-and-click search and filters at [openalex.org](https://openalex.org) | Non-technical users; quick one-off questions; browsing and exporting | Easiest to learn; a friendly subset — not every query shape is expressible |
-| **Web (advanced)** | The visual query builder at [openalex.org](https://openalex.org) | Complex filters without writing code; systematic reviews | More expressive than basic; covers the common shapes, not every valid query |
-| **REST URL** | `filter=`/`search=`/`sort=`/`group_by=` params on `api.openalex.org` | Programmatic access; scripts; sharing a query as a link | Fast and well-documented; classic URL syntax can't express deep nesting or cross-field OR |
-| **OQL** | The readable [OpenAlex Query Language](/access/oql/) | Writing and sharing complex queries in near-plain English | Most expressive by hand; a new syntax to learn |
-| **CLI** | Query from your terminal and pipe results into scripts | Terminal workflows; automation; feeding your own tools | Scriptable and composable; requires the command line |
-| **Agents** | Just tell your AI agent to "use OpenAlex" | Letting an agent do the whole job for you | No syntax to learn; best to verify consequential results yourself |
+| Way | Best for | Tradeoffs |
+|---|---|---|
+| [**Web (basic)**](/access/website-basic/): point-and-click search and filters on the OpenAlex website | Non-technical users; quick one-off questions; browsing and exporting | Easiest to learn; a friendly subset — not every query shape is expressible |
+| [**Web (advanced)**](/access/website-advanced/): the visual query builder | Complex filters without writing code; systematic reviews | More expressive than basic; covers the common shapes, not every valid query |
+| [**URL**](/access/url/): traditional REST API parameters | Programmatic access; scripts; sharing a query as a link | Fast and well-documented; classic URL syntax can't express deep nesting or cross-field OR |
+| [**OQL**](/access/oql/): the OpenAlex Query Language | Modeling complex queries — and sharing them in a form people can actually read | Most expressive by hand; a new syntax to learn |
+| [**CLI**](/access/cli/): query from your terminal | Terminal workflows; automation; feeding your own tools | Scriptable and composable; requires the command line |
+| [**Agents**](/access/agents/): tell your AI agent to use OpenAlex | Letting an agent do the whole job for you | No syntax to learn; best to verify consequential results yourself |
 
 ## Where to go next
 

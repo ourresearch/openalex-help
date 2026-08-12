@@ -41,7 +41,10 @@ const { title, description, tab, groups, activeSlug } = Astro.props;
     min-height: calc(100dvh - var(--nav-h));
   }
   .content {
-    padding: 2.5rem 2rem 5rem;
+    /* Top padding matches the Sidebar's 1.5rem (Pass AV): the breadcrumb row,
+       the sidebar's first item, and the rail's "On this page" label sit on
+       the same line. Change any of the three together. */
+    padding: 1.5rem 2rem 5rem;
     min-width: 0;
   }
   .columns {

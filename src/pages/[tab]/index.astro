@@ -20,7 +20,11 @@ const groups = groupEntries(tab, entries.filter((e) => e.id !== TAB_OVERVIEW_SLU
 // page, no ghost article): data + api render their overview article's content
 // right here on the landing.
 const overviewEntry = entries.find((e) => e.id === TAB_OVERVIEW_SLUGS[tab]);
-const OverviewContent = overviewEntry ? (await render(overviewEntry)).Content : undefined;
+const overviewRendered = overviewEntry ? await render(overviewEntry) : undefined;
+const OverviewContent = overviewRendered?.Content;
+// Right-rail "On this page" for merged-overview landings (Pass AV — Jason:
+// the data/api overviews were missing the page director).
+const toc = (overviewRendered?.headings ?? []).filter((h) => h.depth === 2);
 
 // Ledes come from nav-primary.ts (`desc`).
 const meta: Record<Tab, { label: string; h1: string; lede: string }> = {
@@ -150,6 +154,19 @@ const organizer: Record<Tab, string> = {
       </div>
     )}
   </article>
+
+  <div class="rail" slot="rail">
+    {toc.length > 1 && (
+      <Fragment>
+        <div class="rail-head">On this page</div>
+        <nav class="toc" aria-label="On this page">
+          {toc.map((h) => (
+            <a href={`#${h.slug}`}>{h.text}</a>
+          ))}
+        </nav>
+      </Fragment>
+    )}
+  </div>
 </DocsShell>
 
 <style>
@@ -157,6 +174,37 @@ const organizer: Record<Tab, string> = {
      the column at 46rem; drop the inner prose cap so this matches articles. */
   article.prose {
     max-width: none;
+  }
+
+  /* Right rail (Pass AV): same geometry as article pages — sticky at the
+     shell's 1.5rem top padding; "On this page" slot mirrors the crumb-slot
+     height so all three columns' first lines align. */
+  .rail {
+    position: sticky;
+    top: calc(var(--nav-h) + 1.5rem);
+  }
+  .rail-head {
+    height: 1.66rem;
+    display: flex;
+    align-items: center;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--faint);
+    margin-bottom: 0.45rem;
+  }
+  .toc {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+  .toc a {
+    color: var(--muted);
+  }
+  .toc a:hover {
+    color: var(--ink);
+    text-decoration: none;
   }
 
   /* Reference tabs: homepage-style section paragraphs (bold linked lead +

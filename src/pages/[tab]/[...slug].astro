@@ -85,11 +85,14 @@ const eyebrow = crumbs.map((c) => c.label).join(' › ');
 
   <div class="rail" slot="rail">
     {toc.length > 1 && (
-      <nav class="toc" aria-label="On this page">
-        {toc.map((h) => (
-          <a href={`#${h.slug}`}>{h.text}</a>
-        ))}
-      </nav>
+      <Fragment>
+        <div class="rail-head">On this page</div>
+        <nav class="toc" aria-label="On this page">
+          {toc.map((h) => (
+            <a href={`#${h.slug}`}>{h.text}</a>
+          ))}
+        </nav>
+      </Fragment>
     )}
   </div>
 </DocsShell>
@@ -120,7 +123,21 @@ const eyebrow = crumbs.map((c) => c.label).join(' › ');
   }
   .rail {
     position: sticky;
-    top: calc(var(--nav-h) + 2.5rem);
+    top: calc(var(--nav-h) + 1.5rem); /* = DocsShell .content top padding */
+  }
+  /* "On this page" (Pass AV): low-key label above the TOC. Its slot height
+     mirrors PageHeader's .crumb-slot (1.66rem, centered) so the label sits on
+     the same line as the breadcrumbs and the sidebar's first item. */
+  .rail-head {
+    height: 1.66rem;
+    display: flex;
+    align-items: center;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--faint);
+    margin-bottom: 0.45rem;
   }
   .toc {
     display: flex;

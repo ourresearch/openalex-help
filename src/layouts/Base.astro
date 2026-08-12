@@ -19,11 +19,8 @@ const path = Astro.url.pathname;
 // on every page; inside a tab that tab's sections render in the secondary
 // Sidebar.
 // The lockup is composed live (Pass AQ): tricon + Inter text, no image
-// wordmark. On Home it reads "OpenAlex Help"; on every other page the
-// "OpenAlex" drops and the current section extends it instead —
-// "Help › <Tab>" — including Quickstart.
-const isHome = path === '/';
-const activeTab = PRIMARY_TABS.find((t) => t.href !== '/' && path.startsWith(t.href));
+// wordmark. It is STATIC — "OpenAlex Help" on every page (Pass AV; the
+// Help › <Tab> crumb and the Home-only "OpenAlex" are gone).
 // The top-bar search pill shows on every page, including Home (Pass AP — the
 // homepage's own hero search box is gone; its Search paragraph triggers the
 // same dialog).
@@ -49,19 +46,13 @@ const reference = PRIMARY_TABS.filter((t) => t.group === 'reference');
   <body>
     <header>
       <div class="topbar">
+        {/* Static lockup on every page (Pass AV — Jason: no app-bar
+            breadcrumbs, no disappearing "OpenAlex"; too cute). */}
         <a href="/" class="logo" aria-label="OpenAlex Help home">
           <img src="/favicon.svg" alt="" height="22" />
-          {isHome && <span class="logo-name">OpenAlex</span>}
+          <span class="logo-name">OpenAlex</span>
           <span class="logo-help">Help</span>
         </a>
-        {/* "Help › <Tab>" (Pass AO/AQ): the current section extends the
-            lockup — the secondary drawer holds only navigation now. */}
-        {activeTab && (
-          <span class="logo-tab">
-            <svg class="logo-tab-sep" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6" /></svg>
-            <a href={activeTab.href}>{activeTab.label}</a>
-          </span>
-        )}
         <div class="nav-right">
           <Search />
           <button class="menu-toggle" aria-label="Menu" aria-expanded="false" aria-controls="mobile-menu">
@@ -181,30 +172,6 @@ const reference = PRIMARY_TABS.filter((t) => t.group === 'reference');
         transform: translateY(-1px);
       }
       .logo:hover {
-        text-decoration: none;
-      }
-      /* The current tab extends the lockup: same optical size as the "Help"
-         suffix, faint chevron separator. */
-      .logo-tab {
-        display: flex;
-        align-items: center;
-        gap: 0.35rem;
-        line-height: 1;
-      }
-      .logo-tab-sep {
-        flex: none;
-        color: var(--faint);
-      }
-      .logo-tab a {
-        display: inline-block; /* transform needs a box */
-        font-size: 21px;
-        font-weight: 400;
-        letter-spacing: -0.02em;
-        color: var(--ink);
-        transform: translateY(-1px); /* match .logo-help's optical baseline */
-      }
-      .logo-tab a:hover {
-        color: var(--accent);
         text-decoration: none;
       }
       .nav-right {
