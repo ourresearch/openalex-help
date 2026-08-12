@@ -8,9 +8,9 @@
 // Access · Data · API · … · App pinned at the bottom. The Chat surfaces left
 // the rail entirely (Pass AS) — they live in the homepage Chat paragraph now.
 //
-// Selected tab: a blue pill highlights the ICON (accent wash + accent glyph,
-// matching the secondary drawer's blue selected row). Hovering any item shows
-// the popover tooltip (bold name + few-word description from nav-primary.ts).
+// Selected tab: a solid-ink rounded rect highlights the ICON (white glyph,
+// black label — Pass AS.3). Hovering any item shows the popover tooltip
+// (bold name + few-word description from nav-primary.ts).
 import Icon from './Icon.astro';
 import { PRIMARY_TABS, APP_LINK, isPrimaryActive } from '../lib/nav-primary';
 
@@ -153,7 +153,7 @@ const active = (href: string) => (isPrimaryActive(href, path) ? 'page' : undefin
     justify-content: center;
     width: 3.25rem;
     height: 1.9rem;
-    border-radius: 999px;
+    border-radius: 8px; /* rounded rect, not a full pill (Jason, Pass AS.3) */
     color: var(--muted);
     transition: background-color 0.12s;
   }
@@ -173,14 +173,14 @@ const active = (href: string) => (isPrimaryActive(href, path) ? 'page' : undefin
   .item:hover .label {
     color: var(--accent);
   }
-  /* Selected tab: SOLID blue pill, white glyph (Jason — the wash read as
-     half-opaque). Label below stays accent. */
+  /* Selected tab: solid BLACK rounded rect, white glyph, black label
+     (Jason, Pass AS.3 — no more blue in the rail selection). */
   .item[aria-current='page'] .pill {
-    background: var(--accent);
+    background: var(--ink);
     color: #fff;
   }
   .item[aria-current='page'] .label {
-    color: var(--accent);
+    color: var(--ink);
     font-weight: 600;
   }
 

@@ -110,6 +110,7 @@ const path = Astro.url.pathname;
 
 <style>
   aside {
+    background: #fafafa; /* super-light grey drawer ground (Jason, Pass AS.3) */
     border-right: 1px solid var(--line);
   }
   nav {
@@ -160,16 +161,16 @@ const path = Astro.url.pathname;
     color: var(--accent);
     text-decoration: none;
   }
-  /* Selected page: blue wash + blue text (Pass AO — the white-on-ink here
-     read too heavy next to the rail's black square). No chevron marker (Pass
-     AR cut it — it collided with the subgroup expand/collapse chevrons). */
+  /* Selected page: grey indicator on the grey drawer ground (Jason, Pass
+     AS.3 — no more blue). No chevron marker (Pass AR cut it — it collided
+     with the subgroup expand/collapse chevrons). */
   a[aria-current='page'] {
-    background: var(--accent-wash);
-    color: var(--accent);
+    background: var(--line);
+    color: var(--ink);
     font-weight: 550;
   }
   a[aria-current='page']:hover {
-    color: var(--accent);
+    color: var(--ink);
   }
   summary {
     display: flex;
