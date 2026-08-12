@@ -26,7 +26,7 @@ A work's primary field is the field of its [`primary_topic`](/data/works/attribu
 This is the canonical dictionary of every attribute on a **field** object. (Confusingly, "field" is both the entity and the generic word for an object's properties; the properties are dictionaried below.) Attributes shared with other entities ([`id`](/data/common-attributes/#id), [`ids`](/data/common-attributes/#ids), [`display_name`](/data/common-attributes/#display_name), [`works_count`](/data/common-attributes/#works_count), [`cited_by_count`](/data/common-attributes/#cited_by_count), [`created_date`](/data/common-attributes/#created_date), [`updated_date`](/data/common-attributes/#updated_date)) are documented once on [Common attributes](/data/common-attributes/); field-specific notes are below.
 
 ### `id`
-*String.* The [OpenAlex ID](/data/overview/#the-openalex-id-scheme) for this field, e.g. `https://openalex.org/fields/27`. Fields use a bare numeric ID (two digits, 11–36), not the letter-prefixed scheme. See [Common attributes](/data/common-attributes/#id).
+*String.* The [OpenAlex ID](/data/#the-openalex-id-scheme) for this field, e.g. `https://openalex.org/fields/27`. Fields use a bare numeric ID (two digits, 11–36), not the letter-prefixed scheme. See [Common attributes](/data/common-attributes/#id).
 
 ### `ids`
 *Object.* External identifiers for this field, as URIs: `openalex`, plus `wikidata` and `wikipedia` where a matching article exists.

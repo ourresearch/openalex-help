@@ -8,7 +8,7 @@ A handful of attributes appear on nearly every OpenAlex entity. They mean the sa
 ## Identity
 
 ### `id`
-*String.* The canonical [OpenAlex ID](/data/overview/#the-openalex-id-scheme) for this entity, as a URL, e.g. `https://openalex.org/A5023888391`. Stable; if the entity is later [merged](/data/overview/#merged-entities) into another, this ID permanently redirects to the survivor.
+*String.* The canonical [OpenAlex ID](/data/#the-openalex-id-scheme) for this entity, as a URL, e.g. `https://openalex.org/A5023888391`. Stable; if the entity is later [merged](/data/#merged-entities) into another, this ID permanently redirects to the survivor.
 
 ### `ids`
 *Object.* All known identifiers for this entity, expressed as URIs where possible, keyed by namespace — always `openalex`, plus whichever external IDs apply to the entity type (`doi`, `orcid`, `ror`, `issn_l`, `wikidata`, `mag`, …). Keys with no known value are omitted.

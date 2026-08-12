@@ -74,7 +74,7 @@ export const PRIMARY_TABS: PrimaryTab[] = [
     href: '/api/',
     icon: 'cog-outline',
     group: 'reference',
-    desc: 'A fast, modern REST API for all of OpenAlex — plus OQL for more expressive queries. Free to start, no key required.',
+    desc: 'Query all of OpenAlex over HTTP — free to start, no key required.',
     tip: 'Automated access',
   },
 ];

@@ -41,7 +41,7 @@ Because funders are inferred and matched, they can be wrong: a funder mentioned 
 This is the canonical dictionary of every attribute on a **funder** object. Attributes shared with other entities ([`id`](/data/common-attributes/#id), [`ids`](/data/common-attributes/#ids), [`display_name`](/data/common-attributes/#display_name), [`works_count`](/data/common-attributes/#works_count), [`cited_by_count`](/data/common-attributes/#cited_by_count), [`summary_stats`](/data/common-attributes/#summary_stats), [`counts_by_year`](/data/common-attributes/#counts_by_year), [`created_date`](/data/common-attributes/#created_date), [`updated_date`](/data/common-attributes/#updated_date)) are documented once on [Common attributes](/data/common-attributes/); funder-specific notes are below.
 
 ### `id`
-*String.* The [OpenAlex ID](/data/overview/#the-openalex-id-scheme) for this funder, e.g. `https://openalex.org/F4320332161`. See [Common attributes](/data/common-attributes/#id).
+*String.* The [OpenAlex ID](/data/#the-openalex-id-scheme) for this funder, e.g. `https://openalex.org/F4320332161`. See [Common attributes](/data/common-attributes/#id).
 
 ### `ids`
 *Object.* All known external identifiers for this funder, as URIs or bare values. Funder keys: `openalex`, `ror`, `wikidata`, `crossref` (the [Crossref funder registry](https://www.crossref.org/services/funder-registry/) ID), and `doi` (the Funder DOI). See [Common attributes](/data/common-attributes/#ids).

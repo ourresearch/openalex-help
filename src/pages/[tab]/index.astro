@@ -1,7 +1,8 @@
 ---
+import { render } from 'astro:content';
 import DocsShell from '../../layouts/DocsShell.astro';
 import PageHeader from '../../components/PageHeader.astro';
-import { TABS, allEntries, urlFor, type Tab } from '../../lib/tabs';
+import { TABS, allEntries, urlFor, TAB_OVERVIEW_SLUGS, type Tab } from '../../lib/tabs';
 import { groupEntries, landingCrumbs, type ResolvedGroup } from '../../lib/nav';
 import { tabDesc } from '../../lib/nav-primary';
 
@@ -11,7 +12,15 @@ export async function getStaticPaths() {
 
 const tab = Astro.params.tab as Tab;
 const entries = (await allEntries()).filter((e) => e.tab === tab).map((e) => e.entry);
-const groups = groupEntries(tab, entries);
+// The merged overview entry renders on this page (below); keep it out of the
+// drawer grouping or it lands in the warning "More" bucket.
+const groups = groupEntries(tab, entries.filter((e) => e.id !== TAB_OVERVIEW_SLUGS[tab]));
+
+// Merged tab overview (Pass AT — Jason: the overview and the ToC are ONE
+// page, no ghost article): data + api render their overview article's content
+// right here on the landing.
+const overviewEntry = entries.find((e) => e.id === TAB_OVERVIEW_SLUGS[tab]);
+const OverviewContent = overviewEntry ? (await render(overviewEntry)).Content : undefined;
 
 // Ledes come from nav-primary.ts (`desc`).
 const meta: Record<Tab, { label: string; h1: string; lede: string }> = {
@@ -90,23 +99,7 @@ const organizer: Record<Tab, string> = {
   <article class="prose" data-pagefind-body data-pagefind-meta={`eyebrow:${meta[tab].label}`}>
     <PageHeader title={meta[tab].h1} lede={meta[tab].lede} crumbs={landingCrumbs(tab)} />
 
-    {tab === 'data' && (
-      <Fragment>
-        <p>
-          OpenAlex data is laid out as a <strong>graph</strong>: about twenty types of connected
-          entities. <a href="/data/works/">Works</a> — papers, books, datasets — sit at the
-          center, linked to the <a href="/data/authors/">authors</a> who wrote them, the{' '}
-          <a href="/data/sources/">sources</a> that published them, the{' '}
-          <a href="/data/institutions/">institutions</a> those authors belong to, the{' '}
-          <a href="/data/topics/">topics</a> they're about, and more.
-        </p>
-        <p>
-          This reference is organized by entity. Each page explains what one entity type is,
-          where its records come from — including the judgment calls we make — and what every
-          attribute on it means.
-        </p>
-      </Fragment>
-    )}
+    {OverviewContent && <OverviewContent />}
 
     {tab === 'how-to' && (
       <p>
@@ -125,11 +118,11 @@ const organizer: Record<Tab, string> = {
       </p>
     )}
 
-    <p>{organizer[tab]}</p>
+    {tab !== 'data' && <p>{organizer[tab]}</p>}
 
     {/* data-pagefind-ignore on the index: label+blurb text runs together in
         search snippets, and every row's page is indexed on its own. */}
-    {isTaskIndex ? (
+    {tab === 'data' ? null : isTaskIndex ? (
       <div class="accordion" data-pagefind-ignore>
         {accordionGroups.map((g) => (
           <details id={g.id}>

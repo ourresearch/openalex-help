@@ -63,5 +63,5 @@ For any new integration, use an OpenAlex-native sync method instead — they cov
 ## Related pages
 
 - [Open Access](/data/works/open-access/) — how OpenAlex determines OA status, the taxonomy behind `oa_status`
-- [API security](/api/introduction/#security) — displaying metadata text safely
+- [API security](/api/#security) — displaying metadata text safely
 - [Sync](/access/sync/#keeping-in-sync-with-openalex) — the OpenAlex-native ways to stay in sync

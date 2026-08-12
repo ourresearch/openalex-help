@@ -1,5 +1,5 @@
 import type { APIRoute } from 'astro';
-import { TABS, allEntries, mdUrlFor, urlFor } from '../lib/tabs';
+import { TABS, allEntries, mdUrlFor, urlFor, TAB_OVERVIEW_SLUGS } from '../lib/tabs';
 
 // Root llms.txt: one unified index across all five tabs (the Cursor pattern).
 // Each line links the canonical page plus its raw-markdown sibling route.
@@ -13,12 +13,17 @@ export const GET: APIRoute = async ({ site }) => {
   const sections = TABS.map((tab) => {
     const rows = entries
       .filter((e) => e.tab === tab)
-      .map(
-        ({ tab, entry }) =>
-          `- [${entry.data.title}](${base}${urlFor(tab, entry)})` +
+      .map(({ tab, entry }) => {
+        // Merged tab overviews (Pass AT) live ON the landing, twin at /<tab>.md.
+        const merged = TAB_OVERVIEW_SLUGS[tab] === entry.id;
+        const url = merged ? `/${tab}/` : urlFor(tab, entry);
+        const md = merged ? `/${tab}.md` : mdUrlFor(tab, entry);
+        return (
+          `- [${entry.data.title}](${base}${url})` +
           (entry.data.description ? `: ${entry.data.description}` : '') +
-          ` ([markdown](${base}${mdUrlFor(tab, entry)}))`,
-      );
+          ` ([markdown](${base}${md}))`
+        );
+      });
     return `## ${labels[tab]}\n\n${rows.join('\n')}`;
   });
 

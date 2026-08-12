@@ -157,8 +157,10 @@ const path = Astro.url.pathname;
     border-radius: 6px;
     line-height: 1.4; /* 21px at 15px, cursor-measured */
   }
+  /* Hover: grey, not blue (Jason, Pass AS.3). */
   a:hover {
-    color: var(--accent);
+    background: var(--panel-strong);
+    color: var(--ink);
     text-decoration: none;
   }
   /* Selected page: grey indicator on the grey drawer ground (Jason, Pass
@@ -190,7 +192,8 @@ const path = Astro.url.pathname;
     display: none;
   }
   summary:hover {
-    color: var(--accent);
+    background: var(--panel-strong);
+    color: var(--ink);
   }
   .chev {
     flex: none;

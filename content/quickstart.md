@@ -37,7 +37,7 @@ To go past casual use, you'll want a **free API key**: it raises your daily budg
 curl "https://api.openalex.org/works?search=microplastics&api_key=YOUR_API_KEY"
 ```
 
-From here, see the [API Overview](/api/introduction/), [Authentication](/api/authentication/), and the [Querying](/api/filtering/) reference.
+From here, see the [API Overview](/api/), [Authentication](/api/authentication/), and the [Querying](/api/filtering/) reference.
 
 ## 3. Or just ask your agent
 

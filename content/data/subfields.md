@@ -26,7 +26,7 @@ A work's primary subfield is the subfield of its [`primary_topic`](/data/works/a
 This is the canonical dictionary of every attribute on a **subfield** object. Attributes shared with other entities ([`id`](/data/common-attributes/#id), [`ids`](/data/common-attributes/#ids), [`display_name`](/data/common-attributes/#display_name), [`works_count`](/data/common-attributes/#works_count), [`cited_by_count`](/data/common-attributes/#cited_by_count), [`created_date`](/data/common-attributes/#created_date), [`updated_date`](/data/common-attributes/#updated_date)) are documented once on [Common attributes](/data/common-attributes/); subfield-specific notes are below.
 
 ### `id`
-*String.* The [OpenAlex ID](/data/overview/#the-openalex-id-scheme) for this subfield, e.g. `https://openalex.org/subfields/2718`. Subfields use a bare numeric ID (four digits), not the letter-prefixed scheme. See [Common attributes](/data/common-attributes/#id).
+*String.* The [OpenAlex ID](/data/#the-openalex-id-scheme) for this subfield, e.g. `https://openalex.org/subfields/2718`. Subfields use a bare numeric ID (four digits), not the letter-prefixed scheme. See [Common attributes](/data/common-attributes/#id).
 
 ### `ids`
 *Object.* External identifiers for this subfield, as URIs: `openalex`, plus `wikidata` and `wikipedia` where a matching article exists.

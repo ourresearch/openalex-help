@@ -94,7 +94,11 @@ Rules that matter when touching header/nav:
 - **Landings:** reference tabs render section PARAGRAPHS (bold linked lead +
   1–2 line desc); task tabs (How-to/Tutorials) render an ACCORDION (rows =
   "Page name: description" from `card`→`subtitle`→`description`). Cards are
-  extinct sitewide (Pass AR).
+  extinct sitewide (Pass AR). **Data + API have NO separate overview article**
+  (Pass AT): `TAB_OVERVIEW_SLUGS` in `tabs.ts` renders `data/overview.md` /
+  `api/introduction.md` ON the landing (article route + drawer row excluded;
+  `.md` twin at `/data.md` / `/api.md`; llms.txt links the landing). The data
+  landing shows NO auto-ToC (its article's entity list covers it).
 
 ## Content: `content/` is canonical
 

@@ -26,7 +26,7 @@ This scheme was retired because it was hard to maintain and its accuracy was une
 This is the canonical dictionary of every attribute on a **concept** object. Attributes shared with other entities are documented once on [Common attributes](/data/common-attributes/); concept-specific notes are below. As noted above, several fields are no longer maintained and may come back empty.
 
 ### `id`
-*String.* The [OpenAlex ID](/data/overview/#the-openalex-id-scheme) for this concept, e.g. `https://openalex.org/C41008148`. See [Common attributes](/data/common-attributes/#id).
+*String.* The [OpenAlex ID](/data/#the-openalex-id-scheme) for this concept, e.g. `https://openalex.org/C41008148`. See [Common attributes](/data/common-attributes/#id).
 
 ### `wikidata`
 *String.* The [Wikidata](https://www.wikidata.org/) ID for this concept, as a URL, e.g. `https://www.wikidata.org/wiki/Q21198`. Wikidata is the canonical external ID for concepts — every concept has one.

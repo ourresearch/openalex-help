@@ -34,7 +34,7 @@ The complete controlled vocabulary (live from [`api.openalex.org/institution-typ
 Each institution type is a small object. Attributes shared with other entities are documented once on [Common attributes](/data/common-attributes/).
 
 ### `id`
-*String.* The [OpenAlex ID](/data/overview/#the-openalex-id-scheme) for this type, e.g. `https://openalex.org/institution-types/education`. See [Common attributes](/data/common-attributes/#id).
+*String.* The [OpenAlex ID](/data/#the-openalex-id-scheme) for this type, e.g. `https://openalex.org/institution-types/education`. See [Common attributes](/data/common-attributes/#id).
 
 ### `display_name`
 *String.* The human-readable name of the type — identical to the ID's final segment (`education`, `company`). See [Common attributes](/data/common-attributes/#display_name).

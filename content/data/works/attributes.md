@@ -8,7 +8,7 @@ This is the canonical dictionary of every attribute on a **work** object. Attrib
 ## Attributes
 
 ### `id`
-*String.* The [OpenAlex ID](/data/overview/#the-openalex-id-scheme) for this work, e.g. `https://openalex.org/W2741809807`. See [Common attributes](/data/common-attributes/#id).
+*String.* The [OpenAlex ID](/data/#the-openalex-id-scheme) for this work, e.g. `https://openalex.org/W2741809807`. See [Common attributes](/data/common-attributes/#id).
 
 ### `ids`
 *Object.* All known external identifiers for this work, as URIs where possible; keys for unknown IDs are omitted. Work-specific keys: `openalex`, `doi`, `mag` (Microsoft Academic Graph integer ID), `pmid` (PubMed), `pmcid` (PubMed Central).

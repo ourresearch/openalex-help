@@ -41,7 +41,7 @@ You can also run the classifier on your own text — a draft abstract or a grant
 This is the canonical dictionary of every attribute on a **topic** object. Attributes shared with other entities ([`id`](/data/common-attributes/#id), [`ids`](/data/common-attributes/#ids), [`display_name`](/data/common-attributes/#display_name), [`works_count`](/data/common-attributes/#works_count), [`cited_by_count`](/data/common-attributes/#cited_by_count), [`created_date`](/data/common-attributes/#created_date), [`updated_date`](/data/common-attributes/#updated_date)) are documented once on [Common attributes](/data/common-attributes/); topic-specific notes are below.
 
 ### `id`
-*String.* The [OpenAlex ID](/data/overview/#the-openalex-id-scheme) for this topic, e.g. `https://openalex.org/T11636`. Topics use the `T####` scheme (unlike domains, fields, and subfields, which use bare numeric IDs). See [Common attributes](/data/common-attributes/#id).
+*String.* The [OpenAlex ID](/data/#the-openalex-id-scheme) for this topic, e.g. `https://openalex.org/T11636`. Topics use the `T####` scheme (unlike domains, fields, and subfields, which use bare numeric IDs). See [Common attributes](/data/common-attributes/#id).
 
 ### `ids`
 *Object.* External identifiers for this topic, as URIs. Topic-specific keys: `openalex` and (when a matching article exists) `wikipedia`.

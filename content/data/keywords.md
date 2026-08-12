@@ -31,7 +31,7 @@ The keyword-extraction pipeline is open source: [openalex-keywords (v2)](https:/
 This is the canonical dictionary of every attribute on a **keyword** object. Attributes shared with other entities are documented once on [Common attributes](/data/common-attributes/); keyword-specific notes are below.
 
 ### `id`
-*String.* The [OpenAlex ID](/data/overview/#the-openalex-id-scheme) for this keyword. Unlike most entities, a keyword's ID is a readable slug rather than a letter-and-number code, e.g. `https://openalex.org/keywords/machine-learning`. See [Common attributes](/data/common-attributes/#id).
+*String.* The [OpenAlex ID](/data/#the-openalex-id-scheme) for this keyword. Unlike most entities, a keyword's ID is a readable slug rather than a letter-and-number code, e.g. `https://openalex.org/keywords/machine-learning`. See [Common attributes](/data/common-attributes/#id).
 
 ### `display_name`
 *String.* The keyword's human-readable label, e.g. `Machine learning`. See [Common attributes](/data/common-attributes/#display_name).

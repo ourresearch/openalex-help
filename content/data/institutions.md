@@ -41,7 +41,7 @@ The parser can miss or mis-assign institutions, especially for organizations add
 This is the canonical dictionary of every attribute on an **institution** object. Attributes shared with other entities ([`id`](/data/common-attributes/#id), [`ids`](/data/common-attributes/#ids), [`display_name`](/data/common-attributes/#display_name), [`works_count`](/data/common-attributes/#works_count), [`cited_by_count`](/data/common-attributes/#cited_by_count), [`summary_stats`](/data/common-attributes/#summary_stats), [`counts_by_year`](/data/common-attributes/#counts_by_year), [`created_date`](/data/common-attributes/#created_date), [`updated_date`](/data/common-attributes/#updated_date)) are documented once on [Common attributes](/data/common-attributes/); institution-specific notes are below.
 
 ### `id`
-*String.* The [OpenAlex ID](/data/overview/#the-openalex-id-scheme) for this institution, e.g. `https://openalex.org/I27837315`. See [Common attributes](/data/common-attributes/#id).
+*String.* The [OpenAlex ID](/data/#the-openalex-id-scheme) for this institution, e.g. `https://openalex.org/I27837315`. See [Common attributes](/data/common-attributes/#id).
 
 ### `ids`
 *Object.* All known external identifiers for this institution, as URIs where possible; keys with no value are omitted. Institution-specific keys: `openalex`, `ror`, `grid` (the legacy GRID ID that ROR superseded), `wikipedia`, `wikidata`, `mag`. Filterable via `ids.openalex`.
@@ -65,7 +65,7 @@ This is the canonical dictionary of every attribute on an **institution** object
 *String.* The kind of organization (e.g. `education`, `healthcare`, `company`, `government`, `facility`, `nonprofit`, `other`). See [Institution types](/data/institution-types/) for the full vocabulary. Filterable, sortable, and groupable.
 
 ### `type_id`
-*String.* The [OpenAlex ID](/data/overview/#the-openalex-id-scheme) form of [`type`](#type), e.g. `https://openalex.org/institution-types/education`.
+*String.* The [OpenAlex ID](/data/#the-openalex-id-scheme) form of [`type`](#type), e.g. `https://openalex.org/institution-types/education`.
 
 ### `lineage`
 *List.* OpenAlex IDs of this institution plus all of its ancestor institutions, from ROR's hierarchy — so an institution's own ID always appears in its `lineage`. Filtering `lineage:<id>` finds an institution and everything beneath it. Filterable, sortable, and groupable.

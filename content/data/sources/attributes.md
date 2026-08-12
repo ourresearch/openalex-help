@@ -8,7 +8,7 @@ This is the canonical dictionary of every attribute on a **source** object. Attr
 ## Attributes
 
 ### `id`
-*String.* The [OpenAlex ID](/data/overview/#the-openalex-id-scheme) for this source, e.g. `https://openalex.org/S137773608`. See [Common attributes](/data/common-attributes/#id).
+*String.* The [OpenAlex ID](/data/#the-openalex-id-scheme) for this source, e.g. `https://openalex.org/S137773608`. See [Common attributes](/data/common-attributes/#id).
 
 ### `ids`
 *Object.* All known external identifiers for this source, as URIs where possible. Source-specific keys: `openalex`, `issn_l`, `issn` (a list), `mag` (Microsoft Academic Graph integer ID), `wikidata`, `fatcat`. Filter/sort on `ids.openalex` and `ids.mag`.

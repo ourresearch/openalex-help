@@ -57,7 +57,7 @@ Disambiguation isn't perfect. The two failure modes are **splitting** (one real 
 This is the canonical dictionary of every attribute on an **author** object. Attributes shared with other entities ([`id`](/data/common-attributes/#id), [`ids`](/data/common-attributes/#ids), [`display_name`](/data/common-attributes/#display_name), [`works_count`](/data/common-attributes/#works_count), [`cited_by_count`](/data/common-attributes/#cited_by_count), [`summary_stats`](/data/common-attributes/#summary_stats), [`counts_by_year`](/data/common-attributes/#counts_by_year), [`created_date`](/data/common-attributes/#created_date), [`updated_date`](/data/common-attributes/#updated_date)) are documented once on [Common attributes](/data/common-attributes/); author-specific notes on them are below.
 
 ### `id`
-*String.* The [OpenAlex ID](/data/overview/#the-openalex-id-scheme) for this author, e.g. `https://openalex.org/A5023888391`. See [Common attributes](/data/common-attributes/#id).
+*String.* The [OpenAlex ID](/data/#the-openalex-id-scheme) for this author, e.g. `https://openalex.org/A5023888391`. See [Common attributes](/data/common-attributes/#id).
 
 ### `ids`
 *Object.* All known external identifiers for this author, as URIs where possible; keys with no value are omitted. Author keys are `openalex`, `orcid`, and (rarely) `scopus`. Filter, group_by, and sort on the `orcid` and `scopus` sub-keys.

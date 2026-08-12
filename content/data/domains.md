@@ -25,7 +25,7 @@ A work's primary domain is the domain of its [`primary_topic`](/data/works/attri
 This is the canonical dictionary of every attribute on a **domain** object. Attributes shared with other entities ([`id`](/data/common-attributes/#id), [`ids`](/data/common-attributes/#ids), [`display_name`](/data/common-attributes/#display_name), [`works_count`](/data/common-attributes/#works_count), [`cited_by_count`](/data/common-attributes/#cited_by_count), [`created_date`](/data/common-attributes/#created_date), [`updated_date`](/data/common-attributes/#updated_date)) are documented once on [Common attributes](/data/common-attributes/); domain-specific notes are below.
 
 ### `id`
-*String.* The [OpenAlex ID](/data/overview/#the-openalex-id-scheme) for this domain, e.g. `https://openalex.org/domains/1`. Domains use a bare single-digit numeric ID (1–4), not the letter-prefixed scheme. See [Common attributes](/data/common-attributes/#id).
+*String.* The [OpenAlex ID](/data/#the-openalex-id-scheme) for this domain, e.g. `https://openalex.org/domains/1`. Domains use a bare single-digit numeric ID (1–4), not the letter-prefixed scheme. See [Common attributes](/data/common-attributes/#id).
 
 ### `ids`
 *Object.* External identifiers for this domain, as URIs: `openalex`, plus `wikidata` and `wikipedia` where a matching article exists.

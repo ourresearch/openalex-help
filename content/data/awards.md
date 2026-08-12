@@ -36,7 +36,7 @@ Because both links are matched, they can be incomplete: an award may list no wor
 This is the canonical dictionary of every attribute on an **award** object. Awards carry their own shape (they are grant records, not organizations), so most fields are award-specific; the shared [`id`](/data/common-attributes/#id), [`display_name`](/data/common-attributes/#display_name), [`created_date`](/data/common-attributes/#created_date), and [`updated_date`](/data/common-attributes/#updated_date) are documented once on [Common attributes](/data/common-attributes/).
 
 ### `id`
-*String.* The [OpenAlex ID](/data/overview/#the-openalex-id-scheme) for this award, e.g. `https://openalex.org/G5066037109`. See [Common attributes](/data/common-attributes/#id).
+*String.* The [OpenAlex ID](/data/#the-openalex-id-scheme) for this award, e.g. `https://openalex.org/G5066037109`. See [Common attributes](/data/common-attributes/#id).
 
 ### `display_name`
 *String.* The award's title, e.g. `Genetic analysis of dopaminergic neuron specification in C.elegans`. May be `null` when the source supplied no title. See [Common attributes](/data/common-attributes/#display_name).

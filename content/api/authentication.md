@@ -57,7 +57,7 @@ Every response carries headers and a `meta` block showing where you stand:
 | `X-RateLimit-Credits-Used` | Cost of this request |
 | `X-RateLimit-Reset` | Seconds until reset (midnight UTC) |
 
-The [`meta`](/api/introduction/#response-format) object also reports the cost of the call and the total result count, so you can estimate a full paginated pull before committing to it. For a running total, check the [usage dashboard](https://openalex.org/settings/usage) (the battery icon in the lower-left of [openalex.org](https://openalex.org)), or query it programmatically:
+The [`meta`](/api/#response-format) object also reports the cost of the call and the total result count, so you can estimate a full paginated pull before committing to it. For a running total, check the [usage dashboard](https://openalex.org/settings/usage) (the battery icon in the lower-left of [openalex.org](https://openalex.org)), or query it programmatically:
 
 ```bash
 curl "https://api.openalex.org/rate-limit?api_key=YOUR_KEY"

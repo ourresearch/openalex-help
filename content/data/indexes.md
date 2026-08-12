@@ -37,7 +37,7 @@ The live list is at [`api.openalex.org/indexes`](https://api.openalex.org/indexe
 The top-level fields on an **index** object. Attributes shared with other entities ([`id`](/data/common-attributes/#id), [`display_name`](/data/common-attributes/#display_name), [`works_count`](/data/common-attributes/#works_count), [`cited_by_count`](/data/common-attributes/#cited_by_count), [`created_date`](/data/common-attributes/#created_date), [`updated_date`](/data/common-attributes/#updated_date)) are documented once on [Common attributes](/data/common-attributes/).
 
 ### `id`
-*String.* The [OpenAlex ID](/data/overview/#the-openalex-id-scheme) for this index, e.g. `https://openalex.org/indexes/doaj`. See [Common attributes](/data/common-attributes/#id).
+*String.* The [OpenAlex ID](/data/#the-openalex-id-scheme) for this index, e.g. `https://openalex.org/indexes/doaj`. See [Common attributes](/data/common-attributes/#id).
 
 ### `display_name`
 *String.* The index's name, e.g. `DOAJ`. See [Common attributes](/data/common-attributes/#display_name).

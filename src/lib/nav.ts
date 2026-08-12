@@ -44,9 +44,9 @@ export const NAV_GROUPS: Record<string, NavGroup[]> = {
       // (every reference tab opens with a Get started section, first page
       // "Overview"). The overview page still composes to "Entities Overview".
       label: '', // root-level rows — "Get started" dissolved tab-wide (Pass AR)
-      // how-its-built moved in from Docs (Jason 2026-08-08, Pass AC.2 — it's
-      // about how the DATA is made; sharing/access stays a Docs concern).
-      slugs: ['overview', 'how-its-built', 'common-attributes'],
+      // The Overview article renders ON the /data/ landing (Pass AT); this
+      // static link keeps its drawer row. how-its-built moved in from Docs.
+      slugs: [{ label: 'Overview', href: '/data/' }, 'how-its-built', 'common-attributes'],
     },
     {
       label: 'Native',
@@ -298,8 +298,10 @@ export const NAV_GROUPS: Record<string, NavGroup[]> = {
       // Deprecations moved out to its own "Reference" section below (it isn't a
       // getting-started concern).
       label: '', // root-level rows — "Get started" dissolved tab-wide (Pass AR)
+      // The Overview article (slug `introduction`) renders ON the /api/
+      // landing (Pass AT); this static link keeps its drawer row.
       slugs: [
-        'introduction',
+        { label: 'Overview', href: '/api/' },
         'authentication',
         'errors',
         'llm-quick-reference',

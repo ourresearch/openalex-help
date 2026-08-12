@@ -23,7 +23,7 @@ We track the external [indexes](/data/indexes/) a record can come from — Cross
 
 ## Organize
 
-The records flowing in are messy and redundant, so the heart of OpenAlex is turning them into a clean, connected graph of [entities](/data/). Some of those entities are **native** — OpenAlex mints its own IDs by making judgment calls about fuzzy real-world boundaries — and some are a consistent **vocabulary** wrapped around things that already exist crisply; the [Entities overview](/data/overview/) explains that distinction and how much to trust each kind of ID.
+The records flowing in are messy and redundant, so the heart of OpenAlex is turning them into a clean, connected graph of [entities](/data/). Some of those entities are **native** — OpenAlex mints its own IDs by making judgment calls about fuzzy real-world boundaries — and some are a consistent **vocabulary** wrapped around things that already exist crisply; the [Entities overview](/data/) explains that distinction and how much to trust each kind of ID.
 
 **Records become works.** Each incoming record is matched (by DOI or other metadata) against the [works](/data/works/#about) already in OpenAlex. If it matches, the record enriches the existing work; if nothing matches, it may seed a new one. Duplicate records of the same work are merged into a single work — the core node that every other entity connects to.
 

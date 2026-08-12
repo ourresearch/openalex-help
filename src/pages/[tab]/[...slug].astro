@@ -3,15 +3,18 @@ import { render } from 'astro:content';
 import DocsShell from '../../layouts/DocsShell.astro';
 import PageHeader from '../../components/PageHeader.astro';
 import EntityMeta from '../../components/EntityMeta.astro';
-import { allEntries, mdUrlFor, type Tab } from '../../lib/tabs';
+import { allEntries, mdUrlFor, TAB_OVERVIEW_SLUGS, type Tab } from '../../lib/tabs';
 import { groupEntries, breadcrumbsFor, displayTitleFor } from '../../lib/nav';
 import { interfaceTagsFor } from '../../lib/facets';
 
 export async function getStaticPaths() {
-  return (await allEntries()).map(({ tab, entry }) => ({
-    params: { tab, slug: entry.id },
-    props: { entry },
-  }));
+  return (await allEntries())
+    // Tab-overview articles render inside their tab landing (Pass AT).
+    .filter(({ tab, entry }) => TAB_OVERVIEW_SLUGS[tab] !== entry.id)
+    .map(({ tab, entry }) => ({
+      params: { tab, slug: entry.id },
+      props: { entry },
+    }));
 }
 
 const tab = Astro.params.tab as Tab;
@@ -20,7 +23,14 @@ const { Content, headings } = await render(entry);
 
 // Every tab now renders in the app shell (grouped sidebar + right TOC rail) —
 // Tutorials joined the rest in oxjob #750, retiring the old facet/filter list.
-const groups = groupEntries(tab, (await allEntries()).filter((e) => e.tab === tab).map((e) => e.entry));
+const groups = groupEntries(
+  tab,
+  (await allEntries())
+    .filter((e) => e.tab === tab)
+    .map((e) => e.entry)
+    // Merged tab-overview entries render on the landing, not as articles.
+    .filter((e) => e.id !== TAB_OVERVIEW_SLUGS[tab])
+);
 const crumbs = breadcrumbsFor(tab, entry.id);
 // Overview pages compose their parent's name into the H1 ("Querying Overview")
 // — Jason's Pass S round 2 call. Other context-free titles ("Basic") keep the

@@ -74,8 +74,8 @@
 /hc/en-us/articles/41193790429975  /data/sources/repositories/#version-reporting  301
 /hc/en-us/articles/41193838350359-How-do-I-make-the-Unpaywall-extension-work-on-my-site  /access/unpaywall/#making-the-extension-work-on-your-own-site  301
 /hc/en-us/articles/41193838350359  /access/unpaywall/#making-the-extension-work-on-your-own-site  301
-/hc/en-us/articles/41193804772631-Preventing-Code-Injection-Using-Text-From-Unpaywall-Safely  /api/introduction/#security  301
-/hc/en-us/articles/41193804772631  /api/introduction/#security  301
+/hc/en-us/articles/41193804772631-Preventing-Code-Injection-Using-Text-From-Unpaywall-Safely  /api/#security  301
+/hc/en-us/articles/41193804772631  /api/#security  301
 /hc/en-us/articles/41193820565015-What-do-the-fields-in-the-API-response-and-snapshot-records-mean  /access/what-do-the-fields-in-the-api-response-and-snapshot-records-mean/  301
 /hc/en-us/articles/41193820565015  /access/what-do-the-fields-in-the-api-response-and-snapshot-records-mean/  301
 /hc/en-us/articles/41193820535191-What-counts-as-an-Open-Access-location  /access/what-counts-as-an-open-access-location/  301
@@ -314,9 +314,9 @@
 # top-level page, Pass AN); API Key Concepts dissolved into the API Overview.
 /api/quickstart  /quickstart/  301
 /api/quickstart/  /quickstart/  301
-/api/key-concepts  /api/introduction/  301
-/api/key-concepts/  /api/introduction/  301
-/guides/key-concepts  /api/introduction/  301
+/api/key-concepts  /api/  301
+/api/key-concepts/  /api/  301
+/guides/key-concepts  /api/  301
 /guides/authentication  /api/authentication/  301
 /guides/get  /api/get-single-entities/  301
 /guides/filtering  /api/filtering/  301
@@ -346,7 +346,7 @@
 /download/full-text-pdfs  /access/full-text-pdfs/  301
 /download/openalex-cli  /access/cli/  301
 /api-reference/openapi.json  /openapi.json  301
-/api-reference/introduction  /api/introduction/  301
+/api-reference/introduction  /api/  301
 /api-reference/authentication  /api/authentication/  301
 /api-reference/errors  /api/errors/  301
 /api-reference/works  /data/works/  301
@@ -494,8 +494,8 @@
 /access/full-text-pdfs/  /access/fulltext/  301
 /access/which-dois-does-unpaywall-cover  /access/unpaywall/  301
 /access/which-dois-does-unpaywall-cover/  /access/unpaywall/  301
-/access/preventing-code-injection-using-text-from-unpaywall-safely  /api/introduction/#security  301
-/access/preventing-code-injection-using-text-from-unpaywall-safely/  /api/introduction/#security  301
+/access/preventing-code-injection-using-text-from-unpaywall-safely  /api/#security  301
+/access/preventing-code-injection-using-text-from-unpaywall-safely/  /api/#security  301
 /access/download-to-your-machine  /tutorials/download-the-snapshot/  301
 /access/download-to-your-machine/  /tutorials/download-the-snapshot/  301
 /access/download-changefiles  /access/sync/  301
@@ -548,8 +548,8 @@
 # unpaywall page; data-safety folded into API overview "Security" section.
 /access/unpaywall-change-notes  /access/unpaywall/  301
 /access/unpaywall-change-notes/  /access/unpaywall/  301
-/access/unpaywall-data-safety  /api/introduction/#security  301
-/access/unpaywall-data-safety/  /api/introduction/#security  301
+/access/unpaywall-data-safety  /api/#security  301
+/access/unpaywall-data-safety/  /api/#security  301
 
 # Sidebar reorg 2026-08-05 continued: repository-records -> repositories; the
 # two IR-recommendation pages merged into it as sections; link-resolver moved
@@ -756,6 +756,11 @@
 /how-to/activate-unsub/  /how-to/supporter-tools/#how-do-i-activate-unsub  301
 # Pass AR (oxjob #750): Searching & counting split into two pages; the
 # author-profile page renamed for parallelism with the other Fixing pages.
+# Pass AT (oxjob #750): the tab-overview articles merged into their landings.
+/data/overview  /data/  301
+/data/overview/  /data/  301
+/api/introduction  /api/  301
+/api/introduction/  /api/  301
 /how-to/searching-and-counting  /how-to/searching/  301
 /how-to/searching-and-counting/  /how-to/searching/  301
 /how-to/fixing-your-author-profile  /how-to/fixing-authors/  301

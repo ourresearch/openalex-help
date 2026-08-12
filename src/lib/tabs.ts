@@ -18,6 +18,15 @@ export async function allEntries(): Promise<{ tab: Tab; entry: AnyEntry }[]> {
   return out;
 }
 
+// Tab-overview articles MERGED into their tab landing (oxjob #750 Pass AT —
+// Jason: "there's no ghost page for the ToC; it's one page"). These entries
+// render inside /[tab]/ instead of getting their own /[tab]/<slug>/ route;
+// their .md twin serves at /[tab].md.
+export const TAB_OVERVIEW_SLUGS: Partial<Record<Tab, string>> = {
+  data: 'overview',
+  api: 'introduction',
+};
+
 export function urlFor(tab: Tab, entry: AnyEntry): string {
   return `/${tab}/${entry.id}/`;
 }

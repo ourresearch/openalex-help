@@ -41,7 +41,7 @@ Because publishers are inferred, they can be wrong: an imprint may be attached t
 This is the canonical dictionary of every attribute on a **publisher** object. Attributes shared with other entities ([`id`](/data/common-attributes/#id), [`ids`](/data/common-attributes/#ids), [`display_name`](/data/common-attributes/#display_name), [`works_count`](/data/common-attributes/#works_count), [`cited_by_count`](/data/common-attributes/#cited_by_count), [`summary_stats`](/data/common-attributes/#summary_stats), [`counts_by_year`](/data/common-attributes/#counts_by_year), [`created_date`](/data/common-attributes/#created_date), [`updated_date`](/data/common-attributes/#updated_date)) are documented once on [Common attributes](/data/common-attributes/); publisher-specific notes are below.
 
 ### `id`
-*String.* The [OpenAlex ID](/data/overview/#the-openalex-id-scheme) for this publisher, e.g. `https://openalex.org/P4310319965`. See [Common attributes](/data/common-attributes/#id).
+*String.* The [OpenAlex ID](/data/#the-openalex-id-scheme) for this publisher, e.g. `https://openalex.org/P4310319965`. See [Common attributes](/data/common-attributes/#id).
 
 ### `ids`
 *Object.* All known external identifiers for this publisher, as URIs where possible. Publisher keys: `openalex`, `ror` ([ROR](https://ror.org/) ID), `wikidata`. See [Common attributes](/data/common-attributes/#ids).

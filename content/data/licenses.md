@@ -45,7 +45,7 @@ The live list is at [`api.openalex.org/licenses`](https://api.openalex.org/licen
 The top-level fields on a **license** object. Attributes shared with other entities ([`id`](/data/common-attributes/#id), [`display_name`](/data/common-attributes/#display_name), [`works_count`](/data/common-attributes/#works_count), [`cited_by_count`](/data/common-attributes/#cited_by_count), [`created_date`](/data/common-attributes/#created_date), [`updated_date`](/data/common-attributes/#updated_date)) are documented once on [Common attributes](/data/common-attributes/).
 
 ### `id`
-*String.* The [OpenAlex ID](/data/overview/#the-openalex-id-scheme) for this license, e.g. `https://openalex.org/licenses/cc-by`. See [Common attributes](/data/common-attributes/#id).
+*String.* The [OpenAlex ID](/data/#the-openalex-id-scheme) for this license, e.g. `https://openalex.org/licenses/cc-by`. See [Common attributes](/data/common-attributes/#id).
 
 ### `display_name`
 *String.* The license's name, e.g. `CC-BY`. See [Common attributes](/data/common-attributes/#display_name).

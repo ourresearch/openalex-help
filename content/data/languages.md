@@ -41,7 +41,7 @@ The full list of 180 languages is at [`api.openalex.org/languages`](https://api.
 The top-level fields on a **language** object. Attributes shared with other entities ([`id`](/data/common-attributes/#id), [`display_name`](/data/common-attributes/#display_name), [`works_count`](/data/common-attributes/#works_count), [`cited_by_count`](/data/common-attributes/#cited_by_count), [`created_date`](/data/common-attributes/#created_date), [`updated_date`](/data/common-attributes/#updated_date)) are documented once on [Common attributes](/data/common-attributes/).
 
 ### `id`
-*String.* The [OpenAlex ID](/data/overview/#the-openalex-id-scheme) for this language, e.g. `https://openalex.org/languages/en`. The final path segment is the ISO 639-1 code. See [Common attributes](/data/common-attributes/#id).
+*String.* The [OpenAlex ID](/data/#the-openalex-id-scheme) for this language, e.g. `https://openalex.org/languages/en`. The final path segment is the ISO 639-1 code. See [Common attributes](/data/common-attributes/#id).
 
 ### `display_name`
 *String.* The language's English name, e.g. `English`. See [Common attributes](/data/common-attributes/#display_name).

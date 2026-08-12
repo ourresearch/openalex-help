@@ -37,7 +37,7 @@ There are seven continents — the complete list:
 The top-level fields on a **continent** object. Attributes shared with other entities ([`id`](/data/common-attributes/#id), [`ids`](/data/common-attributes/#ids), [`display_name`](/data/common-attributes/#display_name), [`created_date`](/data/common-attributes/#created_date), [`updated_date`](/data/common-attributes/#updated_date)) are documented once on [Common attributes](/data/common-attributes/).
 
 ### `id`
-*String.* The [OpenAlex ID](/data/overview/#the-openalex-id-scheme) for this continent, e.g. `https://openalex.org/continents/Q15`. The final path segment is the [Wikidata](https://www.wikidata.org/) QID. See [Common attributes](/data/common-attributes/#id).
+*String.* The [OpenAlex ID](/data/#the-openalex-id-scheme) for this continent, e.g. `https://openalex.org/continents/Q15`. The final path segment is the [Wikidata](https://www.wikidata.org/) QID. See [Common attributes](/data/common-attributes/#id).
 
 ### `ids`
 *Object.* External identifiers for the continent: `openalex` and `wikidata`.

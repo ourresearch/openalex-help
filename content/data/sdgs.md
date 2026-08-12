@@ -33,7 +33,7 @@ For the fuller write-up, see [How we classify works as contributing to the UN SD
 This is the canonical dictionary of every attribute on an **SDG** object. Attributes shared with other entities are documented once on [Common attributes](/data/common-attributes/) and linked below.
 
 ### `id`
-*String.* The [OpenAlex ID](/data/overview/#the-openalex-id-scheme) for this goal, e.g. `https://openalex.org/sdgs/3`. Unlike most entities, the numeric part is just the goal number (1–17). See [Common attributes](/data/common-attributes/#id).
+*String.* The [OpenAlex ID](/data/#the-openalex-id-scheme) for this goal, e.g. `https://openalex.org/sdgs/3`. Unlike most entities, the numeric part is just the goal number (1–17). See [Common attributes](/data/common-attributes/#id).
 
 ### `display_name`
 *String.* The goal's name, e.g. `Good health and well-being`. See [Common attributes](/data/common-attributes/#display_name).

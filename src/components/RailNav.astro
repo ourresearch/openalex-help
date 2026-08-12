@@ -166,12 +166,13 @@ const active = (href: string) => (isPrimaryActive(href, path) ? 'page' : undefin
   .item:hover {
     text-decoration: none;
   }
+  /* Hover: grey, not blue (Jason, Pass AS.3). */
   .item:hover .pill {
     background: var(--panel-strong);
-    color: var(--accent);
+    color: var(--ink);
   }
   .item:hover .label {
-    color: var(--accent);
+    color: var(--ink);
   }
   /* Selected tab: solid BLACK rounded rect, white glyph, black label
      (Jason, Pass AS.3 — no more blue in the rail selection). */

@@ -54,7 +54,7 @@ The complete controlled vocabulary (live from [`api.openalex.org/work-types`](ht
 Each work type is a small object. Attributes shared with other entities are documented once on [Common attributes](/data/common-attributes/).
 
 ### `id`
-*String.* The [OpenAlex ID](/data/overview/#the-openalex-id-scheme) for this type, e.g. `https://openalex.org/types/article`. See [Common attributes](/data/common-attributes/#id).
+*String.* The [OpenAlex ID](/data/#the-openalex-id-scheme) for this type, e.g. `https://openalex.org/types/article`. See [Common attributes](/data/common-attributes/#id).
 
 ### `display_name`
 *String.* The human-readable name of the type — identical to the ID's final segment (`article`, `dataset`). See [Common attributes](/data/common-attributes/#display_name).
