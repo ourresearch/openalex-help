@@ -228,7 +228,7 @@ export const NAV_GROUPS: Record<string, NavGroup[]> = {
       // snapshot-updates→sync, content-archive→fulltext; snapshot absorbed
       // snapshot-access. Pass W: Website subgroup + Unpaywall moved in here —
       // both are ways people get our data.
-      label: 'Get the data',
+      label: 'Channels',
       desc: 'Every way to get the data — the website, a query, the CLI, an agent, the whole database, or Unpaywall.',
       slugs: [
         // Pass AC.2: method-picker overview page (skill/cost table).

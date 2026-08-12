@@ -25,9 +25,9 @@ const OverviewContent = overviewEntry ? (await render(overviewEntry)).Content : 
 // Ledes come from nav-primary.ts (`desc`).
 const meta: Record<Tab, { label: string; h1: string; lede: string }> = {
   'how-to': { label: 'How-to', h1: 'How-to guides', lede: tabDesc('/how-to/') },
-  access: { label: 'Access', h1: 'Access Overview', lede: tabDesc('/access/') },
-  data: { label: 'Data', h1: 'Data Overview', lede: tabDesc('/data/') },
-  api: { label: 'API', h1: 'API Overview', lede: tabDesc('/api/') },
+  access: { label: 'Access', h1: 'Access reference', lede: tabDesc('/access/') },
+  data: { label: 'Data', h1: 'Data reference', lede: tabDesc('/data/') },
+  api: { label: 'API', h1: 'API reference', lede: tabDesc('/api/') },
   tutorials: { label: 'Tutorials', h1: 'Tutorials', lede: tabDesc('/tutorials/') },
 };
 
