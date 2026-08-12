@@ -18,7 +18,7 @@ A few things that surprise people early:
 
 - **Filter by IDs, not names.** Names are ambiguous — "Smith" is thousands of authors, "MIT" several institutions. [Look up the entity](/how-to/finding-openalex-ids/), grab its [OpenAlex ID](/data/#the-openalex-id-scheme), and filter on that. Already holding a DOI, ORCID, ROR, or ISSN? [Use it directly](/api/get-single-entities/) and skip the lookup.
 - **Nested entities come back [dehydrated](/data/#dehydrated-vs-full-objects)** — a trimmed stub with just an ID and a display name. Fetch the full record separately when you need the rest.
-- **By default you're querying the curated [core corpus](/data/works/corpus/)** of 300M+ works. A much larger [expansion](/data/works/corpus/) (mostly datasets and repository records, formerly called "XPAC") sits behind an opt-in flag, so don't be startled when `include_xpac=true` adds roughly 60% more works to your counts.
+- **By default you're querying the curated [core corpus](/data/works/corpus/)** of 300M+ works. A much larger [expansion](/data/works/corpus/) (mostly datasets and repository records, formerly called "XPAC") is opt-in via the `corpus` parameter, so don't be startled when `corpus=all` adds roughly 60% more works to your counts.
 - **Everything is `snake_case`**, and all data is [CC0](https://creativecommons.org/publicdomain/zero/1.0/) — no license worries, ever.
 - **Pointing an AI agent at the API?** Hand it the [LLM Quick Reference](/api/llm-quick-reference/); there's a machine-readable [OpenAPI spec](/openapi.json) too.
 

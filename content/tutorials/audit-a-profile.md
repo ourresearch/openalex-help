@@ -56,11 +56,11 @@ The OpenAlex web UI uses a 5-step "ladder" — start narrow, widen one step at a
 
 ```bash
 # Step 1 — typed form only (narrowest). For seed "Jason R Priem":
-https://api.openalex.org/works?filter=raw_author_name.search:"jason r priem",type:!paratext&include_xpac=true
+https://api.openalex.org/works?filter=raw_author_name.search:"jason r priem",type:!paratext&corpus=all
 # meta.count: 0    ← no byline uses the middle initial, so this finds nothing
 
 # Step 2 — comma-reversed + drop-middles forms
-https://api.openalex.org/works?filter=raw_author_name.search:"jason r priem" OR "priem jason r" OR "jason priem" OR "priem jason",type:!paratext&include_xpac=true
+https://api.openalex.org/works?filter=raw_author_name.search:"jason r priem" OR "priem jason r" OR "jason priem" OR "priem jason",type:!paratext&corpus=all
 # meta.count: 110  ← stops here (≥100)
 
 # Step 3 — would add the first-initial form (only fires if step 2 still under threshold)
@@ -69,7 +69,7 @@ https://api.openalex.org/works?filter=raw_author_name.search:"jason r priem" OR 
 
 Two non-obvious query params worth knowing:
 
-- **`include_xpac=true`** — without this, the API silently drops [XPAC](/data/works/corpus/) works, about 22% of byline-match candidates.
+- **`corpus=all`** — without this, the API silently drops [expansion](/data/works/corpus/) works, about 22% of byline-match candidates.
 - **`type:!paratext`** — excludes issue covers, errata, and similar where bylines are conflated.
 
 Once you have the results, drop the works already on the profile (where some authorship's `author.id` is the target). Doing this client-side rather than via an `authorships.author.id:!A1234` filter clause lets you surface *duplicate* attributions too — the same paper attached to a different `J. Priem` entity, which a curator usually wants to see.
@@ -115,7 +115,7 @@ def matched_authorship(work, seed_tokens):
 Fetch the works currently attached to the profile and run each one's *target authorship* through the same gate. Misses are candidates for removal — the resolver attributed the paper to this profile but the byline doesn't fit the seed.
 
 ```bash
-https://api.openalex.org/works?filter=author.id:A5023888391,type:!paratext&include_xpac=true&select=id,display_name,publication_year,cited_by_count,authorships,primary_topic&per_page=200
+https://api.openalex.org/works?filter=author.id:A5023888391,type:!paratext&corpus=all&select=id,display_name,publication_year,cited_by_count,authorships,primary_topic&per_page=200
 ```
 
 For each returned work, pull the authorship whose `author.id` equals the target. If its `raw_author_name` doesn't pass the surname + given-compat check, flag the work:
@@ -229,7 +229,7 @@ def find_additions(author_short_id, seed, threshold=100, max_step=5):
         base = (
             f"{API}/works"
             f"?filter=raw_author_name.search:{requests.utils.quote(value)},type:!paratext"
-            f"&include_xpac=true&select={SELECT}"
+            f"&corpus=all&select={SELECT}"
         )
         count = requests.get(f"{base}&per_page=1", headers=HEADERS).json()["meta"]["count"]
         chosen_url = base
@@ -245,7 +245,7 @@ def find_removals(author_short_id, seed):
     """Works currently on the profile whose target byline doesn't fit the seed."""
     url = (
         f"{API}/works?filter=author.id:{author_short_id},type:!paratext"
-        f"&include_xpac=true&select={SELECT}"
+        f"&corpus=all&select={SELECT}"
     )
     flagged = []
     for w in paginate(url):

@@ -19,10 +19,10 @@ That's usually the whole explanation, but matching also depends on metadata: rec
 
 ## How do I see my repository's unmatched records?
 
-Unmatched repository records aren't gone — since November 2025 they can be minted as works in the **expansion corpus**, which is excluded from API results by default. To include them, add `include_xpac=true` to your query:
+Unmatched repository records aren't gone — since November 2025 they can be minted as works in the **expansion corpus**, which is excluded from API results by default. To include them, add `corpus=all` to your query:
 
 ```
-api.openalex.org/works?filter=locations.source.id:S4306402521&include_xpac=true
+api.openalex.org/works?filter=locations.source.id:S4306402521&corpus=all
 ```
 
 For many repositories this changes the count dramatically. (Data quality in the expansion corpus is lower on average and improving.)

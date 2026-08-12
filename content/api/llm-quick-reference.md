@@ -18,8 +18,10 @@ Base: https://api.openalex.org
 Auth: API key free + strongly recommended (10x the no-key budget); openalex.org/settings/api
       Send as ?api_key=KEY or header: Authorization: Bearer KEY
 Rate: $1/day free usage with key, $0.10/day without; 429 on over-budget or >100 req/sec
-Corpus: default = curated core (~324M works). include_xpac=true adds the ~193M-work
-        expansion corpus (formerly "XPAC"); each work has an is_xpac boolean.
+Corpus: default = curated core (~324M works). corpus=all adds the ~193M-work
+        expansion corpus (formerly "XPAC"); corpus=expansion selects it alone; each
+        work has an is_xpac boolean. (Legacy include_xpac=true = corpus=all; deprecated —
+        never combine it with corpus=.)
 ```
 
 ## Entity Endpoints
@@ -74,7 +76,7 @@ sample=         - Random results (e.g., sample=50)
 seed=           - Seed for reproducible sampling
 select=         - Limit returned fields (e.g., select=id,title)
 group_by=       - Aggregate results by a field
-include_xpac=   - true to include the expansion corpus (default excludes it; /works only)
+corpus=         - core (default) | expansion | all — which works corpus to query (/works only; legacy include_xpac=true = corpus=all, deprecated)
 ```
 
 > **Note:**
@@ -198,7 +200,7 @@ def fetch_with_retry(url, max_retries=5):
 | Sequential ID lookups | Batch with `\|` operator |
 | No error handling | Implement exponential backoff |
 | Fetching all fields | Use `select=` for needed fields |
-| Surprised by result counts | Default excludes the expansion corpus; add `include_xpac=true` to include it |
+| Surprised by result counts | Default excludes the expansion corpus; add `corpus=all` to include it |
 
 ## Deprecated Features
 

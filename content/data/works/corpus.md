@@ -24,22 +24,22 @@ The corpus selector applies to **works only** — the other entity types have no
 
 ## In the REST API
 
-The default is **core**. To include the expansion, add `include_xpac=true` to any works request:
+The default is **core**. Pick a different view with the `corpus` parameter on any works request:
 
 ```bash
 # Core only (default) — ~320M works
 curl "https://api.openalex.org/works"
 
 # All works, core + expansion — ~510M works
-curl "https://api.openalex.org/works?include_xpac=true"
-```
+curl "https://api.openalex.org/works?corpus=all"
 
-Every work carries an [`is_xpac`](/data/works/attributes/#is_xpac) boolean, so once the expansion is included you can tell which results came from it — or filter to one corpus explicitly:
-
-```bash
 # Only expansion works
-curl "https://api.openalex.org/works?filter=is_xpac:true&include_xpac=true"
+curl "https://api.openalex.org/works?corpus=expansion"
 ```
+
+`corpus` composes with everything else — `?filter=has_abstract:true&corpus=all` counts abstracts across both corpora. It's a works-only parameter; the other entity types reject it like any unsupported parameter. Each work also carries an [`is_xpac`](/data/works/attributes/#is_xpac) boolean, so on a `corpus=all` request you can still tell which results came from the expansion.
+
+> **Deprecated legacy controls:** older docs and code express the same choice with `include_xpac=true` (equivalent to `corpus=all`) and the `is_xpac` filter (`filter=is_xpac:true&include_xpac=true` is equivalent to `corpus=expansion`). Both still work, but they're deprecated — use `corpus=` in new code. Don't mix the two vocabularies: a request that combines `corpus=` with either legacy control returns an error.
 
 ## In OQL
 

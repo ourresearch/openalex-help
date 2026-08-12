@@ -11,7 +11,7 @@ Repositories — institutional repositories (IRs), subject repositories like arX
 Repository content enters OpenAlex through two channels:
 
 1. **As locations on existing works.** OpenAlex harvests repository records and matches them to works it already knows about (from Crossref, DataCite, PubMed, and other registration sources). A matched record becomes a [location](/data/locations/) on that work — often the free-to-read copy that makes the work [green OA](/data/works/open-access/).
-2. **As works in their own right.** Since the November 2025 Walden expansion, repository records that don't match any existing work can be minted as new works in the [expansion (XPAC) corpus](/data/works/corpus/). These are excluded from API results by default; add `include_xpac=true` to see them.
+2. **As works in their own right.** Since the November 2025 Walden expansion, repository records that don't match any existing work can be minted as new works in the [expansion (XPAC) corpus](/data/works/corpus/). These are excluded from API results by default; add `corpus=all` to see them.
 
 This page covers the harvesting pipeline: how records are matched, how full-text documents are located, and — the question repository managers ask most — why a repository's work count in OpenAlex can look much smaller than the repository itself.
 
@@ -64,7 +64,7 @@ Repositories can make both matching and full-text detection more reliable by fol
 If you look at your repository as a [source](/data/sources/) in OpenAlex, its work count is often much smaller than the number of records in the repository itself. That's usually not a harvesting failure — it follows from how the two channels above work:
 
 - **By default you're seeing only the core corpus.** In the default (core) view, a repository record appears only when it matched an existing work — the repository is credited as the source of one *version* of that work, not as a standalone record. Records that didn't match anything (theses, reports, datasets, local collections) aren't in the core count.
-- **Unmatched records live in the expansion corpus.** Since November 2025, unmatched repository records can be minted as expansion (XPAC) works. Add [`include_xpac=true`](/data/works/corpus/) to your API query to include them — for many repositories this changes the count dramatically. Data quality in the expansion corpus is lower on average and improving; see [`is_xpac`](/data/works/attributes/#is_xpac).
+- **Unmatched records live in the expansion corpus.** Since November 2025, unmatched repository records can be minted as expansion (XPAC) works. Add [`corpus=all`](/data/works/corpus/) to your API query to include them — for many repositories this changes the count dramatically. Data quality in the expansion corpus is lower on average and improving; see [`is_xpac`](/data/works/attributes/#is_xpac).
 - **Matching depends on metadata.** Records without a cleanly reported DOI (or a matchable title + first author) can fail to match — see the guidelines above.
 - **A historical wrinkle:** some pre-2022 records inherited from Microsoft Academic Graph list an institutional repository as their sole source. MAG minted those unsystematically, so that legacy coverage is not comprehensive either.
 
