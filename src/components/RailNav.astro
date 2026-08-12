@@ -48,21 +48,21 @@ const active = (href: string) => (isPrimaryActive(href, path) ? 'page' : undefin
   {/* One shared tooltip, positioned beside the hovered item by the script.
       position:fixed so the .rail-scroll overflow can never clip it. */}
   <div class="rail-tip" role="tooltip" hidden>
-    <strong class="rail-tip-title"></strong>
     <span class="rail-tip-desc"></span>
   </div>
 </nav>
 
 <script>
-  // Item tooltips: destination name in bold over a few-word description
-  // (`tip`/`blurb` in nav-primary.ts). Rows that open a new tab
-  // (data-tip-ext) get the MDI open-in-new glyph beside the name.
+  // Item tooltips (Pass AW — Jason: no tab name, the label is already under
+  // the icon): just the few-word description (`tip`/`blurb` in
+  // nav-primary.ts), one row, with a left spike pointing at the tab button.
+  // Rows that open a new tab (data-tip-ext) get the MDI open-in-new glyph
+  // beside the description.
   const EXT_ICON =
     '<svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z"/></svg>';
   const rail = document.querySelector<HTMLElement>('.rail');
   const tip = document.querySelector<HTMLElement>('.rail-tip');
   if (rail && tip) {
-    const title = tip.querySelector('.rail-tip-title')!;
     const desc = tip.querySelector('.rail-tip-desc')!;
     let timer: number | undefined;
     const hide = () => {
@@ -73,9 +73,8 @@ const active = (href: string) => (isPrimaryActive(href, path) ? 'page' : undefin
       const show = () => {
         clearTimeout(timer);
         timer = window.setTimeout(() => {
-          title.textContent = row.dataset.tipTitle ?? '';
-          if ('tipExt' in row.dataset) title.insertAdjacentHTML('beforeend', EXT_ICON);
           desc.textContent = row.dataset.tipDesc ?? '';
+          if ('tipExt' in row.dataset) desc.insertAdjacentHTML('beforeend', EXT_ICON);
           tip.hidden = false;
           const r = row.getBoundingClientRect();
           tip.style.left = `${r.right + 8}px`;
@@ -191,32 +190,41 @@ const active = (href: string) => (isPrimaryActive(href, path) ? 'page' : undefin
     z-index: 30;
     width: max-content;
     max-width: 17rem;
-    padding: 0.55rem 0.75rem;
+    padding: 0.4rem 0.7rem;
     background: var(--bg);
     border: 1px solid var(--line);
     border-radius: 8px;
     box-shadow: 0 8px 24px rgb(15 18 25 / 0.12);
     pointer-events: none;
   }
-  .rail-tip-title {
-    display: flex;
-    align-items: center;
-    gap: 0.3rem;
-    font-size: 0.84rem;
-    font-weight: 650;
-    color: var(--ink);
-    margin-bottom: 0.15rem;
-  }
-  .rail-tip-title :global(svg) {
-    flex: none;
-    color: var(--faint);
+  /* Left spike pointing at the tab button (Pass AW): a rotated square poking
+     out of the left edge, sharing the tooltip's background + hairline border.
+     Vertically centered — the script centers the tooltip on the row, so the
+     spike lands on the icon. */
+  .rail-tip::before {
+    content: '';
+    position: absolute;
+    left: -5px;
+    top: 50%;
+    width: 8px;
+    height: 8px;
+    background: var(--bg);
+    border-left: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    transform: translateY(-50%) rotate(45deg);
   }
   .rail-tip-desc {
-    display: block;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
     font-size: 0.8rem;
     line-height: 1.5;
-    color: var(--muted);
+    color: var(--ink);
     white-space: normal;
+  }
+  .rail-tip-desc :global(svg) {
+    flex: none;
+    color: var(--faint);
   }
 
   /* The rail is desktop chrome; on narrow screens the header hamburger menu

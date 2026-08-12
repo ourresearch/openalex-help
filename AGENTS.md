@@ -72,8 +72,10 @@ Rules that matter when touching header/nav:
   homepage Chat paragraph (`index.astro`, incl. the Ask-AI provider popover).
 - **Selected tab = blue pill on the ICON** (accent wash + accent glyph +
   accent label), matching the secondary drawer's blue selected row. Hover
-  shows a **tooltip popover** (bold name + `tip`/`blurb` one-liner; external
-  rows carry `data-tip-ext` → MDI open-in-new glyph in the tooltip).
+  shows a **one-row tooltip** — just the `tip`/`blurb` description with a
+  left spike pointing at the tab button (Pass AW dropped the bold tab name:
+  the label already sits under the icon; external rows carry `data-tip-ext`
+  → MDI open-in-new glyph beside the description).
 - **`.rail` keeps `z-index: 5`.** Both the rail and the secondary Sidebar are
   sticky (each its own stacking context); without it the rail's fixed-position
   tooltip paints UNDER the sidebar no matter its own z-index.
