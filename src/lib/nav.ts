@@ -227,12 +227,15 @@ export const NAV_GROUPS: Record<string, NavGroup[]> = {
       // ways to *get* the data. Slug renames: openalex-cli→cli,
       // snapshot-updates→sync, content-archive→fulltext; snapshot absorbed
       // snapshot-access. Pass W: Website subgroup + Unpaywall moved in here —
-      // both are ways people get our data.
-      label: 'Channels',
+      // both are ways people get our data. Renamed "Channels" → "Products"
+      // (Jason 2026-08-15): the vocabulary people already know; agents is a
+      // slight stretch but close enough.
+      label: 'Products',
       desc: 'Every way to get the data — the website, a query, the CLI, an agent, the whole database, or Unpaywall.',
       slugs: [
-        // Pass AC.2: method-picker overview page (skill/cost table).
-        'get-the-data',
+        // Pass AC.2: product-picker overview page (skill/cost table).
+        // Slug get-the-data → overview (Jason 2026-08-15); redirect kept.
+        'overview',
         {
           label: 'Website',
           children: [

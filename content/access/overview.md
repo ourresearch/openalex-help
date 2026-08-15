@@ -5,7 +5,7 @@ tags: ["downloads"]
 ---
 There are many ways to get OpenAlex data, from point-and-click to whole-database. They all serve the same knowledge graph — the difference is how much you take, how fresh it is, how much technical skill it takes, and what it costs. This page helps you pick.
 
-| Method | Best for | Technical skill | Cost |
+| Product | Best for | Technical skill | Cost |
 |---|---|---|---|
 | [Website](/access/website-basic/) | Exploring, one-off questions, exporting result lists | None | Free |
 | [Agents](/access/agents/) | Letting your AI agent query OpenAlex for you | None | Free tier, then [usage pricing](/access/pricing/) |
@@ -16,7 +16,7 @@ There are many ways to get OpenAlex data, from point-and-click to whole-database
 | [Fulltext](/access/fulltext/) | Full-text PDFs and TEI XML, per-file or the whole archive | Varies by option | $0.01/file; full archive via the [PDF sync add-on](/access/pricing/#the-pdf-sync-add-on) |
 | [Unpaywall](/access/unpaywall/) | Legacy Unpaywall integrations and OA lookups by DOI | Some coding | Free |
 
-## Picking a method
+## Picking a product
 
 **Just exploring?** Use the [website](/access/website-basic/) — search, filter, and export without writing a line of code. If you use an AI assistant, you can also just tell it to [use OpenAlex](/access/agents/).
 

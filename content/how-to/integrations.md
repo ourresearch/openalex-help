@@ -5,7 +5,7 @@ tags: ["downloads"]
 synonyms: ["export", "CSV", "RIS", "VOSviewer", "link resolver", "SFX", "EBSCO", "Unpaywall extension"]
 card: "Export to VOSviewer, wire up your link resolver, or spot OA copies as you browse."
 ---
-OpenAlex data flows into a lot of other tools. This page covers exporting from the website and the most common third-party integrations. For programmatic access, see [Get the data](/access/get-the-data/).
+OpenAlex data flows into a lot of other tools. This page covers exporting from the website and the most common third-party integrations. For programmatic access, see [Get the data](/access/overview/).
 
 ## How do I export results from the OpenAlex website?
 

@@ -696,8 +696,11 @@
 # Pass AC.2 (Jason 2026-08-08): "How it works" dissolved. The pipeline article
 # moved to Data as "How it's built"; sustainability + the stale FAQ pricing
 # article were absorbed into the new Docs > Pricing section.
-/access/overview  /data/how-its-built/  301
-/access/overview/  /data/how-its-built/  301
+# (The dissolved article's old /access/overview URL is now REUSED by the
+# Products overview — get-the-data → overview, Jason 2026-08-15 — so its
+# how-its-built redirect was dropped; the article was pre-launch anyway.)
+/access/get-the-data  /access/overview/  301
+/access/get-the-data/  /access/overview/  301
 /access/sustainability  /access/pricing/  301
 /access/sustainability/  /access/pricing/  301
 /how-to/pricing  /access/pricing/  301
