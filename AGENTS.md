@@ -111,6 +111,36 @@ Rules that matter when touching header/nav:
   sticky top is `calc(var(--nav-h) + 1.5rem)` to match. Change any of these
   metrics in ALL places together.
 
+## "Last updated" dates come from git (oxjob #637)
+
+The article foot carries `Last updated <date>` bottom-LEFT, opposite "View as
+Markdown" bottom-right. Three things about it are load-bearing:
+
+- **The date is derived, not authored.** `src/lib/updated.ts` does one
+  `git log --format=%as --name-only -- content` pass at build time and takes the
+  newest commit touching each file. There is no field to remember to bump. The
+  frontmatter `updated: YYYY-MM-DD` override exists ONLY for when the git date
+  lies — a sitewide sed or a `git mv` rename (this repo has done both) restamps a
+  file without changing what it says. **YAML parses a bare `updated: 2026-03-05`
+  into a Date object, not a string** — that's why the schema is a
+  `z.union([string, date])` with a transform, and why a plain `z.string()` there
+  fails the build.
+- **CI checkout depth is load-bearing.** `actions/checkout` defaults to
+  `fetch-depth: 1`, and a depth-1 clone dates EVERY content file to the tip
+  commit. `deploy.yml` sets `fetch-depth: 0`; `updated.ts` additionally refuses to
+  emit any date at all (with a build warning) if it detects a shallow repo,
+  because a confident wrong date is worse than none.
+- **The date is formatted in the READER's locale, client-side.** The build bakes
+  in an en-US string as the no-JS fallback; `LastUpdated.astro`'s `is:inline`
+  script restates it via `Intl` from `navigator.languages`. It must rebuild the
+  date as `new Date(y, m-1, d)` — `new Date('2026-08-11')` is UTC midnight and
+  renders as the 10th for every reader behind Greenwich (verified in CT). Don't
+  "simplify" that back, and keep the script `is:inline` and adjacent to the
+  markup so it runs before first paint (no flash of en-US in a French browser).
+
+Only `[tab]/[...slug].astro` has an article foot — the Quickstart page and the
+Data/API tab landings show no date.
+
 ## Content: `content/` is canonical
 
 The migration generators (`scripts/migrate.mjs`, `scripts/mintlify-port.mjs`) are
