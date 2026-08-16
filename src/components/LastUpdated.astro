@@ -1,0 +1,59 @@
+---
+// "Last updated <date>" for the article foot (oxjob #637): readers — CNRS/Inist
+// trainers especially — need to tell at a glance whether a page still reflects
+// the product. Date only, no time.
+//
+// The date is formatted in the READER's locale, not ours: this is a static
+// site, so the build renders an en-US fallback (correct for a no-JS reader of
+// an English site) and the inline script below restates it via Intl using
+// navigator.languages. "11 August 2026" / "11 août 2026" / "2026年8月11日"
+// depending on who's reading.
+interface Props {
+  /** `YYYY-MM-DD` */
+  date: string;
+}
+const { date } = Astro.props;
+
+// timeZone: 'UTC' pins the SSR string to the date as written — without it a
+// build machine west of Greenwich renders the day before.
+const fallback = new Intl.DateTimeFormat('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+  timeZone: 'UTC',
+}).format(new Date(`${date}T00:00:00Z`));
+---
+
+<p class="updated">Last updated <time datetime={date} data-localize-date>{fallback}</time></p>
+
+<!-- is:inline and adjacent to the markup, so it runs during parse (before
+     first paint) and the en-US fallback never flashes in a French browser. -->
+<script is:inline>
+  (() => {
+    const el = document.querySelector('time[data-localize-date]');
+    if (!el) return;
+    const [y, m, d] = el.dateTime.split('-').map(Number);
+    if (!y || !m || !d) return;
+    // Build the date in LOCAL time. `new Date('2026-08-11')` is UTC midnight,
+    // which formats as the 10th for any reader behind Greenwich.
+    const local = new Date(y, m - 1, d);
+    const locales = navigator.languages?.length ? navigator.languages : undefined;
+    try {
+      el.textContent = local.toLocaleDateString(locales, {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+      });
+    } catch {
+      // Bad Accept-Language → RangeError. Keep the server's en-US string.
+    }
+  })();
+</script>
+
+<style>
+  .updated {
+    margin: 0;
+    font-size: 0.82rem;
+    color: var(--faint);
+  }
+</style>
