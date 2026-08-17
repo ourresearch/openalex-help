@@ -138,7 +138,7 @@ https://openalex.org/W4245566371,2026-08-14
 
 The file is **cumulative** — each release carries the full history, so you don't need to collect it daily. Apply it as: *remove these IDs from your copy of works*. That makes mirror deletions a direct lookup instead of a full ID-set diff (the reconcile methods below still work and remain the belt-and-braces option).
 
-**Deletion is final for the ID.** When a work is deleted, its identifier mappings are retired with it: if the underlying record later re-enters our sources (a repository coming back online, say), it is treated as a new work and minted a **new** ID — the dead ID is not revived. And a work ID is never reassigned: W-IDs come from a forward-only sequence, so a deleted ID never comes to mean a different work. In rare cases a deletion is deliberately reversed (for example, a curator restores a work); the ID is then removed from the log, so treat the log as the current set of dead IDs rather than an append-only stream.
+**Deletion is final.** A deleted ID stays deleted, and work IDs are never reused — a deleted ID will never point to a different work.
 
 Available in every [daily snapshot](#the-daily-snapshot-paid-plans) since 2026-08-15; the free public bucket picks it up with the next quarterly release.
 
