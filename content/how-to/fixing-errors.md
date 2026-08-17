@@ -1,5 +1,6 @@
 ---
 title: "Fixing Errors: Overview"
+navLabel: "Overview"
 updated: 2026-08-17
 description: "Found an error in OpenAlex? Start here: what you can fix yourself right now, and how to report everything else."
 tags: ["fixing"]

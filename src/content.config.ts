@@ -17,6 +17,11 @@ const article = z.object({
   // detail the title doesn't carry, not a restatement of it. Keep it ≤ ~90
   // chars so it stays under three lines on a 2-up card.
   card: z.string().optional(),
+  // Sidebar-only short label. Use when the full title repeats the nav group's
+  // header right above it (e.g. "Fixing Errors: Overview" under the "Fixing
+  // errors" group renders as just "Overview"). Everything else — page H1,
+  // landing accordion, search — keeps `title`.
+  navLabel: z.string().optional(),
   tags: z.array(z.string()).default([]),
   synonyms: z.array(z.string()).default([]),
   source_id: z.string().optional(),

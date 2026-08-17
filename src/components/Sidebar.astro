@@ -63,7 +63,7 @@ const path = Astro.url.pathname;
           ) : (
             item.entry && (
               <a href={urlFor(tab, item.entry)} aria-current={item.entry.id === activeSlug ? 'page' : undefined}>
-                {item.entry.data.title}
+                {item.entry.data.navLabel ?? item.entry.data.title}
               </a>
             )
           )
