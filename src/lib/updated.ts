@@ -6,9 +6,17 @@ import type { AnyEntry, Tab } from './tabs';
 // silently lies. One `git log` pass over content/ builds the whole map at
 // build time — per-file `git log` calls would be ~500 subprocess spawns.
 //
-// The date is the AUTHOR date (%as, YYYY-MM-DD), so a rebase doesn't restamp
-// every article. Walking newest-first, the first commit that touches a path
-// wins.
+// What's stored is the INSTANT the edit was made (%aI — ISO 8601 with the
+// author's UTC offset, i.e. the same fact as %at/epoch seconds, written in the
+// form `<time datetime>` accepts and `new Date()` parses). The instant is the
+// primitive fact; a calendar date is one projection of it, so we keep the
+// instant here and let each reader's browser project it (LastUpdated.astro).
+//
+// AUTHOR date, not committer date: a rebase rewrites committer dates and would
+// restamp the whole tree as freshly-edited. The tradeoff is that a
+// cherry-picked commit reads as edited when it was written, not when it
+// landed — the better failure of the two. Walking newest-first, the first
+// commit that touches a path wins.
 function buildMap(): Map<string, string> {
   const map = new Map<string, string>();
   let out: string;
@@ -27,7 +35,7 @@ function buildMap(): Map<string, string> {
     }
     out = execFileSync(
       'git',
-      ['log', '--format=%x00%as', '--name-only', '--no-renames', '--', 'content'],
+      ['log', '--format=%x00%aI', '--name-only', '--no-renames', '--', 'content'],
       { encoding: 'utf8', maxBuffer: 64 * 1024 * 1024 }
     );
   } catch {
@@ -52,10 +60,16 @@ function gitDates(): Map<string, string> {
 }
 
 /**
- * Last-updated date for an article, as `YYYY-MM-DD`, or undefined when git
- * history isn't available. Frontmatter `updated:` wins over git — the escape
- * hatch for mechanical sweeps (a sitewide sed or a git-mv rename bumps every
- * file's git date without changing what any article says).
+ * When an article was last edited, or undefined when git history isn't
+ * available. Two shapes, both valid `<time datetime>` values:
+ *
+ *  - from git: a full instant, `2026-08-11T19:09:05-05:00`
+ *  - from frontmatter `updated:`: a bare `2026-08-11`, which asserts a
+ *    calendar date and nothing about time of day
+ *
+ * Frontmatter wins over git — the escape hatch for mechanical sweeps (a
+ * sitewide sed or a git-mv rename bumps every file's git date without changing
+ * what any article says).
  */
 export function lastUpdatedFor(tab: Tab, entry: AnyEntry): string | undefined {
   const override = entry.data.updated;

@@ -117,7 +117,7 @@ The article foot carries `Last updated <date>` bottom-LEFT, opposite "View as
 Markdown" bottom-right. Three things about it are load-bearing:
 
 - **The date is derived, not authored.** `src/lib/updated.ts` does one
-  `git log --format=%as --name-only -- content` pass at build time and takes the
+  `git log --format=%aI --name-only -- content` pass at build time and takes the
   newest commit touching each file. There is no field to remember to bump. The
   frontmatter `updated: YYYY-MM-DD` override exists ONLY for when the git date
   lies — a sitewide sed or a `git mv` rename (this repo has done both) restamps a
@@ -130,13 +130,24 @@ Markdown" bottom-right. Three things about it are load-bearing:
   commit. `deploy.yml` sets `fetch-depth: 0`; `updated.ts` additionally refuses to
   emit any date at all (with a build warning) if it detects a shallow repo,
   because a confident wrong date is worse than none.
-- **The date is formatted in the READER's locale, client-side.** The build bakes
-  in an en-US string as the no-JS fallback; `LastUpdated.astro`'s `is:inline`
-  script restates it via `Intl` from `navigator.languages`. It must rebuild the
-  date as `new Date(y, m-1, d)` — `new Date('2026-08-11')` is UTC midnight and
-  renders as the 10th for every reader behind Greenwich (verified in CT). Don't
-  "simplify" that back, and keep the script `is:inline` and adjacent to the
-  markup so it runs before first paint (no flash of en-US in a French browser).
+- **We store the INSTANT and let each browser project it** (Jason, 2026-08-16).
+  `<time datetime="2026-08-11T19:09:05-05:00">` — the same fact as epoch
+  seconds, in the form `<time>` accepts and `new Date()` parses. Rendering is
+  the reader's business, not the build's: `LastUpdated.astro`'s `is:inline`
+  script re-renders via `Intl` from `navigator.languages`. **A reader east of
+  the author legitimately sees the following day** — that 19:09 CT commit is
+  already Aug 12 in Paris and Tokyo. That's the instant in their frame, not a
+  bug; don't "fix" it by pinning the output to one zone.
+  - The SSR text is a **no-JS fallback pinned to UTC** — the build machine's
+    zone is an accident of where CI runs. So the fallback and a US reader's JS
+    render can differ by a day. Expected.
+  - The **frontmatter `updated:` override is date-only** (`2026-08-11`), which
+    asserts a calendar date and nothing about time of day. That branch must
+    build the date as `new Date(y, m-1, d)`; `new Date('2026-08-11')` reads UTC
+    midnight and shifts it a day back for every reader behind Greenwich
+    (verified in CT). Both branches live in the one inline script.
+  - Keep the script `is:inline` and adjacent to the markup so it runs before
+    first paint (no flash of the UTC fallback in a French browser).
 
 Only `[tab]/[...slug].astro` has an article foot — the Quickstart page and the
 Data/API tab landings show no date.
