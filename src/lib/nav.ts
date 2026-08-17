@@ -126,7 +126,7 @@ export const NAV_GROUPS: Record<string, NavGroup[]> = {
     {
       label: 'Fixing errors',
       desc: 'Fix authors and affiliations yourself; report everything else.',
-      slugs: ['fixing-authors', 'fixing-affiliations', 'fixing-data-errors', 'author-profile-privacy'],
+      slugs: ['fixing-errors', 'fixing-authors', 'fixing-affiliations', 'fixing-data-errors', 'author-profile-privacy'],
     },
     {
       label: 'Sources',

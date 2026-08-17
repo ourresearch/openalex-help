@@ -1,10 +1,10 @@
 ---
 title: "Overview"
-updated: 2026-08-10
+updated: 2026-08-17
 description: "How to report errors in OpenAlex, fix them yourself, and get help — tickets, self-serve curation for authors and affiliations, and where support fits in."
 tags: ["reference"]
 ---
-OpenAlex is built by inference at enormous scale — [hundreds of millions of works](/data/how-its-built/), disambiguated authors, matched affiliations — and inference is sometimes wrong. This section is about what to do when you find an error: how to report it, which errors you can fix yourself, and how to get help.
+OpenAlex is built by inference at enormous scale — [hundreds of millions of works](/data/how-its-built/), disambiguated authors, matched affiliations — and inference is sometimes wrong. This section is the reference on what to do when you find an error: how to report it, which errors you can fix yourself, and how to get help. (Here to fix something right now? Start from the task side: [Fixing Errors: Overview](/how-to/fixing-errors/).)
 
 ## What to do, by what's wrong
 
