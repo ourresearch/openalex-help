@@ -13,7 +13,7 @@ This page covers the API mechanics; for the self-serve workflow (claiming your p
 
 ## What you can curate
 
-Four corrections are available. The first two correct the authors attributed to a [work](/data/works/); the last two correct the names on an author profile.
+Five corrections are available. The first two correct the authors attributed to a [work](/data/works/); the rest correct fields on an author profile.
 
 | Action                 | Description                                                |
 | ---------------------- | ---------------------------------------------------------- |
@@ -21,6 +21,7 @@ Four corrections are available. The first two correct the authors attributed to 
 | `remove from work`     | Detach a work that isn't yours                             |
 | `modify display_name`  | Update the `display_name` on your author profile           |
 | `modify full_name`     | Update the `full_name` used to match future works to your author profile |
+| `modify orcid`         | Set the correct [ORCID](https://orcid.org/) on your profile, or detach a wrong one |
 
 ## Submitting a curation
 
@@ -102,6 +103,42 @@ The author's works will be re-synced so the updated name is reflected in the API
 
 `full_name` feeds the matcher (not the displayed profile), so `value` should be one of the author's existing raw author names from a work already on their profile.
 
+### Modify orcid
+
+OpenAlex records an author's ORCID only when it arrives attached to an authorship in the source metadata, so a researcher who has an ORCID but has never supplied it to a publisher won't have one on their profile. This curation lets them set it themselves.
+
+"My author profile A5023888391 is `https://orcid.org/0000-0002-0889-9220`."
+
+```json
+{
+  "entity": "authors",
+  "entity_id": "https://openalex.org/A5023888391",
+  "property": "orcid",
+  "action": "replace",
+  "value": "https://orcid.org/0000-0002-0889-9220"
+}
+```
+
+To detach an ORCID that isn't yours, use `remove` — and note that `value` is still the ORCID, the one being detached:
+
+```json
+{
+  "entity": "authors",
+  "entity_id": "https://openalex.org/A5023888391",
+  "property": "orcid",
+  "action": "remove",
+  "value": "https://orcid.org/0000-0002-1825-0097"
+}
+```
+
+Three things to know about the `value`:
+
+- **The canonical form is the full HTTPS URL** — `https://orcid.org/0000-0002-0889-9220` — matching the form of the live [`orcid`](/data/authors/#orcid) field on an author. The API accepts the friendlier variants too (a bare `0000-0002-0889-9220`, an unhyphenated `0000000208899220`, `http://` or `www.`, a trailing slash) and canonicalizes them for you, but the stored value is always the full HTTPS URL.
+- **The check digit is verified at submission.** An ORCID carries an ISO 7064 mod-11-2 check character (the last character, which may be `X`). A transposed or mistyped ORCID fails that check and the item is rejected with a `400` rather than being accepted and quietly applied to the wrong profile.
+- **`property` is the flat `orcid`**, not `ids.orcid` — ORCID is a top-level author property despite appearing under the `ids` display category.
+
+Like the other author-profile curations, this one is available to the owner of a claimed profile (and to site curators and organization owners/curators). Setting an ORCID does **not** trigger any automatic merging of profiles that share it.
+
 A successful request returns `201` with the saved curation:
 
 ```json
@@ -140,12 +177,13 @@ The pipeline has four steps. The first two live in the OpenAlex users API (Herok
 
 2. **Split into views by curation type**
 
-   Four views in the users-api Postgres database split `public.curations` into one view per curation type:
+   Views in the users-api Postgres database split `public.curations` into one view per curation type:
 
    - `work_author_claim_curations`
    - `work_author_remove_curations`
    - `author_display_name_curations`
    - `author_full_name_curations`
+   - `author_orcid_curations` (set) and `author_orcid_removals` (detach)
 
 3. **Sync nightly to Delta tables**
 
