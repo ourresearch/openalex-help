@@ -1,5 +1,6 @@
 ---
 title: "Getting indexed"
+updated: 2026-08-10
 description: "How to get your journal's or repository's works into OpenAlex."
 tags: ["general"]
 synonyms: ["journal indexing", "repository indexing", "add my journal", "add my repository"]

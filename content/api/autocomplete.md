@@ -1,5 +1,6 @@
 ---
 title: "Autocomplete"
+updated: 2026-08-11
 description: "Fast typeahead search for building search interfaces"
 tags: ["api"]
 source_id: "guides/autocomplete"

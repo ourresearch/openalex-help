@@ -1,5 +1,6 @@
 ---
 title: "Audit a Profile"
+updated: 2026-08-12
 subtitle: "Spot works missing from an author profile — and works wrongly attached — so you can clean it up."
 description: "Find works that should belong to an OpenAlex author profile but aren't currently attached, and works that shouldn't belong but are"
 tags: ["recipes","api"]

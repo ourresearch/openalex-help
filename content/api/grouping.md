@@ -1,5 +1,6 @@
 ---
 title: "Group"
+updated: 2026-08-11
 description: "Aggregate entities into faceted counts using group_by"
 tags: ["api"]
 source_id: "guides/grouping"

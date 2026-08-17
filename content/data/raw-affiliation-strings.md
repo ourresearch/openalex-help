@@ -1,5 +1,6 @@
 ---
 title: "Raw affiliation strings"
+updated: 2026-08-11
 description: "The exact affiliation text an author printed on a work, before OpenAlex matches it to an institution — the raw input to institution disambiguation."
 tags: ["reference"]
 entity:

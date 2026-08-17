@@ -1,5 +1,6 @@
 ---
 title: "API recipes"
+updated: 2026-08-11
 description: "Copy-paste URL patterns for the most common OpenAlex API questions — finding works, filtering, grouping, batch-fetching, sampling, and following citations."
 tags: ["api"]
 synonyms: ["api examples", "filter examples", "group_by", "batch fetch", "sample", "citation network"]

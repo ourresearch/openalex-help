@@ -1,5 +1,6 @@
 ---
 title: "OQO"
+updated: 2026-08-09
 description: "OQO (OpenAlex Query Objects) — the machine-readable JSON twin of OQL, built for agents and tools, with its JSON Schema."
 tags: ["oql"]
 generated: true

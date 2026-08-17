@@ -1,5 +1,6 @@
 ---
 title: "Continents"
+updated: 2026-08-11
 description: "The seven continents in OpenAlex, the fields on a continent object, and how to filter and group works, authors, and institutions by continent."
 tags: ["reference"]
 source_id: "api-reference/continents"

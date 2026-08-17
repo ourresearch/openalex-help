@@ -1,5 +1,6 @@
 ---
 title: "Citations"
+updated: 2026-08-08
 description: "How OpenAlex builds citations and references — reference extraction and matching, why counts can differ from the PDF, and the Field-Weighted Citation Impact (FWCI) metric."
 tags: ["reference"]
 ---

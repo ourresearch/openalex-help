@@ -1,5 +1,6 @@
 ---
 title: "AI curation guide"
+updated: 2026-08-11
 description: "Required reading for AI agents curating affiliation matches: the judgment rules that keep bulk corrections from causing new damage."
 tags: ["reference"]
 synonyms: ["agent curation", "ras curation", "affiliation curation rules"]

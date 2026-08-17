@@ -1,5 +1,6 @@
 ---
 title: "Domains"
+updated: 2026-08-11
 description: "What a domain is, where it sits at the top of the OpenAlex classification hierarchy, and what every attribute on a domain object means."
 tags: ["reference"]
 source_id: "24736129405719"

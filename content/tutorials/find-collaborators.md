@@ -1,5 +1,6 @@
 ---
 title: "Find Collaborators"
+updated: 2026-08-10
 subtitle: "Find institutions that lead in your fields but you rarely co-author with — your best untapped partners."
 description: "Discover institutions you should be working with based on shared research topics"
 tags: ["recipes","api"]

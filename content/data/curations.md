@@ -1,5 +1,6 @@
 ---
 title: "Curations"
+updated: 2026-08-11
 description: "What a curation is, who can file one, the review states it moves through, and how an accepted curation flows into the entity it corrects."
 tags: ["reference"]
 entity:

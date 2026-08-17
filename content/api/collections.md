@@ -1,5 +1,6 @@
 ---
 title: "Collections"
+updated: 2026-08-11
 description: "Save named lists of OpenAlex entities and filter searches against them"
 tags: ["api"]
 source_id: "guides/collections"

@@ -1,5 +1,6 @@
 ---
 title: "Support"
+updated: 2026-08-10
 description: "All the ways to get help with OpenAlex — and what to expect when you file a ticket."
 tags: ["general"]
 synonyms: ["help", "contact", "ticket", "office hours", "response time"]

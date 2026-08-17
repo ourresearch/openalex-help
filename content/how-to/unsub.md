@@ -1,5 +1,6 @@
 ---
 title: "Unsub"
+updated: 2026-08-12
 description: "What Unsub is, where its documentation lives, and how to get access."
 tags: ["supporters"]
 synonyms: ["unsub.org", "journal packages", "big deal", "subscription analysis", "cancellations"]

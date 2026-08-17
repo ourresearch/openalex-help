@@ -1,5 +1,6 @@
 ---
 title: "Open access"
+updated: 2026-08-11
 description: "How OpenAlex determines whether a work is Open Access — the status taxonomy (diamond, gold, green, hybrid, bronze), OA locations, best-location selection, and licenses."
 tags: ["reference"]
 source_id: "24347035046295"

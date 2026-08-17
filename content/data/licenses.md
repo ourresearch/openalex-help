@@ -1,5 +1,6 @@
 ---
 title: "Licenses"
+updated: 2026-08-11
 description: "The licenses an open-access work location can carry, the fields on a license object, and how to filter works by license."
 tags: ["reference"]
 source_id: "api-reference/licenses"

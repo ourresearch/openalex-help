@@ -1,5 +1,6 @@
 ---
 title: "Authors"
+updated: 2026-08-11
 description: "What an author is, how OpenAlex disambiguates them from raw authorship strings, and what every attribute on an author object means."
 tags: ["reference"]
 source_id: "24347048891543"

@@ -1,5 +1,6 @@
 ---
 title: "Member+"
+updated: 2026-08-12
 description: "The Member+ plan ($10,000/year): everything in Member, plus a $100/day API budget, basic support, and daily sync of the full database."
 tags: ["reference"]
 synonyms: ["member plus", "member+ plan", "daily sync plan"]

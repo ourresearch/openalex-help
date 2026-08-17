@@ -1,5 +1,6 @@
 ---
 title: "Map SDG Research"
+updated: 2026-08-11
 subtitle: "Compare how countries contribute to each UN Sustainable Development Goal and see who leads."
 description: "Compare how countries contribute to the UN Sustainable Development Goals and find who leads each one"
 tags: ["recipes","api"]

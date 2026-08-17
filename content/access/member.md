@@ -1,5 +1,6 @@
 ---
 title: "Member"
+updated: 2026-08-12
 description: "The Member plan ($5,000/year): a $20/day API budget, the admin dashboard, community representation, and — for academic and government institutions — the affiliation editor and Unsub access."
 tags: ["reference"]
 synonyms: ["member plan", "membership", "institutional membership"]

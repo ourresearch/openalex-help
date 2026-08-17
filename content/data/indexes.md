@@ -1,5 +1,6 @@
 ---
 title: "Indexes"
+updated: 2026-08-11
 description: "The external bibliographic indexes a work or source can appear in, the fields on an index object, and how to filter works by index."
 tags: ["reference"]
 source_id: "api-reference/indexes"

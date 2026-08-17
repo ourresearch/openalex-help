@@ -1,5 +1,6 @@
 ---
 title: "Source types"
+updated: 2026-08-11
 description: "The controlled vocabulary of source types — journal, repository, conference, book series, and more — what each value means, and how to filter works by the type of venue that hosts them."
 tags: ["reference"]
 entity:

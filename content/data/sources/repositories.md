@@ -1,5 +1,6 @@
 ---
 title: "Repositories"
+updated: 2026-08-12
 description: "How repository content gets into OpenAlex — OAI-PMH harvesting, matching records to works by DOI or title, locating full text, and why a repository's work count can look smaller than expected."
 tags: ["reference"]
 source_id: "41193798254743"

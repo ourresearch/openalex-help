@@ -1,5 +1,6 @@
 ---
 title: "Citing OpenAlex"
+updated: 2026-08-10
 description: "The citation to use when you use OpenAlex in your research."
 tags: ["general"]
 synonyms: ["citation", "cite", "reference"]

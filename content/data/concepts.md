@@ -1,5 +1,6 @@
 ---
 title: "Concepts (deprecated)"
+updated: 2026-08-11
 description: "What concepts were, why they're deprecated in favor of topics, and what every attribute on a concept object means."
 tags: ["reference"]
 source_id: "api-reference/concepts"

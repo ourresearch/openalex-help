@@ -1,5 +1,6 @@
 ---
 title: "How it's built"
+updated: 2026-08-15
 description: "How the OpenAlex dataset is built: gathering records from thousands of sources and organizing them into one connected knowledge graph. A map that points into the entity pages where each step is documented in full."
 tags: ["reference"]
 ---

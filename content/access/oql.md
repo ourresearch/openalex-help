@@ -1,5 +1,6 @@
 ---
 title: "Overview"
+updated: 2026-08-09
 description: "The OpenAlex Query Language — what OQL is, how to write it, and every construct with a copyable example."
 tags: ["oql"]
 source_id: "query-spec/guide+cheatsheet"

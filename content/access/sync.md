@@ -1,5 +1,6 @@
 ---
 title: "Sync"
+updated: 2026-08-10
 description: "Snapshot release cadence per plan, how updated_date partitions work, the four ways to keep a copy in sync with OpenAlex, and how deletions and merged entities behave."
 tags: ["downloads"]
 source_id: "new/snapshot-updates"

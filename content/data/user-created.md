@@ -1,5 +1,6 @@
 ---
 title: "Overview"
+updated: 2026-08-11
 description: "Things OpenAlex users mint themselves — collections and curations — rather than things OpenAlex mints."
 tags: ["reference"]
 ---

@@ -1,5 +1,6 @@
 ---
 title: "Partner"
+updated: 2026-08-12
 description: "The Partner plan (from $20,000/year): everything in Member+, plus a $200+/day API budget, full support, and — for academic and government institutions — power-user accounts and annual consulting hours."
 tags: ["reference"]
 synonyms: ["partner plan", "enterprise plan", "premium plan"]

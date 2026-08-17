@@ -1,5 +1,6 @@
 ---
 title: "Works"
+updated: 2026-08-09
 description: "How to report errors on works — wrong open-access status, broken fulltext links, bad metadata — and what makes a report we can act on."
 tags: ["reference"]
 ---

@@ -1,5 +1,6 @@
 ---
 title: "Agents"
+updated: 2026-08-11
 description: "How to get the most out of AI agents — Claude, ChatGPT, Cursor, and friends — when working with OpenAlex."
 tags: ["reference"]
 ---

@@ -1,5 +1,6 @@
 ---
 title: "Unpaywall"
+updated: 2026-08-12
 description: "What Unpaywall is — a legacy-compatible API surface over the OpenAlex database — its DOI coverage, data format, and how it relates to OpenAlex products."
 tags: ["unpaywall"]
 source_id: "41193838206743"

@@ -1,5 +1,6 @@
 ---
 title: "Common attributes"
+updated: 2026-08-11
 description: "The attributes that appear on nearly every OpenAlex entity — id, ids, display_name, counts_by_year, summary_stats, and the rest — documented once."
 tags: ["reference"]
 ---

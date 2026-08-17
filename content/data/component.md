@@ -1,5 +1,6 @@
 ---
 title: "Overview"
+updated: 2026-08-11
 description: "Parts of a work — authorships, locations, raw affiliation strings — that OpenAlex models richly but doesn't give their own OpenAlex IDs."
 tags: ["reference"]
 ---

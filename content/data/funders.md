@@ -1,5 +1,6 @@
 ---
 title: "Funders"
+updated: 2026-08-11
 description: "What a funder is, how OpenAlex grounds funders in ROR and the Crossref funder registry, and what every attribute on a funder object means."
 tags: ["reference"]
 source_id: "api-reference/funders"

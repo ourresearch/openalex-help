@@ -1,5 +1,6 @@
 ---
 title: "Page through Results"
+updated: 2026-08-11
 description: "Navigate through large result sets"
 tags: ["api"]
 source_id: "guides/page-through-results"

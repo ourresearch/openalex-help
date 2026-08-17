@@ -1,5 +1,6 @@
 ---
 title: "Sort"
+updated: 2026-07-28
 description: "Order results by a field"
 tags: ["api"]
 source_id: "guides/sort"

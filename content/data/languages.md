@@ -1,5 +1,6 @@
 ---
 title: "Languages"
+updated: 2026-08-11
 description: "The languages a work's metadata can be in, the ISO 639-1 standard behind the list, the fields on a language object, and how to filter works by language."
 tags: ["reference"]
 source_id: "api-reference/languages"

@@ -1,5 +1,6 @@
 ---
 title: "Author Curation"
+updated: 2026-08-16
 description: "Curate your profile to claim works, remove works, or change your name"
 tags: ["api"]
 source_id: "guides/curation-authors"

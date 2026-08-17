@@ -1,5 +1,6 @@
 ---
 title: "Keywords"
+updated: 2026-08-11
 description: "What a keyword is, how OpenAlex derives keywords from a work's topics, and what every attribute on a keyword object means."
 tags: ["reference"]
 source_id: "24736201130391"

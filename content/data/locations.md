@@ -1,5 +1,6 @@
 ---
 title: "Locations"
+updated: 2026-08-11
 description: "Each place a version of a work is available — the publisher's site, a repository, a preprint server — with its version, license, and open-access status, and what every attribute on a location object means."
 tags: ["reference"]
 entity:

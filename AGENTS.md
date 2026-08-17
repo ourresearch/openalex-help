@@ -1,3 +1,10 @@
+## This site is LIVE at help.openalex.org
+
+It is the real, launched help center — not a staging rebuild. Pushes to `main`
+auto-deploy to production and real users see them. Anything below describing an
+"unlaunched" site is history about *when a change was made*, not a statement
+about today.
+
 ## The site is two-sided: Learn vs Reference (oxjob #354)
 
 Category vocabulary (Jason 2026-08-07; the Astro/MDN split). The split is reader
@@ -15,7 +22,9 @@ INTENT, not whether learning occurs:
   `/how-to/ /tutorials/ /access/ /data/ /api/`. The old `/docs/*` and `/help/*`
   namespaces were renamed wholesale — content dirs git-mv'd, every internal
   link and the entire `_redirects` file (sources AND targets, chains intact)
-  sed'd together; no compatibility redirects kept (site was unlaunched).
+  sed'd together; no compatibility redirects kept (the site had not launched
+  *at that time* — 2026-08-09; it has since, so don't take this as licence to
+  break URLs now).
   openalex-gui's `HELP_DOCS_BASE` (MembersPage.vue, PricingPageNewer.vue)
   points at `/access` — keep in sync if tabs move again.
 - **Learn**: FAQ (extended FAQ of real user questions) / Tutorials (worked
@@ -111,43 +120,40 @@ Rules that matter when touching header/nav:
   sticky top is `calc(var(--nav-h) + 1.5rem)` to match. Change any of these
   metrics in ALL places together.
 
-## "Last updated" dates come from git (oxjob #637)
+## ⚠️ EDIT A PAGE → BUMP ITS `updated:` DATE (oxjob #637)
 
-The article foot carries `Last updated <date>` bottom-LEFT, opposite "View as
-Markdown" bottom-right. Three things about it are load-bearing:
+Every article in `content/` carries a **required** `updated: YYYY-MM-DD` in its
+frontmatter, and it renders as "Last updated &lt;date&gt;" at the foot of the page.
+**It is hand-maintained. When you edit an article, set it to today's date —
+in the same edit, not as a follow-up.** Nothing does this for you.
 
-- **The date is derived, not authored.** `src/lib/updated.ts` does one
-  `git log --format=%aI --name-only -- content` pass at build time and takes the
-  newest commit touching each file. There is no field to remember to bump. The
-  frontmatter `updated: YYYY-MM-DD` override exists ONLY for when the git date
-  lies — a sitewide sed or a `git mv` rename (this repo has done both) restamps a
-  file without changing what it says. **YAML parses a bare `updated: 2026-03-05`
-  into a Date object, not a string** — that's why the schema is a
-  `z.union([string, date])` with a transform, and why a plain `z.string()` there
-  fails the build.
-- **CI checkout depth is load-bearing.** `actions/checkout` defaults to
-  `fetch-depth: 1`, and a depth-1 clone dates EVERY content file to the tip
-  commit. `deploy.yml` sets `fetch-depth: 0`; `updated.ts` additionally refuses to
-  emit any date at all (with a build warning) if it detects a shallow repo,
-  because a confident wrong date is worse than none.
-- **We store the INSTANT and let each browser project it** (Jason, 2026-08-16).
-  `<time datetime="2026-08-11T19:09:05-05:00">` — the same fact as epoch
-  seconds, in the form `<time>` accepts and `new Date()` parses. Rendering is
-  the reader's business, not the build's: `LastUpdated.astro`'s `is:inline`
-  script re-renders via `Intl` from `navigator.languages`. **A reader east of
-  the author legitimately sees the following day** — that 19:09 CT commit is
-  already Aug 12 in Paris and Tokyo. That's the instant in their frame, not a
-  bug; don't "fix" it by pinning the output to one zone.
-  - The SSR text is a **no-JS fallback pinned to UTC** — the build machine's
-    zone is an accident of where CI runs. So the fallback and a US reader's JS
-    render can differ by a day. Expected.
-  - The **frontmatter `updated:` override is date-only** (`2026-08-11`), which
-    asserts a calendar date and nothing about time of day. That branch must
-    build the date as `new Date(y, m-1, d)`; `new Date('2026-08-11')` reads UTC
-    midnight and shifts it a day back for every reader behind Greenwich
-    (verified in CT). Both branches live in the one inline script.
-  - Keep the script `is:inline` and adjacent to the markup so it runs before
-    first paint (no flash of the UTC fallback in a French browser).
+```yaml
+---
+title: "Authors"
+updated: 2026-08-16     # ← bump this whenever you change the page
+description: "…"
+---
+```
+
+- **Required by the schema**, so a new page without one fails the build and
+  names the file. Nothing catches a *stale* date on an edited page, though —
+  that part is on you.
+- **Use judgment, don't be mechanical.** It's a claim to the reader that the
+  page is current as of that date. A real revision earns a bump; fixing a typo
+  or renaming a file doesn't have to. This is exactly why it isn't derived from
+  git — a commit log can't tell those apart. Don't rebuild an automatic
+  git-based version of this (tried and removed 2026-08-16, Jason: "just do it
+  the way a human would").
+- **YAML parses a bare `updated: 2026-08-16` into a Date object, not a string**
+  — that's why the schema is a `z.union([string, date])` with a transform, and
+  why a plain `z.string()` there fails the build.
+- **Rendering** (`LastUpdated.astro`): the build bakes in a UTC-pinned en-US
+  string as the no-JS fallback, and an `is:inline` script re-renders it in the
+  reader's locale from `navigator.languages` ("11 août 2026", "2026年8月11日").
+  It builds the date as `new Date(y, m-1, d)` — `new Date('2026-08-11')` parses
+  as UTC midnight and renders as the 10th for every reader behind Greenwich
+  (verified in CT). Don't "simplify" that back. Keep the script `is:inline` and
+  adjacent to the markup so it runs before first paint.
 
 Only `[tab]/[...slug].astro` has an article foot — the Quickstart page and the
 Data/API tab landings show no date.
@@ -156,7 +162,9 @@ Data/API tab landings show no date.
 
 The migration generators (`scripts/migrate.mjs`, `scripts/mintlify-port.mjs`) are
 **FROZEN** (oxjob #354 D01, 2026-07-28) and exit with an error if run. Edit
-`content/*.md` directly — never regenerate. When renaming/merging articles, add
+`content/*.md` directly — never regenerate. **Every content edit also bumps that
+file's `updated:` frontmatter date** (see the section above). When
+renaming/merging articles, add
 `public/_redirects` rules per changed slug — bare + trailing-slash only, **no `.md`-variant
 rules** (settled policy, oxjob #354 2026-07-30) — and update `src/lib/nav.ts`.
 **Never add rules after the WILDCARDS LAST section at the end of `_redirects`** — a CF

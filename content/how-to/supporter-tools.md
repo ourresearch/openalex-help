@@ -1,5 +1,6 @@
 ---
 title: "Supporter tools"
+updated: 2026-08-12
 description: "Activating the tools that come with institutional plans: the Admin Dashboard, the Affiliation Editor, and Unsub."
 tags: ["supporters"]
 synonyms: ["admin dashboard", "affiliation editor", "unsub", "member benefits"]

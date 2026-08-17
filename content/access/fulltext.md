@@ -1,5 +1,6 @@
 ---
 title: "Fulltext"
+updated: 2026-08-11
 description: "The OpenAlex content archive — full-text PDFs and Grobid TEI XML for millions of works, and the three ways to download them."
 tags: ["downloads"]
 source_id: "download/full-text-pdfs"

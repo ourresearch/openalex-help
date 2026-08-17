@@ -1,5 +1,6 @@
 ---
 title: "Analyzing your institution"
+updated: 2026-08-11
 description: "Count an institution's outputs on the OpenAlex website and break them down by type, subject, SDG, open access, citations, collaborators, and journals — plus APC spend and open-access trends."
 tags: ["analytics"]
 synonyms: ["institution outputs", "count publications", "outputs by type", "outputs by subfield", "SDG", "open access percentage", "APC fees", "citations", "collaborators", "journals published in"]

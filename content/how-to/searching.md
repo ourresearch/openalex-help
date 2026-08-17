@@ -1,5 +1,6 @@
 ---
 title: "Searching"
+updated: 2026-08-11
 description: "Recipes for common search questions: most-cited works, top-100 lists, excluding retractions, query length, and finding issue metadata."
 tags: ["search"]
 synonyms: ["most cited", "top cited", "retracted works", "query length", "volume and issue"]

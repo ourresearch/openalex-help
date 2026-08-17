@@ -1,5 +1,6 @@
 ---
 title: "Basic"
+updated: 2026-08-09
 description: "Point-and-click search and filters at openalex.org — the no-code way to query OpenAlex."
 tags: ["reference"]
 ---

@@ -1,5 +1,6 @@
 ---
 title: "Buying & renewing"
+updated: 2026-08-09
 description: "How to buy OpenAlex prepaid usage and annual plans, invoices and VAT, trials, renewals, and what happens when your budget runs out."
 tags: ["reference"]
 synonyms: ["purchase", "invoice", "VAT", "renewal", "trial", "quote", "billing"]

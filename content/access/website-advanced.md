@@ -1,5 +1,6 @@
 ---
 title: "Advanced"
+updated: 2026-08-09
 description: "The visual query builder at openalex.org — build complex queries without writing code."
 tags: ["reference"]
 ---

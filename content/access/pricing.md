@@ -1,5 +1,6 @@
 ---
 title: "Overview"
+updated: 2026-08-11
 description: "How OpenAlex pricing works: $1 of free API usage every day, pay-as-you-go prepaid usage, and annual plans (Member, Member+, Partner) — plus the PDF sync add-on and the free-data, paid-services sustainability model."
 tags: ["reference"]
 synonyms: ["plans", "subscriptions", "premium", "membership", "cost", "credits", "prepaid usage"]

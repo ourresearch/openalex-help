@@ -1,5 +1,6 @@
 ---
 title: "Expansion corpus"
+updated: 2026-08-12
 description: "OpenAlex works come in two corpora — the curated core and a larger expansion (formerly 'XPAC'). What's in each, why the expansion is opt-in, and how to select core / expansion / all in the REST API and OQL."
 tags: ["reference"]
 synonyms: ["xpac", "expansion pack", "corpus", "include_xpac", "is_xpac", "core corpus", "expansion corpus"]

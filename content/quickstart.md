@@ -1,5 +1,6 @@
 ---
 title: "Quickstart"
+updated: 2026-08-11
 subtitle: "Get real data out of OpenAlex in five minutes — on the website, through the API, or by asking your agent."
 description: "Get real data out of OpenAlex in five minutes — on the website, through the API, or by asking your agent."
 ---

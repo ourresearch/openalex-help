@@ -1,5 +1,6 @@
 ---
 title: "Overview"
+updated: 2026-08-09
 description: "What a source is, where sources come from, and how OpenAlex builds them and judges journal quality and open access."
 tags: ["reference"]
 source_id: "24347057529623"

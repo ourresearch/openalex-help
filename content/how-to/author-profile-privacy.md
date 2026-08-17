@@ -1,5 +1,6 @@
 ---
 title: "Author profile privacy"
+updated: 2026-08-15
 description: "What an author profile is, how to fix one, and how we handle requests to remove one — including privacy and personal-data requests."
 tags: ["fixing"]
 synonyms: ["remove my profile", "delete my profile", "personal data", "GDPR", "privacy", "consent", "right to be forgotten", "data removal"]

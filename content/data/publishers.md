@@ -1,5 +1,6 @@
 ---
 title: "Publishers"
+updated: 2026-08-11
 description: "What a publisher is, how OpenAlex builds the publisher hierarchy from ROR and Wikidata, how it connects to sources, and what every attribute on a publisher object means."
 tags: ["reference"]
 source_id: "api-reference/publishers"

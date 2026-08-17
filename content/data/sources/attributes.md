@@ -1,5 +1,6 @@
 ---
 title: "Attributes"
+updated: 2026-08-11
 description: "The canonical dictionary of every attribute on a source object — what each one means, where it comes from, and its quirks."
 tags: ["reference"]
 ---

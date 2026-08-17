@@ -1,5 +1,6 @@
 ---
 title: "Semantic Search"
+updated: 2026-08-11
 description: "Find works by meaning using AI embeddings. Best for paragraph-length queries."
 tags: ["api"]
 source_id: "guides/semantic-search"

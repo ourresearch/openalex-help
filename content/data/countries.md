@@ -1,5 +1,6 @@
 ---
 title: "Countries"
+updated: 2026-08-11
 description: "What a country is in OpenAlex, the ISO standard behind the list, the fields on a country object, and how to filter works, authors, and institutions by country."
 tags: ["reference"]
 source_id: "api-reference/countries"

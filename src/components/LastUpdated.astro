@@ -1,34 +1,28 @@
 ---
 // "Last updated <date>" for the article foot (oxjob #637): readers — CNRS/Inist
 // trainers especially — need to tell at a glance whether a page still reflects
-// the product. Date only, no time of day.
+// the product.
 //
-// We store the INSTANT of the edit and let each browser render it (Jason,
-// 2026-08-16): the instant is the fact, a calendar date is a projection of it,
-// so the projection belongs at the display end rather than baked into the
-// build. A reader east of the author can therefore see the following day —
-// that's the instant rendered in their own frame, not a bug.
+// The value is the article's hand-maintained `updated:` frontmatter (required
+// by the schema). A writer bumps it when they edit the page. Deliberately not
+// derived from git: it's a claim the author makes about the page, and a human
+// can tell a real revision from a typo fix or a rename in a way a commit log
+// can't.
 interface Props {
-  /**
-   * `<time datetime>` value: either a full instant with offset
-   * (`2026-08-11T19:09:05-05:00`, from git) or a bare `YYYY-MM-DD` (from a
-   * frontmatter `updated:` override, which asserts no time of day).
-   */
+  /** `YYYY-MM-DD` from the article's `updated:` frontmatter. */
   date: string;
 }
 const { date } = Astro.props;
 
-// Server-rendered text is the no-JS fallback for an English site. An instant is
-// pinned to UTC here because the build machine's zone is an accident of where
-// CI runs; the inline script re-renders it in the reader's actual zone. A bare
-// date is formatted as-is — there's no instant to convert.
-const dateOnly = !date.includes('T');
+// Server-rendered text is the no-JS fallback for an English site; the inline
+// script below re-renders it in the reader's locale. Pinned to UTC so the build
+// machine's timezone — an accident of where CI runs — can't shift the day.
 const fallback = new Intl.DateTimeFormat('en-US', {
   year: 'numeric',
   month: 'long',
   day: 'numeric',
   timeZone: 'UTC',
-}).format(new Date(dateOnly ? `${date}T00:00:00Z` : date));
+}).format(new Date(`${date}T00:00:00Z`));
 ---
 
 <p class="updated">Last updated <time datetime={date} data-localize-date>{fallback}</time></p>
@@ -39,23 +33,14 @@ const fallback = new Intl.DateTimeFormat('en-US', {
   (() => {
     const el = document.querySelector('time[data-localize-date]');
     if (!el) return;
-    const raw = el.dateTime;
-    // A full instant converts to the reader's zone; a bare YYYY-MM-DD asserts a
-    // calendar date, so build it in LOCAL time to keep it that date. Parsing it
-    // as `new Date('2026-08-11')` would read UTC midnight and shift it a day
-    // back for every reader behind Greenwich.
-    let d;
-    if (raw.includes('T')) {
-      d = new Date(raw);
-    } else {
-      const [y, m, day] = raw.split('-').map(Number);
-      if (!y || !m || !day) return;
-      d = new Date(y, m - 1, day);
-    }
-    if (isNaN(d.getTime())) return;
+    const [y, m, d] = el.dateTime.split('-').map(Number);
+    if (!y || !m || !d) return;
+    // Build the date in LOCAL time. `new Date('2026-08-11')` parses as UTC
+    // midnight, which renders as the 10th for every reader behind Greenwich.
+    const local = new Date(y, m - 1, d);
     const locales = navigator.languages?.length ? navigator.languages : undefined;
     try {
-      el.textContent = d.toLocaleDateString(locales, {
+      el.textContent = local.toLocaleDateString(locales, {
         year: 'numeric',
         month: 'long',
         day: 'numeric',

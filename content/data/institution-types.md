@@ -1,5 +1,6 @@
 ---
 title: "Institution types"
+updated: 2026-08-11
 description: "The controlled vocabulary of institution types — education, healthcare, company, government, and more — what each value means, and how to filter works by the type of affiliated institution."
 tags: ["reference"]
 entity:

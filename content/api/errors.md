@@ -1,5 +1,6 @@
 ---
 title: "Error Handling"
+updated: 2026-08-11
 description: "API error codes and retry strategies"
 tags: ["api"]
 source_id: "api-reference/errors"

@@ -1,5 +1,6 @@
 ---
 title: "Filter"
+updated: 2026-08-11
 description: "Narrow down results to entities that match specific conditions"
 tags: ["api"]
 source_id: "guides/filtering"

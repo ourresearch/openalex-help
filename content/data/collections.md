@@ -1,5 +1,6 @@
 ---
 title: "Collections"
+updated: 2026-08-11
 description: "What a collection is, what it can hold, why collections are private to their owner, and what every attribute on a collection object means."
 tags: ["reference"]
 entity:

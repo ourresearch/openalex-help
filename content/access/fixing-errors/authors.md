@@ -1,5 +1,6 @@
 ---
 title: "Authors"
+updated: 2026-08-09
 description: "Fix your OpenAlex author profile yourself: claim it, add and remove works, correct your names and ORCID, merge duplicates — by hand or with an AI agent."
 tags: ["reference"]
 ---

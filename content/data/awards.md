@@ -1,5 +1,6 @@
 ---
 title: "Awards"
+updated: 2026-08-11
 description: "What an award (grant) is, where its data comes from, how OpenAlex matches grants to funders and works, and what every attribute on an award object means."
 tags: ["reference"]
 source_id: "api-reference/awards"

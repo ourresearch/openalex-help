@@ -1,5 +1,6 @@
 ---
 title: "Overview"
+updated: 2026-08-08
 description: "What a work is, why works are the central entity in OpenAlex, where they come from, and how records become works."
 tags: ["reference"]
 source_id: "24347019383191"

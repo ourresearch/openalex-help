@@ -1,5 +1,6 @@
 ---
 title: "Overview"
+updated: 2026-08-11
 description: "The people, papers, places, and concepts OpenAlex catalogs — how their IDs work, how much to trust them, and how the objects are shaped."
 tags: ["reference"]
 ---

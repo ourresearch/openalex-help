@@ -22,17 +22,23 @@ const article = z.object({
   source_id: z.string().optional(),
   source_url: z.string().optional(),
   source_updated: z.string().optional(),
-  // "Last updated" override (oxjob #637). Normally the date shown in the
-  // article foot comes from git (src/lib/updated.ts) so nobody has to remember
-  // to bump it. Set this only when the git date lies — a sitewide sed or a
-  // git-mv rename restamps a file without changing what it says. `YYYY-MM-DD`.
-  // Accepts a Date because YAML parses a bare `updated: 2024-03-05` into one
-  // (a plain `z.string()` here fails the build with a schema error); quoted
-  // strings still work. Normalized to `YYYY-MM-DD` for consumers either way.
+  // REQUIRED (oxjob #637). The "Last updated" date shown at the foot of the article.
+  // Hand-maintained: bump it when you edit the page. Required rather than
+  // optional so a new page can't ship without one — the build fails and names
+  // the file. Accepts a Date because YAML parses a bare `updated: 2026-08-16`
+  // into one (a plain `z.string()` fails the build); quoted strings work too.
+  // Normalized to `YYYY-MM-DD` for consumers either way.
   updated: z
-    .union([z.string().regex(/^\d{4}-\d{2}-\d{2}$/, 'updated must be YYYY-MM-DD'), z.date()])
-    .transform((v) => (typeof v === 'string' ? v : v.toISOString().slice(0, 10)))
-    .optional(),
+    .union([
+      z
+        .string()
+        .regex(
+          /^\d{4}-\d{2}-\d{2}$/,
+          'must be YYYY-MM-DD — the date you last edited this page'
+        ),
+      z.date(),
+    ])
+    .transform((v) => (typeof v === 'string' ? v : v.toISOString().slice(0, 10))),
   // Help extended-FAQ stubs (oxjob #354 Pass R §7): a stub duplicates entity
   // provenance material by design, capped at ≤3 paragraphs, and points to the
   // canonical section for depth. A future lint can verify the target resolves.

@@ -1,5 +1,6 @@
 ---
 title: "Counting"
+updated: 2026-08-11
 description: "Recipes for counting questions: totaling citations to a result set, checking a journal's coverage, and why two counts of the same thing can disagree."
 tags: ["search"]
 synonyms: ["count citations", "journal coverage", "is a journal in openalex", "counts by year"]

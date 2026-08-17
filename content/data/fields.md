@@ -1,5 +1,6 @@
 ---
 title: "Fields"
+updated: 2026-08-11
 description: "What a field is, where it sits in the OpenAlex classification hierarchy, and what every attribute on a field object means."
 tags: ["reference"]
 source_id: "24736129405719"

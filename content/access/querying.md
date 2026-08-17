@@ -1,5 +1,6 @@
 ---
 title: "Overview"
+updated: 2026-08-11
 description: "The several ways to ask OpenAlex a question — web interface, REST URLs, OQL, CLI, and agents — and how they all transpile to the same query object under the hood."
 tags: ["reference"]
 ---

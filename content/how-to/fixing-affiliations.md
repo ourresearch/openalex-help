@@ -1,5 +1,6 @@
 ---
 title: "Fixing affiliations"
+updated: 2026-08-12
 description: "What to do when works are matched to the wrong institution — or your institution's own record is wrong."
 tags: ["fixing"]
 synonyms: ["wrong institution", "affiliation error", "missing works", "ROR", "affiliation editor"]

@@ -1,5 +1,6 @@
 ---
 title: "Overview"
+updated: 2026-08-12
 description: "A short, conversational tour of the OpenAlex REST API — how it's shaped, how to start, and where to go next."
 tags: ["api"]
 source_id: "api-reference/introduction"

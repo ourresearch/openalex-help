@@ -1,5 +1,6 @@
 ---
 title: "Search"
+updated: 2026-08-11
 description: "Find entities using full-text search across titles, abstracts, and more"
 tags: ["api"]
 source_id: "guides/searching"

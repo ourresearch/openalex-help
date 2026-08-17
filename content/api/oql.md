@@ -1,5 +1,6 @@
 ---
 title: "OQL API"
+updated: 2026-08-11
 description: "Executing and translating OQL over HTTP — endpoints, query formats, and reading results."
 tags: ["oql"]
 generated: true

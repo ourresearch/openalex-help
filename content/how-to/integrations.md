@@ -1,5 +1,6 @@
 ---
 title: "Integrations"
+updated: 2026-08-15
 description: "Getting OpenAlex data into other tools: website exports, VOSviewer, link resolvers, and the Unpaywall browser extension."
 tags: ["downloads"]
 synonyms: ["export", "CSV", "RIS", "VOSviewer", "link resolver", "SFX", "EBSCO", "Unpaywall extension"]

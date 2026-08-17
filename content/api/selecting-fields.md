@@ -1,5 +1,6 @@
 ---
 title: "Select Fields"
+updated: 2026-07-28
 description: "Limit which fields are returned in API responses"
 tags: ["api"]
 source_id: "guides/selecting-fields"

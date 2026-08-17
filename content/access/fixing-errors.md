@@ -1,5 +1,6 @@
 ---
 title: "Overview"
+updated: 2026-08-10
 description: "How to report errors in OpenAlex, fix them yourself, and get help — tickets, self-serve curation for authors and affiliations, and where support fits in."
 tags: ["reference"]
 ---

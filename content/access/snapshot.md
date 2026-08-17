@@ -1,5 +1,6 @@
 ---
 title: "Snapshot"
+updated: 2026-08-12
 description: "The complete OpenAlex database as downloadable files — formats, S3 bucket layout, manifests, size, how it differs from the API, and how to access it (free public bucket + paid daily snapshot)."
 tags: ["downloads"]
 source_id: "download/snapshot-format"

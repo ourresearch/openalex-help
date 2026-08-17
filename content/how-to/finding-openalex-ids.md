@@ -1,5 +1,6 @@
 ---
 title: "Finding OpenAlex IDs"
+updated: 2026-08-11
 description: "Every entity in OpenAlex has an ID. Here's how to find the ID for a work, author, source, publisher, or anything else — on the website or via the API."
 tags: ["how-do-i"]
 synonyms: ["work ID", "author ID", "source ID", "publisher ID", "OpenAlex ID"]

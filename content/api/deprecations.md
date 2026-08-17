@@ -1,5 +1,6 @@
 ---
 title: "Deprecations"
+updated: 2026-08-12
 description: "Deprecated features and migration guides"
 tags: ["api"]
 source_id: "guides/deprecations"

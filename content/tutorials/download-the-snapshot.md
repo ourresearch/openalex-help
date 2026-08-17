@@ -1,5 +1,6 @@
 ---
 title: "Download the Snapshot"
+updated: 2026-08-11
 subtitle: "Pull the full OpenAlex snapshot onto your computer with the AWS CLI."
 description: "Get the OpenAlex snapshot files onto your local machine using the AWS CLI"
 tags: ["recipes", "downloads"]

@@ -1,5 +1,6 @@
 ---
 title: "Legacy plans"
+updated: 2026-08-12
 description: "What older OpenAlex plans (Premium, Institutional) mean today: existing contracts are honored, and legacy subscribers get the new Member benefits at no extra cost."
 tags: ["reference"]
 synonyms: ["premium", "institutional", "old plans", "grandfathered plans"]

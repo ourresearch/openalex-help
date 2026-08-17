@@ -1,5 +1,6 @@
 ---
 title: "Affiliations"
+updated: 2026-08-10
 description: "Fix affiliation errors: the Affiliation Editor for wrong institution matches (self-serve for members), tickets for one-offs, and ROR for the institution record itself."
 tags: ["reference"]
 ---

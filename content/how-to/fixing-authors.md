@@ -1,5 +1,6 @@
 ---
 title: "Fixing authors"
+updated: 2026-08-12
 description: "Claim your OpenAlex author profile and fix it yourself: add and remove works, merge duplicates, and correct your names."
 tags: ["fixing"]
 synonyms: ["author profile", "claim profile", "merge profiles", "alternate names", "wrong works"]

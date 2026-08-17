@@ -1,5 +1,6 @@
 ---
 title: "Institutions"
+updated: 2026-08-11
 description: "What an institution is, how OpenAlex grounds them in ROR and matches raw affiliation strings to them, and what every attribute on an institution object means."
 tags: ["reference"]
 entity:

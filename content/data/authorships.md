@@ -1,5 +1,6 @@
 ---
 title: "Authorships"
+updated: 2026-08-07
 description: "The join between a work and its authors — the raw name each author printed, their position, whether they're corresponding, and the institutions they listed — and what every attribute on an authorship object means."
 tags: ["reference"]
 entity:

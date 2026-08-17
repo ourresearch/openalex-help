@@ -1,5 +1,6 @@
 ---
 title: "Get Singleton"
+updated: 2026-08-11
 description: "Retrieve a single entity by ID"
 tags: ["api"]
 source_id: "guides/get"

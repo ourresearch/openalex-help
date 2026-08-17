@@ -1,5 +1,6 @@
 ---
 title: "Overview"
+updated: 2026-08-15
 description: "Every way to get OpenAlex data — website, API, CLI, agents, snapshot, sync, fulltext, Unpaywall — and how to pick the right one for your technical skill, scale, and budget."
 tags: ["downloads"]
 ---

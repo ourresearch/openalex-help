@@ -1,5 +1,6 @@
 ---
 title: "Authentication"
+updated: 2026-08-11
 description: "API keys, sending your key, rate limits, and keeping tabs on your usage"
 tags: ["api"]
 source_id: "api-reference/authentication"

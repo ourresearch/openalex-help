@@ -1,5 +1,6 @@
 ---
 title: "SDGs"
+updated: 2026-08-11
 description: "The UN's 17 SDGs as OpenAlex entities, how works are tagged to them by an open-source machine-learning classifier, and what every attribute on an SDG object means."
 tags: ["reference"]
 source_id: "27972124390679"

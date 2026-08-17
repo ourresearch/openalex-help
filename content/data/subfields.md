@@ -1,5 +1,6 @@
 ---
 title: "Subfields"
+updated: 2026-08-11
 description: "What a subfield is, where it sits in the OpenAlex classification hierarchy, and what every attribute on a subfield object means."
 tags: ["reference"]
 source_id: "24736129405719"

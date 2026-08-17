@@ -1,5 +1,6 @@
 ---
 title: "CLI"
+updated: 2026-08-11
 description: "Download filtered subsets of OpenAlex data from the command line"
 tags: ["downloads"]
 source_id: "download/openalex-cli"

@@ -1,5 +1,6 @@
 ---
 title: "Topics"
+updated: 2026-08-11
 description: "What a topic is, how OpenAlex assigns topics to works and rolls them up into a four-level hierarchy, and what every attribute on a topic object means."
 tags: ["reference"]
 source_id: "24736129405719"

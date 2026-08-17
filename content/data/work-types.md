@@ -1,5 +1,6 @@
 ---
 title: "Work types"
+updated: 2026-08-11
 description: "The controlled vocabulary of work types — article, preprint, dataset, book, and the rest — what each value means, and how to filter works by type."
 tags: ["reference"]
 entity:

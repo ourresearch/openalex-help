@@ -1,5 +1,6 @@
 ---
 title: "Fixing data errors"
+updated: 2026-08-12
 description: "How to report anything wrong in OpenAlex — OA status, sources, dates, metadata — and write a report we can act on fast."
 tags: ["fixing"]
 synonyms: ["report error", "wrong data", "open access status", "wrong date", "support ticket"]

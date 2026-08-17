@@ -1,5 +1,6 @@
 ---
 title: "Journals You Cite"
+updated: 2026-08-11
 subtitle: "Walk your researchers' reference lists to see which journals they cite the most."
 description: "Map the journals your researchers reference most by walking their citation lists"
 tags: ["recipes","api"]
