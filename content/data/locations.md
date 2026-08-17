@@ -1,6 +1,6 @@
 ---
 title: "Locations"
-updated: 2026-08-11
+updated: 2026-08-17
 description: "Each place a version of a work is available — the publisher's site, a repository, a preprint server — with its version, license, and open-access status, and what every attribute on a location object means."
 tags: ["reference"]
 entity:
@@ -26,7 +26,7 @@ From all of a work's locations, OpenAlex designates a [`primary_location`](/data
 
 ## Attributes
 
-This is the dictionary of every attribute on a **location** object, as it appears in a work's [`locations`](/data/works/attributes/#locations), [`primary_location`](/data/works/attributes/#primary_location), and [`best_oa_location`](/data/works/attributes/#best_oa_location). Locations are a component entity, so they carry none of the [common attributes](/data/common-attributes/) — a location inside a work has no OpenAlex ID of its own. (You may see an internal `id` on a location, such as `doi:10.7717/peerj.4375`, but it's a hosting handle, not a mintable OpenAlex ID.)
+This is the dictionary of every attribute on a **location** object, as it appears in a work's [`locations`](/data/works/attributes/#locations), [`primary_location`](/data/works/attributes/#primary_location), and [`best_oa_location`](/data/works/attributes/#best_oa_location). Locations are a component entity, so they carry none of the [common attributes](/data/common-attributes/) — a location inside a work has no OpenAlex ID of its own. (You may see an internal `id` on a location, such as `doi:10.7717/peerj.4375`, but it's a hosting handle, not a mintable OpenAlex ID. It is stable for the underlying harvested record, though — when duplicate works are merged, the surviving work carries the location and its `id` with it, which is how snapshot consumers [trace merges](/access/sync/#tracing-merges-location-ids-move-to-the-surviving-work).)
 
 ### `is_oa`
 *Boolean.* True if this specific copy is a free-to-read full text (OpenAlex's broad definition: readable without paying or logging in). A work can have some OA locations and some not.
