@@ -152,8 +152,8 @@
 /hc/en-us/articles/28926392245399  /access/pricing/  301
 /hc/en-us/articles/28764358342807-How-can-I-correct-institutional-affiliations-for-a-work  /how-to/fixing-affiliations/  301
 /hc/en-us/articles/28764358342807  /how-to/fixing-affiliations/  301
-/hc/en-us/articles/28763618477975-Why-are-some-authors-assigned-to-NULL-AUTHOR-ID-A9999999999  /data/authors/#about  301
-/hc/en-us/articles/28763618477975  /data/authors/#about  301
+/hc/en-us/articles/28763618477975-Why-are-some-authors-assigned-to-NULL-AUTHOR-ID-A9999999999  /data/authors/disambiguation/#special-author-ids  301
+/hc/en-us/articles/28763618477975  /data/authors/disambiguation/#special-author-ids  301
 /hc/en-us/articles/28761511652247-How-can-I-cite-OpenAlex  /how-to/citing-openalex/  301
 /hc/en-us/articles/28761511652247  /how-to/citing-openalex/  301
 /hc/en-us/articles/27972124390679-How-do-you-classify-works-as-contributing-to-the-UN-SDGs  /data/sdgs/  301
@@ -299,8 +299,8 @@
 /hc/en-us/articles/24736129405719  /data/topics/  301
 /hc/en-us/articles/24735753007895-Field-Weighted-Citation-Impact-FWCI  /data/works/citations/#field-weighted-citation-impact  301
 /hc/en-us/articles/24735753007895  /data/works/citations/#field-weighted-citation-impact  301
-/hc/en-us/articles/24347048891543-Author-disambiguation  /data/authors/#about  301
-/hc/en-us/articles/24347048891543  /data/authors/#about  301
+/hc/en-us/articles/24347048891543-Author-disambiguation  /data/authors/disambiguation/  301
+/hc/en-us/articles/24347048891543  /data/authors/disambiguation/  301
 /hc/en-us/articles/24347057529623-Sources-in-OpenAlex  /data/sources/  301
 /hc/en-us/articles/24347057529623  /data/sources/  301
 /hc/en-us/articles/24347035046295-Open-Access-OA  /data/works/open-access/  301
@@ -426,8 +426,8 @@
 # Docs rewrite Pass C (oxjob #354, D07): Authors & institutions zone + deferred Works moves
 /access/can-i-search-exact-terms  /api/searching/  301
 /access/can-i-search-exact-terms/  /api/searching/  301
-/access/why-are-some-authors-assigned-to-null-author-id-a9999999999  /data/authors/#about  301
-/access/why-are-some-authors-assigned-to-null-author-id-a9999999999/  /data/authors/#about  301
+/access/why-are-some-authors-assigned-to-null-author-id-a9999999999  /data/authors/disambiguation/#special-author-ids  301
+/access/why-are-some-authors-assigned-to-null-author-id-a9999999999/  /data/authors/disambiguation/#special-author-ids  301
 /access/institutions-and-raw-affiliation-string-parsing  /data/raw-affiliation-strings/  301
 /access/institutions-and-raw-affiliation-string-parsing/  /data/raw-affiliation-strings/  301
 /access/why-is-affiliation-history-metadata-incomplete  /data/raw-affiliation-strings/  301
@@ -596,8 +596,8 @@
 /access/fwci/  /data/works/citations/#field-weighted-citation-impact  301
 /access/counts-by-year  /data/common-attributes/#counts_by_year  301
 /access/counts-by-year/  /data/common-attributes/#counts_by_year  301
-/access/author-disambiguation  /data/authors/#about  301
-/access/author-disambiguation/  /data/authors/#about  301
+/access/author-disambiguation  /data/authors/disambiguation/  301
+/access/author-disambiguation/  /data/authors/disambiguation/  301
 /access/affiliations  /data/raw-affiliation-strings/  301
 /access/affiliations/  /data/raw-affiliation-strings/  301
 /access/sources  /data/sources/  301
@@ -778,8 +778,8 @@
 /how-to/how-long-does-it-take-for-you-to-respond-to-support-tickets/  /how-to/support/#how-long-does-it-take-to-get-a-response-to-a-ticket  301
 /how-to/how-can-i-cite-openalex  /how-to/citing-openalex/  301
 /how-to/how-can-i-cite-openalex/  /how-to/citing-openalex/  301
-/how-to/how-does-author-name-disambiguation-work  /data/authors/#about  301
-/how-to/how-does-author-name-disambiguation-work/  /data/authors/#about  301
+/how-to/how-does-author-name-disambiguation-work  /data/authors/disambiguation/  301
+/how-to/how-does-author-name-disambiguation-work/  /data/authors/disambiguation/  301
 /how-to/how-do-you-match-affiliations-to-institutions  /data/institutions/#about  301
 /how-to/how-do-you-match-affiliations-to-institutions/  /data/institutions/#about  301
 /how-to/how-do-you-decide-if-an-article-is-open-access  /data/works/open-access/  301
@@ -788,8 +788,8 @@
 /how-to/how-do-preprints-get-linked-to-published-versions/  /data/locations/  301
 /how-to/what-is-fwci-and-how-is-it-calculated  /data/works/citations/#field-weighted-citation-impact  301
 /how-to/what-is-fwci-and-how-is-it-calculated/  /data/works/citations/#field-weighted-citation-impact  301
-/how-to/why-are-some-authors-assigned-to-null-author-id  /data/authors/#about  301
-/how-to/why-are-some-authors-assigned-to-null-author-id/  /data/authors/#about  301
+/how-to/why-are-some-authors-assigned-to-null-author-id  /data/authors/disambiguation/#special-author-ids  301
+/how-to/why-are-some-authors-assigned-to-null-author-id/  /data/authors/disambiguation/#special-author-ids  301
 /how-to/why-are-my-reference-counts-lower-than-expected  /data/works/citations/#citations-and-references  301
 /how-to/why-are-my-reference-counts-lower-than-expected/  /data/works/citations/#citations-and-references  301
 /how-to/why-does-the-abstract-field-have-text-that-isnt-part-of-the-abstract  /data/works/attributes/#abstract_inverted_index  301

@@ -6,7 +6,7 @@ tags: ["reference"]
 ---
 An [ORCID iD](https://orcid.org/) is the persistent identifier for researchers — a 16-digit number like `0000-0002-0889-9220` that a person registers once and attaches to their papers. OpenAlex records it in two places: on the [author](/data/authors/) profile, as [`orcid`](/data/authors/#orcid), and on each [authorship](/data/authorships/), as [`raw_orcid`](/data/authorships/#raw_orcid) — the ORCID exactly as it arrived on that work's source record.
 
-ORCID is one of the six signals in [author disambiguation](/data/authors/#the-signals), and when it's present it's the strongest one. But it plays a smaller role in OpenAlex than most people expect, and the gap between what people assume ORCID does and what it actually does is behind many of the questions we get about author profiles. This page walks through how it works today.
+ORCID is one of the six signals in [author disambiguation](/data/authors/disambiguation/#the-signals), and when it's present it's the strongest one. But it plays a smaller role in OpenAlex than most people expect, and the gap between what people assume ORCID does and what it actually does is behind many of the questions we get about author profiles. This page walks through how it works today.
 
 ## Where ORCIDs come from
 
@@ -31,9 +31,7 @@ Just as important is what ORCID does **not** do today:
 
 ### Why not lean on it harder?
 
-An earlier version of OpenAlex trusted ORCID very heavily, and it taught us caution. ORCID records carry more errors than you'd expect — a work wrongly added to someone's record, a shared or mistyped iD. In a system that also uses co-authorship as a merge signal, one wrong authorship doesn't stay contained: it affects everyone on that paper's author list, then their co-authors, and so on. A single bad assertion could spread a long way through the graph. Combined with the thin coverage above, that's why ORCID is a strong signal for the authorship it arrives on, and not the backbone of the whole system.
-
-We'd like to do more with it — in particular, to use ORCID to **correct works already in OpenAlex**, not just to route incoming ones. That's planned, and we'll document it here when it ships.
+An earlier version of OpenAlex trusted ORCID very heavily, and it taught us caution. The ORCIDs that arrive on works carry more errors than you'd expect — and the errors are generally not ORCID's. They're made upstream, when a publisher attaches iDs to a work's authorships: two co-authors' ORCIDs get swapped (author A gets B's iD and B gets A's), one author's iD is stamped on several authorships, an iD is mistyped or copied from the wrong submission form. In a system that also uses co-authorship as a merge signal, one wrong authorship doesn't stay contained: it affects everyone on that paper's author list, then their co-authors, and so on. A single bad assertion could spread a long way through the graph. Combined with the thin coverage above, that's why ORCID is a strong signal for the authorship it arrives on, and not the backbone of the whole system.
 
 ## Why a profile may have no ORCID
 
@@ -56,7 +54,11 @@ It helps to be precise about what this does, because people reasonably expect mo
 
 To fix the works themselves, use the other author curations — [add and remove works](/access/fixing-errors/authors/#what-you-can-fix) — which are the tools that actually change what a profile contains. (See [Authors § A profile is built from its works](/data/authors/#a-profile-is-built-from-its-works) for why that's where the leverage is.)
 
-There's no way to set your ORCID on the openalex.org website yet. That's deliberate: a button that records an ORCID but doesn't move works would do less than people expect, and we'd rather ship it alongside the deeper integration described above.
+There's no way to set your ORCID on the openalex.org website yet. That's deliberate: a button that records an ORCID but doesn't move works would do less than people expect, and we'd rather ship it alongside the deeper integration described below.
+
+## ORCID roadmap
+
+We plan to keep building out ORCID support — moving from today's shallow integration to a deeper one that does things like re-scan existing works for ORCIDs, pull works directly from researchers' ORCID records, and offer ORCID correction on the website. We'll proceed carefully, for the reasons above. And ORCID won't be a magic bullet even then: coverage on recent works is low, and for the large historical literature that predates ORCID it's nonexistent — so names, co-authors, and affiliations will keep doing most of the work.
 
 ## Looking up authors by ORCID
 
@@ -67,4 +69,4 @@ ORCID is a first-class identifier across the API:
 - Filter works by an author's ORCID: `filter=authorships.author.orcid:0000-0003-2780-0393`.
 - Distinguish what the work asserted from what we resolved: compare [`authorships[].raw_orcid`](/data/authorships/#raw_orcid) with [`authorships[].author.orcid`](/data/authorships/#author).
 
-Each ORCID is meant to map to one OpenAlex author, and the direct lookup returns one. In practice two profiles can occasionally end up with the same ORCID — a user-set ORCID isn't checked for uniqueness, and the pipeline doesn't merge on collision — so if you're matching by ORCID at scale, treat a duplicate as a hint that those profiles are the same person, not as a contradiction.
+Each ORCID is meant to map to one OpenAlex author, and the direct lookup returns one. In practice an ORCID can end up on more than one profile — usually because of the publisher-side errors described above (the same iD attached to several authorships, or to the wrong author) — and the pipeline doesn't merge profiles on a shared ORCID. You can see the effect with `group_by=orcid` on the authors endpoint. So if you're matching by ORCID at scale, treat a shared ORCID as a hint, not as proof that two profiles are the same person.

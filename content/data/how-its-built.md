@@ -28,7 +28,7 @@ The records flowing in are messy and redundant, so the heart of OpenAlex is turn
 
 **Records become works.** Each incoming record is matched (by DOI or other metadata) against the [works](/data/works/#about) already in OpenAlex. If it matches, the record enriches the existing work; if nothing matches, it may seed a new one. Duplicate records of the same work are merged into a single work — the core node that every other entity connects to.
 
-**Authors get disambiguated.** The name strings on a work ("J. Smith," "John A. Smith") are clustered into real people, each assigned a stable author ID. This is [author disambiguation](/data/authors/#about), a machine-learning process that weighs name, co-authors, affiliations, topics, citations, and ORCID.
+**Authors get disambiguated.** The name strings on a work ("J. Smith," "John A. Smith") are clustered into real people, each assigned a stable author ID. This is [author disambiguation](/data/authors/disambiguation/), a machine-learning process that weighs name, co-authors, affiliations, topics, citations, and ORCID.
 
 **Affiliations get matched.** The free-text [raw affiliation strings](/data/raw-affiliation-strings/) on each work ("MIT, Boston, USA") are parsed and linked to ROR-backed [institutions](/data/institutions/#about) and countries — which in turn feeds the affiliation signal used in author disambiguation.
 

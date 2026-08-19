@@ -11,6 +11,6 @@ They matter because they close the loop: OpenAlex builds the map, and users push
 ## The user-created entities
 
 - [**Collections**](/data/collections/) — saved sets of entities (a reading list, a department's authors, a corpus for an analysis) that a user assembles and can re-query.
-- [**Curations**](/data/curations/) — user-submitted corrections to native entities: fixing an [author profile](/data/authors/#about), correcting an [affiliation](/data/raw-affiliation-strings/), flagging a wrong [open-access status](/data/works/open-access/). A curation records who changed what, when, and its review status, and — once accepted — flows into the entity it corrects.
+- [**Curations**](/data/curations/) — user-submitted corrections to native entities: fixing an [author profile](/data/authors/#a-profile-is-built-from-its-works), correcting an [affiliation](/data/raw-affiliation-strings/), flagging a wrong [open-access status](/data/works/open-access/). A curation records who changed what, when, and its review status, and — once accepted — flows into the entity it corrects.
 
 Because these come from users rather than the pipeline, they don't have an "About" provenance story; instead their pages describe who can create them, what states they move through, and how they feed back into OpenAlex.

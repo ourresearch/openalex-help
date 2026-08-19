@@ -17,7 +17,7 @@ An authorship starts with a work's **byline** — the author-and-affiliation blo
 
 ### Resolving the author
 
-The raw author name is fed into **author disambiguation** — the process that clusters the messy name strings across millions of works into real-world people and assigns each a stable author ID. That resolved person is what fills the dehydrated [`author`](#author) object. See [authors](/data/authors/#about) for how disambiguation weighs its signals, why it can split or merge, and how to correct it.
+The raw author name is fed into **author disambiguation** — the process that clusters the messy name strings across millions of works into real-world people and assigns each a stable author ID. That resolved person is what fills the dehydrated [`author`](#author) object. See [Disambiguation](/data/authors/disambiguation/) for how disambiguation weighs its signals, why it can split or merge, and how to correct it.
 
 ### Resolving the institutions
 
