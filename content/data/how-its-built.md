@@ -1,6 +1,6 @@
 ---
 title: "How it's built"
-updated: 2026-08-15
+updated: 2026-08-18
 description: "How the OpenAlex dataset is built: gathering records from thousands of sources and organizing them into one connected knowledge graph. A map that points into the entity pages where each step is documented in full."
 tags: ["reference"]
 ---
@@ -8,7 +8,7 @@ OpenAlex gathers the world's research output from thousands of sources, organize
 
 ## Gather
 
-When a researcher publishes an article, book, or dataset, information about it is registered with agencies like [Crossref](https://crossref.org) and [DataCite](https://datacite.org), or deposited in institutional and national repositories. OpenAlex pulls records from these sources continuously — the database evolves hourly. The catalog was seeded by the discontinued [Microsoft Academic Graph (MAG)](https://en.wikipedia.org/wiki/Microsoft_Academic), whose final open dataset OpenAlex adopted in 2021.
+When a researcher publishes an article, book, or dataset, information about it is registered with agencies like [Crossref](https://crossref.org) and [DataCite](https://datacite.org), or deposited in institutional and national repositories. OpenAlex pulls records from these sources continuously — the database evolves daily. The catalog was seeded by the discontinued [Microsoft Academic Graph (MAG)](https://en.wikipedia.org/wiki/Microsoft_Academic), whose final open dataset OpenAlex adopted in 2021.
 
 We track the external [indexes](/data/indexes/) a record can come from — Crossref, PubMed, DataCite, DOAJ, arXiv — and the venues those records name become [sources](/data/sources/#about): journals, conference series, ebook platforms, and repositories. The core inputs we pull from today include:
 
@@ -16,9 +16,9 @@ We track the external [indexes](/data/indexes/) a record can come from — Cross
 - [ORCID](https://orcid.org/) and [ROR](https://ror.org/), the open identifier systems for researchers and institutions
 - [PubMed](https://pubmed.ncbi.nlm.nih.gov/) and [PubMed Central](https://www.ncbi.nlm.nih.gov/pmc/)
 - [DOAJ](https://doaj.org/) and [the ISSN International Centre](https://www.issn.org/)
-- [Unpaywall](https://unpaywall.org/) and the [Internet Archive](https://archive.org/details/GeneralIndex)
+- The [Internet Archive](https://archive.org/details/GeneralIndex)
 - Aggregators and subject repositories: HAL, arXiv, Zenodo, Dergipark, OSTI, RePEc, and many more
-- Thousands of institutional [repositories](/data/sources/repositories/), from [UNC's CDR](https://cdr.lib.unc.edu/) to [Michigan's Deep Blue](https://deepblue.lib.umich.edu/documents) ([full list](https://unpaywall.org/sources))
+- Thousands of institutional [repositories](/data/sources/repositories/), from [UNC's CDR](https://cdr.lib.unc.edu/) to [Michigan's Deep Blue](https://deepblue.lib.umich.edu/documents) ([full list of repositories we harvest](https://openalex.org/sources?filter=type:repository))
 - Parsing of 50M+ open access PDFs, journal landing pages, and direct publisher feeds
 - Corrections from users through [community curation](/access/fixing-errors/)
 
