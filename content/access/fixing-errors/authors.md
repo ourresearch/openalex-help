@@ -1,6 +1,6 @@
 ---
 title: "Authors"
-updated: 2026-08-09
+updated: 2026-08-19
 description: "Fix your OpenAlex author profile yourself: claim it, add and remove works, correct your names and ORCID, merge duplicates — by hand or with an AI agent."
 tags: ["reference"]
 ---
@@ -14,7 +14,7 @@ Authors are the big self-serve exception to the [ticket-based default](/access/f
 2. Go to your author page — search for your name and open the best match.
 3. Click **Claim** near the top of the page.
 
-Your claim is reviewed before it's approved. We look at many factors when moderating claims; having a **validated academic email address** on your OpenAlex account speeds things up. Once approved, you own the profile and can curate it.
+Your claim is reviewed before it's approved. We look at several factors when moderating claims; right now a **verified academic email address** on your OpenAlex account is enough for automatic approval, and claims without one get a closer look. The bar is deliberately low, Wikipedia-style: every curation is recorded and reversible, so we'd rather make claiming easy and revert the rare bad edit than make everyone wait. The process is still evolving and claims remain subject to spot checks. Once approved, you own the profile and can curate it.
 
 ## What you can fix
 
@@ -25,9 +25,9 @@ Every correction is a [curation](/data/curations/) — an auditable record of wh
 - **Remove a wrong name** — if a name variant on your profile isn't you, removing it detaches every work carrying that name.
 - **Change your display name** — the name shown on your profile.
 - **Change your match name** — the name used to match future works to you (API only).
-- **Set or correct your ORCID** (API only).
+- **Set or correct your ORCID** (API only). This records the ORCID and makes it your match key for future works; it doesn't move existing works or merge profiles — see [ORCID](/data/authors/orcid/).
 
-Everything else on a profile — alternate names, institutional affiliations, topics, citation metrics — is *derived* from its works, so you don't (and can't) edit those directly: fix which works belong to you and the rest follows. (Wrong institution showing on one of your works? That's an [affiliation-matching fix](/access/fixing-errors/affiliations/), not an author fix.)
+Everything else on a profile — alternate names, institutional affiliations, topics, citation metrics — is *derived* from its works, so you don't (and can't) edit those directly: fix which works belong to you and the rest follows. That cuts both ways: removing a work or a name variant also removes whatever those works alone were contributing, such as an institution that appeared only on them. (Wrong institution showing on one of your works? That's an [affiliation-matching fix](/access/fixing-errors/affiliations/), not an author fix.) The full picture: [Authors § A profile is built from its works](/data/authors/#a-profile-is-built-from-its-works).
 
 Curations don't apply instantly: each one is **pending** until the next data refresh picks it up, and your changes are typically live within about two days. You can track (and cancel) your pending curations from your account.
 

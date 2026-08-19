@@ -56,7 +56,10 @@ export const NAV_GROUPS: Record<string, NavGroup[]> = {
       slugs: [
         'native',
         { label: 'Works', slug: 'works', children: ['works/citations', 'works/open-access', 'works/corpus', 'works/attributes'] },
-        'authors',
+        // Authors is a subgroup (Jason 2026-08-19, oxjob #619): ORCID gets its
+        // own child page — the CNRS/Inist questions showed it's asked about
+        // often enough to deserve one.
+        { label: 'Authors', slug: 'authors', children: ['authors/orcid'] },
         // Sources is a subgroup (Jason 2026-08-08, Pass AC): Repositories moved
         // in from the Docs tab's dissolved "How it works" section, and the
         // attribute dictionary split onto a child page (works pattern).

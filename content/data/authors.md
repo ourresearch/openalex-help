@@ -1,6 +1,6 @@
 ---
 title: "Authors"
-updated: 2026-08-11
+updated: 2026-08-19
 description: "What an author is, how OpenAlex disambiguates them from raw authorship strings, and what every attribute on an author object means."
 tags: ["reference"]
 source_id: "24347048891543"
@@ -14,6 +14,8 @@ entity:
     - "institutions"
 ---
 An **author** is a person who creates [works](/data/works/) — a researcher, scholar, or anyone credited on a scholarly document. Authors are one of OpenAlex's [native entities](/data/native/): OpenAlex mints each a stable ID by *disambiguating* the messy author-name strings that appear on works into real-world people. There are over 120 million disambiguated authors. An author's OpenAlex ID looks like `A5023888391`; fetch one at [`api.openalex.org/authors/A5023888391`](https://api.openalex.org/authors/A5023888391).
+
+This page covers how authors are built and what every attribute means. How OpenAlex sources and uses ORCID iDs — and why a profile may be missing one — has its own page: [ORCID](/data/authors/orcid/).
 
 ## About
 
@@ -32,7 +34,7 @@ The disambiguation model weighs six signals when deciding whether two authorship
 3. **Institutional affiliations** — consistent workplace signals.
 4. **Research topics** — whether the publication record is topically coherent.
 5. **Citation patterns** — self-citation and reference overlap.
-6. **ORCID** — when present, an authoritative identity signal.
+6. **ORCID** — when present, an authoritative identity signal (though it's present far less often than people assume, and it isn't applied retroactively — see [ORCID](/data/authors/orcid/)).
 
 So if "J. Schmidt" and "John Jacob Jingleheimer Schmidt" both write about 19th-century ketchup production at the same university, we treat them as one author — but we won't lump in the J.J.J. Schmidt who writes about weasel migration, even though the names match.
 
@@ -49,9 +51,22 @@ Two author IDs fall outside the normal disambiguation process; you may encounter
 - **`A9999999999` — the NULL author.** Assigned to authorships that never went through disambiguation: no author name was received, the name was too short or too long to disambiguate reliably, or the name matched an ignored phrase (like "Unknown Author"). If an author asks to have their disambiguated profile removed, their works are reassigned here — effectively removing the profile. These records are grouped under this single NULL author rather than real profiles.
 - **`A5317838346` — deleted authors.** Used when an author ID is removed from OpenAlex, usually because it no longer has any works (its works were merged into another author or deleted).
 
+### A profile is built from its works
+
+This is the single most useful thing to understand about author profiles: **a profile is a set of works, and almost everything else on it is computed from those works.** The alternate names are the name variants printed on the linked works. The affiliations are the institutions those works carry. The topics, the citation counts, `works_count`, `summary_stats` — all derived. OpenAlex doesn't store them separately, and nobody can edit them directly.
+
+So the fix for nearly any author problem is to change *which works belong to the profile*, and let everything else follow:
+
+- **A wrong institution on a profile** is there because some linked work carries it. Ask which work, and either remove that work (if it isn't the author's) or correct its affiliation (if it is — that's an [affiliation fix](/access/fixing-errors/affiliations/), not an author fix).
+- **Removing a name variant** detaches every work printed under that name — and with them, any institution, topic, or citation those works were contributing. Institutions still supported by the works you keep stay put.
+- **Removing a work** likewise takes its affiliations with it, for the same reason.
+- **"Merging" duplicate profiles** is just moving the works from one to the other; the emptied profile goes inert. There's no separate merge operation underneath.
+
+If you're ever surprised that an institution, name, or topic disappeared from a profile after an edit, this is why: you changed the works, and the profile re-derived itself. See [Fixing errors: Authors](/access/fixing-errors/authors/) for the mechanics.
+
 ### Known failure modes
 
-Disambiguation isn't perfect. The two failure modes are **splitting** (one real person's works spread across several profiles) and **merging** (works from different people collapsed into one profile). Because a profile's attributes — alternate names, institutions, metrics, topics — are all derived from its linked works, they can't be edited directly. You fix an author by [correcting which works belong to them](/data/curations/): see [Fixing errors: Authors](/access/fixing-errors/authors/). Our methods, code, and trained models are fully open source ([openalex-name-disambiguation](https://github.com/ourresearch/openalex-name-disambiguation/tree/main/V3); [live pipeline](https://github.com/ourresearch/openalex-databricks/tree/main/jobs/author_name_disambiguation/v3)).
+Disambiguation isn't perfect. The two failure modes are **splitting** (one real person's works spread across several profiles) and **merging** (works from different people collapsed into one profile). Both are fixed the same way — by [correcting which works belong to the profile](/data/curations/), per the section above: see [Fixing errors: Authors](/access/fixing-errors/authors/). Our methods, code, and trained models are fully open source ([openalex-name-disambiguation](https://github.com/ourresearch/openalex-name-disambiguation/tree/main/V3); [live pipeline](https://github.com/ourresearch/openalex-databricks/tree/main/jobs/author_name_disambiguation/v3)).
 
 ## Attributes
 
@@ -70,7 +85,7 @@ This is the canonical dictionary of every attribute on an **author** object. Att
 *List.* Other name strings seen for this author, deduplicated (e.g. `["Jason Priem", "Priem, Jason"]`). Useful for matching against name forms that differ from the canonical [`display_name`](#display_name).
 
 ### `orcid`
-*String.* The author's [ORCID](https://orcid.org/) iD as a URL, or null. ORCID is the canonical external identifier for authors; each maps to at most one OpenAlex author. Filter, sort, and group_by are supported; use `has_orcid:true`/`false` to select on presence.
+*String.* The author's [ORCID](https://orcid.org/) iD as a URL, or null. ORCID is the canonical external identifier for authors; each is meant to map to one OpenAlex author. Filter, sort, and group_by are supported; use `has_orcid:true`/`false` to select on presence. Null far more often than you'd expect — an ORCID only reaches OpenAlex attached to a work's metadata, and most authorships don't carry one. How it's sourced, used, and set: [ORCID](/data/authors/orcid/).
 
 ### `full_name`
 *String.* The author's full name as parsed from their works. In practice usually identical to [`display_name`](#display_name).
