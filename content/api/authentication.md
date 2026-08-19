@@ -33,10 +33,10 @@ Both work identically. The [openalex.org](https://openalex.org) website runs on 
 
 You can replace your key with a new one anytime in [Settings → API key](https://openalex.org/settings/api). When you rotate, you choose when the old key stops working:
 
-- **In 24 hours** (the default) or **in 7 days** — both keys work during the window, so you can deploy the new key to your systems with no downtime. The old key keeps its normal limits, then stops for good.
-- **Immediately** — the old key dies on the spot. Pick this if the key leaked; and if you've already rotated with a grace window and then discover a leak, use the **Expire now** button to kill the old key early.
+- **Immediately** (the default) — the old key dies on the spot. The right choice when a key has leaked.
+- **In 24 hours** or **in 7 days** — both keys work during the window, so you can deploy the new key to your systems with no downtime. The old key keeps its normal limits, then stops for good. If you discover a leak mid-window, the **Expire now** button kills the old key early.
 
-Organization keys work the same way, from the organization's API settings.
+Organization keys work the same way, from the organization's API settings. One thing to know about personal keys: your key is also your openalex.org sign-in credential, so rotating it logs you out on your other browsers and devices right away — the grace window applies to API requests only.
 
 ## Rate limits
 
