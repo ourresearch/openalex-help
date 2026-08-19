@@ -1,6 +1,6 @@
 ---
 title: "Authentication"
-updated: 2026-08-11
+updated: 2026-08-19
 description: "API keys, sending your key, rate limits, and keeping tabs on your usage"
 tags: ["api"]
 source_id: "api-reference/authentication"
@@ -29,8 +29,14 @@ curl -H "Authorization: Bearer YOUR_KEY" "https://api.openalex.org/works"
 
 Both work identically. The [openalex.org](https://openalex.org) website runs on this same API, so anonymous browsing draws from the keyless budget; sign in and it uses your own key.
 
-> **Tip:**
-> If a key ever leaks, rotate it in [Settings → API key](https://openalex.org/settings/api) — that invalidates the old one instantly.
+## Rotating your key
+
+You can replace your key with a new one anytime in [Settings → API key](https://openalex.org/settings/api). When you rotate, you choose when the old key stops working:
+
+- **In 24 hours** (the default) or **in 7 days** — both keys work during the window, so you can deploy the new key to your systems with no downtime. The old key keeps its normal limits, then stops for good.
+- **Immediately** — the old key dies on the spot. Pick this if the key leaked; and if you've already rotated with a grace window and then discover a leak, use the **Expire now** button to kill the old key early.
+
+Organization keys work the same way, from the organization's API settings.
 
 ## Rate limits
 
