@@ -20,7 +20,7 @@ This page covers the harvesting pipeline: how records are matched, how full-text
 
 OpenAlex gathers repository metadata using [OAI-PMH](https://www.openarchives.org/pmh/), the standard harvesting protocol repositories already expose. (This is the harvesting pipeline OpenAlex inherited from Unpaywall; the [Unpaywall API](https://unpaywall.org/products/api) remains a legacy-format view of the same data.)
 
-To check whether your repository is already on the harvest list, browse the [sources list filtered to repositories](https://openalex.org/sources?filter=type:repository) on the web. Search for your repository there to see whether we have it, how many works it holds, and which works those are. There isn't yet a self-service way to add a repository we don't already harvest — we expect to add one soon. In the meantime, if yours is missing, [let us know](https://openalex.org/contact).
+To see whether we harvest your repository, check our [list of sources](https://openalex.org/sources?filter=type:repository). To add your repository, please [file a support ticket](https://openalex.org/contact).
 
 ## Matching records to published works
 
