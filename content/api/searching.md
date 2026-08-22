@@ -47,7 +47,7 @@ https://api.openalex.org/works?search.exact=surgery
 
 ## Boolean search
 
-Use `AND`, `OR`, `NOT` (uppercase) for complex queries. Surround phrases with double quotes for exact matching:
+Use `AND`, `OR`, `NOT` (uppercase) for complex queries. `NOT` goes after a term you want to match (`dog NOT cat`); a search can't begin with `NOT`, because every search needs at least one positive term. Surround phrases with double quotes for exact matching:
 
 ```bash
 # Works about "elmo" AND "sesame street" but NOT "cookie" or "monster"
