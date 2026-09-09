@@ -1,6 +1,6 @@
 ---
 title: "Countries"
-updated: 2026-08-11
+updated: 2026-09-09
 description: "What a country is in OpenAlex, the ISO standard behind the list, the fields on a country object, and how to filter works, authors, and institutions by country."
 tags: ["reference"]
 source_id: "api-reference/countries"
@@ -53,6 +53,9 @@ The top-level fields on a **country** object. Attributes shared with other entit
 
 ### `country_code`
 *String.* The [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) code, e.g. `US`. This is the value you filter on across the graph. Same as the last segment of [`id`](#id).
+
+### `alpha_3`
+*String.* The [ISO 3166-1 alpha-3](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3) code, e.g. `USA`. Handy for joining OpenAlex country data to datasets keyed on three-letter codes (World Bank, UN, many national statistics). Null for Kosovo (`XK`), which has no ISO alpha-3 code. Filtering across the graph always uses the alpha-2 [`country_code`](#country_code).
 
 ### `description`
 *String.* A short one-line description of the country, e.g. "country primarily located in North America".
