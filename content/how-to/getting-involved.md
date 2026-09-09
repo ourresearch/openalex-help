@@ -10,7 +10,7 @@ OpenAlex is built with its community — here's how to follow along and have a s
 
 ## Roadmap
 
-Our roadmap is public, and we update it every quarter at our community town halls, where CEO Jason Priem walks through what we shipped and what's next. Everything lives in the [town hall notes repository on GitHub](https://github.com/ourresearch/town-hall-notes): each quarter's roadmap, a retro of what shipped, presentation materials and the full transcript, and our written answers to questions from the call. It keeps every past roadmap too, so you can track our progress against what we promised. To join the next town hall live, sign up at [openalex.org/events](https://openalex.org/events) — or catch up on recordings on [our YouTube channel](https://www.youtube.com/@openalex).
+Our roadmap is public, and we update it every quarter at our community town halls, where CEO Jason Priem walks through what we shipped and what's next. Everything lives in the [town hall notes repository on GitHub](https://github.com/ourresearch/town-hall-notes): each quarter's roadmap, a retro of what shipped, presentation materials and the full transcript, and our written answers to questions from the call. It keeps every past roadmap too, so you can track our progress against what we promised. To join the next town hall live, sign up at [openalex.org/events](https://openalex.org/events) — or catch up on recordings on [our YouTube channel](https://www.youtube.com/@OpenAlex_org).
 
 ## Mailing lists
 
