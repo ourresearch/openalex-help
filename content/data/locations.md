@@ -1,6 +1,6 @@
 ---
 title: "Locations"
-updated: 2026-08-17
+updated: 2026-09-16
 description: "Each place a version of a work is available — the publisher's site, a repository, a preprint server — with its version, license, and open-access status, and what every attribute on a location object means."
 tags: ["reference"]
 entity:
@@ -38,7 +38,7 @@ This is the dictionary of every attribute on a **location** object, as it appear
 *String.* A direct link to a full-text PDF of this copy, or null when only a landing page is known. A direct PDF link is one of the tie-breakers in best-OA scoring.
 
 ### `source`
-*Object.* The dehydrated [source](/data/sources/) hosting this copy — the journal, repository, or platform. Keys include `id`, `display_name`, `issn_l`, `issn`, `is_oa`, `is_in_doaj`, `is_core`, `type`, and the host organization (`host_organization`, `host_organization_name`, `host_organization_lineage`, `host_organization_lineage_names`). May be null for locations whose host isn't a known source.
+*Object.* The dehydrated [source](/data/sources/) hosting this copy — the journal, repository, or platform. Keys include `id`, `display_name`, `issn_l`, `issn`, `is_oa`, `is_in_doaj`, `is_core`, [`listed_in`](/data/sources/attributes/#listed_in), `type`, and the host organization (`host_organization`, `host_organization_name`, `host_organization_lineage`, `host_organization_lineage_names`). May be null for locations whose host isn't a known source.
 
 ### `license`
 *String.* The license this copy is available under, as a normalized short code, e.g. `cc-by`, `cc-by-sa`, or null if unknown. Different locations of the same work can carry different licenses.
@@ -68,7 +68,7 @@ You reach locations by selecting [`locations`](/data/works/attributes/#locations
 Works can be filtered on location attributes with dotted filter keys, available on all three location slots — for example:
 
 - `locations.is_oa`, `locations.version`, `locations.license`, `locations.license_id`
-- `locations.source.id`, `locations.source.type`, `locations.source.is_in_doaj`, `locations.source.is_core`
+- `locations.source.id`, `locations.source.type`, `locations.source.is_in_doaj`, `locations.source.is_core`, `locations.source.listed_in`
 - the same keys under `primary_location.` and `best_oa_location.` (e.g. `best_oa_location.is_oa`, `primary_location.source.id`)
 
 See [Filtering](/api/filtering/) for the syntax and the [Works reference](/data/works/) for the complete list of location filter keys.

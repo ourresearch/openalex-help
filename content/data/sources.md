@@ -1,6 +1,6 @@
 ---
 title: "Overview"
-updated: 2026-08-09
+updated: 2026-09-16
 description: "What a source is, where sources come from, and how OpenAlex builds them and judges journal quality and open access."
 tags: ["reference"]
 source_id: "24347057529623"
@@ -52,7 +52,9 @@ OpenAlex prefers **allow lists** (curated lists of trusted sources) over deny li
 - [`is_in_doaj`](/data/sources/attributes/#is_in_doaj) — the source is indexed in the [Directory of Open Access Journals](https://doaj.org/), which vets the legitimacy of fully-OA journals. About 23,000 sources.
 - [`is_core`](/data/sources/attributes/#is_core) — the source is on the [CWTS Core sources list](https://zenodo.org/records/13879982). About 36,000 sources.
 
-More filters like these are planned; the goal is a "quality vs. quantity" slider that users can adjust to their needs. Because the database is open, a list of sources to *exclude* is easy for one librarian to build and share; ask your local librarian if they've curated one.
+The general form is [`listed_in`](/data/sources/attributes/#listed_in): a list of the external source lists a source appears on (`cwts-core`, `doaj`, and — new in September 2026 — `cdd-cnu-sante`, the French Conférence des Doyens de Médecine / CNU Santé list of health-science journals, about 3,300 sources). It's deliberately non-normative: OpenAlex records *that* a list includes a source, not whether the list is right. Filter works with `primary_location.source.listed_in:cdd-cnu-sante`, or sources with `listed_in:cdd-cnu-sante`.
+
+More lists will be added over time; the goal is a "quality vs. quantity" slider that users can adjust to their needs. Because the database is open, a list of sources to *exclude* is easy for one librarian to build and share; ask your local librarian if they've curated one.
 
 ### CWTS Core vs. Web of Science
 
