@@ -1,6 +1,6 @@
 ---
 title: "Attributes"
-updated: 2026-09-16
+updated: 2026-09-17
 description: "The canonical dictionary of every attribute on a source object — what each one means, where it comes from, and its quirks."
 tags: ["reference"]
 ---
@@ -54,7 +54,7 @@ This is the canonical dictionary of every attribute on a **source** object. Attr
 - `doaj` — the [Directory of Open Access Journals](https://doaj.org/) (same as [`is_in_doaj`](#is_in_doaj)).
 - `doyens` — the *Liste de revues recommandables* published by the [Conférence des Doyens de Médecine and CNU Santé](https://conferencedesdoyensdemedecine.org/la-conference-des-doyens-de-medecine-et-du-cnu-sante-luttent-contre-les-revues-predatrices/) (France): health, medicine and biology journals in French and English, matched to sources by ISSN. About 3,300 sources; loaded from the 2026-07-01 edition.
 
-Empty when the source is on no list. Filter/group_by; also available on works as `primary_location.source.listed_in`, `locations.source.listed_in` and `best_oa_location.source.listed_in`. New lists are added over time; the booleans above are kept for compatibility.
+Empty when the source is on no list. Filter/group_by; also available on works as `primary_location.source.listed_in`, `locations.source.listed_in` and `best_oa_location.source.listed_in`. New lists are added over time; the booleans above are kept for compatibility. Maintainer, scope and loaded edition of each list: [Allow lists](/data/sources/#allow-lists).
 
 ### `is_high_oa_rate`
 *Boolean.* True if a high share of the source's works are open access. A softer signal than [`is_oa`](#is_oa) (fully-OA). Filter/sort/group_by; `is_high_oa_rate_since_year` records when this became true.

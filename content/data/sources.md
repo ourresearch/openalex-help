@@ -1,6 +1,6 @@
 ---
 title: "Overview"
-updated: 2026-09-16
+updated: 2026-09-17
 description: "What a source is, where sources come from, and how OpenAlex builds them and judges journal quality and open access."
 tags: ["reference"]
 source_id: "24347057529623"
@@ -53,6 +53,18 @@ OpenAlex prefers **allow lists** (curated lists of trusted sources) over deny li
 - [`is_core`](/data/sources/attributes/#is_core) — the source is on the [CWTS Core sources list](https://zenodo.org/records/13879982). About 36,000 sources.
 
 The general form is [`listed_in`](/data/sources/attributes/#listed_in): a list of the external source lists a source appears on (`cwts-core`, `doaj`, and — new in September 2026 — `doyens`, the French Conférence des Doyens de Médecine / CNU Santé list of health-science journals, about 3,300 sources). It's deliberately non-normative: OpenAlex records *that* a list includes a source, not whether the list is right. Filter works with `primary_location.source.listed_in:doyens`, or sources with `listed_in:doyens`.
+
+| List id | List | Maintained by | Scope | Loaded edition |
+|---------|------|---------------|-------|----------------|
+| `cwts-core` | [CWTS Core sources](https://zenodo.org/records/13879982) | [CWTS](https://www.cwts.nl/), Leiden University | All fields; the venues behind the Leiden Ranking Open Edition. About 36,000 sources | Tracks [`is_core`](/data/sources/attributes/#is_core) |
+| `doaj` | [Directory of Open Access Journals](https://doaj.org/) | DOAJ | Fully-OA journals, all fields. About 23,000 sources | Tracks [`is_in_doaj`](/data/sources/attributes/#is_in_doaj) |
+| `doyens` | [Liste de revues recommandables](https://conferencedesdoyensdemedecine.org/la-conference-des-doyens-de-medecine-et-du-cnu-sante-luttent-contre-les-revues-predatrices/) | Conférence des Doyens de Médecine and CNU Santé (France) | Health, medicine and biology journals, in French and English. About 3,300 sources | 2026-07-01 |
+
+Lists are matched to sources by ISSN, and only a list's current members count: a journal its maintainer has withdrawn is not `listed_in`. Each list is loaded from the maintainer's published file, so membership is as current as the loaded edition. Spotted a newer edition, or know an open, ISSN-keyed list we should add? [Tell us](/how-to/support/).
+
+On [openalex.org](https://openalex.org), the same thing is the **listed in** filter on sources ([example](https://openalex.org/sources?filter=listed_in:doyens)) and **source listed in** on works ([example](https://openalex.org/works?filter=primary_location.source.listed_in:doyens)); group by it to see how a result set splits across lists.
+
+A source list is not an [index](/data/indexes/). An index records which external registries list a given *work* ([`indexed_in`](/data/works/attributes/#indexed_in), e.g. `indexed_in:pubmed`); `listed_in` records which lists a *journal* is on. DOAJ appears in both, answering different questions: is this article in DOAJ's index, versus is this journal a DOAJ member.
 
 More lists will be added over time; the goal is a "quality vs. quantity" slider that users can adjust to their needs. Because the database is open, a list of sources to *exclude* is easy for one librarian to build and share; ask your local librarian if they've curated one.
 

@@ -1,6 +1,6 @@
 ---
 title: "Attributes"
-updated: 2026-08-12
+updated: 2026-09-17
 description: "The canonical dictionary of every attribute on a work object — what each one means, where it comes from, and its quirks."
 tags: ["reference"]
 ---
@@ -64,7 +64,7 @@ This is the canonical dictionary of every attribute on a **work** object. Attrib
 *List.* A flattened, dehydrated list of the distinct [institutions](/data/institutions/) across the work's [`authorships`](#authorships) — a convenience mirror so you don't have to walk the authorship tree. Recently added and still being backfilled, so it may be empty on works that do have affiliated institutions.
 
 ### `primary_location`
-*Object.* The [location](/data/locations/) holding the best (closest to the [version of record](https://en.wikipedia.org/wiki/Version_of_record)) copy — for a journal article, the published full text at the publisher's DOI URL. See [Locations](/data/locations/) for the object shape.
+*Object.* The [location](/data/locations/) holding the best (closest to the [version of record](https://en.wikipedia.org/wiki/Version_of_record)) copy — for a journal article, the published full text at the publisher's DOI URL. See [Locations](/data/locations/) for the object shape. Its dehydrated `source` carries the source's list memberships, so you can narrow works to journals on an external list: `primary_location.source.listed_in:doyens` (see [`listed_in`](/data/sources/attributes/#listed_in) for the list ids; the same key works under `locations.` and `best_oa_location.`). Filter/group_by.
 
 ### `locations`
 *List.* Every unique place this work lives, each a [location](/data/locations/) object.

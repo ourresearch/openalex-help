@@ -1,6 +1,6 @@
 ---
 title: "Indexes"
-updated: 2026-08-11
+updated: 2026-09-17
 description: "The external bibliographic indexes a work or source can appear in, the fields on an index object, and how to filter works by index."
 tags: ["reference"]
 source_id: "api-reference/indexes"
@@ -18,6 +18,8 @@ An **index** is an external bibliographic index or registry that a work can be l
 ## About
 
 The list is the set of external indexes and registries OpenAlex tracks as sources of works: DOI-registration agencies (Crossref, DataCite), curated indexes (DOAJ, PubMed), and a preprint repository (arXiv). We record which of them lists each work; a work can be in more than one. There are 5 indexes.
+
+Indexes are about works. For lists of *journals* (CWTS Core, DOAJ membership, national lists of health journals and so on), see the sources attribute [`listed_in`](/data/sources/attributes/#listed_in).
 
 ## Values
 
