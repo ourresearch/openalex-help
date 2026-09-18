@@ -1,6 +1,6 @@
 ---
 title: "Getting indexed"
-updated: 2026-08-10
+updated: 2026-09-18
 description: "How to get your journal's or repository's works into OpenAlex."
 tags: ["general"]
 synonyms: ["journal indexing", "repository indexing", "add my journal", "add my repository"]
@@ -16,11 +16,9 @@ Once your DOIs are registered, no separate OpenAlex submission is needed: new re
 
 ## How do I get my repository indexed in OpenAlex?
 
-First, check whether we already harvest your repository: go to [openalex.org/sources?filter=type:repository](https://openalex.org/sources?filter=type:repository) and search for your repository's name. If it's listed, you're in — we check it for new records as part of our regular harvest.
+Check whether we already harvest you at [openalex.org/sources?filter=type:repository](https://openalex.org/sources?filter=type:repository); if not, email [support@openalex.org](mailto:support@openalex.org?subject=Add%20my%20repository) with your OAI-PMH endpoint URL and we'll add it. That's the whole process: no form, no validator. The full recipe, the endpoint checklist, and how to read your source's Harvest tab afterwards are on [Repositories](/how-to/repositories/#how-do-i-get-my-repository-harvested-by-openalex).
 
-If it's not listed, send us a support request at [openalex.org/contact](https://openalex.org/contact) with your repository's name and its OAI-PMH endpoint (or base URL), and we'll look at adding it.
-
-For how harvesting and matching actually work — and how your repository's metadata affects them — see [Repositories](/data/sources/repositories/) in the Data reference.
+**Running a journal on OJS?** OJS exposes an OAI-PMH endpoint, so journals often ask to be registered as repositories. Which path fits depends on DOIs. If your articles have Crossref DOIs, nothing more is needed: they arrive through Crossref, with the journal as their source. If they don't, we can harvest your OJS endpoint like a repository, but matching and metadata are weaker that way, and the lasting fix is still to register DOIs.
 
 ## My journal or repository is indexed, but works are missing. What now?
 

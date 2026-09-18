@@ -1,6 +1,6 @@
 ---
 title: "Fixing data errors"
-updated: 2026-08-12
+updated: 2026-09-18
 description: "How to report anything wrong in OpenAlex — OA status, sources, dates, metadata — and write a report we can act on fast."
 tags: ["fixing"]
 synonyms: ["report error", "wrong data", "open access status", "wrong date", "support ticket"]
@@ -35,4 +35,4 @@ Date metadata is genuinely messy — a paper can have a DOI-mint date, an accept
 
 ## Missing works
 
-If *your institution* seems to be missing works, that's usually an affiliation-matching question — see [the checklist](/how-to/fixing-affiliations/#i-think-my-institution-is-missing-works-what-do-i-check). If a specific work is missing from OpenAlex entirely, file a ticket with its DOI; if it's a whole journal or repository that's missing, see [Getting indexed](/how-to/getting-indexed/).
+If *your institution* seems to be missing works, that's usually an affiliation-matching question — see [the checklist](/how-to/fixing-affiliations/#i-think-my-institution-is-missing-works-what-do-i-check). If a specific work is missing from OpenAlex entirely, file a ticket with its DOI; if it's a whole journal or repository that's missing, see [Getting indexed](/how-to/getting-indexed/). If you *run* a repository and records from it are missing or wrong, the Harvest tab on your source and [How do I report a repository problem?](/how-to/repositories/#how-do-i-report-a-repository-problem) are the fast path.
