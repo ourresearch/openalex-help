@@ -9,7 +9,30 @@ source_updated: "2026-06-13"
 ---
 [Unpaywall](https://unpaywall.org) is OpenAlex's Open Access discovery surface: an API, dataset, and [browser extension](https://unpaywall.org/products/extension) that tell you whether a scholarly article has a free-to-read copy, and where. It's used by libraries, link resolvers, and thousands of applications.
 
-**Unpaywall is not a separate database.** Since the Walden rewrite, Unpaywall records are served from the **same OpenAlex data** that powers everything else — Unpaywall is a legacy-compatible *format* over that data, kept stable for the large ecosystem built on it. The OA facts in an Unpaywall record and in an OpenAlex [work's `open_access` object](/data/works/open-access/) come from the same pipeline.
+## Unpaywall and OpenAlex
+
+Unpaywall and OpenAlex come from the same team, and they now run on the same database. When you look at OpenAlex, you are looking at Unpaywall's data in a different format, plus a lot more.
+
+**A little history.** Unpaywall launched in 2017 to answer one question: is there a free, legal copy of this paper? In 2022 the same team launched OpenAlex. It knows everything Unpaywall knows about open access, and adds the rest of the scholarly record: authors, journals, institutions, topics, and citations. In late 2025 we moved Unpaywall onto the OpenAlex database. Since then there has been one set of data. Unpaywall is a legacy-compatible format over it, kept stable for the thousands of tools built on it.
+
+**Same data, same sources.** The `is_oa`, `oa_status`, and PDF link in an Unpaywall record are the same values you'll find in the OpenAlex work's [`open_access`](/data/works/open-access/) and `best_oa_location` fields. The journals and repositories Unpaywall monitors are OpenAlex sources. There is no separate Unpaywall list.
+
+**We are not retiring Unpaywall.** People like the brand, the interface, and the record format, and it does one job well: DOI in, open-access answer out. The DOI lookup API, the browser extension, and the Data Feed are unchanged and staying.
+
+**For anything else, use OpenAlex.** Searching for papers, listing a journal's articles, looking up a repository: that is what OpenAlex is for, and it does far more of it than Unpaywall ever did, over the same data. Start at [openalex.org](https://openalex.org) or the [API](/api/).
+
+### Retired Unpaywall features
+
+A few Unpaywall features stopped working when Unpaywall moved to the shared database in January 2026, and were formally retired on 18 September 2026. Each API endpoint now returns `410 Gone` and points here. Nothing else changed; `api.unpaywall.org/v2/{doi}` works exactly as before.
+
+| Retired | Use instead |
+|---|---|
+| Title search: `GET /v2/search?query=` and [unpaywall.org/articles](https://unpaywall.org/articles) | `https://api.openalex.org/works?search=YOUR+QUERY`. Every result carries `open_access` and `best_oa_location`, so no second lookup. Title-only matching is `filter=title.search:YOUR+QUERY`; `is_oa=true` becomes `filter=open_access.is_oa:true`. See [Search](/api/searching/). |
+| ISSN-L lookup: `GET /issn_ls?issns=` and the ISSN-L finder page | `https://api.openalex.org/sources?filter=issn:0028-0836`; each source carries `issn_l`. |
+| Journal and repository CSV exports (`journals.csv.gz` and friends, last generated December 2024) | The [sources](/data/sources/) entity, or the [snapshot](/access/snapshot/). |
+| Repository dashboards, `/data/sources`, `/data/repositories` | [Browse repositories in OpenAlex](https://openalex.org/sources?filter=type:repository). |
+| The add-repository form and endpoint validator | [Add a repository to OpenAlex](https://openalex.org/repositories/add); see [Getting indexed](/how-to/getting-indexed/). |
+| `extension_requests.csv.gz` | No replacement. |
 
 ## The Unpaywall surfaces
 
@@ -20,10 +43,6 @@ source_updated: "2026-06-13"
 | [Browser extension](https://unpaywall.org/products/extension) | Shows a green tab when the article you're viewing has a free copy |
 | [Data feed](#the-unpaywall-data-feed) | Change updates in the Unpaywall record format, for subscribers |
 | Link-resolver integrations | Unpaywall data inside SFX, EBSCO, 360 Link, and others — see [Link resolver integrations](/how-to/integrations/#link-resolver-integrations) |
-
-For the history and how the two fit together, including the Unpaywall features retired in September 2026 and their OpenAlex equivalents, see [Unpaywall and OpenAlex](/access/unpaywall-and-openalex/).
-
-For new projects, consider the [OpenAlex API](/api/) directly — it exposes the same OA information plus everything else OpenAlex knows (works, authors, sources, topics, and more). The Unpaywall format is best when you're integrating with tools that already speak it.
 
 ## Making the extension work on your own site
 

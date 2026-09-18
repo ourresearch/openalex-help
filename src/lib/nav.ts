@@ -253,9 +253,6 @@ export const NAV_GROUPS: Record<string, NavGroup[]> = {
         'sync',
         'fulltext',
         'unpaywall',
-        // 2026-09-18 (oxjob #1236): the relationship page every retired Unpaywall
-        // endpoint and page points at.
-        'unpaywall-and-openalex',
       ],
     },
     {
