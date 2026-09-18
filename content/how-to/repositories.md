@@ -1,6 +1,6 @@
 ---
 title: "Repositories"
-updated: 2026-08-12
+updated: 2026-09-18
 description: "How-tos for repository managers: getting harvested, troubleshooting coverage, and making your records match better."
 tags: ["data"]
 synonyms: ["institutional repository", "OAI-PMH", "expansion corpus", "coverage"]
@@ -20,7 +20,7 @@ That's usually the whole explanation, but matching also depends on metadata: rec
 
 ## How do I see my repository's unmatched records?
 
-Unmatched repository records aren't gone — since November 2025 they can be minted as works in the **expansion corpus**, which is excluded from API results by default. To include them, add `corpus=all` to your query:
+Unmatched repository records aren't gone. Any record with a DOI or a usable title is minted as a work of its own, with your repository as its only source, and it sits in the core corpus like any other work. The exception is the backlog swept in at the November 2025 Walden cutover: those were minted into the [**expansion corpus**](/data/works/corpus/), which is excluded from API results by default. To include them, add `corpus=all` to your query:
 
 ```
 api.openalex.org/works?filter=locations.source.id:S4306402521&corpus=all

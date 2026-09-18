@@ -1,6 +1,6 @@
 ---
 title: "Overview"
-updated: 2026-08-08
+updated: 2026-09-18
 description: "What a work is, why works are the central entity in OpenAlex, where they come from, and how records become works."
 tags: ["reference"]
 source_id: "24347019383191"
@@ -27,16 +27,16 @@ Works are the central entity in OpenAlex — everything connects to them. [Autho
 
 OpenAlex aggregates and builds on many open data sources. The catalog was seeded by the [Microsoft Academic Graph (MAG)](https://en.wikipedia.org/wiki/Microsoft_Academic) — Microsoft Research's effort to catalog the scholarly literature — whose final open dataset OpenAlex adopted when the project was discontinued in 2021. The other primary source is [Crossref](https://www.crossref.org/), the open DOI-registration agency. Alongside those, works are drawn from DataCite, PubMed, HAL, institutional and subject repositories, and more; see [How it's built](/data/how-its-built/) for the full ingest picture.
 
-### From record to work
+### How locations become works
 
-Information about a scholarly document arrives as a **record**. A record might be an item of Crossref metadata, an entry from a repository like [arXiv](https://arxiv.org/) or [PubMed](https://pubmed.ncbi.nlm.nih.gov/), or publicly available information from the web.
+OpenAlex starts from [locations](/data/locations/): copies of a work hosted at particular places. A preprint on arXiv is one location; the same paper published in *Physical Review B* is a second; the accepted manuscript in a university repository is a third. The job is to recognize that all three are one work. Two mechanisms do that, used together:
 
-The first task with any new record is to decide whether the work it describes is already in OpenAlex:
+- **Persistent identifiers.** If a location carries a DOI, PubMed ID, or arXiv ID that OpenAlex already knows, it belongs to that work. This is the certain path: a shared PID is treated as proof.
+- **Fuzzy metadata matching.** Locations with no shared PID — most repository copies, many preprints — go through a fuzzy matching algorithm built on title normalization plus author names, tuned over the years for precision and recall.
 
-- **The record matches an existing work.** Using the record's [DOI](https://en.wikipedia.org/wiki/Digital_object_identifier) or other metadata-matching techniques, OpenAlex links it to a work it already knows about and uses the record to *enrich* that work.
-- **The record is new.** If nothing matches, the record represents a work OpenAlex hasn't seen. OpenAlex then either creates a new work from it, or sets it aside to enrich a work added later.
+Whichever path matches, the location joins the existing work and *enriches* it rather than minting a new one. If nothing matches, the location seeds a new work of its own; the only locations that don't are ones with neither a PID nor a usable title, which are dropped.
 
-Not every record becomes its own work. Which new works get created follows a set of rules — for example, nearly all records from Crossref and a few other trusted sources (PubMed, arXiv, and several repositories) are eligible to become new works, while records from noisier sources are held to a higher bar. Once a work exists, OpenAlex tracks its own metadata — title, abstract (and often full text), publication date, type — and the connections that make it useful at scale: authors, institutional affiliations, the source it appeared in, topics, funders, and citations.
+Once a work exists, OpenAlex tracks its own metadata — title, abstract (and often full text), publication date, type — and the connections that make it useful at scale: authors, institutional affiliations, the source it appeared in, topics, funders, and citations.
 
 How works cite each other — references, citation counts, and FWCI — has its own page: [Citations](/data/works/citations/). How OpenAlex decides whether a work is free to read: [Open access](/data/works/open-access/).
 
