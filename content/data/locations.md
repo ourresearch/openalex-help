@@ -20,7 +20,7 @@ A work exists in several forms — the author's **submitted** manuscript, the pe
 
 ### Where locations come from
 
-The publisher location comes from the work's own source record (the DOI's landing page and metadata). The repository and preprint locations come from **harvesting** open copies across the web — the same Unpaywall-style approach that scans institutional repositories, subject repositories (arXiv, PubMed Central, HAL, Zenodo), and aggregators (DOAJ, Europe PMC) for freely available versions of the work. Each distinct copy OpenAlex finds becomes a location, with its own hosting [`source`](#source), [`license`](#license), and open-access status.
+The publisher location comes from the work's own source record (the DOI's landing page and metadata). The repository and preprint locations come from **harvesting** open copies across the web — the same Unpaywall-style approach that scans institutional repositories, subject repositories (arXiv, PubMed Central, HAL, Zenodo), and aggregators (DOAJ, Europe PMC) for freely available versions of the work. Each distinct copy OpenAlex finds becomes a location, with its own hosting [`source`](#source), [`license`](#license), and open-access status. Locations always point at someone else's copy; OpenAlex's own cached full text for a work lives separately, in the work's [`content_urls`](/data/works/attributes/#content_urls) (see [Fulltext](/access/fulltext/)).
 
 ### Best-OA selection
 
@@ -37,7 +37,7 @@ This is the dictionary of every attribute on a **location** object, as it appear
 *String.* The URL of the page describing and linking to this copy of the work — for a publisher location, the DOI URL; for a repository, the record page.
 
 ### `pdf_url`
-*String.* A direct link to a full-text PDF of this copy, or null when only a landing page is known. A direct PDF link is one of the tie-breakers in best-OA scoring.
+*String.* A direct link to a full-text PDF of this copy, or null when only a landing page is known. A direct PDF link is one of the tie-breakers in best-OA scoring. This is the host's PDF, not OpenAlex's cached copy; for that, see [`content_urls`](/data/works/attributes/#content_urls).
 
 ### `source`
 *Object.* The dehydrated [source](/data/sources/) hosting this copy — the journal, repository, or platform. Keys include `id`, `display_name`, `issn_l`, `issn`, `is_oa`, `is_in_doaj`, `is_core`, [`listed_in`](/data/sources/attributes/#listed_in), `type`, and the host organization (`host_organization`, `host_organization_name`, `host_organization_lineage`, `host_organization_lineage_names`). May be null for locations whose host isn't a known source.

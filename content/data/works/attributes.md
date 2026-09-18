@@ -146,7 +146,7 @@ See [Open access](/data/works/open-access/) for how these fields combine.
 *Boolean.* A convenience flag: true if any downloadable full-text format exists for this work (i.e. either `has_content.pdf` or `has_content.grobid_xml`).
 
 ### `content_urls`
-*Object.* URLs for downloading full-text content, present when [`has_content`](#has_content) indicates the format is available: `pdf` and `grobid_xml`, each a URL under `content.openalex.org` (or null). Fetching requires your API key. Available only through the API, not in the [snapshot](/access/snapshot/).
+*Object.* URLs for downloading full-text content, present when [`has_content`](#has_content) indicates the format is available: `pdf` and `grobid_xml`, each a URL under `content.openalex.org` (or null). Fetching requires your API key (a free one is fine); each download is metered against your usage, and the free daily allowance covers a batch of them (see [Example costs](/access/example-costs/)). Available only through the API, not in the [snapshot](/access/snapshot/).
 
 ### `is_retracted`
 *Boolean.* True if the work is known to be retracted, per the [Retraction Watch database](https://doi.org/10.13003/c23rw1d9).

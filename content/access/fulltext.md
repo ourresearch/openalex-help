@@ -1,26 +1,26 @@
 ---
 title: "Fulltext"
-updated: 2026-08-11
-description: "The OpenAlex content archive — full-text PDFs and Grobid TEI XML for millions of works, and the three ways to download them."
+updated: 2026-09-18
+description: "OpenAlex's cached full text — PDFs and Grobid TEI XML for 50M+ open-access works, linked from every work via content_urls — and how to download it at any scale, from one file to the whole archive."
 tags: ["downloads"]
 source_id: "download/full-text-pdfs"
 source_url: "https://developers.openalex.org/download/full-text-pdfs"
 source_updated: "2026-06-24"
 ---
-The **content archive** is OpenAlex’s full-text collection: cached full-text content for more than 50 million works.
+OpenAlex keeps its own cached copy of the full text for more than 50 million open-access works, as PDF and as machine-readable TEI XML parsed by [Grobid](https://github.com/kermitt2/grobid). Every work that has one links to it directly: [`has_content`](/data/works/attributes/#has_content) says which formats exist, and [`content_urls`](/data/works/attributes/#content_urls) holds the download links, served from the **content API** at `content.openalex.org`. Any API key works, including a free one; downloads are metered against your daily usage like any other call, and the free allowance covers a decent batch every day (see [Example costs](/access/example-costs/)).
+
+From there it's a question of scale: one file at a time from the API, a few million with the CLI, or the complete archive synced to your own bucket.
 
 | Format | Files | Size |
 |--------|-------|------|
 | PDF | 50M+ | ~250 TB |
 | TEI XML | ~43M | ~20 TB |
 
-TEI XML files are machine-readable structured text parsed by [Grobid](https://github.com/kermitt2/grobid).
-
 ## Download options
 
 ### Option 1: API (up to ~10K files)
 
-Download files one at a time from the content API. Each download costs **$0.01**.
+Download files one at a time from the content API. Each download is metered against your API usage ([Example costs](/access/example-costs/)).
 
 ```
 https://content.openalex.org/works/{work_id}.pdf?api_key=YOUR_KEY
@@ -53,7 +53,7 @@ https://api.openalex.org/works?filter=has_content.pdf:true,best_oa_location.lice
 
 You can also check the `content_urls` field on any work object to see if content is available.
 
-With a free API key ($1/day), you can download about 100 files per day. Good for research projects, building small corpora, or sampling.
+A free API key's daily allowance covers a batch of downloads every day (how many: [Example costs](/access/example-costs/#what-your-free-daily-budget-buys)). Good for research projects, building small corpora, or sampling.
 
 ### Option 2: OpenAlex CLI (up to a few million files)
 
@@ -93,7 +93,7 @@ openalex download \
   --content pdf,xml
 ```
 
-Standard rates apply ($0.01 per content file; the accompanying metadata list calls are nearly free at ~$0.10 per 1,000). At full speed, you can download a few million files in a few days.
+Standard [usage rates](/access/example-costs/) apply per file; the accompanying metadata list calls are nearly free. At full speed, you can download a few million files in a few days.
 
 ### Option 3: Complete archive sync
 
