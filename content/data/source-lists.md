@@ -29,6 +29,11 @@ Lists are matched to sources by ISSN, and only a list's current members count: a
 | `cwts-core` | CWTS Core | [CWTS](https://www.cwts.nl/), Leiden University | All fields; the venues behind the Leiden Ranking Open Edition. About 36,000 sources |
 | `doaj` | DOAJ | [DOAJ](https://doaj.org/) | Fully-OA journals, all fields. About 23,000 sources |
 | `doyens` | Doyens de Médecine (FR) | [Conférence des Doyens de Médecine and CNU Santé](https://conferencedesdoyensdemedecine.org/la-conference-des-doyens-de-medecine-et-du-cnu-sante-luttent-contre-les-revues-predatrices/) (France) | Health, medicine and biology journals, in French and English. About 3,300 sources; 2026-07-01 edition |
+| `medline` | MEDLINE | [U.S. National Library of Medicine](https://www.nlm.nih.gov/medline/medline_overview.html) | Journals currently indexed for MEDLINE; biomedicine and life sciences. About 5,200 sources; 2026-09-18 edition |
+| `norway` | Norwegian Register | [HK-dir](https://kanalregister.hkdir.no/) (Norway; also used by Sweden) | Journals and series at level 1 or 2 in the Norwegian Register for Scientific Journals, all fields. Level is not exposed. About 24,900 sources; 2026-09-18 edition |
+| `jufo` | JUFO (Finland) | [Federation of Finnish Learned Societies](https://julkaisufoorumi.fi/en) | Journals and series rated level 1, 2 or 3 by the Finnish Publication Forum, all fields. Level is not exposed. About 23,500 sources; 2026-09-18 edition |
+| `erih-plus` | ERIH PLUS | [HK-dir](https://erihplus.hkdir.no/) | European Reference Index for the Humanities and Social Sciences: approved journals in the humanities and social sciences. About 11,800 sources; 2026-09-18 edition |
+| `scielo` | SciELO | [SciELO](https://www.scielo.org/) | Current journals in the certified SciELO network collections (Ibero-America and South Africa). Distinct from [`is_in_scielo`](/data/sources/attributes/#is_in_scielo), which flags DOIs registered through SciELO. About 1,500 sources; 2026-09-18 edition |
 
 The live list is at [`api.openalex.org/source-lists`](https://api.openalex.org/source-lists).
 
