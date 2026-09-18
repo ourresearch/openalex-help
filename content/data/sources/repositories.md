@@ -97,17 +97,21 @@ If you run a repository, two kinds of metadata make your records much more usefu
 
 ### License reporting
 
-OpenAlex reports the [license](/data/works/open-access/#licenses) that articles in your repository are distributed under. If you know the license, you can include it in the OAI-PMH record in a _rights_ element like this:
+OpenAlex reports the [license](/data/works/open-access/#licenses) that articles in your repository are distributed under. If you know the license, put it in a `dc:rights` element, as the license URL:
 
 ```xml
 <dc:rights>https://creativecommons.org/licenses/by/4.0</dc:rights>
 ```
-or
+
+or as its name:
+
 ```xml
-<dc:rights.license>CC BY-NC</dc:rights.license>
+<dc:rights>CC BY-NC 4.0</dc:rights>
 ```
 
-If an element like this isn't present, OpenAlex looks for a license statement inside any full-text item it finds. This is less accurate: it relies on full license URLs or text patterns seen before, like "distributed under the terms ..." or "This is an open access article published under ...", which may not include the pattern used by your repository software. We recommend including the license in the OAI-PMH record as shown above.
+We read only `dc:rights`; other element names (`dc:rights.license`, `dcterms:license`) are not in the `oai_dc` format we harvest and are ignored. A record can carry several `dc:rights` elements — we use the one containing a `creativecommons.org` URL if there is one, otherwise the first. Creative Commons flavors, public-domain statements, and `info:eu-repo/semantics/openAccess` (which we record as open but not as a specific license) are all recognized.
+
+If a `dc:rights` element isn't present, OpenAlex looks for a license statement inside any full-text item it finds. This is less accurate: it relies on full license URLs or text patterns seen before, like "distributed under the terms ..." or "This is an open access article published under ...", which may not include the pattern used by your repository software. We recommend including the license in the OAI-PMH record as shown above.
 
 ### Version reporting
 
