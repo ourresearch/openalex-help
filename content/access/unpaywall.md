@@ -1,6 +1,6 @@
 ---
 title: "Unpaywall"
-updated: 2026-08-12
+updated: 2026-09-18
 description: "What Unpaywall is — a legacy-compatible API surface over the OpenAlex database — its DOI coverage, data format, and how it relates to OpenAlex products."
 tags: ["unpaywall"]
 source_id: "41193838206743"
@@ -20,6 +20,8 @@ source_updated: "2026-06-13"
 | [Browser extension](https://unpaywall.org/products/extension) | Shows a green tab when the article you're viewing has a free copy |
 | [Data feed](#the-unpaywall-data-feed) | Change updates in the Unpaywall record format, for subscribers |
 | Link-resolver integrations | Unpaywall data inside SFX, EBSCO, 360 Link, and others — see [Link resolver integrations](/how-to/integrations/#link-resolver-integrations) |
+
+For the history and how the two fit together, including the Unpaywall features retired in September 2026 and their OpenAlex equivalents, see [Unpaywall and OpenAlex](/access/unpaywall-and-openalex/).
 
 For new projects, consider the [OpenAlex API](/api/) directly — it exposes the same OA information plus everything else OpenAlex knows (works, authors, sources, topics, and more). The Unpaywall format is best when you're integrating with tools that already speak it.
 
