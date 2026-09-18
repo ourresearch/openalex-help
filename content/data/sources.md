@@ -1,6 +1,6 @@
 ---
 title: "Overview"
-updated: 2026-09-17
+updated: 2026-09-18
 description: "What a source is, where sources come from, and how OpenAlex builds them and judges journal quality and open access."
 tags: ["reference"]
 source_id: "24347057529623"
@@ -60,7 +60,7 @@ The general form is [`listed_in`](/data/sources/attributes/#listed_in): a list o
 | `doaj` | [Directory of Open Access Journals](https://doaj.org/) | DOAJ | Fully-OA journals, all fields. About 23,000 sources | Tracks [`is_in_doaj`](/data/sources/attributes/#is_in_doaj) |
 | `doyens` | [Liste de revues recommandables](https://conferencedesdoyensdemedecine.org/la-conference-des-doyens-de-medecine-et-du-cnu-sante-luttent-contre-les-revues-predatrices/) | Conférence des Doyens de Médecine and CNU Santé (France) | Health, medicine and biology journals, in French and English. About 3,300 sources | 2026-07-01 |
 
-Lists are matched to sources by ISSN, and only a list's current members count: a journal its maintainer has withdrawn is not `listed_in`. Each list is loaded from the maintainer's published file, so membership is as current as the loaded edition. Spotted a newer edition, or know an open, ISSN-keyed list we should add? [Tell us](/how-to/support/).
+Each list is also a [source list](/data/source-lists/) entity (`api.openalex.org/source-lists/doyens`) carrying its maintainer, URL and loaded edition. Lists are matched to sources by ISSN, and only a list's current members count: a journal its maintainer has withdrawn is not `listed_in`. Each list is loaded from the maintainer's published file, so membership is as current as the loaded edition. Spotted a newer edition, or know an open, ISSN-keyed list we should add? [Tell us](/how-to/support/).
 
 On [openalex.org](https://openalex.org), the same thing is the **listed in** filter on sources ([example](https://openalex.org/sources?filter=listed_in:doyens)) and **source listed in** on works ([example](https://openalex.org/works?filter=primary_location.source.listed_in:doyens)); group by it to see how a result set splits across lists.
 

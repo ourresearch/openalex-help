@@ -1,6 +1,6 @@
 ---
 title: "Overview"
-updated: 2026-08-11
+updated: 2026-09-18
 description: "Every OpenAlex API endpoint at a glance — the entity list/single endpoints and the special-purpose ones — each linking to the entity page that documents its fields."
 tags: ["reference"]
 ---
@@ -44,6 +44,7 @@ This page is the index. What each entity *is*, and what every field on it *means
 | `/languages` | [Languages](/data/languages/) |
 | `/licenses` | [Licenses](/data/licenses/) |
 | `/indexes` | [Indexes](/data/indexes/) |
+| `/source-lists` | [Source lists](/data/source-lists/) |
 
 ## Special-purpose endpoints
 

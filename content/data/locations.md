@@ -70,7 +70,7 @@ You reach locations by selecting [`locations`](/data/works/attributes/#locations
 Works can be filtered on location attributes with dotted filter keys, available on all three location slots — for example:
 
 - `locations.is_oa`, `locations.version`, `locations.license`, `locations.license_id`
-- `locations.source.id`, `locations.source.type`, `locations.source.is_in_doaj`, `locations.source.is_core`, `locations.source.listed_in`
+- `locations.source.id`, `locations.source.type`, `locations.source.is_in_doaj`, `locations.source.is_core`, `locations.source.listed_in` (values are [source list](/data/source-lists/) ids)
 - the same keys under `primary_location.` and `best_oa_location.` (e.g. `best_oa_location.is_oa`, `primary_location.source.id`)
 
 See [Filtering](/api/filtering/) for the syntax and the [Works reference](/data/works/) for the complete list of location filter keys.
