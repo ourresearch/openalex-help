@@ -84,7 +84,7 @@ A row from the [list endpoint](#the-locations-endpoint) is the harvested record 
 | `is_retracted` | Boolean | Whether this copy's record is flagged as retracted. |
 | `ids`, `urls` | List | Every identifier on the record (each with its `namespace`) and every URL (each with a `content_type`). |
 | `merge_key` | Object | The keys used to [match this location into a work](/data/works/#how-locations-become-works): `doi`, `arxiv`, `pmid`, `title_author`. |
-| `ingested_at` | Datetime | When OpenAlex acquired this record, where known. For repository copies (`provenance` `repo`) it is when the harvested file landed in OpenAlex's store, so it doubles as the harvest time. One caveat: copies whose files were consolidated in a January 2025 backfill all carry `2025-01-16`, the date that backfill was written rather than when they were harvested. That is about 45% of repository copies today, so exclude that day when charting harvest activity. Publisher and aggregator copies are mostly null (`crossref`, `datacite`, `mag`; `pubmed` is nearly complete); where a value exists it is when the pipeline last processed the record, not a harvest time. Never a publication date. Filterable with ranges (`ingested_at:>2026-09-01`), sortable, not groupable. |
+| `ingested_at` | Datetime | When OpenAlex fetched this copy; for repository copies, the harvest time. It is accurate for recently added copies and spottier for older ones, many of which have no value. Expect one big spike on `2025-01-16`, the day we [moved everything over to Walden](https://blog.openalex.org/openalex-rewrite-walden-launch/). Never a publication date. Filterable with ranges (`ingested_at:>2026-09-01`) and sortable. |
 
 ## In the API
 
