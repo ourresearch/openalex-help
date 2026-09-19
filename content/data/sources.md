@@ -1,6 +1,6 @@
 ---
 title: "Overview"
-updated: 2026-09-18
+updated: 2026-09-19
 description: "What a source is, where sources come from, and how OpenAlex builds them and judges journal quality and open access."
 tags: ["reference"]
 source_id: "24347057529623"
@@ -52,7 +52,7 @@ OpenAlex prefers **allow lists** (curated lists of trusted sources) over deny li
 - [`is_in_doaj`](/data/sources/attributes/#is_in_doaj) — the source is indexed in the [Directory of Open Access Journals](https://doaj.org/), which vets the legitimacy of fully-OA journals. About 23,000 sources.
 - [`is_core`](/data/sources/attributes/#is_core) — the source is on the [CWTS Core sources list](https://zenodo.org/records/13879982). About 36,000 sources.
 
-The general form is [`listed_in`](/data/sources/attributes/#listed_in): a list of the external source lists a source appears on (`cwts-core`, `doaj`, and, new in September 2026, `doyens`, `medline`, `norway`, `jufo`, `erih-plus` and `scielo`; see the table below). It's deliberately non-normative: OpenAlex records *that* a list includes a source, not whether the list is right. Filter works with `primary_location.source.listed_in:doyens`, or sources with `listed_in:doyens`.
+The general form is [`listed_in`](/data/sources/attributes/#listed_in): a list of the external source lists a source appears on (`cwts-core`, `doaj`, and, new in September 2026, `doyens`, `medline`, `erih-plus`, `scielo`, `latindex` and the per-level lists `norway-1`/`norway-2` and `jufo-1`/`jufo-2`/`jufo-3`; see the table below and the [source lists](/data/source-lists/) page). It's deliberately non-normative: OpenAlex records *that* a list includes a source, not whether the list is right. Filter works with `primary_location.source.listed_in:doyens`, or sources with `listed_in:doyens`.
 
 | List id | List | Maintained by | Scope | Loaded edition |
 |---------|------|---------------|-------|----------------|
@@ -60,9 +60,10 @@ The general form is [`listed_in`](/data/sources/attributes/#listed_in): a list o
 | `doaj` | [Directory of Open Access Journals](https://doaj.org/) | DOAJ | Fully-OA journals, all fields. About 23,000 sources | Tracks [`is_in_doaj`](/data/sources/attributes/#is_in_doaj) |
 | `doyens` | [Liste de revues recommandables](https://conferencedesdoyensdemedecine.org/la-conference-des-doyens-de-medecine-et-du-cnu-sante-luttent-contre-les-revues-predatrices/) | Conférence des Doyens de Médecine and CNU Santé (France) | Health, medicine and biology journals, in French and English. About 3,300 sources | 2026-07-01 |
 | `medline` | [MEDLINE](https://www.nlm.nih.gov/medline/medline_overview.html) | U.S. National Library of Medicine | Journals currently indexed for MEDLINE; biomedicine and life sciences. About 5,200 sources | 2026-09-18 |
-| `norway` | [Norwegian Register for Scientific Journals](https://kanalregister.hkdir.no/) | HK-dir (Norway; also used by Sweden) | Level 1 and 2 journals and series, all fields. About 24,900 sources | 2026-09-18 |
-| `jufo` | [Publication Forum (JUFO)](https://julkaisufoorumi.fi/en) | Federation of Finnish Learned Societies | Level 1, 2 and 3 journals and series, all fields. About 23,500 sources | 2026-09-18 |
+| `norway-1`, `norway-2` | [Norwegian Register for Scientific Journals](https://kanalregister.hkdir.no/) | HK-dir (Norway; also used by Sweden) | One list per level, all fields. Level 1 about 22,700 sources, level 2 about 2,200 | 2026-09-18 |
+| `jufo-1`, `jufo-2`, `jufo-3` | [Publication Forum (JUFO)](https://julkaisufoorumi.fi/en) | Federation of Finnish Learned Societies | One list per level, all fields. Level 1 about 19,500 sources, level 2 about 2,600, level 3 about 1,400 | 2026-09-18 |
 | `erih-plus` | [ERIH PLUS](https://erihplus.hkdir.no/) | HK-dir | Humanities and social sciences. About 11,800 sources | 2026-09-18 |
+| `latindex` | [Latindex Catálogo 2.0](https://www.latindex.org/) | Latindex (UNAM and partners) | Latin America, the Caribbean, Spain and Portugal. About 3,900 sources | 2026-09-18 |
 | `scielo` | [SciELO](https://www.scielo.org/) | SciELO | Current journals in the certified SciELO network collections. About 1,500 sources | 2026-09-18 |
 
 Each list is also a [source list](/data/source-lists/) entity (`api.openalex.org/source-lists/doyens`) carrying its maintainer, URL and loaded edition. Lists are matched to sources by ISSN, and only a list's current members count: a journal its maintainer has withdrawn is not `listed_in`. Each list is loaded from the maintainer's published file, so membership is as current as the loaded edition. Spotted a newer edition, or know an open, ISSN-keyed list we should add? [Tell us](/how-to/support/).

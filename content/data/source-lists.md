@@ -1,6 +1,6 @@
 ---
 title: "Source lists"
-updated: 2026-09-18
+updated: 2026-09-19
 description: "The external journal lists a source can appear on (DOAJ, CWTS Core, national lists), the fields on a source-list object, and how to filter sources and works by list."
 tags: ["reference"]
 entity:
@@ -30,10 +30,16 @@ Lists are matched to sources by ISSN, and only a list's current members count: a
 | `doaj` | DOAJ | [DOAJ](https://doaj.org/) | Fully-OA journals, all fields. About 23,000 sources |
 | `doyens` | Doyens de Médecine (FR) | [Conférence des Doyens de Médecine and CNU Santé](https://conferencedesdoyensdemedecine.org/la-conference-des-doyens-de-medecine-et-du-cnu-sante-luttent-contre-les-revues-predatrices/) (France) | Health, medicine and biology journals, in French and English. About 3,300 sources; 2026-07-01 edition |
 | `medline` | MEDLINE | [U.S. National Library of Medicine](https://www.nlm.nih.gov/medline/medline_overview.html) | Journals currently indexed for MEDLINE; biomedicine and life sciences. About 5,200 sources; 2026-09-18 edition |
-| `norway` | Norwegian Register | [HK-dir](https://kanalregister.hkdir.no/) (Norway; also used by Sweden) | Journals and series at level 1 or 2 in the Norwegian Register for Scientific Journals, all fields. Level is not exposed. About 24,900 sources; 2026-09-18 edition |
-| `jufo` | JUFO (Finland) | [Federation of Finnish Learned Societies](https://julkaisufoorumi.fi/en) | Journals and series rated level 1, 2 or 3 by the Finnish Publication Forum, all fields. Level is not exposed. About 23,500 sources; 2026-09-18 edition |
+| `norway-1` | Norwegian Register, level 1 | [HK-dir](https://kanalregister.hkdir.no/) (Norway; also used by Sweden) | Journals and series at level 1 in the Norwegian Register for Scientific Journals, Series and Publishers, all fields. About 22,700 sources; 2026-09-18 edition |
+| `norway-2` | Norwegian Register, level 2 | [HK-dir](https://kanalregister.hkdir.no/) (Norway; also used by Sweden) | Journals and series at level 2, the register's most selective tier, all fields. About 2,200 sources; 2026-09-18 edition |
+| `jufo-1` | Publication Forum (JUFO), level 1 | [Federation of Finnish Learned Societies](https://julkaisufoorumi.fi/en) | Journals and series rated level 1 (basic) by the Finnish Publication Forum, all fields. About 19,500 sources; 2026-09-18 edition |
+| `jufo-2` | Publication Forum (JUFO), level 2 | [Federation of Finnish Learned Societies](https://julkaisufoorumi.fi/en) | Journals and series rated level 2 (leading), all fields. About 2,600 sources; 2026-09-18 edition |
+| `jufo-3` | Publication Forum (JUFO), level 3 | [Federation of Finnish Learned Societies](https://julkaisufoorumi.fi/en) | Journals and series rated level 3 (top), all fields. About 1,400 sources; 2026-09-18 edition |
 | `erih-plus` | ERIH PLUS | [HK-dir](https://erihplus.hkdir.no/) | European Reference Index for the Humanities and Social Sciences: approved journals in the humanities and social sciences. About 11,800 sources; 2026-09-18 edition |
+| `latindex` | Latindex Catálogo 2.0 | [Latindex](https://www.latindex.org/) (UNAM and partner institutions) | Current journals in Catálogo 2.0, the quality-criteria catalogue for Latin America, the Caribbean, Spain and Portugal. About 3,900 sources; 2026-09-18 edition |
 | `scielo` | SciELO | [SciELO](https://www.scielo.org/) | Current journals in the certified SciELO network collections (Ibero-America and South Africa). Distinct from [`is_in_scielo`](/data/sources/attributes/#is_in_scielo), which flags DOIs registered through SciELO. About 1,500 sources; 2026-09-18 edition |
+
+Where a maintainer ranks journals in levels (the Norwegian Register, JUFO, JPPS), **each level is its own list**, named with the maintainer's own label: `norway-2`, `jufo-3`. Those frameworks exist to get away from the in-or-out binary, so OpenAlex keeps the levels rather than flattening them. A journal is on exactly one level of a given register; to get "any level", filter on all of them (`listed_in:jufo-1|jufo-2|jufo-3`). In every register loaded so far a higher level is the more selective tier. States that aren't a level (not yet evaluated, pending, level 0) are not lists.
 
 The live list is at [`api.openalex.org/source-lists`](https://api.openalex.org/source-lists).
 
