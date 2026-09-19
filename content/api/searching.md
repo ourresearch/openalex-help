@@ -1,6 +1,6 @@
 ---
 title: "Search"
-updated: 2026-08-11
+updated: 2026-09-18
 description: "Find entities using full-text search across titles, abstracts, and more"
 tags: ["api"]
 source_id: "guides/searching"
@@ -25,6 +25,7 @@ Each entity type searches different fields:
 | Sources | `display_name`, `alternate_titles`, `abbreviated_title` |
 | Institutions | `display_name`, `display_name_alternatives`, `display_name_acronyms` |
 | Topics/Keywords | `display_name`, `description` |
+| [Locations](/data/locations/) | `title` |
 
 ## Text processing
 

@@ -1,6 +1,6 @@
 ---
 title: "Filter"
-updated: 2026-09-17
+updated: 2026-09-18
 description: "Narrow down results to entities that match specific conditions"
 tags: ["api"]
 source_id: "guides/filtering"
@@ -164,6 +164,7 @@ Each entity type has its own set of filterable fields. See the API reference for
 | [Keywords](/data/keywords/) | `works_count`, `cited_by_count` |
 | [Publishers](/data/publishers/) | `country_codes`, `hierarchy_level`, `ror`, `parent_publisher` |
 | [Funders](/data/funders/) | `country_code`, `is_global_south`, `continent`, `ror`, `awards_count` |
+| [Locations](/data/locations/) | `version`, `license`, `is_oa`, `source_id`, `work_id`, `endpoint_id`, `native_id`, `provenance`, `ingested_at` |
 
 > **Info:**
 > **Looking for text search?** Filters match exact values. For full-text search in titles, abstracts, and other fields, see [Searching](/api/searching/).

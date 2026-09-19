@@ -1,6 +1,6 @@
 ---
 title: "Get Singleton"
-updated: 2026-08-11
+updated: 2026-09-18
 description: "Retrieve a single entity by ID"
 tags: ["api"]
 source_id: "guides/get"
@@ -85,6 +85,18 @@ Each entity type has a primary external identifier:
 | Institutions | ROR |
 | Topics | Wikidata ID |
 | Publishers | Wikidata ID |
+
+## Component ids: locations
+
+[Locations](/data/locations/) have no letter-prefixed OpenAlex ID. Their id is the identifier the copy was harvested under, prefixed with its namespace (`doi:`, `pmh:`, `pmid:`, `mag:`). `GET /locations/{id}` accepts the bare id, the `locations/`-prefixed key, or the full openalex.org URL:
+
+```bash
+curl "https://api.openalex.org/locations/doi:10.7717/peerj.4375"
+curl "https://api.openalex.org/locations/locations/doi:10.7717/peerj.4375"
+curl "https://api.openalex.org/locations/https://openalex.org/locations/doi:10.7717/peerj.4375"
+```
+
+Unlike OpenAlex IDs these are **case-sensitive** and contain `/` and `:`; copy them verbatim from a response. See [Locations](/data/locations/#fetching-one-location).
 
 ## Merged entities
 

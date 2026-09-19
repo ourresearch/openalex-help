@@ -1,6 +1,6 @@
 ---
 title: "Group"
-updated: 2026-08-11
+updated: 2026-09-18
 description: "Aggregate entities into faceted counts using group_by"
 tags: ["api"]
 source_id: "guides/grouping"
@@ -112,6 +112,9 @@ https://api.openalex.org/works?filter=publication_year:2023&group_by=type
 
 # Count open access status for a specific author
 https://api.openalex.org/works?filter=author.id:A5023888391&group_by=open_access.is_oa
+
+# Which versions (published, accepted, submitted) arXiv holds
+https://api.openalex.org/locations?filter=source_id:S4306400194&group_by=version
 ```
 
 ## Paging

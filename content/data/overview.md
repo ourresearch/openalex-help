@@ -1,6 +1,6 @@
 ---
 title: "Overview"
-updated: 2026-08-11
+updated: 2026-09-18
 description: "The people, papers, places, and concepts OpenAlex catalogs — how their IDs work, how much to trust them, and how the objects are shaped."
 tags: ["reference"]
 ---
@@ -16,7 +16,7 @@ Not all entities are the same *kind* of thing. There are four kinds, and the kin
 
 One consistent tell is cardinality: native entities are all huge (hundreds of thousands of sources, hundreds of millions of works and authors), while vocabularies are all small (247 countries, 25 work types, 17 SDGs).
 
-[**Component**](/data/component/) entities — [authorships](/data/authorships/), [locations](/data/locations/), [raw affiliation strings](/data/raw-affiliation-strings/) — are structured parts of a work that don't get their own OpenAlex ID. You never fetch one directly; they live inside a work object.
+[**Component**](/data/component/) entities — [authorships](/data/authorships/), [locations](/data/locations/), [raw affiliation strings](/data/raw-affiliation-strings/) — are structured parts of a work that don't get their own OpenAlex ID. They live inside a work object; locations and raw affiliation strings also have standalone list endpoints of their own.
 
 [**User-created**](/data/user-created/) entities — [collections](/data/collections/) and [curations](/data/curations/) — are the ones *you* mint rather than OpenAlex: saved lists of entities you care about, and corrections you submit to native entities.
 

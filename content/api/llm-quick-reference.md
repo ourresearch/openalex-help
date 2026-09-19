@@ -1,6 +1,6 @@
 ---
 title: "LLM Quick Reference"
-updated: 2026-08-12
+updated: 2026-09-18
 description: "OpenAlex API reference optimized for AI agents"
 tags: ["api"]
 source_id: "guides/llm-quick-reference"
@@ -35,6 +35,7 @@ Corpus: default = curated core (~324M works). corpus=all adds the ~193M-work
 /topics         - Subject classifications (4-level hierarchy: domain > field > subfield > topic)
 /publishers     - Publishing organizations
 /funders        - Funding agencies
+/locations      - Every harvested copy of a work, one row per copy (ids like doi:10.7717/peerj.4375, case-sensitive)
 ```
 
 ## Special Endpoints

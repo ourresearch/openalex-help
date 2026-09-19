@@ -20,6 +20,15 @@ This page is the index. What each entity *is*, and what every field on it *means
 | `/funders` | `/funders` · `/funders/F…` | [Funders](/data/funders/) — research funders |
 | `/awards` | `/awards` · `/awards/G…` | [Awards](/data/awards/) — specific grants |
 
+## Component endpoints
+
+[Component](/data/component/) entities are parts of a work. They have no minted OpenAlex ID, but two of them have their own list endpoints; locations are addressed by a namespaced id (`doi:…`, `pmh:…`, `pmid:…`, `mag:…`) rather than a letter-prefixed one.
+
+| Endpoint | List / single | What it returns |
+|---|---|---|
+| `/locations` | `/locations` · `/locations/doi:…` | [Locations](/data/locations/) — every harvested copy of a work, one row per copy |
+| `/raw-affiliation-strings` | `/raw-affiliation-strings` | [Raw affiliation strings](/data/raw-affiliation-strings/) — distinct affiliation strings as printed |
+
 ## Aboutness endpoints
 
 | Endpoint | What it returns |
