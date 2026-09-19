@@ -19,7 +19,7 @@ This page is the authoritative reference for how the [snapshot](/access/snapshot
 The authoritative history of what shipped when is [`RELEASE_NOTES.txt`](https://openalex.s3.amazonaws.com/RELEASE_NOTES.txt), at the root of the public bucket. Each entry summarizes the data changes in that release — new sources, quality fixes, schema additions. Check it (and the manifest `date`) rather than guessing from file timestamps.
 
 > **Note:**
-> There is no announcement feed and no fixed release day: public releases land once a quarter, and `RELEASE_NOTES.txt` and the combined manifest's `date` field tell you when the current one shipped. If your pipeline needs a predictable, daily-fresh copy, that's exactly what the [daily snapshot](#the-daily-snapshot-paid-plans) is for.
+> There is no announcement feed and no fixed release day: public releases land once a quarter, and `RELEASE_NOTES.txt` and the combined manifest's `date` field tell you when the current one shipped.
 
 ## What a release is: how partitions work
 
