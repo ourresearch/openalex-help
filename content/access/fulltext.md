@@ -36,8 +36,10 @@ curl "https://content.openalex.org/works/W3038568908.pdf?api_key=YOUR_KEY"
 ```
 
 ```bash TEI XML
-curl "https://content.openalex.org/works/W3038568908.grobid-xml?api_key=YOUR_KEY"
+curl --compressed "https://content.openalex.org/works/W3038568908.grobid-xml?api_key=YOUR_KEY"
 ```
+
+TEI XML is served as `Content-Type: application/xml` with `Content-Encoding: gzip`, so most HTTP clients (`requests`, `httpx`, `fetch`, browsers) hand you plain XML with no extra work. Plain `curl` doesn't decode content encodings unless you pass `--compressed`; without it you'll get the raw gzip bytes and need to gunzip them yourself. The compressed bytes are what's stored, so if your client ever sees a body starting with the gzip magic bytes `1f 8b`, decompressing it yields the same XML.
 
 **Finding downloadable works:**
 
@@ -194,6 +196,8 @@ Filter your candidate set with `has_content.pdf:true` (available in the [snapsho
 GROBID ([project](https://github.com/kermitt2/grobid), [docs](https://grobid.readthedocs.io/)) is the state of the art for converting scholarly PDFs to structured TEI XML. But PDF parsing is genuinely hard, and a meaningful share of files will contain errors — missing or duplicated references, occasional self-references (the paper's own DOI picked up from its header or footer), wrong or partial header metadata, and the odd truncated section. You can see how GROBID performs field-by-field in [the project's own benchmarks](https://grobid.readthedocs.io/en/latest/benchmarks/Benchmarking/).
 
 GROBID also can't parse every PDF. It doesn't do OCR, so scanned or image-only PDFs produce little or nothing useful, and unusual or malformed PDFs can fail outright. Filter on `has_content.grobid_xml:true` to limit your set to works where we have a parse.
+
+The XML comes in two shapes, because the archive was built with more than one GROBID version. Most files are standard TEI: a `<TEI>` root with `<teiHeader>` and `<text><body>`. An older minority instead wraps a lowercase `<tei>` element inside `<html><body>`, with the section `<div>`s hanging directly off `<text>` and no `<body>` element inside the TEI. An extractor that hardcodes one shape will silently return nothing for the other, so match on local element names case-insensitively and fall back from `text/body/div` to `text/div`.
 
 We pass GROBID's output through unchanged, including any errors it made. You can catch some with simple guard clauses — for example, **drop any reference whose DOI matches the work's own DOI**, and **cross-check GROBID's header metadata against the OpenAlex Work record** (which draws on Crossref and other sources independently of GROBID).
 
