@@ -84,7 +84,7 @@ A row from the [list endpoint](#the-locations-endpoint) is the harvested record 
 | `is_retracted` | Boolean | Whether this copy's record is flagged as retracted. |
 | `ids`, `urls` | List | Every identifier on the record (each with its `namespace`) and every URL (each with a `content_type`). |
 | `merge_key` | Object | The keys used to [match this location into a work](/data/works/#how-locations-become-works): `doi`, `arxiv`, `pmid`, `title_author`. |
-| `ingested_at` | Datetime | When this record was last written into OpenAlex. A pipeline timestamp, not a publication date. Filterable with ranges (`ingested_at:>2026-09-01`) and sortable. |
+| `ingested_at` | Datetime | When OpenAlex acquired this record. For repository copies (`provenance` `repo`) it is the moment the harvested file landed in OpenAlex's store, so it doubles as the harvest time; rows that predate this tracking carry no timestamp or a placeholder date of 2025-01-16. For publisher and aggregator copies (`crossref`, `datacite`, `pubmed`) it is when the pipeline last processed the record, which moves on every re-ingest. Never a publication date. Filterable with ranges (`ingested_at:>2026-09-01`) and sortable, not groupable. |
 
 ## In the API
 
