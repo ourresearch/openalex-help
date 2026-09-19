@@ -90,7 +90,7 @@ Building a robust bulk downloader is harder than it looks. The CLI handles:
 - **DOI resolution** — Auto-detects DOIs and converts them to OpenAlex IDs
 - **Progress tracking** — Real-time stats in your terminal
 
-At full speed, you can download thousands of works per hour.
+Content downloads are limited by your bandwidth, not by the tool: PDFs average about 5 MB, so a typical fast home connection (200–400 Mbit/s) moves roughly 5–15 files per second — on the order of **20,000–50,000 files per hour**, a few hundred thousand a day. A cloud VM with multi-gigabit networking does several times that. Metadata-only runs are far faster, since each record is a few KB.
 
 ## Pricing
 

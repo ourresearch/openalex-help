@@ -95,7 +95,7 @@ openalex download \
   --content pdf,xml
 ```
 
-Standard [usage rates](/access/example-costs/) apply per file; the accompanying metadata list calls are nearly free. At full speed, you can download a few million files in a few days.
+Standard [usage rates](/access/example-costs/) apply per file; the accompanying metadata list calls are nearly free. Throughput is bandwidth-bound (PDFs average ~5 MB): expect roughly 20,000–50,000 files per hour on a fast home connection, several times that from a cloud VM — so a million files is a day or two from the cloud, or a few days from home.
 
 ### Option 3: Complete archive sync
 
@@ -112,7 +112,7 @@ aws s3 sync s3://openalex-pdfs ./pdfs \
 
 To stay current, run the same command periodically — it picks up new files as they arrive.
 
-At typical network speeds, expect **1–2 weeks** to download the full archive.
+The full archive is ~250 TB, so plan on a cloud VM with multi-gigabit networking: at 1–2 Gbit/s sustained, expect **1–2 weeks** for the initial sync. A home connection is not a realistic option for the whole archive (a few hundred Mbit/s would take months).
 
 The archive is production-ready but still early, and we add and clean files continuously, so treat it as a living dataset you re-sync periodically rather than a frozen snapshot. As a sensible default, validate each file on ingest (check the leading `%PDF` magic bytes and skip implausibly small objects) so your pipeline is robust to any in-flight changes.
 
