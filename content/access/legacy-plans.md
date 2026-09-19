@@ -1,7 +1,7 @@
 ---
 title: "Legacy plans"
-updated: 2026-08-12
-description: "What older OpenAlex plans (Premium, Institutional) mean today: existing contracts are honored, and legacy subscribers get the new Member benefits at no extra cost."
+updated: 2026-09-18
+description: "What older OpenAlex plans (Premium, Institutional) mean today: existing contracts are honored, and you move to a current plan at renewal."
 tags: ["reference"]
 synonyms: ["premium", "institutional", "old plans", "grandfathered plans"]
 ---
@@ -11,12 +11,7 @@ OpenAlex's plan lineup has changed over the years. The current annual plans are 
 
 Before the current lineup, OpenAlex sold **Premium** (higher API limits and priority support for individual organizations) and **Institutional** (the same, plus training and advisory services for academic institutions) subscriptions.
 
-**If you have an existing Premium or Institutional contract, it will be honored** — nothing about your agreement changes out from under you. In addition, you now receive all the newer Member-tier benefits at no extra cost:
-
-- [Admin dashboard](/how-to/supporter-tools/#admin-dashboard) — manage your organization's users and billing
-- [Affiliation editor](/how-to/supporter-tools/#affiliation-editor) — curate how affiliation strings match to your institution (academic & government)
-- [Unsub access](/how-to/supporter-tools/#unsub) (academic & government)
-- [Advisory board nominations](/how-to/getting-involved/#community-advisory-board) and [quarterly supporter meetings](/how-to/getting-involved/#supporter-roundtables)
+**If you have an existing Premium or Institutional contract, it will be honored** — nothing about your agreement changes out from under you.
 
 When your contract comes up for renewal, you'll renew onto one of the current plans — your contact at OpenAlex will help you pick the tier that matches what you have today, or just email [sales@openalex.org](mailto:sales@openalex.org).
 
