@@ -1,6 +1,6 @@
 ---
 title: "Download the Snapshot"
-updated: 2026-08-11
+updated: 2026-09-18
 subtitle: "Pull the full OpenAlex snapshot onto your computer with the AWS CLI."
 description: "Get the OpenAlex snapshot files onto your local machine using the AWS CLI"
 tags: ["recipes", "downloads"]
@@ -29,7 +29,7 @@ aws s3 sync "s3://openalex" "openalex-snapshot" --no-sign-request
 ```
 
 > **Warning:**
-> This pulls **both** formats (JSON Lines under `data/jsonl/` and Parquet under `data/parquet/`) plus the `legacy-data/` prefix, so it's well over **660 GB**. Most users want a single format — see [Download a single format or entity type](#download-a-single-format-or-entity-type) below.
+> This pulls **both** formats (JSON Lines under `data/jsonl/` and Parquet under `data/parquet/`) plus the `legacy-data/` prefix, so it's about **1.5 TB** (each format is ~750 GB on its own). Most users want a single format — see [Download a single format or entity type](#download-a-single-format-or-entity-type) below.
 
 > **Warning:**
 > If you're downloading into a folder that already has a previous snapshot, use the `--delete` flag to remove outdated files. Otherwise you'll get duplicate entities that have moved between partitions.
@@ -53,13 +53,15 @@ After downloading, you'll have a structure like this. The data is split into two
 ```text
 openalex-snapshot/
 ├── LICENSE.txt
-├── RELEASE_NOTES.txt
-├── legacy-data/              # pre-2026 flat layout + merged_ids (kept for back-compat)
+├── RELEASE_NOTES.txt         # what changed in each release
+├── browse.html
+├── legacy-data/              # pre-2026 flat layout + merged_ids (frozen, not updated)
 └── data
     ├── jsonl
     │   ├── manifest.json      # all entities
     │   ├── works
     │   │   ├── manifest.json
+    │   │   ├── deleted_ids.csv   # works deletion log (arrives with the next quarterly release)
     │   │   └── updated_date=2026-06-24
     │   │       ├── part_0000.gz
     │   │       └── part_0001.gz
@@ -110,9 +112,9 @@ If you don't want to download files locally, some services can read directly fro
 
 For these approaches, the [snapshot data format](/access/snapshot/) documentation should have enough detail to get started.
 
-## Download with an enterprise API key
+## Download the daily snapshot (Member+ and Partner plans)
 
-Enterprise users can download a daily-refreshed snapshot. Each day's full snapshot is published to dated folders in the `openalex-snapshots` staging bucket, in both JSON Lines and Parquet.
+[Member+ and Partner](/access/pricing/#annual-plans) plans include a daily-refreshed snapshot. Each day's full snapshot is published to dated folders in the `openalex-snapshots` staging bucket, in both JSON Lines and Parquet.
 
 1. Add this to ~/.aws/config (replace YOUR\_KEY with your OpenAlex API key):
 
@@ -128,9 +130,10 @@ The AWS CLI will fetch and refresh credentials automatically.
 ```shellscript
 aws s3 ls s3://openalex-snapshots/full/ --profile openalex
 
-aws s3 sync s3://openalex-snapshots/full/2026-04-29/jsonl/ ./openalex-snapshot-jsonl --profile openalex
+# pick a dated folder from the listing above
+aws s3 sync s3://openalex-snapshots/full/YYYY-MM-DD/jsonl/ ./openalex-snapshot-jsonl --profile openalex
 
-aws s3 sync s3://openalex-snapshots/full/2026-04-29/parquet/ ./openalex-snapshot-parquet --profile openalex
+aws s3 sync s3://openalex-snapshots/full/YYYY-MM-DD/parquet/ ./openalex-snapshot-parquet --profile openalex
 ```
 
-Each dated folder under `full/` is a complete snapshot built that day, so you can pull a fresh full copy daily rather than waiting for the quarterly public release. Both formats are included; Parquet was also added to the free quarterly public snapshot in June 2026. If you're interested in a daily-refreshed enterprise snapshot, contact [sales@openalex.org](mailto:sales@openalex.org).
+Each dated folder under `full/` is a complete snapshot built that day, so you can pull a fresh full copy daily rather than waiting for the quarterly public release. Both formats are included; Parquet was also added to the free quarterly public snapshot in June 2026. See [Sync](/access/sync/#the-daily-snapshot-paid-plans) for the workflows the daily snapshot enables, and [Pricing](/access/pricing/#annual-plans) for the plans that include it.

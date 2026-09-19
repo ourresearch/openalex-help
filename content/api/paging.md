@@ -1,6 +1,6 @@
 ---
 title: "Page through Results"
-updated: 2026-08-11
+updated: 2026-09-18
 description: "Navigate through large result sets"
 tags: ["api"]
 source_id: "guides/page-through-results"
@@ -69,7 +69,7 @@ Repeat until `next_cursor` is `null` and `results` is empty.
 > - It takes days to page through /works or /authors
 > - It puts heavy load on our servers
 >
-> Instead, use the [OpenAlex snapshot](/access/snapshot/) for bulk downloads. It's free, fast, and gives you the same data format.
+> Instead, use the [OpenAlex snapshot](/access/snapshot/) for bulk downloads. It's free, fast, and each record has the same shape as an API response (with [a few known differences](/access/snapshot/#how-the-snapshot-differs-from-the-api)).
 
 ## Jupyter notebook
 

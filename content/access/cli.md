@@ -1,6 +1,6 @@
 ---
 title: "CLI"
-updated: 2026-08-11
+updated: 2026-09-18
 description: "Download filtered subsets of OpenAlex data from the command line"
 tags: ["downloads"]
 source_id: "download/openalex-cli"
@@ -102,7 +102,7 @@ At full speed, you can download thousands of works per hour.
 
 With a free API key ($1/day), metadata is effectively almost free — list requests cost about $0.10 per 1,000, and fetching single works by ID costs nothing — and you can download about 100 content files per day. See [Example costs](/access/example-costs/) for the full rate card.
 
-Need more content? [Contact us](mailto:sales@openalex.org) about enterprise pricing for large-scale projects.
+Need more content? [Annual plans](/access/pricing/#annual-plans) come with larger budgets, and the [PDF sync service](/access/fulltext/#option-3-complete-archive-sync) covers the whole archive — [contact us](mailto:sales@openalex.org) for large-scale projects.
 
 ## Full documentation
 

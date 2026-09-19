@@ -1,6 +1,6 @@
 ---
 title: "Snapshot"
-updated: 2026-08-17
+updated: 2026-09-18
 description: "The complete OpenAlex database as downloadable files — formats, S3 bucket layout, manifests, size, how it differs from the API, and how to access it (free public bucket + paid daily snapshot)."
 tags: ["downloads"]
 source_id: "download/snapshot-format"
@@ -31,29 +31,34 @@ Decompressed, the JSON Lines data runs to several terabytes. The two formats are
 
 ## Bucket structure
 
-Under each format prefix there is one folder per entity type, plus a combined `manifest.json`:
+The bucket root holds the license and release notes; the data lives under `data/`, with one folder per entity type under each format prefix, plus a combined `manifest.json`:
 
 ```
-s3://openalex/data/
-├── jsonl/
-│   ├── manifest.json          # all entities, this format
-│   ├── works/
-│   │   ├── manifest.json       # works only
-│   │   ├── deleted_ids.csv     # works deletion log (works only, for now)
-│   │   └── updated_date=2026-06-24/
-│   │       ├── part_0000.gz
-│   │       └── part_0001.gz
-│   ├── authors/
-│   └── ...
-└── parquet/
-    ├── manifest.json
-    ├── works/
-    │   ├── manifest.json
-    │   ├── deleted_ids.csv
-    │   └── updated_date=2026-06-24/
-    │       ├── part_0000.parquet
-    │       └── part_0001.parquet
-    └── ...
+s3://openalex/
+├── LICENSE.txt
+├── RELEASE_NOTES.txt          # what changed in each release
+├── browse.html                # in-browser bucket explorer
+├── legacy-data/               # pre-2026 flat layout + merged_ids/ (frozen, not updated)
+└── data/
+    ├── jsonl/
+    │   ├── manifest.json      # all entities, this format
+    │   ├── works/
+    │   │   ├── manifest.json  # works only
+    │   │   ├── deleted_ids.csv  # works deletion log — daily snapshot today; here from the next quarterly release
+    │   │   └── updated_date=2026-06-24/
+    │   │       ├── part_0000.gz
+    │   │       └── part_0001.gz
+    │   ├── authors/
+    │   └── ...
+    └── parquet/
+        ├── manifest.json
+        ├── works/
+        │   ├── manifest.json
+        │   ├── deleted_ids.csv
+        │   └── updated_date=2026-06-24/
+        │       ├── part_0000.parquet
+        │       └── part_0001.parquet
+        └── ...
 ```
 
 The entity folders under each format are:
@@ -70,7 +75,7 @@ You can browse the bucket at [openalex.s3.amazonaws.com/browse.html](https://ope
 
 Records are partitioned by `updated_date`: each partition holds the records that **last changed** on that date, in part files (`part_0000.*`, `part_0001.*`, …) of up to 400,000 records each. This is what makes incremental updates cheap — see [Sync](/access/sync/) for how partitions move between releases and how to keep a copy current.
 
-The works folder additionally carries `deleted_ids.csv`, a cumulative log of deleted work IDs and their deletion dates — see [Deletions and merged entities](/access/sync/#deletions-and-merged-entities) for the format and how to apply it (works is the first entity type with a deletion log; it ships in every daily snapshot now and reaches this public bucket with the next quarterly release).
+The works folder additionally carries `deleted_ids.csv`, a log of deleted work IDs and their deletion dates — see [Deletions and merged entities](/access/sync/#deletions-and-merged-entities) for the format, its size, and how to apply it. **Not in the public bucket yet:** works is the first entity type with a deletion log; it ships in every [daily snapshot](#the-daily-snapshot-bucket-paid-plans) (since 2026-08-15) and reaches this public bucket with the next quarterly release.
 
 > **Note:**
 > Pre-2026 snapshots used a flat `data/{entity}/` layout (JSON Lines only) with no `jsonl/`/`parquet/` split. That older layout, along with the `merged_ids/` directory, is preserved under the `legacy-data/` prefix.
@@ -145,7 +150,7 @@ Bulk data lives in several buckets with different access rules. This is the map:
 | Public snapshot (this page) | `s3://openalex` (S3, `data/` prefix) | **None** — free, anonymous |
 | [Daily snapshot](/access/sync/#the-daily-snapshot-paid-plans) (paid) | `s3://openalex-snapshots` (staging bucket, dated folders under `full/`) | API key via `credential_process` |
 | [Content archive](/access/fulltext/) per-file | `content.openalex.org/works/...` | API key ($0.01/file) |
-| Content archive bucket sync | Cloudflare R2 (S3-compatible) | Time-limited R2 credentials issued by us |
+| Content archive full sync ([PDF sync service](/access/fulltext/#option-3-complete-archive-sync)) | Cloudflare R2 (S3-compatible) | Read-only R2 credentials issued by us, valid for your subscription year |
 
 ### The public snapshot bucket: free, no account
 
@@ -172,14 +177,14 @@ The AWS CLI fetches and refreshes credentials automatically. Then:
 
 ```bash
 aws s3 ls s3://openalex-snapshots/full/ --profile openalex
-aws s3 sync s3://openalex-snapshots/full/2026-04-29/jsonl/ ./openalex-snapshot-jsonl --profile openalex
+aws s3 sync s3://openalex-snapshots/full/YYYY-MM-DD/jsonl/ ./openalex-snapshot-jsonl --profile openalex   # pick a dated folder from the ls above
 ```
 
 See [Sync](/access/sync/#the-daily-snapshot-paid-plans) for what the daily snapshot is and the sync workflows it enables.
 
 ### Content archive
 
-Per-file downloads use your API key directly ($0.01/file): `https://content.openalex.org/works/W2741809807.pdf?api_key=YOUR_KEY`. For full-archive sync, the **PDF sync add-on** (available with any [annual plan](/access/pricing/#the-pdf-sync-add-on)) gives you persistent read-only Cloudflare R2 credentials, so you can sync the complete archive and keep receiving new files as they arrive. Details on the [content archive page](/access/fulltext/).
+Per-file downloads use your API key directly ($0.01/file): `https://content.openalex.org/works/W2741809807.pdf?api_key=YOUR_KEY`. For full-archive sync, the **PDF sync service** (available with any [annual plan](/access/pricing/#the-pdf-sync-add-on)) gives you read-only Cloudflare R2 credentials that last for your subscription year, so you can sync the complete archive and keep receiving new files as they arrive. Details on the [content archive page](/access/fulltext/).
 
 ### Where's my API key?
 
@@ -192,7 +197,7 @@ Sign up free at [openalex.org](https://openalex.org/signup) and find your key in
 | `AccessDenied` / `403` on `s3://openalex` | You're making a *signed* request with your own AWS credentials. Add `--no-sign-request`. |
 | `credential_process` errors for the staging bucket | Test the curl command by itself — if it returns nothing, the API key is wrong or your plan doesn't include the daily snapshot. `curl` must be on the PATH the AWS CLI uses. |
 | Sync re-downloads or duplicates records | Re-syncing into an old copy without `--delete`; see [Sync](/access/sync/). |
-| Download is slow or flaky | The snapshot is hundreds of GB — use `aws s3 sync` (it parallelizes and resumes) rather than single `cp` streams, and re-run it to pick up where it left off. |
+| Download is slow or flaky | Each format is ~750 GB — use `aws s3 sync` (it parallelizes and resumes) rather than single `cp` streams, and re-run it to pick up where it left off. |
 
 Still stuck? [Contact support](https://openalex.org/contact) with the exact command and error.
 

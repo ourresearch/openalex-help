@@ -1,6 +1,6 @@
 ---
 title: "Sync"
-updated: 2026-08-17
+updated: 2026-09-18
 description: "Snapshot release cadence per plan, how updated_date partitions work, the four ways to keep a copy in sync with OpenAlex, and how deletions and merged entities behave — including the works deletion log deleted_ids.csv."
 tags: ["downloads"]
 source_id: "new/snapshot-updates"
@@ -19,7 +19,7 @@ This page is the authoritative reference for how the [snapshot](/access/snapshot
 The authoritative history of what shipped when is [`RELEASE_NOTES.txt`](https://openalex.s3.amazonaws.com/RELEASE_NOTES.txt), at the root of the public bucket. Each entry summarizes the data changes in that release — new sources, quality fixes, schema additions. Check it (and the manifest `date`) rather than guessing from file timestamps.
 
 > **Note:**
-> There is no announcement feed for releases yet — watch `RELEASE_NOTES.txt` or the combined manifest's `date` field. If a scheduled release seems overdue, that's usually release engineering rather than a policy change.
+> There is no announcement feed and no fixed release day: public releases land once a quarter, and `RELEASE_NOTES.txt` and the combined manifest's `date` field tell you when the current one shipped. If your pipeline needs a predictable, daily-fresh copy, that's exactly what the [daily snapshot](#the-daily-snapshot-paid-plans) is for.
 
 ## What a release is: how partitions work
 
@@ -120,13 +120,13 @@ How that shows up today:
 
 - **In the API:** a deleted or merged-away ID returns **404**. There is no redirect to the surviving record. (Special case: works of removed author profiles point to the [null author `A9999999999`](/data/authors/disambiguation/#special-author-ids), and `A5317838346` marks deleted authors.)
 - **In the snapshot:** the record is **gone from the current release** — it doesn't appear in any partition, and the vacated file space disappears from the manifest. This is true of every daily copy too, so reconciling against a snapshot picks up deletions.
-- **In `deleted_ids.csv`** (works): every snapshot now names its deleted works explicitly — see below.
+- **In `deleted_ids.csv`** (works): every daily snapshot names its deleted works explicitly, and the public bucket will from its next quarterly release — see below.
 
 ### The works deletion log: `deleted_ids.csv`
 
 **Works only, for now.** Works are the first entity type with an explicit deletion log; every other entity type still relies on the [reconcile methods below](#picking-up-deletions-in-a-mirror) to detect deletions.
 
-Each snapshot's works directory carries the log at `{format}/works/deleted_ids.csv` (same file in both format trees, next to `manifest.json`). It's a plain CSV with a header and two columns:
+Each snapshot's works directory carries the log at `{format}/works/deleted_ids.csv` (same file in both format trees, next to `manifest.json`). It's a plain CSV with a header and two columns — but not a small one: it runs to tens of millions of rows (a couple of GB uncompressed), so load it into your database or DuckDB rather than reading it line by line:
 
 ```csv
 work_id,deleted_date
@@ -136,11 +136,11 @@ https://openalex.org/W4245566371,2026-08-14
 - `work_id` — the deleted work's ID, in the same URL form as the works data files.
 - `deleted_date` — the date the work disappeared from the corpus. (For works deleted before the log existed and backfilled into it, this is the date the deletion was detected, not the original deletion date.)
 
-The file is **cumulative** — each release carries the full history, so you don't need to collect it daily. Apply it as: *remove these IDs from your copy of works*. That makes mirror deletions a direct lookup instead of a full ID-set diff (the reconcile methods below still work and remain the belt-and-braces option).
+The file is **cumulative** — each release carries the full history, so you don't need to collect it daily. Apply it as: *remove these IDs from your copy of works*. That makes mirror deletions a direct lookup instead of a full ID-set diff (the reconcile methods below still work and remain the belt-and-braces option). It's a ledger, not an append-only log: in the rare case a deleted work is restored, its row is removed and the work reappears in a partition — so always treat the latest file as the whole truth rather than diffing it against an older copy.
 
 **Deletion is final.** A deleted ID stays deleted, and work IDs are never reused — a deleted ID will never point to a different work.
 
-Available in every [daily snapshot](#the-daily-snapshot-paid-plans) since 2026-08-15; the free public bucket picks it up with the next quarterly release.
+**Where it is today:** in every [daily snapshot](#the-daily-snapshot-paid-plans) since 2026-08-15. It is **not in the free public bucket yet** — the public bucket picks it up with the next quarterly release.
 
 ### Tracing merges: location IDs move to the surviving work
 
@@ -153,6 +153,8 @@ Combining the two signals gives you the full picture of records leaving the corp
 | Work A in `deleted_ids.csv`, and A's location `id`s now appear under work B | A was **merged into** B — repoint anything referencing A to B |
 | Work A in `deleted_ids.csv`, and its location `id`s appear nowhere | A was **removed** (bogus or unsupportable record) |
 
+You can also spot a merge *before* it lands: if two live records share the same DOI (works) or ISSN-L (sources), the one with the more recent `updated_date` is the canonical record that keeps receiving updates; the other has stopped updating and is on its way out. Picking the most recently updated record is a reliable rule for choosing the survivor.
+
 ### Picking up deletions in a mirror
 
 Reconcile against a full release periodically (daily-snapshot subscribers can do this any day):
@@ -162,7 +164,7 @@ Reconcile against a full release periodically (daily-snapshot subscribers can do
 - **Database mirror (all entities):** diff your ID set against the release's ID set (stream IDs from the part files, or compare per-partition `record_count`s in the manifest) and delete local records that no longer exist upstream.
 
 > **Note:**
-> The pre-Walden snapshot published a `merged_ids/` directory mapping merged IDs to their survivors. That mechanism ended with the 2025 Walden cutover (historical files preserved under `legacy-data/`, not updated). `deleted_ids.csv` is its successor for **works** deletions, with location IDs providing the merge trail; an explicit survivor mapping and coverage of other entity types are known asks — if they matter to your pipeline, [tell us about your use case](https://openalex.org/contact).
+> The pre-Walden snapshot published a `merged_ids/` directory mapping merged IDs to their survivors. That mechanism ended with the 2025 Walden cutover (historical files preserved under `legacy-data/`, not updated). `deleted_ids.csv` is its successor for **works** deletions, with location IDs providing the merge trail. What does **not** exist today: a merged-ID → survivor mapping, and deletion logs for authors, sources, institutions, or any other entity type. Both are known asks — if they matter to your pipeline, [tell us about your use case](https://openalex.org/contact).
 
 ## Point-in-time and reproducibility
 
