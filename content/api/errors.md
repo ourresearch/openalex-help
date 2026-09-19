@@ -1,6 +1,6 @@
 ---
 title: "Error Handling"
-updated: 2026-08-11
+updated: 2026-09-18
 description: "API error codes and retry strategies"
 tags: ["api"]
 source_id: "api-reference/errors"
@@ -124,6 +124,8 @@ X-RateLimit-Remaining: 8766
 X-RateLimit-Credits-Used: 1
 X-RateLimit-Reset: 43200
 ```
+
+Error responses are free. Any `4xx` or `5xx` response costs 0 credits, and its `X-RateLimit-Credits-Used` header reports `0`. A typo in a filter or search does not use up your daily budget.
 
 Use these to:
 - Monitor your usage
