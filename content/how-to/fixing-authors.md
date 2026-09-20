@@ -1,6 +1,6 @@
 ---
 title: "Fixing authors"
-updated: 2026-08-19
+updated: 2026-09-20
 description: "Claim your OpenAlex author profile and fix it yourself: add and remove works, merge duplicates, and correct your names."
 tags: ["fixing"]
 synonyms: ["author profile", "claim profile", "merge profiles", "alternate names", "wrong works", "ORCID", "claim verification"]
@@ -14,7 +14,11 @@ Your author profile is the big self-serve case in OpenAlex: you don't need to fi
 2. Search for your name and open your author page ([finding your author ID](/how-to/finding-openalex-ids/#how-do-i-find-my-author-id)).
 3. Click **Claim** near the top of the page.
 
-Claims are reviewed before approval. Right now, a **verified academic (institutional) email address** on your OpenAlex account is enough for a claim to be approved automatically; claims without one get a closer look, which takes longer. So sign up with your institutional address rather than a personal one if you can. The bar is deliberately low, Wikipedia-style: every edit anyone makes to a profile is recorded and can be reverted, so we'd rather make claiming easy and undo the rare bad edit than make everyone wait. The process is still evolving and may change; claims and edits are also subject to spot checks by our staff. Once approved, you own the profile.
+If your account has a **verified academic or institutional email address** (a university, research institute, or government domain), the claim is approved on the spot: no waiting period, and you can start fixing the profile right away. So sign up with your institutional address rather than a personal one if you can, or add and verify it in your account settings before you claim.
+
+Without one, your claim goes into a review queue, which usually takes a few days. Help it through by giving evidence that you're the scholar behind these works: a link to a page or paper that shows both the name on the profile and your account email (a departmental page, a lab site, a paper's author list). You don't need to prove you wrote any particular work, only that you're who you say you are.
+
+Either way, claims can be reviewed at any time, and a fraudulent claim is revoked and its edits reverted. The bar is deliberately low, Wikipedia-style: every edit anyone makes to a profile is recorded and can be reverted, so we'd rather make claiming easy and undo the rare bad edit than make everyone wait. Once approved, you own the profile.
 
 ## How do I add or remove works?
 

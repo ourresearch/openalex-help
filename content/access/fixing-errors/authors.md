@@ -1,6 +1,6 @@
 ---
 title: "Authors"
-updated: 2026-08-19
+updated: 2026-09-20
 description: "Fix your OpenAlex author profile yourself: claim it, add and remove works, correct your names and ORCID, merge duplicates — by hand or with an AI agent."
 tags: ["reference"]
 ---
@@ -14,7 +14,12 @@ Authors are the big self-serve exception to the [ticket-based default](/access/f
 2. Go to your author page — search for your name and open the best match.
 3. Click **Claim** near the top of the page.
 
-Your claim is reviewed before it's approved. We look at several factors when moderating claims; right now a **verified academic email address** on your OpenAlex account is enough for automatic approval, and claims without one get a closer look. The bar is deliberately low, Wikipedia-style: every curation is recorded and reversible, so we'd rather make claiming easy and revert the rare bad edit than make everyone wait. The process is still evolving and claims remain subject to spot checks. Once approved, you own the profile and can curate it.
+What happens next depends on the email address on your account:
+
+- **Academic or institutional email** (a university, research institute, or government domain): your claim is approved on the spot, with no waiting period, and you can start curating right away. If you signed up with a personal address, add and verify your institutional one in your account settings before claiming; any verified address on the account counts.
+- **Any other email** (Gmail, a company domain, a personal domain): your claim goes into a review queue. To get it through, give us evidence that you're the person behind these works: a link to a page or paper that shows both the name on the profile and your account email, such as a departmental page, a lab site, or a paper's author list. Reviews usually take a few days. We don't need proof that you wrote any particular work, only that you're a real scholar who is who you say you are.
+
+The claim form asks for evidence in both cases; with an institutional address a sentence is enough, since the address itself is the proof. Either way, claims can be reviewed at any time, and a claim that turns out to be fraudulent is revoked and its edits reverted. The bar is deliberately low, Wikipedia-style: every curation is recorded and reversible, so we'd rather make claiming easy and undo the rare bad edit than make everyone wait. Once approved, you own the profile and can curate it.
 
 ## What you can fix
 
