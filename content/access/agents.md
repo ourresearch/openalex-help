@@ -1,6 +1,6 @@
 ---
 title: "Agents"
-updated: 2026-08-11
+updated: 2026-09-21
 description: "How to get the most out of AI agents — Claude, ChatGPT, Cursor, and friends — when working with OpenAlex."
 tags: ["reference"]
 ---
@@ -20,6 +20,8 @@ This page is about how to work with agents effectively — which kind to use, ho
 - **For big pulls**, a coding agent can drive the [CLI](/access/cli/) ("download all works on this topic as JSONL") or work against the [snapshot](/access/snapshot/) — you get bulk-scale results without learning the tooling yourself.
 
 ## Set your agent up for success
+
+**If you use Claude, add the [MCP server](/access/mcp/).** It's the zero-setup path: one URL, sign in with your OpenAlex account, and Claude queries OpenAlex on your own key with no prompt engineering. The rest of this section is for agents that don't speak MCP.
 
 **Give it your API key.** Agents make a lot of requests, and the keyless budget runs out fast. Sign up free at [openalex.org](https://openalex.org), copy your key from **Settings → API key**, and paste it into the chat. (If a key ever leaks, rotate it in Settings — the old one dies instantly.) See [Authentication](/api/authentication/) for how budgets work.
 
