@@ -1,6 +1,6 @@
 ---
 title: "Institutions"
-updated: 2026-08-11
+updated: 2026-09-20
 description: "What an institution is, how OpenAlex grounds them in ROR and matches raw affiliation strings to them, and what every attribute on an institution object means."
 tags: ["reference"]
 entity:
@@ -69,10 +69,10 @@ This is the canonical dictionary of every attribute on an **institution** object
 *String.* The [OpenAlex ID](/data/#the-openalex-id-scheme) form of [`type`](#type), e.g. `https://openalex.org/institution-types/education`.
 
 ### `lineage`
-*List.* OpenAlex IDs of this institution plus all of its ancestor institutions, from ROR's hierarchy — so an institution's own ID always appears in its `lineage`. Filtering `lineage:<id>` finds an institution and everything beneath it. Filterable, sortable, and groupable.
+*List.* OpenAlex IDs of this institution plus all of its ancestor institutions, from ROR's hierarchy — so an institution's own ID always appears in its `lineage`. Ancestors are ROR parents, plus the successor of an institution that ROR records as having exactly one successor (a university absorbed by merger rolls up to the merged university; an institution that split into several does not roll up). Filtering `lineage:<id>` finds an institution and everything beneath or before it. Filterable, sortable, and groupable.
 
 ### `associated_institutions`
-*List.* Related organizations, each a dehydrated institution object plus a `relationship` of `parent`, `child`, or `related`. Drawn from ROR. Available as a column but not a filter.
+*List.* Related organizations, each a dehydrated institution object plus a `relationship` of `parent`, `child`, `related`, `predecessor`, or `successor`. Drawn from ROR. Available as a column but not a filter.
 
 ### `is_super_system`
 *Boolean.* True for large umbrella organizations (big university systems, some governments and multinational companies) that are excluded from certain analyses so they don't swamp results. Filterable, sortable, and groupable.
