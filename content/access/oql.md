@@ -1,6 +1,6 @@
 ---
 title: "Overview"
-updated: 2026-08-09
+updated: 2026-09-19
 description: "The OpenAlex Query Language — what OQL is, how to write it, and every construct with a copyable example."
 tags: ["oql"]
 source_id: "query-spec/guide+cheatsheet"
@@ -48,6 +48,8 @@ That's enough to write most queries. Everything below is detail — and every ex
 | `works where institution is (I136199984 [Harvard University])` | entities use their OpenAlex ID |
 | `works where language is (en)` · `works where SDG is (3)` | closed vocabularies use codes/ids, not names |
 
+API column ids also work as field names (`publication_year >= (2020)` is the same query as `year >= (2020)`); the canonical form shown back to you uses the OQL names.
+
 For entity filters, the ID is what counts — the `[name]` in square brackets is optional, ignored on input, and auto-filled when the query is shown back to you, so queries stay readable:
 
 ```
@@ -66,7 +68,7 @@ The one rule to internalize: **bare words are stemmed, quotes mean exact.** `tit
 | `works where title has (machine learning)` | stemmed phrase — one search unit, ranked higher when the words are adjacent |
 | `works where title has ("climate change")` | **exact** phrase (stemming off) |
 | `works where title has (stemmed "genome editing")` | the bridge: exact-adjacent phrase that *keeps* stemming |
-| `works where title has ("psoriat*")` | wildcard — **must be quoted**; `*` = any chars, `?` = exactly one (`"wom?n"`); neither may start a word |
+| `works where title has ("psoriat*")` | wildcard — **must be quoted**; `*` = any chars, `?` = exactly one (`"wom?n"`); neither may start a word, and `*` needs at least 3 characters before it |
 | `works where title has (within 3 ("smart", "phone"))` | proximity — terms within N words, any order |
 | `works where title/abstract is similar to ("ocean acidification effects on coral reefs")` | semantic search — by meaning, not keywords |
 
