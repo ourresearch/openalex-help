@@ -1,6 +1,6 @@
 ---
 title: "Search"
-updated: 2026-09-18
+updated: 2026-09-19
 description: "Find entities using full-text search across titles, abstracts, and more"
 tags: ["api"]
 source_id: "guides/searching"
@@ -135,6 +135,8 @@ Use `*` to match zero or more characters and `?` to match exactly one character:
 - **Single-character wildcard:** `wom?n` matches "woman" and "women"
 
 The search term must have at least 3 characters before the wildcard. Leading wildcards (e.g., `*ology`) are not supported.
+
+Hyphenated and slashed terms are split into separate words by the search engine, so the 3-character rule applies to the last part. `e-cigarette*` matches "e-cigarette" and "e-cigarettes" (it runs as the adjacent words `e` + `cigarette*`), and `x-ray*` and `t-cell*` work the same way. `covid-19*` is rejected, because only `19` precedes the wildcard.
 
 Wildcards require the **exact (unstemmed)** search — use `search.exact` (or the `fulltext.search.exact` filter), not the default `search`. The default `search` is stemmed, which strips the literal text before the wildcard at index time, so a wildcard there would return wrong results; OpenAlex rejects it with a `400` rather than return misleading matches.
 
