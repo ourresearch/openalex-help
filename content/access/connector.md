@@ -15,7 +15,7 @@ You sign in with your OpenAlex account the first time you connect (a free accoun
 
 ## Connecting
 
-**Claude (web, desktop, mobile).** Open **Customize → Connectors**, click **+**, choose **Add custom connector**, paste the URL above and save. Sign in at openalex.org when prompted. Every Claude plan can do this, including Free (which allows one custom connector). On Team and Enterprise plans only an organization owner can add connectors, under **Organization settings → Connectors → Add → Custom → Web**. Once OpenAlex is listed in the Claude connectors directory, adding it there is one click.
+**Claude (web, desktop, mobile).** Open **Customize → Connectors**, click **+**, choose **Add custom connector**, paste the URL above and save. Sign in at openalex.org when prompted. Claude asks before each tool the first time it uses it; to skip that for the search tools, open the connector under **Customize → Connectors** and set **Read-only tools** to allow (the two profile-editing tools keep asking, by design). Every Claude plan can do this, including Free (which allows one custom connector). On Team and Enterprise plans only an organization owner can add connectors, under **Organization settings → Connectors → Add → Custom → Web**. Once OpenAlex is listed in the Claude connectors directory, adding it there is one click.
 
 **Claude Code.**
 
@@ -85,6 +85,7 @@ Adding the server prompts you to sign in at openalex.org and approve the connect
 - **The assistant asks you to sign in again.** You rotated your API key, or the connection expired. Reconnect from the connectors screen; nothing else changes.
 - **A note says your budget is used up.** Single-record lookups keep working; everything else resumes at midnight UTC, or immediately after you [add prepaid usage or a plan](https://openalex.org/pricing).
 - **You expected a different key to be charged.** If you own an OpenAlex organization the connector spends the organization's budget, otherwise your personal one; there is no chooser. Ask the assistant *"which OpenAlex account am I connected as?"* to see which.
+- **Claude asks permission for every search.** That is Claude's default for every connector, not something OpenAlex controls. Under **Customize → Connectors → OpenAlex**, set **Read-only tools** to allow once; or click *Always allow* when prompted.
 - **Claude won't let you add a connector.** On Team and Enterprise plans ask an organization owner to add it. On the Free plan you may already have your one custom connector.
 - **An answer looks wrong.** Ask for the query it ran and check it on [openalex.org](https://openalex.org); every answer carries the OQL.
 
