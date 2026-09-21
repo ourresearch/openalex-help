@@ -12,7 +12,7 @@ card: "Every work carries automatic SDG tags — map global priorities with a fe
 The [UN Sustainable Development Goals](https://sdgs.un.org/goals) give a shared framework for classifying research by societal impact. OpenAlex tags works with SDGs automatically, so you can map the global landscape with a handful of `group_by` calls. We'll compare India and Brazil to show how national research priorities diverge. (Under 1¢)
 
 > [!claude]
-> Ask Claude: *"Compare how the US and India contribute to SDG 7, and which institutions lead on it."* Set up once via the [AI agent connector](/access/connector/).
+> You can ask instead: *"Compare how the US and India contribute to SDG 7, and which institutions lead on it."* Set up once via the [AI agent connector](/access/connector/).
 
 ## Step 1: See the global distribution
 

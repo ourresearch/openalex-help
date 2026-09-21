@@ -9,7 +9,7 @@ card: "Most-cited lists, top-100 thresholds, excluding retractions, and the quer
 Recipes for the search questions we hear most. For the full querying story — filters, search, sorting, and the rest — start with [Querying](/access/querying/). For counting what you've found, see [Counting](/how-to/counting/).
 
 > [!claude]
-> Ask the question in Claude in plain language: *"The 100 most-cited works on X since 2020, excluding retractions."* Every answer comes with the exact OQL query it ran, so you can rerun or refine it yourself. Set up once via the [AI agent connector](/access/connector/).
+> You can ask in plain language instead: *"The 100 most-cited works on X since 2020."* Every answer comes with the exact OQL query it ran, so you can rerun or refine it yourself. Retracted works are already left out. Set up once via the [AI agent connector](/access/connector/).
 
 ## How do I find the most-cited works?
 
@@ -27,7 +27,11 @@ Your results are now the top 100, ready to export or analyze. (If the count is s
 
 ## How do I omit retracted works from my analysis?
 
-Add a filter: click "Add filter", type "retracted", and select it. Then set the filter's dropdown to "is not". Retracted works are now excluded from your results. In the API, that's `filter=is_retracted:false`.
+Add a filter: click "Add filter", type "retracted", and select it. Then set the filter's dropdown to "is not". Retracted works are now excluded from your results. In the API, that's `filter=is_retracted:false`. Through the [AI agent connector](/access/connector/) they're excluded already, and you have to ask for them to get them back.
+
+## How do I get the query Claude used?
+
+Ask for it: *"what query did you run?"* Every answer from the [AI agent connector](/access/connector/) carries the canonical [OQL](/access/oql/) behind it, plus a link that reruns it. Paste that query into the OQL tab on [openalex.org](https://openalex.org), cite it in a methods section, or hand it back to Claude and ask it to tighten one clause. This is what makes a conversational search reproducible rather than a black box.
 
 ## Is there a limit to query length?
 

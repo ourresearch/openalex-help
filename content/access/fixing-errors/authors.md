@@ -7,7 +7,7 @@ tags: ["reference"]
 OpenAlex assembles [author](/data/authors/) profiles algorithmically: it takes the author names on hundreds of millions of works and decides which names refer to the same real person. Modern disambiguation is very good, but at this scale it's never perfect — works get attached to the wrong profile, one person ends up split across duplicates, names display wrong.
 
 > [!claude]
-> The Claude connector does everything on this page in conversation, no API key or prompt engineering needed: *"Make my OpenAlex author profile accurate"* with your CV attached. Set up once via the [AI agent connector](/access/connector/); the mechanics below still apply to what it submits.
+> You can do everything on this page in conversation, with no API key: *"Make my OpenAlex author profile accurate"* with your CV attached. Set up once via the [AI agent connector](/access/connector/); the mechanics below still apply to what it submits.
 
 Authors are the big self-serve exception to the [ticket-based default](/access/fixing-errors/): **you can fix your own profile yourself, by claiming it.**
 

@@ -62,7 +62,7 @@ The agent chooses among fourteen tools: nine that read OpenAlex, and five that m
 
 Every search comes back with the exact query that ran, written in [OQL](/access/oql/), plus a link that reruns it. Ask Claude for "the query you used" and you can paste it into the OQL tab on openalex.org, put it in a methods section, or refine it by hand. For a systematic search, ask Claude to build the query, preview the count and a sample, and tighten it before running.
 
-Keyword searches match titles and abstracts by default, which keeps citation-ranked results on topic. Ask for "full text" if you want the broader match. Semantic search works best with a sentence or two describing what you're after.
+Retracted works are left out by default, everywhere, including queries you write in OQL; ask for them explicitly ("include retracted works") when you want them, and a lookup of a retracted paper says so plainly. Keyword searches match titles and abstracts by default, which keeps citation-ranked results on topic. Ask for "full text" if you want the broader match. Semantic search works best with a sentence or two describing what you're after.
 
 ## Fixing your author profile
 
@@ -81,6 +81,7 @@ Adding the server prompts you to sign in at openalex.org and approve the connect
 
 ## Troubleshooting
 
+- **It says it can't reach your OpenAlex account.** Disconnect the connector and add it again. A connection made before profile curation existed, or one running on an organization key, can search OpenAlex but can't see your account or curate your profile.
 - **The assistant asks you to sign in again.** You rotated your API key, or the connection expired. Reconnect from the connectors screen; nothing else changes.
 - **A note says your budget is used up.** Single-record lookups keep working; everything else resumes at midnight UTC, or immediately after you [add prepaid usage or a plan](https://openalex.org/pricing).
 - **You expected a different key to be charged.** If you own an OpenAlex organization the connector spends the organization's budget, otherwise your personal one; there is no chooser. Ask the assistant *"which OpenAlex account am I connected as?"* to see which.

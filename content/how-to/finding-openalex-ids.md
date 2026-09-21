@@ -9,7 +9,7 @@ card: "Click any entity and read its ID straight off the URL bar — one scheme 
 Everything in OpenAlex — works, authors, sources, institutions, publishers, funders, and more — has its own OpenAlex ID: a letter for the entity type followed by a number, like `W2884670852` (a work) or `A5086928770` (an author). You'll need an ID whenever you want to link to an entity, look it up in the [API](/api/), or report an error. The full ID scheme is described in the [Data overview](/data/).
 
 > [!claude]
-> Ask Claude for the ID: *"What's the OpenAlex ID for Jennifer Doudna?"* or *"for this DOI?"* It resolves names and identifiers to IDs and shows the candidates when a name is ambiguous. Set up once via the [AI agent connector](/access/connector/).
+> You can ask Claude instead: *"What's the OpenAlex ID for Jennifer Doudna?"* It resolves a name, DOI, ORCID, ROR or ISSN to an ID, and when a name is ambiguous it lists the candidates with their institutions and h-index so you can tell them apart. Set up once via the [AI agent connector](/access/connector/).
 
 ## How do I find an entity's ID?
 

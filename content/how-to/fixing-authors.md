@@ -9,7 +9,7 @@ card: "No ticket needed — claim it and fix it yourself: works, name variants, 
 Your author profile is the big self-serve case in OpenAlex: you don't need to file a ticket — claim the profile and fix it yourself. This page is the recipes; the full story (everything you can change, how curations work, the API) is in the [Authors fixing-errors reference](/access/fixing-errors/authors/).
 
 > [!claude]
-> Ask Claude to do the whole cleanup: *"Make my OpenAlex author profile accurate"*, with your CV or publication list attached. It claims the profile if you haven't, reads it work by work, proposes what to add and remove with the evidence, asks you about anything unclear, and submits the corrections. Set up once via the [AI agent connector](/access/connector/).
+> You can do the whole cleanup in conversation: *"Make my OpenAlex author profile accurate"*, with your CV or publication list attached. It claims the profile if you haven't, reads it work by work, and proposes what to add and remove. Expect it to ask you about lookalikes: byline searches turn up other researchers who share your surname and initials. Walkthrough: [Fix Your Profile with Claude](/tutorials/fix-your-profile/). Set up once via the [AI agent connector](/access/connector/).
 
 ## How do I claim my profile?
 
@@ -55,9 +55,11 @@ Not in OpenAlex, for now. The ORCID on a work (`raw_orcid` on the authorship) is
 
 What you can do here: if the wrong ORCID has landed on your *profile*, remove it as above; if the work is not yours at all, remove the work. Either way the profile stops carrying that ORCID. How wrong ORCIDs get onto papers in the first place: [ORCID § Why an ORCID can be wrong](/data/authors/orcid/#why-an-orcid-can-be-wrong).
 
-## Using an AI agent
+## Can Claude fix my profile for me?
 
-Yes — the curation API authenticates with just your [API key](/api/authentication/), so you can hand an agent your CV and author ID and let it do the whole cleanup. See [Using AI agents](/access/fixing-errors/authors/#using-ai-agents) for a ready-made prompt and [Author Curation](/api/author-curation/) for the mechanics.
+Yes, and it's the shortest path. Add the [AI agent connector](/access/connector/) once, then say *"Make my OpenAlex author profile accurate"* and attach your CV or publication list. Claude claims the profile if you haven't, searches for works you're missing under your name variants and ORCID, shows you the byline, affiliation and co-authors behind each candidate, and asks about the ones that don't obviously fit before submitting anything. Expect that question: name searches turn up other researchers who share your surname and initials, and only you can tell them apart. Walkthrough: [Fix Your Profile with Claude](/tutorials/fix-your-profile/).
+
+Any other agent can do the same through the curation API, which authenticates with just your [API key](/api/authentication/): see [Using AI agents](/access/fixing-errors/authors/#using-ai-agents) for a ready-made prompt and [Author Curation](/api/author-curation/) for the mechanics.
 
 ## Can I fix a profile that isn't mine?
 

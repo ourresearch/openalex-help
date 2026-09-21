@@ -180,6 +180,7 @@ export const NAV_GROUPS: Record<string, NavGroup[]> = {
       slugs: [
         'find-collaborators',
         'audit-a-profile',
+        'fix-your-profile',
         'funder-portfolios',
       ],
     },
