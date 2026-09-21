@@ -46,7 +46,7 @@ Here's the thing about steps 1 and 2: we didn't really need to learn the API —
 
 > Using the OpenAlex API, find the 25 most-cited papers about microplastics published since 2024 and save them as a CSV with title, year, citations, and DOI.
 
-That's it. Agents already know OpenAlex, and anything they're unsure of they can find right here at [help.openalex.org](https://help.openalex.org) — the site is optimized for AI use. If you use Claude, the [AI agent connector](/access/connector/) is the zero-setup version of this: add it once, sign in, and skip the API key.
+That's it. Agents already know OpenAlex, and anything they're unsure of they can find right here at [help.openalex.org](https://help.openalex.org) — the site is optimized for AI use. If you use Claude, the [OpenAlex connector](/how-to/ai-assistants/) is the zero-setup version of this: add it once, sign in, and skip the API key.
 
 **Give your agent your API key.** Agents make a lot of requests, so the keyless budget runs out fast; at any reasonable scale your agent should use your free key. Just paste it into the chat and your agent will take it from there. (If a key ever leaks, no big deal: rotate it in **Settings → API key**, which invalidates the old one instantly.)
 

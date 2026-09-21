@@ -9,7 +9,7 @@ card: "No ticket needed — claim it and fix it yourself: works, name variants, 
 Your author profile is the big self-serve case in OpenAlex: you don't need to file a ticket — claim the profile and fix it yourself. This page is the recipes; the full story (everything you can change, how curations work, the API) is in the [Authors fixing-errors reference](/access/fixing-errors/authors/).
 
 > [!claude]
-> You can do the whole cleanup in conversation: *"Make my OpenAlex author profile accurate"*, with your CV or publication list attached. It claims the profile if you haven't, reads it work by work, and proposes what to add and remove. Expect it to ask you about lookalikes: byline searches turn up other researchers who share your surname and initials. Walkthrough: [Fix Your Profile with Claude](/tutorials/fix-your-profile/). Set up once via the [AI agent connector](/access/connector/).
+> You can do the whole cleanup in conversation: *"Make my OpenAlex author profile accurate"*, with your CV or publication list attached. It claims the profile if you haven't, reads it work by work, and proposes what to add and remove. Expect it to ask you about lookalikes: byline searches turn up other researchers who share your surname and initials. Walkthrough: [Fix Your Profile with Claude](/tutorials/fix-your-profile/). Set up once: [Using OpenAlex with an AI assistant](/how-to/ai-assistants/).
 
 ## How do I claim my profile?
 

@@ -16,7 +16,7 @@ entity:
 A **funder** is an organization that funds research — a government agency, foundation, or charity. OpenAlex tracks about 45,000 funders, and each connects to the [works](/data/works/) it funded and to the specific [awards](/data/awards/) (grants) that funded them. A funder's OpenAlex ID looks like `F4320332161`; fetch one at [`api.openalex.org/funders/F4320332161`](https://api.openalex.org/funders/F4320332161) (the US National Institutes of Health).
 
 > [!claude]
-> You can profile a funder in one ask: *"Profile the National Natural Science Foundation of China (F4320332161): top fields, open-access share, and the trend by year."* Set up once via the [AI agent connector](/access/connector/).
+> You can profile a funder in one ask: *"Profile the National Natural Science Foundation of China (F4320332161): top fields, open-access share, and the trend by year."* Set up once: [Using OpenAlex with an AI assistant](/how-to/ai-assistants/).
 
 ## About
 

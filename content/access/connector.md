@@ -15,7 +15,7 @@ You sign in with your OpenAlex account the first time you connect (a free accoun
 
 ## Connecting
 
-**Claude (web, desktop, mobile).** Open **Customize → Connectors**, click **+**, choose **Add custom connector**, paste the URL above and save. Sign in at openalex.org when prompted. Claude asks before each tool the first time it uses it; to skip that for the search tools, open the connector under **Customize → Connectors** and set **Read-only tools** to allow (the two profile-editing tools keep asking, by design). Every Claude plan can do this, including Free (which allows one custom connector). On Team and Enterprise plans only an organization owner can add connectors, under **Organization settings → Connectors → Add → Custom → Web**. Once OpenAlex is listed in the Claude connectors directory, adding it there is one click.
+Step-by-step instructions with screenshots, for Claude and ChatGPT, are in [Using OpenAlex with an AI assistant](/how-to/ai-assistants/). The short version for Claude: **Customize → Connectors → Add → Add custom connector**, paste the address above, sign in at openalex.org, then set **Read-only tools** to *Always allow* on the connector's page so it stops asking before every search. Team and Enterprise plans need an organization owner to add it.
 
 **Claude Code.**
 
@@ -23,9 +23,9 @@ You sign in with your OpenAlex account the first time you connect (a free accoun
 claude mcp add --transport http openalex https://mcp.openalex.org/mcp
 ```
 
-**ChatGPT.** Coming. Until then ChatGPT can still use OpenAlex through the API; see [Other agents](/access/agents/).
+**ChatGPT.** Not listed yet (we've applied). Developer mode on paid plans can connect to the address above; see the [how-to](/how-to/ai-assistants/#chatgpt). Until then ChatGPT can use OpenAlex through the API; see [Other agents](/access/agents/).
 
-**Other clients.** Technically the connector is an MCP server ([Model Context Protocol](https://modelcontextprotocol.io)), so any client that speaks MCP over Streamable HTTP can use it: point it at the URL above. It follows the current MCP specification and needs no session state.
+**Other clients.** Technically the connector is an MCP server ([Model Context Protocol](https://modelcontextprotocol.io)), so any client that speaks MCP over Streamable HTTP with OAuth can use it: point it at the address above. It follows the current MCP specification and needs no session state.
 
 ## What you can ask
 
@@ -99,6 +99,7 @@ The server is open source: [github.com/ourresearch/openalex-mcp-server](https://
 
 ## Related pages
 
+- [Using OpenAlex with an AI assistant](/how-to/ai-assistants/) — setup with screenshots, for people who don't write code
 - [Other agents](/access/agents/) — ChatGPT, Cursor and other agents using OpenAlex through the API
 - [LLM quick reference](/api/llm-quick-reference/) — the condensed API reference for agents that call the API directly
 - [Authentication](/api/authentication/) — keys and budgets

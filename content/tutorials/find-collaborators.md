@@ -12,7 +12,7 @@ card: "Cross your top topics with your co-author list to find leaders you’ve n
 Which institutions are leaders in your fields that you haven't yet collaborated with? This recipe identifies who publishes in your top research areas, checks how much you already co-author with them, and flags rising stars. We'll use MIT as the example throughout. (Under 1¢)
 
 > [!claude]
-> You can ask instead: *"Which institutions publish most in [my institution]'s top research topics that we rarely coauthor with?"* It groups works by institution per topic and cross-checks coauthorship. Set up once via the [AI agent connector](/access/connector/).
+> You can ask instead: *"Which institutions publish most in [my institution]'s top research topics that we rarely coauthor with?"* It groups works by institution per topic and cross-checks coauthorship. Set up once: [Using OpenAlex with an AI assistant](/how-to/ai-assistants/).
 
 ## Part 1: Topic-based discovery
 

@@ -9,7 +9,7 @@ card: "Citation totals for any result set, coverage checks, and why two counts d
 Recipes for counting things in OpenAlex. For building the result set you're counting, see [Searching](/how-to/searching/); for the full querying story, start with [Querying](/access/querying/).
 
 > [!claude]
-> You can count and group in plain language: *"How many works on X per year since 2015?"* or *"Which journals carry the most papers on Y?"* Each answer includes the exact query it ran. Set up once via the [AI agent connector](/access/connector/). (Totals of citations across a result set are website-only for now.)
+> You can count and group in plain language: *"How many works on X per year since 2015?"* or *"Which journals carry the most papers on Y?"* Each answer includes the exact query it ran. Set up once: [Using OpenAlex with an AI assistant](/how-to/ai-assistants/). (Totals of citations across a result set are website-only for now.)
 
 ## How do I count all the citations to a set of results?
 

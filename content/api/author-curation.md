@@ -11,7 +11,7 @@ OpenAlex assigns [authors](/data/authors/) to works automatically, but sometimes
 Author curation lets you fix that: sign in, tell us what's wrong, and we'll make the change.
 
 > [!claude]
-> You can do all of this in conversation, no code: *"Remove the works on my OpenAlex profile that aren't mine, and add these three DOIs."* Claude claims the profile if needed, submits the curations and tracks them. Your own profile only. Set up once via the [AI agent connector](/access/connector/).
+> You can do all of this in conversation, no code: *"Remove the works on my OpenAlex profile that aren't mine, and add these three DOIs."* Claude claims the profile if needed, submits the curations and tracks them. Your own profile only. Set up once: [Using OpenAlex with an AI assistant](/how-to/ai-assistants/).
 
 This page covers the API mechanics; for the self-serve workflow (claiming your profile, split and merge, using AI agents), see [Fixing errors: Authors](/access/fixing-errors/authors/).
 

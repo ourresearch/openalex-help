@@ -12,7 +12,7 @@ card: "Watch a funder’s priorities drift over a decade — and who wins the mo
 What does a funder actually invest in? How has their portfolio shifted over the past decade? This recipe maps a funder's research output by field, detects shifting priorities, and identifies the top institutions receiving funding. We'll use the US National Science Foundation as the example. (Under 1¢)
 
 > [!claude]
-> You can ask instead: *"Map what [funder] funds by field, how that shifted over the last decade, and the top recipient institutions."* One call profiles the portfolio. Set up once via the [AI agent connector](/access/connector/).
+> You can ask instead: *"Map what [funder] funds by field, how that shifted over the last decade, and the top recipient institutions."* One call profiles the portfolio. Set up once: [Using OpenAlex with an AI assistant](/how-to/ai-assistants/).
 
 ## Step 1: Find the funder
 

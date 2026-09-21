@@ -7,7 +7,7 @@ tags: ["reference"]
 Every work in OpenAlex knows which works it cites and which works cite it. This page covers how those links are built, and the citation metric derived from them.
 
 > [!claude]
-> You can ask Claude: *"Who cites W2741809807, what does it reference, and what's its FWCI?"* It lists the citing and referenced works and can summarize the follow-up work. (Citation totals across a set of works are website-only.) Set up once via the [AI agent connector](/access/connector/).
+> You can ask Claude: *"Who cites W2741809807, what does it reference, and what's its FWCI?"* It lists the citing and referenced works and can summarize the follow-up work. (Citation totals across a set of works are website-only.) Set up once: [Using OpenAlex with an AI assistant](/how-to/ai-assistants/).
 
 ## Citations and references
 

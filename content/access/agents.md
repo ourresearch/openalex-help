@@ -22,7 +22,7 @@ This page is about how to work with agents effectively — which kind to use, ho
 ## Set your agent up for success
 
 > [!claude]
-> If you use Claude, add the [AI agent connector](/access/connector/) instead of doing any of this: one URL, sign in with your OpenAlex account, and Claude queries OpenAlex on your own key with no prompt engineering. The rest of this section is for agents that don't speak MCP.
+> If you use Claude, add the [OpenAlex connector](/how-to/ai-assistants/) instead of doing any of this: one URL, sign in with your OpenAlex account, and Claude queries OpenAlex on your own key with no prompt engineering. The rest of this section is for agents that don't speak MCP.
 
 **Give it your API key.** Agents make a lot of requests, and the keyless budget runs out fast. Sign up free at [openalex.org](https://openalex.org), copy your key from **Settings → API key**, and paste it into the chat. (If a key ever leaks, rotate it in Settings — the old one dies instantly.) See [Authentication](/api/authentication/) for how budgets work.
 

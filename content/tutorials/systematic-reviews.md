@@ -9,7 +9,7 @@ card: "A search strategy is a term tree, and OQL speaks it: one string for your 
 A systematic-review search strategy is really a **term tree**: blocks of synonyms OR'd together, blocks AND'd with each other, a few exclusions, and some scope limits. That's exactly the shape [OQL](/access/oql/) — the OpenAlex Query Language — is built to express. This recipe walks through building one, start to finish.
 
 > [!claude]
-> You can have Claude draft the term tree: *"Build a systematic search for vaping and adolescent health; show me the count and a random sample, then tighten it."* It writes the OQL, previews the set, and hands you the final query for the methods section. Set up once via the [AI agent connector](/access/connector/).
+> You can have Claude draft the term tree: *"Build a systematic search for vaping and adolescent health; show me the count and a random sample, then tighten it."* It writes the OQL, previews the set, and hands you the final query for the methods section. Set up once: [Using OpenAlex with an AI assistant](/how-to/ai-assistants/).
 
 The payoff over exporting from a classic database interface: the finished query is **one readable string**. It runs on the [website](https://openalex.org) and the [API](/api/oql/) identically, it's trivially shareable with co-reviewers, and you can paste it into your methods appendix as-is.
 

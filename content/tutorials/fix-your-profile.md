@@ -12,7 +12,7 @@ If you'd rather do it by hand, the same corrections are available on the website
 
 ## Before you start
 
-Add the connector once (one URL, then sign in with your OpenAlex account): see [Connecting](/access/connector/#connecting). Have your ORCID handy if you have one, and a CV or publication list if you want the fastest path — the assistant can read an attached file.
+Add the connector once (one address, then sign in with your OpenAlex account): the steps with screenshots are in [Using OpenAlex with an AI assistant](/how-to/ai-assistants/#add-openalex-to-claude). Have your ORCID handy if you have one, and a CV or publication list if you want the fastest path — the assistant can read an attached file.
 
 ## Step 1: Say what you want
 

@@ -7,7 +7,7 @@ tags: ["reference"]
 The advanced query builder at [openalex.org](https://openalex.org) lets you build complex queries visually, without writing code. Where [basic](/access/website-basic/) search covers the common cases, the advanced builder lets you combine filters, group them, and express conditions that don't fit the point-and-click model.
 
 > [!claude]
-> You can have Claude write the query instead: *"Build me an OpenAlex query for open-access articles since 2020 from MIT about machine learning, and give me the OQL."* Paste the OQL into the builder, or let Claude run it. Set up once via the [AI agent connector](/access/connector/).
+> You can have Claude write the query instead: *"Build me an OpenAlex query for open-access articles since 2020 from MIT about machine learning, and give me the OQL."* Paste the OQL into the builder, or let Claude run it. Set up once: [Using OpenAlex with an AI assistant](/how-to/ai-assistants/).
 
 ## How it works
 

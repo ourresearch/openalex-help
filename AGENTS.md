@@ -163,7 +163,7 @@ Data/API tab landings show no date.
 A blockquote whose first line is `[!claude]` renders as the "In Claude" callout (bot icon,
 accent wash) via `src/lib/remark-callouts.mjs`. It goes right after a page's intro paragraph and
 says the specific ask in italics ("You can ask Claude: *…*"), ending with
-"Set up once via the [AI agent connector](/access/connector/)". **Jason's rules (2026-09-21):**
+"Set up once: [Using OpenAlex with an AI assistant](/how-to/ai-assistants/)" (the how-to with screenshots; the reference page stays for body-text links). **Jason's rules (2026-09-21):**
 the connector is an *option*, not the default path (the website-first / API-for-coders defaults
 stay), and callouts are **sparing**: only on pages where the connector is clearly the faster
 route, one per page, never "you don't need this page". 21 pages carry one (plus a sentence in the quickstart); the full per-page
