@@ -9,7 +9,7 @@ card: "One search plus the Stats panel: outputs by subject, SDG, and OA — even
 Most of these questions are answered the same way, on [openalex.org](https://openalex.org): **search for your institution in the search bar and select it.** That creates a filter scoping the results to its works. Then open the **Stats** panel above the results — each panel below is one of the facets you can add there with the **"+"** button next to *Stats*.
 
 > [!claude]
-> One question in Claude answers most of this page: *"Summarize [my institution]'s 2024 research output: counts by type, open-access share, top fields and SDGs, and the trend over time."* Set up via the [MCP server](/access/mcp/).
+> One question in Claude answers most of this page: *"Summarize [my institution]'s 2024 research output: counts by type, open-access share, top fields and SDGs, and the trend over time."* Set up once via the [AI agent connector](/access/connector/).
 
 ## How many outputs does my institution have?
 

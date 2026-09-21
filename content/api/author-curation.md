@@ -1,6 +1,6 @@
 ---
 title: "Author Curation"
-updated: 2026-09-20
+updated: 2026-09-21
 description: "Curate your profile to claim works, remove works, or change your name"
 tags: ["api"]
 source_id: "guides/curation-authors"
@@ -9,6 +9,9 @@ source_updated: "2026-05-17"
 ---
 OpenAlex assigns [authors](/data/authors/) to works automatically, but sometimes we get things wrong.
 Author curation lets you fix that: sign in, tell us what's wrong, and we'll make the change.
+
+> [!claude]
+> You can do all of this in conversation, no code: *"Remove the works on my OpenAlex profile that aren't mine, and add these three DOIs."* Claude claims the profile if needed, submits the curations and tracks them. Your own profile only. Set up once via the [AI agent connector](/access/connector/).
 
 This page covers the API mechanics; for the self-serve workflow (claiming your profile, split and merge, using AI agents), see [Fixing errors: Authors](/access/fixing-errors/authors/).
 

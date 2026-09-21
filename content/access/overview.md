@@ -9,8 +9,8 @@ There are many ways to get OpenAlex data, from point-and-click to whole-database
 | Product | Best for | Technical skill | Cost |
 |---|---|---|---|
 | [Website](/access/website-basic/) | Exploring, one-off questions, exporting result lists | None | Free |
-| [MCP server](/access/mcp/) | Asking Claude in plain language; it queries OpenAlex for you and can fix your author profile | None | Your own [daily budget](/access/pricing/) |
-| [Agents](/access/agents/) | Setting up other AI agents (ChatGPT, Cursor, coding agents) to query OpenAlex | None | Free tier, then [usage pricing](/access/pricing/) |
+| [AI agent connector](/access/connector/) | Asking Claude in plain language; it queries OpenAlex for you and can fix your author profile | None | Your own [daily budget](/access/pricing/) |
+| [Other agents](/access/agents/) | Setting up any other AI agent (ChatGPT, Cursor, coding agents) to query OpenAlex through the API | None | Free tier, then [usage pricing](/access/pricing/) |
 | [API](/api/) | Apps, scripts, and analyses that need live data | Some coding | $1/day free, then [usage pricing](/access/pricing/) |
 | [CLI](/access/cli/) | Bulk downloads from your terminal, with retries and resume built in | Command line | Same as the API |
 | [Snapshot](/access/snapshot/) | Your own copy of the entire database, updated quarterly | Data engineering | Free |

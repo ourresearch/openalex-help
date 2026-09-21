@@ -9,7 +9,7 @@ card: "Most-cited lists, top-100 thresholds, excluding retractions, and the quer
 Recipes for the search questions we hear most. For the full querying story — filters, search, sorting, and the rest — start with [Querying](/access/querying/). For counting what you've found, see [Counting](/how-to/counting/).
 
 > [!claude]
-> Ask the question in Claude in plain language: *"The 100 most-cited works on X since 2020, excluding retractions."* Every answer comes with the exact OQL query it ran, so you can rerun or refine it yourself. Set up via the [MCP server](/access/mcp/).
+> Ask the question in Claude in plain language: *"The 100 most-cited works on X since 2020, excluding retractions."* Every answer comes with the exact OQL query it ran, so you can rerun or refine it yourself. Set up once via the [AI agent connector](/access/connector/).
 
 ## How do I find the most-cited works?
 

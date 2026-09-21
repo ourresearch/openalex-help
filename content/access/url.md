@@ -6,9 +6,6 @@ tags: ["reference"]
 ---
 You can query OpenAlex directly over raw REST URLs against `api.openalex.org`. Add parameters to an entity endpoint and you get JSON back — no key required to start.
 
-> [!claude]
-> You don't have to hand-build URLs: ask Claude, and the answer includes the exact query it ran, which you can paste here. Set up via the [MCP server](/access/mcp/).
-
 The core parameters:
 
 - **`filter=`** — narrow to entities matching conditions

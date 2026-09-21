@@ -1,6 +1,6 @@
 ---
 title: "LLM Quick Reference"
-updated: 2026-09-18
+updated: 2026-09-21
 description: "OpenAlex API reference optimized for AI agents"
 tags: ["api"]
 source_id: "guides/llm-quick-reference"
@@ -9,6 +9,9 @@ source_updated: "2026-02-18"
 ---
 > **Note:**
 > This page is optimized for LLM agents and AI applications. For human-readable guides, see the [API reference](/api/) and [Quickstart](/quickstart/).
+
+> [!claude]
+> Agents that speak MCP don't need this page: connect to `https://mcp.openalex.org/mcp` and you get search, grouping, profiling, citation traversal and reference checking as tools, each answer with its canonical OQL. See the [AI agent connector](/access/connector/). The reference below is for agents limited to plain HTTP.
 
 > **Field & vocabulary semantics live in Data.** What each entity field *means*, and controlled-vocabulary definitions, are canonical under `/data/` — e.g. the [work attribute dictionary](/data/works/attributes/) and [work types](/data/work-types/). The API reference pages cover endpoint mechanics (filtering, sorting, grouping, syntax).
 

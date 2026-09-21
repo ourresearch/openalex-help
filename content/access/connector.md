@@ -1,10 +1,11 @@
 ---
-title: "MCP server"
+title: "AI agent connector"
 updated: 2026-09-21
-description: "Connect Claude and other AI agents directly to OpenAlex with the official MCP server."
+description: "Connect Claude (and soon ChatGPT) to OpenAlex: ask about the literature in plain language, get the exact query behind every answer, and fix your own author profile in conversation."
+synonyms: ["MCP", "MCP server", "Model Context Protocol", "Claude connector", "Claude", "ChatGPT", "custom connector"]
 tags: ["reference"]
 ---
-The OpenAlex MCP server lets AI agents query OpenAlex directly. Add it to Claude (or any client that speaks the [Model Context Protocol](https://modelcontextprotocol.io)) and ask questions about the literature in plain language: the agent picks the right OpenAlex calls, and you get answers with titles, authors, venues, citation counts and links.
+The AI agent connector plugs OpenAlex into your AI assistant. Add it once, sign in with your OpenAlex account, and ask about the literature in plain language: the assistant picks the right OpenAlex calls, and you get answers with titles, authors, venues, citation counts and links, plus the exact query it ran. It works in Claude today (web, desktop, mobile, and Claude Code). A ChatGPT connector is coming.
 
 ```
 https://mcp.openalex.org/mcp
@@ -14,7 +15,7 @@ You sign in with your OpenAlex account the first time you connect (a free accoun
 
 ## Connecting
 
-**Claude (web, desktop, mobile).** Open **Settings → Connectors → Add custom connector**, paste the URL above, and save. Once OpenAlex is listed in the Claude connectors directory, you can add it from there in one click instead.
+**Claude (web, desktop, mobile).** Open **Customize → Connectors**, click **+**, choose **Add custom connector**, paste the URL above and save. Sign in at openalex.org when prompted. Every Claude plan can do this, including Free (which allows one custom connector). On Team and Enterprise plans only an organization owner can add connectors, under **Organization settings → Connectors → Add → Custom → Web**. Once OpenAlex is listed in the Claude connectors directory, adding it there is one click.
 
 **Claude Code.**
 
@@ -22,7 +23,9 @@ You sign in with your OpenAlex account the first time you connect (a free accoun
 claude mcp add --transport http openalex https://mcp.openalex.org/mcp
 ```
 
-**Other clients.** Use a Streamable HTTP transport pointed at the URL above. The server follows the current MCP specification and needs no session state.
+**ChatGPT.** Coming. Until then ChatGPT can still use OpenAlex through the API; see [Other agents](/access/agents/).
+
+**Other clients.** Technically the connector is an MCP server ([Model Context Protocol](https://modelcontextprotocol.io)), so any client that speaks MCP over Streamable HTTP can use it: point it at the URL above. It follows the current MCP specification and needs no session state.
 
 ## What you can ask
 
@@ -69,6 +72,21 @@ Ask Claude to *make my OpenAlex profile accurate* and attach your CV, a bio sket
 
 Adding the server prompts you to sign in at openalex.org and approve the connection. From then on Claude queries OpenAlex as you: the same key, the same daily budget, the same [usage dashboard](https://openalex.org/settings/usage). When the budget runs low, results carry a short note saying how much is left and when it resets; when it runs out, single-record lookups still work and everything else resumes at midnight UTC, or immediately after you [add prepaid usage or a plan](https://openalex.org/pricing). Rotating your API key at [openalex.org/settings/api](https://openalex.org/settings/api) disconnects the server; Claude will ask you to sign in again.
 
+## What it can't do
+
+- **Total citations across a set of works.** Ask on the [website](/access/website-basic/) instead; the connector counts works, not their citations.
+- **Bulk export.** It answers questions; it doesn't page through and download whole result sets. For a file, use the website's export, the [CLI](/access/cli/) or the [snapshot](/access/snapshot/).
+- **Full text.** It reports where a free copy lives; it doesn't fetch PDFs. See [Fulltext](/access/fulltext/).
+- **Fixing anything but your own author profile.** Other errors still go through [Fixing errors](/access/fixing-errors/).
+
+## Troubleshooting
+
+- **The assistant asks you to sign in again.** You rotated your API key, or the connection expired. Reconnect from the connectors screen; nothing else changes.
+- **A note says your budget is used up.** Single-record lookups keep working; everything else resumes at midnight UTC, or immediately after you [add prepaid usage or a plan](https://openalex.org/pricing).
+- **You expected a different key to be charged.** If you own an OpenAlex organization the connector spends the organization's budget, otherwise your personal one; there is no chooser. Ask the assistant *"which OpenAlex account am I connected as?"* to see which.
+- **Claude won't let you add a connector.** On Team and Enterprise plans ask an organization owner to add it. On the Free plan you may already have your one custom connector.
+- **An answer looks wrong.** Ask for the query it ran and check it on [openalex.org](https://openalex.org); every answer carries the OQL.
+
 ## Privacy
 
 Tool arguments are forwarded to the OpenAlex API and the results returned to your agent. The server stores no conversation content. It records per-call metrics (tool name, latency, credits used, success or failure) without query text. See the [OpenAlex privacy policy](https://openalex.org/privacy).
@@ -79,6 +97,6 @@ The server is open source: [github.com/ourresearch/openalex-mcp-server](https://
 
 ## Related pages
 
-- [Agents](/access/agents/) — getting the most out of AI agents with OpenAlex, with or without MCP
+- [Other agents](/access/agents/) — ChatGPT, Cursor and other agents using OpenAlex through the API
 - [LLM quick reference](/api/llm-quick-reference/) — the condensed API reference for agents that call the API directly
 - [Authentication](/api/authentication/) — keys and budgets

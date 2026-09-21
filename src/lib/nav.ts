@@ -249,7 +249,7 @@ export const NAV_GROUPS: Record<string, NavGroup[]> = {
         },
         'cli',
         'agents',
-        'mcp',
+        'connector',
         'snapshot',
         'sync',
         'fulltext',

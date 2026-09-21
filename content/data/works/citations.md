@@ -1,10 +1,13 @@
 ---
 title: "Citations"
-updated: 2026-08-08
+updated: 2026-09-21
 description: "How OpenAlex builds citations and references — reference extraction and matching, why counts can differ from the PDF, and the Field-Weighted Citation Impact (FWCI) metric."
 tags: ["reference"]
 ---
 Every work in OpenAlex knows which works it cites and which works cite it. This page covers how those links are built, and the citation metric derived from them.
+
+> [!claude]
+> You can ask Claude: *"Who cites W2741809807, what does it reference, and what's its FWCI?"* It lists the citing and referenced works and can summarize the follow-up work. (Citation totals across a set of works are website-only.) Set up once via the [AI agent connector](/access/connector/).
 
 ## Citations and references
 

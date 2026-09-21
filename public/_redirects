@@ -376,6 +376,9 @@
 
 # >>> rewrite-pass-a >>>
 # Docs rewrite Pass A (oxjob #354, D07): merged/renamed Start-here zone
+# oxjob #1279 (2026-09-21): the MCP page became the AI agent connector page
+/access/mcp  /access/connector/  301
+/access/mcp/  /access/connector/  301
 /access/how-does-openalex-work  /data/how-its-built/  301
 /access/how-does-openalex-work/  /data/how-its-built/  301
 /access/data-ingest-pipeline  /data/how-its-built/  301

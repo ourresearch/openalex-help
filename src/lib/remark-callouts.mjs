@@ -2,12 +2,12 @@
  * Callouts in markdown, GitHub-admonition style:
  *
  *   > [!claude]
- *   > Ask Claude to do this for you: "…". See the [MCP server](/access/mcp/).
+ *   > You can ask Claude: "…". Set up once via the [AI agent connector](/access/connector/).
  *
  * Renders as <aside class="callout callout-claude"> with a bot icon and the label
- * "In Claude". The one kind that exists today is `claude`, used wherever the Claude
- * connector can do the page's task; it is always the preferred route (Jason, 2026-09-21,
- * oxjob #328). Add kinds to KINDS as needed. No dependencies: it edits the mdast blockquote
+ * "In Claude". The one kind that exists today is `claude`, used sparingly: only on pages
+ * where the AI agent connector is clearly the faster route (Jason, 2026-09-21, oxjob #1279;
+ * it is an option, not the default path). Add kinds to KINDS as needed. No dependencies: it edits the mdast blockquote
  * in place (hName/hProperties) and drops the marker text.
  */
 

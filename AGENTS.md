@@ -158,17 +158,19 @@ description: "…"
 Only `[tab]/[...slug].astro` has an article foot — the Quickstart page and the
 Data/API tab landings show no date.
 
-## Callouts: `> [!claude]` (oxjob #328, 2026-09-21)
+## Callouts: `> [!claude]` (oxjob #328 → #1279, 2026-09-21)
 
 A blockquote whose first line is `[!claude]` renders as the "In Claude" callout (bot icon,
-accent wash) via `src/lib/remark-callouts.mjs`; it is placed right after the intro paragraph
-of every page whose task the Claude connector can do, and says the specific ask in italics plus
-a link to `/access/mcp/`. Jason's rule: wherever the connector can handle the task it is the
-preferred route, so the callout goes first, not at the bottom. Markdown plugins run on
-`@astrojs/markdown-remark` (installed for this; Astro 7's default Sätteri processor has no
-plugin hook and no admonition syntax). The switch was diffed page by page: identical text,
-only entity escaping in code samples differs. Add a kind by extending `KINDS` in the plugin
-and `.prose aside.callout-<kind>` in `global.css`.
+accent wash) via `src/lib/remark-callouts.mjs`. It goes right after a page's intro paragraph and
+says the specific ask in italics ("You can ask Claude: *…*"), ending with
+"Set up once via the [AI agent connector](/access/connector/)". **Jason's rules (2026-09-21):**
+the connector is an *option*, not the default path (the website-first / API-for-coders defaults
+stay), and callouts are **sparing**: only on pages where the connector is clearly the faster
+route, one per page, never "you don't need this page". 21 pages carry one (plus a sentence in the quickstart); the full per-page
+census with the reasons for every yes and no is in oxjob #1279 EXPLORE.md. Check it before adding
+another. Markdown plugins run on `@astrojs/markdown-remark` (installed for this; Astro 7's
+default Sätteri processor has no plugin hook and no admonition syntax). Add a kind by extending
+`KINDS` in the plugin and `.prose aside.callout-<kind>` in `global.css`.
 
 ## Content: `content/` is canonical
 
