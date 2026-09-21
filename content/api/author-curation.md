@@ -1,6 +1,6 @@
 ---
 title: "Author Curation"
-updated: 2026-08-16
+updated: 2026-09-20
 description: "Curate your profile to claim works, remove works, or change your name"
 tags: ["api"]
 source_id: "guides/curation-authors"
@@ -139,6 +139,8 @@ Three things to know about the `value`:
 - **`property` is the flat `orcid`**, not `ids.orcid` — ORCID is a top-level author property despite appearing under the `ids` display category.
 
 Like the other author-profile curations, this one is available to the owner of a claimed profile (and to site curators and organization owners/curators). Setting an ORCID does **not** trigger any automatic merging of profiles that share it.
+
+Setting or removing the primary ORCID also updates [`observed_orcids`](/data/authors/#observed_orcids): the ORCID appears in or drops out of that list right along with `orcid`. The list itself isn't directly curatable; it otherwise reflects only what the profile's works carry.
 
 A successful request returns `201` with the saved curation:
 

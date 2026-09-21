@@ -1,6 +1,6 @@
 ---
 title: "Get Singleton"
-updated: 2026-09-18
+updated: 2026-09-20
 description: "Retrieve a single entity by ID"
 tags: ["api"]
 source_id: "guides/get"
@@ -85,6 +85,8 @@ Each entity type has a primary external identifier:
 | Institutions | ROR |
 | Topics | Wikidata ID |
 | Publishers | Wikidata ID |
+
+For authors, lookup by ORCID resolves by the primary ORCID or any [observed ORCID](/data/authors/#observed_orcids), not just the one currently shown as `orcid`.
 
 ## Component ids: locations
 

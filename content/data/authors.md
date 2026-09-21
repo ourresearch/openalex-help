@@ -1,6 +1,6 @@
 ---
 title: "Overview"
-updated: 2026-08-19
+updated: 2026-09-20
 description: "What an author is, why a profile is built from its works, and what every attribute on an author object means."
 tags: ["reference"]
 source_id: "24347048891543"
@@ -42,7 +42,7 @@ This is the canonical dictionary of every attribute on an **author** object. Att
 *String.* The [OpenAlex ID](/data/#the-openalex-id-scheme) for this author, e.g. `https://openalex.org/A5023888391`. See [Common attributes](/data/common-attributes/#id).
 
 ### `ids`
-*Object.* All known external identifiers for this author, as URIs where possible; keys with no value are omitted. Author keys are `openalex`, `orcid`, and (rarely) `scopus`. Filter, group_by, and sort on the `orcid` and `scopus` sub-keys.
+*Object.* All known external identifiers for this author, as URIs where possible; keys with no value are omitted. Author keys are `openalex`, `orcid`, `observed_orcids`, and (rarely) `scopus`. Filter, group_by, and sort on the `orcid`, `observed_orcids`, and `scopus` sub-keys.
 
 ### `display_name`
 *String.* The author's name — the single most-frequent, most-informative form observed across their works. See [Common attributes](/data/common-attributes/#display_name). Filterable and sortable; free-text name search uses the `search` parameter (the `display_name.search` filter is deprecated).
@@ -51,7 +51,14 @@ This is the canonical dictionary of every attribute on an **author** object. Att
 *List.* Other name strings seen for this author, deduplicated (e.g. `["Jason Priem", "Priem, Jason"]`). Useful for matching against name forms that differ from the canonical [`display_name`](#display_name).
 
 ### `orcid`
-*String.* The author's [ORCID](https://orcid.org/) iD as a URL, or null. ORCID is the canonical external identifier for authors; each is meant to map to one OpenAlex author. Filter, sort, and group_by are supported; use `has_orcid:true`/`false` to select on presence. Null far more often than you'd expect — an ORCID only reaches OpenAlex attached to a work's metadata, and most authorships don't carry one. How it's sourced, used, and set: [ORCID](/data/authors/orcid/).
+*String.* The author's primary [ORCID](https://orcid.org/) iD as a URL, or null. It's the first entry in [`observed_orcids`](#observed_orcids), and it's the identifier new incoming works are matched against. One ORCID should belong to at most one OpenAlex author; profiles that still share one are splinters, merged over time. Filter, sort, and group_by are supported; use `has_orcid:true`/`false` to select on presence. Null far more often than you'd expect — an ORCID only reaches OpenAlex attached to a work's metadata, and most authorships don't carry one. How it's sourced, used, and set: [ORCID](/data/authors/orcid/).
+
+### `observed_orcids`
+*List.* Every ORCID iD trusted on this author's works, as URLs, with the primary [`orcid`](#orcid) always first. "Trusted" means the ORCID is unique on its work (not stamped on several authorships), isn't from a bulk data deposit, and is name-compatible with the ORCID's other uses.
+
+You can't edit this list directly. Like [`display_name_alternatives`](#display_name_alternatives) and `raw_author_names`, it's computed from the works on the profile: disown a work and its ORCID can drop off the list, add a work and its ORCID can join. The one exception is the primary: setting it by [curation](/api/author-curation/#modify-orcid) adds it here even before a work carries it, and removing it by curation drops it too.
+
+Filtering is supported. `filter=orcid:<id>` matches the primary or any observed ORCID, and `/authors/https://orcid.org/<id>` / `/authors/orcid:<id>` resolve the same way. `filter=observed_orcids:<id>` is also available if you need to match on the list specifically. An overmerged profile can carry many observed ORCIDs; the list is honest about what its works actually carry, which is a useful signal for spotting an overmerge.
 
 ### `full_name`
 *String.* The author's full name as parsed from their works. In practice usually identical to [`display_name`](#display_name).

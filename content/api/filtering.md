@@ -1,6 +1,6 @@
 ---
 title: "Filter"
-updated: 2026-09-18
+updated: 2026-09-20
 description: "Narrow down results to entities that match specific conditions"
 tags: ["api"]
 source_id: "guides/filtering"
@@ -157,7 +157,7 @@ Each entity type has its own set of filterable fields. See the API reference for
 | Entity | Filters |
 |--------|---------|
 | [Works](/data/works/) | `publication_year`, `type`, `open_access.is_oa`, `author.id`, `institutions.id`, `cited_by_count`, `doi`, `has_abstract`, and ~150 more |
-| [Authors](/data/authors/) | `has_orcid`, `last_known_institutions.id`, `works_count`, `cited_by_count`, `orcid` |
+| [Authors](/data/authors/) | `has_orcid`, `last_known_institutions.id`, `works_count`, `cited_by_count`, `orcid`, `observed_orcids` |
 | [Sources](/data/sources/) | `is_oa`, `is_in_doaj`, `listed_in`, `type`, `country_code`, `host_organization`, `issn` |
 | [Institutions](/data/institutions/) | `country_code`, `type`, `is_global_south`, `continent`, `ror`, `has_ror` |
 | [Topics](/data/topics/) | `domain.id`, `field.id`, `subfield.id`, `works_count` |
@@ -165,6 +165,8 @@ Each entity type has its own set of filterable fields. See the API reference for
 | [Publishers](/data/publishers/) | `country_codes`, `hierarchy_level`, `ror`, `parent_publisher` |
 | [Funders](/data/funders/) | `country_code`, `is_global_south`, `continent`, `ror`, `awards_count` |
 | [Locations](/data/locations/) | `version`, `license`, `is_oa`, `source_id`, `work_id`, `endpoint_id`, `native_id`, `provenance`, `ingested_at` |
+
+On authors, `filter=orcid:<id>` matches the primary ORCID or any [`observed_orcids`](/data/authors/#observed_orcids) entry; filter on `observed_orcids` directly if you only want to match the list.
 
 > **Info:**
 > **Looking for text search?** Filters match exact values. For full-text search in titles, abstracts, and other fields, see [Searching](/api/searching/).
