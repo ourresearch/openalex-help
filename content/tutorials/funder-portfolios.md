@@ -1,6 +1,6 @@
 ---
 title: "Funder Portfolios"
-updated: 2026-08-11
+updated: 2026-09-21
 subtitle: "See what a funder pays for: its top fields, how spending shifts over time, and which institutions win the most support."
 description: "Map what a funding agency invests in by field, track shifts over time, and find top recipient institutions"
 tags: ["recipes","api"]
@@ -10,6 +10,9 @@ source_updated: "2026-02-23"
 card: "Watch a funder’s priorities drift over a decade — and who wins the most support."
 ---
 What does a funder actually invest in? How has their portfolio shifted over the past decade? This recipe maps a funder's research output by field, detects shifting priorities, and identifies the top institutions receiving funding. We'll use the US National Science Foundation as the example. (Under 1¢)
+
+> [!claude]
+> Ask Claude: *"Map what [funder] funds by field, how that shifted over the last decade, and the top recipient institutions."* One call profiles the portfolio. Set up via the [MCP server](/access/mcp/).
 
 ## Step 1: Find the funder
 

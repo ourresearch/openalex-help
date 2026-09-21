@@ -1,6 +1,6 @@
 ---
 title: "Map SDG Research"
-updated: 2026-08-11
+updated: 2026-09-21
 subtitle: "Compare how countries contribute to each UN Sustainable Development Goal and see who leads."
 description: "Compare how countries contribute to the UN Sustainable Development Goals and find who leads each one"
 tags: ["recipes","api"]
@@ -10,6 +10,9 @@ source_updated: "2026-02-23"
 card: "Every work carries automatic SDG tags — map global priorities with a few group_by calls."
 ---
 The [UN Sustainable Development Goals](https://sdgs.un.org/goals) give a shared framework for classifying research by societal impact. OpenAlex tags works with SDGs automatically, so you can map the global landscape with a handful of `group_by` calls. We'll compare India and Brazil to show how national research priorities diverge. (Under 1¢)
+
+> [!claude]
+> Ask Claude: *"Compare how the US and India contribute to SDG 7, and which institutions lead on it."* Set up via the [MCP server](/access/mcp/).
 
 ## Step 1: See the global distribution
 

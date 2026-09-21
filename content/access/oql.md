@@ -1,6 +1,6 @@
 ---
 title: "Overview"
-updated: 2026-09-19
+updated: 2026-09-21
 description: "The OpenAlex Query Language — what OQL is, how to write it, and every construct with a copyable example."
 tags: ["oql"]
 source_id: "query-spec/guide+cheatsheet"
@@ -13,6 +13,9 @@ spec/{guide,cheatsheet}) and is NOT written by sync-query-docs.mjs. When the
 upstream artifacts change, port the changes here by hand. -->
 
 **OQL is the OpenAlex Query Language — a readable way to ask OpenAlex anything.** Where the classic API uses URL filter strings, OQL lets you write the query out in something close to plain English:
+
+> [!claude]
+> Ask Claude and it writes the OQL for you: every answer includes the canonical query it ran, and it can explain or refine a query you paste in. Set up via the [MCP server](/access/mcp/).
 
 ```
 works where title has ("climate change") and year >= (2020) and open access is (true)

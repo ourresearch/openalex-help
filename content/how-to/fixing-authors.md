@@ -1,12 +1,15 @@
 ---
 title: "Fixing authors"
-updated: 2026-09-20
+updated: 2026-09-21
 description: "Claim your OpenAlex author profile and fix it yourself: add and remove works, merge duplicates, and correct your names."
 tags: ["fixing"]
 synonyms: ["author profile", "claim profile", "merge profiles", "alternate names", "wrong works", "ORCID", "claim verification"]
 card: "No ticket needed — claim it and fix it yourself: works, name variants, merged twins."
 ---
 Your author profile is the big self-serve case in OpenAlex: you don't need to file a ticket — claim the profile and fix it yourself. This page is the recipes; the full story (everything you can change, how curations work, the API) is in the [Authors fixing-errors reference](/access/fixing-errors/authors/).
+
+> [!claude]
+> Ask Claude to do the whole cleanup: *"Make my OpenAlex author profile accurate"*, with your CV or publication list attached. It claims the profile if you haven't, reads it work by work, proposes what to add and remove with the evidence, asks you about anything unclear, and submits the corrections. Set up once via the [MCP server](/access/mcp/).
 
 ## How do I claim my profile?
 

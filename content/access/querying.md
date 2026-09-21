@@ -1,10 +1,13 @@
 ---
 title: "Overview"
-updated: 2026-08-11
+updated: 2026-09-21
 description: "The several ways to ask OpenAlex a question — web interface, REST URLs, OQL, CLI, and agents — and how they all transpile to the same query object under the hood."
 tags: ["reference"]
 ---
 There are several ways to ask OpenAlex a question, each suited to a different kind of user: point-and-click on the website, a raw REST URL, the OpenAlex Query Language, the command line, or an AI agent. Pick whichever fits how you like to work.
+
+> [!claude]
+> If you use Claude, the [MCP server](/access/mcp/) is the zero-setup way to query: one URL, sign in with your OpenAlex account, ask in plain language, and every answer includes the OQL it ran.
 
 Here's the key idea that ties them together: **every one of these surfaces transpiles to the same canonical query object internally — the OpenAlex Query Object, or OQO.** A click in the web interface, a `filter=` string in a URL, and a line of OQL all compile down to the same OQO and run against the same engine. That means they're **equivalent in power**, up to the limits of each surface — the differences below are about ergonomics and reach, not about which one can "really" ask the question.
 

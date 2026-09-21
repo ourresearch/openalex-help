@@ -1,10 +1,13 @@
 ---
 title: "URL"
-updated: 2026-08-09
+updated: 2026-09-21
 description: "Query OpenAlex over raw REST URLs — the filter, search, sort, and group_by parameters on api.openalex.org."
 tags: ["reference"]
 ---
 You can query OpenAlex directly over raw REST URLs against `api.openalex.org`. Add parameters to an entity endpoint and you get JSON back — no key required to start.
+
+> [!claude]
+> You don't have to hand-build URLs: ask Claude, and the answer includes the exact query it ran, which you can paste here. Set up via the [MCP server](/access/mcp/).
 
 The core parameters:
 

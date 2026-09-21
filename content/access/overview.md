@@ -1,6 +1,6 @@
 ---
 title: "Overview"
-updated: 2026-08-15
+updated: 2026-09-21
 description: "Every way to get OpenAlex data — website, API, CLI, agents, snapshot, sync, fulltext, Unpaywall — and how to pick the right one for your technical skill, scale, and budget."
 tags: ["downloads"]
 ---
@@ -9,7 +9,8 @@ There are many ways to get OpenAlex data, from point-and-click to whole-database
 | Product | Best for | Technical skill | Cost |
 |---|---|---|---|
 | [Website](/access/website-basic/) | Exploring, one-off questions, exporting result lists | None | Free |
-| [Agents](/access/agents/) | Letting your AI agent query OpenAlex for you | None | Free tier, then [usage pricing](/access/pricing/) |
+| [MCP server](/access/mcp/) | Asking Claude in plain language; it queries OpenAlex for you and can fix your author profile | None | Your own [daily budget](/access/pricing/) |
+| [Agents](/access/agents/) | Setting up other AI agents (ChatGPT, Cursor, coding agents) to query OpenAlex | None | Free tier, then [usage pricing](/access/pricing/) |
 | [API](/api/) | Apps, scripts, and analyses that need live data | Some coding | $1/day free, then [usage pricing](/access/pricing/) |
 | [CLI](/access/cli/) | Bulk downloads from your terminal, with retries and resume built in | Command line | Same as the API |
 | [Snapshot](/access/snapshot/) | Your own copy of the entire database, updated quarterly | Data engineering | Free |

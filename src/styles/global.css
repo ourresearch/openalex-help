@@ -194,6 +194,33 @@ code, pre, kbd {
   border-left: 2px solid var(--line-strong);
   color: var(--muted);
 }
+/* Callouts (src/lib/remark-callouts.mjs). `claude`: the Claude connector can do this
+   page's task and is the preferred route, so it gets the accent wash, not the muted quote. */
+.prose aside.callout {
+  margin: 1.5rem 0;
+  padding: 0.85rem 1rem 0.9rem;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel);
+  color: var(--ink);
+}
+.prose aside.callout > :last-child { margin-bottom: 0; }
+.prose aside.callout p { margin: 0.35rem 0 0; }
+.prose aside.callout .callout-head {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.prose aside.callout-claude {
+  border-color: #bfdbfe;
+  background: var(--accent-wash);
+}
+.prose aside.callout-claude .callout-head { color: var(--accent); }
 .prose img {
   max-width: 100%;
   border-radius: 6px;

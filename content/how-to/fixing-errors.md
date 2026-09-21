@@ -1,13 +1,16 @@
 ---
 title: "Fixing Errors: Overview"
 navLabel: "Overview"
-updated: 2026-08-17
+updated: 2026-09-21
 description: "Found an error in OpenAlex? Start here: what you can fix yourself right now, and how to report everything else."
 tags: ["fixing"]
 synonyms: ["report error", "report bug", "found a mistake", "wrong data", "fix error", "error portal"]
 card: "Start here: what you can fix yourself right now, and how to report everything else."
 ---
 OpenAlex is built by inference at enormous scale, and inference is sometimes wrong. When you find an error, there are two lanes: a few high-volume cases you can **fix yourself, right now, in the app** — and everything else, which is a **ticket** that our AI agents turn into a verified correction. This page routes you to the right lane.
+
+> [!claude]
+> Own author profile? Ask Claude: *"Make my OpenAlex author profile accurate."* It handles claiming and curating in conversation via the [MCP server](/access/mcp/). Everything else on this page still goes through a ticket.
 
 ## Which lane am I in?
 

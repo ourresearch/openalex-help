@@ -1,12 +1,15 @@
 ---
 title: "Counting"
-updated: 2026-08-11
+updated: 2026-09-21
 description: "Recipes for counting questions: totaling citations to a result set, checking a journal's coverage, and why two counts of the same thing can disagree."
 tags: ["search"]
 synonyms: ["count citations", "journal coverage", "is a journal in openalex", "counts by year"]
 card: "Citation totals for any result set, coverage checks, and why two counts disagree."
 ---
 Recipes for counting things in OpenAlex. For building the result set you're counting, see [Searching](/how-to/searching/); for the full querying story, start with [Querying](/access/querying/).
+
+> [!claude]
+> Counting and grouping is a plain-language ask in Claude: *"How many works on X per year since 2015?"* or *"Which journals carry the most papers on Y?"* Each answer includes the exact query it ran. Set up via the [MCP server](/access/mcp/). (Totals of citations across a result set are website-only for now.)
 
 ## How do I count all the citations to a set of results?
 

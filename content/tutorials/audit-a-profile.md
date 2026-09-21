@@ -1,6 +1,6 @@
 ---
 title: "Audit a Profile"
-updated: 2026-08-12
+updated: 2026-09-21
 subtitle: "Spot works missing from an author profile — and works wrongly attached — so you can clean it up."
 description: "Find works that should belong to an OpenAlex author profile but aren't currently attached, and works that shouldn't belong but are"
 tags: ["recipes","api"]
@@ -10,6 +10,9 @@ source_updated: "2026-05-26"
 card: "Find the works a profile is missing — and the ones that belong to someone else. Under 1¢."
 ---
 OpenAlex's author entity resolution is good but imperfect. A profile (`A1234...`) can be missing real works (the byline used a name variant the resolver didn't link), and can also include works that belong to someone else (a different person with a similar byline got attached). This recipe finds both kinds of candidate so you can correct the profile. (Under 1¢ per profile)
+
+> [!claude]
+> This whole tutorial is one ask in Claude: *"Audit OpenAlex author A5023888391: find works that should be on it and works that shouldn't."* The connector runs the same byline-variant search built below, plus ORCID and duplicate-profile checks, and can submit the corrections if it's your profile. Set up via the [MCP server](/access/mcp/).
 
 > **Tip:**
 > This is a good task to hand to an LLM agent. The "find missing works" half powers the "Add works" dialog on author profiles in the OpenAlex web UI.

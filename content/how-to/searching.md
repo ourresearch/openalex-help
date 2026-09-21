@@ -1,12 +1,15 @@
 ---
 title: "Searching"
-updated: 2026-08-11
+updated: 2026-09-21
 description: "Recipes for common search questions: most-cited works, top-100 lists, excluding retractions, query length, and finding issue metadata."
 tags: ["search"]
 synonyms: ["most cited", "top cited", "retracted works", "query length", "volume and issue"]
 card: "Most-cited lists, top-100 thresholds, excluding retractions, and the query-length ceiling."
 ---
 Recipes for the search questions we hear most. For the full querying story — filters, search, sorting, and the rest — start with [Querying](/access/querying/). For counting what you've found, see [Counting](/how-to/counting/).
+
+> [!claude]
+> Ask the question in Claude in plain language: *"The 100 most-cited works on X since 2020, excluding retractions."* Every answer comes with the exact OQL query it ran, so you can rerun or refine it yourself. Set up via the [MCP server](/access/mcp/).
 
 ## How do I find the most-cited works?
 
