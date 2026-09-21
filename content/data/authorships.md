@@ -1,6 +1,6 @@
 ---
 title: "Authorships"
-updated: 2026-08-07
+updated: 2026-09-21
 description: "The join between a work and its authors — the raw name each author printed, their position, whether they're corresponding, and the institutions they listed — and what every attribute on an authorship object means."
 tags: ["reference"]
 entity:
@@ -56,7 +56,7 @@ This is the dictionary of every attribute on an **authorship** object, as it app
 *List.* The mapping from each raw affiliation string to the institutions it matched. Each element is an object with `raw_affiliation_string` (one of the strings above) and `institution_ids` (the OpenAlex institution IDs that string resolved to). This preserves *which* printed string produced *which* institutions, information that the flattened [`institutions`](#institutions) list loses.
 
 ### `raw_orcid`
-*String.* The ORCID iD as it arrived on the source record for this authorship, or null. The raw input behind the resolved [`author.orcid`](#author); present so you can see the asserted ORCID even when it differs from the disambiguated author's.
+*String.* The ORCID iD as it arrived on the source record for this authorship, or null. The raw input behind the resolved [`author.orcid`](#author); present so you can see the asserted ORCID even when it differs from the disambiguated author's. Reported as deposited, right or wrong: a wrong one is corrected with the publisher, not in OpenAlex ([how](/how-to/fixing-authors/#a-paper-shows-the-wrong-orcid-for-me-can-i-fix-it)).
 
 ## In the API
 

@@ -43,9 +43,17 @@ The alternate names on a profile are the name variants that appear on its linked
 
 Because a profile is built from its works. The institutions, topics, alternate names, and citation counts on a profile aren't stored separately — they're computed from whatever works are attached. Remove a work, and anything that work alone was contributing (an affiliation, a topic) goes with it; remove a name variant, and every work printed under that name goes, along with their affiliations. Institutions still supported by the works you keep stay put. This is the intended behavior, not a side effect: on a profile, **works are the only thing you edit; everything else is a result.** So if something on your profile looks wrong, the question to ask is "which work is bringing this in?" and fix that work. (A wrong institution on a work that *is* yours is an [affiliation fix](/how-to/fixing-affiliations/), not an author fix.) The longer explanation: [Authors § A profile is built from its works](/data/authors/#a-profile-is-built-from-its-works).
 
-## How do I add or fix my ORCID?
+## How do I set or correct my ORCID?
 
-You can set your profile's ORCID (or detach a wrong one) through the [curation API](/api/author-curation/#modify-orcid) once you've claimed the profile — there's no button for it on the website yet. Know what it does before you reach for it: it records the ORCID and makes it your match key for *future* works, but it doesn't move works already attached elsewhere or merge duplicate profiles. To fix what's on the profile, add and remove works. Everything about how OpenAlex sources and uses ORCID — and why a profile often has none — is on the [ORCID](/data/authors/orcid/) page.
+Claim your profile, then set the ORCID through the [curation API](/api/author-curation/#modify-orcid) with `property: "orcid"`: `replace` to set it, `remove` to detach one that is not yours. There is no button for it on the website yet. The change shows within about two days, and the new primary appears in [`observed_orcids`](/data/authors/#observed_orcids) right away, even before any work carries it.
+
+Know what it does before you reach for it. It records the ORCID on your profile and makes it your match key for *future* works. It does not move works already sitting on another profile, pull in missing works, or merge duplicates; those are fixed by [adding and removing works](#how-do-i-add-or-remove-works). Why ORCID works this way, and why a profile often has none: [ORCID](/data/authors/orcid/).
+
+## A paper shows the wrong ORCID for me. Can I fix it?
+
+Not in OpenAlex, for now. The ORCID on a work (`raw_orcid` on the authorship) is the publisher's record: they collected it at submission and deposited it with the paper, and OpenAlex reports it as deposited, right or wrong. The fix is with the publisher, who can update the metadata at Crossref or DataCite; OpenAlex picks up the corrected record when that work is next refreshed.
+
+What you can do here: if the wrong ORCID has landed on your *profile*, remove it as above; if the work is not yours at all, remove the work. Either way the profile stops carrying that ORCID. How wrong ORCIDs get onto papers in the first place: [ORCID § Why an ORCID can be wrong](/data/authors/orcid/#why-an-orcid-can-be-wrong).
 
 ## Using an AI agent
 

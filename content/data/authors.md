@@ -1,6 +1,6 @@
 ---
 title: "Overview"
-updated: 2026-09-20
+updated: 2026-09-21
 description: "What an author is, why a profile is built from its works, and what every attribute on an author object means."
 tags: ["reference"]
 source_id: "24347048891543"
@@ -51,14 +51,10 @@ This is the canonical dictionary of every attribute on an **author** object. Att
 *List.* Other name strings seen for this author, deduplicated (e.g. `["Jason Priem", "Priem, Jason"]`). Useful for matching against name forms that differ from the canonical [`display_name`](#display_name).
 
 ### `orcid`
-*String.* The author's primary [ORCID](https://orcid.org/) iD as a URL, or null. It's the first entry in [`observed_orcids`](#observed_orcids), and it's the identifier new incoming works are matched against. One ORCID should belong to at most one OpenAlex author; profiles that still share one are splinters, merged over time. Filter, sort, and group_by are supported; use `has_orcid:true`/`false` to select on presence. Null far more often than you'd expect — an ORCID only reaches OpenAlex attached to a work's metadata, and most authorships don't carry one. How it's sourced, used, and set: [ORCID](/data/authors/orcid/).
+*String.* The author's primary [ORCID](https://orcid.org/) iD as a URL, or null. Set by the profile's owner if they have [curated it](/how-to/fixing-authors/#how-do-i-set-or-correct-my-orcid), otherwise the trusted ORCID on the most of the profile's works. Null is the common case: only about one profile in ten has one. Filter with `orcid:` (matches the primary or any observed ORCID) and `has_orcid:true`/`false`. Everything else, including why a profile can have several and why one can be wrong: [ORCID](/data/authors/orcid/).
 
 ### `observed_orcids`
-*List.* Every ORCID iD trusted on this author's works, as URLs, with the primary [`orcid`](#orcid) always first. "Trusted" means the ORCID is unique on its work (not stamped on several authorships), isn't from a bulk data deposit, and is name-compatible with the ORCID's other uses.
-
-You can't edit this list directly. Like [`display_name_alternatives`](#display_name_alternatives) and `raw_author_names`, it's computed from the works on the profile: disown a work and its ORCID can drop off the list, add a work and its ORCID can join. The one exception is the primary: setting it by [curation](/api/author-curation/#modify-orcid) adds it here even before a work carries it, and removing it by curation drops it too.
-
-Filtering is supported. `filter=orcid:<id>` matches the primary or any observed ORCID, and `/authors/https://orcid.org/<id>` / `/authors/orcid:<id>` resolve the same way. `filter=observed_orcids:<id>` is also available if you need to match on the list specifically. An overmerged profile can carry many observed ORCIDs; the list is honest about what its works actually carry, which is a useful signal for spotting an overmerge.
+*List.* Every ORCID iD trusted on this author's works, as URLs, with the primary [`orcid`](#orcid) always first. Not editable directly: like [`display_name_alternatives`](#display_name_alternatives), it is computed from the works on the profile, so change the works (or the primary) and the list follows. Filter with `observed_orcids:`. A long list on one profile usually means the profile is overmerged; see [ORCID § Why a profile can have more than one ORCID](/data/authors/orcid/#why-a-profile-can-have-more-than-one-orcid).
 
 ### `full_name`
 *String.* The author's full name as parsed from their works. In practice usually identical to [`display_name`](#display_name).
