@@ -1,6 +1,6 @@
 ---
 title: "Attributes"
-updated: 2026-09-18
+updated: 2026-09-21
 description: "The canonical dictionary of every attribute on a work object — what each one means, where it comes from, and its quirks."
 tags: ["reference"]
 ---
@@ -108,6 +108,11 @@ See [Open access](/data/works/open-access/) for how these fields combine.
 
 ### `mesh`
 *List.* [MeSH](https://www.nlm.nih.gov/mesh/meshhome.html) tag objects. Present only for works sourced from [PubMed](https://pubmed.ncbi.nlm.nih.gov/); an empty list otherwise.
+
+### `pubmed_publication_types`
+*List of strings.* The [publication types](https://www.nlm.nih.gov/mesh/pubtypes.html) PubMed assigns to the record, verbatim: `Journal Article`, `Randomized Controlled Trial`, `Systematic Review`, `Meta-Analysis`, `Case Reports`, `Review`, `Retracted Publication`, and so on. Most records carry more than one. Present only for the ~8.6% of works with a PMID; an empty list otherwise, so a work outside PubMed is never "not an RCT" here, just untagged. Filter and group by it: `filter=pubmed_publication_types:randomized controlled trial` (case-insensitive) or `group_by=pubmed_publication_types`.
+
+Two caveats. The tags are assigned by MEDLINE indexers after publication, and indexing lags: about half of the PubMed records from 2024 onward carry only `Journal Article` so far, so a missing tag on a recent paper usually means "not yet indexed" rather than "not that kind of study". And this is PubMed's raw list, reproduced as-is, not an OpenAlex judgment; a corpus-wide, model-derived study-design field that also covers works outside PubMed is in progress and will be documented separately.
 
 ### `cited_by_count`
 *Integer.* The number of works that cite this work — the count of successful reference matches pointing at it (see [Citations and references](/data/works/citations/#citations-and-references)).
