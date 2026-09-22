@@ -1,6 +1,6 @@
 ---
 title: "Attributes"
-updated: 2026-09-21
+updated: 2026-09-22
 description: "The canonical dictionary of every attribute on a work object — what each one means, where it comes from, and its quirks."
 tags: ["reference"]
 ---
@@ -105,6 +105,9 @@ See [Open access](/data/works/open-access/) for how these fields combine.
 
 ### `sustainable_development_goals`
 *List.* The work's relevance to the UN's [17 Sustainable Development Goals](https://sdgs.un.org/goals), tagged by a machine-learning [classifier](/data/sdgs/), each with a predicted-probability `score`. All goals scoring above 0.4 are shown.
+
+### `x_sdgs`
+*List.* Experimental: a second SDG list in the same shape as [`sustainable_development_goals`](#sustainable_development_goals), from a classifier trained on Jev judgments of the work's title and abstract; `score` is a calibrated probability, goals at 0.4 and above are shown. Under evaluation beside the Aurora field, which is unchanged; may change or go away. What it is and how it compares: [SDGs](/data/sdgs/#experimental-x_sdgs). Filter and group by `x_sdgs.id`.
 
 ### `mesh`
 *List.* [MeSH](https://www.nlm.nih.gov/mesh/meshhome.html) tag objects. Present only for works sourced from [PubMed](https://pubmed.ncbi.nlm.nih.gov/); an empty list otherwise.
