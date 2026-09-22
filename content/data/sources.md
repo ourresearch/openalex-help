@@ -1,6 +1,6 @@
 ---
 title: "Overview"
-updated: 2026-09-19
+updated: 2026-09-22
 description: "What a source is, where sources come from, and how OpenAlex builds them and judges journal quality and open access."
 tags: ["reference"]
 source_id: "24347057529623"
@@ -52,7 +52,7 @@ OpenAlex prefers **allow lists** (curated lists of trusted sources) over deny li
 - [`is_in_doaj`](/data/sources/attributes/#is_in_doaj) — the source is indexed in the [Directory of Open Access Journals](https://doaj.org/), which vets the legitimacy of fully-OA journals. About 23,000 sources.
 - [`is_core`](/data/sources/attributes/#is_core) — the source is on the [CWTS Core sources list](https://zenodo.org/records/13879982). About 36,000 sources.
 
-The general form is [`listed_in`](/data/sources/attributes/#listed_in): a list of the external source lists a source appears on (`cwts-core`, `doaj`, and, new in September 2026, `doyens`, `medline`, `erih-plus`, `scielo`, `latindex` and the per-level lists `norway-1`/`norway-2`, `jufo-1`/`jufo-2`/`jufo-3` and `jpps-1`/`jpps-2`/`jpps-3`; see the table below and the [source lists](/data/source-lists/) page). It's deliberately non-normative: OpenAlex records *that* a list includes a source, not whether the list is right. Filter works with `primary_location.source.listed_in:doyens`, or sources with `listed_in:doyens`.
+The general form is [`listed_in`](/data/sources/attributes/#listed_in): a list of the external source lists a source appears on (`cwts-core`, `doaj`, and, new in September 2026, `doyens`, `medline`, `erih-plus`, `scielo`, `latindex` and the per-level lists `norway-1`/`norway-2`, `jufo-1`/`jufo-2`/`jufo-3`, `jpps-1`/`jpps-2`/`jpps-3`, `ki-jl-1`/`ki-jl-2`/`ki-jl-3` and `abdc-a-star`/`abdc-a`/`abdc-b`/`abdc-c`; see the table below and the [source lists](/data/source-lists/) page). It's deliberately non-normative: OpenAlex records *that* a list includes a source, not whether the list is right. Filter works with `primary_location.source.listed_in:doyens`, or sources with `listed_in:doyens`.
 
 | List id | List | Maintained by | Scope | Loaded edition |
 |---------|------|---------------|-------|----------------|
@@ -66,6 +66,8 @@ The general form is [`listed_in`](/data/sources/attributes/#listed_in): a list o
 | `jpps-1`, `jpps-2`, `jpps-3` | [JPPS](https://www.journalquality.info/) (Journal Publishing Practices and Standards) | AJOL and INASP | One list per star level; journals on the AJOL, NepJOL, BanglaJOL, CamJOL, MongoliaJOL and SLJOL platforms. About 260, 300 and 3 sources | 2026-09-18 |
 | `latindex` | [Latindex Catálogo 2.0](https://www.latindex.org/) | Latindex (UNAM and partners) | Latin America, the Caribbean, Spain and Portugal. About 3,900 sources | 2026-09-18 |
 | `scielo` | [SciELO](https://www.scielo.org/) | SciELO | Current journals in the certified SciELO network collections. About 1,500 sources | 2026-09-18 |
+| `ki-jl-1`, `ki-jl-2`, `ki-jl-3` | [Karolinska Institutet Journal List](https://staff.ki.se/research-support/karolinska-institutet-journal-list-kijl) | Karolinska Institutet (Sweden) | One list per level; medicine and health sciences. Level 1 about 5,100 sources, level 2 about 650, level 3 about 140 | 2026 edition |
+| `abdc-a-star`, `abdc-a`, `abdc-b`, `abdc-c` | [ABDC Journal Quality List](https://abdc.edu.au/abdc-journal-quality-list/) | Australian Business Deans Council | One list per rating, A* at the top; business, economics and related fields. About 220, 610, 820 and 770 sources | 2025 edition |
 
 Each list is also a [source list](/data/source-lists/) entity (`api.openalex.org/source-lists/doyens`) carrying its maintainer, URL and loaded edition. Lists are matched to sources by ISSN, and only a list's current members count: a journal its maintainer has withdrawn is not `listed_in`. Each list is loaded from the maintainer's published file, so membership is as current as the loaded edition. Spotted a newer edition, or know an open, ISSN-keyed list we should add? [Tell us](/how-to/support/).
 

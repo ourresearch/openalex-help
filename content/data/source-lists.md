@@ -1,6 +1,6 @@
 ---
 title: "Source lists"
-updated: 2026-09-19
+updated: 2026-09-22
 description: "The external journal lists a source can appear on (DOAJ, CWTS Core, national lists), the fields on a source-list object, and how to filter sources and works by list."
 tags: ["reference"]
 entity:
@@ -41,8 +41,15 @@ Lists are matched to sources by ISSN, and only a list's current members count: a
 | `jpps-3` | JPPS, three stars | [AJOL and INASP](https://www.journalquality.info/) | Journals assessed at three stars under the JPPS framework, same platforms. 3 sources; 2026-09-18 edition |
 | `latindex` | Latindex Catálogo 2.0 | [Latindex](https://www.latindex.org/) (UNAM and partner institutions) | Current journals in Catálogo 2.0, the quality-criteria catalogue for Latin America, the Caribbean, Spain and Portugal. About 3,900 sources; 2026-09-18 edition |
 | `scielo` | SciELO | [SciELO](https://www.scielo.org/) | Current journals in the certified SciELO network collections (Ibero-America and South Africa). Distinct from [`is_in_scielo`](/data/sources/attributes/#is_in_scielo), which flags DOIs registered through SciELO. About 1,500 sources; 2026-09-18 edition |
+| `ki-jl-1` | KI Journal List, level 1 | [Karolinska Institutet](https://staff.ki.se/research-support/karolinska-institutet-journal-list-kijl) (Sweden) | Journals at level 1 (meets the criteria for scientific publishing) in the Karolinska Institutet Journal List; medicine and health sciences. About 5,100 sources; 2026 edition |
+| `ki-jl-2` | KI Journal List, level 2 | [Karolinska Institutet](https://staff.ki.se/research-support/karolinska-institutet-journal-list-kijl) (Sweden) | Journals at level 2 (high standard) in the KI Journal List. About 650 sources; 2026 edition |
+| `ki-jl-3` | KI Journal List, level 3 | [Karolinska Institutet](https://staff.ki.se/research-support/karolinska-institutet-journal-list-kijl) (Sweden) | Journals at level 3 (the highest level) in the KI Journal List. About 140 sources; 2026 edition |
+| `abdc-a-star` | ABDC Journal Quality List, A* | [Australian Business Deans Council](https://abdc.edu.au/abdc-journal-quality-list/) | Journals rated A*, the top tier of the ABDC Journal Quality List; business, economics and related fields. About 220 sources; 2025 edition |
+| `abdc-a` | ABDC Journal Quality List, A | [Australian Business Deans Council](https://abdc.edu.au/abdc-journal-quality-list/) | Journals rated A (second tier, below A*). About 610 sources; 2025 edition |
+| `abdc-b` | ABDC Journal Quality List, B | [Australian Business Deans Council](https://abdc.edu.au/abdc-journal-quality-list/) | Journals rated B (third tier). About 820 sources; 2025 edition |
+| `abdc-c` | ABDC Journal Quality List, C | [Australian Business Deans Council](https://abdc.edu.au/abdc-journal-quality-list/) | Journals rated C (fourth tier). About 770 sources; 2025 edition |
 
-Where a maintainer ranks journals in levels (the Norwegian Register, JUFO, JPPS), **each level is its own list**, named with the maintainer's own label: `norway-2`, `jufo-3`. Those frameworks exist to get away from the in-or-out binary, so OpenAlex keeps the levels rather than flattening them. A journal is on exactly one level of a given register; to get "any level", filter on all of them (`listed_in:jufo-1|jufo-2|jufo-3`). In every register loaded so far a higher level is the more selective tier. States that aren't a level (not yet evaluated, pending, level 0) are not lists.
+Where a maintainer ranks journals in levels (the Norwegian Register, JUFO, JPPS, KI-JL, ABDC), **each level is its own list**, named with the maintainer's own label: `norway-2`, `jufo-3`, `abdc-a-star`. Those frameworks exist to get away from the in-or-out binary, so OpenAlex keeps the levels rather than flattening them. A journal is on exactly one level of a given register; to get "any level", filter on all of them (`listed_in:jufo-1|jufo-2|jufo-3`). In the numbered registers a higher level is the more selective tier; ABDC runs the other way, with A* at the top and C at the bottom. States that aren't a level (not yet evaluated, pending, level 0) are not lists.
 
 The live list is at [`api.openalex.org/source-lists`](https://api.openalex.org/source-lists).
 
