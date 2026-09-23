@@ -1,7 +1,7 @@
 ---
 title: "Sync"
-updated: 2026-09-18
-description: "Snapshot release cadence per plan, how updated_date partitions work, the four ways to keep a copy in sync with OpenAlex, and how deletions and merged entities behave — including the works deletion log deleted_ids.csv."
+updated: 2026-09-23
+description: "Snapshot release cadence and dates per plan, how updated_date partitions work, the four ways to keep a copy in sync with OpenAlex, and how deletions and merged entities behave — including the works deletion log deleted_ids.csv."
 tags: ["downloads"]
 source_id: "new/snapshot-updates"
 source_url: "https://developers.openalex.org/download/snapshot-format"
@@ -13,13 +13,26 @@ This page is the authoritative reference for how the [snapshot](/access/snapshot
 
 | Plan | What you get |
 |---|---|
-| **Free** (everyone) | New full releases of the public snapshot (`s3://openalex/data/`), released **quarterly**. Each release replaces the bucket contents in place. |
+| **Free** (everyone) | New full releases of the public snapshot (`s3://openalex/data/`), released **quarterly** on the **second Wednesday of January, April, July and October** (UTC). Each release replaces the bucket contents in place. |
 | **Paid** ([Member+ and Partner plans](/access/pricing/#annual-plans)) | A **daily** full snapshot — the complete database, rebuilt and published every day (dated folders in the `openalex-snapshots` staging bucket) — plus the premium sync filters on the API. |
 
-The authoritative history of what shipped when is [`RELEASE_NOTES.txt`](https://openalex.s3.amazonaws.com/RELEASE_NOTES.txt), at the root of the public bucket. Each entry summarizes the data changes in that release — new sources, quality fixes, schema additions. Check it (and the manifest `date`) rather than guessing from file timestamps.
+The authoritative history of what shipped when is [`RELEASE_NOTES.txt`](https://openalex.s3.amazonaws.com/RELEASE_NOTES.txt), at the root of the public bucket: one dated entry per release. Each quarterly release carries a quarter's worth of bug fixes and improvements across the database, so entries are not itemized; for individual data changes see the [data documentation](/data/). Check the file (and the manifest `date`) rather than guessing from file timestamps.
+
+### Public release dates
+
+The public snapshot is published automatically on the **second Wednesday of January, April, July and October**. The release is built from that day's data and lands in the bucket during the day (UTC); the combined manifest's `date` field shows the release date once it is live.
+
+| Release | Date |
+|---|---|
+| 2026 Q4 | Wednesday 2026-10-14 |
+| 2027 Q1 | Wednesday 2027-01-13 |
+| 2027 Q2 | Wednesday 2027-04-14 |
+| 2027 Q3 | Wednesday 2027-07-14 |
+
+If a release build fails its validation checks, it is retried on the following days until it passes, so a release can occasionally land up to a week late. The bucket keeps serving the previous release in the meantime.
 
 > **Note:**
-> There is no announcement feed and no fixed release day: public releases land once a quarter, and `RELEASE_NOTES.txt` and the combined manifest's `date` field tell you when the current one shipped.
+> There is no announcement feed for releases yet — watch `RELEASE_NOTES.txt` or the combined manifest's `date` field. If a release is more than a week overdue, [contact us](https://openalex.org/contact).
 
 ## What a release is: how partitions work
 
@@ -54,7 +67,7 @@ There are four ways to keep a copy of OpenAlex current. They differ in freshness
 
 | Method | Freshness | Best for | Availability |
 |---|---|---|---|
-| [Public snapshot](#the-public-snapshot-free) | Quarterly | Full mirrors where quarterly is fresh enough | Free |
+| [Public snapshot](#the-public-snapshot-free) | Quarterly ([release dates](#public-release-dates)) | Full mirrors where quarterly is fresh enough | Free |
 | [Daily snapshot](#the-daily-snapshot-paid-plans) | Daily | Full-database mirrors | [Paid plans](/access/pricing/#annual-plans) |
 | [Premium API filters](#premium-api-filters-paid-plans) | Continuous | Keeping a **subset** fresh (e.g. one institution's works) with no bulk infrastructure | [Paid plans](/access/pricing/#annual-plans) |
 | [Unpaywall Data Feed](#the-unpaywall-data-feed-paid-plans) | Daily (works only, legacy format) | Existing integrations that speak the Unpaywall schema | [Paid plans](/access/pricing/#annual-plans) |

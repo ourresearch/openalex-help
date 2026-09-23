@@ -1,6 +1,6 @@
 ---
 title: "Snapshot"
-updated: 2026-09-18
+updated: 2026-09-23
 description: "The complete OpenAlex database as downloadable files — formats, S3 bucket layout, manifests, size, how it differs from the API, and how to access it (free public bucket + paid daily snapshot)."
 tags: ["downloads"]
 source_id: "download/snapshot-format"
@@ -20,12 +20,12 @@ The snapshot is published in two formats, each a complete copy of the same data:
 
 ## Size
 
-Check the current size before downloading — it grows over time. As of the June 2026 release, each format holds about **649 million records**:
+Check the current size before downloading — it changes with every release. As of the September 2026 release, each format holds about **626 million records**:
 
 | | Compressed size |
 |---|---|
-| JSON Lines (`/data/jsonl/`) | ~750 GB (works alone: ~670 GB) |
-| Parquet (`/data/parquet/`) | ~780 GB |
+| JSON Lines (`/data/jsonl/`) | ~745 GB (works alone: ~615 GB) |
+| Parquet (`/data/parquet/`) | ~770 GB |
 
 Decompressed, the JSON Lines data runs to several terabytes. The two formats are separate complete copies, so downloading both roughly doubles the transfer — most users want [a single format prefix](/tutorials/download-the-snapshot/#download-a-single-format-or-entity-type). Live totals are always in each format's `manifest.json` (`content_length`, per entity and overall).
 
@@ -134,7 +134,7 @@ People often compare counts or fields between their snapshot copy and the live A
 | Difference | Why |
 |---|---|
 | **Works count: snapshot vs API default** | The snapshot contains **all** works, including the [expansion (XPAC) corpus](/data/works/corpus/). The API **excludes XPAC works by default** — as of September 2026 that's ~327M works by default vs ~476M with `corpus=all`. Add `corpus=all` to match the snapshot's total. Filter locally on the [`is_xpac`](/data/works/attributes/#is_xpac) field to reproduce the API's default view. |
-| **Freshness** | The snapshot is a point-in-time release (quarterly for the free public snapshot; daily on [paid plans](/access/pricing/)); the API updates continuously. Counts and records drift between releases — see [Sync](/access/sync/). |
+| **Freshness** | The snapshot is a point-in-time release (quarterly for the free public snapshot, on the second Wednesday of January, April, July and October — see [release dates](/access/sync/#public-release-dates); daily on [paid plans](/access/pricing/)); the API updates continuously. Counts and records drift between releases — see [Sync](/access/sync/). |
 | **`content_urls` is absent** | It's generated at serve time, API-only. The snapshot has [`has_content`](/data/works/attributes/#has_content); build download URLs via the [content archive](/access/fulltext/) with work IDs. |
 | **Some works have `abstract_inverted_index: null`** | Not every work has an abstract (availability and publisher restrictions) — same as the API. |
 | **No n-grams** | The old n-grams dataset is retired and was never part of this snapshot layout. |
