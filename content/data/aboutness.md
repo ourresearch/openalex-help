@@ -31,7 +31,7 @@ Aboutness doesn't have to go through a labeling scheme at all. OpenAlex embeds t
 
 ## Aboutness for your own text
 
-For the topics hierarchy and keywords, you can supply your own custom text — the title and abstract of an unpublished article, say, or a grant proposal — and get back topics (with their subfield, field, and domain), keywords, and concepts in exactly the form OpenAlex assigns them to works. See the [text aboutness endpoint](/api/tag-aboutness/).
+For the topics hierarchy and keywords, you can supply your own custom text — the title and abstract of an unpublished article, say, or a grant proposal — and get back topics (with their subfield, field, and domain) and keywords in exactly the form OpenAlex assigns them to works. See the [text aboutness endpoint](/api/tag-aboutness/).
 
 ## Related pages
 

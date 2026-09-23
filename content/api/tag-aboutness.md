@@ -1,13 +1,13 @@
 ---
 title: "Tag Aboutness"
 updated: 2026-09-22
-description: "Tag your own text with OpenAlex topics, keywords, and concepts"
+description: "Tag your own text with OpenAlex topics and keywords"
 tags: ["api"]
 source_id: "guides/aboutness"
 source_url: "https://developers.openalex.org/guides/aboutness"
 source_updated: "2026-02-18"
 ---
-The `/text` endpoint lets you tag free text with OpenAlex's "aboutness" assignments: [topics](/data/topics/) (with their subfield, field, and domain), [keywords](/data/keywords/), and [concepts](/data/concepts/). Give it the title and abstract of an unpublished paper, a grant proposal, or any other text, and you get back the same labels OpenAlex assigns to indexed works.
+The `/text` endpoint lets you tag free text with OpenAlex's "aboutness" assignments: [topics](/data/topics/) (with their subfield, field, and domain) and [keywords](/data/keywords/). Give it the title and abstract of an unpublished paper, a grant proposal, or any other text, and you get back the same labels OpenAlex assigns to indexed works.
 
 ## Request format
 
@@ -25,11 +25,10 @@ For a POST, send the same two fields as JSON.
 |----------|---------|
 | `/text/topics` | Topics for your text, with `primary_topic` and each topic's subfield, field, and domain |
 | `/text/keywords` | Keywords for your text |
-| `/text/concepts` | Concepts for your text (concepts are [deprecated](/data/concepts/)) |
-| `/text` | All of the above in one request |
+| `/text` | Both in one request |
 
 > **Note:**
-> Keyword tagging is temporarily unavailable while OpenAlex rebuilds its keyword vocabulary and tagger. Until then `keywords` is an empty list and `meta.note` says so. Topics and concepts are unaffected. Keywords will return when the new tagger is live.
+> Keyword tagging is temporarily unavailable while OpenAlex rebuilds its keyword vocabulary and tagger. Until then `keywords` is an empty list and `meta.note` says so. Topics are unaffected. Keywords will return when the new tagger is live.
 
 ## Example response
 
@@ -42,8 +41,7 @@ GET https://api.openalex.org/text?title=type%201%20diabetes%20research%20for%20c
   "meta": {
     "keywords_count": 0,
     "topics_count": 3,
-    "concepts_count": 4,
-    "note": "Keyword tagging is temporarily unavailable, so keywords is empty. Topics and concepts are unaffected. Keywords are being rebuilt."
+    "note": "Keyword tagging is temporarily unavailable, so keywords is empty. Topics are unaffected. Keywords are being rebuilt."
   },
   "keywords": [],
   "primary_topic": {
@@ -65,19 +63,11 @@ GET https://api.openalex.org/text?title=type%201%20diabetes%20research%20for%20c
   },
   "topics": [
     { "...": "the same three topics, best first" }
-  ],
-  "concepts": [
-    {
-      "id": "https://openalex.org/C2777180221",
-      "display_name": "Type 2 diabetes",
-      "score": 0.497,
-      "level": 3
-    }
   ]
 }
 ```
 
-Scores are the classifier's confidence, from 0 to 1. `/text/topics` and `/text/concepts` return the same objects with a single `count` in `meta`.
+Scores are the classifier's confidence, from 0 to 1. `/text/topics` and `/text/keywords` return the same objects with a single `count` in `meta`.
 
 If the topic classifier cannot place a text, `topics` is empty. This happens with short or non-descriptive titles, such as a bare project or institution name. Sending an `abstract` alongside the `title` gives the classifier much more to work with.
 

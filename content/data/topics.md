@@ -1,6 +1,6 @@
 ---
 title: "Topics"
-updated: 2026-08-11
+updated: 2026-09-22
 description: "What a topic is, how OpenAlex assigns topics to works and rolls them up into a four-level hierarchy, and what every attribute on a topic object means."
 tags: ["reference"]
 source_id: "24736129405719"
@@ -35,7 +35,7 @@ Because a work's topics roll up the hierarchy, every work also gets a single **p
 
 Before topics, OpenAlex classified works with [concepts](/data/concepts/) — a Wikipedia-derived vocabulary inherited from the Microsoft Academic Graph. Concepts are **deprecated**: no longer maintained, and superseded by topics. The two work very differently. Concepts matched work metadata to Wikipedia concepts, accepting every match above a relevancy score and firing parent concepts whenever a child matched — high recall, low precision, so concept queries surface many works that aren't really on point. Topics (and their subfields) come from the primary-topic pipeline above, with each topic mapping to a single subfield — much higher precision, at the cost of missing works whose *primary* topic lands elsewhere. To recover some recall, filter on the full `topics` array (`topics.subfield.id:...`) instead of `primary_topic` alone, which matches any of a work's assigned topics.
 
-You can also run the classifier on your own text — a draft abstract or a grant proposal — and get back the same topics, subfields, keywords, and SDGs OpenAlex would assign. See the [text aboutness endpoint](/api/tag-aboutness/).
+You can also run the classifier on your own text — a draft abstract or a grant proposal — and get back the same topics (with their subfield, field, and domain) and keywords OpenAlex would assign. See the [text aboutness endpoint](/api/tag-aboutness/).
 
 ## Attributes
 

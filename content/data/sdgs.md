@@ -25,7 +25,7 @@ The threshold is **0.4**. At launch the cutoff was 0.1, which gave high recall b
 Two things to keep in mind:
 
 - **It's a text classifier, so it inherits text-classifier limits.** Tags come only from the title and abstract; a work with no abstract has less signal, and the model can still mislabel. Treat SDG tags as a broad, comparable filter, not a precise verdict on a single paper.
-- **The classifier is open source.** Because Aurora is public, you can run the identical model on documents OpenAlex doesn't index — course syllabi, grant proposals, unpublished research — and get tags in the same form. OpenAlex also exposes it directly through the [text aboutness endpoint](/api/tag-aboutness/).
+- **The classifier is open source.** Because Aurora is public, you can run the identical model on documents OpenAlex doesn't index — course syllabi, grant proposals, unpublished research — and get tags in the same form.
 
 ## Experimental x_sdgs
 
@@ -33,7 +33,7 @@ Since September 2026 every work also carries an experimental second list, [`x_sd
 
 We are evaluating it against the Aurora classifier before deciding whether it should replace the main field. On 598 works judged goal by goal by a frontier model, Aurora at its 0.4 cutoff scored precision 0.42 / recall 0.41 (F1 0.42); the Jev judgments the new model learns from scored 0.89 / 0.82 (F1 0.85, 0.81 cross-validated), and the served `x_sdgs` model 0.78 / 0.76 (F1 0.77). On the public OSDG community dataset Jev scored micro F1 60.8 to Aurora's 55.3. Aurora's largest label, SDG 7 (energy), was right about one time in six on that judged sample, mostly physics and materials papers; SDG 3 (health) was tagged on fewer than half the health papers. The full numbers, the judged set and the scripts are in the public job record.
 
-**The main field is unchanged for now.** `sustainable_development_goals`, the SDG entity counts and the [text aboutness endpoint](/api/tag-aboutness/) still come from Aurora. `x_sdgs` may change or go away, and `x_` marks it as such; if you use it in a report, say which field you used. Filter and group by it the same way: `filter=x_sdgs.id:3`, `group_by=x_sdgs.id`. Feedback on either classifier: [support@openalex.org](mailto:support@openalex.org).
+**The main field is unchanged for now.** `sustainable_development_goals` and the SDG entity counts still come from Aurora. `x_sdgs` may change or go away, and `x_` marks it as such; if you use it in a report, say which field you used. Filter and group by it the same way: `filter=x_sdgs.id:3`, `group_by=x_sdgs.id`. Feedback on either classifier: [support@openalex.org](mailto:support@openalex.org).
 
 ## Attributes
 
