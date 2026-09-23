@@ -1,6 +1,6 @@
 ---
 title: "ORCID"
-updated: 2026-09-21
+updated: 2026-09-23
 description: "How OpenAlex records ORCID iDs: where they come from, how rare they are, how the primary is chosen, why a profile can have several, why one can be wrong, and how lookup works."
 tags: ["reference"]
 ---
@@ -91,8 +91,8 @@ ORCID is the strongest of the [disambiguation signals](/data/authors/disambiguat
 ORCID is a first-class identifier across the API. Lookup and filtering check the primary and every observed ORCID:
 
 - Fetch an author directly: [`api.openalex.org/authors/orcid:0000-0003-2780-0393`](https://api.openalex.org/authors/orcid:0000-0003-2780-0393), or with the full URL, `/authors/https://orcid.org/0000-0003-2780-0393`. This returns one profile. If the ORCID is shared by splinters, it returns one of them; use the filter below to see all.
-- Filter authors: `filter=orcid:0000-0003-2780-0393` matches the primary or any observed ORCID and returns every profile that carries it. `filter=observed_orcids:...` matches the list specifically. `has_orcid:true` / `false` selects on presence.
-- Filter works by an author's ORCID: `filter=authorships.author.orcid:0000-0003-2780-0393`. This matches the resolved author's primary ORCID.
+- Filter authors: `filter=orcid:0000-0003-2780-0393` matches the primary or any observed ORCID and returns every profile that carries it. There is no separate filter on the list; `has_orcid:true` / `false` selects on presence.
+- Filter works by an author's ORCID: `filter=authorships.author.orcid:0000-0003-2780-0393`. This too matches the resolved author's primary or any observed ORCID, so a paper is found by the ORCID its author used at the time as well as by the one shown on the profile today. Works pick up a profile's ORCIDs when they are next rebuilt, so a newly observed ORCID can take a day to reach the works side.
 - Compare what the work asserted with what OpenAlex resolved: [`authorships[].raw_orcid`](/data/authorships/#raw_orcid) against [`authorships[].author.orcid`](/data/authorships/#author).
 
 ## Changing your ORCID

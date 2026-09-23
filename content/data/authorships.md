@@ -1,6 +1,6 @@
 ---
 title: "Authorships"
-updated: 2026-09-21
+updated: 2026-09-23
 description: "The join between a work and its authors — the raw name each author printed, their position, whether they're corresponding, and the institutions they listed — and what every attribute on an authorship object means."
 tags: ["reference"]
 entity:
@@ -35,7 +35,7 @@ This is the dictionary of every attribute on an **authorship** object, as it app
 *String.* Where this author sits in the byline: `first`, `middle`, or `last`. Derived from byline order, so it tracks the printed sequence rather than any notion of credit or seniority.
 
 ### `author`
-*Object.* The dehydrated [author](/data/authors/) this authorship resolved to: `id` (the OpenAlex author ID), `display_name`, and `orcid` (or null). This is the disambiguated person — follow the `id` to the full author object.
+*Object.* The dehydrated [author](/data/authors/) this authorship resolved to: `id` (the OpenAlex author ID), `display_name`, `orcid` (the profile's primary ORCID, or null), and `observed_orcids` (every ORCID trusted on the profile's works, as URLs, primary first; empty when there is none — the same list as the author's [`observed_orcids`](/data/authors/#observed_orcids)). This is the disambiguated person — follow the `id` to the full author object.
 
 ### `institutions`
 *List.* The distinct [institutions](/data/institutions/) this author was affiliated with on this work, each dehydrated: `id`, `display_name`, `ror`, `country_code`, `type`, and `lineage` (the institution and all its ROR ancestors). A flattened view of what [`affiliations`](#affiliations) records per raw string.
@@ -65,7 +65,7 @@ There's no `/authorships` list endpoint yet — one is on the way, which will le
 You can still filter works by authorship attributes using **dotted filter keys** on the works endpoint — the sub-fields flatten into filterable columns:
 
 - `authorships.author.id` — works by a given author
-- `authorships.author.orcid` — works by a given ORCID
+- `authorships.author.orcid` — works by a given ORCID; matches the author's primary ORCID or any entry of their `observed_orcids`
 - `authorships.institutions.id` / `.ror` / `.country_code` / `.type` / `.lineage` — works affiliated with an institution (or its lineage, country, or type)
 - `authorships.countries` — works with an author from a given country
 - `authorships.is_corresponding` — works filtered on corresponding-author status
