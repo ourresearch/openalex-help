@@ -1,6 +1,6 @@
 ---
 title: "Deprecations"
-updated: 2026-08-12
+updated: 2026-09-22
 description: "Deprecated features and migration guides"
 tags: ["api"]
 source_id: "guides/deprecations"
@@ -126,21 +126,6 @@ These features still work but are not recommended. They will be removed in the f
 
 The plural form supports authors with multiple current affiliations.
 
-### `/text` Endpoint (Aboutness)
-
-> **Warning:**
-> The `/text` endpoint is deprecated and not recommended for new projects.
-
-**What it did:** Classified arbitrary text into Topics and Keywords.
-
-**Cost:** $0.01 per request.
-
-**Status:** Still functional but will not receive updates or support.
-
-If you need topic classification, consider:
-- Using the Topics already assigned to works in OpenAlex
-- Building your own classifier using OpenAlex Topics as training data
-
 ### `include_xpac` parameter and `is_xpac` filter
 
 > **Warning:**
@@ -189,7 +174,6 @@ Before February 2026, OpenAlex used a "polite pool" system where you could get h
 | `has_ngrams` | Removed | Migrate to `has_fulltext` |
 | Concepts | Deprecated | Migrate to Topics |
 | `x_concepts` | Deprecated | Will be removed soon |
-| `/text` endpoint | Deprecated | Not recommended |
 | Polite pool | Replaced | Use API keys |
 | `include_xpac` / `is_xpac` filter | Deprecated | Migrate to `corpus=` |
 

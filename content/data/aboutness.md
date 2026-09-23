@@ -1,6 +1,6 @@
 ---
 title: "Overview"
-updated: 2026-08-10
+updated: 2026-09-22
 description: "The subject signals OpenAlex offers — topics, keywords, SDGs, concepts, and text search — and how to choose among them by granularity, familiarity, and fit to your research question."
 tags: ["reference"]
 source_id: "24859286130583"
@@ -31,7 +31,7 @@ Aboutness doesn't have to go through a labeling scheme at all. OpenAlex embeds t
 
 ## Aboutness for your own text
 
-For the topics hierarchy and keywords, you can supply your own custom text — the title and abstract of an unpublished article, say, or a grant proposal — and get back SDGs, domains, fields, subfields, topics, and keywords in exactly the form OpenAlex assigns them to works. See the [text aboutness endpoint](/api/tag-aboutness/).
+For the topics hierarchy and keywords, you can supply your own custom text — the title and abstract of an unpublished article, say, or a grant proposal — and get back topics (with their subfield, field, and domain), keywords, and concepts in exactly the form OpenAlex assigns them to works. See the [text aboutness endpoint](/api/tag-aboutness/).
 
 ## Related pages
 
