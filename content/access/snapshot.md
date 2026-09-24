@@ -1,6 +1,6 @@
 ---
 title: "Snapshot"
-updated: 2026-09-23
+updated: 2026-09-24
 description: "The complete OpenAlex database as downloadable files — formats, S3 bucket layout, manifests, size, how it differs from the API, and how to access it (free public bucket + paid daily snapshot)."
 tags: ["downloads"]
 source_id: "download/snapshot-format"
@@ -44,7 +44,7 @@ s3://openalex/
     │   ├── manifest.json      # all entities, this format
     │   ├── works/
     │   │   ├── manifest.json  # works only
-    │   │   ├── deleted_ids.csv  # works deletion log — daily snapshot today; here from the next quarterly release
+    │   │   ├── deleted_ids.csv.gz  # works deletion log (gzip CSV)
     │   │   └── updated_date=2026-06-24/
     │   │       ├── part_0000.gz
     │   │       └── part_0001.gz
@@ -54,7 +54,7 @@ s3://openalex/
         ├── manifest.json
         ├── works/
         │   ├── manifest.json
-        │   ├── deleted_ids.csv
+        │   ├── deleted_ids.csv.gz
         │   └── updated_date=2026-06-24/
         │       ├── part_0000.parquet
         │       └── part_0001.parquet
@@ -75,7 +75,7 @@ You can browse the bucket at [openalex.s3.amazonaws.com/browse.html](https://ope
 
 Records are partitioned by `updated_date`: each partition holds the records that **last changed** on that date, in part files (`part_0000.*`, `part_0001.*`, …) of up to 400,000 records each. This is what makes incremental updates cheap — see [Sync](/access/sync/) for how partitions move between releases and how to keep a copy current.
 
-The works folder additionally carries `deleted_ids.csv`, a log of deleted work IDs and their deletion dates — see [Deletions and merged entities](/access/sync/#deletions-and-merged-entities) for the format, its size, and how to apply it. **Not in the public bucket yet:** works is the first entity type with a deletion log; it ships in every [daily snapshot](#the-daily-snapshot-bucket-paid-plans) (since 2026-08-15) and reaches this public bucket with the next quarterly release.
+The works folder additionally carries `deleted_ids.csv.gz`, a gzip-compressed log of deleted work IDs and their deletion dates — see [Deletions and merged entities](/access/sync/#deletions-and-merged-entities) for the format, its size, and how to apply it. Works is the first entity type with a deletion log; it ships in every [daily snapshot](#the-daily-snapshot-bucket-paid-plans) (since 2026-08-15) and has been in this public bucket since the 2026-09-23 release.
 
 > **Note:**
 > Pre-2026 snapshots used a flat `data/{entity}/` layout (JSON Lines only) with no `jsonl/`/`parquet/` split. That older layout, along with the `merged_ids/` directory, is preserved under the `legacy-data/` prefix.

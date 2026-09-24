@@ -1,6 +1,6 @@
 ---
 title: "Download the Snapshot"
-updated: 2026-09-18
+updated: 2026-09-24
 subtitle: "Pull the full OpenAlex snapshot onto your computer with the AWS CLI."
 description: "Get the OpenAlex snapshot files onto your local machine using the AWS CLI"
 tags: ["recipes", "downloads"]
@@ -61,7 +61,7 @@ openalex-snapshot/
     │   ├── manifest.json      # all entities
     │   ├── works
     │   │   ├── manifest.json
-    │   │   ├── deleted_ids.csv   # works deletion log (arrives with the next quarterly release)
+    │   │   ├── deleted_ids.csv.gz   # works deletion log (gzip CSV)
     │   │   └── updated_date=2026-06-24
     │   │       ├── part_0000.gz
     │   │       └── part_0001.gz
