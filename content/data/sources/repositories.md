@@ -1,6 +1,6 @@
 ---
 title: "Repositories"
-updated: 2026-09-18
+updated: 2026-09-24
 description: "How repository content gets into OpenAlex — OAI-PMH harvesting, matching records to works by DOI or title, locating full text, and why a repository's work count can look smaller than expected."
 tags: ["reference"]
 source_id: "41193798254743"
@@ -68,12 +68,12 @@ A matched record only helps readers if OpenAlex can find the document itself. In
 - the article in **PDF** format, or
 - an **HTML page** containing (or linking to) the article.
 
-Without a document location, OpenAlex can't tell the work is open and can't send readers to it.
+Give us a usable document URL so we can link readers to your copy; recognized rights metadata can establish OA before we fetch it.
 
 - Put either or both URLs in `<dc:identifier>` elements in the OAI-PMH record.
 - The PDF or webpage must be retrievable without logging in to the repository site.
 
-If the URL leads directly to a PDF, that's used as an open location. If it leads to an HTML page, OpenAlex retrieves the page and looks for a PDF link or license information:
+A successfully fetched, valid article PDF can establish OA. If the URL leads to an HTML page, OpenAlex looks for PDF links or license evidence:
 
 - PDF links should be in `citation_pdf_url` meta tags, for example `<meta name="citation_pdf_url" content="YOUR_URL"/>`.
 - The page should link to the article's license terms or note that the work is in the public domain — ideally a [Creative Commons](https://creativecommons.org/licenses/) license URL like `https://creativecommons.org/licenses/by/4.0/`. If your repository uses a different open license, [let us know](https://openalex.org/contact).
@@ -90,6 +90,50 @@ If you look at your repository as a [source](/data/sources/) in OpenAlex, its wo
 - **A historical wrinkle:** some pre-2022 records inherited from Microsoft Academic Graph list an institutional repository as their sole source. MAG minted those unsystematically, so that legacy coverage is not comprehensive either.
 
 The deeper reason is that [records are not works](#records-are-not-works): a matched record becomes a location on an existing work, not a work of its own. To check whether we are harvesting you at all, and what the last harvest did, read your source's Harvest tab — the [Repositories how-to](/how-to/repositories/#how-do-i-check-openalexs-harvest-of-my-repository) walks through it.
+
+## What makes a repository record open access
+
+For ordinary `oai_dc` records, you can help OpenAlex establish that your copy is open access in two ways:
+
+- Put a **recognized license or access statement** in `dc:rights`.
+- Provide a **document URL** where we can find qualifying full-text or license evidence.
+
+A recognized open license or access statement can establish OA without a successful fetch. Your record still needs a usable URL after parsing; otherwise this ingest path drops it. We can sometimes derive one from `dc:relation` or a PubMed Central id, but don't rely on that. Give both.
+
+### The license
+
+Put your license in `dc:rights`, as its URL or name. The ordinary `oai_dc` parser doesn't read `dc:license`, `dcterms:license`, `dcterms:accessRights` or `oaire:licenseCondition` for this purpose. These values establish OA for records that pass the other ingest checks:
+
+| In `dc:rights` | Normalized metadata license |
+|---|---|
+| `https://creativecommons.org/licenses/by/4.0/` or `CC BY 4.0` | `cc-by` |
+| `https://creativecommons.org/licenses/by-sa/4.0/` or `CC BY-SA 4.0` | `cc-by-sa` |
+| `https://creativecommons.org/licenses/by-nd/4.0/` or `CC BY-ND 4.0` | `cc-by-nd` |
+| `https://creativecommons.org/licenses/by-nc/4.0/` or `CC BY-NC 4.0` | `cc-by-nc` |
+| `https://creativecommons.org/licenses/by-nc-sa/4.0/` or `CC BY-NC-SA 4.0` | `cc-by-nc-sa` |
+| `https://creativecommons.org/licenses/by-nc-nd/4.0/` or `CC BY-NC-ND 4.0` | `cc-by-nc-nd` |
+| `https://creativecommons.org/publicdomain/zero/1.0/` (the URL; a bare `CC0` isn't recognised) | `public-domain` |
+| `https://creativecommons.org/publicdomain/mark/1.0/` or `Public domain` | `public-domain` |
+| `info:eu-repo/semantics/openAccess` | `other-oa` (open, without a specific license) |
+
+The CC BY examples also work with versions 3.0 and 2.0. When normalizing the selected value, we ignore case, spaces and hyphens. If you supply several `dc:rights` elements, we select the first containing the exact lowercase text `creativecommons.org`; otherwise we select the first value, so put the license before any copyright line. Your repository's name, a bare copyright statement, or a license in any other field doesn't count.
+
+### The URL
+
+Put your landing page, PDF, or both in separate `dc:identifier` elements. A DOI link alone doesn't count as your repository copy. A successfully fetched, valid article PDF can establish OA; a URL that merely looks like a PDF cannot. HTML pages can supply license evidence or links to PDFs; see [Locating the full-text document](#locating-the-full-text-document). Make your document accessible without logging in, from outside your network.
+
+Example metadata fields:
+
+```xml
+<dc:title>A study of coastal biodiversity</dc:title>
+<dc:creator>Martin, Alex</dc:creator>
+<dc:identifier>https://repository.example/items/123</dc:identifier>
+<dc:identifier>https://repository.example/files/123.pdf</dc:identifier>
+<dc:rights>https://creativecommons.org/licenses/by/4.0/</dc:rights>
+<dc:type>acceptedVersion</dc:type>
+```
+
+Two notes. This establishes the status of *your copy*; the work's overall OA category also depends on its other locations. A recognized open license or access statement doesn't stop us fetching the document when we can; it means your copy's OA status doesn't depend on that fetch.
 
 ## Recommendations for repositories
 
@@ -109,9 +153,9 @@ or as its name:
 <dc:rights>CC BY-NC 4.0</dc:rights>
 ```
 
-We read only `dc:rights`; other element names (`dc:rights.license`, `dcterms:license`) are not in the `oai_dc` format we harvest and are ignored. A record can carry several `dc:rights` elements — we use the one containing a `creativecommons.org` URL if there is one, otherwise the first. Creative Commons flavors, public-domain statements, and `info:eu-repo/semantics/openAccess` (which we record as open but not as a specific license) are all recognized.
+For ordinary `oai_dc` records, we read only `dc:rights` for license metadata. If several values are present, we select the first containing the exact lowercase text `creativecommons.org`; otherwise we select the first value. Creative Commons flavors, public-domain statements, and `info:eu-repo/semantics/openAccess` (which we record as open but not as a specific license) are all recognized.
 
-If a `dc:rights` element isn't present, OpenAlex looks for a license statement inside any full-text item it finds. This is less accurate: it relies on full license URLs or text patterns seen before, like "distributed under the terms ..." or "This is an open access article published under ...", which may not include the pattern used by your repository software. We recommend including the license in the OAI-PMH record as shown above.
+OpenAlex also looks for license evidence in fetched content, whether or not your record supplies `dc:rights`. This is less accurate: it relies on full license URLs or text patterns seen before, like "distributed under the terms ..." or "This is an open access article published under ...", which may not include the pattern used by your repository software. We recommend including the license in the OAI-PMH record as shown above.
 
 ### Version reporting
 
