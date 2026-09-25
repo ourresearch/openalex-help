@@ -1,6 +1,6 @@
 ---
 title: "Overview"
-updated: 2026-09-22
+updated: 2026-09-25
 description: "Every OpenAlex API endpoint at a glance — the entity list/single endpoints and the special-purpose ones — each linking to the entity page that documents its fields."
 tags: ["reference"]
 ---
@@ -39,6 +39,7 @@ This page is the index. What each entity *is*, and what every field on it *means
 | `/domains` | [Domains](/data/domains/) — the 4 top-level branches |
 | `/keywords` | [Keywords](/data/keywords/) — short topic-derived phrases |
 | `/sdgs` | [SDGs](/data/sdgs/) — the 17 UN Sustainable Development Goals |
+| `/study-designs` | [Study designs](/data/study-designs/): the 7 designs a work's research can have (randomized controlled trial, systematic review, …) |
 | `/concepts` | [Concepts](/data/concepts/) *(deprecated — use Topics)* |
 
 ## Vocabulary endpoints

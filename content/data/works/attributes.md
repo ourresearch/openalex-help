@@ -1,6 +1,6 @@
 ---
 title: "Attributes"
-updated: 2026-09-22
+updated: 2026-09-25
 description: "The canonical dictionary of every attribute on a work object — what each one means, where it comes from, and its quirks."
 tags: ["reference"]
 ---
@@ -108,6 +108,9 @@ See [Open access](/data/works/open-access/) for how these fields combine.
 
 ### `x_sdgs`
 *List.* Experimental: a second SDG list in the same shape as [`sustainable_development_goals`](#sustainable_development_goals), from a classifier trained on Jev judgments of the work's title and abstract; `score` is a calibrated probability, goals at 0.4 and above are shown. Under evaluation beside the Aurora field, which is unchanged; may change or go away. What it is and how it compares: [SDGs](/data/sdgs/#experimental-x_sdgs). Filter and group by `x_sdgs.id`.
+
+### `study_designs`
+*List.* How the research inside the work was done, as [study design](/data/study-designs/) objects (`id`, `display_name`): Randomized Controlled Trial, Clinical Trial, Observational Study, Case Report, Systematic Review, Meta-Analysis or Study Protocol. A work can have several, and parents are included: every randomized controlled trial is also a clinical trial, and every meta-analysis is also a systematic review. Where a MEDLINE-indexed PubMed record carries one of these tags, PubMed's tags are served as they are. Most works get their values from automated tagging of the title and abstract instead, held to at least 99% precision for randomized controlled trials and at least 95% for every other value. Only works with an abstract and a research-carrying type are tagged, so an empty list means "not tagged, or none of these seven", never "not a study". Publication formats (editorial, letter, review, guideline) are in [`type`](#type), not here. Filter with `study_designs.id:randomized-controlled-trial`; group by `study_designs.id`.
 
 ### `mesh`
 *List.* [MeSH](https://www.nlm.nih.gov/mesh/meshhome.html) tag objects. Present only for works sourced from [PubMed](https://pubmed.ncbi.nlm.nih.gov/); an empty list otherwise.
