@@ -28,7 +28,7 @@ For a POST, send the same two fields as JSON.
 | `/text` | Both in one request |
 
 > **Note:**
-> Keyword tagging is temporarily unavailable while OpenAlex rebuilds its keyword vocabulary and tagger. Until then `keywords` is an empty list and `meta.note` says so. Topics are unaffected. Keywords will return when the new tagger is live.
+> Keywords on this endpoint come from OpenAlex's new keyword tagger (the same model that is re-tagging every work). Until the rebuilt keyword entity ships, some keyword ids are provisional: they follow the `keywords/<slug>` convention but may not resolve at `api.openalex.org/keywords/<slug>` yet. When that is the case, `meta.note` says so.
 
 ## Example response
 
@@ -39,11 +39,16 @@ GET https://api.openalex.org/text?title=type%201%20diabetes%20research%20for%20c
 ```json
 {
   "meta": {
-    "keywords_count": 0,
+    "keywords_count": 4,
     "topics_count": 3,
-    "note": "Keyword tagging is temporarily unavailable, so keywords is empty. Topics are unaffected. Keywords are being rebuilt."
+    "note": "Some keyword ids are provisional: they follow the keywords/<slug> convention but do not resolve in the keywords API until the rebuilt keyword entity ships."
   },
-  "keywords": [],
+  "keywords": [
+    {"id": "https://openalex.org/keywords/type-1-diabetes", "display_name": "Type 1 diabetes", "score": 1.0},
+    {"id": "https://openalex.org/keywords/pediatric-diabetes", "display_name": "pediatric diabetes", "score": 0.75},
+    {"id": "https://openalex.org/keywords/diabetes-research", "display_name": "diabetes research", "score": 0.5},
+    {"id": "https://openalex.org/keywords/children", "display_name": "children", "score": 0.25}
+  ],
   "primary_topic": {
     "id": "https://openalex.org/T10560",
     "display_name": "Diabetes Management and Research",
@@ -67,7 +72,7 @@ GET https://api.openalex.org/text?title=type%201%20diabetes%20research%20for%20c
 }
 ```
 
-Scores are the classifier's confidence, from 0 to 1. `/text/topics` and `/text/keywords` return the same objects with a single `count` in `meta`.
+Topic scores are the classifier's confidence, from 0 to 1. Keyword scores are rank order, not confidence: the model lists keywords best first and the score steps down evenly (1.0 for the first, then 0.75, 0.5, 0.25 for a four-keyword result). `/text/topics` and `/text/keywords` return the same objects with a single `count` in `meta`.
 
 If the topic classifier cannot place a text, `topics` is empty. This happens with short or non-descriptive titles, such as a bare project or institution name. Sending an `abstract` alongside the `title` gives the classifier much more to work with.
 
