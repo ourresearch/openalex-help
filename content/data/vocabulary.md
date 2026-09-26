@@ -1,6 +1,6 @@
 ---
 title: "Overview"
-updated: 2026-09-18
+updated: 2026-09-25
 description: "Consistent, controlled handles on things that already exist crisply in the real world — work types, countries, licenses, and more."
 tags: ["reference"]
 ---
@@ -21,4 +21,4 @@ Vocabulary entities generally use short, human-readable IDs (`en` for English, `
 - [**Indexes**](/data/indexes/) — the external registries (Crossref, PubMed, DOAJ, …) a work's record can come from. These are vocabulary, not native: we're not minting judgment-call IDs, just consistent handles on crisply-existing lists.
 - [**Source lists**](/data/source-lists/) — the external journal lists (DOAJ, CWTS Core, national lists) a source can appear on. Membership only; OpenAlex endorses none of them.
 
-Some classification systems that *look* like vocabularies — [topics, fields, subfields, domains](/data/aboutness/) — are grouped under [Aboutness](/data/aboutness/) instead, because assigning them to a work involves real inference.
+Some classification systems that *look* like vocabularies — [topics, fields, subfields, domains](/data/aboutness/) — are grouped under [Aboutness](/data/aboutness/) instead, because assigning them to a work involves real inference. [Study designs](/data/study-designs/) sit there too for the same reason: the seven values come from PubMed's vocabulary, but most works get them from automated tagging.

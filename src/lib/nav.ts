@@ -79,7 +79,7 @@ export const NAV_GROUPS: Record<string, NavGroup[]> = {
     {
       label: 'Aboutness',
       desc: 'What a work is about: topics, keywords, and classifications.',
-      slugs: ['aboutness', 'sdgs', 'domains', 'fields', 'subfields', 'topics', 'keywords', 'concepts'],
+      slugs: ['aboutness', 'sdgs', 'study-designs', 'domains', 'fields', 'subfields', 'topics', 'keywords', 'concepts'],
     },
     {
       label: 'Vocabulary',

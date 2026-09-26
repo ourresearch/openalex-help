@@ -1,6 +1,6 @@
 ---
 title: "Overview"
-updated: 2026-09-22
+updated: 2026-09-25
 description: "The subject signals OpenAlex offers — topics, keywords, SDGs, concepts, and text search — and how to choose among them by granularity, familiarity, and fit to your research question."
 tags: ["reference"]
 source_id: "24859286130583"
@@ -25,6 +25,8 @@ Two properties help you choose. **Granularity** (the number of groups) sets how 
 
 A rough guide: the **topics hierarchy** ([domains](/data/domains/) → [fields](/data/fields/) → [subfields](/data/subfields/) → [topics](/data/topics/)) is the supported general-purpose system — pick the level whose granularity matches your question. **Keywords** fit narrower, more specific slices. **SDGs** map research onto the UN Sustainable Development Goals and little else. **Concepts** are deprecated — kept for continuity with Microsoft Academic Graph, no longer maintained; see [Concepts](/data/concepts/). **Text search** fits custom areas no scheme covers, at the cost of comparability.
 
+Not a subject signal, but close by: [**study designs**](/data/study-designs/) say how the research inside a work was done (randomized controlled trial, observational study, systematic review and four more), not what it is about. They combine well with any of the signals above, e.g. every randomized controlled trial in the topic Cancer Immunotherapy and Biomarkers: `filter=topics.id:T10158,study_designs.id:randomized-controlled-trial`.
+
 ## Embeddings and semantic search
 
 Aboutness doesn't have to go through a labeling scheme at all. OpenAlex embeds the title and abstract of every work as a vector using an open-source embedding model, so works that are about similar things sit near each other in vector space — no categories required. [Semantic search](/api/semantic-search/) queries these embeddings directly: describe what you're looking for in plain language (a sentence, or even a whole abstract or grant description) and get back the works closest in meaning, even when the wording differs. It's the best fit when your research area doesn't line up with any predefined scheme and keyword matching is too brittle. The embeddings also power parts of aboutness assignment itself — [keyword tagging](/data/keywords/) scores candidate keywords against the work's text using embeddings.
@@ -38,4 +40,5 @@ For the topics hierarchy and keywords, you can supply your own custom text — t
 - [Topics](/data/topics/) — the four-level hierarchy and how it's assigned
 - [Keywords](/data/keywords/) — how keyword tagging works
 - [SDGs](/data/sdgs/) — the Sustainable Development Goals tagger
+- [Study designs](/data/study-designs/): how the research inside a work was done
 - [FWCI](/data/works/citations/#field-weighted-citation-impact) — the field-normalized citation metric built on subfields
