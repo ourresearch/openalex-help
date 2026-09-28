@@ -1,6 +1,6 @@
 ---
 title: "Study designs"
-updated: 2026-09-25
+updated: 2026-09-28
 description: "How the research inside a work was done (randomized controlled trial, systematic review, case report and four more), where each work's values come from, and how to filter and group works by design."
 tags: ["reference"]
 entity:
@@ -21,26 +21,21 @@ PubMed draws the same line. Its [publication types](https://www.nlm.nih.gov/mesh
 
 ### Where the values come from
 
-Each work's values come from one of two places:
+**Every value comes from automated tagging of the work's title and abstract.** A decision model reads the title, the venue and the abstract and picks a design. Only confident answers become values, and a second model checks every Randomized Controlled Trial: where it finds the work is a digest, commentary or later analysis of a trial published elsewhere, the work gets neither Randomized Controlled Trial nor Clinical Trial.
 
-- **PubMed's tags**, where the work has a MEDLINE-indexed PubMed record that carries one of the tags in the [Values](#values) table. OpenAlex serves PubMed's tags as they are.
-- **Automated tagging** of the work's title and abstract, everywhere else.
+Precision comes first. Measured against expert judgment on a sample weighted to match the whole index, each value is right at least 96% of the time, and Randomized Controlled Trial at least 99% of the time. When the tagging is unsure, it leaves the value off, so it misses some real trials and reviews rather than tagging works that aren't. It only ever assigns the seven values below; OpenAlex adds nothing to PubMed's vocabulary. Every benchmark, the code and the models are public: [openalex-study-designs](https://github.com/ourresearch/openalex-study-designs).
 
-Most works get their values from automated tagging. PubMed covers a small share of the literature, and many PubMed records carry no study-design tag: some tags only date from 2014 to 2019, and about half of recent PubMed records are not yet MEDLINE-indexed. The API does not say which of the two sources a given work's values came from.
-
-Automated tagging is held to precision bars, measured against expert judgment on about 5,000 works. When it assigns Randomized Controlled Trial, it is right at least 99% of the time. For every other value it is right at least 95% of the time. Precision comes first: when the tagging is unsure, it leaves the value off. So it misses some real trials and reviews rather than tagging works that aren't. It only ever assigns the seven values below; OpenAlex adds nothing to PubMed's vocabulary.
-
-PubMed's tags follow the National Library of Medicine's indexing rules, which are close to the definitions below but not identical. PubMed applies its trial tags to veterinary trials too, for example, and sometimes tags a secondary analysis of a trial as a randomized controlled trial. Where PubMed has tagged a record, its tags win.
+We do not copy PubMed's own tags. On the same works, PubMed's tags follow the National Library of Medicine's indexing rules, which often tag a paper with the design of the study it came from: its Randomized Controlled Trial tag also covers secondary analyses, validation studies and methods papers written for a trial, and our benchmark found it right 63% of the time against the definitions below. The PubMed tags each value corresponds to are listed in the [Values](#values) table.
 
 ### What no value means
 
-Automated tagging runs only on works that have an abstract and a type that can report research: `article`, `review`, `preprint`, `conference-paper`, `book-chapter`, `dissertation`, `report` and `data-paper`. An empty `study_designs` list means the work was not tagged, or has none of these seven designs. It never means the work is not a study. A lab experiment, an animal study or a computational paper is research, and has none of these designs.
+Automated tagging runs only on works that have an abstract and a type that can report research, so works without an abstract have no study design: `article`, `review`, `preprint`, `conference-paper`, `book-chapter`, `dissertation`, `report` and `data-paper`. An empty `study_designs` list means the work was not tagged, or has none of these seven designs. It never means the work is not a study. A lab experiment, an animal study or a computational paper is research, and has none of these designs.
 
 This matters for negation. `filter=study_designs.id:!randomized-controlled-trial` returns every work not tagged as a trial, including trials the tagging missed.
 
 ### More than one value
 
-A work can carry several designs, and parents come along. Every Randomized Controlled Trial is also a Clinical Trial, and every Meta-Analysis is also a Systematic Review. So `study_designs.id:clinical-trial` returns randomized and non-randomized trials together. Automated tagging gives a work one design plus its parent. A PubMed record can carry any combination its indexers assigned.
+A work can carry several designs, and parents come along. Every Randomized Controlled Trial is also a Clinical Trial, and every Meta-Analysis is also a Systematic Review. So `study_designs.id:clinical-trial` returns randomized and non-randomized trials together. Automated tagging gives a work one design plus its parent.
 
 ## Values
 
