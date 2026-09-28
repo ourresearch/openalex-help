@@ -1,6 +1,6 @@
 ---
 title: "Institutions"
-updated: 2026-09-21
+updated: 2026-09-28
 description: "What an institution is, how OpenAlex grounds them in ROR and matches raw affiliation strings to them, and what every attribute on an institution object means."
 tags: ["reference"]
 entity:
@@ -22,7 +22,7 @@ Institutions are one of the few [native entities](/data/native/) that lean on an
 
 ### Matching raw affiliation strings
 
-The hard problem isn't naming institutions — it's *linking works to them*. Works list affiliations as free text: a **raw affiliation string** (RAS) like `"MIT, Boston, USA"` or `"Massachusetts Institute of Technology"`, often messy and inconsistent. OpenAlex parses each RAS to extract the institutions it names, so both of those examples resolve to the same institution. Parsing runs in three stages: an OpenAlex-trained deep-learning model reads the string and assigns institutions; a monthly rules pass fixes common model errors; and ROR's own affiliation matcher fills remaining gaps. On the AffilGood benchmark the parser reaches roughly 0.92 recall and 0.93 precision. See [raw affiliation strings](/data/raw-affiliation-strings/) for the full pipeline, benchmarks, and open-source code.
+The hard problem isn't naming institutions — it's *linking works to them*. Works list affiliations as free text: a **raw affiliation string** (RAS) like `"MIT, Boston, USA"` or `"Massachusetts Institute of Technology"`, often messy and inconsistent. OpenAlex parses each RAS to extract the institutions it names, so both of those examples resolve to the same institution. Since 28 September 2026 this is done by the [OpenAlex affiliation matcher](https://github.com/ourresearch/openalex-affiliation-matcher), version 3.0, which names exactly the right institutions for 89% of a random sample of OpenAlex strings, up from 73% for the previous version. See [raw affiliation strings](/data/raw-affiliation-strings/) for how it works, and [the repository](https://github.com/ourresearch/openalex-affiliation-matcher) for the method, benchmarks, code and test sets.
 
 ### Lineage and hierarchy
 
@@ -38,7 +38,7 @@ A single real-world organization can act as more than one kind of OpenAlex entit
 
 ### Known failure modes
 
-The parser can miss or mis-assign institutions, especially for organizations added to ROR after the model was last trained (April 2023) — those depend on the rules pass and ROR matcher to be caught at all. Coverage of layered national systems is limited by ROR's own coverage: where a sub-unit has no ROR record, affiliations can only match its parent. Institutions can also be affected by author-disambiguation errors on the works that feed them. Institutions are [correctable through curation](/data/curations/); member institutions can review and fix their own affiliation matches with the [Affiliation Editor](/access/fixing-errors/affiliations/).
+The matcher can miss or mis-assign institutions, most often organizations with no ROR record. Coverage of layered national systems is limited by ROR's own coverage: where a sub-unit has no ROR record, affiliations can only match its parent. Institutions can also be affected by author-disambiguation errors on the works that feed them. Institutions are [correctable through curation](/data/curations/); member institutions can review and fix their own affiliation matches with the [Affiliation Editor](/access/fixing-errors/affiliations/).
 
 ## Attributes
 

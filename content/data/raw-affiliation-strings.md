@@ -1,6 +1,6 @@
 ---
 title: "Raw affiliation strings"
-updated: 2026-08-11
+updated: 2026-09-28
 description: "The exact affiliation text an author printed on a work, before OpenAlex matches it to an institution — the raw input to institution disambiguation."
 tags: ["reference"]
 entity:
@@ -14,15 +14,11 @@ A **raw affiliation string** (RAS) is the exact affiliation text an author print
 
 OpenAlex preserves the affiliation text exactly as it arrived on the source record, then parses each string to extract the institutions it names — so both `"MIT, Boston, USA"` and `"Massachusetts Institute of Technology"` resolve to the same institution ([ror.org/042nb2s44](https://ror.org/042nb2s44)).
 
-### Parsing pipeline
+### How matching works
 
-Parsing runs in three steps:
+Since 28 September 2026, strings are matched by the [OpenAlex affiliation matcher](https://github.com/ourresearch/openalex-affiliation-matcher), version 3.0. For each string it finds about 18 candidate institutions, scores each one with a small model, and then chooses the set: none, one or several, using [ROR](https://ror.org/)'s parent, child and related links. It names exactly the right institutions for 89% of a random sample of OpenAlex strings, up from 73% for the previous version, and every new string is matched the night it arrives. The method, benchmarks, code and test sets are all in [the repository](https://github.com/ourresearch/openalex-affiliation-matcher). We keep improving it in numbered releases, so institution counts keep changing, mostly upward.
 
-1. **Deep-learning model** — an OpenAlex-trained model reads a string and assigns one or more institutions to it.
-2. **Monthly string matching** — a rules pass fixes common model errors (adding or removing affiliations based on the raw string), run once a month.
-3. **ROR matcher** — [ROR](https://ror.org/)'s own affiliation matcher, integrated into the OpenAlex codebase.
-
-Steps 2 and 3 fill gaps left by the model, which hasn't been retrained since April 2023 — so institutions added to OpenAlex or ROR after that date won't be predicted by the model alone. On the [AffilGood benchmark](https://docs.google.com/spreadsheets/d/1YfmmPdJwCApv7pGEjf_SgFQWWRJOL5l2K1M_wCpuGi8/edit?gid=1092800650#gid=1092800650) (OpenAlex tab), the parser reaches roughly 0.92 recall and 0.93 precision. The result is stored on the authorship as the [`affiliations`](/data/authorships/#affiliations) mapping: each raw string paired with the institution IDs it produced. Country is assigned through the same matching — from the matched ROR record's metadata, or, when nothing matches but the address still names a country, directly from the string.
+The result is stored on the authorship as the [`affiliations`](/data/authorships/#affiliations) mapping: each raw string paired with the institution IDs it produced. Country is assigned through the same matching — from the matched ROR record's metadata, or, when nothing matches but the address still names a country, directly from the string.
 
 ### Complex and layered systems
 
@@ -30,7 +26,7 @@ Some national research systems are layered — a French *unité mixte de recherc
 
 ### Failure modes
 
-The parser can miss or mis-assign institutions, especially for organizations added to ROR after the April 2023 training cutoff (those depend entirely on the rules pass and ROR matcher). A raw string can also resolve to no institution at all while still yielding a country. Because the raw string is preserved verbatim, you can always see the original text even when matching fell short — and member institutions can review and correct their own affiliation matches with the [Affiliation Editor](/access/fixing-errors/affiliations/). The parsing model, training data, and benchmarks are fully open ([openalex-institution-parsing](https://github.com/ourresearch/openalex-institution-parsing/tree/main/V2)); the monthly string-matching code lives in the [openalex-databricks repo](https://github.com/ourresearch/openalex-databricks/tree/main/jobs/string_matching_institutions).
+The matcher can still miss or mis-assign institutions, most often organizations with no ROR record. A raw string can also resolve to no institution at all while still yielding a country. Because the raw string is preserved verbatim, you can always see the original text even when matching fell short, and member institutions can review and correct their own affiliation matches with the [Affiliation Editor](/access/fixing-errors/affiliations/); those corrections override the matcher. Known issues are listed in [the repository](https://github.com/ourresearch/openalex-affiliation-matcher#known-issues); the earlier versions live in [openalex-institution-parsing](https://github.com/ourresearch/openalex-institution-parsing).
 
 ## Attributes
 
