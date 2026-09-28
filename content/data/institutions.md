@@ -108,7 +108,7 @@ This is the canonical dictionary of every attribute on an **institution** object
 *List.* Like [`topics`](#topics), but ranked by this institution's *share* of each topic relative to all institutions — surfacing topics where the institution is disproportionately active rather than just high-volume. Filter with `topic_share.id`.
 
 ### `works_count`
-*Integer.* The number of works affiliated with this institution. See [Common attributes](/data/common-attributes/#works_count). Filterable, sortable, and groupable.
+*Integer.* The number of works affiliated with this institution itself, not counting its units (child institutions such as labs and hospitals, or merged predecessor records). To include them, filter works on `authorships.institutions.lineage`, as the website does. See [Common attributes](/data/common-attributes/#works_count). Filterable, sortable, and groupable.
 
 ### `cited_by_count`
 *Integer.* Total citations across this institution's works. See [Common attributes](/data/common-attributes/#cited_by_count). Filterable, sortable, and groupable.

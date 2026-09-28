@@ -21,4 +21,11 @@ Search for the journal by name and click it — that filters to works whose prim
 
 ## Why do the counts-by-year numbers differ from what I see in the interface?
 
-The `counts_by_year`, `works_count`, and `cited_by_count` numbers nested inside an entity (an author, institution, or source) are **precomputed** and refreshed only every few months, so they drift — especially for entities that publish a lot. A live works query is always current, which is why the two can disagree. If you need an exact count, run a works search filtered by the entity (e.g. `openalex.org/works?filter=authorships.author.id:A5086928770`) instead of reading the nested number. Full explanation: [Counts by year](/data/common-attributes/#counts_by_year).
+The `counts_by_year`, `works_count`, and `cited_by_count` numbers nested inside an entity (an author, institution, or source) are **precomputed**. They are refreshed regularly, so they trail a live works query only slightly (typically well under 1%). When the gap is bigger, it usually comes from one of these:
+
+- **Institutions and publishers count only themselves.** An institution's `works_count` counts works tagged with that institution, not its units (labs, hospitals, merged predecessor records); a publisher's counts its own sources, not its imprints'. The website's works list for an institution or publisher includes those units, because it filters on `lineage` (`authorships.institutions.lineage`, `primary_location.source.host_organization_lineage`).
+- **Entity counts include the expansion corpus.** `works_count` counts works in both corpora, while a works query counts only the core corpus unless you add [`corpus=all`](/data/works/corpus/).
+- **Topics count primary topics.** A topic's `works_count` counts works whose primary topic it is; filtering on `topics.id` also matches secondary topics.
+- **Sources count primary locations.** A source's `works_count` counts works whose primary location is that source.
+
+If you need an exact count, run a works search filtered by the entity (e.g. `openalex.org/works?filter=authorships.author.id:A5086928770`) instead of reading the nested number. Full explanation: [Counts by year](/data/common-attributes/#counts_by_year).

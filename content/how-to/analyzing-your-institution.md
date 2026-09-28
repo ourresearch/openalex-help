@@ -13,7 +13,7 @@ Most of these questions are answered the same way, on [openalex.org](https://ope
 
 ## How many outputs does my institution have?
 
-After you've filtered to your institution, the total under **Stats** is the count of all outputs affiliated with it.
+After you've filtered to your institution, the total under **Stats** is the count of all outputs affiliated with it. That total includes the institution's units (its labs, hospitals, and merged predecessor records), so it is usually larger than the works count on the institution's own page, which counts only works tagged with the institution itself.
 
 ## How many of each type of output does it have?
 

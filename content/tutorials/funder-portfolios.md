@@ -24,12 +24,12 @@ https://api.openalex.org/funders?search=national+science+foundation&per_page=3&s
 
 ```json
 [
-  {"id": "https://openalex.org/F4320306076", "display_name": "National Science Foundation", "works_count": 1483062, "awards_count": 812094},
-  {"id": "https://openalex.org/F4320332161", "display_name": "National Natural Science Foundation of China", "works_count": 3567561, "awards_count": 840334}
+  {"id": "https://openalex.org/F4320306076", "display_name": "National Science Foundation", "works_count": 1869454, "awards_count": 685854},
+  {"id": "https://openalex.org/F4320321001", "display_name": "National Natural Science Foundation of China", "works_count": 4628809, "awards_count": 1156275}
 ]
 ```
 
-NSF is `F4320306076` — 1.5M funded works and 812K awards.
+NSF is `F4320306076`, with 1.9M funded works and 686K awards.
 
 ## Step 2: Map the portfolio by field
 

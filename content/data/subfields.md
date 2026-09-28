@@ -54,7 +54,7 @@ This is the canonical dictionary of every attribute on a **subfield** object. At
 *List.* The other subfields (`id`, `display_name`), for navigating laterally across the classification.
 
 ### `works_count`
-*Integer.* How many works fall in this subfield (through their assigned topics). See [Common attributes](/data/common-attributes/#works_count).
+*Integer.* How many works fall in this subfield through their primary topic. See [Common attributes](/data/common-attributes/#works_count).
 
 ### `cited_by_count`
 *Integer.* Total citations across all works in this subfield. See [Common attributes](/data/common-attributes/#cited_by_count).

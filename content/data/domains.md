@@ -47,7 +47,7 @@ This is the canonical dictionary of every attribute on a **domain** object. Attr
 *List.* The other three domains (`id`, `display_name`), for navigating laterally across the classification.
 
 ### `works_count`
-*Integer.* How many works fall in this domain (through their assigned topics). See [Common attributes](/data/common-attributes/#works_count).
+*Integer.* How many works fall in this domain through their primary topic. See [Common attributes](/data/common-attributes/#works_count).
 
 ### `cited_by_count`
 *Integer.* Total citations across all works in this domain. See [Common attributes](/data/common-attributes/#cited_by_count).

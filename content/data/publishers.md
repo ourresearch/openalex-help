@@ -27,7 +27,7 @@ Publishers form a tree. A large publishing group sits at the top ([`hierarchy_le
 
 ### Relationship to sources
 
-A publisher doesn't publish works directly — it publishes them *through* [sources](/data/sources/). Each source records its publisher as its `host_organization`, and the reverse view (every source a publisher hosts) is available at the publisher's [`sources_api_url`](#sources_api_url). The source→publisher link comes from the source's metadata profile in the [ISSN registry](https://portal.issn.org/), which names each journal's publisher; if a journal's publisher is missing or wrong, check its ISSN record, and if the publisher doesn't exist in [ROR](https://ror.org/search) yet you can submit a request there to add it. A publisher's [`works_count`](#works_count) and [`cited_by_count`](#cited_by_count) are the totals summed across all the sources it hosts.
+A publisher doesn't publish works directly — it publishes them *through* [sources](/data/sources/). Each source records its publisher as its `host_organization`, and the reverse view (every source a publisher hosts) is available at the publisher's [`sources_api_url`](#sources_api_url). The source→publisher link comes from the source's metadata profile in the [ISSN registry](https://portal.issn.org/), which names each journal's publisher; if a journal's publisher is missing or wrong, check its ISSN record, and if the publisher doesn't exist in [ROR](https://ror.org/search) yet you can submit a request there to add it. A publisher's [`works_count`](#works_count) and [`cited_by_count`](#cited_by_count) are the totals across the sources it hosts itself; they don't include its imprints' sources.
 
 ### Roles
 
@@ -75,7 +75,7 @@ This is the canonical dictionary of every attribute on a **publisher** object. A
 *String.* Like [`image_url`](#image_url), but scaled down for a thumbnail (a `width` parameter is appended).
 
 ### `works_count`
-*Integer.* The number of works published across all the [sources](/data/sources/) this publisher hosts. See [Common attributes](/data/common-attributes/#works_count).
+*Integer.* The number of works published across the [sources](/data/sources/) this publisher hosts itself, not counting its imprints. To count a group's works including its imprints, filter works on `primary_location.source.host_organization_lineage`. See [Common attributes](/data/common-attributes/#works_count).
 
 ### `cited_by_count`
 *Integer.* Total citations received across all works this publisher has published. See [Common attributes](/data/common-attributes/#cited_by_count).
@@ -100,4 +100,4 @@ This is the canonical dictionary of every attribute on a **publisher** object. A
 
 ## In the API
 
-The Publishers endpoint is at [`api.openalex.org/publishers`](https://api.openalex.org/publishers). Fetch a single publisher by ID — [`/publishers/P4310319965`](https://api.openalex.org/publishers/P4310319965) — or a list, and [filter](/api/filtering/), [search](/api/searching/), [sort](/api/sorting/), [group](/api/grouping/), and [page](/api/paging/) over the fields above. To find every source a publisher hosts, filter sources on `host_organization.id`; to roll up an imprint's works to its group, filter publishers on `lineage`. For the full list of endpoints see the [endpoints index](/api/endpoints/).
+The Publishers endpoint is at [`api.openalex.org/publishers`](https://api.openalex.org/publishers). Fetch a single publisher by ID — [`/publishers/P4310319965`](https://api.openalex.org/publishers/P4310319965) — or a list, and [filter](/api/filtering/), [search](/api/searching/), [sort](/api/sorting/), [group](/api/grouping/), and [page](/api/paging/) over the fields above. To find every source a publisher hosts, filter sources on `host_organization.id`; to list a group's imprints, filter publishers on `lineage`; to count a group's works including its imprints, filter works on `primary_location.source.host_organization_lineage`. For the full list of endpoints see the [endpoints index](/api/endpoints/).

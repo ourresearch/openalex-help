@@ -69,7 +69,7 @@ This is the canonical dictionary of every attribute on a **topic** object. Attri
 *List.* The other topics that share this topic's [`subfield`](#subfield) (`id`, `display_name`), useful for navigating laterally within a subfield. Empty for a topic that is the only one in its subfield.
 
 ### `works_count`
-*Integer.* How many works have this topic assigned (as their primary or a secondary topic). See [Common attributes](/data/common-attributes/#works_count).
+*Integer.* How many works have this as their primary topic. Filtering works on `topics.id` also matches works where this is a secondary topic, so it returns more; filter on `primary_topic.id` to match this number. See [Common attributes](/data/common-attributes/#works_count).
 
 ### `cited_by_count`
 *Integer.* Total citations across all works assigned this topic. See [Common attributes](/data/common-attributes/#cited_by_count).

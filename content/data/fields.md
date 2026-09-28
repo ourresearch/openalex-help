@@ -51,7 +51,7 @@ This is the canonical dictionary of every attribute on a **field** object. (Conf
 *List.* The other 25 fields (`id`, `display_name`), for navigating laterally across the classification.
 
 ### `works_count`
-*Integer.* How many works fall in this field (through their assigned topics). See [Common attributes](/data/common-attributes/#works_count).
+*Integer.* How many works fall in this field through their primary topic. See [Common attributes](/data/common-attributes/#works_count).
 
 ### `cited_by_count`
 *Integer.* Total citations across all works in this field. See [Common attributes](/data/common-attributes/#cited_by_count).
