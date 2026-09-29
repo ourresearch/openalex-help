@@ -1,6 +1,6 @@
 ---
 title: "Attributes"
-updated: 2026-09-18
+updated: 2026-09-29
 description: "The canonical dictionary of every attribute on a source object — what each one means, where it comes from, and its quirks."
 tags: ["reference"]
 ---
@@ -66,7 +66,7 @@ Empty when the source is on no list. Filter/group_by; also available on works as
 *Boolean.* True if the source is part of the [SciELO](https://scielo.org/) network of open-access journals (predominantly Latin American). Present on the object; not currently exposed as a filter.
 
 ### `is_ojs`
-*Boolean.* True if the source runs on [Open Journal Systems](https://pkp.sfu.ca/software/ojs/), the widely used open-source journal-publishing platform. Filter/sort/group_by.
+*Boolean.* True if the source runs on [Open Journal Systems](https://pkp.sfu.ca/software/ojs/), the widely used open-source journal-publishing platform: one of its ISSNs appears in PKP's [Beacon](https://doi.org/10.7910/DVN/OCZNVY), the registry of journals PKP has seen running OJS, including installs with no recent publications (2026-07-18 edition). A platform flag; it says nothing about quality. Filter/sort/group_by.
 
 ### `is_preprint_repository`
 *Boolean.* True if the source is a preprint repository (e.g. [arXiv](https://arxiv.org/), bioRxiv). Filter/sort/group_by.
