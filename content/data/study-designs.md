@@ -9,7 +9,7 @@ entity:
   linksTo:
     - "works"
 ---
-A **study design** says how the research inside a [work](/data/works/) was done: a randomized controlled trial, an observational study, a systematic review. There are seven, all taken from PubMed's own list of study types, and a work can carry more than one. Use them to find every randomized trial on a topic, or to see how the evidence in a field splits between trials, observational studies and reviews. A study design's OpenAlex ID looks like `https://openalex.org/study-designs/randomized-controlled-trial`; list all seven at [`api.openalex.org/study-designs`](https://api.openalex.org/study-designs).
+A **study design** says how the research inside a [work](/data/works/) was done: a randomized controlled trial, an observational study, a systematic review. There are seven, all taken from PubMed's own list of study types, and a work can carry more than one. Use them to find every randomized trial on a topic, or to see how the evidence in a field splits between trials, observational studies and reviews. A study design's OpenAlex ID looks like `https://openalex.org/study-designs/randomized-controlled-trial`; list all seven at [`api.openalex.org/study-designs`](https://api.openalex.org/study-designs). To use them to put the strongest evidence first, see [Finding high-quality evidence](/how-to/finding-high-quality-evidence/).
 
 ## About
 
