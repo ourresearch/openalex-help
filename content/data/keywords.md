@@ -28,7 +28,7 @@ On 399 random works, a blind judge preferred these keywords to the previous, top
 
 The keyword list is not fixed. New fields emerge, and keywords are added for them. Keywords get merged when they turn out to mean the same thing, and split when one label covers two meanings. If a keyword is wrong, or two keywords should be one, [tell us](https://openalex.org/help). Store keyword IDs with the date you fetched them, and expect some to change.
 
-Next, we plan to link keywords to other vocabularies: Wikidata, possibly MeSH, and possibly OpenAlex [topics](/data/topics/).
+Next, we'll look at joining keywords to outside vocabularies like Wikidata and MeSH, a one-sentence description of each keyword, vector search over keywords, and assigning each keyword to one or more [topics](/data/topics/).
 
 ## Good uses
 
