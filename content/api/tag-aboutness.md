@@ -1,6 +1,6 @@
 ---
 title: "Tag Aboutness"
-updated: 2026-09-22
+updated: 2026-10-01
 description: "Tag your own text with OpenAlex topics and keywords"
 tags: ["api"]
 source_id: "guides/aboutness"
@@ -27,8 +27,7 @@ For a POST, send the same two fields as JSON.
 | `/text/keywords` | Keywords for your text |
 | `/text` | Both in one request |
 
-> **Note:**
-> Keywords on this endpoint come from OpenAlex's new keyword tagger (the same model that is re-tagging every work). Until the rebuilt keyword entity ships, some keyword ids are provisional: they follow the `keywords/<slug>` convention but may not resolve at `api.openalex.org/keywords/<slug>` yet. When that is the case, `meta.note` says so.
+Keywords come from the same model and vocabulary that tag every work in OpenAlex, so every keyword id resolves at `api.openalex.org/keywords/<slug>` and works as a [`keywords.id`](/data/works/attributes/#keywords) filter. Keywords the model writes that aren't in the vocabulary are left out; synonyms are returned under their vocabulary heading.
 
 ## Example response
 
@@ -40,11 +39,11 @@ GET https://api.openalex.org/text?title=type%201%20diabetes%20research%20for%20c
 {
   "meta": {
     "keywords_count": 4,
-    "topics_count": 3,
-    "note": "Some keyword ids are provisional: they follow the keywords/<slug> convention but do not resolve in the keywords API until the rebuilt keyword entity ships."
+    "topics_count": 3
   },
   "keywords": [
-    {"id": "https://openalex.org/keywords/type-1-diabetes", "display_name": "Type 1 diabetes", "score": 1.0},
+    <!-- TODO before push: regenerate this block from the live endpoint once /text returns confidence scores -->
+    {"id": "https://openalex.org/keywords/type-1-diabetes", "display_name": "type 1 diabetes", "score": 1.0},
     {"id": "https://openalex.org/keywords/pediatric-diabetes", "display_name": "pediatric diabetes", "score": 0.75},
     {"id": "https://openalex.org/keywords/diabetes-research", "display_name": "diabetes research", "score": 0.5},
     {"id": "https://openalex.org/keywords/children", "display_name": "children", "score": 0.25}
@@ -72,7 +71,7 @@ GET https://api.openalex.org/text?title=type%201%20diabetes%20research%20for%20c
 }
 ```
 
-Topic scores are the classifier's confidence, from 0 to 1. Keyword scores are rank order, not confidence: the model lists keywords best first and the score steps down evenly (1.0 for the first, then 0.75, 0.5, 0.25 for a four-keyword result). `/text/topics` and `/text/keywords` return the same objects with a single `count` in `meta`.
+Topic scores are the classifier's confidence, from 0 to 1. Keyword scores are the model's confidence, from 0 to 1, on the same scale as the `score` on a work's keywords; keywords are listed best first. If your text says nothing about its subject, `keywords` can be empty. `/text/topics` and `/text/keywords` return the same objects with a single `count` in `meta`.
 
 If the topic classifier cannot place a text, `topics` is empty. This happens with short or non-descriptive titles, such as a bare project or institution name. Sending an `abstract` alongside the `title` gives the classifier much more to work with.
 

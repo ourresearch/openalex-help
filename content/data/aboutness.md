@@ -1,6 +1,6 @@
 ---
 title: "Overview"
-updated: 2026-09-25
+updated: 2026-10-01
 description: "The subject signals OpenAlex offers — topics, keywords, SDGs, concepts, and text search — and how to choose among them by granularity, familiarity, and fit to your research question."
 tags: ["reference"]
 source_id: "24859286130583"
@@ -18,18 +18,18 @@ Two properties help you choose. **Granularity** (the number of groups) sets how 
 | [Fields](/data/fields/) | 26 | High | Low |
 | [Subfields](/data/subfields/) | 252 | High | Medium |
 | [Topics](/data/topics/) | 4,516 | Low | Medium-high |
-| [Keywords](/data/keywords/) | ~65,000 | Medium | High |
+| [Keywords](/data/keywords/) | ~1.9 million | Medium | High |
 | [Concepts](/data/concepts/) (deprecated) | ~65,000 | High | Variable |
 | [Text search](/api/searching/) | ∞ | Low | High |
 | [Semantic search](/api/semantic-search/) | ∞ | Low | High |
 
-A rough guide: the **topics hierarchy** ([domains](/data/domains/) → [fields](/data/fields/) → [subfields](/data/subfields/) → [topics](/data/topics/)) is the supported general-purpose system — pick the level whose granularity matches your question. **Keywords** fit narrower, more specific slices. **SDGs** map research onto the UN Sustainable Development Goals and little else. **Concepts** are deprecated — kept for continuity with Microsoft Academic Graph, no longer maintained; see [Concepts](/data/concepts/). **Text search** fits custom areas no scheme covers, at the cost of comparability.
+A rough guide: the **topics hierarchy** ([domains](/data/domains/) → [fields](/data/fields/) → [subfields](/data/subfields/) → [topics](/data/topics/)) is the supported general-purpose system — pick the level whose granularity matches your question. **Keywords** fit narrower, more specific slices, and find works whatever words their authors used. **SDGs** map research onto the UN Sustainable Development Goals and little else. **Concepts** are deprecated — kept for continuity with Microsoft Academic Graph, no longer maintained; see [Concepts](/data/concepts/). **Text search** fits custom areas no scheme covers, at the cost of comparability.
 
 Not a subject signal, but close by: [**study designs**](/data/study-designs/) say how the research inside a work was done (randomized controlled trial, observational study, systematic review and four more), not what it is about. They combine well with any of the signals above, e.g. every randomized controlled trial in the topic Cancer Immunotherapy and Biomarkers: `filter=topics.id:T10158,study_designs.id:randomized-controlled-trial`.
 
 ## Embeddings and semantic search
 
-Aboutness doesn't have to go through a labeling scheme at all. OpenAlex embeds the title and abstract of every work as a vector using an open-source embedding model, so works that are about similar things sit near each other in vector space — no categories required. [Semantic search](/api/semantic-search/) queries these embeddings directly: describe what you're looking for in plain language (a sentence, or even a whole abstract or grant description) and get back the works closest in meaning, even when the wording differs. It's the best fit when your research area doesn't line up with any predefined scheme and keyword matching is too brittle. The embeddings also power parts of aboutness assignment itself — [keyword tagging](/data/keywords/) scores candidate keywords against the work's text using embeddings.
+Aboutness doesn't have to go through a labeling scheme at all. OpenAlex embeds the title and abstract of every work as a vector using an open-source embedding model, so works that are about similar things sit near each other in vector space — no categories required. [Semantic search](/api/semantic-search/) queries these embeddings directly: describe what you're looking for in plain language (a sentence, or even a whole abstract or grant description) and get back the works closest in meaning, even when the wording differs. It's the best fit when your research area doesn't line up with any predefined scheme and keyword matching is too brittle. Embeddings also help build the [keyword](/data/keywords/) vocabulary: they surface candidate synonyms, which a judge then confirms or rejects before they are merged.
 
 ## Aboutness for your own text
 
