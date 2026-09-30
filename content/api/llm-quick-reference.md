@@ -1,6 +1,6 @@
 ---
 title: "LLM Quick Reference"
-updated: 2026-09-21
+updated: 2026-10-01
 description: "OpenAlex API reference optimized for AI agents"
 tags: ["api"]
 source_id: "guides/llm-quick-reference"
@@ -45,7 +45,7 @@ Corpus: default = curated core (~324M works). corpus=all adds the ~193M-work
 
 ```
 content.openalex.org/works/{id}.pdf - Download PDFs ($0.01 each)
-/text                               - DEPRECATED, do not use
+/text/keywords?title=...&abstract=... - OpenAlex keywords (and /text/topics) for any text; use them to pick keywords.id filters ($0.01 each)
 ```
 
 ## Critical: Two-Step ID Lookup
@@ -212,7 +212,6 @@ def fetch_with_retry(url, max_retries=5):
 See [Deprecations](/api/deprecations/) for full list. Key items:
 
 - **Concepts** → Use Topics instead
-- **`/text` endpoint** → Do not use
 - **`host_venue`** → Use `primary_location`
 - **`grants`** → Use `funders` and `awards`
 
