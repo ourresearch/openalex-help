@@ -32,7 +32,7 @@ Next, we'll look at joining keywords to outside vocabularies like Wikidata and M
 
 ## Good uses
 
-- **Find what text search misses.** A keyword filter finds works whatever words their authors used, including works with no abstract. Combine it with a title and abstract search for the best recall:
+- **Find what text search misses.** A keyword filter finds works whatever words their authors used, including works with no abstract. Combine it with a title and abstract search for the best recall (full recipe: [Finding papers with keywords](/how-to/finding-papers-with-keywords/)):
 
   ```
   https://api.openalex.org/?oql=works where keyword is (antimicrobial-resistance) or title/abstract has ("antimicrobial resistance")
