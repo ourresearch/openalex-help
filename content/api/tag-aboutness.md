@@ -82,3 +82,15 @@ If the topic classifier cannot place a text, `topics` is empty. This happens wit
 | Text length | 20-2000 characters, title and abstract combined |
 | Rate limit | 1 request per second |
 | Cost | $0.01 per request |
+
+Calls work without an API key, but the free daily allowance without one is small. [Get a free key](/api/authentication/) for anything more than a few calls, especially if you'll go on to search works with the keywords you get back.
+
+## Use it to choose keywords for a search
+
+Send a description of your topic, look up the keywords that come back, and keep the ones that fit. If your topic has several parts, require a keyword for each part (`remote-work` and `employee-health`, not just `remote-work`). Then combine the keywords with a title and abstract search in one [OQL](/api/oql/) query:
+
+```
+works where keyword is (remote-work and employee-health) or title/abstract has ("remote work")
+```
+
+This is a good job for an AI agent: give it your topic, this page and your API key, and ask for the query and a CSV of results.
