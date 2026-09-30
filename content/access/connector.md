@@ -1,6 +1,6 @@
 ---
 title: "AI agent connector"
-updated: 2026-09-21
+updated: 2026-09-30
 description: "Connect Claude (and soon ChatGPT) to OpenAlex: ask about the literature in plain language, get the exact query behind every answer, and fix your own author profile in conversation."
 synonyms: ["MCP", "MCP server", "Model Context Protocol", "Claude connector", "Claude", "ChatGPT", "custom connector"]
 tags: ["reference"]
@@ -56,7 +56,7 @@ The agent chooses among fourteen tools: nine that read OpenAlex, and five that m
 | `claim_author_profile` | Claim your author profile so it can be curated. Instant with a verified academic, institutional or government email; otherwise the agent collects evidence and the claim queues for review. |
 | `find_candidate_works` | Works that are probably yours but missing from your profile: bylines matching your name and its variants, works carrying your ORCID (in OpenAlex and on your public ORCID record), and same-name profiles that may be duplicates of you. |
 | `submit_curations` | Add or remove works, set your display name, match name or ORCID, or cancel a pending correction. Every change is a recorded, reversible curation. |
-| `list_my_curations` | The status of everything submitted: pending, applied, or timed out. |
+| `list_my_curations` | The status of everything submitted: pending, applied, replaced (a newer correction to the same item replaced it), or timed out. |
 
 `search_works` and `resolve_references` also take your author ID, so the agent can audit your profile work by work and reconcile a CV against it.
 
