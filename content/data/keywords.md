@@ -35,7 +35,7 @@ Next, we plan to link keywords to other vocabularies: Wikidata, possibly MeSH, a
 - **Find what text search misses.** A keyword filter finds works whatever words their authors used, including works with no abstract. Combine it with a title and abstract search for the best recall:
 
   ```
-  https://api.openalex.org/?oql=works where keyword is (long-covid) or title/abstract has ("long covid")
+  https://api.openalex.org/?oql=works where keyword is (antimicrobial-resistance) or title/abstract has ("antimicrobial resistance")
   ```
 
 - **Map a field.** Filter to any set of works, then [`group_by=keywords.id`](/api/grouping/) to see what it is made of; add `group_by=publication_year` on a keyword filter to see its trend.
