@@ -93,4 +93,4 @@ Send a description of your topic, look up the keywords that come back, and keep 
 works where keyword is (remote-work and employee-health) or title/abstract has ("remote work")
 ```
 
-This is a good job for an AI agent: give it your topic, this page and your API key, and ask for the query and a CSV of results.
+This is a good job for an AI agent; [Finding papers with keywords](/how-to/finding-papers-with-keywords/) has a tested prompt.
