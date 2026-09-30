@@ -1,7 +1,7 @@
 ---
 title: "Keywords"
-updated: 2026-08-11
-description: "What a keyword is, how OpenAlex derives keywords from a work's topics, and what every attribute on a keyword object means."
+updated: 2026-10-01
+description: "What a keyword is, how OpenAlex tags works with keywords, how the vocabulary changes, and what every attribute on a keyword object means."
 tags: ["reference"]
 source_id: "24736201130391"
 source_url: "https://help.openalex.org/hc/en-us/articles/24736201130391-Keywords"
@@ -12,20 +12,37 @@ entity:
   linksTo:
     - "works"
 ---
-A **keyword** is a short phrase describing what a work is about — `machine-learning`, `type-1-diabetes`, `citation`. Keywords are one of OpenAlex's [aboutness](/data/aboutness/) signals: finer-grained than [topics](/data/topics/) and a good fit for narrow, specific slices of the literature. There are about 65,000 keywords in the system, and each work can be tagged with up to five. A keyword's OpenAlex ID is a readable slug rather than the usual letter-and-number code — `machine-learning` — so a keyword looks like `https://openalex.org/keywords/machine-learning`; fetch one at [`api.openalex.org/keywords/machine-learning`](https://api.openalex.org/keywords/machine-learning).
+A **keyword** is a short phrase saying what a work is about: `gut-microbiota`, `alphafold`, `urban-heat-island`. Keywords are OpenAlex's most specific [aboutness](/data/aboutness/) signal, much finer than [topics](/data/topics/). There are about 1.9 million keywords, and 419 million works carry at least one, typically five or six. A keyword's OpenAlex ID is a readable slug, so a keyword looks like `https://openalex.org/keywords/machine-learning`; fetch one at [`api.openalex.org/keywords/machine-learning`](https://api.openalex.org/keywords/machine-learning).
 
 ## About
 
-Keywords are derived from [topics](/data/topics/): every topic carries a curated set of associated keywords, and a work's keywords are drawn from the keyword sets of the topics it was assigned. Tagging a work runs in four steps:
+A model reads each work's title, abstract and venue and writes the keywords a careful indexer would: what the work is about, not what kind of document it is. When a record says nothing about its subject (a bare dataset entry, a table of contents), the model returns no keywords rather than guess. That is why about 11% of works have none.
 
-1. **Gather candidates.** Take the work's assigned topics (up to three) and pull the keywords associated with each. This yields up to 30 candidate keywords.
-2. **Score similarity.** Score each candidate against the work's title and abstract using embeddings from the [BGE M3-Embedding model](https://huggingface.co/BAAI/bge-m3), a multilingual embedding model that captures semantic meaning — so a keyword can match even when its exact phrase never appears in the text, and across languages.
-3. **Apply a threshold.** Keep only candidates whose similarity score clears a threshold. This filters out keywords that belong to the work's topic area but aren't really relevant to the specific work.
-4. **Keep the top five.** From the keywords that pass, the five highest-scoring are assigned to the work.
+The model is a small open model (Qwen3-4B) trained to copy a frontier model (Claude Opus 5.5) acting as an indexer on about a million works. Its keywords are then folded into one vocabulary: spelling variants, plurals and synonyms are merged under one heading (`neanderthals` also covers "Neandertals"), and a keyword enters the vocabulary only once it describes at least 100 works.
 
-Each keyword on a work therefore carries a `score` — its similarity to that work's title and abstract. On the keyword object itself, [`works_count`](#works_count) and [`cited_by_count`](#cited_by_count) roll those assignments up across the whole corpus.
+Each keyword on a work carries a `score`: the model's confidence in that keyword, from 0 to 1. Keywords are listed best first. On the keyword object itself, [`works_count`](#works_count) and [`cited_by_count`](#cited_by_count) roll those assignments up across the corpus.
 
-The keyword-extraction pipeline is open source: [openalex-keywords (v2)](https://github.com/ourresearch/openalex-keywords/tree/main/v2) on GitHub. See [Aboutness](/data/aboutness/) for how keywords compare to topics, SDGs, and text search.
+On 399 random works, a blind judge preferred these keywords to the previous, topic-derived ones on 390. They match the keywords authors chose for their own papers about twice as often. Benchmarks, code, prompts, the vocabulary and the model weights are all open: [openalex-keywords (v3)](https://github.com/ourresearch/openalex-keywords/tree/main/v3), with the weights in the [v3.0 release](https://github.com/ourresearch/openalex-keywords/releases/tag/v3.0).
+
+## The vocabulary changes
+
+The keyword list is not fixed. New fields emerge, and keywords are added for them. Keywords get merged when they turn out to mean the same thing, and split when one label covers two meanings. If a keyword is wrong, or two keywords should be one, [tell us](https://openalex.org/help). Store keyword IDs with the date you fetched them, and expect some to change.
+
+Next, we plan to link keywords to other vocabularies: Wikidata, possibly MeSH, and possibly OpenAlex [topics](/data/topics/).
+
+## Good uses
+
+- **Find what text search misses.** A keyword filter finds works whatever words their authors used, including works with no abstract. Combine it with a title and abstract search for the best recall:
+
+  ```
+  https://api.openalex.org/?oql=works where keyword is (long-covid) or title/abstract has ("long covid")
+  ```
+
+- **Map a field.** Filter to any set of works, then [`group_by=keywords.id`](/api/grouping/) to see what it is made of; add `group_by=publication_year` on a keyword filter to see its trend.
+- **Find experts.** Filter on a keyword, then `group_by=authorships.author.id`.
+- **Tag your own text.** The [text aboutness endpoint](/api/tag-aboutness/) returns keywords for any title and abstract, from the same model and vocabulary.
+
+Keywords are specific by design; for broad summaries ("how much of this institution's work is chemistry?"), use [topics, subfields and fields](/data/aboutness/).
 
 ## Attributes
 
@@ -35,7 +52,7 @@ This is the canonical dictionary of every attribute on a **keyword** object. Att
 *String.* The [OpenAlex ID](/data/#the-openalex-id-scheme) for this keyword. Unlike most entities, a keyword's ID is a readable slug rather than a letter-and-number code, e.g. `https://openalex.org/keywords/machine-learning`. See [Common attributes](/data/common-attributes/#id).
 
 ### `display_name`
-*String.* The keyword's human-readable label, e.g. `Machine learning`. See [Common attributes](/data/common-attributes/#display_name).
+*String.* The keyword's human-readable label, e.g. `machine learning`. See [Common attributes](/data/common-attributes/#display_name).
 
 ### `works_count`
 *Integer.* The number of works tagged with this keyword. See [Common attributes](/data/common-attributes/#works_count).
@@ -44,7 +61,7 @@ This is the canonical dictionary of every attribute on a **keyword** object. Att
 *Integer.* The total citations received by all works tagged with this keyword. See [Common attributes](/data/common-attributes/#cited_by_count).
 
 ### `works_api_url`
-*String.* A ready-made [Works API](/data/works/#in-the-api) URL returning every work tagged with this keyword, e.g. `https://api.openalex.org/works?filter=keywords.id:keywords/machine-learning`. A convenience link — it's the same query you'd build with the [`keywords.id`](/data/works/attributes/#keywords) filter.
+*String.* A ready-made [Works API](/data/works/#in-the-api) URL returning every work tagged with this keyword, e.g. `https://api.openalex.org/works?filter=keywords.id:keywords/machine-learning`. A convenience link: it's the same query you'd build with the [`keywords.id`](/data/works/attributes/#keywords) filter.
 
 ### `created_date`
 *String.* The date this keyword was added to OpenAlex (`YYYY-MM-DD`). See [Common attributes](/data/common-attributes/#created_date).
@@ -54,7 +71,7 @@ This is the canonical dictionary of every attribute on a **keyword** object. Att
 
 ## In the API
 
-The Keywords endpoint is at [`api.openalex.org/keywords`](https://api.openalex.org/keywords). Fetch a single keyword by its slug ID — [`/keywords/machine-learning`](https://api.openalex.org/keywords/machine-learning) — or a list, and [filter](/api/filtering/), [search](/api/searching/), [sort](/api/sorting/), [group](/api/grouping/), and [page](/api/paging/) over the fields above.
+The Keywords endpoint is at [`api.openalex.org/keywords`](https://api.openalex.org/keywords). Fetch a single keyword by its slug ID ([`/keywords/machine-learning`](https://api.openalex.org/keywords/machine-learning)) or a list, and [filter](/api/filtering/), [search](/api/searching/), [sort](/api/sorting/), [group](/api/grouping/), and [page](/api/paging/) over the fields above.
 
 To find the works carrying a keyword, filter on the [Works](/data/works/) endpoint:
 
