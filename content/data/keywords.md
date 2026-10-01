@@ -22,7 +22,7 @@ The model is a small open model (Qwen3-4B) trained to copy a frontier model (Cla
 
 Each keyword on a work carries a `score`: the model's confidence in that keyword, from 0 to 1. Keywords are listed best first. On the keyword object itself, [`works_count`](#works_count) and [`cited_by_count`](#cited_by_count) roll those assignments up across the corpus.
 
-On 399 random works, a blind judge preferred these keywords to the previous, topic-derived ones on 390. They match the keywords authors chose for their own papers about twice as often. Benchmarks, code, prompts, the vocabulary and the model weights are all open: [openalex-keywords (v3)](https://github.com/ourresearch/openalex-keywords/tree/main/v3), with the weights in the [v3.0 release](https://github.com/ourresearch/openalex-keywords/releases/tag/v3.0).
+On 400 random works, an independent AI judge (OpenAI's GPT-6 Astra) rated 91% of these keywords accurate, against 44% for the previous, topic-derived ones. They match the keywords authors chose for their own papers about twice as often. Benchmarks, code, prompts, the vocabulary and the model weights are all open: [openalex-keywords (v3)](https://github.com/ourresearch/openalex-keywords/tree/main/v3), with the weights in the [v3.0 release](https://github.com/ourresearch/openalex-keywords/releases/tag/v3.0).
 
 ## The vocabulary changes
 
