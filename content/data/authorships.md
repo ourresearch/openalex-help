@@ -71,4 +71,22 @@ You can still filter works by authorship attributes using **dotted filter keys**
 - `authorships.is_corresponding` — works filtered on corresponding-author status
 - `authorships.affiliations.institution_ids` — works whose raw-string-to-institution mapping includes an institution
 
+### Filtering by author position
+
+Six filters pair a position with the author, institution or country on that same authorship, so you can ask for works where a given person is the **last author** (the usual "what does this lab publish" question) or where the **first author** is at a given institution:
+
+- `first_author_ids` / `last_author_ids`: works whose first (or last) author is a given [author](/data/authors/)
+- `first_author_institution_ids` / `last_author_institution_ids`: works whose first (or last) author lists a given [institution](/data/institutions/)
+- `first_author_countries` / `last_author_countries`: works whose first (or last) author has an affiliation in a given [country](/data/countries/)
+
+For example, [`/works?filter=last_author_ids:A5023888391`](https://api.openalex.org/works?filter=last_author_ids:A5023888391) lists works where that author is last, and `filter=first_author_institution_ids:I136199984` lists works first-authored at that institution. They combine like any filter, accept `|` for OR and `!` for NOT, and work with `group_by` (for example `group_by=last_author_institution_ids`). In OQL they read `last author is`, `first author institution is`, `first author country is`, and so on.
+
+Pairing matters: `authorships.author.id:A123,authorships.institutions.id:I456` finds works where A123 is *an* author and *someone* is at I456, not necessarily the same person. These filters keep the pair together.
+
+Three things to know about position:
+
+- **It follows the byline, using [`author_position`](#author_position).** A sole author is the first author only, so single-author works don't appear under `last_author_ids`. To count them too, use OQL: `works where last author is A123 or (first author is A123 and authors count is 1)`.
+- **It uses every author, not just the first 100.** The last author of a 3,000-author paper is the real last author, even though the [`authorships`](/data/works/attributes/#authorships) list on the work stops at 100.
+- **Byline order isn't credit.** Equal-contribution first authors, and fields that list authors alphabetically (much of mathematics, economics and high-energy physics), make "first" and "last" weaker signals there. OpenAlex reports the printed order and doesn't try to correct for this.
+
 See [Filtering](/api/filtering/) for the full syntax and the [Works reference](/data/works/) for the complete list of authorship filter keys.
