@@ -1,6 +1,6 @@
 ---
 title: "Overview"
-updated: 2026-08-12
+updated: 2026-09-30
 description: "A short, conversational tour of the OpenAlex REST API — how it's shaped, how to start, and where to go next."
 tags: ["api"]
 source_id: "api-reference/introduction"
@@ -21,7 +21,7 @@ A few things that surprise people early:
 - **Nested entities come back [dehydrated](/data/#dehydrated-vs-full-objects)** — a trimmed stub with just an ID and a display name. Fetch the full record separately when you need the rest.
 - **By default you're querying the curated [core corpus](/data/works/corpus/)** of 300M+ works. A much larger [expansion](/data/works/corpus/) (mostly datasets and repository records, formerly called "XPAC") is opt-in via the `corpus` parameter, so don't be startled when `corpus=all` adds roughly 60% more works to your counts.
 - **Everything is `snake_case`**, and all data is [CC0](https://creativecommons.org/publicdomain/zero/1.0/) — no license worries, ever.
-- **Pointing an AI agent at the API?** Hand it the [LLM Quick Reference](/api/llm-quick-reference/); there's a machine-readable [OpenAPI spec](/openapi.json) too.
+- **Pointing an AI agent at the API?** Hand it the [LLM Quick Reference](/api/llm-quick-reference/); there's a machine-readable [OpenAPI spec](/openapi.json) too. If the agent is Claude, the free [connector](/access/connector/) skips the API altogether.
 
 For the complete endpoint list see the [Endpoints index](/api/endpoints/); for expressive, saveable queries, see [OQL](/api/oql/).
 

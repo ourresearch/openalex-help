@@ -22,7 +22,7 @@ const report = CHAT_ROWS.find((r) => r.title === 'Report Bug')!;
       </p>
     </section>
 
-    {/* Four orientation paragraphs (Search / Learn / Reference / Chat), Jason's
+    {/* Orientation paragraphs (Search / Learn / Ask Claude / Reference / Chat), Jason's
         copy (Pass AP — the hero search box became the Search paragraph; the
         top-bar pill now shows here like everywhere else). The bold lead words
         are the scan anchors, mirroring the drawer's sections. */}
@@ -35,6 +35,15 @@ const report = CHAT_ROWS.find((r) => r.title === 'Report Bug')!;
         <strong>Learn.</strong> Just starting? Work through the five-minute <a href="/quickstart/">Quickstart</a>,
         browse the <a href="/how-to/">How-to guides</a> for simple answers, or follow
         the <a href="/tutorials/">Tutorials</a> for longer, step-by-step recipes.
+      </p>
+      {/* The Claude connector paragraph (Jason 2026-09-30, oxjob #1279): in Claude
+          the connector is the preferred way to use OpenAlex, so the front door says
+          so once, with "free" and "you don't need it" both explicit. */}
+      <p>
+        <strong>Ask Claude.</strong> Most of what you'd do with OpenAlex, Claude can do
+        for you. Add the free <a href="/how-to/ai-assistants/">OpenAlex connector</a> and
+        ask in plain language. You don't need it, but it makes most things easier. A
+        ChatGPT version is coming soon.
       </p>
       <p>
         <strong>Reference.</strong> Dig into the details: <a href="/access/">Access</a> covers

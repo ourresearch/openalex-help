@@ -1,8 +1,8 @@
 ---
 title: "Quickstart"
-updated: 2026-09-21
-subtitle: "Get real data out of OpenAlex in five minutes — on the website, through the API, or by asking your agent."
-description: "Get real data out of OpenAlex in five minutes — on the website, through the API, or by asking your agent."
+updated: 2026-09-30
+subtitle: "Get real data out of OpenAlex in five minutes — on the website, through the API, or by asking Claude or another AI agent."
+description: "Get real data out of OpenAlex in five minutes — on the website, through the API, or by asking Claude or another AI agent."
 ---
 Let's get real data out of OpenAlex in about five minutes. We'll answer the same question three ways, moving up the power curve each time: on the website, through the API, and by handing the whole job to an AI agent.
 
@@ -40,13 +40,21 @@ curl "https://api.openalex.org/works?search=microplastics&api_key=YOUR_API_KEY"
 
 From here, see the [API reference](/api/), [Authentication](/api/authentication/), and the [Querying](/api/filtering/) reference.
 
-## 3. Or just ask your agent
+## 3. Or just ask Claude
 
-Here's the thing about steps 1 and 2: we didn't really need to learn the API — or use the website — at all. We could have just asked an AI agent (Claude, ChatGPT, Cursor, or whatever you use) and let *it* do the whole job:
+Here's the thing about steps 1 and 2: we didn't really need to learn the API, or even use the website. An AI assistant can do the whole job for us.
+
+**If you use Claude, add the free [OpenAlex connector](/how-to/ai-assistants/)**: it takes about two minutes, from Claude's connector directory. Then just ask:
+
+> Find the 25 most-cited papers about microplastics published since 2024, with title, year, journal, citations and DOI.
+
+Claude runs the search in OpenAlex, shows you the papers, and gives you the exact query it used, so you can rerun it on the website or cite it. You never *need* the connector, but most of what you'd do with OpenAlex is easier this way. A ChatGPT version is coming soon.
+
+**Any other agent** (ChatGPT, Gemini, Cursor, or whatever you use) can do the same job through the API:
 
 > Using the OpenAlex API, find the 25 most-cited papers about microplastics published since 2024 and save them as a CSV with title, year, citations, and DOI.
 
-That's it. Agents already know OpenAlex, and anything they're unsure of they can find right here at [help.openalex.org](https://help.openalex.org) — the site is optimized for AI use. If you use Claude, the [OpenAlex connector](/how-to/ai-assistants/) is the zero-setup version of this: add it once, sign in, and skip the API key.
+Agents already know OpenAlex, and anything they're unsure of they can find right here at [help.openalex.org](https://help.openalex.org): the site is optimized for AI use.
 
 **Give your agent your API key.** Agents make a lot of requests, so the keyless budget runs out fast; at any reasonable scale your agent should use your free key. Just paste it into the chat and your agent will take it from there. (If a key ever leaks, no big deal: rotate it in **Settings → API key**, which invalidates the old one instantly.)
 

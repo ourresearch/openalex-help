@@ -1,6 +1,6 @@
 ---
 title: "Overview"
-updated: 2026-09-21
+updated: 2026-09-30
 description: "The several ways to ask OpenAlex a question — web interface, REST URLs, OQL, CLI, and agents — and how they all transpile to the same query object under the hood."
 tags: ["reference"]
 ---
@@ -17,6 +17,7 @@ Here's the key idea that ties them together: **every one of these surfaces trans
 | [**URL**](/access/url/): traditional REST API parameters | Programmatic access; scripts; sharing a query as a link | Fast and well-documented; classic URL syntax can't express deep nesting or cross-field OR |
 | [**OQL**](/access/oql/): the OpenAlex Query Language | Modeling complex queries — and sharing them in a form people can actually read | Most expressive by hand; a new syntax to learn |
 | [**CLI**](/access/cli/): query from your terminal | Terminal workflows; automation; feeding your own tools | Scriptable and composable; requires the command line |
+| [**AI agent connector**](/how-to/ai-assistants/): add OpenAlex to Claude and ask in plain language | Most everyday questions, if you use Claude; free to add, ChatGPT version coming soon | No syntax to learn; Claude shows the OQL it ran, so you can check or rerun it |
 | [**Agents**](/access/agents/): tell your AI agent to use OpenAlex | Letting an agent do the whole job for you | No syntax to learn; best to verify consequential results yourself |
 
 ## Where to go next
@@ -25,6 +26,7 @@ Here's the key idea that ties them together: **every one of these surfaces trans
 - **[REST URLs](/access/url/)** — query by URL against `api.openalex.org`. The [API](/api/) tab documents the wire mechanics in full.
 - **[OQL](/access/oql/)** — the OpenAlex Query Language, a readable way to express queries the classic URL syntax can't.
 - **[CLI](/access/cli/)** — query from your terminal.
+- **[AI agent connector](/how-to/ai-assistants/)**: in Claude, the easiest way. Add it free and ask in plain language.
 - **[Agents](/access/agents/)** — hand the whole job to an AI agent.
 
 For the underlying HTTP mechanics — endpoints, parameters, paging, and rate limits — see the [API](/api/) tab.

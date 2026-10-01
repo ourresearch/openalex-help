@@ -1,6 +1,6 @@
 ---
 title: "Fix Your Profile with Claude"
-updated: 2026-09-21
+updated: 2026-09-30
 subtitle: "Claim your author profile and clean it up in conversation — no API key, no spreadsheet."
 description: "Walk through fixing your OpenAlex author profile with the AI agent connector: claim it, find the works it's missing, remove the ones that aren't yours, and fix your name and ORCID."
 tags: ["recipes"]
@@ -12,7 +12,7 @@ If you'd rather do it by hand, the same corrections are available on the website
 
 ## Before you start
 
-Add the connector once (one address, then sign in with your OpenAlex account): the steps with screenshots are in [Using OpenAlex with an AI assistant](/how-to/ai-assistants/#add-openalex-to-claude). Have your ORCID handy if you have one, and a CV or publication list if you want the fastest path — the assistant can read an attached file.
+Add the connector once (it's free: find OpenAlex in Claude's connector directory, then sign in with your OpenAlex account): the steps with screenshots are in [Using OpenAlex with an AI assistant](/how-to/ai-assistants/#add-openalex-to-claude). Have your ORCID handy if you have one, and a CV or publication list if you want the fastest path — the assistant can read an attached file.
 
 ## Step 1: Say what you want
 

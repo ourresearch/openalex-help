@@ -1,21 +1,19 @@
 ---
 title: "AI agent connector"
 updated: 2026-09-30
-description: "Connect Claude (and soon ChatGPT) to OpenAlex: ask about the literature in plain language, get the exact query behind every answer, and fix your own author profile in conversation."
-synonyms: ["MCP", "MCP server", "Model Context Protocol", "Claude connector", "Claude", "ChatGPT", "custom connector"]
+description: "The free OpenAlex connector for Claude (ChatGPT coming soon): ask about the literature in plain language, get the exact query behind every answer, and fix your own author profile in conversation."
+synonyms: ["MCP", "MCP server", "Model Context Protocol", "Claude connector", "OpenAlex connector", "connectors directory", "Claude", "ChatGPT", "custom connector"]
 tags: ["reference"]
 ---
-The AI agent connector plugs OpenAlex into your AI assistant. Add it once, sign in with your OpenAlex account, and ask about the literature in plain language: the assistant picks the right OpenAlex calls, and you get answers with titles, authors, venues, citation counts and links, plus the exact query it ran. It works in Claude today (web, desktop, mobile, and Claude Code). A ChatGPT connector is coming.
+The AI agent connector plugs OpenAlex into your AI assistant. Add it once, sign in with your OpenAlex account, and ask about the literature in plain language: the assistant picks the right OpenAlex calls, and you get answers with titles, authors, venues, citation counts and links, plus the exact query it ran. It's free, and it works in Claude today (web, desktop, mobile, and Claude Code), where it's listed in Claude's connector directory as **OpenAlex**. A ChatGPT version is coming soon.
 
-```
-https://mcp.openalex.org/mcp
-```
+In Claude, the connector is the easiest way to use OpenAlex. Most of what you'd do on the website or through the API, you can ask Claude to do instead. You never need it, since the website and the API work without it, but it saves most people a lot of clicking and query-writing.
 
 You sign in with your OpenAlex account the first time you connect (a free account takes a minute). Every query runs on your own API key and [daily budget](/access/example-costs/), so your usage shows on your [dashboard](https://openalex.org/settings/usage). If you own an OpenAlex organization, the connector uses the organization's key for queries instead; the sign-in screen says which. The only thing the server can change is your own author profile, and only when you ask it to (see [Fixing your author profile](#fixing-your-author-profile) below).
 
 ## Connecting
 
-Step-by-step instructions with screenshots, for Claude and ChatGPT, are in [Using OpenAlex with an AI assistant](/how-to/ai-assistants/). The short version for Claude: **Customize → Connectors → Add → Add custom connector**, paste the address above, sign in at openalex.org, then set **Read-only tools** to *Always allow* on the connector's page so it stops asking before every search. Team and Enterprise plans need an organization owner to add it.
+Step-by-step instructions with screenshots are in [Using OpenAlex with an AI assistant](/how-to/ai-assistants/). The short version for Claude, on every plan including Free: **Customize → Connectors → Discover**, search for **OpenAlex**, click **Connect to Claude**, and sign in at openalex.org (or open [claude.ai/directory/openalex](https://claude.ai/directory/openalex) directly). Then set **Read-only tools** to *Always allow* on the connector's page so it stops asking before every search. On Team and Enterprise plans an organization owner adds it for everyone.
 
 **Claude Code.**
 
@@ -23,9 +21,15 @@ Step-by-step instructions with screenshots, for Claude and ChatGPT, are in [Usin
 claude mcp add --transport http openalex https://mcp.openalex.org/mcp
 ```
 
-**ChatGPT.** Not listed yet (we've applied). Developer mode on paid plans can connect to the address above; see the [how-to](/how-to/ai-assistants/#chatgpt). Until then ChatGPT can use OpenAlex through the API; see [Other agents](/access/agents/).
+**ChatGPT.** A ChatGPT version is coming soon. Until then ChatGPT can use OpenAlex through the API with your key; see the [how-to](/how-to/ai-assistants/#chatgpt).
 
-**Other clients.** Technically the connector is an MCP server ([Model Context Protocol](https://modelcontextprotocol.io)), so any client that speaks MCP over Streamable HTTP with OAuth can use it: point it at the address above. It follows the current MCP specification and needs no session state.
+**Other clients.** Technically the connector is an MCP server ([Model Context Protocol](https://modelcontextprotocol.io)), so any client that speaks MCP over Streamable HTTP with OAuth can use it. Point it at this address:
+
+```
+https://mcp.openalex.org/mcp
+```
+
+It follows the current MCP specification and needs no session state.
 
 ## What you can ask
 
@@ -86,7 +90,7 @@ Adding the server prompts you to sign in at openalex.org and approve the connect
 - **A note says your budget is used up.** Single-record lookups keep working; everything else resumes at midnight UTC, or immediately after you [add prepaid usage or a plan](https://openalex.org/pricing).
 - **You expected a different key to be charged.** If you own an OpenAlex organization the connector spends the organization's budget, otherwise your personal one; there is no chooser. Ask the assistant *"which OpenAlex account am I connected as?"* to see which.
 - **Claude asks permission for every search.** That is Claude's default for every connector, not something OpenAlex controls. Under **Customize → Connectors → OpenAlex**, set **Read-only tools** to allow once; or click *Always allow* when prompted.
-- **Claude won't let you add a connector.** On Team and Enterprise plans ask an organization owner to add it. On the Free plan you may already have your one custom connector.
+- **Claude won't let you add a connector.** On Team and Enterprise plans an organization owner adds connectors; click **Request** on the OpenAlex listing to ask. On the Free plan, add it from the directory rather than by address: Free allows only one connector added by address.
 - **An answer looks wrong.** Ask for the query it ran and check it on [openalex.org](https://openalex.org); every answer carries the OQL.
 
 ## Privacy
