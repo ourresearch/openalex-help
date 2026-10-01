@@ -40,9 +40,7 @@ We check every link automatically and answer in a few minutes. If we can't appro
 2. In the ORCID row, click **Link ORCID**.
 3. Sign in to ORCID. You come back to Settings, where the row shows your iD and **✓ Linked**.
 
-If an OpenAlex profile carries your iD, we claim it for you and fix it: we find your papers across OpenAlex, move them onto your profile, and remove papers that aren't yours. Papers you added or removed yourself stay as you left them. We email you what changed, with a one-click undo, and the changes show within about two days.
-
-We don't copy your ORCID record wholesale: records often list papers by other people with the same name, so we check each paper instead.
+If an OpenAlex profile carries your iD, we claim it for you. Linking doesn't import works from your ORCID record: [add and remove works](#how-do-i-add-or-remove-works) yourself, as with any claimed profile.
 
 To unlink, use the **⋮** menu next to **✓ Linked**. Your claimed profile stays yours.
 
