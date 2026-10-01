@@ -39,11 +39,12 @@ It follows the current MCP specification and needs no session state.
 - *Check whether these references are real and give me DOIs: [paste a bibliography].*
 - *Which open-access journals in ecology charge no APC and have an h-index above 50?*
 - *Who cites this paper: 10.1038/s41586-021-03819-2? Summarize the follow-up work.*
+- *Do a really thorough search for research on how microplastics affect human health, open access only. How many are there, what are the most cited, and what's the query?*
 - *Build a systematic search for studies of vaping among adolescents since 2018, show me the count and a sample, and give me the OQL.*
 
 ## Tools
 
-The agent chooses among fourteen tools: nine that read OpenAlex, and five that manage your own author profile once you ask for that. You don't call them yourself, but knowing they exist helps you ask well.
+The agent chooses among sixteen tools: eleven that read OpenAlex, and five that manage your own author profile once you ask for that. You don't call them yourself, but knowing they exist helps you ask well.
 
 | Tool | What it does |
 |------|--------------|
@@ -55,6 +56,8 @@ The agent chooses among fourteen tools: nine that read OpenAlex, and five that m
 | `get_entity` | Full profile for an author, institution, source, topic, funder or publisher. Free. |
 | `group_works` | Count works by author, institution, institution type, country, source, publisher, funder, year, type, topic, subfield, field, domain, keyword, OA status, top-10%/top-1% cited, language or SDG. |
 | `analyze_works` | One-call profile of any set of works (an institution's output, a funder's portfolio, a topic): totals, open-access share, top-cited share, trend by year, top fields, topics, institutions, countries, sources, funders and authors, and international and industry collaboration shares. |
+| `find_keywords` | The OpenAlex [keywords](/how-to/finding-papers-with-keywords/) for a topic, from your description and its key phrases, with how many works carry each and their most-cited titles, so the agent can keep the ones that mean your topic. |
+| `keyword_search` | A thorough search: each part of your topic matches on title/abstract words **or** its keywords, and every part must match. Returns the query and counts for each piece (what the words alone find, what the keywords add, each part on its own) plus random samples to check that the results are on topic. Takes the same open-access, year, type and language filters. |
 | `read_docs` | The canonical OpenAlex documentation pages the server bundles (OQL, the API quick reference, fixing author profiles, the curation API), so the agent can look up syntax instead of guessing. |
 | `get_my_account` | Who is connected: your emails, which key the connection spends, the author profile you have claimed and its status, and whether a claim from your account would be approved instantly or reviewed. |
 | `claim_author_profile` | Claim your author profile so it can be curated. Instant with a verified academic, institutional or government email; otherwise the agent collects evidence and the claim queues for review. |
@@ -64,7 +67,7 @@ The agent chooses among fourteen tools: nine that read OpenAlex, and five that m
 
 `search_works` and `resolve_references` also take your author ID, so the agent can audit your profile work by work and reconcile a CV against it.
 
-Every search comes back with the exact query that ran, written in [OQL](/access/oql/), plus a link that reruns it. Ask Claude for "the query you used" and you can paste it into the OQL tab on openalex.org, put it in a methods section, or refine it by hand. For a systematic search, ask Claude to build the query, preview the count and a sample, and tighten it before running.
+Every search comes back with the exact query that ran, written in [OQL](/access/oql/), plus a link that reruns it. Ask Claude for "the query you used" and you can paste it into the OQL tab on openalex.org, put it in a methods section, or refine it by hand. For a systematic search, ask Claude to build the query, preview the count and a sample, and tighten it before running. Ask for a *thorough* search and Claude also uses OpenAlex's keywords: they find papers that use other wording, are written in other languages, or have no abstract, and Claude tells you how many the keywords added and shows you a sample of them.
 
 Retracted works are left out by default, everywhere, including queries you write in OQL; ask for them explicitly ("include retracted works") when you want them, and a lookup of a retracted paper says so plainly. Keyword searches match titles and abstracts by default, which keeps citation-ranked results on topic. Ask for "full text" if you want the broader match. Semantic search works best with a sentence or two describing what you're after.
 

@@ -6,7 +6,7 @@ tags: ["search"]
 synonyms: ["Claude", "Claude connector", "OpenAlex connector", "connectors directory", "ChatGPT", "MCP", "MCP server", "connector", "custom connector", "AI agent", "AI assistant", "chatbot", "LLM"]
 card: "In Claude, add the free OpenAlex connector and just ask. Any other assistant works with your API key."
 ---
-Most of what people do with OpenAlex, an AI assistant can do for you: find the most-cited papers on a topic, check a bibliography, profile an institution's output, build a systematic search, clean up your own author profile. You ask in plain language. The assistant works out what to look up, runs the searches, and shows you the results with links and the exact query it used. You don't need to learn our query language or the API.
+Most of what people do with OpenAlex, an AI assistant can do for you: find the most-cited papers on a topic, run a really thorough search, check a bibliography, profile an institution's output, clean up your own author profile. You ask in plain language. The assistant works out what to look up, runs the searches, and shows you the results with links and the exact query it used. You don't need to learn our query language or the API.
 
 **In Claude, the easiest way is the OpenAlex connector.** It's free, it's listed in Claude's connector directory, and adding it takes about two minutes. You don't *need* it: any assistant, Claude included, can use OpenAlex with your API key ([below](#without-the-connector-paste-your-api-key)). But the connector makes everything easier. You sign in once instead of pasting a key, Claude gets purpose-built OpenAlex tools instead of working from the raw API, every answer comes back with the exact query it ran, and Claude can [fix your own author profile](/tutorials/fix-your-profile/) in conversation.
 
@@ -41,9 +41,11 @@ A few things to know:
 
 The connector is at its best on questions that would take real work to turn into a search by hand. Try this one:
 
-> Build me a systematic search in OpenAlex for original research since 2018 on vaping or e-cigarette use among adolescents and young adults, leaving out reviews, editorials and retracted papers. Show me how many papers match, a few examples, and the exact query so I can rerun it later.
+> Do a really thorough search for research on how microplastics affect human health. Open access papers only. How many are there, what are the most cited ones, and give me the query so I can rerun it.
 
-Claude turns that into a query in [OQL](/access/oql/), OpenAlex's query language, previews the count and a sample, tightens it, and hands you the finished query. That query is yours: paste it into the OQL tab at [openalex.org](https://openalex.org) to see and export the full results, put it in a methods section, or refine it by hand.
+Claude splits your topic into its parts (here, microplastics and human health) and writes the phrases and synonyms a careful searcher would use for each. Then it looks up the OpenAlex [keywords](/how-to/finding-papers-with-keywords/) that mean each part. A paper counts if it matches every part, either through words in its title or abstract or through the keyword. Claude tells you how many papers the words alone found and how many more the keywords added. Those extras are often papers in other languages, papers that word things differently, and papers with no abstract at all. It also shows you a random sample so you can judge whether they're on topic, and applies your filter (open access only).
+
+Then it hands you the finished query in [OQL](/access/oql/), OpenAlex's query language. That query is yours: paste it into the OQL tab at [openalex.org](https://openalex.org) to see and export the full results, put it in a methods section, or refine it by hand.
 
 ![Claude's answer: a count, sample papers, and the OQL query it built](/images/ai-assistants/claude-answer.png)
 
