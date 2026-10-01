@@ -29,7 +29,13 @@ If your topic has several parts, require a keyword for each part. "How remote wo
 
 ## Let your AI agent do it
 
-This is a good job for an AI agent such as Claude Code or Codex. Paste in this prompt, with your own topic and a [free API key](/api/authentication/):
+**In Claude, just ask.** Add the free [OpenAlex connector](/how-to/ai-assistants/) and ask for a thorough search in one sentence:
+
+> *Do a thorough search for open-access papers on how remote work affects employee wellbeing.*
+
+The connector picks the keywords, combines them with a title and abstract search, tells you how many works each part found, and gives you the query it ran.
+
+**In other agents** (ChatGPT, Codex, or Claude Code without the connector), paste in this prompt, with your own topic and a [free API key](/api/authentication/):
 
 ```
 Use the OpenAlex API to find research on the topic below. Read the docs first: https://help.openalex.org/llms.txt. Send my description to the /text/keywords endpoint to see which OpenAlex keywords fit it. Look each one up and keep only those that match my topic; if a keyword covers just one part of it, require a keyword for every part. Then search works that have those keywords, or my main phrase in the title or abstract. Save a CSV (OpenAlex ID, DOI, title, year, cited-by count) of up to the 2,000 most-cited works, and show me the exact query you ran and how many works each part found.
