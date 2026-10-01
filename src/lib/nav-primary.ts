@@ -41,13 +41,14 @@ export const PRIMARY_TABS: PrimaryTab[] = [
     // Jason 2026-09-30 (oxjob #1279): in Claude the connector is the preferred way
     // to use OpenAlex, so its install page gets a rail slot on every page. Not a
     // tab (no collection, no landing); isPrimaryActive() lets this longer href win
-    // over How-to on its own page. Relabel "AI" when the ChatGPT connector ships.
-    label: 'Claude',
+    // over How-to on its own page. Labeled "AI", not "Claude" (Jason, same day):
+    // the page covers every assistant, and ChatGPT is next.
+    label: 'AI',
     href: '/how-to/ai-assistants/',
     icon: 'creation',
     group: 'top',
     desc: 'Add the free OpenAlex connector to Claude and ask in plain language.',
-    tip: 'Use OpenAlex in Claude',
+    tip: 'Use OpenAlex in Claude and other AI assistants',
   },
   {
     label: 'How-to',

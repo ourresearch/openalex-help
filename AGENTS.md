@@ -74,7 +74,7 @@ present only inside a tab.
 Rules that matter when touching header/nav:
 
 - **Rail destinations** come from `PRIMARY_TABS` in `nav-primary.ts` (Home ·
-  Start · Claude · How-to · Tutorials · Access · Data · API; "Claude" is the connector
+  Start · AI · How-to · Tutorials · Access · Data · API; "AI" is the connector
   install page `/how-to/ai-assistants/`, not a tab, added 2026-09-30, #1279) + `APP_LINK` pinned at the
   bottom; hairline dividers separate the three groups. **Labels must be ONE
   short word-ish** (they sit under the icon in a 5rem rail): "Start", "App".
