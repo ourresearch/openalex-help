@@ -1,6 +1,6 @@
 ---
 title: "Tag Aboutness"
-updated: 2026-10-01
+updated: 2026-09-30
 description: "Tag your own text with OpenAlex topics and keywords"
 tags: ["api"]
 source_id: "guides/aboutness"

@@ -1,6 +1,6 @@
 ---
 title: "Finding papers with keywords"
-updated: 2026-10-01
+updated: 2026-09-30
 description: "Find the papers a text search misses: pick the right keywords with the /text endpoint or your AI agent, then combine them with a title and abstract search."
 tags: ["search"]
 synonyms: ["keyword search", "keywords", "subject search", "controlled vocabulary", "recall", "find more papers", "synonyms", "literature search", "search strategy", "missing papers"]

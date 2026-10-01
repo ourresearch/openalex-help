@@ -1,6 +1,6 @@
 ---
 title: "LLM Quick Reference"
-updated: 2026-10-01
+updated: 2026-09-30
 description: "OpenAlex API reference optimized for AI agents"
 tags: ["api"]
 source_id: "guides/llm-quick-reference"

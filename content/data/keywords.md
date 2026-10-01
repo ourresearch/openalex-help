@@ -1,6 +1,6 @@
 ---
 title: "Keywords"
-updated: 2026-10-01
+updated: 2026-09-30
 description: "What a keyword is, how OpenAlex tags works with keywords, how the vocabulary changes, and what every attribute on a keyword object means."
 tags: ["reference"]
 source_id: "24736201130391"

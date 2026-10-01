@@ -1,6 +1,6 @@
 ---
 title: "Overview"
-updated: 2026-10-01
+updated: 2026-09-30
 description: "The subject signals OpenAlex offers — topics, keywords, SDGs, concepts, and text search — and how to choose among them by granularity, familiarity, and fit to your research question."
 tags: ["reference"]
 source_id: "24859286130583"

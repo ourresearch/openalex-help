@@ -1,6 +1,6 @@
 ---
 title: "Attributes"
-updated: 2026-10-01
+updated: 2026-09-30
 description: "The canonical dictionary of every attribute on a work object — what each one means, where it comes from, and its quirks."
 tags: ["reference"]
 ---
