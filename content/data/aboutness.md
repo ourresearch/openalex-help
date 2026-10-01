@@ -19,11 +19,12 @@ Two properties help you choose. **Granularity** (the number of groups) sets how 
 | [Subfields](/data/subfields/) | 252 | High | Medium |
 | [Topics](/data/topics/) | 4,516 | Low | Medium-high |
 | [Keywords](/data/keywords/) | ~1.9 million | Medium | High |
+| [MeSH](/data/works/attributes/#mesh) (PubMed works only) | ~30,000 | High in biomedicine | High |
 | [Concepts](/data/concepts/) (deprecated) | ~65,000 | High | Variable |
 | [Text search](/api/searching/) | ∞ | Low | High |
 | [Semantic search](/api/semantic-search/) | ∞ | Low | High |
 
-A rough guide: the **topics hierarchy** ([domains](/data/domains/) → [fields](/data/fields/) → [subfields](/data/subfields/) → [topics](/data/topics/)) is the supported general-purpose system — pick the level whose granularity matches your question. **Keywords** fit narrower, more specific slices, and find works whatever words their authors used. **SDGs** map research onto the UN Sustainable Development Goals and little else. **Concepts** are deprecated — kept for continuity with Microsoft Academic Graph, no longer maintained; see [Concepts](/data/concepts/). **Text search** fits custom areas no scheme covers, at the cost of comparability.
+A rough guide: the **topics hierarchy** ([domains](/data/domains/) → [fields](/data/fields/) → [subfields](/data/subfields/) → [topics](/data/topics/)) is the supported general-purpose system — pick the level whose granularity matches your question. **Keywords** fit narrower, more specific slices, and find works whatever words their authors used. **SDGs** map research onto the UN Sustainable Development Goals and little else. **MeSH** is the National Library of Medicine's controlled vocabulary, assigned by PubMed's indexers to about 34 million biomedical works and copied here as-is; it is what librarians expect in a systematic-review search, and every other work has none. **Concepts** are deprecated — kept for continuity with Microsoft Academic Graph, no longer maintained; see [Concepts](/data/concepts/). **Text search** fits custom areas no scheme covers, at the cost of comparability.
 
 Not a subject signal, but close by: [**study designs**](/data/study-designs/) say how the research inside a work was done (randomized controlled trial, observational study, systematic review and four more), not what it is about. They combine well with any of the signals above, e.g. every randomized controlled trial in the topic Cancer Immunotherapy and Biomarkers: `filter=topics.id:T10158,study_designs.id:randomized-controlled-trial`.
 
