@@ -28,7 +28,7 @@ On 400 random works, an independent AI judge (OpenAI's GPT-6 Astra) rated 91% of
 
 The keyword list is not fixed. New fields emerge, and keywords are added for them. Keywords get merged when they turn out to mean the same thing, and split when one label covers two meanings. If a keyword is wrong, or two keywords should be one, [tell us](https://openalex.org/help). Store keyword IDs with the date you fetched them, and expect some to change.
 
-Next, we'll look at joining keywords to outside vocabularies like Wikidata and MeSH, a one-sentence description of each keyword, vector search over keywords, and assigning each keyword to one or more [topics](/data/topics/).
+Each keyword has a one-sentence [`description`](#description) and, where one exists, a link to its [Wikidata](https://www.wikidata.org/) item in [`ids`](#ids). Next, we'll look at joining keywords to other outside vocabularies like MeSH, vector search over keywords, and assigning each keyword to one or more [topics](/data/topics/).
 
 ## Good uses
 
@@ -53,6 +53,12 @@ This is the canonical dictionary of every attribute on a **keyword** object. Att
 
 ### `display_name`
 *String.* The keyword's human-readable label, e.g. `machine learning`. See [Common attributes](/data/common-attributes/#display_name).
+
+### `description`
+*String.* One sentence saying what the keyword means, written by an AI model from the keyword and works that carry it. Machine-made: it can be wrong, and it improves as the vocabulary changes.
+
+### `ids`
+*Object.* External identifiers for this keyword, as URIs. Keyword-specific keys: `openalex` and, when a confident match exists, `wikidata` (about a fifth of keywords, which cover most keyword uses). Matches are machine-made. See [Common attributes](/data/common-attributes/#ids).
 
 ### `works_count`
 *Integer.* The number of works tagged with this keyword. See [Common attributes](/data/common-attributes/#works_count).
