@@ -56,8 +56,8 @@ The agent chooses among fourteen tools: nine that read OpenAlex, and five that m
 | `group_works` | Count works by author, institution, institution type, country, source, publisher, funder, year, type, topic, subfield, field, domain, keyword, OA status, top-10%/top-1% cited, language or SDG. |
 | `analyze_works` | One-call profile of any set of works (an institution's output, a funder's portfolio, a topic): totals, open-access share, top-cited share, trend by year, top fields, topics, institutions, countries, sources, funders and authors, and international and industry collaboration shares. |
 | `read_docs` | The canonical OpenAlex documentation pages the server bundles (OQL, the API quick reference, fixing author profiles, the curation API), so the agent can look up syntax instead of guessing. |
-| `get_my_account` | Who is connected: your emails, which key the connection spends, the author profile you have claimed and its status, and whether a claim from your account would be approved instantly or reviewed. |
-| `claim_author_profile` | Claim your author profile so it can be curated. Instant with a verified academic, institutional or government email; otherwise the agent collects evidence and the claim queues for review. |
+| `get_my_account` | Who is connected: your emails, which key the connection spends, the author profile you have claimed and its status, and whether a claim from your account would be approved instantly or needs a link. |
+| `claim_author_profile` | Claim your author profile so it can be curated. Instant with a verified academic, institutional or government email on your account; otherwise the agent asks for a link to a page that shows your account email, which is checked automatically within minutes. |
 | `find_candidate_works` | Works that are probably yours but missing from your profile: bylines matching your name and its variants, works carrying your ORCID (in OpenAlex and on your public ORCID record), and same-name profiles that may be duplicates of you. |
 | `submit_curations` | Add or remove works, set your display name, match name or ORCID, or cancel a pending correction. Every change is a recorded, reversible curation. |
 | `list_my_curations` | The status of everything submitted: pending, applied, superseded (a newer correction to the same item superseded it), or timed out. |
@@ -70,7 +70,7 @@ Retracted works are left out by default, everywhere, including queries you write
 
 ## Fixing your author profile
 
-Ask Claude to *make my OpenAlex profile accurate* and attach your CV, a bio sketch, or any list of your publications; give it your ORCID if you have one. It checks whether you have claimed your profile (and claims it for you if your account email qualifies, or asks you for evidence if not), reads the profile work by work, finds works that are yours but missing, proposes removals and additions with the evidence for each, asks you about anything it isn't sure of, and submits the corrections. Corrections are [curations](/data/curations/): recorded, reversible, and live within about two days. The same self-serve rules as the website apply; see [Fixing errors: Authors](/access/fixing-errors/authors/).
+Ask Claude to *make my OpenAlex profile accurate* and attach your CV, a bio sketch, or any list of your publications; give it your ORCID if you have one. It checks whether you have claimed your profile (and claims it for you if your account email qualifies, or asks you for a link that shows your email if not), reads the profile work by work, finds works that are yours but missing, proposes removals and additions with the evidence for each, asks you about anything it isn't sure of, and submits the corrections. Corrections are [curations](/data/curations/): recorded, reversible, and live within about two days. The same self-serve rules as the website apply; see [Fixing errors: Authors](/access/fixing-errors/authors/).
 
 ## Signing in and budgets
 

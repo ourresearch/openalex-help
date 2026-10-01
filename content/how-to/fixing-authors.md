@@ -1,6 +1,6 @@
 ---
 title: "Fixing authors"
-updated: 2026-09-21
+updated: 2026-09-30
 description: "Claim your OpenAlex author profile and fix it yourself: add and remove works, merge duplicates, and correct your names."
 tags: ["fixing"]
 synonyms: ["author profile", "claim profile", "merge profiles", "alternate names", "wrong works", "ORCID", "claim verification"]
@@ -14,14 +14,25 @@ Your author profile is the big self-serve case in OpenAlex: you don't need to fi
 ## How do I claim my profile?
 
 1. Sign in at [openalex.org](https://openalex.org) (create a free account if you don't have one).
-2. Search for your name and open your author page ([finding your author ID](/how-to/finding-openalex-ids/#how-do-i-find-my-author-id)).
-3. Click **Claim** near the top of the page.
+2. Open your author page ([finding your author ID](/how-to/finding-openalex-ids/#how-do-i-find-my-author-id)).
+3. Click **Claim**.
 
-If your account has a **verified academic or institutional email address** (a university, research institute, or government domain), the claim is approved on the spot: no waiting period, and you can start fixing the profile right away. So sign up with your institutional address rather than a personal one if you can, or add and verify it in your account settings before you claim.
+**With a university email, your claim is approved right away.** This works when your account has a verified email from a university, a research institute or a government agency.
 
-Without one, your claim goes into a review queue, which usually takes a few days. Help it through by giving evidence that you're the scholar behind these works: a link to a page or paper that shows both the name on the profile and your account email (a departmental page, a lab site, a paper's author list). You don't need to prove you wrote any particular work, only that you're who you say you are.
+**Add your university email, even if you use another email.** Your account can have more than one email. Keep your current email, and add your university email in [Settings](https://openalex.org/settings). We send a link to that address. Click it, and your claims are approved right away. This is by far the easiest way.
 
-Either way, claims can be reviewed at any time, and a fraudulent claim is revoked and its edits reverted. The bar is deliberately low, Wikipedia-style: every edit anyone makes to a profile is recorded and can be reverted, so we'd rather make claiming easy and undo the rare bad edit than make everyone wait. Once approved, you own the profile.
+**Or prove it with ORCID.** If the profile shows your ORCID iD, click **Sign in with ORCID** in the claim window. Your claim is approved right away.
+
+**No university email? Send a link that shows your email.** The page must show the email address of your OpenAlex account.
+
+- ✓ Your page on your university's or institute's website
+- ✓ A paper or preprint (for example on arXiv) that lists your email
+- ✗ A page that shows your name but not your email
+- ✗ A page you made yourself: a personal website, LinkedIn, ResearchGate
+
+**Why your email, and not your name?** Anyone can type any name into an OpenAlex account. Your email is the only thing we have checked. So the page must show that exact email.
+
+We check every link automatically and answer in a few minutes. If we can't approve your claim, we tell you what is missing, by email and on the profile page. You can send a new link at any time. Once approved, you own the profile.
 
 ## How do I add or remove works?
 

@@ -24,7 +24,7 @@ Attach your CV or publication list if you have one. The assistant works through 
 
 ## Step 2: It checks who you are, and claims the profile
 
-First it looks up your account and the profile you've claimed. If you haven't claimed one yet, it finds your profile and claims it for you. Whether that is instant depends on your email: a verified academic, institutional or government address is approved on the spot, and anything else queues for review with evidence. That gate is the same as the website's, and it's explained in [Fixing errors: Authors](/access/fixing-errors/authors/).
+First it looks up your account and the profile you've claimed. If you haven't claimed one yet, it finds your profile and claims it for you. It's instant when your account has a verified university, institute or government email (you can add one to your account and keep your current email). Otherwise the assistant asks you for a link to a page that shows your account email, such as your page on your university's website or a paper that lists your email; the link is checked automatically within minutes. The rules are the same as the website's, explained in [Fixing errors: Authors](/access/fixing-errors/authors/).
 
 If the assistant says it can't reach your OpenAlex account, disconnect and reconnect the connector; a connection made before profile curation existed can't see accounts.
 
