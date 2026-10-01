@@ -38,15 +38,13 @@ GET https://api.openalex.org/text?title=type%201%20diabetes%20research%20for%20c
 ```json
 {
   "meta": {
-    "keywords_count": 4,
+    "keywords_count": 3,
     "topics_count": 3
   },
   "keywords": [
-    <!-- TODO before push: regenerate this block from the live endpoint once /text returns confidence scores -->
-    {"id": "https://openalex.org/keywords/type-1-diabetes", "display_name": "type 1 diabetes", "score": 1.0},
-    {"id": "https://openalex.org/keywords/pediatric-diabetes", "display_name": "pediatric diabetes", "score": 0.75},
-    {"id": "https://openalex.org/keywords/diabetes-research", "display_name": "diabetes research", "score": 0.5},
-    {"id": "https://openalex.org/keywords/children", "display_name": "children", "score": 0.25}
+    {"id": "https://openalex.org/keywords/type-1-diabetes", "display_name": "type 1 diabetes", "score": 0.996},
+    {"id": "https://openalex.org/keywords/pediatric-diabetes", "display_name": "pediatric diabetes", "score": 0.848},
+    {"id": "https://openalex.org/keywords/children", "display_name": "children", "score": 0.635}
   ],
   "primary_topic": {
     "id": "https://openalex.org/T10560",
