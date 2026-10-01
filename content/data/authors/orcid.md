@@ -99,16 +99,11 @@ ORCID is a first-class identifier across the API. Lookup and filtering check the
 
 ## Linking your ORCID to your account
 
-Linking proves that you own an ORCID iD: you sign in to ORCID, and ORCID tells OpenAlex your iD. Link it in [Settings](https://openalex.org/settings/profile) with **Link ORCID**, or from the claim window on your author page. Steps: [How do I link my ORCID?](/how-to/fixing-authors/#how-do-i-link-my-orcid)
+Linking proves you own an ORCID iD: you sign in to ORCID, and ORCID tells OpenAlex your iD. Link it in [Settings](https://openalex.org/settings/profile) with **Link ORCID** ([steps](/how-to/fixing-authors/#how-do-i-link-my-orcid)).
 
-A linked iD does one job: it proves which author profile is yours.
+If a profile carries your iD, we claim it for you and fix it: we find your papers across OpenAlex, move them onto your profile, and remove papers that aren't yours. Papers on your ORCID record stay on your profile. We email you what changed, with a one-click undo, and the changes show within about two days. We check each paper rather than copying your ORCID record wholesale, because records often list papers by other people with the same name.
 
-- **Linking claims your profile.** If a profile carries your iD, linking claims it for you, approved within about a minute. If several profiles carry it, the one with the most works is claimed; [merge the others](/how-to/fixing-authors/#how-do-i-merge-duplicate-profiles) into it.
-- **A linked iD approves a claim.** Claim a profile that carries your linked iD, and the claim is approved right away.
-
-**It belongs to your account, not your profile.** Linking doesn't change the `orcid` shown on your author page, and [setting that](#changing-the-orcid-on-your-profile) doesn't link anything. Unlinking keeps your claimed profile yours.
-
-**Linking doesn't copy your ORCID record.** Your ORCID record lists the works you, your institution or a service like Scopus added to it. OpenAlex doesn't copy them onto your profile, because records aren't reliable enough to copy unchecked: many list works by a namesake, many people have two or three records with part of their works on each, and most records leave works out. New works that carry your ORCID still attach to your profile, as above. To add what is missing now, [add works to your profile](/how-to/fixing-authors/#how-do-i-add-or-remove-works) yourself, or [ask Claude to](/how-to/fixing-authors/#can-claude-fix-my-profile-for-me), which also checks your public ORCID record.
+The linked iD belongs to your account. It doesn't change the `orcid` on your profile; that is [set separately](#changing-the-orcid-on-your-profile).
 
 ## Changing the ORCID on your profile
 

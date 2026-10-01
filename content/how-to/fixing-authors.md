@@ -21,7 +21,7 @@ Your author profile is the big self-serve case in OpenAlex: you don't need to fi
 
 **Add your university email, even if you use another email.** Your account can have more than one email. Keep your current email, and add your university email in [Settings](https://openalex.org/settings). We send a link to that address. Click it, and your claims are approved right away. This is by far the easiest way.
 
-**Or link your ORCID.** If the profile shows your ORCID iD, click **Link your ORCID** in the claim window and sign in to ORCID. Your claim is approved right away. If you have already [linked your ORCID](#how-do-i-link-my-orcid), claiming a profile that carries it takes one click.
+**Or link your ORCID.** If the profile shows your ORCID iD, click **Link your ORCID** in the claim window and sign in to ORCID. Your claim is approved right away. Linking your ORCID in Settings does the same, with no claim window ([how](#how-do-i-link-my-orcid)).
 
 **No university email? Send a link that shows your email.** The page must show the email address of your OpenAlex account.
 
@@ -40,13 +40,11 @@ We check every link automatically and answer in a few minutes. If we can't appro
 2. In the ORCID row, click **Link ORCID**.
 3. Sign in to ORCID. You come back to Settings, where the row shows your iD and **✓ Linked**.
 
-If an OpenAlex profile carries your iD, linking claims it for you, and the Author profile row shows it within about a minute. If several profiles carry your iD, linking claims the one with the most works; it doesn't merge them, so [merge the others into it](#how-do-i-merge-duplicate-profiles). To unlink, use the **⋮** menu next to **✓ Linked**; your claimed profile stays yours.
+If an OpenAlex profile carries your iD, we claim it for you and fix it: we find your papers across OpenAlex, move them onto your profile, and remove papers that aren't yours. Papers on your ORCID record stay on your profile. We email you what changed, with a one-click undo, and the changes show within about two days.
 
-Linking is not the same as [setting the ORCID on your profile](#how-do-i-set-or-correct-my-orcid): linking proves who you are, and the profile's ORCID is the iD shown on your author page. More: [ORCID § Linking your ORCID to your account](/data/authors/orcid/#linking-your-orcid-to-your-account).
+We don't copy your ORCID record wholesale: records often list papers by other people with the same name, so we check each paper instead.
 
-## Will linking my ORCID add my works from ORCID?
-
-No, and OpenAlex doesn't sync from ORCID. Linking proves who you are; it doesn't copy the works on your ORCID record, because those records often include works by namesakes, many people have more than one, and most leave works out. Add missing works yourself (below), or ask [Claude](#can-claude-fix-my-profile-for-me), which checks your ORCID record and asks you about any work it isn't sure of. Why: [ORCID § Linking doesn't copy your ORCID record](/data/authors/orcid/#linking-your-orcid-to-your-account).
+To unlink, use the **⋮** menu next to **✓ Linked**. Your claimed profile stays yours.
 
 ## How do I add or remove works?
 
@@ -70,7 +68,7 @@ Because a profile is built from its works. The institutions, topics, alternate n
 
 ## How do I set or correct my ORCID?
 
-This is the ORCID shown on your author page, which is not the one [linked to your account](#how-do-i-link-my-orcid). Claim your profile, then set the ORCID through the [curation API](/api/author-curation/#modify-orcid) with `property: "orcid"`: `replace` to set it, `remove` to detach one that is not yours. There is no button for it on the website yet. The change shows within about two days, and the new primary appears in [`observed_orcids`](/data/authors/#observed_orcids) right away, even before any work carries it.
+This is the ORCID shown on your author page, which is separate from the one [linked to your account](#how-do-i-link-my-orcid). Claim your profile, then set the ORCID through the [curation API](/api/author-curation/#modify-orcid) with `property: "orcid"`: `replace` to set it, `remove` to detach one that is not yours. There is no button for it on the website yet. The change shows within about two days, and the new primary appears in [`observed_orcids`](/data/authors/#observed_orcids) right away, even before any work carries it.
 
 Know what it does before you reach for it. It records the ORCID on your profile and makes it your match key for *future* works. It does not move works already sitting on another profile, pull in missing works, or merge duplicates; those are fixed by [adding and removing works](#how-do-i-add-or-remove-works). Why ORCID works this way, and why a profile often has none: [ORCID](/data/authors/orcid/).
 
