@@ -113,14 +113,19 @@ export const NAV_GROUPS: Record<string, NavGroup[]> = {
       // the How-to landing had no drawer entry, so the nav drawer never showed
       // you were on it (Jason: the drawer should always tell you where you are).
       label: '', // root-level rows — "Get started" dissolved tab-wide (Pass AR)
-      slugs: [{ label: 'Overview', href: '/how-to/' }],
+      slugs: [
+        { label: 'Overview', href: '/how-to/' },
+        // Jason 2026-09-30 (oxjob #1279): the connector install page sits right
+        // under Overview (and has its own rail icon), not inside Searching.
+        'ai-assistants',
+      ],
     },
     // Six activity sections (Jason, Pass AR — his picks: no generic
     // "Using OpenAlex", no one-page sections, no ampersands in names).
     {
       label: 'Searching',
       desc: 'Finding IDs, common search recipes, and result-set questions.',
-      slugs: ['finding-openalex-ids', 'searching', 'counting', 'ai-assistants'],
+      slugs: ['finding-openalex-ids', 'searching', 'counting'],
     },
     {
       label: 'Working with data',
@@ -241,6 +246,8 @@ export const NAV_GROUPS: Record<string, NavGroup[]> = {
         // Pass AC.2: product-picker overview page (skill/cost table).
         // Slug get-the-data → overview (Jason 2026-08-15); redirect kept.
         'overview',
+        // Jason 2026-09-30 (oxjob #1279): the connector leads the products list.
+        'connector',
         {
           label: 'Website',
           children: [
@@ -250,7 +257,6 @@ export const NAV_GROUPS: Record<string, NavGroup[]> = {
         },
         'cli',
         'agents',
-        'connector',
         'snapshot',
         'sync',
         'fulltext',

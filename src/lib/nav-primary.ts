@@ -38,6 +38,18 @@ export const PRIMARY_TABS: PrimaryTab[] = [
     tip: 'Five-minute intro tutorial',
   },
   {
+    // Jason 2026-09-30 (oxjob #1279): in Claude the connector is the preferred way
+    // to use OpenAlex, so its install page gets a rail slot on every page. Not a
+    // tab (no collection, no landing); isPrimaryActive() lets this longer href win
+    // over How-to on its own page. Relabel "AI" when the ChatGPT connector ships.
+    label: 'Claude',
+    href: '/how-to/ai-assistants/',
+    icon: 'creation',
+    group: 'top',
+    desc: 'Add the free OpenAlex connector to Claude and ask in plain language.',
+    tip: 'Use OpenAlex in Claude',
+  },
+  {
     label: 'How-to',
     href: '/how-to/',
     icon: 'help-circle-outline',
@@ -142,5 +154,9 @@ export const APP_LINK = {
 
 /** Active-tab test: Home matches only "/"; a tab matches its own subtree. */
 export function isPrimaryActive(href: string, path: string): boolean {
-  return href === '/' ? path === '/' : path.startsWith(href);
+  if (href === '/') return path === '/';
+  if (!path.startsWith(href)) return false;
+  // A more specific rail item under this one (Claude's /how-to/ai-assistants/
+  // under How-to) wins on its own page, so only one rail item lights up.
+  return !PRIMARY_TABS.some((t) => t.href !== href && t.href.startsWith(href) && path.startsWith(t.href));
 }
