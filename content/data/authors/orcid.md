@@ -101,7 +101,7 @@ ORCID is a first-class identifier across the API. Lookup and filtering check the
 
 Linking proves you own an ORCID iD: you sign in to ORCID, and ORCID tells OpenAlex your iD. Link it in [Settings](https://openalex.org/settings/profile) with **Link ORCID** ([steps](/how-to/fixing-authors/#how-do-i-link-my-orcid)).
 
-If a profile carries your iD, we claim it for you and fix it: we find your papers across OpenAlex, move them onto your profile, and remove papers that aren't yours. Papers on your ORCID record stay on your profile. We email you what changed, with a one-click undo, and the changes show within about two days. We check each paper rather than copying your ORCID record wholesale, because records often list papers by other people with the same name.
+If a profile carries your iD, we claim it for you and fix it: we find your papers across OpenAlex, move them onto your profile, and remove papers that aren't yours. We email you what changed, with a one-click undo, and the changes show within about two days. We check each paper rather than copying your ORCID record wholesale, because records often list papers by other people with the same name.
 
 The linked iD belongs to your account. It doesn't change the `orcid` on your profile; that is [set separately](#changing-the-orcid-on-your-profile).
 
