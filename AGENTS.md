@@ -163,12 +163,18 @@ Data/API tab landings show no date.
 A blockquote whose first line is `[!claude]` renders as the "In Claude" callout (bot icon,
 accent wash) via `src/lib/remark-callouts.mjs`. It goes right after a page's intro paragraph and
 says the specific ask in italics ("You can ask Claude: *…*"), ending with
-"Set up once: [Using OpenAlex with an AI assistant](/how-to/ai-assistants/)" (the how-to with screenshots; the reference page stays for body-text links). **Jason's rules (2026-09-21):**
-the connector is an *option*, not the default path (the website-first / API-for-coders defaults
-stay), and callouts are **sparing**: only on pages where the connector is clearly the faster
+"Set up once: [Using OpenAlex with an AI assistant](/how-to/ai-assistants/)" (the how-to with screenshots; the reference page stays for body-text links). **Jason's rules (2026-09-21, updated 2026-09-30):**
+**in Claude, the connector is the preferred way to use OpenAlex** (2026-09-30, after it went live in
+Claude's connector directory): the front doors say so once each (homepage "Ask Claude" paragraph,
+quickstart step 3, Access overview + Querying tables, the how-to), always with "free" and "you
+don't need it" and "ChatGPT version coming soon". Install steps live in ONE place,
+`/how-to/ai-assistants/`; everything else links there. The website-first / API-for-coders structure
+of the rest of the site stays, and callouts stay **sparing**: only on pages where the connector is clearly the faster
 route, one per page, never "you don't need this page". 21 pages carry one (plus a sentence in the quickstart); the full per-page
 census with the reasons for every yes and no is in oxjob #1279 EXPLORE.md. Check it before adding
-another. Markdown plugins run on `@astrojs/markdown-remark` (installed for this; Astro 7's
+another. **Three pages are bundled into the MCP server** (`api/llm-quick-reference`,
+`access/fixing-errors/authors`, `api/author-curation`, plus `access/oql*`): editing them fails the
+server's daily drift check until someone re-syncs and redeploys `openalex-mcp-server`. Markdown plugins run on `@astrojs/markdown-remark` (installed for this; Astro 7's
 default Sätteri processor has no plugin hook and no admonition syntax). Add a kind by extending
 `KINDS` in the plugin and `.prose aside.callout-<kind>` in `global.css`.
 
