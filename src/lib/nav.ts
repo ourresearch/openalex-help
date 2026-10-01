@@ -125,7 +125,7 @@ export const NAV_GROUPS: Record<string, NavGroup[]> = {
     {
       label: 'Searching',
       desc: 'Finding IDs, common search recipes, and result-set questions.',
-      slugs: ['finding-openalex-ids', 'searching', 'finding-high-quality-evidence', 'counting'],
+      slugs: ['finding-openalex-ids', 'searching', 'finding-papers-with-keywords', 'finding-high-quality-evidence', 'counting'],
     },
     {
       label: 'Working with data',
