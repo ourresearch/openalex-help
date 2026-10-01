@@ -24,7 +24,8 @@ const PAGE = join(ROOT, 'content/access/connector.md');
 
 // Tools registered but switched off in production, so the page must NOT list them.
 // Keep in step with the server's env gating (src/index.ts `features`).
-const GATED_OFF = new Set(['find_experts']);
+// find_keywords + keyword_search (oxjob #1469) wait for the keywords to be fully in the works index (#1456).
+const GATED_OFF = new Set(['find_experts', 'find_keywords', 'keyword_search']);
 
 const argIdx = process.argv.indexOf('--server');
 const SERVER = argIdx > -1
