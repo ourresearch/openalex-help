@@ -42,7 +42,7 @@ Check help.openalex.org first, then use the OpenAlex API to find papers on <your
 My API key: <your key>
 ```
 
-Keep the "check help.openalex.org" part: without it, agents work from what they remember about the OpenAlex API, which is out of date. We tested it on fresh installs of Claude Code and Codex, and it built one working query every time. For remote work and employee wellbeing, the keywords added 3,000 to 4,000 papers that the agents' own text searches (which already included "telework" and "working from home") missed, many of them not in English.
+Keep the "check help.openalex.org" part: without it, agents work from what they remember about the OpenAlex API, which is out of date. We tested it on fresh installs of Claude Code and Codex, and it built one working query every time. For remote work and employee wellbeing, the keywords added 3,000 to 4,000 papers that the agents' own text searches (which already included "telework" and "working from home") missed, many of them not in English. If your assistant asks permission for each request, choose "Always allow" for OpenAlex.
 
 Keep the query the agent shows you: rerun it later, or share it so others can check your search.
 
