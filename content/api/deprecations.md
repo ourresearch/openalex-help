@@ -1,6 +1,6 @@
 ---
 title: "Deprecations"
-updated: 2026-09-22
+updated: 2026-10-02
 description: "Deprecated features and migration guides"
 tags: ["api"]
 source_id: "guides/deprecations"
@@ -145,6 +145,17 @@ The plural form supports authors with multiple current affiliations.
 
 The [`is_xpac`](/data/works/attributes/#is_xpac) *attribute* on work objects is not deprecated — it's still the way to tell which results in a `corpus=all` response came from the expansion.
 
+### `sustainable_development_goals_aurora` on Works
+
+**Deprecated:** Added in October 2026; it will be removed in November 2026. It holds the Aurora classifier's SDG tags as they stood when OpenAlex switched [`sustainable_development_goals`](/data/works/attributes/#sustainable_development_goals) to its own classifier. Output only: it cannot be filtered, sorted or grouped.
+
+**Replacement:** Use `sustainable_development_goals`. See [SDGs](/data/sdgs/#the-old-aurora-tags-deprecated).
+
+```diff
+- work.sustainable_development_goals_aurora
++ work.sustainable_development_goals
+```
+
 ## Filter Aliases (Deprecated)
 
 These filter aliases still work but use the canonical form instead:
@@ -176,6 +187,7 @@ Before February 2026, OpenAlex used a "polite pool" system where you could get h
 | `x_concepts` | Deprecated | Will be removed soon |
 | Polite pool | Replaced | Use API keys |
 | `include_xpac` / `is_xpac` filter | Deprecated | Migrate to `corpus=` |
+| `sustainable_development_goals_aurora` | Deprecated; removed November 2026 | Use `sustainable_development_goals` |
 
 ## Staying Updated
 
