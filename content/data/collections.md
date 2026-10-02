@@ -6,7 +6,7 @@ tags: ["reference"]
 entity:
   example: "col_beNWUTw6qY"
 ---
-A **collection** is a saved, named list of OpenAlex entities of a single type — "Papers I'm tracking for this grant", "Authors at my consortium", "Journals in our Elsevier package". Unlike almost everything else in OpenAlex, a collection isn't minted by the pipeline; *you* create it, by picking entities you care about and giving the set a name. The payoff is a single ID you can drop into the [`filter` parameter](/api/filtering/) anywhere in the API instead of pasting hundreds of OpenAlex IDs into every request. A collection's ID looks like `col_beNWUTw6qY` (the prefix `col_` followed by 10 alphanumeric characters).
+A **collection** is a saved, named list of **members**, OpenAlex entities of a single type — "Papers I'm tracking for this grant", "Authors at my consortium", "Journals in our Elsevier package". Unlike almost everything else in OpenAlex, a collection isn't minted by the pipeline; *you* create it, by picking entities you care about and giving the set a name. The payoff is a single ID you can drop into the [`filter` parameter](/api/filtering/) anywhere in the API instead of pasting hundreds of OpenAlex IDs into every request. A collection's ID looks like `col_beNWUTw6qY` (the prefix `col_` followed by 10 alphanumeric characters).
 
 ## Who creates it, and how it's used
 
@@ -16,11 +16,11 @@ Collections are made by users, so they have no "About" provenance story. Instead
 
 Any signed-in OpenAlex user can create collections, and a collection belongs to the user who made it. Every collection starts **private**: only you (or an OpenAlex admin) can see it or filter by it. You can **share it by link**: then anyone with its link or ID can view it and filter by it, logged in or not, though it's never listed or searchable. Only the owner edits a collection; anyone else with an account can make a private copy of one shared with them. A user can own up to **100** collections.
 
-The easiest way to make one is in the web UI at [openalex.org](https://openalex.org): run a search, tick the rows you want, and click the folder icon → **Create a new collection**. You can also paste a list of IDs or DOIs into the create-collection wizard, or build one programmatically by `POST`ing to the collections endpoint.
+The easiest way to make one is in the web UI at [openalex.org](https://openalex.org): run a search, tick the rows you want, and click the folder icon → **Create a new collection**. You can also paste a list of IDs or DOIs into the create-collection wizard, or build one programmatically with `POST https://api.openalex.org/collections`.
 
 ### What a collection can contain
 
-Every collection holds entities of exactly **one type**, fixed when the collection is created (though it can be changed while the collection is still empty). The supported types are `works`, `authors`, `sources`, `institutions`, `topics`, `sdgs`, `funders`, `publishers`, `keywords`, and `concepts`. To track works *and* the authors of those works, you make two collections. A collection can hold up to **1,000** entities.
+Every collection holds members of exactly **one type**, fixed when the collection is created. The supported types are `works`, `authors`, `sources`, `institutions`, `topics`, `sdgs`, `funders`, `publishers`, `keywords`, and `concepts`. To track works *and* the authors of those works, you make two collections. A collection can hold up to **1,000** members.
 
 ### How it feeds back into OpenAlex
 
@@ -38,14 +38,14 @@ A collection object is small — it carries metadata about the set, not the memb
 ### `id`
 *String.* The collection's ID: the literal prefix `col_` followed by 10 alphanumeric characters, e.g. `col_beNWUTw6qY`. This is the value you pass to the `collection:` filter (or to an ID-valued filter field). Unlike native-entity [OpenAlex IDs](/data/common-attributes/#id), it is not a resolvable `openalex.org` URL.
 
-### `user_id`
-*String.* The ID of the user who owns the collection, e.g. `user-TSamuHxDbnhn`. Only the owner edits it. Shown only to the owner (and admins): people viewing a collection shared by link don't see who owns it.
+### `can_edit`
+*Boolean.* `true` when you are the collection's owner, the only person who can change it. A collection shared by link never says who owns it.
 
 ### `access`
 *String.* Who can view the collection and filter by it: `private` (only its owner; the default) or `shared_by_link` (anyone with its link or ID, logged in or not; never listed). See [Sharing by link](/api/collections/#sharing-by-link).
 
 ### `entity_type`
-*String.* The single entity type every member of the collection must be — one of `works`, `authors`, `sources`, `institutions`, `topics`, `sdgs`, `funders`, `publishers`, `keywords`, or `concepts`. Fixed at creation, and changeable only while the collection is empty. Every ID you add must match it; a wrong-type ID (an `A…` in a `works` collection) is rejected with a `400`.
+*String.* The single entity type every member of the collection must be — one of `works`, `authors`, `sources`, `institutions`, `topics`, `sdgs`, `funders`, `publishers`, `keywords`, or `concepts`. Fixed at creation. Every ID you add must match it; a wrong-type ID (an `A…` in a `works` collection) is rejected with a `400` (code `member_wrong_type`).
 
 ### `display_name`
 *String.* The human-readable name of the collection, 1–30 characters. Case-insensitively unique per user, so you can't own two collections with the same name. See [Common attributes](/data/common-attributes/#display_name).
@@ -53,17 +53,17 @@ A collection object is small — it carries metadata about the set, not the memb
 ### `description`
 *String.* An optional free-text note about the collection, 0–500 characters. Empty by default.
 
-### `entity_count`
-*Integer.* How many entities the collection currently holds, capped at 1,000.
+### `member_count`
+*Integer.* How many members the collection currently holds, capped at 1,000.
 
 ### `created_at`
-*String.* The timestamp when the collection was created (an [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) datetime). Note this uses `created_at`/`updated_at`, not the `created_date`/`updated_date` naming on native entities.
+*String.* The timestamp when the collection was created (an [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) datetime, UTC). Note this uses `created_at`/`updated_at`, not the `created_date`/`updated_date` naming on native entities.
 
 ### `updated_at`
 *String.* The timestamp of the last change to the collection's metadata or membership (an [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) datetime).
 
-The member entity IDs themselves are **not** part of the collection object. They're fetched from a separate, paged endpoint (`/collections/{id}/entities`) so response sizes stay bounded regardless of how many entities a collection holds.
+The members themselves are **not** part of the collection object. They're fetched from a separate, paged endpoint (`/collections/{id}/members`) so response sizes stay bounded however many members a collection holds.
 
 ## In the API
 
-Collections are managed on a different host from the read API: create, list, read, update, and delete them at `user.openalex.org`, and filter on them at `api.openalex.org`. A private collection works only for its owner, with your OpenAlex API key in the `Authorization: Bearer` header (or `?api_key=` on `api.openalex.org`); a collection shared by link works for anyone. A collection you can't read, whether missing, deleted or private to someone else, returns `404` "Collection col_… not found." (code `collection_not_found`), never an empty result. See the [Collections guide](/api/collections/) for the endpoint mechanics — creating, editing, adding and removing members, the `collection:` and cross-type filters, and every validation rule. For the full list of endpoints see the [endpoints index](/api/endpoints/).
+Collections live at `https://api.openalex.org/collections`, the same host you filter on: list yours, create, read, share, change and delete them, and add or remove members, at no credit cost. A private collection works only for its owner, with your OpenAlex API key as `?api_key=` or an `Authorization: Bearer` header; a collection shared by link works for anyone. The first version of these routes, on `user.openalex.org`, still works but is deprecated. A collection you can't read, whether missing, deleted or private to someone else, returns `404` "Collection col_… not found." (code `collection_not_found`), never an empty result. See the [Collections guide](/api/collections/) for the endpoint mechanics — creating, editing, adding and removing members, the `collection:` and cross-type filters, and every validation rule. For the full list of endpoints see the [endpoints index](/api/endpoints/).
