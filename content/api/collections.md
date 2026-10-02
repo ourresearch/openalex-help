@@ -132,7 +132,8 @@ GET https://api.openalex.org/works?filter=collection:!col_beNWUTw6qY
 - **Per-request entity-list ceiling: 10,000.** With the per-collection cap of
   1,000 entities, a single collection is always within budget.
 - **Access.** A private collection filters only for its owner: pass your
-  OpenAlex API key in the `Authorization: Bearer …` header. A collection
+  OpenAlex API key in the `Authorization: Bearer …` header or as `?api_key=`
+  (both work the same). A collection
   [shared by link](#sharing-by-link) filters for anyone, with or without a key.
   A collection you can't read (missing, deleted, or private to someone else)
   returns `404` with "Collection col_… not found." and
@@ -251,6 +252,23 @@ collection's page or in the row menu on your Collections page.
 
 Lists of people say something about them. Don't share lists drawn from HR
 records.
+
+## Alerts and exports
+
+**Alerts.** Save a works search that filters by a collection of authors,
+institutions, sources or another type, turn on its alert, and OpenAlex emails
+you new works that match, like any other alert. A search limited to a works
+collection (`collection:col_…`) can't alert: a collection of works is a fixed
+list, so it never gains new ones. Turning on such an alert returns `400` with
+that reason. An alert runs only while you can still read every collection in
+its search. If one is deleted, or its owner makes it private again, the alert
+turns off and you get an email saying which collection and how to fix it.
+
+**Exports.** An export of a search that filters by a collection reads it with
+your API key, so it counts and exports your own private collections. If you
+can't read a collection in the search, the export is refused with the same
+`404` "Collection col_… not found or not shared." rather than producing an
+empty file.
 
 ## Managing collections
 
