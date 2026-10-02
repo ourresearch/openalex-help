@@ -267,7 +267,7 @@ turns off and you get an email saying which collection and how to fix it.
 **Exports.** An export of a search that filters by a collection reads it with
 your API key, so it counts and exports your own private collections. If you
 can't read a collection in the search, the export is refused with the same
-`404` "Collection col_… not found or not shared." rather than producing an
+`404` "Collection col_… doesn't exist or isn't shared." rather than producing an
 empty file.
 
 ## Managing collections

@@ -1,6 +1,6 @@
 ---
 title: "Error Handling"
-updated: 2026-09-18
+updated: 2026-10-02
 description: "API error codes and retry strategies"
 tags: ["api"]
 source_id: "api-reference/errors"
@@ -16,7 +16,7 @@ The OpenAlex API uses standard HTTP status codes to indicate success or failure.
 | `200` | Success | Request completed successfully |
 | `301` | Moved Permanently | Entity was merged; follow the redirect |
 | `400` | Bad Request | Check your filter syntax or parameters |
-| `403` | Forbidden | You don't have access to this resource — for example, another user's collection |
+| `403` | Forbidden | You don't have access to this resource. (A collection you can't read returns `404`, not `403`.) |
 | `404` | Not Found | Entity doesn't exist |
 | `429` | Too Many Requests | Rate limit or daily credit budget exceeded; slow down or wait for the reset |
 | `500` | Server Error | Temporary issue; retry with backoff |
