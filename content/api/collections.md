@@ -135,7 +135,7 @@ GET https://api.openalex.org/works?filter=collection:!col_beNWUTw6qY
   OpenAlex API key in the `Authorization: Bearer …` header. A collection
   [shared by link](#sharing-by-link) filters for anyone, with or without a key.
   A collection you can't read (missing, deleted, or private to someone else)
-  returns `404` with "Collection col_… not found or not shared.", never a
+  returns `404` with "Collection col_… doesn't exist or isn't shared.", never a
   silent zero.
 
 ## Filtering by a collection on a related entity
@@ -298,7 +298,7 @@ GET https://user.openalex.org/collections/{collection_id}
 
 Returns the same shape as one row in `results` above, plus `can_edit` (true
 only for the owner). Anyone but the owner sees it without `user_id`. A
-collection you can't read returns `404` "Collection not found or not shared."
+collection you can't read returns `404` "Collection doesn't exist or isn't shared."
 whether it's missing or private, and reads by anyone but the owner are rate
 limited (120 a minute per IP when logged out, 300 a minute per account). The
 collection's entities are paged separately to keep response sizes bounded:
