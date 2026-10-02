@@ -7,7 +7,7 @@ source_id: "guides/collections"
 source_url: "https://developers.openalex.org/guides/collections"
 source_updated: "2026-06-01"
 ---
-A **collection** is a named list of OpenAlex entities of one type — for
+A **collection** is a named list of **members**, OpenAlex entities of one type — for
 example, "Papers I'm tracking for this grant", "Authors at my consortium", or
 "Journals I publish in". Collections give you a single ID you can drop into the
 [`filter` parameter](/api/filtering/) anywhere in the API, instead of pasting
@@ -16,22 +16,23 @@ hundreds of OpenAlex IDs into every request.
 > **Note:**
 > Collections start private to the user who creates them. The owner can
 > [share one by link](#sharing-by-link): then anyone with its link or `col_` ID
-> can view it and filter by it, logged in or not. Manage collections via
-> authenticated requests against `user.openalex.org`, with your OpenAlex API key
-> in the `Authorization: Bearer` header.
+> can view it and filter by it, logged in or not. Manage collections at
+> `https://api.openalex.org/collections` with your OpenAlex API key, as
+> `?api_key=` or an `Authorization: Bearer` header. Managing collections costs
+> no credits.
 
 ## Concepts
 
 | Property                         | Value                                                     |
 | -------------------------------- | --------------------------------------------------------- |
 | One entity type per collection   | `works`, `authors`, `sources`, `institutions`, `topics`, `sdgs`, `funders`, `publishers`, `keywords`, or `concepts` |
-| Max entities per collection      | 1,000                                                     |
+| Max members per collection       | 1,000                                                     |
 | Max collections per user         | 100                                                       |
 | Display-name length              | 1–30 characters; case-insensitive unique per user         |
 | Description length               | 0–500 characters                                          |
 | ID shape                         | `col_` followed by 10 alphanumeric characters             |
 
-A collection holds entities of a single type. To track works *and* the authors
+A collection holds members of a single type. To track works *and* the authors
 of those works, create two collections.
 
 ## Creating a collection
@@ -47,10 +48,10 @@ The easiest way to create a collection is in the OpenAlex web UI at
 You can also paste a list of IDs or DOIs straight into the create-collection
 wizard at `https://openalex.org/settings/collections`.
 
-To create one programmatically, `POST` to `/me/collections`:
+To create one programmatically, `POST` to `/collections`:
 
 ```bash
-POST https://user.openalex.org/me/collections
+POST https://api.openalex.org/collections
 Authorization: Bearer <your-api-key>
 Content-Type: application/json
 
@@ -58,29 +59,29 @@ Content-Type: application/json
   "display_name": "My altmetrics papers",
   "entity_type": "works",
   "description": "Papers I'm tracking for the altmetrics review",
-  "entity_ids": [
-    "https://openalex.org/W2755968057",
-    "https://openalex.org/W4404012345"
-  ]
+  "member_ids": ["W2755968057", "https://openalex.org/W4404012345"]
 }
 ```
 
-`entity_ids` is optional — you can create an empty collection and add entities
-later. IDs may be supplied in full-URL form (`https://openalex.org/W123…`) or
-short form (`W123…`); the API normalizes them. Every ID must match the
-collection's `entity_type` — adding `A123…` to a `works` collection returns a
-`400` naming the offending ID.
+`member_ids` is optional: you can create an empty collection and
+[add members](#add-and-remove-members) later. IDs may be short (`W123…`) or
+full URLs (`https://openalex.org/W123…`); the API stores the short form. Every
+ID must match the collection's `entity_type`: adding `A123…` to a `works`
+collection returns a `400` with code `member_wrong_type`, naming the ID. Pass
+`"access": "shared_by_link"` to [share it](#sharing-by-link) from the start.
 
-A successful create returns `201` with the saved collection:
+A successful create returns `201`, a `Location` header with the collection's
+URL, and the collection:
 
 ```json
 {
   "id": "col_beNWUTw6qY",
-  "user_id": "user-TSamuHxDbnhn",
-  "entity_type": "works",
   "display_name": "My altmetrics papers",
   "description": "Papers I'm tracking for the altmetrics review",
-  "entity_count": 2,
+  "entity_type": "works",
+  "member_count": 2,
+  "access": "private",
+  "can_edit": true,
   "created_at": "2026-05-26T14:00:00",
   "updated_at": "2026-05-26T14:00:00"
 }
@@ -240,7 +241,8 @@ it only through a link or ID you give them. Only the owner can change it; anyone
 else with an account can [make a copy](#make-a-copy). Share or unshare with:
 
 ```bash
-PATCH https://user.openalex.org/me/collections/{collection_id}
+PATCH https://api.openalex.org/collections/{collection_id}
+Authorization: Bearer <your-api-key>
 Content-Type: application/json
 
 { "access": "shared_by_link" }
@@ -272,35 +274,51 @@ empty file.
 
 ## Managing collections
 
-The endpoints below live on `user.openalex.org`. Reading a collection follows
-its [access](#sharing-by-link); everything else requires your OpenAlex API key in
-the `Authorization: Bearer` header and works only on collections you own.
+Every collection is one resource at `https://api.openalex.org/collections/{id}`,
+and its members are `.../members`:
+
+| Method   | Path                                     | What it does                                   | Who            |
+| -------- | ---------------------------------------- | ---------------------------------------------- | -------------- |
+| `GET`    | `/collections`                           | Your collections, paged                        | You            |
+| `POST`   | `/collections`                           | Create one, or [make a copy](#make-a-copy)     | Any account    |
+| `GET`    | `/collections/{id}`                      | Read one                                       | Per its [access](#sharing-by-link) |
+| `PATCH`  | `/collections/{id}`                      | Change `display_name`, `description`, `access` | Owner          |
+| `DELETE` | `/collections/{id}`                      | Delete it (`204`)                              | Owner          |
+| `GET`    | `/collections/{id}/members`              | Its members, paged                             | Per its access |
+| `POST`   | `/collections/{id}/members`              | Add members                                    | Owner          |
+| `DELETE` | `/collections/{id}/members/{member_id}`  | Remove one member (`204`)                      | Owner          |
+| `DELETE` | `/collections/{id}/members?member_ids=…` | Remove up to 100 members                       | Owner          |
+
+Send your OpenAlex API key as `?api_key=` or an `Authorization: Bearer` header
+(a personal key; organization keys aren't accepted here). Without one you can
+read only collections shared by link. These calls cost no credits. Reads by
+anyone but the owner are rate limited: 120 a minute per IP logged out, 300 a
+minute per account.
 
 ### List your collections
 
 ```bash
-GET https://user.openalex.org/me/collections
+GET https://api.openalex.org/collections?api_key=<your-api-key>
 ```
 
-Supports `?page=` and `?per_page=` (max 100). Pass `?entity_id=W2755968057` to
-filter to collections that contain a specific entity — used by the
-collection-chip strip on entity pages in the OpenAlex UI.
-
-Response:
+Returns only your own collections: nobody's collections are ever listed to
+anyone else. Supports `page` and `per_page` (1 to 100, default 25). Add
+`member_ids=W2755968057,W4404012345` (up to 100) to list only your
+collections that hold any of those IDs; each result then carries
+`matching_member_ids`.
 
 ```json
 {
-  "meta": {
-    "page": 1, "per_page": 25, "total_count": 3, "total_pages": 1
-  },
+  "meta": { "count": 3, "page": 1, "per_page": 25 },
   "results": [
     {
       "id": "col_beNWUTw6qY",
-      "user_id": "user-TSamuHxDbnhn",
-      "entity_type": "works",
       "display_name": "My altmetrics papers",
       "description": "Papers I'm tracking for the altmetrics review",
-      "entity_count": 4,
+      "entity_type": "works",
+      "member_count": 4,
+      "access": "private",
+      "can_edit": true,
       "created_at": "2026-05-20T16:00:00",
       "updated_at": "2026-05-26T14:00:00"
     }
@@ -308,92 +326,150 @@ Response:
 }
 ```
 
-### Get a single collection
+### Get a collection
 
 ```bash
-GET https://user.openalex.org/collections/{collection_id}
+GET https://api.openalex.org/collections/{collection_id}
 ```
 
-Returns the same shape as one row in `results` above, plus `can_edit` (true
-only for the owner). Anyone but the owner sees it without `user_id`. A
-collection you can't read returns `404` "Collection not found."
-whether it's missing or private, and reads by anyone but the owner are rate
-limited (120 a minute per IP when logged out, 300 a minute per account). The
-collection's entities are paged separately to keep response sizes bounded:
+Returns the collection as above. `can_edit` is `true` only for its owner. A
+collection you can't read returns `404` with code `collection_not_found`,
+whether it's missing, deleted or private, so nobody can probe for private ones.
+
+### List its members
 
 ```bash
-GET https://user.openalex.org/collections/{collection_id}/entities?per_page=1000
+GET https://api.openalex.org/collections/{collection_id}/members?per_page=1000
 ```
 
-Returns the collection metadata plus the page of `entity_ids` (max
-`per_page=1000`).
+```json
+{
+  "meta": { "count": 4, "page": 1, "per_page": 1000 },
+  "results": [
+    { "id": "W2755968057", "added_at": "2026-05-20T16:00:00" }
+  ]
+}
+```
+
+Members come in the order they were added. Page with `page` and `per_page`
+(1 to 1,000, default 100), or with a cursor: pass `cursor=*`, then each
+response's `meta.next_cursor` until it's `null`.
 
 ### Make a copy
 
 ```bash
-POST https://user.openalex.org/me/collections
+POST https://api.openalex.org/collections
 Content-Type: application/json
 
-{ "source_collection_id": "col_beNWUTw6qY" }
+{ "copy_of": "col_beNWUTw6qY" }
 ```
 
 Copies any collection you can read (your own, or one shared by link) into a new
 **private** collection you own, with the same type, description and members.
 Pass `display_name` to name it; otherwise it keeps the source's name, with
 "(copy 2)" and so on if you already use that name. The copy doesn't follow later
-changes to the source.
+changes to the source. Change it with `PATCH` once it's made.
 
-### Update name, description, or entity type
+### Change a collection
 
 ```bash
-PATCH https://user.openalex.org/me/collections/{collection_id}
+PATCH https://api.openalex.org/collections/{collection_id}
 Content-Type: application/json
 
 { "display_name": "Renamed", "description": "Updated notes" }
 ```
 
-`entity_type` can be changed only while the collection is empty.
+`PATCH` takes `display_name`, `description` and `access`, and returns the
+collection. `entity_type` is fixed when a collection is created.
 
 ### Delete a collection
 
 ```bash
-DELETE https://user.openalex.org/me/collections/{collection_id}
+DELETE https://api.openalex.org/collections/{collection_id}
 ```
 
-Returns `{"deleted_collection_id": "col_…"}`. All `collection_entities` rows
-cascade-delete.
+Returns `204` with no body. Its members go with it; saved searches that filter
+by it start returning `404`.
 
-### Add or remove entities
+### Add and remove members
 
 ```bash
-# Bulk add
-POST https://user.openalex.org/me/collections/{collection_id}/entities
+POST https://api.openalex.org/collections/{collection_id}/members
 Content-Type: application/json
 
-{ "entity_ids": ["W123…", "W456…"] }
+{ "member_ids": ["W2755968057", "https://openalex.org/W4404012345"] }
 ```
 
-Returns `{ "added": N, "already_present": M, "rejected_wrong_type": 0 }`.
-Wrong-type IDs (e.g. an `A…` in a `works` collection) fast-fail with `400`
-naming the first offender, so `rejected_wrong_type` is always `0` on
-success — it's preserved in the response shape for backward compatibility.
+Returns `{"added": 1, "already_present": 1, "member_count": 5}`. Adding a
+member that's already there is not an error. If any ID is the wrong type or not
+an OpenAlex ID, nothing is added and the `400` names it.
 
 ```bash
-# Bulk remove
-DELETE https://user.openalex.org/me/collections/{collection_id}/entities
-Content-Type: application/json
+# Remove one member
+DELETE https://api.openalex.org/collections/{collection_id}/members/W2755968057
 
-{ "entity_ids": ["W123…"] }
+# Remove several (up to 100), no request body
+DELETE https://api.openalex.org/collections/{collection_id}/members?member_ids=W2755968057,W4404012345
 ```
 
-```bash
-# Single remove via URL
-DELETE https://user.openalex.org/me/collections/{collection_id}/entities/W123…
+Removing one returns `204`, or `404` with code `member_not_found` if it wasn't
+a member. Removing several returns `{"removed": 2, "member_count": 3}`.
+
+### Errors
+
+Errors look like the rest of the API, with a stable `code` to branch on:
+
+```json
+{ "error": "Not Found", "code": "collection_not_found", "message": "Collection not found." }
 ```
+
+| Status | `code`                     | Cause                                                              |
+| ------ | -------------------------- | ------------------------------------------------------------------ |
+| 400    | `invalid_body`             | The body isn't a JSON object (send `Content-Type: application/json`) |
+| 400    | `unknown_field`            | A field this endpoint doesn't take; the message names the right one |
+| 400    | `field_not_editable`       | `entity_type` in a `PATCH`                                         |
+| 400    | `no_fields`                | A `PATCH` with nothing to change                                   |
+| 400    | `entity_type_invalid`      | `entity_type` missing or not a supported type                      |
+| 400    | `display_name_blank`, `display_name_whitespace`, `display_name_too_long`, `display_name_url`, `display_name_reserved`, `display_name_invalid_character` | The name is empty, over 30 characters, a URL, reserved, or has control characters |
+| 400    | `display_name_duplicate`   | You already have a collection with this name (case-insensitive)    |
+| 400    | `description_invalid`, `description_too_long`, `description_url` | The description isn't a string, is over 500 characters, or is a URL |
+| 400    | `access_invalid`           | `access` isn't `private` or `shared_by_link`                       |
+| 400    | `member_id_invalid`        | An ID isn't an OpenAlex ID                                         |
+| 400    | `member_wrong_type`        | An ID's type doesn't match the collection's `entity_type`          |
+| 400    | `member_limit_reached`     | The collection would pass 1,000 members                            |
+| 400    | `member_ids_required`, `too_many_member_ids` | Bulk remove without `member_ids`, or over 100           |
+| 400    | `invalid_paging`, `invalid_cursor` | `page`, `per_page` or `cursor` out of range                |
+| 401    | `unauthorized`             | No valid API key, on a call that needs one                         |
+| 403    | `not_collection_owner`     | Only the owner can change it; [make a copy](#make-a-copy) instead  |
+| 403    | `collection_limit_reached` | You already own 100 collections                                    |
+| 404    | `collection_not_found`     | Missing, deleted, or private to someone else                       |
+| 404    | `member_not_found`         | Removing an ID that isn't a member                                 |
+| 429    | `rate_limited`             | Too many reads; wait for `Retry-After` seconds                     |
+
+### Older routes (deprecated)
+
+The first version of this API lives on `user.openalex.org` and keeps working,
+with its old response shape, for scripts already built on it. New code should
+use the routes above.
+
+| Deprecated                                                  | Use instead                                  |
+| ----------------------------------------------------------- | -------------------------------------------- |
+| `GET user.openalex.org/me/collections`                      | `GET /collections`                           |
+| `POST user.openalex.org/me/collections` (`entity_ids`, `source_collection_id`) | `POST /collections` (`member_ids`, `copy_of`) |
+| `GET user.openalex.org/collections/{id}`                    | `GET /collections/{id}`                      |
+| `GET user.openalex.org/collections/{id}/entities`           | `GET /collections/{id}/members`              |
+| `PATCH`, `DELETE user.openalex.org/me/collections/{id}`     | `PATCH`, `DELETE /collections/{id}`          |
+| `POST user.openalex.org/me/collections/{id}/entities`       | `POST /collections/{id}/members`             |
+| `DELETE user.openalex.org/me/collections/{id}/entities` (body) | `DELETE /collections/{id}/members?member_ids=` |
+| `DELETE user.openalex.org/me/collections/{id}/entities/{id}` | `DELETE /collections/{id}/members/{id}`     |
+
+The old routes take the key only as `Authorization: Bearer`, call members
+`entity_ids` and `entity_count`, and answer errors as
+`{"HTTP_status_code", "error": true, "message", "code"}`.
 
 ## Admin endpoints
 
-OpenAlex admins can list, read, edit, or delete any user's collection:
+OpenAlex admins can list, read, edit, or delete any user's collection on `https://user.openalex.org`:
 
 | Method   | Path                                                | Notes                          |
 | -------- | --------------------------------------------------- | ------------------------------ |
@@ -403,19 +479,3 @@ OpenAlex admins can list, read, edit, or delete any user's collection:
 | `DELETE` | `/admin/collections/{collection_id}`                | Hard-delete with cascade       |
 
 Non-admin callers get `403`.
-
-## Validation rules
-
-Collections are validated before they hit the database. The most common 400s:
-
-| Code                       | Cause                                                                   |
-| -------------------------- | ----------------------------------------------------------------------- |
-| `entity_type_invalid`      | `entity_type` missing or not one of the 10 supported types              |
-| `display_name_invalid`     | Empty after trim, contains control characters, URL-shaped, or profane   |
-| `display_name_too_long`    | More than 30 characters                                                 |
-| `display_name_duplicate`   | You already have a collection with this name (case-insensitive)         |
-| `description_invalid`      | Not a string, or contains control characters, or URL-shaped             |
-| `entity_id_invalid`        | An ID doesn't look like any OpenAlex ID shape                           |
-| `entity_id_wrong_type`     | An ID's type doesn't match the collection's `entity_type`               |
-| `collection_full`          | Adding entities would exceed the 1,000-entity cap                       |
-| `too_many_collections`     | You already own 100 collections                                         |
