@@ -61,7 +61,7 @@ This is the canonical dictionary of every attribute on a **keyword** object. Att
 *Object.* External identifiers for this keyword, as URIs. Keyword-specific keys: `openalex` and, when a confident match exists, `wikidata` (about a fifth of keywords, which cover most keyword uses). Matches are machine-made. See [Common attributes](/data/common-attributes/#ids).
 
 ### `works_count`
-*Integer.* The number of works tagged with this keyword. See [Common attributes](/data/common-attributes/#works_count).
+*Integer.* The number of works tagged with this keyword, across the whole corpus. A keyword filter searches only the [core corpus](/data/works/corpus/) by default, so add `corpus=all` to match this count: `/works?filter=keywords.id:remote-work&corpus=all`. See [Common attributes](/data/common-attributes/#works_count).
 
 ### `cited_by_count`
 *Integer.* The total citations received by all works tagged with this keyword. See [Common attributes](/data/common-attributes/#cited_by_count).
