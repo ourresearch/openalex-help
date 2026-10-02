@@ -38,11 +38,11 @@ The connector picks the keywords, combines them with a title and abstract search
 **In other agents** (ChatGPT, Codex, or Claude Code without the connector), tell it something like this, with your own topic and a [free API key](/api/authentication/):
 
 ```
-Check help.openalex.org first, then use the OpenAlex API to find papers on <your topic>. Search titles and abstracts, but also use OpenAlex keywords to catch papers that word it differently, all in one query. Each paper should cover every part of my topic. Save the 200 most-cited as a CSV and show me the query and how many papers each part found.
+Check help.openalex.org first, then use the OpenAlex API to find papers on <your topic>. Search titles and abstracts, but also use OpenAlex keywords to catch papers that word it differently, all in one query. Each paper should cover every part of my topic. Read the results as you go and keep only the papers that are really about my topic. Save the 200 most-cited of those as a CSV and show me the query and how many papers each part found.
 My API key: <your key>
 ```
 
-Keep the "check help.openalex.org" part: without it, agents work from what they remember about the OpenAlex API, which is out of date. We tested it on fresh installs of Claude Code and Codex, and it built one working query every time. For remote work and employee wellbeing, the keywords added 3,000 to 4,000 papers that the agents' own text searches (which already included "telework" and "working from home") missed, many of them not in English. In the Claude app, set the chat to Auto (next to the model name, under the message box), or it will ask your permission before every search.
+Keep the "check help.openalex.org" part: without it, agents work from what they remember about the OpenAlex API, which is out of date. Keywords and title and abstract search cast a wide net, and the agent's own reading narrows it down: in our tests on remote work, that took the share of clearly relevant papers in its list from about half to nine in ten. We tested it on fresh installs of Claude Code and Codex, and it built one working query every time. For remote work and employee wellbeing, the keywords added 3,000 to 4,000 papers that the agents' own text searches (which already included "telework" and "working from home") missed, many of them not in English. In the Claude app, set the chat to Auto (next to the model name, under the message box), or it will ask your permission before every search.
 
 Keep the query the agent shows you: rerun it later, or share it so others can check your search.
 
