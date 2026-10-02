@@ -255,12 +255,12 @@ records.
 
 ## Alerts and exports
 
-**Alerts.** Save a works search that filters by a collection of authors,
+**Alerts** ([full API](/api/alerts/)). Save a works search that filters by a collection of authors,
 institutions, sources or another type, turn on its alert, and OpenAlex emails
 you new works that match, like any other alert. A search limited to a works
 collection (`collection:col_…`) can't alert: a collection of works is a fixed
 list, so it never gains new ones. Turning on such an alert returns `400` with
-that reason. An alert runs only while you can still read every collection in
+code `works_collection_cannot_alert`. An alert runs only while you can still read every collection in
 its search. If one is deleted, or its owner makes it private again, the alert
 turns off and you get an email saying which collection and how to fix it.
 

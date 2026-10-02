@@ -350,8 +350,8 @@ export const NAV_GROUPS: Record<string, NavGroup[]> = {
       // collections is a write API (CRUD on user.openalex.org), so its mechanics
       // stay in the API tab as a special endpoint (flagged for Jason's review).
       label: 'Curation & special',
-      desc: 'Curation, collections, and special-purpose endpoints.',
-      slugs: ['author-curation', 'collections', 'tag-aboutness'],
+      desc: 'Curation, collections, alerts, and special-purpose endpoints.',
+      slugs: ['author-curation', 'collections', 'alerts', 'tag-aboutness'],
     },
     {
       // oxjob #750 (Jason): Deprecations doesn't belong in Get started — it's
