@@ -10,7 +10,7 @@ A text search finds papers that use your words. A [keyword](/data/keywords/) fin
 
 ## Combine a keyword with a text search
 
-Say you're studying antimicrobial resistance. A title and abstract search for the phrase finds about 137,000 works. The `antimicrobial-resistance` keyword finds about 146,000 more that say "antibiotic resistance", "drug-resistant bacteria" or nothing at all: about 43,000 of them have no abstract. Most are on topic. Get both in one [OQL](/api/oql/) query:
+Say you're studying antimicrobial resistance. A title and abstract search for the phrase finds about 118,000 works. The `antimicrobial-resistance` keyword finds about 123,000 more that say "antibiotic resistance", "drug-resistant bacteria" or nothing at all: about 47,000 of them have no abstract. Most are on topic (about four in five). Get both in one [OQL](/api/oql/) query:
 
 ```
 works where keyword is (antimicrobial-resistance) or title/abstract has ("antimicrobial resistance")
@@ -43,7 +43,7 @@ My OpenAlex API key: <your key>
 My topic: <describe your topic in a sentence>
 ```
 
-We tested it on fresh installs of two agents, and it worked every time. For remote work and employee wellbeing, the agents chose `remote-work` plus `employee-health` or `work-life-balance`. A title and abstract search found 2,457 works; the keywords found 3,876 more, on topic about as often as the text matches. That's more than twice as many relevant works, including [papers on "telework"](https://openalex.org/works/W4318067105) and [papers in Spanish](https://openalex.org/works/W4387828597) that the phrase search can't see.
+We tested it on fresh installs of two agents, and it worked every time. For remote work and employee wellbeing, the agents chose `remote-work` plus `employee-health` or `work-life-balance`. A title and abstract search found 2,462 works; the keywords found 7,922 more, on topic more often than the text matches. That's about four times as many relevant works as the phrase search found, including [papers on "telework"](https://openalex.org/works/W4318067105) and [papers in Spanish](https://openalex.org/works/W4387828597) that the phrase search can't see.
 
 Keep the query the agent shows you: rerun it later, or share it so others can check your search.
 
