@@ -35,15 +35,14 @@ If your topic has several parts, require a keyword for each part. "How remote wo
 
 The connector picks the keywords, combines them with a title and abstract search, tells you how many works each part found, and gives you the query it ran.
 
-**In other agents** (ChatGPT, Codex, or Claude Code without the connector), paste in this prompt, with your own topic and a [free API key](/api/authentication/):
+**In other agents** (ChatGPT, Codex, or Claude Code without the connector), tell it something like this, with your own topic and a [free API key](/api/authentication/):
 
 ```
-Read https://help.openalex.org/llms.txt, then use the OpenAlex API. Send my topic to /text/keywords and check each keyword it suggests. Find works that have a fitting keyword for every part of my topic, or mention every part in the title or abstract. Save the 2,000 most-cited as a CSV, and show me the exact query and each part's count.
+Check help.openalex.org first, then use the OpenAlex API to find papers on <your topic>. Search titles and abstracts, but also use OpenAlex keywords to catch papers that word it differently, all in one query. Each paper should cover every part of my topic. Save the 2,000 most-cited as a CSV and show me the query and how many papers each part found.
 My API key: <your key>
-My topic: <describe your topic in a sentence>
 ```
 
-We tested it on fresh installs of Claude Code and Codex, and it built a working query every time. For remote work and employee wellbeing, each agent picked `remote-work` plus a wellbeing keyword and found thousands of papers the phrase search missed, like [ones that say "telework"](https://openalex.org/works/W4318067105).
+We tested it on fresh installs of Claude Code and Codex, and it built one working query every time. For remote work and employee wellbeing, the keywords added 3,000 to 4,000 papers that the agents' own text searches (which already included "telework" and "working from home") missed, many of them not in English.
 
 Keep the query the agent shows you: rerun it later, or share it so others can check your search.
 
