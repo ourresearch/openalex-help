@@ -1,6 +1,6 @@
 ---
 title: "Other agents"
-updated: 2026-09-30
+updated: 2026-10-02
 description: "How to get the most out of AI agents that use OpenAlex through the API — ChatGPT, Cursor, coding agents, and Claude without the connector."
 tags: ["reference"]
 ---
@@ -17,6 +17,7 @@ This page is about how to work with agents effectively — which kind to use, ho
 
 - **A chat agent** (Claude, ChatGPT, Gemini) is right for one-off questions and small exports: "who are the most-cited authors at my university this decade?", "get me these 200 DOIs as a spreadsheet." Zero setup.
 - **A coding agent** (Claude Code, Cursor, Codex) is right when the output is a *dataset or analysis*: it writes real scripts that page through results, retries failures, and save clean files — and the scripts are yours to re-run and audit. This is the sweet spot for systematic reviews, bibliometric analyses, and anything you'll want to reproduce later.
+- **To keep watching a topic**, any agent with your key can [set an email alert](/api/alerts/) for new works that match a search, and list, change or stop your alerts later: "email me every week when new papers on microplastics in drinking water come out."
 - **For big pulls**, a coding agent can drive the [CLI](/access/cli/) ("download all works on this topic as JSONL") or work against the [snapshot](/access/snapshot/) — you get bulk-scale results without learning the tooling yourself.
 
 ## Set your agent up for success
@@ -45,3 +46,4 @@ Agents very rarely hallucinate OpenAlex results — the API is well-structured, 
 - [Quickstart](/quickstart/) — the five-minute version: website → API → agent
 - [LLM quick reference](/api/llm-quick-reference/) — the condensed API reference to hand your agent
 - [CLI](/access/cli/) — the command-line tool agents can drive for bulk downloads
+- [Alerts and saved searches](/api/alerts/) — the API agents use to set and manage email alerts for you
