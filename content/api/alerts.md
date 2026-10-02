@@ -183,14 +183,14 @@ email saying which collection.
 
 ## Errors
 
-Errors return JSON with a stable `code` to branch on and a `message` to show people:
+Errors return JSON with a stable `code` to branch on, a `message` to show people,
+and `error`, a short title for the HTTP status (the same shape as api.openalex.org):
 
 ```json
 {
-  "error": true,
+  "error": "Bad Request",
   "code": "works_collection_cannot_alert",
-  "message": "Alerts aren't available for a works collection: it's a fixed list of works, so it never gains new ones. To hear about new works, filter by a collection of authors, institutions or sources instead.",
-  "HTTP_status_code": 400
+  "message": "Alerts aren't available for a works collection: it's a fixed list of works, so it never gains new ones. To hear about new works, filter by a collection of authors, institutions or sources instead."
 }
 ```
 
