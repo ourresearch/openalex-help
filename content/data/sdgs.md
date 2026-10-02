@@ -1,7 +1,7 @@
 ---
 title: "SDGs"
-updated: 2026-09-22
-description: "The UN's 17 SDGs as OpenAlex entities, how works are tagged to them by an open-source machine-learning classifier, and what every attribute on an SDG object means."
+updated: 2026-10-04
+description: "The UN's 17 SDGs as OpenAlex entities, how works are tagged to them by a classifier OpenAlex trained and tested, what a tag's score means, and what every attribute on an SDG object means."
 tags: ["reference"]
 source_id: "27972124390679"
 source_url: "https://help.openalex.org/hc/en-us/articles/27972124390679-How-do-you-classify-works-as-contributing-to-the-UN-SDGs"
@@ -12,35 +12,48 @@ entity:
   linksTo:
     - "works"
 ---
-The **Sustainable Development Goals** (SDGs) are the [17 global goals](https://sdgs.un.org/goals) the United Nations adopted in 2015 to address challenges like poverty, inequality, climate change, and environmental degradation — from *No poverty* (SDG 1) to *Partnerships for the goals* (SDG 17). OpenAlex tags each [work](/data/works/) with the SDGs its title and abstract are relevant to, so you can find and analyze research on a given global challenge — for example, pulling every work tagged with SDG 13 (*Climate action*) to study climate-research trends. There are exactly 17; SDGs are one of [several aboutness signals](/data/aboutness/) OpenAlex offers. An SDG's OpenAlex ID looks like `https://openalex.org/sdgs/3`; list them all at [`api.openalex.org/sdgs`](https://api.openalex.org/sdgs).
+The **Sustainable Development Goals** (SDGs) are the [17 global goals](https://sdgs.un.org/goals) the United Nations adopted in 2015 to address challenges like poverty, inequality, climate change and environmental degradation, from *No poverty* (SDG 1) to *Partnerships for the goals* (SDG 17). OpenAlex tags each [work](/data/works/) with the goals it addresses, so you can find and analyze research on a given global challenge: for example, every work tagged with SDG 13 (*Climate action*), to study climate-research trends. There are exactly 17; SDGs are one of [several aboutness signals](/data/aboutness/) OpenAlex offers. An SDG's OpenAlex ID looks like `https://openalex.org/sdgs/3`; list them all at [`api.openalex.org/sdgs`](https://api.openalex.org/sdgs).
 
 ## About
 
-The 17 goals themselves are a fixed UN vocabulary, so this section is about the tagging: how OpenAlex decides which works contribute to which goal.
+The 17 goals themselves are a fixed UN vocabulary, so this section is about the tagging: how OpenAlex decides which works address which goal.
 
-OpenAlex runs the open-source [Aurora Universities SDG Classifier](https://aurora-universities.eu/sdg-research/classify/) over each work's title and abstract. For every goal, the model returns a predicted-probability score, and OpenAlex keeps the goals scoring above a relevancy threshold — attaching them to the work's [`sustainable_development_goals`](/data/works/attributes/#sustainable_development_goals) list (each with its `score`) and rolling them up into each SDG's [`works_count`](#works_count) and [`cited_by_count`](#cited_by_count).
+**Since October 2026, SDG tags come from a classifier OpenAlex trained and tested itself.** A large language model read the titles and abstracts of 200,000 works and decided, goal by goal, whether each work addresses that goal. We trained a small classifier on those decisions and run it on every work's vector, a numeric summary of its title and abstract. For each goal it gives a `score` from 0 to 1. A work's [`sustainable_development_goals`](/data/works/attributes/#sustainable_development_goals) list holds every goal scoring 0.4 or above, and those lists add up to each SDG's [`works_count`](#works_count) and [`cited_by_count`](#cited_by_count). It replaced the Aurora SDG classifier, whose tags stay in a deprecated field [until November 2026](#the-old-aurora-tags-deprecated).
 
-The threshold is **0.4**. At launch the cutoff was 0.1, which gave high recall but poor precision — many works were tagged with goals they weren't really about. Working with universities in Canada and Europe to test results against expert expectations, we found 0.4 struck the best balance: higher values started to miss genuine matches, lower values pulled in too many spurious ones.
+### How well it works
 
-Two things to keep in mind:
+**The new tags are right far more often than the old ones.** We drew 2,000 works at random from OpenAlex and had a committee of AI judges decide every goal for every work against the UN's goal and target text: two judges independently, and a third where they disagreed. Against those decisions the new tags score F1 0.70 (precision 0.68, recall 0.72); Aurora's scored 0.29.
 
-- **It's a text classifier, so it inherits text-classifier limits.** Tags come only from the title and abstract; a work with no abstract has less signal, and the model can still mislabel. Treat SDG tags as a broad, comparable filter, not a precise verdict on a single paper.
-- **The classifier is open source.** Because Aurora is public, you can run the identical model on documents OpenAlex doesn't index — course syllabi, grant proposals, unpublished research — and get tags in the same form.
+On a test with no model in the loop, the survey in which researchers voted on whether papers contribute to a goal (8,767 paper-and-goal questions with a clear majority, collected by the Aurora project), the new classifier scores F1 75.5 to Aurora's 63.6.
 
-## Experimental x_sdgs
+Works with a title but no abstract are tagged too, a little less accurately: about 65% of their tags are right.
 
-Since September 2026 every work also carries an experimental second list, [`x_sdgs`](/data/works/attributes/#x_sdgs), in the same shape as `sustainable_development_goals` (`id`, `display_name`, `score`). It comes from a different classifier: a small model over the work's embedding, trained on 200,000 judgments of the 17 goals by [Jev](https://typesafe.ai/), a calibrated decision model, under a strict rule ("substantively contributes to or studies the goal; mentioning a theme in passing is not contributing"). Its `score` is a calibrated probability (0.4 and up is shown), so `0.9` means roughly nine in ten such tags are right.
+### What `score` means
 
-We are evaluating it against the Aurora classifier before deciding whether it should replace the main field. On 598 works judged goal by goal by a frontier model, Aurora at its 0.4 cutoff scored precision 0.42 / recall 0.41 (F1 0.42); the Jev judgments the new model learns from scored 0.89 / 0.82 (F1 0.85, 0.81 cross-validated), and the served `x_sdgs` model 0.78 / 0.76 (F1 0.77). On the public OSDG community dataset Jev scored micro F1 60.8 to Aurora's 55.3. Aurora's largest label, SDG 7 (energy), was right about one time in six on that judged sample, mostly physics and materials papers; SDG 3 (health) was tagged on fewer than half the health papers. The full numbers, the judged set and the scripts are in the public job record.
+**`score` is the classifier's confidence, not a probability.** It runs from 0 to 1, a goal appears on a work at 0.4 or above, and a higher score means the classifier is surer. When the judges checked, tags scored 0.4 to 0.5 were right about a quarter of the time, tags scored 0.5 to 0.8 about half the time, 0.8 to 0.9 about 7 times in 10, and above 0.9 about 8 times in 10. Use it to rank works or to keep only the surest tags in your own analysis.
 
-**The main field is unchanged for now.** `sustainable_development_goals` and the SDG entity counts still come from Aurora. `x_sdgs` may change or go away, and `x_` marks it as such; if you use it in a report, say which field you used. Filter and group by it the same way: `filter=x_sdgs.id:3`, `group_by=x_sdgs.id`. Feedback on either classifier: [support@openalex.org](mailto:support@openalex.org).
+### What counts as addressing a goal
+
+**A work counts when it addresses one of the goal's [UN targets](https://sdgs.un.org/goals), not when it only touches the goal's theme.** SDG 15 (*Life on land*), for example, is about protecting and restoring land ecosystems, forests, soils and biodiversity: a study of deforestation, land degradation or invasive species is SDG 15, but a species occurrence record, a specimen record or a species description with no conservation or ecosystem aim is not. Mentioning a theme in passing is not addressing it.
+
+### Things to keep in mind
+
+- **It reads the title and abstract only, and it can be wrong.** Treat SDG tags as a broad, comparable filter, not a verdict on a single paper.
+- **Counts per goal changed at the switch, some of them a lot.** If you compare SDG numbers from before October 2026 with numbers from after, say which classifier each came from.
+- **`updated_date` did not change for the switch.** The new tags reached most works without changing their [`updated_date`](/data/common-attributes/#updated_date). If you keep a copy current with `from_updated_date` or by downloading only changed [snapshot](/access/snapshot/) partitions, the new tags will not reach you that way: reload `sustainable_development_goals` for all works once, from a full snapshot released after the switch or from the API.
+
+### The old Aurora tags (deprecated)
+
+**Aurora's tags stay available until November 2026, in their own field.** Every work carries [`sustainable_development_goals_aurora`](/data/works/attributes/#sustainable_development_goals_aurora): the Aurora tags as they stood in October 2026, in the same shape (`id`, `display_name`, `score`). It is output only: you can read it and [select](/api/selecting-fields/) it, but you cannot filter, sort or group by it. It is deprecated and will be removed in November 2026, so use `sustainable_development_goals`, and save anything you need from the old tags before then.
+
+Questions, or a tag that looks wrong: [support@openalex.org](mailto:support@openalex.org).
 
 ## Attributes
 
 This is the canonical dictionary of every attribute on an **SDG** object. Attributes shared with other entities are documented once on [Common attributes](/data/common-attributes/) and linked below.
 
 ### `id`
-*String.* The [OpenAlex ID](/data/#the-openalex-id-scheme) for this goal, e.g. `https://openalex.org/sdgs/3`. Unlike most entities, the numeric part is just the goal number (1–17). See [Common attributes](/data/common-attributes/#id).
+*String.* The [OpenAlex ID](/data/#the-openalex-id-scheme) for this goal, e.g. `https://openalex.org/sdgs/3`. Unlike most entities, the numeric part is just the goal number (1 to 17). See [Common attributes](/data/common-attributes/#id).
 
 ### `display_name`
 *String.* The goal's name, e.g. `Good health and well-being`. See [Common attributes](/data/common-attributes/#display_name).
@@ -58,13 +71,13 @@ This is the canonical dictionary of every attribute on an **SDG** object. Attrib
 *String.* The same icon as [`image_url`](#image_url), scaled down (`width=300`).
 
 ### `works_count`
-*Integer.* How many works are tagged with this goal (i.e. scored above 0.4 for it). See [Common attributes](/data/common-attributes/#works_count).
+*Integer.* How many works are tagged with this goal (scored 0.4 or above for it). See [Common attributes](/data/common-attributes/#works_count).
 
 ### `cited_by_count`
 *Integer.* Total citations across all works tagged with this goal. See [Common attributes](/data/common-attributes/#cited_by_count).
 
 ### `works_api_url`
-*String.* A ready-made [Works API](/data/works/) URL that returns every work tagged with this goal — i.e. `works?filter=sustainable_development_goals.id:<un-uri>`.
+*String.* A ready-made [Works API](/data/works/) URL that returns every work tagged with this goal: `works?filter=sustainable_development_goals.id:<un-uri>`.
 
 ### `created_date`
 *String.* The date this goal was added to OpenAlex (`YYYY-MM-DD`). See [Common attributes](/data/common-attributes/#created_date).
@@ -76,7 +89,7 @@ Of these, [`works_count`](#works_count), [`cited_by_count`](#cited_by_count), [`
 
 ## In the API
 
-The SDGs endpoint is at [`api.openalex.org/sdgs`](https://api.openalex.org/sdgs) — a short, fixed list of 17. Fetch a single goal by number — [`/sdgs/3`](https://api.openalex.org/sdgs/3) — or the whole list, and [filter](/api/filtering/), sort, and [group](/api/grouping/) over the fields above. For the full list of endpoints see the [endpoints index](/api/endpoints/).
+The SDGs endpoint is at [`api.openalex.org/sdgs`](https://api.openalex.org/sdgs), a short, fixed list of 17. Fetch a single goal by number ([`/sdgs/3`](https://api.openalex.org/sdgs/3)) or the whole list, and [filter](/api/filtering/), sort, and [group](/api/grouping/) over the fields above. For the full list of endpoints see the [endpoints index](/api/endpoints/).
 
 The more common way to use SDGs is from the works side: every [work](/data/works/) carries a [`sustainable_development_goals`](/data/works/attributes/#sustainable_development_goals) list, and you can filter works by goal.
 

@@ -3382,7 +3382,26 @@
                 }
               }
             },
-            "description": "UN Sustainable Development Goals relevant to this work, with prediction scores."
+            "description": "UN Sustainable Development Goals the work addresses, from OpenAlex's own classifier (since October 2026). A goal is listed when its score is 0.4 or above; score is the classifier's confidence from 0 to 1, not a probability."
+          },
+          "sustainable_development_goals_aurora": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "display_name": {
+                  "type": "string"
+                },
+                "score": {
+                  "type": "number"
+                }
+              }
+            },
+            "deprecated": true,
+            "description": "Aurora SDG-BERT tags as of October 2026; deprecated, removed in November 2026; use sustainable_development_goals. Output only: no filter, sort or group_by."
           },
           "mesh": {
             "type": "array",
