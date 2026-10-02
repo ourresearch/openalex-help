@@ -38,7 +38,7 @@ The connector picks the keywords, combines them with a title and abstract search
 **In other agents** (ChatGPT, Codex, or Claude Code without the connector), tell it something like this, with your own topic and a [free API key](/api/authentication/):
 
 ```
-Check help.openalex.org first, then use the OpenAlex API to find papers on <your topic>. Search titles and abstracts, but also use OpenAlex keywords to catch papers that word it differently, all in one query. Each paper should cover every part of my topic. Save the 2,000 most-cited as a CSV and show me the query and how many papers each part found.
+Check help.openalex.org first, then use the OpenAlex API to find papers on <your topic>. Search titles and abstracts, but also use OpenAlex keywords to catch papers that word it differently, all in one query. Each paper should cover every part of my topic. Save the 200 most-cited as a CSV and show me the query and how many papers each part found.
 My API key: <your key>
 ```
 
