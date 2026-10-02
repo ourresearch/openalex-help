@@ -47,8 +47,6 @@ Claude splits your topic into its parts (here, microplastics and human health) a
 
 Then it hands you the finished query in [OQL](/access/oql/), OpenAlex's query language. That query is yours: paste it into the OQL tab at [openalex.org](https://openalex.org) to see and export the full results, put it in a methods section, or refine it by hand.
 
-![Claude's answer: a count, sample papers, and the OQL query it built](/images/ai-assistants/claude-answer.png)
-
 Whenever an answer looks off, ask *"what query did you run?"* Every answer carries it. More ideas for what to ask are on the [connector reference](/access/connector/#what-you-can-ask).
 
 ## Without the connector: paste your API key
