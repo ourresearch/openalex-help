@@ -116,7 +116,7 @@ without. Newest first. `per_page` is at most 100.
 
 | Field | Required | Notes |
 |---|---|---|
-| `url` | yes | The search, as an api.openalex.org or openalex.org URL: `https://api.openalex.org/works?filter=…&search=…`. Your key, paging and `select` are dropped; the filter, search and sort are kept. |
+| `url` | yes | The search, as an api.openalex.org or openalex.org URL: `https://api.openalex.org/works?filter=…&search=…`, or an OQL query, `https://api.openalex.org/?oql=works where …`. Your key, paging and `select` are dropped; the filter, search and sort are kept. |
 | `name` | yes | |
 | `description` | no | |
 | `alert` | no | `{ "frequency": "weekly" }` to create the alert at the same time. Omit or `null` for no alert. |
@@ -151,7 +151,7 @@ An alert needs a works search that can gain new works:
 | Works with no filter or search at all | No: it would send every new work | `search_is_empty` |
 | Works in a collection of works (`collection:col_…`) | No: a collection of works is a fixed list and never gains new works | `works_collection_cannot_alert` |
 | Semantic search (`search.semantic`) | No: it can't be limited to newly added works | `semantic_search_cannot_alert` |
-| OQL (`/?oql=…`) | Not yet | `oql_cannot_alert` |
+| OQL (`https://api.openalex.org/?oql=works where …`) | Yes, if it returns works | `alert_requires_works_search` |
 | Authors, sources or any type but works | No: alerts send works | `alert_requires_works_search` |
 
 Every saved search says whether it can have an alert in `cannot_alert`, so check
