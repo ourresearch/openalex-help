@@ -135,8 +135,8 @@ GET https://api.openalex.org/works?filter=collection:!col_beNWUTw6qY
   OpenAlex API key in the `Authorization: Bearer …` header. A collection
   [shared by link](#sharing-by-link) filters for anyone, with or without a key.
   A collection you can't read (missing, deleted, or private to someone else)
-  returns `404` with "Collection col_… doesn't exist or isn't shared.", never a
-  silent zero.
+  returns `404` with "Collection col_… doesn't exist or isn't shared." and
+  `"code": "collection_not_found_or_not_shared"`, never a silent zero.
 
 ## Filtering by a collection on a related entity
 
