@@ -42,6 +42,8 @@ const reference = PRIMARY_TABS.filter((t) => t.group === 'reference');
     <title>{title ? `${title} | OpenAlex Help Center` : 'OpenAlex Help Center'}</title>
     {description && <meta name="description" content={description} />}
     <link rel="canonical" href={new URL(path, Astro.site)} />
+    {/* Machine index for AI agents (oxjob #1517). */}
+    <link rel="alternate" type="text/plain" href="/llms.txt" title="llms.txt: index of every page, for AI agents" />
   </head>
   <body>
     <header>

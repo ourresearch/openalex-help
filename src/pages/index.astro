@@ -51,6 +51,14 @@ const report = CHAT_ROWS.find((r) => r.title === 'Report Bug')!;
         describes OpenAlex's contents; and the <a href="/api/">API</a> reference documents
         the REST API.
       </p>
+      {/* Visible llms.txt pointer (oxjob #1517): agents that read this page as
+          text (WebFetch, HTML-to-markdown) missed the URL-encoded one in the
+          Ask-AI links and took longer to find the query docs. */}
+      <p>
+        <strong>AI agents.</strong> Start at <a href="/llms.txt">help.openalex.org/llms.txt</a>,
+        a plain-text index of every page. Each page also has a markdown version:
+        add <code>.md</code> to its URL.
+      </p>
       <p class="chat-para">
         <strong>Chat.</strong> Prefer to talk it through? Ask other users in
         the <a href={forum.href} target="_blank" rel="noopener">Google Group</a>, <a href={report.href} target="_blank" rel="noopener">report a bug</a> to
@@ -172,7 +180,7 @@ const report = CHAT_ROWS.find((r) => r.title === 'Report Bug')!;
     color: var(--faint);
   }
 
-  /* Four short orientation paragraphs (Search / Learn / Reference / Chat).
+  /* Short orientation paragraphs (Search / Learn / Ask Claude / Reference / AI agents / Chat).
      The nav lives in the drawer; this is just the "what is this for" blurb.
      Lead word bolded so the roles scan at a glance. */
   .intro {
