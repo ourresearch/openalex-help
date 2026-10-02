@@ -335,6 +335,8 @@ GET https://api.openalex.org/collections/{collection_id}
 Returns the collection as above. `can_edit` is `true` only for its owner. A
 collection you can't read returns `404` with code `collection_not_found`,
 whether it's missing, deleted or private, so nobody can probe for private ones.
+Branch on the `code`, not the message: a filter's `404` names the collection ID
+in its message, and this one doesn't. Timestamps are UTC.
 
 ### List its members
 
@@ -351,9 +353,11 @@ GET https://api.openalex.org/collections/{collection_id}/members?per_page=1000
 }
 ```
 
-Members come in the order they were added. Page with `page` and `per_page`
-(1 to 1,000, default 100), or with a cursor: pass `cursor=*`, then each
-response's `meta.next_cursor` until it's `null`.
+Members come in the order they were added; members added in the same call
+come in ID order. Page with `page` and `per_page` (1 to 1,000, default 100), or
+with a cursor: pass `cursor=*`, then each response's `meta.next_cursor` until
+it's `null`. In cursor mode `meta` is
+`{"count": 4, "page": null, "per_page": 1000, "next_cursor": "…"}`.
 
 ### Make a copy
 
