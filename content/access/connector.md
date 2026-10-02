@@ -1,6 +1,6 @@
 ---
 title: "AI agent connector"
-updated: 2026-09-30
+updated: 2026-10-02
 description: "The free OpenAlex connector for Claude (ChatGPT coming soon): ask about the literature in plain language, get the exact query behind every answer, and fix your own author profile in conversation."
 synonyms: ["MCP", "MCP server", "Model Context Protocol", "Claude connector", "OpenAlex connector", "connectors directory", "Claude", "ChatGPT", "custom connector"]
 tags: ["reference"]
@@ -98,7 +98,7 @@ Adding the server prompts you to sign in at openalex.org and approve the connect
 
 ## Privacy
 
-Tool arguments are forwarded to the OpenAlex API and the results returned to your agent. The server stores no conversation content. It records per-call metrics (tool name, latency, credits used, success or failure) without query text. See the [OpenAlex privacy policy](https://openalex.org/privacy).
+Tool arguments are forwarded to the OpenAlex API and the results returned to your agent. The server stores no conversation content. It records per-call metrics (tool name, latency, credits used, success or failure) without query text. The API requests it makes for you run on your API key and go into the same request log as any other API request, which keeps them for 90 days; we use the requests your assistant makes only to answer them and to run and secure the service, never for search research. See the [OpenAlex privacy policy](https://openalex.org/privacy).
 
 ## Source and support
 
