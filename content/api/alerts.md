@@ -101,7 +101,7 @@ GET /me/saved-searches?has_alert=true&page=1&per_page=50
 ```
 
 `has_alert=true` lists only searches with an alert (your alerts); `false`, only those
-without. Newest first. `per_page` is at most 100.
+without. Newest first. `per_page` defaults to 25 and is at most 100.
 
 ```json
 {
@@ -116,13 +116,16 @@ without. Newest first. `per_page` is at most 100.
 
 | Field | Required | Notes |
 |---|---|---|
-| `url` | yes | The search, as an api.openalex.org or openalex.org URL: `https://api.openalex.org/works?filter=…&search=…`, or an OQL query, `https://api.openalex.org/?oql=works where …`. Your key, paging and `select` are dropped; the filter, search and sort are kept. |
+| `url` | yes | The search, as an api.openalex.org or openalex.org URL: `https://api.openalex.org/works?filter=…&search=…`, or an OQL query, `https://api.openalex.org/?oql=works where …`. Your key, paging and `select` are dropped; the filter, search and sort are kept. The `url` and `api_url` you get back are normalized (re-encoded), so don't compare them to what you sent as strings. |
 | `name` | yes | |
 | `description` | no | |
-| `alert` | no | `{ "frequency": "weekly" }` to create the alert at the same time. Omit or `null` for no alert. |
+| `alert` | no | `{ "frequency": "weekly" }` to create the alert at the same time; `frequency` is required inside it (`daily`, `weekly` or `monthly`, any case). Omit or `null` for no alert. |
 
 Saving the same search twice returns `409` with code `saved_search_exists` and the
-existing search's `id`, so retrying a create is safe. You can have up to 100 saved searches.
+existing search's id in `existing_id`; the order of parameters, paging and sort don't
+make two searches different. So retrying a create is safe, but a `409` doesn't mean
+your alert exists: the earlier save may have had none. After a `409`, `PATCH` the
+`existing_id` with the `alert` you wanted. You can have up to 100 saved searches.
 
 ### Update
 
@@ -134,7 +137,10 @@ Fields you leave out don't change.
 { "alert": null }                          // turn the alert off, keep the saved search
 ```
 
-Changing `frequency` keeps the alert's history: the next check is the last check plus the new interval.
+Changing `frequency` keeps the alert's history: the next check is the last check plus
+the new interval. Turning an alert on for a search saved earlier makes its first email
+cover works added since the search was saved (or since its last email); an alert
+created together with its search starts from now.
 
 ### Delete
 
@@ -148,11 +154,27 @@ An alert needs a works search that can gain new works:
 |---|---|---|
 | Works, by filter or search | Yes | |
 | Works in a collection of authors, institutions, sources or another type | Yes, while you can read the collection | `collection_not_found_or_not_shared` |
+| `collection:` with a collection that isn't of works | No: `collection:` takes only collections of works; use the field for that type (below) | `collection_type_mismatch` |
 | Works with no filter or search at all | No: it would send every new work | `search_is_empty` |
 | Works in a collection of works (`collection:col_…`) | No: a collection of works is a fixed list and never gains new works | `works_collection_cannot_alert` |
-| Semantic search (`search.semantic`) | No: it can't be limited to newly added works | `semantic_search_cannot_alert` |
+| Semantic search (`search.semantic`, or OQL `is similar to`) | No: it can't be limited to newly added works | `semantic_search_cannot_alert` |
 | OQL (`https://api.openalex.org/?oql=works where …`) | Yes, if it returns works | `alert_requires_works_search` |
 | Authors, sources or any type but works | No: alerts send works | `alert_requires_works_search` |
+
+To alert on works from a collection of something other than works, filter by that
+type's field with the collection's id as the value:
+
+| Collection of | Filter |
+|---|---|
+| Authors | `authorships.author.id:col_…` |
+| Institutions | `authorships.institutions.lineage:col_…` (the institution and its parts) |
+| Sources (journals, repositories) | `primary_location.source.id:col_…` |
+| Publishers | `primary_location.source.publisher_lineage:col_…` |
+| Funders | `funders.id:col_…` |
+| Topics | `topics.id:col_…` |
+
+For example `https://api.openalex.org/works?filter=authorships.institutions.lineage:col_abc123`.
+See [Collections](/api/collections/#filtering-by-a-collection-on-a-related-entity) for every field.
 
 Every saved search says whether it can have an alert in `cannot_alert`, so check
 that before offering one. If a collection in an alert's search is deleted, or its owner
@@ -177,7 +199,7 @@ Errors return JSON with a stable `code` to branch on and a `message` to show peo
 | 400 | `invalid_body` | The body isn't a JSON object. |
 | 400 | `invalid_url` | `url` isn't an OpenAlex search URL. |
 | 400 | `invalid_field` | A field is missing, unknown, the wrong type or too long; `message` names it. |
-| 400 | `invalid_frequency` | `frequency` isn't `daily`, `weekly` or `monthly`. |
+| 400 | `invalid_frequency` | `alert.frequency` is missing or isn't `daily`, `weekly` or `monthly`. |
 | 400 | one of the codes in [the table above](#which-searches-can-have-an-alert) | This search can't have an alert. |
 | 401 | `unauthorized` | Missing or invalid key. |
 | 403 | `too_many_saved_searches` | You have 100 already. |
@@ -186,8 +208,11 @@ Errors return JSON with a stable `code` to branch on and a `message` to show peo
 
 ## For agents
 
+- Check what the user already has first (`GET /me/saved-searches?has_alert=true`): the
+  same topic written another way is a different search to the API.
 - Show the user what an alert will send before creating it: call the search's
-  `api_url` with `sort=publication_date:desc` and show a few titles.
+  `api_url` with your key and `sort=publication_date:desc`, and show a few titles. (A
+  search on a private collection matches nothing without the owner's key.)
 - Name the alert after what the user asked for; it's the email's subject line.
 - Use `has_alert=true` to answer "what alerts do I have?", and `PATCH` with
   `"alert": null` to stop one without losing the saved search.
