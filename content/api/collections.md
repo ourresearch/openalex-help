@@ -1,24 +1,24 @@
 ---
 title: "Collections"
-updated: 2026-08-11
+updated: 2026-10-02
 description: "Save named lists of OpenAlex entities and filter searches against them"
 tags: ["api"]
 source_id: "guides/collections"
 source_url: "https://developers.openalex.org/guides/collections"
 source_updated: "2026-06-01"
 ---
-A **collection** is a private, named list of OpenAlex entities of one type — for
+A **collection** is a named list of OpenAlex entities of one type — for
 example, "Papers I'm tracking for this grant", "Authors at my consortium", or
 "Journals I publish in". Collections give you a single ID you can drop into the
 [`filter` parameter](/api/filtering/) anywhere in the API, instead of pasting
 hundreds of OpenAlex IDs into every request.
 
 > **Note:**
-> Collections are private to the user who creates them. Manage them via
-> authenticated requests against `user.openalex.org`, and use the `collection:`
-> filter against `api.openalex.org` — both authenticated with your OpenAlex API
-> key in the `Authorization: Bearer` header. You can only filter on collections
-> you own.
+> Collections start private to the user who creates them. The owner can
+> [share one by link](#sharing-by-link): then anyone with its link or `col_` ID
+> can view it and filter by it, logged in or not. Manage collections via
+> authenticated requests against `user.openalex.org`, with your OpenAlex API key
+> in the `Authorization: Bearer` header.
 
 ## Concepts
 
@@ -131,9 +131,12 @@ GET https://api.openalex.org/works?filter=collection:!col_beNWUTw6qY
   client-side and pass them via the `openalex:` filter.
 - **Per-request entity-list ceiling: 10,000.** With the per-collection cap of
   1,000 entities, a single collection is always within budget.
-- **Authentication required.** Pass your OpenAlex API key in the
-  `Authorization: Bearer …` header. Anonymous requests return `401`;
-  requests by a user who doesn't own the collection return `403`.
+- **Access.** A private collection filters only for its owner: pass your
+  OpenAlex API key in the `Authorization: Bearer …` header. A collection
+  [shared by link](#sharing-by-link) filters for anyone, with or without a key.
+  A collection you can't read (missing, deleted, or private to someone else)
+  returns `404` with "Collection col_… not found or not shared.", never a
+  silent zero.
 
 ## Filtering by a collection on a related entity
 
@@ -222,11 +225,38 @@ Authorization: Bearer <your-api-key>
 - The per-collection cap of 1,000 entities still applies, and a single request
   resolves to at most 10,000 entity IDs across all of its collection filters.
 
+## Sharing by link
+
+Every collection is `private` or `shared_by_link`:
+
+| `access`         | Who can view it and filter by it                          |
+| ---------------- | --------------------------------------------------------- |
+| `private`        | Only its owner. The default for every new collection.     |
+| `shared_by_link` | Anyone with its link or `col_` ID, logged in or not.      |
+
+A collection shared by link is never listed or searchable anywhere: people find
+it only through a link or ID you give them. Only the owner can change it; anyone
+else with an account can [make a copy](#make-a-copy). Share or unshare with:
+
+```bash
+PATCH https://user.openalex.org/me/collections/{collection_id}
+Content-Type: application/json
+
+{ "access": "shared_by_link" }
+```
+
+`{ "access": "private" }` makes it private again, at once, for every link and
+saved search that uses it. In the OpenAlex website, use **Share** on the
+collection's page or in the row menu on your Collections page.
+
+Lists of people say something about them. Don't share lists drawn from HR
+records.
+
 ## Managing collections
 
-All endpoints below live on `user.openalex.org` and require your OpenAlex API key in the `Authorization: Bearer` header.
-Anonymous requests return `401`; requests for a collection owned by another
-user return `403` (admins bypass this).
+The endpoints below live on `user.openalex.org`. Reading a collection follows
+its [access](#sharing-by-link); everything else requires your OpenAlex API key in
+the `Authorization: Bearer` header and works only on collections you own.
 
 ### List your collections
 
@@ -266,15 +296,34 @@ Response:
 GET https://user.openalex.org/collections/{collection_id}
 ```
 
-Returns the same shape as one row in `results` above. The collection's
-entities are paged separately to keep response sizes bounded:
+Returns the same shape as one row in `results` above, plus `can_edit` (true
+only for the owner). Anyone but the owner sees it without `user_id`. A
+collection you can't read returns `404` "Collection not found or not shared."
+whether it's missing or private, and reads by anyone but the owner are rate
+limited (120 a minute per IP when logged out, 300 a minute per account). The
+collection's entities are paged separately to keep response sizes bounded:
 
 ```bash
-GET https://user.openalex.org/collections/{collection_id}/entities?per_page=200
+GET https://user.openalex.org/collections/{collection_id}/entities?per_page=1000
 ```
 
 Returns the collection metadata plus the page of `entity_ids` (max
-`per_page=200`).
+`per_page=1000`).
+
+### Make a copy
+
+```bash
+POST https://user.openalex.org/me/collections
+Content-Type: application/json
+
+{ "source_collection_id": "col_beNWUTw6qY" }
+```
+
+Copies any collection you can read (your own, or one shared by link) into a new
+**private** collection you own, with the same type, description and members.
+Pass `display_name` to name it; otherwise it keeps the source's name, with
+"(copy 2)" and so on if you already use that name. The copy doesn't follow later
+changes to the source.
 
 ### Update name, description, or entity type
 
@@ -332,7 +381,7 @@ OpenAlex admins can list, read, edit, or delete any user's collection:
 | -------- | --------------------------------------------------- | ------------------------------ |
 | `GET`    | `/admin/collections?q=&owner_id=&entity_type=`      | Cross-user search, paged       |
 | `GET`    | `/admin/collections/{collection_id}`                | Read any collection            |
-| `PATCH`  | `/admin/collections/{collection_id}`                | Same body as the user PATCH    |
+| `PATCH`  | `/admin/collections/{collection_id}`                | Same body as the user PATCH, plus `user_id` to transfer ownership |
 | `DELETE` | `/admin/collections/{collection_id}`                | Hard-delete with cascade       |
 
 Non-admin callers get `403`.

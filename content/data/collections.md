@@ -1,7 +1,7 @@
 ---
 title: "Collections"
-updated: 2026-08-11
-description: "What a collection is, what it can hold, why collections are private to their owner, and what every attribute on a collection object means."
+updated: 2026-10-02
+description: "What a collection is, what it can hold, who can see it (private, or shared by link), and what every attribute on a collection object means."
 tags: ["reference"]
 entity:
   example: "col_beNWUTw6qY"
@@ -14,7 +14,7 @@ Collections are made by users, so they have no "About" provenance story. Instead
 
 ### Who creates them
 
-Any signed-in OpenAlex user can create collections, and a collection belongs to the user who made it. Collections are **private to their owner** — you can only read, filter on, or edit collections you own, and only you (or an OpenAlex admin) can see them. There's no public/shared collection type today. A user can own up to **100** collections.
+Any signed-in OpenAlex user can create collections, and a collection belongs to the user who made it. Every collection starts **private**: only you (or an OpenAlex admin) can see it or filter by it. You can **share it by link**: then anyone with its link or ID can view it and filter by it, logged in or not, though it's never listed or searchable. Only the owner edits a collection; anyone else with an account can make a private copy of one shared with them. A user can own up to **100** collections.
 
 The easiest way to make one is in the web UI at [openalex.org](https://openalex.org): run a search, tick the rows you want, and click the folder icon → **Create a new collection**. You can also paste a list of IDs or DOIs into the create-collection wizard, or build one programmatically by `POST`ing to the collections endpoint.
 
@@ -39,7 +39,10 @@ A collection object is small — it carries metadata about the set, not the memb
 *String.* The collection's ID: the literal prefix `col_` followed by 10 alphanumeric characters, e.g. `col_beNWUTw6qY`. This is the value you pass to the `collection:` filter (or to an ID-valued filter field). Unlike native-entity [OpenAlex IDs](/data/common-attributes/#id), it is not a resolvable `openalex.org` URL.
 
 ### `user_id`
-*String.* The ID of the user who owns the collection, e.g. `user-TSamuHxDbnhn`. Collections are private to this user; only the owner (or an admin) can read or filter on them.
+*String.* The ID of the user who owns the collection, e.g. `user-TSamuHxDbnhn`. Only the owner edits it. Shown only to the owner (and admins): people viewing a collection shared by link don't see who owns it.
+
+### `access`
+*String.* Who can view the collection and filter by it: `private` (only its owner; the default) or `shared_by_link` (anyone with its link or ID, logged in or not; never listed). See [Sharing by link](/api/collections/#sharing-by-link).
 
 ### `entity_type`
 *String.* The single entity type every member of the collection must be — one of `works`, `authors`, `sources`, `institutions`, `topics`, `sdgs`, `funders`, `publishers`, `keywords`, or `concepts`. Fixed at creation, and changeable only while the collection is empty. Every ID you add must match it; a wrong-type ID (an `A…` in a `works` collection) is rejected with a `400`.
