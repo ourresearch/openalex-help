@@ -1,6 +1,6 @@
 ---
 title: "Finding papers with keywords"
-updated: 2026-09-30
+updated: 2026-10-02
 description: "Find the papers a text search misses: pick the right keywords with the /text endpoint or your AI agent, then combine them with a title and abstract search."
 tags: ["search"]
 synonyms: ["keyword search", "keywords", "subject search", "controlled vocabulary", "recall", "find more papers", "synonyms", "literature search", "search strategy", "missing papers"]
@@ -38,12 +38,12 @@ The connector picks the keywords, combines them with a title and abstract search
 **In other agents** (ChatGPT, Codex, or Claude Code without the connector), paste in this prompt, with your own topic and a [free API key](/api/authentication/):
 
 ```
-Use the OpenAlex API to find research on the topic below. Read the docs first: https://help.openalex.org/llms.txt. Send my description to the /text/keywords endpoint to see which OpenAlex keywords fit it. Look each one up and keep only those that match my topic; if a keyword covers just one part of it, require a keyword for every part. Then search works that have those keywords, or my main phrase in the title or abstract. Save a CSV (OpenAlex ID, DOI, title, year, cited-by count) of up to the 2,000 most-cited works, and show me the exact query you ran and how many works each part found.
-My OpenAlex API key: <your key>
+Read https://help.openalex.org/llms.txt, then use the OpenAlex API. Send my topic to /text/keywords and check each keyword it suggests. Find works that have a fitting keyword for every part of my topic, or mention every part in the title or abstract. Save the 2,000 most-cited as a CSV, and show me the exact query and each part's count.
+My API key: <your key>
 My topic: <describe your topic in a sentence>
 ```
 
-We tested it on fresh installs of two agents, and it worked every time. For remote work and employee wellbeing, the agents chose `remote-work` plus `employee-health` or `work-life-balance`. A title and abstract search found 2,462 works; the keywords found 7,922 more, on topic more often than the text matches. That's about four times as many relevant works as the phrase search found, including [papers on "telework"](https://openalex.org/works/W4318067105) and [papers in Spanish](https://openalex.org/works/W4387828597) that the phrase search can't see.
+We tested it on fresh installs of Claude Code and Codex, and it built a working query every time. For remote work and employee wellbeing, each agent picked `remote-work` plus a wellbeing keyword and found thousands of papers the phrase search missed, like [ones that say "telework"](https://openalex.org/works/W4318067105).
 
 Keep the query the agent shows you: rerun it later, or share it so others can check your search.
 
