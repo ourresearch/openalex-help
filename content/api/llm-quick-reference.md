@@ -1,6 +1,6 @@
 ---
 title: "LLM Quick Reference"
-updated: 2026-09-30
+updated: 2026-10-02
 description: "OpenAlex API reference optimized for AI agents"
 tags: ["api"]
 source_id: "guides/llm-quick-reference"
@@ -46,6 +46,15 @@ Corpus: default = curated core (~324M works). corpus=all adds the ~193M-work
 ```
 content.openalex.org/works/{id}.pdf - Download PDFs ($0.01 each)
 /text/keywords?title=...&abstract=... - OpenAlex keywords (and /text/topics) for any text; use them to pick keywords.id filters ($0.01 each)
+```
+
+Email alerts for new works (the user's own key, `Authorization: Bearer` only, on user.openalex.org; see [Alerts](/api/alerts/)):
+
+```
+POST   user.openalex.org/me/saved-searches        {"name", "url": "https://api.openalex.org/works?filter=...", "alert": {"frequency": "weekly"}}
+GET    user.openalex.org/me/saved-searches?has_alert=true
+PATCH  user.openalex.org/me/saved-searches/{id}   {"alert": {"frequency": "monthly"}} or {"alert": null}
+DELETE user.openalex.org/me/saved-searches/{id}
 ```
 
 ## Critical: Two-Step ID Lookup
