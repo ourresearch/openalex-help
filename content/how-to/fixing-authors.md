@@ -1,9 +1,9 @@
 ---
 title: "Fixing authors"
-updated: 2026-09-21
+updated: 2026-10-01
 description: "Claim your OpenAlex author profile and fix it yourself: add and remove works, merge duplicates, and correct your names."
 tags: ["fixing"]
-synonyms: ["author profile", "claim profile", "merge profiles", "alternate names", "wrong works", "ORCID", "claim verification"]
+synonyms: ["author profile", "claim profile", "merge profiles", "alternate names", "wrong works", "ORCID", "link ORCID", "connect ORCID", "sync ORCID", "import from ORCID", "claim verification"]
 card: "No ticket needed — claim it and fix it yourself: works, name variants, merged twins."
 ---
 Your author profile is the big self-serve case in OpenAlex: you don't need to file a ticket — claim the profile and fix it yourself. This page is the recipes; the full story (everything you can change, how curations work, the API) is in the [Authors fixing-errors reference](/access/fixing-errors/authors/).
@@ -14,14 +14,35 @@ Your author profile is the big self-serve case in OpenAlex: you don't need to fi
 ## How do I claim my profile?
 
 1. Sign in at [openalex.org](https://openalex.org) (create a free account if you don't have one).
-2. Search for your name and open your author page ([finding your author ID](/how-to/finding-openalex-ids/#how-do-i-find-my-author-id)).
-3. Click **Claim** near the top of the page.
+2. Open your author page ([finding your author ID](/how-to/finding-openalex-ids/#how-do-i-find-my-author-id)).
+3. Click **Claim**.
 
-If your account has a **verified academic or institutional email address** (a university, research institute, or government domain), the claim is approved on the spot: no waiting period, and you can start fixing the profile right away. So sign up with your institutional address rather than a personal one if you can, or add and verify it in your account settings before you claim.
+**With a university email, your claim is approved right away.** This works when your account has a verified email from a university, a research institute or a government agency.
 
-Without one, your claim goes into a review queue, which usually takes a few days. Help it through by giving evidence that you're the scholar behind these works: a link to a page or paper that shows both the name on the profile and your account email (a departmental page, a lab site, a paper's author list). You don't need to prove you wrote any particular work, only that you're who you say you are.
+**Add your university email, even if you use another email.** Your account can have more than one email. Keep your current email, and add your university email in [Settings](https://openalex.org/settings). We send a link to that address. Click it, and your claims are approved right away. This is by far the easiest way.
 
-Either way, claims can be reviewed at any time, and a fraudulent claim is revoked and its edits reverted. The bar is deliberately low, Wikipedia-style: every edit anyone makes to a profile is recorded and can be reverted, so we'd rather make claiming easy and undo the rare bad edit than make everyone wait. Once approved, you own the profile.
+**Or link your ORCID.** If the profile shows your ORCID iD, click **Link your ORCID** in the claim window and sign in to ORCID. Your claim is approved right away. Linking your ORCID in Settings does the same, with no claim window ([how](#how-do-i-link-my-orcid)).
+
+**No university email? Send a link that shows your email.** The page must show the email address of your OpenAlex account.
+
+- ✓ Your page on your university's or institute's website
+- ✓ A paper or preprint (for example on arXiv) that lists your email
+- ✗ A page that shows your name but not your email
+- ✗ A page you made yourself: a personal website, LinkedIn, ResearchGate
+
+**Why your email, and not your name?** Anyone can type any name into an OpenAlex account. Your email is the only thing we have checked. So the page must show that exact email.
+
+We check every link automatically and answer in a few minutes. If we can't approve your claim, we tell you what is missing, by email and on the profile page. You can send a new link at any time. Once approved, you own the profile.
+
+## How do I link my ORCID?
+
+1. Sign in at [openalex.org](https://openalex.org) and open [Settings](https://openalex.org/settings/profile).
+2. In the ORCID row, click **Link ORCID**.
+3. Sign in to ORCID. You come back to Settings, where the row shows your iD and **✓ Linked**.
+
+If an OpenAlex profile carries your iD, we claim it for you. Linking doesn't import works from your ORCID record: [add and remove works](#how-do-i-add-or-remove-works) yourself, as with any claimed profile.
+
+To unlink, use the **⋮** menu next to **✓ Linked**. Your claimed profile stays yours.
 
 ## How do I add or remove works?
 
@@ -45,7 +66,7 @@ Because a profile is built from its works. The institutions, topics, alternate n
 
 ## How do I set or correct my ORCID?
 
-Claim your profile, then set the ORCID through the [curation API](/api/author-curation/#modify-orcid) with `property: "orcid"`: `replace` to set it, `remove` to detach one that is not yours. There is no button for it on the website yet. The change shows within about two days, and the new primary appears in [`observed_orcids`](/data/authors/#observed_orcids) right away, even before any work carries it.
+This is the ORCID shown on your author page, which is separate from the one [linked to your account](#how-do-i-link-my-orcid). Claim your profile, then set the ORCID through the [curation API](/api/author-curation/#modify-orcid) with `property: "orcid"`: `replace` to set it, `remove` to detach one that is not yours. There is no button for it on the website yet. The change shows within about two days, and the new primary appears in [`observed_orcids`](/data/authors/#observed_orcids) right away, even before any work carries it.
 
 Know what it does before you reach for it. It records the ORCID on your profile and makes it your match key for *future* works. It does not move works already sitting on another profile, pull in missing works, or merge duplicates; those are fixed by [adding and removing works](#how-do-i-add-or-remove-works). Why ORCID works this way, and why a profile often has none: [ORCID](/data/authors/orcid/).
 

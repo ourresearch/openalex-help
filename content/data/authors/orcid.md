@@ -1,7 +1,7 @@
 ---
 title: "ORCID"
-updated: 2026-09-23
-description: "How OpenAlex records ORCID iDs: where they come from, how rare they are, how the primary is chosen, why a profile can have several, why one can be wrong, and how lookup works."
+updated: 2026-10-01
+description: "How OpenAlex records ORCID iDs: where they come from, how rare they are, how the primary is chosen, why a profile can have several, why one can be wrong, how lookup works, and what linking your ORCID to your account does."
 tags: ["reference"]
 ---
 An [ORCID iD](https://orcid.org/) is a persistent identifier for a researcher, a 16-digit number like `0000-0002-0889-9220` that a person registers and attaches to their papers. OpenAlex records it in three places:
@@ -9,6 +9,8 @@ An [ORCID iD](https://orcid.org/) is a persistent identifier for a researcher, a
 - [`raw_orcid`](/data/authorships/#raw_orcid) on an [authorship](/data/authorships/): the ORCID exactly as the publisher or repository deposited it on that work.
 - [`orcid`](/data/authors/#orcid) on an [author](/data/authors/) profile: the primary ORCID.
 - [`observed_orcids`](/data/authors/#observed_orcids) on a profile: every ORCID trusted on the profile's works, with the primary first.
+
+Separately, you can [link your ORCID to your OpenAlex account](#linking-your-orcid-to-your-account). That is about who you are, not about which works are yours, and it is a different thing from the `orcid` on your profile.
 
 Most profiles have one ORCID or none, so `orcid` and `observed_orcids` usually say the same thing. This profile has two:
 
@@ -26,7 +28,7 @@ Most profiles have one ORCID or none, so `orcid` and `observed_orcids` usually s
 
 ## Where ORCIDs come from, and how many there are
 
-OpenAlex never looks a person up in the ORCID registry to decide which works are theirs. An ORCID reaches OpenAlex **attached to a work**: the publisher collects it at submission and deposits it with the work's metadata (mostly via [Crossref](https://www.crossref.org/) and [DataCite](https://datacite.org/)), or a repository asserts it in its own records. That is the only way in. A researcher who has an ORCID but never gave it to a publisher is invisible on this axis, and so is every paper written before they registered.
+When OpenAlex matches a new work to an author, it never looks the person up in the ORCID registry. An ORCID reaches the matcher **attached to a work**: the publisher collects it at submission and deposits it with the work's metadata (mostly via [Crossref](https://www.crossref.org/) and [DataCite](https://datacite.org/)), or a repository asserts it in its own records. That is the only way in. A researcher who has an ORCID but never gave it to a publisher is invisible on this axis, and so is every paper written before they registered.
 
 That makes ORCID far rarer in the literature than people expect:
 
@@ -81,7 +83,7 @@ OpenAlex does not merge automatically the moment two profiles share an ORCID. A 
 
 When a new work arrives with a trusted ORCID that matches a profile (the primary or any observed ORCID), the authorship attaches to that profile even if the printed name is quite different. Two limits matter:
 
-- **It is not applied retroactively.** OpenAlex does not periodically re-scan works already in the database and re-home them by ORCID. An ORCID on a new work attaches that work; earlier works stay where they are. A work that carries your ORCID but sits on another profile is fixed by [moving the work](/how-to/fixing-authors/#how-do-i-add-or-remove-works).
+- **Matching does not re-scan older works.** An ORCID on a new work attaches that work; matching leaves earlier works where they are. One-off cleanup passes have re-homed older works by ORCID: in September 2026, profiles that shared an ORCID with a bigger profile were merged into it, and works that researchers' own public ORCID records list were moved onto their main profiles, each kind of move checked before it was made. There is no standing re-scan, so a work that carries your ORCID but still sits on another profile is fixed by [moving the work](/how-to/fixing-authors/#how-do-i-add-or-remove-works).
 - **It does not keep people apart.** Two authorships with different ORCIDs can still be merged on the strength of name, institution, and co-author signals, for the reasons above.
 
 ORCID is the strongest of the [disambiguation signals](/data/authors/disambiguation/#the-signals) where it exists. Names carry most of the load because every work has them.
@@ -95,6 +97,14 @@ ORCID is a first-class identifier across the API. Lookup and filtering check the
 - Filter works by an author's ORCID: `filter=authorships.author.orcid:0000-0003-2780-0393`. This too matches the resolved author's primary or any observed ORCID, so a paper is found by the ORCID its author used at the time as well as by the one shown on the profile today. Works pick up a profile's ORCIDs when they are next rebuilt, so a newly observed ORCID can take a day to reach the works side.
 - Compare what the work asserted with what OpenAlex resolved: [`authorships[].raw_orcid`](/data/authorships/#raw_orcid) against [`authorships[].author.orcid`](/data/authorships/#author).
 
-## Changing your ORCID
+## Linking your ORCID to your account
+
+Linking proves you own an ORCID iD: you sign in to ORCID, and ORCID tells OpenAlex your iD. Link it in [Settings](https://openalex.org/settings/profile) with **Link ORCID** ([steps](/how-to/fixing-authors/#how-do-i-link-my-orcid)).
+
+If a profile carries your iD, we claim it for you. Linking doesn't import works from your ORCID record: you [add and remove works](/how-to/fixing-authors/#how-do-i-add-or-remove-works) yourself, as with any claimed profile.
+
+The linked iD belongs to your account. It doesn't change the `orcid` on your profile; that is [set separately](#changing-the-orcid-on-your-profile).
+
+## Changing the ORCID on your profile
 
 The owner of a claimed profile can set the primary ORCID or remove a wrong one; `observed_orcids` follows. How, and what it does and does not change: [How do I set or correct my ORCID?](/how-to/fixing-authors/#how-do-i-set-or-correct-my-orcid)
