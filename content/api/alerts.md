@@ -153,7 +153,7 @@ An alert needs a works search that can gain new works:
 | Search | Alert? | `code` when refused |
 |---|---|---|
 | Works, by filter or search | Yes | |
-| Works in a collection of authors, institutions, sources or another type | Yes, while you can read the collection | `collection_not_found_or_not_shared` |
+| Works in a collection of authors, institutions, sources or another type | Yes, while you can read the collection | `collection_not_found` |
 | `collection:` with a collection that isn't of works | No: `collection:` takes only collections of works; use the field for that type (below) | `collection_type_mismatch` |
 | Works with no filter or search at all | No: it would send every new work | `search_is_empty` |
 | Works in a collection of works (`collection:col_…`) | No: a collection of works is a fixed list and never gains new works | `works_collection_cannot_alert` |
