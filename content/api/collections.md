@@ -11,7 +11,9 @@ A **collection** is a named list of **members**: OpenAlex entities of one type,
 such as "Papers I'm tracking for this grant", "Authors at my consortium" or
 "Journals in our Elsevier package". A collection can hold any OpenAlex entity
 type. Its ID drops into the [`filter` parameter](/api/filtering/) anywhere in the
-API, in place of hundreds of IDs pasted into every request.
+API, in place of hundreds of IDs pasted into every request. Besides your own,
+OpenAlex keeps [public collections](#public-collections), such as country groups,
+that anyone can list and use without an account.
 
 Collections behave like every other OpenAlex entity: an `id` that is a URL
 (`https://openalex.org/collections/col_8yWKmRNyEr`, with the short `col_8yWKmRNyEr`
@@ -59,6 +61,14 @@ curl -X POST https://api.openalex.org/collections \
 curl "https://api.openalex.org/works?filter=collection:col_8yWKmRNyEr,is_oa:true&api_key=$OPENALEX_API_KEY"
 ```
 
+Or use a [public collection](#public-collections), no collection of your own needed:
+works with an author in the European Union.
+
+```bash
+curl "https://api.openalex.org/collections?filter=access:public&search=european"
+curl "https://api.openalex.org/works?filter=authorships.countries:col_LV29j8URoX&api_key=$OPENALEX_API_KEY"
+```
+
 ## Authentication
 
 Send your OpenAlex API key as `?api_key=` or an `Authorization: Bearer` header: a
@@ -88,7 +98,7 @@ a [filter](#filtering-by-a-collection).
 
 | Method | Path | What it does | Who |
 | --- | --- | --- | --- |
-| `GET` | `/collections` | Your collections, with `filter`, `search`, `sort`, `select` and paging | You |
+| `GET` | `/collections` | Public collections, plus yours with a key; `filter`, `search`, `sort`, `group_by`, `select`, paging | Anyone |
 | `POST` | `/collections` | Create one, or [make a copy](#make-a-copy) | Any account |
 | `GET` | `/collections/{id}` | Read one; takes `select` | Per its [access](#who-can-see-a-collection) |
 | `PATCH` | `/collections/{id}` | Change `display_name`, `description`, `access` | Owner |
@@ -416,13 +426,29 @@ work *not* published in those journals.
 
 Public collections are lists OpenAlex makes and keeps up to date, starting with
 country groups: the European Union (EU27), the UN M49 regions and Latin America and
-the Caribbean, the World Bank income groups and OECD members. Each one's description
-names its source and date. Use one like any other collection, for example works with
-an author in a low-income country:
+the Caribbean, the World Bank income groups and OECD members. The full list, with
+IDs and sources, is on the [Collections entity page](/data/collections/#public-collections);
+each one's description names its source and date. List them, then use one like any
+other collection:
 
 ```bash
-GET https://api.openalex.org/works?filter=authorships.countries:col_…
+# All public collections, or those matching a word
+GET https://api.openalex.org/collections?filter=access:public
+GET https://api.openalex.org/collections?filter=access:public&search=income
+
+# Works with an author in a low-income country (World Bank)
+GET https://api.openalex.org/works?filter=authorships.countries:col_WXiZS2Kp4u
+
+# Works in journals based in the EU, and works with no EU author
+GET https://api.openalex.org/works?filter=primary_location.source.country_code:col_LV29j8URoX
+GET https://api.openalex.org/works?filter=authorships.countries:!col_LV29j8URoX
 ```
+
+A country group works on every country filter: on `/works`, `authorships.countries`,
+`institutions.country_code`, `primary_location.source.country_code` and
+`funders.country_code`; `country_code` on `/institutions` and `/sources`;
+`last_known_institutions.country_code` on `/authors`; `funder.country_code` on
+`/awards`; and `collection:` on `/countries`. Not yet on `/funders` or `/publishers`.
 
 Only OpenAlex can make a collection public for now: `{"access": "public"}` from
 anyone else returns `403 public_needs_review`. To suggest a list for the public
@@ -522,6 +548,8 @@ Errors look like the rest of the API, with a stable `code` to branch on:
 - A work's location IDs are `locations[].id` from `GET /works/{id}?select=locations`.
 - Before filtering by a collection, match its `entity_type` to the filter:
   `collection:` on its own endpoint, or the ID field of that type elsewhere.
+- For a country group (EU, Latin America, income groups, OECD), look for a public
+  collection before building one: `GET /collections?filter=access:public&search=…`.
 - Branch on `code`, never on `message`.
 
 ## Older routes (deprecated)
@@ -553,7 +581,7 @@ OpenAlex admins can list, read, edit or delete any user's collection on `https:/
 | --- | --- | --- |
 | `GET` | `/admin/collections?q=&owner_id=&entity_type=` | Cross-user search, paged |
 | `GET` | `/admin/collections/{collection_id}` | Read any collection |
-| `PATCH` | `/admin/collections/{collection_id}` | Same body as the user PATCH, plus `user_id` to transfer ownership |
+| `PATCH` | `/admin/collections/{collection_id}` | Same body as the user PATCH, plus `user_id` to transfer ownership; `{"access": "public"}` makes it public |
 | `DELETE` | `/admin/collections/{collection_id}` | Hard-delete with cascade |
 
 Non-admin callers get `403`.

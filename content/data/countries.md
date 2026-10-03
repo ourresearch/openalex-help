@@ -1,6 +1,6 @@
 ---
 title: "Countries"
-updated: 2026-09-09
+updated: 2026-10-03
 description: "What a country is in OpenAlex, the ISO standard behind the list, the fields on a country object, and how to filter works, authors, and institutions by country."
 tags: ["reference"]
 source_id: "api-reference/countries"
@@ -18,6 +18,8 @@ A **country** is a geographic nation, identified by its [ISO 3166-1 alpha-2](htt
 ## About
 
 We don't build the list — we adopt it. Countries are the [ISO 3166-1](https://en.wikipedia.org/wiki/ISO_3166-1) standard set of nations, keyed by their two-letter alpha-2 codes. OpenAlex adds live scholarly counts and a few conveniences (continent, Global South flag, name variants) on top of that fixed list. There are 247 countries.
+
+For other groupings, such as the European Union, Latin America and the Caribbean, the World Bank income groups or OECD members, use a [public collection](/data/collections/#public-collections): one ID that stands for the whole group in any country filter, e.g. `filter=authorships.countries:col_LV29j8URoX` for the EU27.
 
 ## Values
 

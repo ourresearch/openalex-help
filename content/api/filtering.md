@@ -139,7 +139,9 @@ The `collection:` filter narrows results to the members of a
 [collection](/api/collections/), on the endpoint of the collection's own type
 (`/works` for a works collection, `/authors` for an authors collection, and so
 on). A private collection filters only with its owner's API key; one shared by
-link filters for anyone. A collection you can't read returns `404` with code
+link or [public](/api/collections/#public-collections) filters for anyone. OpenAlex's
+public collections include country groups (EU27, world regions, World Bank income
+groups, OECD) that work in any country filter, e.g. `authorships.countries:col_LV29j8URoX`. A collection you can't read returns `404` with code
 `collection_not_found`, never an empty result. Any ID-valued filter also takes a
 collection of the matching type, e.g. `primary_location.source.id:col_…` on
 `/works`.

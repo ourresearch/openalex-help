@@ -1,12 +1,12 @@
 ---
 title: "Working with collections"
 updated: 2026-10-03
-description: "Recipes for collections: build one from a list of DOIs, ORCIDs or ISSNs or from a search, share it, copy someone else's, report on a set of journals or institutions, exclude a list, get alerts, export members, and do it all from a script or an AI agent."
+description: "Recipes for collections: build one from a list of DOIs, ORCIDs or ISSNs or from a search, share it, filter by a country group such as the EU or low-income countries, copy someone else's, report on a set of journals or institutions, exclude a list, get alerts, export members, and do it all from a script or an AI agent."
 tags: ["how-do-i"]
-synonyms: ["collection", "saved list", "reading list", "journal list", "list of authors", "col_"]
+synonyms: ["collection", "saved list", "reading list", "journal list", "list of authors", "col_", "country group", "EU countries", "European Union", "Latin America", "low-income countries", "Global South", "OECD", "world region"]
 card: "Save a list once, then filter any search by it: journals in a deal, a department's authors, a reading list."
 ---
-A [collection](/data/collections/) is a named list of OpenAlex entities you save once and then use in any search, in place of hundreds of pasted IDs. These recipes cover the jobs people use them for. Each works on [openalex.org](https://openalex.org) or through the [collections API](/api/collections/); API examples use your key as `$OPENALEX_API_KEY`, and managing collections costs no credits.
+A [collection](/data/collections/) is a named list of OpenAlex entities you save once and then use in any search, in place of hundreds of pasted IDs. OpenAlex also keeps [public collections](/data/collections/#public-collections), such as country groups, that anyone can use without making anything. These recipes cover the jobs people use them for. Each works on [openalex.org](https://openalex.org) or through the [collections API](/api/collections/); API examples use your key as `$OPENALEX_API_KEY`, and managing collections costs no credits.
 
 > [!claude]
 > You can do all of this in conversation: *"Make a collection of the journals in this spreadsheet, then show me how many papers UC corresponding authors published in them each year, and how many were open access."* Set up once: [Using OpenAlex with an AI assistant](/how-to/ai-assistants/).
@@ -68,20 +68,38 @@ The last one answers "which of my collections hold this journal?" (Without `filt
 
 ## How do I share a collection, and use one someone shared with me?
 
-Share it by link: on its page click **Share**, or `PATCH` it with `{"access": "shared_by_link"}`. Anyone with the link or ID can then view it and filter by it, logged in or not; it never shows up in any listing. Make it private again the same way, and every link stops working at once.
+Share it by link: on its page click **Share**, or `PATCH` it with `{"access": "shared_by_link"}`. Anyone with the link or ID can then view it and filter by it, logged in or not; it never shows up in any listing. Make it private again the same way, and every link stops working at once. You can't make your own collection public, which would list it for everyone: only OpenAlex makes public collections, and you can suggest one at support@openalex.org.
 
 To use one shared with you, use its ID like your own: `filter=collection:col_…`. You can't change it, but you can [copy it](#how-do-i-copy-a-collection-and-change-it).
 
 ## How do I filter by a country group, like the EU or low-income countries?
 
-Use a public collection. OpenAlex keeps country groups as public collections: the European Union (EU27), the UN M49 regions and Latin America and the Caribbean, the four World Bank income groups and OECD members. Browse and search them at [openalex.org/collections](https://openalex.org/collections), or in a Country filter on any search, type "European" and pick the one tagged **Public**. With the API, find its ID, then filter by it like any country:
+Use a public collection. OpenAlex keeps the European Union (EU27), Latin America and the Caribbean, the five UN world regions, the four World Bank income groups and OECD members as public collections; the [full list with IDs](/data/collections/#public-collections) is on the Collections entity page.
+
+**On the website.** In the Country filter of any search, type the group's name ("European", "income", "Latin") and pick the one tagged **Public**. Or browse and search all of them at [openalex.org/collections](https://openalex.org/collections) and open one to see its countries.
+
+**With the API.** Find the ID, then use it wherever a country code goes:
 
 ```bash
+# Find it
 https://api.openalex.org/collections?filter=access:public&search=low income
-https://api.openalex.org/works?filter=authorships.countries:col_…,publication_year:2025
+
+# Works with an author in a low-income country, 2025
+https://api.openalex.org/works?filter=authorships.countries:col_WXiZS2Kp4u,publication_year:2025
+
+# The same works by author country (co-authors elsewhere count too, so the list runs past the group)
+https://api.openalex.org/works?filter=authorships.countries:col_WXiZS2Kp4u,publication_year:2025&group_by=authorships.countries
+
+# Works in journals based in the EU; works with no EU author
+https://api.openalex.org/works?filter=primary_location.source.country_code:col_LV29j8URoX
+https://api.openalex.org/works?filter=authorships.countries:!col_LV29j8URoX
 ```
 
-The same collection works on every country field: `primary_location.source.country_code` for journals based there, and `funders.country_code`. Each collection's description names its source and date. Only OpenAlex makes collections public for now; to suggest one, write to support@openalex.org.
+It works on every country filter: on works, the authors' countries (`authorships.countries`, `institutions.country_code`), the journal's country (`primary_location.source.country_code`) and the funder's country (`funders.country_code`); `country_code` on institutions and sources; `last_known_institutions.country_code` on authors; `funder.country_code` on awards. Not yet on funders or publishers themselves.
+
+**Need a different group?** Make a copy of the nearest public one and edit it (on its page, **Make a copy**), or make your own countries collection from a list of country codes. A filter takes one collection per field, so to add a country to a group, add it to your copy rather than next to the collection in the filter.
+
+Each collection's description names its source and the date it was checked. Only OpenAlex makes collections public for now; to suggest one, write to support@openalex.org.
 
 ## How do I copy a collection and change it?
 
@@ -125,7 +143,7 @@ A request can use up to 5 collections, one per filter field. More report pattern
 | publishers | `primary_location.source.publisher_lineage:col_…` |
 | funders | `funders.id:col_…` |
 | topics | `topics.id:col_…` |
-| countries | `authorships.countries:col_…` |
+| countries | `authorships.countries:col_…` (authors' countries), `primary_location.source.country_code:col_…` (journal's country), `funders.country_code:col_…`; the [public country groups](#how-do-i-filter-by-a-country-group-like-the-eu-or-low-income-countries) are ready-made |
 
 On other endpoints the same holds: an institutions collection on `/authors` is `last_known_institutions.id:col_…`, and a locations collection on `/locations` is `collection:col_…`. A mismatch returns a `400` naming both types.
 
