@@ -98,8 +98,10 @@ a [filter](#filtering-by-a-collection).
 | `DELETE` | `/collections/{id}/members/{member_id}` | Remove one member (`204`) | Owner |
 | `DELETE` | `/collections/{id}/members?member_ids=…` | Remove up to 100 members | Owner |
 
-`{id}` is the URL ID or the short `col_…`. Reads by anyone but the owner are rate
-limited: 120 a minute per IP logged out, 300 a minute per account.
+`{id}` is the URL ID or the short `col_…`, as with every entity:
+`/collections/col_beNWUTw6qY` and `/collections/https://openalex.org/collections/col_beNWUTw6qY`
+are the same collection (percent-encoding the URL works too). Reads by anyone but the
+owner are rate limited: 120 a minute per IP logged out, 300 a minute per account.
 
 ### List your collections
 
@@ -115,10 +117,10 @@ The parameters work as on every [list endpoint](/api/filtering/):
 | `filter` | `entity_type` and `access`; `\|` for OR, `!` to negate, commas to AND | `filter=entity_type:works\|sources,access:shared_by_link` |
 | `search` | Text in `display_name` (case-insensitive) | `search=elsevier` |
 | `sort` | One of `display_name` (the default), `created_date`, `updated_date`, `member_count`; add `:desc` | `sort=member_count:desc` |
-| `select` | Any [fields of the object](#the-collection-object) | `select=id,display_name,member_count` |
+| `select` | Any [fields of the object](#the-collection-object), plus `matching_member_ids` with `member_ids` | `select=id,display_name,member_count` |
 | `page`, `per_page` | Basic paging; `per_page` 1 to 100, default 25 | `page=2&per_page=50` |
 | `cursor` | Cursor paging: `cursor=*`, then each `meta.next_cursor` until it's `null` | `cursor=*` |
-| `member_ids` | Up to 100 member IDs: only your collections holding any of them, each with `matching_member_ids` | `member_ids=W2755968057,W4404012345` |
+| `member_ids` | Up to 100 member IDs of any type, comma-separated (location IDs too): only your collections holding any of them, each with `matching_member_ids` | `member_ids=W2755968057,W4404012345` |
 
 ```json
 {
@@ -177,7 +179,8 @@ Returns `201`, the collection, and a `Location` header with its URL.
 
 Members of a `locations` collection are [location IDs](/data/locations/#id), stored
 exactly as given: `doi:10.7717/peerj.4375`, `pmh:oai:arXiv.org:cond-mat/0404022`.
-They are case-sensitive and contain `/` and `:`, so copy them verbatim.
+They are case-sensitive and contain `/` and `:`, so copy them verbatim. A work's
+copies are `locations[].id` in `GET /works/W2741809807?select=locations`.
 
 ### Make a copy
 
@@ -230,8 +233,8 @@ GET https://api.openalex.org/collections/col_beNWUTw6qY/members?per_page=1000
 }
 ```
 
-Members come in the order they were added (members added in one call, in ID
-order). Page with `page` and `per_page` (1 to 1,000, default 100), or with
+Members come oldest first; members added in the same call come in no set order, so
+compare them as a set. Page with `page` and `per_page` (1 to 1,000, default 100), or with
 `cursor=*` and `meta.next_cursor`. For the members as full entities, filter their
 endpoint instead: `/works?filter=collection:col_beNWUTw6qY`.
 
@@ -395,6 +398,8 @@ Errors look like the rest of the API, with a stable `code` to branch on:
 - Use the `id` the API returns; both its forms work everywhere. Find a collection by
   name with `GET /collections?search=…&select=id,display_name`.
 - To answer "which of my collections hold X", use `GET /collections?member_ids=X`.
+  For a work, add its location IDs too, to catch locations collections holding its copies.
+- A work's location IDs are `locations[].id` from `GET /works/{id}?select=locations`.
 - Before filtering by a collection, match its `entity_type` to the filter:
   `collection:` on its own endpoint, or the ID field of that type elsewhere.
 - Branch on `code`, never on `message`.

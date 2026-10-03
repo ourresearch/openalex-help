@@ -108,7 +108,7 @@ A request can use up to 5 collections, one per filter field. More report pattern
 | works | `collection:col_…` |
 | authors | `authorships.author.id:col_…` |
 | institutions | `authorships.institutions.lineage:col_…` (with their parts) or `corresponding_institution_ids:col_…` |
-| sources | `primary_location.source.id:col_…` |
+| sources | `primary_location.source.id:col_…` (published there), or `locations.source.id:col_…` (any copy there, repositories included) |
 | publishers | `primary_location.source.publisher_lineage:col_…` |
 | funders | `funders.id:col_…` |
 | topics | `topics.id:col_…` |
@@ -130,7 +130,13 @@ The member IDs: `GET /collections/col_…/members?per_page=1000` returns them in
 
 ## Can a collection hold locations?
 
-Yes. A location is one copy of a work: the publisher's page, a repository record, a preprint. A locations collection holds [location IDs](/data/locations/#id) such as `doi:10.7717/peerj.4375` or `pmh:oai:arXiv.org:cond-mat/0404022`, exactly as written (they're case-sensitive), and `/locations?filter=collection:col_…` lists those copies. Use one to track the repository copies of your papers.
+Yes. A location is one copy of a work: the publisher's page, a repository record, a preprint. A locations collection holds [location IDs](/data/locations/#id) such as `doi:10.7717/peerj.4375` or `pmh:oai:arXiv.org:cond-mat/0404022`, exactly as written (they're case-sensitive), and `/locations?filter=collection:col_…` lists those copies. Use one to track the repository copies of your papers. A work's copies, with their IDs, are in its `locations` list:
+
+```text
+https://api.openalex.org/works/W2741809807?select=locations
+```
+
+Put the `locations[].id` values you want into `member_ids`.
 
 ## Can an AI agent do this for me?
 
