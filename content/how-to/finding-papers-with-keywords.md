@@ -8,17 +8,15 @@ card: "Find the papers your text search misses, and let your AI agent pick the k
 ---
 A text search finds papers that use your words. A [keyword](/data/keywords/) finds papers about your subject, whatever words their authors used, and works with no abstract too. OpenAlex search now uses both at once, so you find far more of what you're looking for.
 
-## One search finds both
+## Just search
 
-> **Edit, 3 October 2026:** this section used to show how to combine a keyword with a title and abstract search by hand. You don't need to anymore: the search does it for you.
-
-Say you're studying antimicrobial resistance. A title and abstract search for the phrase finds about 119,000 works. The `antimicrobial-resistance` keyword finds about 123,000 more that say "antibiotic resistance", "drug-resistant bacteria" or nothing at all: about 47,000 of them have no abstract. Most are on topic (about four in five). A title, abstract and keywords search finds both, about 241,000 works:
+Say you're studying antimicrobial resistance. A title and abstract search for the phrase finds about 119,000 works. Search titles, abstracts and keywords together and you get about 241,000: the `antimicrobial-resistance` keyword brings in about 122,000 works that say "antibiotic resistance", "drug-resistant bacteria" or nothing at all (about 47,000 of them have no abstract), and most of those are on topic (about four in five).
 
 ```
 https://api.openalex.org/works?search.title_abstract_keywords="antimicrobial resistance"
 ```
 
-On openalex.org that's the default: just search. In [OQL](/api/oql/) it's `works where title/abstract/keywords has ("antimicrobial resistance")`. How it works: when a phrase in your search names a keyword (or one of its synonyms), a work matches if the phrase is in its text or it carries the keyword, and every other word in your search must still be in the text. [More in the search guide](/api/searching/#keywords-in-search).
+On openalex.org that's the default, and the top results are [reranked](/api/searching/#rerank) so the papers most clearly about your topic come first. In [OQL](/api/oql/) it's `works where title/abstract/keywords has ("antimicrobial resistance")`. How it works: when a phrase in your search names a keyword (or one of its synonyms), a work matches if the phrase is in its text or it carries the keyword, and every other word in your search must still be in the text. [More in the search guide](/api/searching/#keywords-in-search).
 
 ## Find more keywords
 
@@ -35,16 +33,16 @@ If your topic has several parts, require a keyword for each part. "How remote wo
 
 > *Do a thorough search for open-access papers on how remote work affects employee wellbeing.*
 
-The connector's searches match titles, abstracts and keywords; for a thorough search it also picks keywords by meaning, tells you how many works each part found, and gives you the query it ran.
+The connector searches titles, abstracts and keywords, adds keywords that mean your topic in other words, reranks the results so the most relevant come first, tells you how many works each part found, and gives you the query it ran.
 
 **In other agents** (ChatGPT, Codex, or Claude Code without the connector), tell it something like this, with your own topic and a [free API key](/api/authentication/):
 
 ```
-Check help.openalex.org first, then use the OpenAlex API to find papers on <your topic>. Use the title, abstract and keywords search, and add OpenAlex keywords for other wordings, all in one query. Each paper should cover every part of my topic. Read the results as you go and keep only the papers that are really about my topic. Save the 200 most-cited of those as a CSV and show me the query and how many papers each part found.
+Check help.openalex.org first, then use the OpenAlex API to find papers on <your topic>. Use the title, abstract and keywords search, and add OpenAlex keywords that describe my topic in other words, all in one query. Each paper should cover every part of my topic. Read the results as you go and keep only the papers that are really about my topic. Save the 200 most-cited of those as a CSV and show me the query and how many papers each part found.
 My API key: <your key>
 ```
 
-Keep the "check help.openalex.org" part: without it, agents work from what they remember about the OpenAlex API, which is out of date. Keywords and title and abstract search cast a wide net, and the agent's own reading narrows it down: in our tests on remote work, that took the share of clearly relevant papers in its list from about half to nine in ten. We tested it on fresh installs of Claude Code and Codex, and it built one working query every time. For remote work and employee wellbeing, the keywords added 3,000 to 4,000 papers that the agents' own text searches (which already included "telework" and "working from home") missed, many of them not in English. In the Claude app, set the chat to Auto (next to the model name, under the message box), or it will ask your permission before every search.
+Keep the "check help.openalex.org" part: without it, agents work from what they remember about the OpenAlex API, which is out of date. We tested this prompt on fresh installs of Claude Code and Codex: every run found the title, abstract and keywords search here and built one working query with it, and on remote work and employee wellbeing, 99% of the papers in their final lists were at least partly on topic (about seven in ten clearly so). The agent's own reading is what narrows the wide net down, so keep that sentence too. In the Claude app, set the chat to Auto (next to the model name, under the message box), or it will ask your permission before every search.
 
 Keep the query the agent shows you: rerun it later, or share it so others can check your search.
 
