@@ -20,6 +20,10 @@ A **collection** is a saved, named list of **members**: OpenAlex entities of a s
 
 Any signed-in OpenAlex user can create collections, up to **100**, and a collection belongs to the user who made it. Every collection starts **private**: only you (or an OpenAlex admin) can see it or filter by it. You can **share it by link**: then anyone with its link or ID can view it and filter by it, logged in or not, though it's never listed or searchable. Only the owner changes a collection; anyone else with an account can make a private copy of one shared with them.
 
+### Public collections
+
+A third access level, **public**, is for lists OpenAlex makes and keeps up to date, starting with country groups such as the European Union (EU27), the UN M49 regions and the World Bank income groups. Public collections are listed and searchable for everyone at [openalex.org/collections](https://openalex.org/collections) and in [`api.openalex.org/collections`](https://api.openalex.org/collections?filter=access:public), and anyone can filter by them or make a copy. Only OpenAlex can make a collection public for now; to suggest one, write to support@openalex.org.
+
 On [openalex.org](https://openalex.org), run a search, tick the rows you want and click the folder icon, or paste a list of IDs or DOIs into the create-collection wizard. Scripts and AI agents use the [collections API](/api/collections/); [Working with collections](/how-to/collections/) has worked examples of both.
 
 ### What a collection can hold
@@ -55,7 +59,7 @@ This is the dictionary of every attribute on a **collection** object. Attributes
 *Integer.* How many members the collection holds, at most 1,000. Sortable on the list.
 
 ### `access`
-*String.* Who can view it and filter by it: `private` (only its owner; the default) or `shared_by_link` (anyone with its link or ID; never listed). Filterable on the list. See [Sharing by link](/api/collections/#sharing-by-link).
+*String.* Who can view it and filter by it: `private` (only its owner; the default), `shared_by_link` (anyone with its link or ID; never listed) or `public` (anyone; listed and searchable; set only by OpenAlex). Filterable and groupable on the list. See [Who can see a collection](/api/collections/#who-can-see-a-collection).
 
 ### `can_edit`
 *Boolean.* `true` when you are the collection's owner, the only one who can change it. The object never says who the owner is: a link shares the list, not who made it.
@@ -68,4 +72,4 @@ This is the dictionary of every attribute on a **collection** object. Attributes
 
 ## In the API
 
-Collections live at [`api.openalex.org/collections`](https://api.openalex.org/collections), with your OpenAlex API key, at no credit cost. Fetch one by ID, `/collections/col_8yWKmRNyEr`, or list your own and [filter](/api/filtering/) (`entity_type`, `access`), [search](/api/searching/) (`display_name`), [sort](/api/sorting/) (`display_name`, `created_date`, `updated_date`, `member_count`), [select](/api/selecting-fields/) and [page](/api/paging/) over them, as on any entity. Nobody's collections are listed to anyone else, and one you can't read returns `404` (code `collection_not_found`). Members are at `/collections/{id}/members`. The [collections API](/api/collections/) has every endpoint, rule and error code; for the full list of endpoints see the [endpoints index](/api/endpoints/).
+Collections live at [`api.openalex.org/collections`](https://api.openalex.org/collections), with your OpenAlex API key, at no credit cost. Fetch one by ID, `/collections/col_8yWKmRNyEr`, or list the public collections and your own and [filter](/api/filtering/) (`entity_type`, `access`, `can_edit`), [search](/api/searching/) (`display_name` and `description`), [group](/api/grouping/) (`entity_type`, `access`, `can_edit`), [sort](/api/sorting/) (`display_name`, `created_date`, `updated_date`, `member_count`), [select](/api/selecting-fields/) and [page](/api/paging/) over them, as on any entity. Nobody else's private or shared-by-link collections are listed, and one you can't read returns `404` (code `collection_not_found`). Members are at `/collections/{id}/members`. The [collections API](/api/collections/) has every endpoint, rule and error code; for the full list of endpoints see the [endpoints index](/api/endpoints/).
