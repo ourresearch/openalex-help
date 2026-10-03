@@ -16,7 +16,7 @@ Say you're studying antimicrobial resistance. A title and abstract search for th
 https://api.openalex.org/works?search.title_abstract_keywords="antimicrobial resistance"
 ```
 
-On openalex.org that's the default, and the top results are [reranked](/api/searching/#rerank) so the papers most clearly about your topic come first. In [OQL](/api/oql/) it's `works where title/abstract/keywords has ("antimicrobial resistance")`. How it works: when a phrase in your search names a keyword (or one of its synonyms), a work matches if the phrase is in its text or it carries the keyword, and every other word in your search must still be in the text. [More in the search guide](/api/searching/#keywords-in-search).
+On openalex.org that's the default, and the top results are [reranked](/api/searching/#rerank) so the papers most clearly about your topic come first. In [OQL](/api/oql/) it's `works where title-abstract-keywords has ("antimicrobial resistance")`. How it works: when a phrase in your search names a keyword (or one of its synonyms), a work matches if the phrase is in its text or it carries the keyword, and every other word in your search must still be in the text. [More in the search guide](/api/searching/#keywords-in-search).
 
 ## Find more keywords
 

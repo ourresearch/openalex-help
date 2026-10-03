@@ -1,6 +1,6 @@
 ---
 title: "Systematic Reviews"
-updated: 2026-09-21
+updated: 2026-10-03
 subtitle: "Build a reproducible systematic-review search in OQL — term blocks, exact vs. stemmed matching, and scope filters."
 description: "Build a real systematic-review search strategy in OQL — term blocks, exact vs. stemmed matching, scope filters, and a reproducible query you can paste straight into your appendix."
 tags: ["recipes", "oql"]
@@ -21,10 +21,10 @@ Say we're reviewing the literature on **vaping and adolescent health**. Classic 
 - **Population:** adolescents, teens, youth
 - **Outcome:** health, harm, risk
 
-Each concept becomes an OR-block; the blocks join with `and`. In OQL, searching titles and abstracts at once is the `title/abstract` field:
+Each concept becomes an OR-block; the blocks join with `and`. In OQL, searching titles and abstracts at once is the `title-abstract` field:
 
 ```
-works where title/abstract has (
+works where title-abstract has (
     (vaping or vape or "e-cigarette" or stemmed "electronic cigarette")
   and (adolescent or teen or youth)
   and (health or harm or risk)
@@ -49,7 +49,7 @@ Published search strategies translate almost mechanically: a strategy line like 
 Reviews almost always limit by date, document type, and language. Those are ordinary filters, AND'd onto the search:
 
 ```
-works where title/abstract has (
+works where title-abstract has (
     (vaping or vape or "e-cigarette" or stemmed "electronic cigarette")
   and (adolescent or teen or youth)
   and (health or harm or risk)
@@ -64,7 +64,7 @@ works where title/abstract has (
 Negation is the `not` prefix, inside the parentheses, directly before the value to exclude — for example, to push animal studies out of the set:
 
 ```
-  and title/abstract has (not mice and not murine)
+  and title-abstract has (not mice and not murine)
 ```
 
 To exclude retracted works: `and retracted is (false)`.

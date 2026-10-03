@@ -39,7 +39,7 @@ https://api.openalex.org/works?search.title_abstract_keywords="antimicrobial res
 https://api.openalex.org/works?search.title_and_abstract="antimicrobial resistance"
 ```
 
-The first search finds 241,167 works, the second 118,920: the keywords add papers that say "antibiotic resistance" or "drug-resistant bacteria", papers in other languages, and papers with no abstract. Boolean and phrase searches work the same way, one term or quoted phrase at a time. The filter form is `title_abstract_keywords.search`, and in [OQL](/access/oql/) it's `title/abstract/keywords has (…)`. The broad search (`search=`, or the `fulltext.search` filter) also matches keywords.
+The first search finds 241,167 works, the second 118,920: the keywords add papers that say "antibiotic resistance" or "drug-resistant bacteria", papers in other languages, and papers with no abstract. Boolean and phrase searches work the same way, one term or quoted phrase at a time. The filter form is `title_abstract_keywords.search`, and in [OQL](/access/oql/) it's `title-abstract-keywords has (…)`. The broad search (`search=`, or the `fulltext.search` filter) also matches keywords.
 
 ## Text processing
 

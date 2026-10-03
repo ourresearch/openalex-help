@@ -88,8 +88,8 @@ Calls work without an API key, but the free daily allowance without one is small
 Send a description of your topic, look up the keywords that come back, and keep the ones that fit. A [title, abstract and keywords search](/api/searching/#keywords-in-search) already matches the keywords your own phrases name ("remote work" finds works tagged `remote-work`), so the keywords worth adding are the ones that mean your topic in other words. If your topic has several parts, add them part by part, so every part still has to match. In [OQL](/api/oql/):
 
 ```
-works where (title/abstract/keywords has ("remote work" or telework) or keyword is (remote-work))
-  and (title/abstract/keywords has (wellbeing or "well-being") or keyword is (employee-health))
+works where (title-abstract-keywords has ("remote work" or telework) or keyword is (remote-work))
+  and (title-abstract-keywords has (wellbeing or "well-being") or keyword is (employee-health))
 ```
 
 This is a good job for an AI agent; [Finding papers with keywords](/how-to/finding-papers-with-keywords/) has a tested prompt.
