@@ -46,8 +46,8 @@ curl -X POST https://api.openalex.org/saved-searches \
     "next_check_at": "2026-10-09T13:05:00Z"
   },
   "cannot_alert": null,
-  "created_at": "2026-10-02T13:05:00Z",
-  "updated_at": "2026-10-02T13:05:00Z"
+  "created_date": "2026-10-02",
+  "updated_date": "2026-10-02T13:05:00.000000"
 }
 ```
 
@@ -74,7 +74,7 @@ own saved searches; use a personal key.
 | `api_url` | string | The same search on api.openalex.org, without your key. Call it to see what the search matches today. |
 | `alert` | object or `null` | `null` means no alert. See below. |
 | `cannot_alert` | object or `null` | Why this search can't have an alert, as `{ "code", "message" }`, or `null` if it can. |
-| `created_at`, `updated_at` | string | ISO 8601, UTC. |
+| `created_date`, `updated_date` | string | As on every entity: the date it was saved (`YYYY-MM-DD`), and the datetime of its last change (ISO 8601, UTC). The deprecated `user.openalex.org/me/saved-searches` routes still say `created_at` and `updated_at`. |
 
 The `alert` object:
 
