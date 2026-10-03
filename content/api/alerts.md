@@ -1,6 +1,6 @@
 ---
 title: "Alerts and saved searches"
-updated: 2026-10-02
+updated: 2026-10-03
 description: "Save a works search and get emailed new works that match it: the API, built for scripts and AI agents"
 tags: ["api"]
 ---
@@ -22,7 +22,7 @@ can set up and manage alerts for you.
 Create a saved search with a weekly alert in one request:
 
 ```bash
-curl -X POST https://user.openalex.org/me/saved-searches \
+curl -X POST https://api.openalex.org/saved-searches \
   -H "Authorization: Bearer $OPENALEX_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{
@@ -56,9 +56,9 @@ The first email covers works added to OpenAlex after you created the alert.
 
 ## Authentication
 
-All requests go to `https://user.openalex.org` with your [API key](/api/authentication/)
-in the `Authorization: Bearer <api_key>` header (a `?api_key=` parameter doesn't work
-on this host). Each key acts as its owner: an agent using your key manages your saved
+All requests go to `https://api.openalex.org` with your [API key](/api/authentication/),
+as `?api_key=` or an `Authorization: Bearer <api_key>` header. Managing saved searches
+and alerts costs no credits. Each key acts as its owner: an agent using your key manages your saved
 searches and alerts, and emails go to your account's address. Organization keys can't
 own saved searches; use a personal key.
 
@@ -88,16 +88,19 @@ The `alert` object:
 
 | Method | Path | Does |
 |---|---|---|
-| `GET` | `/me/saved-searches` | List your saved searches. |
-| `POST` | `/me/saved-searches` | Create a saved search, with or without an alert. |
-| `GET` | `/me/saved-searches/{id}` | Get one. |
-| `PATCH` | `/me/saved-searches/{id}` | Change any of `name`, `description`, `url`, `alert`. |
-| `DELETE` | `/me/saved-searches/{id}` | Delete it and its alert. |
+| `GET` | `/saved-searches` | List your saved searches. |
+| `POST` | `/saved-searches` | Create a saved search, with or without an alert. |
+| `GET` | `/saved-searches/{id}` | Get one. |
+| `PATCH` | `/saved-searches/{id}` | Change any of `name`, `description`, `url`, `alert`. |
+| `DELETE` | `/saved-searches/{id}` | Delete it and its alert. |
+
+These first lived at `https://user.openalex.org/me/saved-searches`, which still works
+(Bearer header only there) but is deprecated.
 
 ### List
 
 ```bash
-GET /me/saved-searches?has_alert=true&page=1&per_page=50
+GET /saved-searches?has_alert=true&page=1&per_page=50
 ```
 
 `has_alert=true` lists only searches with an alert (your alerts); `false`, only those
@@ -112,7 +115,7 @@ without. Newest first. `per_page` defaults to 25 and is at most 100.
 
 ### Create
 
-`POST /me/saved-searches` with:
+`POST /saved-searches` with:
 
 | Field | Required | Notes |
 |---|---|---|
@@ -129,7 +132,7 @@ your alert exists: the earlier save may have had none. After a `409`, `PATCH` th
 
 ### Update
 
-`PATCH /me/saved-searches/{id}` with any of `name`, `description`, `url`, `alert`.
+`PATCH /saved-searches/{id}` with any of `name`, `description`, `url`, `alert`.
 Fields you leave out don't change.
 
 ```json
@@ -144,7 +147,7 @@ created together with its search starts from now.
 
 ### Delete
 
-`DELETE /me/saved-searches/{id}` returns `204 No Content`. The alert goes with it.
+`DELETE /saved-searches/{id}` returns `204 No Content`. The alert goes with it.
 
 ## Which searches can have an alert
 
@@ -208,7 +211,7 @@ and `error`, a short title for the HTTP status (the same shape as api.openalex.o
 
 ## For agents
 
-- Check what the user already has first (`GET /me/saved-searches?has_alert=true`): the
+- Check what the user already has first (`GET /saved-searches?has_alert=true`): the
   same topic written another way is a different search to the API.
 - Show the user what an alert will send before creating it: call the search's
   `api_url` with your key and `sort=publication_date:desc`, and show a few titles. (A
