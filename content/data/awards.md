@@ -1,6 +1,6 @@
 ---
 title: "Awards"
-updated: 2026-08-11
+updated: 2026-10-03
 description: "What an award (grant) is, where its data comes from, how OpenAlex matches grants to funders and works, and what every attribute on an award object means."
 tags: ["reference"]
 source_id: "api-reference/awards"
@@ -46,7 +46,7 @@ This is the canonical dictionary of every attribute on an **award** object. Awar
 *String.* A longer abstract or narrative of the funded project, when the source provides one.
 
 ### `funder`
-*Object.* The [funder](/data/funders/) that made this award, dehydrated: `id`, `display_name`, and `doi` (the Funder DOI). Filter on `funder.id`, `funder.ror`, or `funder.doi`.
+*Object.* The [funder](/data/funders/) that made this award, dehydrated: `id`, `display_name`, and `doi` (the Funder DOI). Filter on `funder.id`, `funder.ror`, or `funder.doi`, or by the funder's country with `funder.country_code` (looked up at query time).
 
 ### `funder_award_id`
 *String.* The funder's own identifier for this grant (e.g. an NIH grant number like `2r01ns050266-06`). This is what appears in a work's grant metadata.

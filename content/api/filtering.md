@@ -153,6 +153,25 @@ Negation with `!` is supported, and `collection:` combines with any other
 filter. One `collection:` filter is allowed per request — see the
 [Collections guide](/api/collections/) for the full set of caps and behaviors.
 
+## Filter by a related entity's attributes
+
+Some filters reach through to a related entity: a work's journal country, its publisher's country, its funders' country, the region or city of its institutions. Works don't store these values; the API looks up the matching sources, publishers, funders or institutions in their own index first, then filters by their IDs. The value means exactly what it means on the related entity's own filter, and the answer is always current (a journal's h-index as of today).
+
+| Entity | Filter | Looks up | Example |
+|--------|--------|----------|---------|
+| Works | `primary_location.source.country_code` | the source's `country_code` | [Canadian journals, 2024](https://api.openalex.org/works?filter=primary_location.source.country_code:CA,publication_year:2024) |
+| Works | `primary_location.source.is_global_south` | the source's `is_global_south` | `primary_location.source.is_global_south:true` |
+| Works | `primary_location.source.is_ojs`, `.is_high_oa_rate`, `.is_preprint_repository` | the source's flags | `primary_location.source.is_ojs:true` |
+| Works | `primary_location.source.summary_stats.h_index`, `.summary_stats.2yr_mean_citedness` | the source's metrics (ranges work) | `primary_location.source.summary_stats.h_index:>100` |
+| Works | `primary_location.source.host_organization.country_code` | the publisher's `country_codes` (parent publishers included) | `primary_location.source.host_organization.country_code:BR` |
+| Works | `funders.country_code` | the funder's `country_code` | `funders.country_code:CA` |
+| Works | `authorships.institutions.geo.region`, `.geo.city` | the institution's `geo.region`, `geo.city` | `authorships.institutions.geo.region:Catalonia` |
+| Sources | `host_organization.country_code` | the publisher's `country_codes` | `host_organization.country_code:BR` |
+| Authors | `last_known_institutions.geo.region`, `.geo.city` | the institution's `geo.region`, `geo.city` | `last_known_institutions.geo.city:Paris` |
+| Awards | `funder.country_code` | the funder's `country_code` | `funder.country_code:CA` |
+
+They combine with every other filter and take `|` (OR) and `!` (NOT) as usual; quote multi-word values (`geo.region:"New York"`). In OQL they read as `source country`, `publisher country`, `funder country`, `institution region`, `institution city`, `source h-index`, `source OJS` and so on: `works where source country is (CA) and year is (2024)`. They filter but can't sort or group: group works by `primary_location.source.id` (or `funders.id`, `authorships.institutions.id`) instead. A value can match at most 300,000 related records, and `null` isn't accepted; for works with no source, filter `primary_location.source.id:null`.
+
 ## Available filters by entity
 
 Each entity type has its own set of filterable fields. See the API reference for complete filter lists:

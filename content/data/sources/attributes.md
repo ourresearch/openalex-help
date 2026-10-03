@@ -24,7 +24,7 @@ This is the canonical dictionary of every attribute on a **source** object. Attr
 *List.* All [ISSNs](https://en.wikipedia.org/wiki/International_Standard_Serial_Number) known for this source (print and electronic), including the [`issn_l`](#issn_l). Null for sources without an ISSN (many repositories). Filterable, sortable, groupable; use `has_issn` to filter on presence.
 
 ### `host_organization`
-*String.* The OpenAlex ID of the [publisher](/data/publishers/) (or, for a repository, the [institution](/data/institutions/)) that hosts this source. Filter/sort/group_by; also available as `host_organization.id`.
+*String.* The OpenAlex ID of the [publisher](/data/publishers/) (or, for a repository, the [institution](/data/institutions/)) that hosts this source. Filter/sort/group_by; also available as `host_organization.id`. Filter by the publisher's country with `host_organization.country_code` (looked up at query time; parent publishers count).
 
 ### `host_organization_name`
 *String.* The display name of the [`host_organization`](#host_organization), denormalized onto the source for convenience.

@@ -1,6 +1,6 @@
 ---
 title: "Attributes"
-updated: 2026-09-30
+updated: 2026-10-03
 description: "The canonical dictionary of every attribute on a work object — what each one means, where it comes from, and its quirks."
 tags: ["reference"]
 ---
@@ -46,7 +46,7 @@ This is the canonical dictionary of every attribute on a **work** object. Attrib
 ```
 
 ### `authorships`
-*List.* [Authorship](/data/authorships/) objects, each pairing an author with their institution(s) and role on the work. Capped at the first 100 authors for performance.
+*List.* [Authorship](/data/authorships/) objects, each pairing an author with their institution(s) and role on the work. Capped at the first 100 authors for performance. Filter by the region or city of the authors' institutions with `authorships.institutions.geo.region` and `authorships.institutions.geo.city` (looked up at query time).
 
 ### `corresponding_author_ids`
 *List.* OpenAlex IDs of authors whose authorship has `is_corresponding: true`.
@@ -64,7 +64,7 @@ This is the canonical dictionary of every attribute on a **work** object. Attrib
 *List.* A flattened, dehydrated list of the distinct [institutions](/data/institutions/) across the work's [`authorships`](#authorships) — a convenience mirror so you don't have to walk the authorship tree. Recently added and still being backfilled, so it may be empty on works that do have affiliated institutions.
 
 ### `primary_location`
-*Object.* The [location](/data/locations/) holding the best (closest to the [version of record](https://en.wikipedia.org/wiki/Version_of_record)) copy — for a journal article, the published full text at the publisher's DOI URL. See [Locations](/data/locations/) for the object shape. Its dehydrated `source` carries the source's list memberships, so you can narrow works to journals on an external list: `primary_location.source.listed_in:doyens` (see [`listed_in`](/data/sources/attributes/#listed_in) for the list ids; the same key works under `locations.` and `best_oa_location.`). Filter/group_by.
+*Object.* The [location](/data/locations/) holding the best (closest to the [version of record](https://en.wikipedia.org/wiki/Version_of_record)) copy — for a journal article, the published full text at the publisher's DOI URL. See [Locations](/data/locations/) for the object shape. Its dehydrated `source` carries the source's list memberships, so you can narrow works to journals on an external list: `primary_location.source.listed_in:doyens` (see [`listed_in`](/data/sources/attributes/#listed_in) for the list ids; the same key works under `locations.` and `best_oa_location.`). Filter/group_by. You can also filter by attributes of the primary source and its publisher that the work doesn't store, looked up at query time: `primary_location.source.country_code`, `.is_global_south`, `.is_ojs`, `.is_high_oa_rate`, `.is_preprint_repository`, `.summary_stats.h_index`, `.summary_stats.2yr_mean_citedness`, and `primary_location.source.host_organization.country_code` (see [Filter by a related entity's attributes](/api/filtering/#filter-by-a-related-entitys-attributes)).
 
 ### `locations`
 *List.* Every unique place this work lives, each a [location](/data/locations/) object.
@@ -140,7 +140,7 @@ See [Open access](/data/works/open-access/) for how these fields combine.
 *List.* OpenAlex IDs of algorithmically related works — recent papers sharing the most topics with this one.
 
 ### `funders`
-*List.* Dehydrated [funder](/data/funders/) objects for this work. Replaces the removed `grants` property.
+*List.* Dehydrated [funder](/data/funders/) objects for this work. Replaces the removed `grants` property. Filter on `funders.id`, or by the funder's country with `funders.country_code` (looked up at query time).
 
 ### `awards`
 *List.* [Award](/data/awards/)/grant objects (`id`, `display_name`, `funder_award_id`, `funder_id`, `funder_display_name`, `doi`) linking the work to specific grants. Replaces the removed `grants` property.
