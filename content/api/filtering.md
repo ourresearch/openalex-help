@@ -145,7 +145,7 @@ collection of the matching type, e.g. `primary_location.source.id:col_…` on
 `/works`.
 
 ```bash
-GET https://api.openalex.org/works?filter=collection:col_beNWUTw6qY
+GET https://api.openalex.org/works?filter=collection:col_8yWKmRNyEr
 Authorization: Bearer <api_key>
 ```
 

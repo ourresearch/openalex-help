@@ -14,7 +14,7 @@ type. Its ID drops into the [`filter` parameter](/api/filtering/) anywhere in th
 API, in place of hundreds of IDs pasted into every request.
 
 Collections behave like every other OpenAlex entity: an `id` that is a URL
-(`https://openalex.org/collections/col_beNWUTw6qY`, with the short `col_beNWUTw6qY`
+(`https://openalex.org/collections/col_8yWKmRNyEr`, with the short `col_8yWKmRNyEr`
 accepted everywhere), `display_name`, `created_date` and `updated_date`, and a
 list endpoint that takes `filter`, `search`, `sort`, `select` and cursor paging.
 What a collection is, and every attribute, is on the [Collections entity
@@ -43,7 +43,7 @@ curl -X POST https://api.openalex.org/collections \
 
 ```json
 {
-  "id": "https://openalex.org/collections/col_beNWUTw6qY",
+  "id": "https://openalex.org/collections/col_8yWKmRNyEr",
   "display_name": "My altmetrics papers",
   "description": "",
   "entity_type": "works",
@@ -56,7 +56,7 @@ curl -X POST https://api.openalex.org/collections \
 ```
 
 ```bash
-curl "https://api.openalex.org/works?filter=collection:col_beNWUTw6qY,is_oa:true&api_key=$OPENALEX_API_KEY"
+curl "https://api.openalex.org/works?filter=collection:col_8yWKmRNyEr,is_oa:true&api_key=$OPENALEX_API_KEY"
 ```
 
 ## Authentication
@@ -99,7 +99,7 @@ a [filter](#filtering-by-a-collection).
 | `DELETE` | `/collections/{id}/members?member_ids=…` | Remove up to 100 members | Owner |
 
 `{id}` is the URL ID or the short `col_…`, as with every entity:
-`/collections/col_beNWUTw6qY` and `/collections/https://openalex.org/collections/col_beNWUTw6qY`
+`/collections/col_8yWKmRNyEr` and `/collections/https://openalex.org/collections/col_8yWKmRNyEr`
 are the same collection (percent-encoding the URL works too). Reads by anyone but the
 owner are rate limited: 120 a minute per IP logged out, 300 a minute per account.
 
@@ -127,7 +127,7 @@ The parameters work as on every [list endpoint](/api/filtering/):
   "meta": { "count": 3, "page": 1, "per_page": 25 },
   "results": [
     {
-      "id": "https://openalex.org/collections/col_beNWUTw6qY",
+      "id": "https://openalex.org/collections/col_Jr8sWq2LmT",
       "display_name": "UC agreement journals",
       "description": "Journals in the UC transformative agreements",
       "entity_type": "sources",
@@ -147,7 +147,7 @@ A cursor belongs to its `sort`: change the sort and start again with `cursor=*`.
 ### Get a collection
 
 ```bash
-GET https://api.openalex.org/collections/col_beNWUTw6qY?select=id,display_name,member_count
+GET https://api.openalex.org/collections/col_8yWKmRNyEr?select=id,display_name,member_count
 ```
 
 Returns the collection, or only the selected fields. A collection you can't read
@@ -188,7 +188,7 @@ copies are `locations[].id` in `GET /works/W2741809807?select=locations`.
 POST https://api.openalex.org/collections
 Content-Type: application/json
 
-{ "copy_of": "https://openalex.org/collections/col_beNWUTw6qY" }
+{ "copy_of": "https://openalex.org/collections/col_8yWKmRNyEr" }
 ```
 
 Copies any collection you can read (your own, or one shared by link) into a new
@@ -200,7 +200,7 @@ the source.
 ### Change a collection
 
 ```bash
-PATCH https://api.openalex.org/collections/col_beNWUTw6qY
+PATCH https://api.openalex.org/collections/col_8yWKmRNyEr
 Content-Type: application/json
 
 { "display_name": "Renamed", "description": "Updated notes", "access": "shared_by_link" }
@@ -212,7 +212,7 @@ Takes `display_name`, `description` and `access`, and returns the collection.
 ### Delete a collection
 
 ```bash
-DELETE https://api.openalex.org/collections/col_beNWUTw6qY
+DELETE https://api.openalex.org/collections/col_8yWKmRNyEr
 ```
 
 Returns `204` with no body. Its members go with it; saved searches that filter by
@@ -221,7 +221,7 @@ it start returning `404`.
 ### List its members
 
 ```bash
-GET https://api.openalex.org/collections/col_beNWUTw6qY/members?per_page=1000
+GET https://api.openalex.org/collections/col_8yWKmRNyEr/members?per_page=1000
 ```
 
 ```json
@@ -236,12 +236,12 @@ GET https://api.openalex.org/collections/col_beNWUTw6qY/members?per_page=1000
 Members come oldest first; members added in the same call come in no set order, so
 compare them as a set. Page with `page` and `per_page` (1 to 1,000, default 100), or with
 `cursor=*` and `meta.next_cursor`. For the members as full entities, filter their
-endpoint instead: `/works?filter=collection:col_beNWUTw6qY`.
+endpoint instead: `/works?filter=collection:col_8yWKmRNyEr`.
 
 ### Add and remove members
 
 ```bash
-POST https://api.openalex.org/collections/col_beNWUTw6qY/members
+POST https://api.openalex.org/collections/col_8yWKmRNyEr/members
 Content-Type: application/json
 
 { "member_ids": ["W2755968057", "https://openalex.org/W4404012345"] }
@@ -253,10 +253,10 @@ OpenAlex ID, nothing is added and the `400` names it.
 
 ```bash
 # Remove one member
-DELETE https://api.openalex.org/collections/col_beNWUTw6qY/members/W2755968057
+DELETE https://api.openalex.org/collections/col_8yWKmRNyEr/members/W2755968057
 
 # Remove several (up to 100), no request body
-DELETE https://api.openalex.org/collections/col_beNWUTw6qY/members?member_ids=W2755968057,W4404012345
+DELETE https://api.openalex.org/collections/col_8yWKmRNyEr/members?member_ids=W2755968057,W4404012345
 ```
 
 Removing one returns `204`, or `404` with code `member_not_found` if it wasn't a
@@ -268,7 +268,7 @@ member. Removing several returns `{"removed": 2, "member_count": 3}`.
 
 ```bash
 # Every work in a works collection
-GET https://api.openalex.org/works?filter=collection:col_beNWUTw6qY
+GET https://api.openalex.org/works?filter=collection:col_8yWKmRNyEr
 
 # Every location in a locations collection
 GET https://api.openalex.org/locations?filter=collection:col_Lo7kq2PZab
@@ -281,7 +281,7 @@ other filter, `sort`, `group_by`, `select` and paging:
 
 ```bash
 # Open-access papers in this collection, newest first
-GET https://api.openalex.org/works?filter=collection:col_beNWUTw6qY,is_oa:true&sort=publication_date:desc
+GET https://api.openalex.org/works?filter=collection:col_8yWKmRNyEr,is_oa:true&sort=publication_date:desc
 ```
 
 ### On a related endpoint: any ID filter
@@ -305,7 +305,7 @@ doesn't take an entity ID (a date, a boolean) can't take a collection at all.
 
 ### Excluding a collection
 
-Prepend `!`: `/works?filter=primary_location.source.id:!col_beNWUTw6qY` is every
+Prepend `!`: `/works?filter=primary_location.source.id:!col_8yWKmRNyEr` is every
 work *not* published in those journals.
 
 ### Limits

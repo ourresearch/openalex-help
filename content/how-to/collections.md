@@ -77,7 +77,7 @@ On its page, click **Make a copy**. With the API:
 ```bash
 curl -X POST https://api.openalex.org/collections \
   -H "Authorization: Bearer $OPENALEX_API_KEY" -H "Content-Type: application/json" \
-  -d '{"copy_of": "https://openalex.org/collections/col_beNWUTw6qY", "display_name": "My copy"}'
+  -d '{"copy_of": "https://openalex.org/collections/col_8yWKmRNyEr", "display_name": "My copy"}'
 ```
 
 The copy is private and yours, with the same type, description and members; change it freely. It doesn't follow later changes to the original.
