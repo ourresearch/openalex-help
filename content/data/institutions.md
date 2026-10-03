@@ -1,6 +1,6 @@
 ---
 title: "Institutions"
-updated: 2026-09-28
+updated: 2026-10-03
 description: "What an institution is, how OpenAlex grounds them in ROR and matches raw affiliation strings to them, and what every attribute on an institution object means."
 tags: ["reference"]
 entity:
@@ -90,7 +90,7 @@ This is the canonical dictionary of every attribute on an **institution** object
 *String.* Like [`image_url`](#image_url), but scaled to a smaller thumbnail (a `width` query parameter is appended).
 
 ### `geo`
-*Object.* The institution's geographic location: `city`, `geonames_city_id`, `region`, `country_code`, `country`, `latitude`, and `longitude`.
+*Object.* The institution's geographic location: `city`, `geonames_city_id`, `region`, `country_code`, `country`, `latitude`, and `longitude`. Filter and group_by on `geo.region` (state, province or region, e.g. `geo.region:Catalonia`) and `geo.city` (e.g. `geo.city:Paris`); quote multi-word values: `geo.region:"New York"`. In OQL: `institutions where region is (Catalonia)`, `institutions where city is (Paris)`.
 
 ### `international`
 *Object.* Intended to hold the institution's display name in multiple languages. Currently unpopulated (an empty object) on essentially all institutions.
@@ -102,7 +102,7 @@ This is the canonical dictionary of every attribute on an **institution** object
 *List.* The other entity roles this organization plays across OpenAlex — an organization can be an [institution](/data/institutions/), a [funder](/data/funders/), and a [publisher](/data/publishers/) at once. Each entry has `role`, `id` (the OpenAlex ID of that role's entity), and `works_count`. Filter institutions by a co-role's ID with `roles.id`.
 
 ### `topics`
-*List.* The [topics](/data/topics/) most associated with this institution's works, each with a `count`, `score`, and its subfield/field/domain. See [Aboutness](/data/aboutness/) for how topics are assigned. Filter with `topics.id`.
+*List.* The [topics](/data/topics/) most associated with this institution's works, each with a `count`, `score`, and its subfield/field/domain. See [Aboutness](/data/aboutness/) for how topics are assigned. Filter with `topics.id`, or by the hierarchy with `topics.subfield.id`, `topics.field.id`, and `topics.domain.id` (OQL `subfield`, `field`, `domain`).
 
 ### `topic_share`
 *List.* Like [`topics`](#topics), but ranked by this institution's *share* of each topic relative to all institutions — surfacing topics where the institution is disproportionately active rather than just high-volume. Filter with `topic_share.id`.

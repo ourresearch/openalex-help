@@ -1,6 +1,6 @@
 ---
 title: "Overview"
-updated: 2026-09-21
+updated: 2026-10-03
 description: "What an author is, why a profile is built from its works, and what every attribute on an author object means."
 tags: ["reference"]
 source_id: "24347048891543"
@@ -69,7 +69,7 @@ This is the canonical dictionary of every attribute on an **author** object. Att
 *List.* The [institution(s)](/data/institutions/) from the author's most recent work, dehydrated (`id`, `ror`, `display_name`, `country_code`, `type`, `lineage`), or an empty list / null when unknown. A convenience for "where are they now"; the full picture is in [`affiliations`](#affiliations). Filter/sort/group_by on `last_known_institutions.id`, `.ror`, `.country_code`, `.continent`, `.is_global_south`, `.type`, and `.lineage`.
 
 ### `topics`
-*List.* The [topics](/data/topics/) this author works on most, ranked, each with a `count` of the author's works on it plus its `subfield`, `field`, and `domain`. Filter and group_by with `topics.id`. See [Aboutness](/data/aboutness/) for how topics are assigned.
+*List.* The [topics](/data/topics/) this author works on most, ranked, each with a `count` of the author's works on it plus its `subfield`, `field`, and `domain`. Filter and group_by with `topics.id`, or by the hierarchy with `topics.subfield.id`, `topics.field.id`, and `topics.domain.id` (authors with that subfield, field or domain among their top topics), e.g. [`/authors?filter=topics.subfield.id:1702`](https://api.openalex.org/authors?filter=topics.subfield.id:1702) for authors working in Artificial Intelligence. In OQL: `authors where subfield is (subfields/1702)`. See [Aboutness](/data/aboutness/) for how topics are assigned.
 
 ### `topic_share`
 *List.* The author's share of world output on each [topic](/data/topics/): a `value` measuring how concentrated the author is on that topic relative to everyone. Higher means the author accounts for a larger fraction of that topic's works. Filter and group_by with `topic_share.id`.

@@ -1,6 +1,6 @@
 ---
 title: "Attributes"
-updated: 2026-09-29
+updated: 2026-10-03
 description: "The canonical dictionary of every attribute on a source object — what each one means, where it comes from, and its quirks."
 tags: ["reference"]
 ---
@@ -108,7 +108,7 @@ Empty when the source is on no list. Filter/group_by; also available on works as
 *String.* The source's standard abbreviated title (e.g. the ISO 4 abbreviation), when known. Available as a column.
 
 ### `topics`
-*List.* The [topics](/data/topics/) most associated with the works published in this source, ranked, each with a `count` and its subfield/field/domain. See [Aboutness](/data/aboutness/). Filter on `topics.id`.
+*List.* The [topics](/data/topics/) most associated with the works published in this source, ranked, each with a `count` and its subfield/field/domain. See [Aboutness](/data/aboutness/). Filter on `topics.id`, or by the hierarchy with `topics.subfield.id`, `topics.field.id`, and `topics.domain.id` (OQL `subfield`, `field`, `domain`), e.g. [`/sources?filter=topics.subfield.id:1204`](https://api.openalex.org/sources?filter=topics.subfield.id:1204) for archaeology journals.
 
 ### `topic_share`
 *List.* Like [`topics`](#topics), but scored by the source's *share* of each topic relative to all sources — surfacing the topics this source is disproportionately central to, not just its most frequent. Filter/sort/group_by on `topic_share.id`.
