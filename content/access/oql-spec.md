@@ -730,8 +730,11 @@ model clean for the editor and downstream tooling.
 - **OQO:** `operator: "in collection"`, `value: <col_id>`, on a leaf. One collection per
   clause; union several via `or` clauses.
 - **Same-type** (the Collection is of the queried entity, e.g. works on `/works`): the subject
-  is the entity itself and the OQO uses `column_id: collection`, mirroring the dedicated
-  `filter=collection:<col_id>` API param.
+  is the entity itself, named by its singular display name (`works where work is in
+  collection (col_x)`, `locations where location is in collection (col_x)`, `authors where
+  author is in collection (col_x)`), and the OQO uses `column_id: collection`, mirroring the
+  dedicated `filter=collection:<col_id>` API param. `work is in collection` is accepted input
+  on every entity.
 - **Cross-type** (the Collection is of a *referenced* entity, e.g. a set of authors/countries):
   the OQO keeps the referenced entity's `column_id` (e.g. `authorships.countries`) and renders
   to the bare `filter=<field>:<col_id>` URL surface. `col_…` ids are always preserved verbatim
