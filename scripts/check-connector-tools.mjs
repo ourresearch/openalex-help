@@ -24,7 +24,8 @@ const PAGE = join(ROOT, 'content/access/connector.md');
 
 // Tools registered but switched off in production, so the page must NOT list them.
 // Keep in step with the server's env gating (src/index.ts `features`).
-const GATED_OFF = new Set(['find_experts']);
+// Alert tools (oxjob #1509): off in production until the ChatGPT plugin is approved (#1294).
+const GATED_OFF = new Set(['find_experts', 'list_my_alerts', 'create_alert', 'update_alert', 'delete_alert']);
 
 const argIdx = process.argv.indexOf('--server');
 const SERVER = argIdx > -1
