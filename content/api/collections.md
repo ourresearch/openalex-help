@@ -63,7 +63,7 @@ curl "https://api.openalex.org/works?filter=collection:col_8yWKmRNyEr,is_oa:true
 
 Send your OpenAlex API key as `?api_key=` or an `Authorization: Bearer` header: a
 personal key (organization keys aren't accepted here). Without one you can read
-only collections [shared by link](#sharing-by-link). Managing collections costs
+only [public collections](#public-collections) and collections [shared by link](#sharing-by-link). Managing collections costs
 no credits; a search that filters by a collection costs what any search costs.
 
 ## The collection object
@@ -75,7 +75,7 @@ no credits; a search that filters by a collection costs what any search costs.
 | `description` | string | 0 to 500 characters; `""` when empty. |
 | `entity_type` | string | What every member is: `works`, `authors`, `sources`, `locations`, `countries` or any other [entity type](/data/). Fixed at creation. |
 | `member_count` | integer | How many members it holds, at most 1,000,000. |
-| `access` | string | `private` (the default) or `shared_by_link`. See [Sharing by link](#sharing-by-link). |
+| `access` | string | `private` (the default), `shared_by_link` or `public`. See [Who can see a collection](#who-can-see-a-collection). |
 | `can_edit` | boolean | `true` only for the owner. The object never says who the owner is. |
 | `created_date` | string | The date it was created, `YYYY-MM-DD` (UTC). |
 | `updated_date` | string | The datetime of the last change to it or its members (ISO 8601 in UTC, written without a `Z`, as on every entity). |
@@ -90,7 +90,7 @@ a [filter](#filtering-by-a-collection).
 | --- | --- | --- | --- |
 | `GET` | `/collections` | Your collections, with `filter`, `search`, `sort`, `select` and paging | You |
 | `POST` | `/collections` | Create one, or [make a copy](#make-a-copy) | Any account |
-| `GET` | `/collections/{id}` | Read one; takes `select` | Per its [access](#sharing-by-link) |
+| `GET` | `/collections/{id}` | Read one; takes `select` | Per its [access](#who-can-see-a-collection) |
 | `PATCH` | `/collections/{id}` | Change `display_name`, `description`, `access` | Owner |
 | `DELETE` | `/collections/{id}` | Delete it (`204`) | Owner |
 | `GET` | `/collections/{id}/members` | Its members, paged, or all as CSV (`format=csv`) | Per its access |
@@ -107,24 +107,32 @@ the URL there (`https%3A%2F%2Fopenalex.org%2Fcollections%2Fcol_8yWKmRNyEr`), or 
 short form. Reads by anyone but the
 owner are rate limited: 120 a minute per IP logged out, 300 a minute per account.
 
-### List your collections
+### List collections
 
 ```bash
-GET https://api.openalex.org/collections?filter=entity_type:sources&sort=updated_date:desc&api_key=<your-api-key>
+# Public collections, which anyone can list, no key needed
+GET https://api.openalex.org/collections?filter=access:public&search=income
+
+# Your own collections
+GET https://api.openalex.org/collections?filter=can_edit:true&sort=updated_date:desc&api_key=<your-api-key>
 ```
 
-Returns only your own collections: nobody's collections are listed to anyone else.
-The parameters work as on every [list endpoint](/api/filtering/):
+Lists the [public collections](#who-can-see-a-collection), which OpenAlex makes, plus
+your own when you send an API key. Nobody else's private or shared-by-link collections
+are ever listed. `filter=access:public` is the public list; `filter=can_edit:true` is
+yours. Logged out, the list is the public collections alone, 120 requests a minute per
+IP. The parameters work as on every [list endpoint](/api/filtering/):
 
 | Parameter | Takes | Example |
 | --- | --- | --- |
-| `filter` | `entity_type` and `access`; `\|` for OR, `!` to negate, commas to AND | `filter=entity_type:works\|sources,access:shared_by_link` |
-| `search` | Text in `display_name` (case-insensitive) | `search=elsevier` |
+| `filter` | `entity_type`, `access` and `can_edit` (`true` = yours); `\|` for OR, `!` to negate, commas to AND | `filter=entity_type:countries,access:public` |
+| `search` | Text in `display_name` or `description` (case-insensitive) | `search=latin america` |
+| `group_by` | `entity_type`, `access` or `can_edit`: a count per value, in `group_by`, with `results` empty | `group_by=entity_type` |
 | `sort` | One of `display_name` (the default), `created_date`, `updated_date`, `member_count`; ascending unless you add `:desc`. Dates sort by full creation and update time, ties by `id`, so paging is stable | `sort=member_count:desc` |
 | `select` | Any [fields of the object](#the-collection-object), plus `matching_member_ids` with `member_ids` | `select=id,display_name,member_count` |
 | `page`, `per_page` | Basic paging; `per_page` 1 to 100, default 25 | `page=2&per_page=50` |
 | `cursor` | Cursor paging: `cursor=*`, then each `meta.next_cursor` until it's `null` | `cursor=*` |
-| `member_ids` | Up to 100 member IDs of any type, comma-separated and URL-encoded (location IDs too): only your collections holding any of them, each with `matching_member_ids` | `member_ids=W2755968057,W4404012345` |
+| `member_ids` | Up to 100 member IDs of any type, comma-separated and URL-encoded (location IDs too): only listed collections holding any of them, each with `matching_member_ids`. Add `filter=can_edit:true` for yours alone | `member_ids=W2755968057,W4404012345` |
 
 ```json
 {
@@ -141,6 +149,19 @@ The parameters work as on every [list endpoint](/api/filtering/):
       "created_date": "2026-09-30",
       "updated_date": "2026-10-03T09:12:44.512000"
     }
+  ]
+}
+```
+
+With `group_by`, the answer counts the same collections the list would return:
+
+```json
+{
+  "meta": { "count": 15, "page": null, "per_page": null, "groups_count": 2 },
+  "results": [],
+  "group_by": [
+    { "key": "public", "key_display_name": "Public", "count": 12 },
+    { "key": "private", "key_display_name": "Private", "count": 3 }
   ]
 }
 ```
@@ -380,15 +401,35 @@ work *not* published in those journals.
   seconds.
 - **At most 5 collections per request, and 300,000 members in all.**
 - **Access.** A private collection filters only for its owner's key; one shared by
-  link filters for anyone. One you can't read returns `404` "Collection col_… not
+  link or public filters for anyone. One you can't read returns `404` "Collection col_… not
   found." (code `collection_not_found`), never a silent zero.
 
-## Sharing by link
+## Who can see a collection
 
-| `access` | Who can view it and filter by it |
-| --- | --- |
-| `private` | Only its owner. The default for every new collection. |
-| `shared_by_link` | Anyone with its link or ID, logged in or not. |
+| `access` | Who can view it and filter by it | Listed? |
+| --- | --- | --- |
+| `private` | Only its owner. The default for every new collection. | Only to its owner |
+| `shared_by_link` | Anyone with its link or ID, logged in or not. | Only to its owner |
+| `public` | Anyone, logged in or not. | To everyone, in `GET /collections` and on [openalex.org/collections](https://openalex.org/collections) |
+
+### Public collections
+
+Public collections are lists OpenAlex makes and keeps up to date, starting with
+country groups: the European Union (EU27), the UN M49 regions and Latin America and
+the Caribbean, the World Bank income groups and OECD members. Each one's description
+names its source and date. Use one like any other collection, for example works with
+an author in a low-income country:
+
+```bash
+GET https://api.openalex.org/works?filter=authorships.countries:col_…
+```
+
+Only OpenAlex can make a collection public for now: `{"access": "public"}` from
+anyone else returns `403 public_needs_review`. To suggest a list for the public
+collections, write to support@openalex.org. Anyone can [make a copy](#make-a-copy) of
+a public collection and edit their own.
+
+### Sharing by link
 
 A collection shared by link is never listed or searchable: people find it only
 through a link or ID you give them. Only the owner can change it; anyone else with
@@ -447,7 +488,8 @@ Errors look like the rest of the API, with a stable `code` to branch on:
 | 400 | `entity_type_invalid` | `entity_type` missing or not an entity type |
 | 400 | `display_name_blank`, `display_name_too_long`, `display_name_duplicate`, `display_name_url`, `display_name_reserved`, `display_name_whitespace`, `display_name_invalid_character` | The name is empty, over 100 characters, already yours, a URL, reserved, or has control characters |
 | 400 | `description_invalid`, `description_too_long`, `description_url` | The description isn't a string, is over 500 characters, or is a URL |
-| 400 | `access_invalid` | `access` isn't `private` or `shared_by_link` |
+| 400 | `access_invalid` | `access` isn't `private`, `shared_by_link` or `public` |
+| 400 | `invalid_group_by` | `group_by` isn't `entity_type`, `access` or `can_edit` |
 | 400 | `invalid_copy_of` | `copy_of` isn't a collection ID |
 | 400 | `member_id_invalid`, `member_wrong_type` | An ID isn't an OpenAlex ID, or isn't the collection's type |
 | 400 | `member_limit_reached` | Creating or copying more than 1,000,000 members (on an add, it's `403`) |
@@ -455,8 +497,9 @@ Errors look like the rest of the API, with a stable `code` to branch on:
 | 400 | `collection_too_big_to_filter` | Filtering by a collection over its live filter limit (see [Limits](#limits)) |
 | 400 | `query_required`, `invalid_query`, `query_wrong_type`, `invalid_oql`, `invalid_exclude_ids`, `copy_of_wrong_type` | An import without exactly one of `query`, `oql`, `copy_of`; a search that isn't an `api.openalex.org` list of the collection's type; or bad `exclude_ids` |
 | 400 | `invalid_format` | `format` other than `csv` on the members list |
-| 401 | `unauthorized` | No valid API key, on a call that needs one |
+| 401 | `unauthorized` | No valid API key, on a call that needs one, or an invalid key on any call (a bad key never gets the logged-out answer) |
 | 403 | `not_collection_owner` | Only the owner can change it; [make a copy](#make-a-copy) instead |
+| 403 | `public_needs_review` | Only OpenAlex can make a collection public; write to support@openalex.org to suggest one |
 | 403 | `collection_limit_reached` | You already own 500 collections |
 | 403 | `member_limit_reached` | Adding new members would pass 1,000,000; re-sent members never count |
 | 404 | `collection_not_found` | Missing, deleted, or private to someone else |

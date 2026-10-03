@@ -59,18 +59,29 @@ A collection is a snapshot: it doesn't follow the search. To keep a live list, [
 List them with the usual parameters: filter by type or access, search the names, sort, select only what you need.
 
 ```text
-https://api.openalex.org/collections?filter=entity_type:sources&sort=updated_date:desc&select=id,display_name,member_count
+https://api.openalex.org/collections?filter=can_edit:true,entity_type:sources&sort=updated_date:desc&select=id,display_name,member_count
 https://api.openalex.org/collections?search=elsevier
-https://api.openalex.org/collections?member_ids=S137773608
+https://api.openalex.org/collections?filter=can_edit:true&member_ids=S137773608
 ```
 
-The last one answers "which of my collections hold this journal?" On the website, your collections are at [openalex.org/settings/collections](https://openalex.org/settings/collections).
+The last one answers "which of my collections hold this journal?" (Without `filter=can_edit:true`, the list also holds the [public collections](#how-do-i-filter-by-a-country-group-like-the-eu-or-low-income-countries).) On the website, your collections are at [openalex.org/settings/collections](https://openalex.org/settings/collections).
 
 ## How do I share a collection, and use one someone shared with me?
 
 Share it by link: on its page click **Share**, or `PATCH` it with `{"access": "shared_by_link"}`. Anyone with the link or ID can then view it and filter by it, logged in or not; it never shows up in any listing. Make it private again the same way, and every link stops working at once.
 
 To use one shared with you, use its ID like your own: `filter=collection:col_…`. You can't change it, but you can [copy it](#how-do-i-copy-a-collection-and-change-it).
+
+## How do I filter by a country group, like the EU or low-income countries?
+
+Use a public collection. OpenAlex keeps country groups as public collections: the European Union (EU27), the UN M49 regions and Latin America and the Caribbean, the four World Bank income groups and OECD members. Browse and search them at [openalex.org/collections](https://openalex.org/collections), or in a Country filter on any search, type "European" and pick the one tagged **Public**. With the API, find its ID, then filter by it like any country:
+
+```bash
+https://api.openalex.org/collections?filter=access:public&search=low income
+https://api.openalex.org/works?filter=authorships.countries:col_…,publication_year:2025
+```
+
+The same collection works on every country field: `primary_location.source.country_code` for journals based there, and `funders.country_code`. Each collection's description names its source and date. Only OpenAlex makes collections public for now; to suggest one, write to support@openalex.org.
 
 ## How do I copy a collection and change it?
 
