@@ -78,7 +78,7 @@ no credits; a search that filters by a collection costs what any search costs.
 | `access` | string | `private` (the default) or `shared_by_link`. See [Sharing by link](#sharing-by-link). |
 | `can_edit` | boolean | `true` only for the owner. The object never says who the owner is. |
 | `created_date` | string | The date it was created, `YYYY-MM-DD` (UTC). |
-| `updated_date` | string | The datetime of the last change to it or its members (ISO 8601, UTC). |
+| `updated_date` | string | The datetime of the last change to it or its members (ISO 8601 in UTC, written without a `Z`, as on every entity). |
 
 The members aren't in the object: page through them at
 [`/collections/{id}/members`](#list-its-members), or get them as full entities with
@@ -100,7 +100,9 @@ a [filter](#filtering-by-a-collection).
 
 `{id}` is the URL ID or the short `col_…`, as with every entity:
 `/collections/col_8yWKmRNyEr` and `/collections/https://openalex.org/collections/col_8yWKmRNyEr`
-are the same collection (percent-encoding the URL works too). Reads by anyone but the
+are the same collection. Some HTTP clients fold the `//` in a path, so percent-encode
+the URL there (`https%3A%2F%2Fopenalex.org%2Fcollections%2Fcol_8yWKmRNyEr`), or use the
+short form. Reads by anyone but the
 owner are rate limited: 120 a minute per IP logged out, 300 a minute per account.
 
 ### List your collections
@@ -116,11 +118,11 @@ The parameters work as on every [list endpoint](/api/filtering/):
 | --- | --- | --- |
 | `filter` | `entity_type` and `access`; `\|` for OR, `!` to negate, commas to AND | `filter=entity_type:works\|sources,access:shared_by_link` |
 | `search` | Text in `display_name` (case-insensitive) | `search=elsevier` |
-| `sort` | One of `display_name` (the default), `created_date`, `updated_date`, `member_count`; add `:desc` | `sort=member_count:desc` |
+| `sort` | One of `display_name` (the default), `created_date`, `updated_date`, `member_count`; ascending unless you add `:desc`. Dates sort by full creation and update time, ties by `id`, so paging is stable | `sort=member_count:desc` |
 | `select` | Any [fields of the object](#the-collection-object), plus `matching_member_ids` with `member_ids` | `select=id,display_name,member_count` |
 | `page`, `per_page` | Basic paging; `per_page` 1 to 100, default 25 | `page=2&per_page=50` |
 | `cursor` | Cursor paging: `cursor=*`, then each `meta.next_cursor` until it's `null` | `cursor=*` |
-| `member_ids` | Up to 100 member IDs of any type, comma-separated (location IDs too): only your collections holding any of them, each with `matching_member_ids` | `member_ids=W2755968057,W4404012345` |
+| `member_ids` | Up to 100 member IDs of any type, comma-separated and URL-encoded (location IDs too): only your collections holding any of them, each with `matching_member_ids` | `member_ids=W2755968057,W4404012345` |
 
 ```json
 {
@@ -233,8 +235,9 @@ GET https://api.openalex.org/collections/col_8yWKmRNyEr/members?per_page=1000
 }
 ```
 
-Members come oldest first; members added in the same call come in no set order, so
-compare them as a set. Page with `page` and `per_page` (1 to 1,000, default 100), or with
+Each member is its `id` (stored as described [above](#create-a-collection)) and
+`added_at`, when it was added (ISO 8601, UTC). Members come oldest first; members added
+in the same call come in no set order, so compare them as a set. Page with `page` and `per_page` (1 to 1,000, default 100), or with
 `cursor=*` and `meta.next_cursor`. For the members as full entities, filter their
 endpoint instead: `/works?filter=collection:col_8yWKmRNyEr`.
 
@@ -287,7 +290,8 @@ GET https://api.openalex.org/works?filter=collection:col_8yWKmRNyEr,is_oa:true&s
 ### On a related endpoint: any ID filter
 
 Any filter whose value is an OpenAlex ID also takes a collection of that type, so a
-collection of one type filters another:
+collection of one type filters another. Some common ones (the [how-to](/how-to/collections/#which-filters-take-a-collection)
+has more, such as `locations.source.id` and `authorships.countries`):
 
 | Filter clause | Collection type | Meaning |
 | --- | --- | --- |
