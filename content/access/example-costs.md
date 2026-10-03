@@ -1,6 +1,6 @@
 ---
 title: "Example costs"
-updated: 2026-08-09
+updated: 2026-10-03
 description: "What OpenAlex API operations cost, what your free daily budget buys, and the price of some common activities."
 tags: ["reference"]
 synonyms: ["costs", "credits", "api pricing", "rate card", "what it costs"]
@@ -17,6 +17,7 @@ OpenAlex data is free; what costs money is *usage* of the API. This page makes t
 | [Get single entity](/api/get-single-entities/) | Retrieve one entity by ID or DOI | **Free** |
 | [List + filter](/api/filtering/) | Query and filter entities | **$0.10** |
 | [Search](/api/searching/) | Full-text keyword search | **$1** |
+| [Search with rerank](/api/searching/#rerank) | Search with the top 100 reordered by relevance (`rerank=true`) | **$2** |
 | [Semantic search](/api/searching/) | AI-powered semantic search | **$1** |
 | [Content download](/access/fulltext/) | Cached PDF via the content API | **$10** |
 | [Text / Aboutness](/api/deprecations/) *(deprecated)* | Topic classification | **$10** |
@@ -45,4 +46,4 @@ Without a key you get $0.10/day — a tenth of the above, enough to try the API.
 | Download 1,000 PDFs | Content | 1,000 | 1,000 PDFs | $10.00 |
 
 > **Note:**
-> The [openalex.org](https://openalex.org) website runs on this same API, so browsing it draws from the same budget (anonymous browsing uses the $0.10/day no-key budget; sign in for $1/day). Viewing a single record's page (one work, author, source) is free, but a search or a results page loads several billable calls — the list of results plus its facets and charts. So **one website search costs more than one API call**: a programmatic `/works?search=` call is 10 credits, while one search *on the website* is roughly 18 (the search plus ~5 facet/chart calls). "$1/day ≈ 1,000 searches" holds for direct API calls; browsing the website is about 1.8× costlier per search (closer to ~550/day). A [prepaid balance](/access/buying-and-renewing/) covers anything beyond your daily budget.
+> The [openalex.org](https://openalex.org) website runs on this same API, so browsing it draws from the same budget (anonymous browsing uses the $0.10/day no-key budget; sign in for $1/day). Viewing a single record's page (one work, author, source) is free, but a search or a results page loads several billable calls — the list of results plus its facets and charts. So **one website search costs more than one API call**: a programmatic `/works?search=` call is 10 credits, while one search *on the website* is roughly 28 (the search, reranked at 20 credits, plus ~5 facet/chart calls). "$1/day ≈ 1,000 searches" holds for direct API calls; browsing the website is about 2.8× costlier per search (closer to ~360/day). A [prepaid balance](/access/buying-and-renewing/) covers anything beyond your daily budget.

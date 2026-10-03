@@ -1,6 +1,6 @@
 ---
 title: "AI agent connector"
-updated: 2026-10-02
+updated: 2026-10-03
 description: "The free OpenAlex connector for Claude (ChatGPT coming soon): ask about the literature in plain language, get the exact query behind every answer, and fix your own author profile in conversation."
 synonyms: ["MCP", "MCP server", "Model Context Protocol", "Claude connector", "OpenAlex connector", "connectors directory", "Claude", "ChatGPT", "custom connector"]
 tags: ["reference"]
@@ -48,7 +48,7 @@ The agent chooses among sixteen tools: eleven that read OpenAlex, and five that 
 
 | Tool | What it does |
 |------|--------------|
-| `search_works` | Find papers by keyword (Boolean syntax) or by meaning (`mode: "semantic"`), with filters for year, type, open access, citations, and author/institution/source/topic/funder IDs. For complex selections pass an [OQL](https://help.openalex.org/access/oql/) query directly (nested groups, exclusions, exact phrases, proximity). `preview: true` returns just the count, the canonical OQL and a sample for tuning a query. Every response echoes the canonical OQL and a link that reproduces it. |
+| `search_works` | Find papers by keyword (Boolean syntax; by default it matches titles, abstracts and the [keywords](/api/searching/#keywords-in-search) a phrase in your search names) or by meaning (`mode: "semantic"`), with filters for year, type, open access, citations, and author/institution/source/topic/funder IDs. For complex selections pass an [OQL](https://help.openalex.org/access/oql/) query directly (nested groups, exclusions, exact phrases, proximity). `preview: true` returns just the count, the canonical OQL and a sample for tuning a query. Every response echoes the canonical OQL and a link that reproduces it. |
 | `get_work` | Full record for one work by OpenAlex ID, DOI, PMID or PMCID: all authors and affiliations, abstract, topics, funding, citations by year. Free. |
 | `resolve_references` | Check up to 25 citations (DOIs, PMIDs, or free-text references) in one call; reports whether each exists and how confidently it matched. Catches fabricated or garbled references and fills in DOIs. |
 | `list_citations` | Works that cite a paper, the works it references, or related works. |

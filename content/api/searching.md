@@ -1,6 +1,6 @@
 ---
 title: "Search"
-updated: 2026-09-19
+updated: 2026-10-03
 description: "Find entities using full-text search across titles, abstracts, and more"
 tags: ["api"]
 source_id: "guides/searching"
@@ -10,7 +10,7 @@ source_updated: "2026-06-24"
 The `search` parameter finds results matching a given text search. Search requests cost **\$1 per 1,000 calls** (vs. \$0.10 per 1,000 for list+filter requests). See [pricing](/access/example-costs/).
 
 ```bash
-# Works with "dna" in title, abstract, or fulltext
+# Works with "dna" in title, abstract, or fulltext, or tagged with the DNA keyword
 https://api.openalex.org/works?search=dna
 ```
 
@@ -20,12 +20,26 @@ Each entity type searches different fields:
 
 | Entity | Searchable fields |
 |--------|-------------------|
-| Works | `title`, `abstract`, `fulltext` |
+| Works | `title`, `abstract`, `fulltext`, and [keywords](#keywords-in-search) |
 | Authors | `display_name`, `display_name_alternatives` |
 | Sources | `display_name`, `alternate_titles`, `abbreviated_title` |
 | Institutions | `display_name`, `display_name_alternatives`, `display_name_acronyms` |
 | Topics/Keywords | `display_name`, `description` |
 | [Locations](/data/locations/) | `title` |
+
+## Keywords in search
+
+A works search also finds papers by their [keywords](/data/keywords/). When a phrase of one to six words in your search is the name of a keyword, or one of its synonyms, a work matches if the phrase is in its text **or** the work carries that keyword. Every other word must still be in the text. So `remote work productivity` finds papers tagged `remote-work` that mention productivity, even if they say "telework" instead, but never a paper tagged only `productivity`. A search never returns fewer works than the same words in the text alone.
+
+```bash
+# Title, abstract, or keywords: what openalex.org searches by default
+https://api.openalex.org/works?search.title_abstract_keywords="antimicrobial resistance"
+
+# Title and abstract text only
+https://api.openalex.org/works?search.title_and_abstract="antimicrobial resistance"
+```
+
+The first search finds 241,167 works, the second 118,920: the keywords add papers that say "antibiotic resistance" or "drug-resistant bacteria", papers in other languages, and papers with no abstract. Boolean and phrase searches work the same way, one term or quoted phrase at a time. The filter form is `title_abstract_keywords.search`, and in [OQL](/access/oql/) it's `title/abstract/keywords has (…)`. The broad search (`search=`, or the `fulltext.search` filter) also matches keywords.
 
 ## Text processing
 
@@ -44,7 +58,7 @@ https://api.openalex.org/works?search.exact=surgery
 ```
 
 > **Note:**
-> Only one search parameter is allowed per request: `search`, `search.exact`, or `search.semantic`.
+> Works also take scoped search parameters: `search.title`, `search.title_and_abstract` and `search.title_abstract_keywords`, each with an `.exact` form. Each one can appear once per request, and several are combined with AND. `search.semantic` can't be combined with any other search.
 
 ## Boolean search
 
@@ -165,7 +179,23 @@ The search term must have at least 3 characters before the `~`. This is useful f
 Search results include a `relevance_score` property and are sorted by it (descending) by default. The score is based on:
 
 - Text similarity to your search term
-- Citation count (more cited = higher score)
+- Citation count, capped: citations raise the score by at most half (a paper with 100 citations gets 25% more, one with 5,000 about 50% more), so a famous paper that barely matches can't outrank a close match
+- A small bonus for works carrying a keyword your search names
+
+## Rerank
+
+Add `rerank=true` to a works search and the top 100 results are reordered by how well each one answers your search, judged by a decision model from each work's title, venue, year and type. Result 101 onward is exactly what you get without `rerank`.
+
+```bash
+https://api.openalex.org/works?search.title_abstract_keywords=remote work productivity&rerank=true
+```
+
+- Reranked results carry `rerank_score`, the model's probability that the work is a relevant result. `relevance_score` stays the text score, so inside the top 100 it is no longer in order.
+- `meta.reranked` says whether the page's order came from the reranker. It is `false` on pages past result 100, and when the reranker didn't answer in time; you then get the normal order.
+- Pages and cursors work as usual. With `cursor=*`, the first 100 results come in reranked order, then the walk continues in the normal order from result 101. It returns the same works as a walk without `rerank`, with no repeats and no gaps.
+- The reranked order is computed once and kept for 24 hours, so paging through it is stable.
+- A reranked search costs twice a normal search (\$2 per 1,000 calls). openalex.org reranks its searches by default.
+- `rerank=true` needs a search sorted by relevance: with another `sort`, `group_by`, `sample` or `search.semantic` it returns a `400`.
 
 ## Semantic search
 
