@@ -129,8 +129,8 @@ export const NAV_GROUPS: Record<string, NavGroup[]> = {
     },
     {
       label: 'Working with data',
-      desc: 'API patterns, getting data into other tools, and institution analysis.',
-      slugs: ['api-recipes', 'integrations', 'analyzing-your-institution'],
+      desc: 'API patterns, collections, getting data into other tools, and institution analysis.',
+      slugs: ['api-recipes', 'collections', 'integrations', 'analyzing-your-institution'],
     },
     {
       label: 'Fixing errors',

@@ -62,7 +62,7 @@ This page is the index. What each entity *is*, and what every field on it *means
 |---|---|
 | `/autocomplete/{entity}` | Fast type-ahead suggestions — see [Autocomplete](/api/autocomplete/) |
 | `/text` | Tag arbitrary text with topics and keywords — see [Tag Aboutness](/api/tag-aboutness/) |
-| `/collections` | Create, read, share and change saved [collections](/data/collections/) and their members (no credits) — see [Collections API](/api/collections/) |
+| `/collections` | Your saved [collections](/data/collections/): list (filter, search, sort), create, read, share and change them and their members (no credits) — see [Collections API](/api/collections/) |
 | `/curations` | Submit corrections *(on `user.openalex.org`)* — see [Author curation](/api/author-curation/) and [Curations](/data/curations/) |
 | `/saved-searches` | Save searches and set email alerts for new works (no credits) — see [Alerts and saved searches](/api/alerts/) |
 
