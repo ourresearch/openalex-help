@@ -17,10 +17,13 @@ OpenAlex data is free; what costs money is *usage* of the API. This page makes t
 | [Get single entity](/api/get-single-entities/) | Retrieve one entity by ID or DOI | **Free** |
 | [List + filter](/api/filtering/) | Query and filter entities | **$0.10** |
 | [Search](/api/searching/) | Full-text keyword search | **$1** |
-| [Search with rerank](/api/searching/#rerank) | Search with the top 100 reordered by relevance (`rerank=true`) | **$2** |
+| [Rerank](/api/searching/#rerank) | Add-on: the top 100 results reordered by relevance (`rerank=true`) | **+$1** (a reranked search: **$2**) |
 | [Semantic search](/api/searching/) | AI-powered semantic search | **$1** |
 | [Content download](/access/fulltext/) | Cached PDF via the content API | **$10** |
 | [Text / Aboutness](/api/deprecations/) *(deprecated)* | Topic classification | **$10** |
+
+> **Note:**
+> **Rerank adds 10 credits ($0.001) to any request that uses it.** A search costs 10 credits; with `rerank=true` it costs 20. The add-on is the same on an [OQL](/api/oql/) request. openalex.org reranks its searches by default, and so do the [Claude and ChatGPT connectors](/access/connector/), so a search there costs 20 credits plus whatever else the page loads.
 
 ## What your free daily budget buys
 
@@ -31,6 +34,7 @@ Every account gets **$1 of usage per day** for free. With that $1 you can do a m
 | Get a single entity | Unlimited | Unlimited | Look up a work by DOI |
 | List + filter | 10,000 | 1,000,000 | All works from MIT in 2024 |
 | Search | 1,000 | 100,000 | Full-text search for "CRISPR" |
+| Search with rerank | 500 | 50,000 | The same search, top 100 reordered by relevance |
 | Content download | 100 | 100 PDFs | Download a paper's full text |
 
 Without a key you get $0.10/day — a tenth of the above, enough to try the API. A [free API key](/api/authentication/) gives you 10× that. Need more than $1/day? [Paid plans](/access/pricing/) raise your daily budget, and [prepaid usage](/access/buying-and-renewing/) covers anything beyond it.

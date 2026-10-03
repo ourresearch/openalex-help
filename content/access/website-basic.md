@@ -1,6 +1,6 @@
 ---
 title: "Basic"
-updated: 2026-08-09
+updated: 2026-10-03
 description: "Point-and-click search and filters at openalex.org — the no-code way to query OpenAlex."
 tags: ["reference"]
 ---
@@ -8,7 +8,7 @@ The basic search at [openalex.org](https://openalex.org) is the no-code way to q
 
 ## How it works
 
-1. **Search.** Enter a term and OpenAlex searches the relevant fields for that entity — for works, that's the title, abstract, and full text.
+1. **Search.** Enter a term and OpenAlex searches the relevant fields for that entity. For works, the default searches titles, abstracts and [keywords](/api/searching/#keywords-in-search), and the top results are [reranked](/api/searching/#rerank) so the most relevant come first. The search box's menu switches to title only, title and abstract, or title, abstract, full text and keywords.
 2. **Filter.** Use the filters alongside your results to narrow by things like year, work type, open-access status, or institution. Each filter you add narrows the set further.
 3. **Facet.** Many filters double as facets: they show you the breakdown of your current results (how many are from each year, each country, and so on), so you can see the shape of your set as you refine it.
 4. **Sort and export.** Reorder by citation count or date, then [export what you find](/how-to/integrations/#how-do-i-export-results-from-the-openalex-website) to CSV.

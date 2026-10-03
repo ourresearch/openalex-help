@@ -1,6 +1,6 @@
 ---
 title: "OQL API"
-updated: 2026-08-11
+updated: 2026-10-03
 description: "Executing and translating OQL over HTTP — endpoints, query formats, and reading results."
 tags: ["oql"]
 generated: true
@@ -104,6 +104,7 @@ The paging parameters work alongside `oql`:
 | `cursor` | yes | deep paging; start with `cursor=*`, follow `meta.next_cursor` |
 | `sort` | yes | classic `sort=column:direction` (comma-separated for tiebreakers), e.g. `sort=cited_by_count:desc` |
 | `select` | yes | classic `select=field,field` to project a subset of fields |
+| `rerank` | yes | `rerank=true` reorders the top 100 of a relevance-sorted works search by relevance; result 101 onward is unchanged. Adds 10 credits. See [Rerank](/api/searching/#rerank) |
 | `api_key` | yes | or send `Authorization: Bearer <key>` (see Auth below) |
 
 **Sorting, field selection, and paging are view parameters, not part of the query**
@@ -166,7 +167,7 @@ curl -X POST "https://api.openalex.org/" \
 Rules of the road:
 
 - The body is a JSON object with **exactly one** of `"oql"` or `"oqo"`, plus optionally the
-  sibling view params `sort` / `select` / `page` / `per_page` / `cursor`. Any other top-level
+  sibling view params `sort` / `select` / `page` / `per_page` / `cursor`, and `"rerank": true`. Any other top-level
   key is a **400** (`invalid_body`), and so is sending both `oql` and `oqo`. `Content-Type:
   application/json` is required (without it: 400, `invalid_body`).
 - Sibling view params use the same classic syntax as the query-string form: `sort` is a

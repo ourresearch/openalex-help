@@ -1,6 +1,6 @@
 ---
 title: "Using OpenAlex with an AI assistant"
-updated: 2026-09-30
+updated: 2026-10-03
 description: "Most of what you'd do with OpenAlex, an AI assistant can do for you. In Claude, the free OpenAlex connector makes it easiest: add it from Claude's connector directory in about two minutes. Any assistant can also use OpenAlex with your API key, and a ChatGPT connector is coming soon."
 tags: ["search"]
 synonyms: ["Claude", "Claude connector", "OpenAlex connector", "connectors directory", "ChatGPT", "MCP", "MCP server", "connector", "custom connector", "AI agent", "AI assistant", "chatbot", "LLM"]
@@ -69,7 +69,7 @@ If you're comfortable with developer settings and are on a Plus, Pro, Business o
 
 ## What it costs
 
-Nothing. The connector is free to add, and the OpenAlex account it signs in with is free. Both methods run on your account's own [daily API budget](/access/example-costs/): $1 of usage a day free, which covers hundreds of searches and is plenty for ordinary use. When it runs low the connector says so in its answers; when it runs out, single-record lookups keep working and everything else resumes at midnight UTC, or right away if you [add prepaid usage or a plan](https://openalex.org/pricing). Claude and ChatGPT charge you for their own service as usual, not for OpenAlex.
+Nothing. The connector is free to add, and the OpenAlex account it signs in with is free. Both methods run on your account's own [daily API budget](/access/example-costs/): $1 of usage a day free, which covers hundreds of searches and is plenty for ordinary use. The connector [reranks](/api/searching/#rerank) its searches so the most relevant papers come first, which adds 10 credits to each search (20 instead of 10, so about 500 searches a day). When it runs low the connector says so in its answers; when it runs out, single-record lookups keep working and everything else resumes at midnight UTC, or right away if you [add prepaid usage or a plan](https://openalex.org/pricing). Claude and ChatGPT charge you for their own service as usual, not for OpenAlex.
 
 ## Fixing your own author profile
 

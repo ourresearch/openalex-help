@@ -7,7 +7,7 @@ source_id: "guides/searching"
 source_url: "https://developers.openalex.org/guides/searching"
 source_updated: "2026-06-24"
 ---
-The `search` parameter finds results matching a given text search. Search requests cost **\$1 per 1,000 calls** (vs. \$0.10 per 1,000 for list+filter requests). See [pricing](/access/example-costs/).
+The `search` parameter finds results matching a given text search. Search requests cost **\$1 per 1,000 calls** (vs. \$0.10 per 1,000 for list+filter requests); [rerank](#rerank) adds \$1 per 1,000. See [pricing](/access/example-costs/).
 
 ```bash
 # Works with "dna" in title, abstract, or fulltext, or tagged with the DNA keyword
@@ -194,7 +194,7 @@ https://api.openalex.org/works?search.title_abstract_keywords=remote work produc
 - `meta.reranked` says whether the page's order came from the reranker. It is `false` on pages past result 100, and when the reranker didn't answer in time; you then get the normal order.
 - Pages and cursors work as usual. With `cursor=*`, the first 100 results come in reranked order, then the walk continues in the normal order from result 101. It returns the same works as a walk without `rerank`, with no repeats and no gaps.
 - The reranked order is computed once and kept for 24 hours, so paging through it is stable.
-- A reranked search costs twice a normal search (\$2 per 1,000 calls). openalex.org reranks its searches by default.
+- **Rerank adds 10 credits to the request**: a search costs 10 credits, a reranked one 20 (\$2 per 1,000 calls). The same add-on applies on the [OQL](/api/oql/) door. openalex.org and the [Claude and ChatGPT connectors](/access/connector/) rerank by default. See [Example costs](/access/example-costs/).
 - `rerank=true` needs a search sorted by relevance: with another `sort`, `group_by`, `sample` or `search.semantic` it returns a `400`.
 
 ## Semantic search

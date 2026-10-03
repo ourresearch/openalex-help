@@ -1,6 +1,6 @@
 ---
 title: "Specification"
-updated: 2026-08-09
+updated: 2026-10-03
 description: "The formal specification of the OpenAlex Query Language (v2), including the formal grammar."
 tags: ["oql"]
 source_id: "query-spec/oql+grammar"
@@ -545,7 +545,7 @@ vs semantic) and **inline value micro-syntax** (phrase / proximity / wildcard); 
 
 | Axis | OQL surface | OQO encoding |
 |---|---|---|
-| field scope | the field name (`title`, `title/abstract`, `abstract`, `full text`, `raw affiliation`, `byline`) | column prefix (`display_name.search`, `title_and_abstract.search`, `fulltext.search`, …) |
+| field scope | the field name (`title`, `title/abstract`, `title/abstract/keywords`, `abstract`, `full text`, `raw affiliation`, `byline`) | column prefix (`display_name.search`, `title_and_abstract.search`, `title_abstract_keywords.search`, `fulltext.search`, …) |
 | stemming | **default ON**; quotes turn it OFF | column suffix `.search` (stemmed) vs `.search.exact` |
 | stemmed phrase | `stemmed "…"` | `.search` with a quoted value |
 | semantic | `is similar to ("…")` | column suffix `.search.semantic` (2-phase) |

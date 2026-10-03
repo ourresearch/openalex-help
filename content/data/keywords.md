@@ -1,6 +1,6 @@
 ---
 title: "Keywords"
-updated: 2026-09-30
+updated: 2026-10-03
 description: "What a keyword is, how OpenAlex tags works with keywords, how the vocabulary changes, and what every attribute on a keyword object means."
 tags: ["reference"]
 source_id: "24736201130391"
@@ -32,10 +32,10 @@ Each keyword has a one-sentence [`description`](#description) and, where one exi
 
 ## Good uses
 
-- **Find what text search misses.** A keyword filter finds works whatever words their authors used, including works with no abstract. Combine it with a title and abstract search for the best recall (full recipe: [Finding papers with keywords](/how-to/finding-papers-with-keywords/)):
+- **Find what text search misses.** A keyword finds works whatever words their authors used, including works with no abstract. Search does this for you: the title, abstract and keywords search (openalex.org's default) matches a work when your words are in its title or abstract **or** a phrase you typed names one of its keywords (full recipe: [Finding papers with keywords](/how-to/finding-papers-with-keywords/)):
 
   ```
-  https://api.openalex.org/?oql=works where keyword is (antimicrobial-resistance) or title/abstract has ("antimicrobial resistance")
+  https://api.openalex.org/works?search.title_abstract_keywords="antimicrobial resistance"
   ```
 
 - **Map a field.** Filter to any set of works, then [`group_by=keywords.id`](/api/grouping/) to see what it is made of; add `group_by=publication_year` on a keyword filter to see its trend.
