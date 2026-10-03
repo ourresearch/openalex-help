@@ -1,6 +1,6 @@
 ---
 title: "Collections"
-updated: 2026-10-02
+updated: 2026-10-03
 description: "Save named lists of OpenAlex entities and filter searches against them"
 tags: ["api"]
 source_id: "guides/collections"
@@ -25,7 +25,7 @@ hundreds of OpenAlex IDs into every request.
 
 | Property                         | Value                                                     |
 | -------------------------------- | --------------------------------------------------------- |
-| One entity type per collection   | `works`, `authors`, `sources`, `institutions`, `topics`, `sdgs`, `funders`, `publishers`, `keywords`, or `concepts` |
+| One entity type per collection   | `works`, `authors`, `sources`, `institutions`, `topics`, `keywords`, `funders`, `publishers`, `awards`, `concepts`, `sdgs`, `domains`, `fields`, `subfields`, `countries`, `continents`, `languages`, `licenses`, `oa-statuses`, `work-types`, `source-types`, `institution-types` or `indexes` |
 | Max members per collection       | 1,000                                                     |
 | Max collections per user         | 100                                                       |
 | Display-name length              | 1–30 characters; case-insensitive unique per user         |
@@ -98,17 +98,16 @@ GET https://api.openalex.org/works?filter=collection:col_beNWUTw6qY
 Authorization: Bearer <your-api-key>
 ```
 
-This works on every entity type the collection system supports —
-`/works`, `/authors`, `/sources`, `/institutions`, `/topics`, `/sdgs`,
-`/funders`, `/publishers`, `/keywords`, `/concepts` — as long as the collection
-and the endpoint match. Filtering an `authors` collection on `/works` returns
+This works on the endpoint of every type a collection can hold (`/works`,
+`/authors`, `/countries`, `/awards` and so on), as long as the collection and
+the endpoint match. Filtering an `authors` collection on `/works` returns
 a `400`:
 
 ```
 collection col_beNWUTw6qY is type 'authors', not valid for /works
 ```
 
-The collection ID resolves to the underlying entity IDs at query time, so the
+The collection ID resolves to its member IDs at query time, so the
 filter combines normally with other filters and with sorting, grouping,
 selecting, and pagination:
 
@@ -119,7 +118,7 @@ GET https://api.openalex.org/works?filter=collection:col_beNWUTw6qY,is_oa:true&s
 
 ### Negation
 
-Prepend `!` to exclude the entities in the collection instead of including them:
+Prepend `!` to exclude the collection's members instead of including them:
 
 ```bash
 GET https://api.openalex.org/works?filter=collection:!col_beNWUTw6qY
@@ -130,8 +129,8 @@ GET https://api.openalex.org/works?filter=collection:!col_beNWUTw6qY
 - **One `collection:` filter per request.** Repeated or `|`-OR'd collection
   values return a `400`. To combine collections, snapshot the resolved IDs
   client-side and pass them via the `openalex:` filter.
-- **Per-request entity-list ceiling: 10,000.** With the per-collection cap of
-  1,000 entities, a single collection is always within budget.
+- **Per-request ceiling: 10,000 IDs.** With the per-collection cap of
+  1,000 members, a single collection is always within budget.
 - **Access.** A private collection filters only for its owner: pass your
   OpenAlex API key in the `Authorization: Bearer …` header or as `?api_key=`
   (both work the same). A collection
@@ -224,8 +223,8 @@ Authorization: Bearer <your-api-key>
 - **Don't mix a collection with literal IDs in one clause.**
   `primary_location.source.id:col_…|S12345` returns a `400`. Pass the collection
   alone, or pass literal IDs alone.
-- The per-collection cap of 1,000 entities still applies, and a single request
-  resolves to at most 10,000 entity IDs across all of its collection filters.
+- The per-collection cap of 1,000 members still applies, and a single request
+  resolves to at most 10,000 member IDs across all of its collection filters.
 
 ## Sharing by link
 

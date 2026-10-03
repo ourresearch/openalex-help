@@ -1,6 +1,6 @@
 ---
 title: "Collections"
-updated: 2026-10-02
+updated: 2026-10-03
 description: "What a collection is, what it can hold, who can see it (private, or shared by link), and what every attribute on a collection object means."
 tags: ["reference"]
 entity:
@@ -20,7 +20,7 @@ The easiest way to make one is in the web UI at [openalex.org](https://openalex.
 
 ### What a collection can contain
 
-Every collection holds members of exactly **one type**, fixed when the collection is created. The supported types are `works`, `authors`, `sources`, `institutions`, `topics`, `sdgs`, `funders`, `publishers`, `keywords`, and `concepts`. To track works *and* the authors of those works, you make two collections. A collection can hold up to **1,000** members.
+Every collection holds members of exactly **one type**, fixed when the collection is created. The supported types are `works`, `authors`, `sources`, `institutions`, `topics`, `keywords`, `funders`, `publishers`, `awards`, `concepts`, `sdgs`, `domains`, `fields`, `subfields`, `countries`, `continents`, `languages`, `licenses`, `oa-statuses`, `work-types`, `source-types`, `institution-types`, and `indexes`: every OpenAlex entity type except locations. To track works *and* the authors of those works, you make two collections. A collection can hold up to **1,000** members.
 
 ### How it feeds back into OpenAlex
 
@@ -45,7 +45,7 @@ A collection object is small — it carries metadata about the set, not the memb
 *String.* Who can view the collection and filter by it: `private` (only its owner; the default) or `shared_by_link` (anyone with its link or ID, logged in or not; never listed). See [Sharing by link](/api/collections/#sharing-by-link).
 
 ### `entity_type`
-*String.* The single entity type every member of the collection must be — one of `works`, `authors`, `sources`, `institutions`, `topics`, `sdgs`, `funders`, `publishers`, `keywords`, or `concepts`. Fixed at creation. Every ID you add must match it; a wrong-type ID (an `A…` in a `works` collection) is rejected with a `400` (code `member_wrong_type`).
+*String.* The single entity type every member of the collection must be, one of the supported types above. Fixed at creation. Every ID you add must match it; a wrong-type ID (an `A…` in a `works` collection) is rejected with a `400` (code `member_wrong_type`).
 
 ### `display_name`
 *String.* The human-readable name of the collection, 1–30 characters. Case-insensitively unique per user, so you can't own two collections with the same name. See [Common attributes](/data/common-attributes/#display_name).

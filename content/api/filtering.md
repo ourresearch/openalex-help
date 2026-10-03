@@ -1,6 +1,6 @@
 ---
 title: "Filter"
-updated: 2026-09-25
+updated: 2026-10-03
 description: "Narrow down results to entities that match specific conditions"
 tags: ["api"]
 source_id: "guides/filtering"
@@ -135,11 +135,14 @@ For how this method compares with the snapshot-based approaches (and how to hand
 
 ## Filter by saved collection
 
-The `collection:` filter narrows results to the entities you've saved in one
-of your [collections](/api/collections/). It's available on every entity
-type collections support — `/works`, `/authors`, `/sources`, `/institutions`,
-`/topics`, `/sdgs`, `/funders`, `/publishers`, `/keywords`, `/concepts` —
-and requires a `Bearer` API key for the user who owns the collection.
+The `collection:` filter narrows results to the members of a
+[collection](/api/collections/), on the endpoint of the collection's own type
+(`/works` for a works collection, `/authors` for an authors collection, and so
+on). A private collection filters only with its owner's API key; one shared by
+link filters for anyone. A collection you can't read returns `404` with code
+`collection_not_found`, never an empty result. Any ID-valued filter also takes a
+collection of the matching type, e.g. `primary_location.source.id:col_…` on
+`/works`.
 
 ```bash
 GET https://api.openalex.org/works?filter=collection:col_beNWUTw6qY
