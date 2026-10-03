@@ -24,7 +24,7 @@ On [openalex.org](https://openalex.org), run a search, tick the rows you want an
 
 ### What a collection can hold
 
-Every collection holds members of exactly **one type**, fixed when it's created: works, authors, sources, institutions, topics, countries, [locations](/data/locations/), or any other [entity type](/data/). To track works *and* the authors of those works, make two collections. A collection holds up to **1,000** members. Members are stored as short OpenAlex IDs (`W2755968057`, `US`, `cc-by`); a locations collection stores [location IDs](/data/locations/#id) such as `doi:10.7717/peerj.4375` exactly as given, since they are case-sensitive.
+Every collection holds members of exactly **one type**, fixed when it's created: works, authors, sources, institutions, topics, countries, [locations](/data/locations/), or any other [entity type](/data/). To track works *and* the authors of those works, make two collections. A collection holds up to **1,000,000** members. As a filter it works live up to 300,000 members, and an author collection up to 100,000; a bigger one still holds and exports its members ([limits](/api/collections/#limits)). Members are stored as short OpenAlex IDs (`W2755968057`, `US`, `cc-by`); a locations collection stores [location IDs](/data/locations/#id) such as `doi:10.7717/peerj.4375` exactly as given, since they are case-sensitive.
 
 ### How it's used
 
@@ -43,7 +43,7 @@ This is the dictionary of every attribute on a **collection** object. Attributes
 *String.* The collection's OpenAlex ID, e.g. `https://openalex.org/collections/col_8yWKmRNyEr`. The short form `col_8yWKmRNyEr` (`col_` and 10 letters and digits) works wherever the URL does: in API paths, in filters and when copying. See [Common attributes](/data/common-attributes/#id).
 
 ### `display_name`
-*String.* The collection's name, 1 to 30 characters, unique among its owner's collections (ignoring case). Searchable with `search=` on the list. See [Common attributes](/data/common-attributes/#display_name).
+*String.* The collection's name, 1 to 100 characters, unique among its owner's collections (ignoring case). Searchable with `search=` on the list. See [Common attributes](/data/common-attributes/#display_name).
 
 ### `description`
 *String.* An optional note about the collection, 0 to 500 characters; `""` when empty.
@@ -52,7 +52,7 @@ This is the dictionary of every attribute on a **collection** object. Attributes
 *String.* The type every member must be: `works`, `authors`, `sources`, `institutions`, `locations` and so on, as named by its API endpoint. Fixed at creation. An ID of another type is refused with a `400` (code `member_wrong_type`). Filterable on the list.
 
 ### `member_count`
-*Integer.* How many members the collection holds, at most 1,000. Sortable on the list.
+*Integer.* How many members the collection holds, at most 1,000,000. Sortable on the list.
 
 ### `access`
 *String.* Who can view it and filter by it: `private` (only its owner; the default) or `shared_by_link` (anyone with its link or ID; never listed). Filterable on the list. See [Sharing by link](/api/collections/#sharing-by-link).

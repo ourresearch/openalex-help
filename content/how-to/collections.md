@@ -28,27 +28,29 @@ curl -X POST https://api.openalex.org/collections \
        "member_ids": ["https://openalex.org/W2741809807", "https://openalex.org/W2159974629"]}'
 ```
 
-The IDs can go in exactly as the lookup returns them (`https://openalex.org/W…`). A collection holds up to 1,000 members. Anything the lookup didn't find simply isn't in its results: compare counts before you save. More ways to find IDs are in [Finding OpenAlex IDs](/how-to/finding-openalex-ids/).
+The IDs can go in exactly as the lookup returns them (`https://openalex.org/W…`). A collection holds up to 1,000,000 members, and one request adds up to 10,000. Anything the lookup didn't find simply isn't in its results: compare counts before you save. More ways to find IDs are in [Finding OpenAlex IDs](/how-to/finding-openalex-ids/).
 
 ## How do I save the results of a search as a collection?
 
-On the website: run the search, tick the rows you want (or the master checkbox for the whole page), then click the folder icon → **Create a new collection**.
+On the website: run the search and click the folder icon at the top, **Save results as a collection**, in any mode. Every result goes in, up to 1,000,000, added on our servers with the progress shown. To add a search's results to a collection you already have, tick the master checkbox, choose **Select all**, then the folder icon and the collection; untick rows first to leave them out.
 
-With the API, collect the IDs with `select=id` and cursor paging, then `POST` them (up to 1,000):
+With the API, send the search itself; OpenAlex pages through it for you:
 
 ```python
-import os, requests
+import os, time, requests
 key = os.environ["OPENALEX_API_KEY"]
-ids, cursor = [], "*"
-while cursor and len(ids) < 1000:
-    r = requests.get("https://api.openalex.org/authors", params={
-        "filter": "last_known_institutions.id:I63966007,works_count:>50",
-        "select": "id", "per_page": 100, "cursor": cursor, "api_key": key}).json()
-    ids += [a["id"] for a in r["results"]]
-    cursor = r["meta"]["next_cursor"]
-requests.post("https://api.openalex.org/collections", headers={"Authorization": f"Bearer {key}"},
-              json={"display_name": "MIT authors, 50+ works", "entity_type": "authors", "member_ids": ids[:1000]})
+auth = {"Authorization": f"Bearer {key}"}
+c = requests.post("https://api.openalex.org/collections", headers=auth,
+                  json={"display_name": "MIT authors, 50+ works", "entity_type": "authors"}).json()
+imp = requests.post(f"https://api.openalex.org/collections/{c['id'].rsplit('/', 1)[-1]}/imports", headers=auth,
+                    json={"query": "https://api.openalex.org/authors?filter=last_known_institutions.id:I63966007,works_count:>50"})
+status_url = imp.headers["Location"]
+while (s := requests.get(status_url, headers=auth).json())["status"] in ("queued", "running"):
+    time.sleep(2)
+print(s["status"], s["added"], "added")
 ```
+
+The search runs with your key, one request per 200 results, so it costs what paging the results would. See [imports](/api/collections/#add-a-searchs-results).
 
 A collection is a snapshot: it doesn't follow the search. To keep a live list, [save the search](/api/alerts/) instead.
 
@@ -126,7 +128,7 @@ Yes, for a collection of anything but works: save a search such as `/works?filte
 
 ## How do I export a collection?
 
-The member IDs: `GET /collections/col_…/members?per_page=1000` returns them in one page. The full records: filter the members' endpoint, `/works?filter=collection:col_…`, and page with a cursor, or open that search on the website and use **Export** (CSV, RIS and more).
+The member IDs: `GET /collections/col_…/members?format=csv` returns all of them as CSV, however many there are (on the website: the collection's **More** menu, **Export members as CSV**). The full records: filter the members' endpoint, `/works?filter=collection:col_…`, and page with a cursor, or open that search on the website and use **Export** (CSV, RIS and more).
 
 ## Can a collection hold locations?
 

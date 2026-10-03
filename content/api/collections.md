@@ -71,10 +71,10 @@ no credits; a search that filters by a collection costs what any search costs.
 | Field | Type | Meaning |
 | --- | --- | --- |
 | `id` | string | `https://openalex.org/collections/col_…`, the collection's OpenAlex ID. The short `col_…` works wherever the URL does: in paths, in filters and in `copy_of`. |
-| `display_name` | string | 1 to 30 characters, unique per owner (ignoring case). |
+| `display_name` | string | 1 to 100 characters, unique per owner (ignoring case). |
 | `description` | string | 0 to 500 characters; `""` when empty. |
 | `entity_type` | string | What every member is: `works`, `authors`, `sources`, `locations`, `countries` or any other [entity type](/data/). Fixed at creation. |
-| `member_count` | integer | How many members it holds, at most 1,000. |
+| `member_count` | integer | How many members it holds, at most 1,000,000. |
 | `access` | string | `private` (the default) or `shared_by_link`. See [Sharing by link](#sharing-by-link). |
 | `can_edit` | boolean | `true` only for the owner. The object never says who the owner is. |
 | `created_date` | string | The date it was created, `YYYY-MM-DD` (UTC). |
@@ -93,10 +93,12 @@ a [filter](#filtering-by-a-collection).
 | `GET` | `/collections/{id}` | Read one; takes `select` | Per its [access](#sharing-by-link) |
 | `PATCH` | `/collections/{id}` | Change `display_name`, `description`, `access` | Owner |
 | `DELETE` | `/collections/{id}` | Delete it (`204`) | Owner |
-| `GET` | `/collections/{id}/members` | Its members, paged | Per its access |
+| `GET` | `/collections/{id}/members` | Its members, paged, or all as CSV (`format=csv`) | Per its access |
 | `POST` | `/collections/{id}/members` | Add members | Owner |
 | `DELETE` | `/collections/{id}/members/{member_id}` | Remove one member (`204`) | Owner |
 | `DELETE` | `/collections/{id}/members?member_ids=…` | Remove up to 100 members | Owner |
+| `POST` | `/collections/{id}/imports` | [Add a search's results](#add-a-searchs-results) on our servers (`202`) | Owner |
+| `GET` | `/collections/{id}/imports[/{import_id}]` | Imports and their progress | Owner |
 
 `{id}` is the URL ID or the short `col_…`, as with every entity:
 `/collections/col_8yWKmRNyEr` and `/collections/https://openalex.org/collections/col_8yWKmRNyEr`
@@ -171,8 +173,9 @@ Content-Type: application/json
 }
 ```
 
-Only `display_name` and `entity_type` are required. `member_ids` takes up to 1,000
-OpenAlex IDs, short (`W2755968057`) or as URLs; the API stores the short form. It
+Only `display_name` and `entity_type` are required. `member_ids` takes up to 10,000
+OpenAlex IDs per request (a collection holds up to 1,000,000: add more with further
+requests, or [import a search's results](#add-a-searchs-results)), short (`W2755968057`) or as URLs; the API stores the short form. It
 takes OpenAlex IDs only: turn DOIs, ORCIDs or ISSNs into OpenAlex IDs first
 ([how](/how-to/collections/#how-do-i-make-a-collection-from-a-list-of-dois-orcids-or-issns)). Every
 ID must match the collection's `entity_type`: `A5023888391` in a `works` collection
@@ -197,7 +200,9 @@ Copies any collection you can read (your own, or one shared by link) into a new
 **private** collection you own, with the same type, description and members. Pass
 `display_name` to name it; otherwise it keeps the source's name, with "(copy 2)"
 and so on if you already use that name. The copy doesn't follow later changes to
-the source.
+the source. A copy of more than 100,000 members is created at once and fills in the
+background, as an [import](#add-a-searchs-results); `GET /collections/{id}/imports`
+shows its progress.
 
 ### Change a collection
 
@@ -241,6 +246,12 @@ in the same call come in no set order, so compare them as a set. Page with `page
 `cursor=*` and `meta.next_cursor`. For the members as full entities, filter their
 endpoint instead: `/works?filter=collection:col_8yWKmRNyEr`.
 
+Every member at once, as CSV (`id,added_at`), streamed however big the collection:
+
+```bash
+GET https://api.openalex.org/collections/col_8yWKmRNyEr/members?format=csv
+```
+
 ### Add and remove members
 
 ```bash
@@ -251,8 +262,50 @@ Content-Type: application/json
 ```
 
 Returns `{"added": 1, "already_present": 1, "member_count": 5}`. Adding a member
-that's already there is not an error. If any ID is the wrong type or not an
-OpenAlex ID, nothing is added and the `400` names it.
+that's already there is not an error, even when the collection is full: only new
+members count against the limit. If any ID is the wrong type or not an OpenAlex ID,
+nothing is added and the `400` names it. One request takes up to 10,000 IDs.
+
+### Add a search's results
+
+```bash
+POST https://api.openalex.org/collections/col_8yWKmRNyEr/imports
+Content-Type: application/json
+
+{ "query": "https://api.openalex.org/works?filter=topics.id:T10102,publication_year:2024" }
+```
+
+Adds every result of a search, on our servers: send the search as `query` (an
+`api.openalex.org` URL listing the collection's type), as `oql`, or `copy_of` (another
+collection you can read). `exclude_ids` (up to 10,000) leaves some results out. It
+returns `202` and a `Location` header for the import:
+
+```bash
+GET https://api.openalex.org/collections/col_8yWKmRNyEr/imports/imp_3kQ9sXv2Lm
+```
+
+```json
+{
+  "id": "imp_3kQ9sXv2Lm",
+  "status": "running",
+  "result_count": 48211,
+  "added": 12000,
+  "already_present": 0,
+  "progress": 0.2489,
+  "stopped_at_limit": false,
+  "error": null
+}
+```
+
+`status` goes `queued`, `running`, then `done` or `failed` (with `error.code` and
+`error.message`). The search runs with your API key, one request per 200 results, so
+it uses your credits like paging through the results yourself. Results go in in
+the search's order, and an import stops when the collection is full
+(`stopped_at_limit: true`). Paging, `select` and `sort` are handled for you;
+`group_by` and `sample` can't be imported. One import runs per collection at a
+time (`409`, code `import_in_progress`), and up to 3 per account. `GET
+/collections/{id}/imports` lists the latest. On the website this is **Save results
+as a collection** on any search, and **Select all** followed by **Add to collection**.
 
 ```bash
 # Remove one member
@@ -317,7 +370,15 @@ work *not* published in those journals.
 - **One collection per filter field.** `field:col_a|col_b`, a second clause on the
   same field with another collection, or a collection mixed with literal IDs
   (`field:col_a|S123`) return `400`. Different fields can each carry one.
-- **At most 5 collections per request, and 10,000 resolved IDs in all.**
+- **Size.** A collection filters live up to 300,000 members, and an author
+  collection up to 100,000 (author filters pull whole careers, so a bigger roster
+  gives wrong answers, not slow ones). A bigger one still holds, lists and exports its
+  members, but as a filter returns `400` with code `collection_too_big_to_filter`.
+  For a whole country or institution, use the `authorships.institutions.country_code`
+  or `authorships.institutions.lineage` filter instead: it counts by affiliation and
+  is exact. Filters by collections of more than about 150,000 members can take a few
+  seconds.
+- **At most 5 collections per request, and 300,000 members in all.**
 - **Access.** A private collection filters only for its owner's key; one shared by
   link filters for anyone. One you can't read returns `404` "Collection col_… not
   found." (code `collection_not_found`), never a silent zero.
@@ -355,11 +416,15 @@ key. If you can't read a collection in the search, the export is refused with
 
 | Limit | Value |
 | --- | --- |
-| Members per collection | 1,000 |
-| Collections per account | 100 |
-| `display_name` | 1 to 30 characters, unique per owner (ignoring case) |
+| Members per collection | 1,000,000 |
+| Live filter, author collections | 100,000 members |
+| Live filter, every other type | 300,000 members |
+| Collections per account | 500 |
+| `display_name` | 1 to 100 characters, unique per owner (ignoring case) |
 | `description` | 0 to 500 characters |
+| IDs in one `member_ids` body | 10,000 |
 | IDs in one `member_ids` query string | 100 |
+| Imports running at once | 1 per collection, 3 per account |
 
 ## Errors
 
@@ -380,25 +445,33 @@ Errors look like the rest of the API, with a stable `code` to branch on:
 | 400 | `unknown_field` | A field this endpoint doesn't take; the message names the right one (`member_ids`, not `entity_ids`) |
 | 400 | `field_not_editable`, `no_fields` | `entity_type` in a `PATCH`, or a `PATCH` with nothing to change |
 | 400 | `entity_type_invalid` | `entity_type` missing or not an entity type |
-| 400 | `display_name_blank`, `display_name_too_long`, `display_name_duplicate`, `display_name_url`, `display_name_reserved`, `display_name_whitespace`, `display_name_invalid_character` | The name is empty, over 30 characters, already yours, a URL, reserved, or has control characters |
+| 400 | `display_name_blank`, `display_name_too_long`, `display_name_duplicate`, `display_name_url`, `display_name_reserved`, `display_name_whitespace`, `display_name_invalid_character` | The name is empty, over 100 characters, already yours, a URL, reserved, or has control characters |
 | 400 | `description_invalid`, `description_too_long`, `description_url` | The description isn't a string, is over 500 characters, or is a URL |
 | 400 | `access_invalid` | `access` isn't `private` or `shared_by_link` |
 | 400 | `invalid_copy_of` | `copy_of` isn't a collection ID |
 | 400 | `member_id_invalid`, `member_wrong_type` | An ID isn't an OpenAlex ID, or isn't the collection's type |
-| 400 | `member_limit_reached` | The collection would pass 1,000 members |
-| 400 | `member_ids_required`, `too_many_member_ids` | Bulk remove without `member_ids`, or over 100 |
+| 400 | `member_limit_reached` | Creating or copying more than 1,000,000 members (on an add, it's `403`) |
+| 400 | `member_ids_required`, `too_many_member_ids` | Bulk remove without `member_ids`, or over 100; or over 10,000 IDs in one add |
+| 400 | `collection_too_big_to_filter` | Filtering by a collection over its live filter limit (see [Limits](#limits)) |
+| 400 | `query_required`, `invalid_query`, `query_wrong_type`, `invalid_oql`, `invalid_exclude_ids`, `copy_of_wrong_type` | An import without exactly one of `query`, `oql`, `copy_of`; a search that isn't an `api.openalex.org` list of the collection's type; or bad `exclude_ids` |
+| 400 | `invalid_format` | `format` other than `csv` on the members list |
 | 401 | `unauthorized` | No valid API key, on a call that needs one |
 | 403 | `not_collection_owner` | Only the owner can change it; [make a copy](#make-a-copy) instead |
-| 403 | `collection_limit_reached` | You already own 100 collections |
+| 403 | `collection_limit_reached` | You already own 500 collections |
+| 403 | `member_limit_reached` | Adding new members would pass 1,000,000; re-sent members never count |
 | 404 | `collection_not_found` | Missing, deleted, or private to someone else |
 | 404 | `member_not_found` | Removing an ID that isn't a member |
+| 404 | `import_not_found` | No such import on this collection |
+| 409 | `import_in_progress`, `too_many_imports` | The collection is already importing, or you have 3 imports running |
 | 429 | `rate_limited` | Too many reads; wait for `Retry-After` seconds |
 
 ## For agents
 
 - Build a collection from a pasted list by resolving each line to an OpenAlex ID
-  first ([Finding OpenAlex IDs](/how-to/finding-openalex-ids/)), then one `POST`
-  with up to 1,000 `member_ids`.
+  first ([Finding OpenAlex IDs](/how-to/finding-openalex-ids/)), then `POST` the
+  `member_ids`, up to 10,000 per request.
+- To save a search's results, don't page them yourself: `POST
+  /collections/{id}/imports` with the search as `query`, then poll its `Location`.
 - Use the `id` the API returns; both its forms work everywhere. Find a collection by
   name with `GET /collections?search=…&select=id,display_name`.
 - To answer "which of my collections hold X", use `GET /collections?member_ids=X`.
