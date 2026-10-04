@@ -1,6 +1,6 @@
 ---
 title: "Group"
-updated: 2026-09-18
+updated: 2026-10-04
 description: "Aggregate entities into faceted counts using group_by"
 tags: ["api"]
 source_id: "guides/grouping"
@@ -8,6 +8,8 @@ source_url: "https://developers.openalex.org/guides/grouping"
 source_updated: "2026-06-14"
 ---
 The `group_by` parameter aggregates entities into groups and counts how many are in each group.
+
+A `group_by` costs what its query costs: 1 credit on a list, 10 on a search (see [Example costs](/access/example-costs/)).
 
 ```bash
 # Count works by type
