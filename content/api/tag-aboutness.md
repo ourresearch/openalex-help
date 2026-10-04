@@ -1,6 +1,6 @@
 ---
 title: "Tag Aboutness"
-updated: 2026-10-03
+updated: 2026-10-08
 description: "Tag your own text with OpenAlex topics and keywords"
 tags: ["api"]
 source_id: "guides/aboutness"
@@ -69,9 +69,9 @@ GET https://api.openalex.org/text?title=type%201%20diabetes%20research%20for%20c
 }
 ```
 
-Topic scores are the classifier's confidence, from 0 to 1. Keyword scores are the model's confidence, from 0 to 1, on the same scale as the `score` on a work's keywords; keywords are listed best first. If your text says nothing about its subject, `keywords` can be empty. `/text/topics` and `/text/keywords` return the same objects with a single `count` in `meta`.
+Topics come from the same classifier that assigns topics to every work in OpenAlex (a fine-tuned Qwen3-8B; see [how topics are assigned](/data/topics/#assigning-topics-to-works)). A topic's score is the model's calibrated probability that it is the text's main topic, from 0 to 1, so the 2nd and 3rd topics often score close to 0. The service doesn't see a journal name, so results for a published paper can differ slightly from the work's own topics. Keyword scores are the model's confidence, from 0 to 1, on the same scale as the `score` on a work's keywords; keywords are listed best first. If your text says nothing about its subject, `keywords` can be empty. `/text/topics` and `/text/keywords` return the same objects with a single `count` in `meta`.
 
-If the topic classifier cannot place a text, `topics` is empty. This happens with short or non-descriptive titles, such as a bare project or institution name. Sending an `abstract` alongside the `title` gives the classifier much more to work with.
+If the topic classifier cannot place a text, `topics` is empty and `meta.note` says why. This happens with short or non-descriptive titles, such as a bare project or institution name. Sending an `abstract` alongside the `title` gives the classifier much more to work with.
 
 ## Limits
 
