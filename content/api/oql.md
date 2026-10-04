@@ -1,12 +1,12 @@
 ---
 title: "OQL API"
-updated: 2026-10-03
+updated: 2026-10-04
 description: "Executing and translating OQL over HTTP — endpoints, query formats, and reading results."
 tags: ["oql"]
 generated: true
 source_id: "query-spec/api"
 source_url: "https://api.openalex.org/query/spec/api"
-source_updated: "2026-08-06"
+source_updated: "2026-10-04"
 ---
 **Everything OQL does is available over plain HTTP — no GUI required.** There are two
 endpoint families, and they divide cleanly:
@@ -210,9 +210,13 @@ usually ends with a concrete `Fix:`.
 
 ### Auth and cost
 
-No API key is required — these endpoints follow the same rules as the rest of the API: a
-free-account key raises your daily credit budget, and a query here costs the same credits
-as its classic-URL equivalent (the response's `meta.cost_usd` shows what each call cost).
+No API key is required. These endpoints follow the same rules as the rest of the API: a
+free-account key raises your daily credit budget. A query with a `calculate` step, a split by
+a list, bins or conditions, or a filter on its groups is priced from what it does: the
+starting set costs what a list (1 credit) or a search (10) costs, each listed search 10, each
+lookup 1 (see [Example costs](/access/example-costs/#what-an-oql-calculation-costs)). Every
+other query costs 1 credit, a search included. The response's `meta.cost` shows what a priced
+query cost, and `/query` is free and shows the price before you run it (`check.cost`).
 Authenticate with either form:
 
 ```
@@ -387,11 +391,11 @@ curl -X POST "https://api.openalex.org/" \
             {"column_id": "open_access.is_oa", "value": true},
             {"column_id": "type", "value": "review"}
           ]}
-        ]
-      },
-      "sort": "cited_by_count:desc",
-      "select": ["id", "display_name", "cited_by_count"],
-      "per_page": 5}'
+        ],
+        "sort_by": [{"column_id": "cited_by_count", "direction": "desc"}],
+        "select": ["id", "display_name", "cited_by_count"],
+        "per_page": 5
+      }}'
 ```
 
 Column ids are the machine names from the **properties registry** — list them at

@@ -26,6 +26,28 @@ OpenAlex data is free; what costs money is *usage* of the API. This page makes t
 > **Note:**
 > **Rerank adds 10 credits ($0.001) to any request that uses it.** A search costs 10 credits; with `rerank=true` it costs 20. The add-on is the same on an [OQL](/api/oql/) request. openalex.org reranks its searches by default, and so do the [Claude and ChatGPT connectors](/access/connector/), so a search there costs 20 credits plus whatever else the page loads.
 
+## What an OQL calculation costs
+
+An [OQL](/access/oql/) query with a `calculate` step, a split by a list, bins or conditions, or a filter on its groups is priced from what it does, step by step:
+
+| Step | Credits | Cost |
+|------|---------|------|
+| The starting set, defined by filters only | 1 | $0.0001 |
+| The starting set, defined by a search | 10 | $0.001 |
+| Each listed search in a split (`group those works by title-abstract search in (...)`) | 10 | $0.001 |
+| Each lookup a group filter needs (co-authors, collaborators, or the groups' own fields such as h-index) | 1 | $0.0001 |
+
+Each searched phrase costs what that search costs on its own, so a query that compares three searches costs the same as running the three searches. Nothing else adds to the price: splits by a field, counts, means and percentages are free. Any other OQL query costs 1 credit, a search included.
+
+| Query | Credits | Cost |
+|-------|---------|------|
+| `get works where institution is (I63966007); then group those works by institution where collaborator is not (I63966007)` | 2 | $0.0002 |
+| `get works where title-abstract has ("climate change") and year >= (2020); then group those works by year; then calculate count, percent open access` | 10 | $0.001 |
+| `get works where title-abstract has (kelp); then group those works by author where count of those works > (10) and h-index > (20)` | 11 | $0.0011 |
+| `get works where year >= (2010); then group those works by title-abstract search in (("a"), ("b"), ("c")); then calculate count` | 31 | $0.0031 |
+
+**Check the price before you run.** The [/query endpoint](/api/oql/#translating-a-query-the-query-endpoint) is free and reports a query's price, step by step, in `check.cost`. A response reports what the query cost in `meta.cost` and in the `X-RateLimit-Credits-Used` header. A query that costs more than you have left today is refused before it runs, and refusals are free.
+
 ## What your free daily budget buys
 
 Every account gets **$1 of usage per day** for free. With that $1 you can do a mix of:

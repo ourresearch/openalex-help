@@ -116,6 +116,7 @@ for (const p of PAGES) {
   }
   const fm = `---
 title: "${esc(p.title)}"
+updated: ${TODAY}
 description: "${esc(p.description)}"
 tags: ["oql"]
 generated: true
