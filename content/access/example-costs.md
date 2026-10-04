@@ -37,7 +37,7 @@ An [OQL](/access/oql/) query with a `calculate` step, a split by a list, bins or
 | Each listed search in a split (`group those works by title-abstract search in (...)`) | 10 | $0.001 |
 | Each lookup a group filter needs (co-authors, collaborators, or the groups' own fields such as h-index) | 1 | $0.0001 |
 
-Each searched phrase costs what that search costs on its own, so a query that compares three searches costs the same as running the three searches. Nothing else adds to the price: splits by a field, counts, means and percentages are free. Any other OQL query costs 1 credit, a search included.
+Each searched phrase costs what that search costs on its own, so a query that compares three searches costs the same as running the three searches. Nothing else adds to the price: splits by a field, counts, means and percentages are free. Any other OQL query costs what the same query costs as a URL: 1 credit for a list, 10 for a search, grouped or not.
 
 | Query | Credits | Cost |
 |-------|---------|------|
