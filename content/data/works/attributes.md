@@ -1,6 +1,6 @@
 ---
 title: "Attributes"
-updated: 2026-10-04
+updated: 2026-10-08
 description: "The canonical dictionary of every attribute on a work object — what each one means, where it comes from, and its quirks."
 tags: ["reference"]
 ---
@@ -92,10 +92,10 @@ See [Open access](/data/works/open-access/) for how these fields combine.
 *Object.* OpenAlex's best *estimate* of the APC actually paid (`value`, `currency`, `value_usd`, `provenance`). Prefers article-level data from [OpenAPC](https://openapc.net/) (`provenance: "openapc"`); otherwise falls back to the list price. For article-level data only, filter `apc_paid.provenance:openapc`.
 
 ### `primary_topic`
-*Object.* The top-ranked [topic](/data/topics/) for the work, with its `subfield`, `field`, and `domain`. Same as the first entry in [`topics`](#topics). See [Aboutness](/data/aboutness/) for how topics are assigned.
+*Object.* The top-ranked [topic](/data/topics/) for the work, with its `subfield`, `field`, and `domain`. Same as the first entry in [`topics`](#topics). `null` when the work has no topic (the classifier found it not classifiable, or it has no title or abstract). See [how topics are assigned](/data/topics/#assigning-topics-to-works).
 
 ### `topics`
-*List.* Up to three ranked [topics](/data/topics/) for the work, each with a `score` and its subfield/field/domain.
+*List.* The work's three most likely [topics](/data/topics/), best first, each with a `score` and its subfield/field/domain; empty when the work has no topic. `score` is the classifier's calibrated probability that the topic is the work's main one, so the 2nd and 3rd scores are often close to 0.
 
 ### `keywords`
 *List.* Short phrases saying what the work is about ([keywords](/data/keywords/)), best first, each with a `score`: the tagging model's confidence, from 0 to 1. Empty when the record says nothing about its subject.
