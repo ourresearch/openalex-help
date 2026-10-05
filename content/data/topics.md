@@ -54,7 +54,7 @@ This is the canonical dictionary of every attribute on a **topic** object. Attri
 *String.* A paragraph describing what the topic's cluster of papers is about, also LLM-generated.
 
 ### `keywords`
-*List.* The topic's 25 most common [keywords](/data/keywords/), ranked by how many of the topic's works carry them: `id`, `display_name`, and `score`, the share of that keyword's works that fall in this topic. The full list: [`/keywords?filter=topics.id:T10283`](https://api.openalex.org/keywords?filter=topics.id:T10283). Changed on 2026-10-05: this used to be a list of ten descriptive strings, now in [`legacy_keywords`](#legacy_keywords).
+*List.* The topic's characteristic [keywords](/data/keywords/): keywords with at least 20% of their works in this topic, the 25 carried by the most of the topic's works. Each has `id`, `display_name`, and `score`, the share of that keyword's works that fall in this topic. Broad words that touch many topics ("taxonomy", "morphology") are left out on purpose. Every keyword related to the topic, down to 7%: [`/keywords?filter=topics.id:T10283`](https://api.openalex.org/keywords?filter=topics.id:T10283). Changed on 2026-10-05: this used to be a list of ten descriptive strings, now in [`legacy_keywords`](#legacy_keywords).
 
 ### `legacy_keywords`
 *String.* The ten descriptive phrases the topic shipped with (e.g. "Hearing Loss; Cognitive Decline; Cochlear Implants"), separated by semicolons. They were written by a language model from each topic's most-cited papers when the topics were built, and are not OpenAlex keyword IDs.
