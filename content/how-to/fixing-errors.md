@@ -25,7 +25,7 @@ OpenAlex is built by inference at enormous scale, and inference is sometimes wro
 
 The two highest-volume error classes are fully self-serve:
 
-- **Your author profile.** [Claim it](/how-to/fixing-authors/) and you can add and remove works, correct your names, and merge duplicate profiles — the fix is live within a day or two. (You can also make your profile [private](/how-to/author-profile-privacy/).)
+- **Your author profile.** [Claim it](/how-to/fixing-authors/) and you can add and remove works, correct your names, and merge duplicate profiles — the fix is live within a day or two.
 - **Affiliation matching.** If you're at a [member institution](/access/pricing/), the Affiliation Editor lets you correct how affiliation strings map to your institution — see [Fixing affiliations](/how-to/fixing-affiliations/).
 
 Both are also fully drivable by [AI agents](/access/agents/): hand your agent your CV and your API key, and it can do the whole cleanup for you.
