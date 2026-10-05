@@ -33,6 +33,22 @@ Some works get no topic at all. The model can say a work is **not classifiable**
 
 The topics themselves (their names, IDs, descriptions and places in the hierarchy) did not change when the new classifier replaced the old one in October 2026; only the assignments to works did. Because [FWCI](/data/works/citations/#field-weighted-citation-impact) and citation percentiles compare a work with others in its primary subfield, they changed for most works at the same time.
 
+### What changed in October 2026, and using the old topics
+
+Every topic's works before and after the switch, where each old topic's works went, and before-and-after profiles for
+countries and 109 institutions are in the [change-set files](https://github.com/ourresearch/openalex-topic-classification/tree/main/v2/changes).
+The [topic map](https://openalex.org/topic-map) shows the whole hierarchy with each topic's works.
+
+If you count works by topic for research reporting, filter to publication types (for example
+[`filter=type:article|review|book|book-chapter`](https://api.openalex.org/works?filter=type:article|review|book|book-chapter)).
+The classifier also gives topics to datasets and catalogue records, and a few large families of them (fusion-device shot
+records, specimen records) dominate the `works_count` of a few topics.
+
+To reproduce a report made with the old topics, download every work's old topics and scores, frozen on 5 October 2026,
+from the [v2.0.0 release](https://github.com/ourresearch/openalex-topic-classification/releases/tag/v2.0.0). The
+[text aboutness endpoint](/api/tag-aboutness/) keeps the old classifier at `/text/topics?version=1` until 13 January 2027.
+Snapshot users: this change did not move `updated_date`, so reload fully from the 14 October 2026 snapshot.
+
 ### One primary subfield per work
 
 Because a work's topics roll up the hierarchy, every work also gets a single **primary subfield, field, and domain** — the ones its `primary_topic` maps to. This single-primary choice is deliberate: it lets OpenAlex normalize citation impact ([FWCI](/data/works/citations/#field-weighted-citation-impact)) against works in the same subfield, and it means a work is classified from *its own text*, not from the catch-all subject of the journal it happened to appear in. The trade-off is precision over recall: a work about the statistics of cancer trials gets one primary subfield, even though it touches several.
