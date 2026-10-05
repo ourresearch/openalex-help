@@ -1,6 +1,6 @@
 ---
 title: "Source types"
-updated: 2026-08-11
+updated: 2026-10-05
 description: "The controlled vocabulary of source types — journal, repository, conference, book series, and more — what each value means, and how to filter works by the type of venue that hosts them."
 tags: ["reference"]
 entity:
@@ -27,6 +27,8 @@ The complete controlled vocabulary (live from [`api.openalex.org/source-types`](
 | `book series` | Numbered collections of scholarly books published under a shared series title. |
 | `conference` | Proceedings and abstracts from academic conferences, like IEEE and IOP Conference Series. |
 | `other` | Sources that don't fit the standard categories above. |
+
+How books and conferences map onto these types (a book or a year's conference is a volume of its series or platform, never a source of its own) is explained under [Books and conferences](/data/sources/#books-and-conferences-the-series-is-the-source).
 
 One wrinkle: you'll also meet sources with `type: metadata` — metadata-only records — even though `metadata` isn't a value in the `/source-types` registry. See [Sources](/data/sources/) for how it's used.
 

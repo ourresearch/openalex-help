@@ -1,6 +1,6 @@
 ---
 title: "Overview"
-updated: 2026-09-22
+updated: 2026-10-05
 description: "What a source is, where sources come from, and how OpenAlex builds them and judges journal quality and open access."
 tags: ["reference"]
 source_id: "24347057529623"
@@ -32,12 +32,33 @@ Every source carries exactly one [`type`](/data/sources/attributes/#type), assig
 |---|---|---|
 | `journal` | Peer-reviewed serials — the large majority of sources | ~206,000 |
 | `ebook platform` | Book-hosting platforms | ~25,000 |
-| `conference` | Conference proceedings series | ~10,000 |
+| `conference` | Conference series | ~13,000 |
 | `repository` | OA repositories like [arXiv](https://arxiv.org/) or institutional repositories | ~7,000 |
 | `book series` | Serial book publications | ~7,000 |
 | `other` / `metadata` | Everything else, and metadata-only sources | ~130 |
 
 Repository sources behave differently enough from journals — harvesting, matching, and why their work counts can look small — that they get their own page: [Repositories](/data/sources/repositories/).
+
+### Books and conferences: the series is the source
+
+A source is always the **series**: the stable thing that keeps publishing over the years. A journal is the familiar case. Books and conferences follow the same shape, so a single book or a single year's conference is never a source of its own. It is a **volume** of its series, the way an issue is part of a journal.
+
+| What you're looking at | Its source | Source type |
+|---|---|---|
+| An article in *Nature* | *Nature* | `journal` |
+| A preprint on arXiv | arXiv | `repository` |
+| A chapter in a book that belongs to a book series | the book series, e.g. [*Methods in Molecular Biology*](https://api.openalex.org/sources/S4210172139) | `book series` |
+| A chapter in a standalone book, or a whole monograph | the publisher's ebook platform, e.g. [Routledge eBooks](https://api.openalex.org/sources/S4306463855) | `ebook platform` |
+| A paper at ICASSP 2026 | the conference series, IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP) | `conference` |
+| A conference paper published in Lecture Notes in Computer Science | [*Lecture Notes in Computer Science*](https://api.openalex.org/sources/S106296714) | `book series` |
+
+Some details:
+
+- **An ebook platform works like a very large journal of books.** It holds a publisher's books that aren't in a series. Its [`host_organization`](/data/sources/attributes/#host_organization) is the imprint that publishes the books (Routledge eBooks belongs to Routledge), not the imprint's parent company.
+- **A book is still a [work](/data/works/)** of type `book`, with its own DOI, authors and citations. It just isn't a source. Books in a series reach their series through the series' ISSN.
+- **A conference is its series, not its edition.** ICASSP 2025 and ICASSP 2026 papers share one source, so the series' metrics cover all its years. The edition appears only as the paper's publication year. Many conferences register their own proceedings with an ISSN, as NeurIPS and ICRA do. Those records are typed `conference`, not `journal`.
+- **When proceedings are published inside a general series with an ISSN** (Lecture Notes in Computer Science, Proceedings of SPIE, Journal of Physics: Conference Series), the ISSN wins: the paper's source is that series, and the conference itself doesn't appear as a source.
+- **Volume and issue numbers** are fields on the work ([`biblio`](/data/works/attributes/#biblio)), not entities. OpenAlex doesn't yet record which book a chapter belongs to, or which edition of a conference a paper came from.
 
 ### No quality bar, by design
 
