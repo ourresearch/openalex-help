@@ -1,6 +1,6 @@
 ---
 title: "Topics"
-updated: 2026-09-22
+updated: 2026-10-05
 description: "What a topic is, how OpenAlex assigns topics to works and rolls them up into a four-level hierarchy, and what every attribute on a topic object means."
 tags: ["reference"]
 source_id: "24736129405719"
@@ -54,7 +54,10 @@ This is the canonical dictionary of every attribute on a **topic** object. Attri
 *String.* A paragraph describing what the topic's cluster of papers is about, also LLM-generated.
 
 ### `keywords`
-*List.* A handful of short phrases summarizing the topic (e.g. "Machine Learning," "Medical Imaging"). These are descriptive labels on the topic itself, distinct from work-level [keywords](/data/keywords/), which are scored per work.
+*List.* The topic's 25 most common [keywords](/data/keywords/), ranked by how many of the topic's works carry them: `id`, `display_name`, and `score`, the share of that keyword's works that fall in this topic. The full list: [`/keywords?filter=topics.id:T10283`](https://api.openalex.org/keywords?filter=topics.id:T10283). Changed on 2026-10-05: this used to be a list of ten descriptive strings, now in [`legacy_keywords`](#legacy_keywords).
+
+### `legacy_keywords`
+*String.* The ten descriptive phrases the topic shipped with (e.g. "Hearing Loss; Cognitive Decline; Cochlear Implants"), separated by semicolons. They were written by a language model from each topic's most-cited papers when the topics were built, and are not OpenAlex keyword IDs.
 
 ### `subfield`
 *Object.* The [subfield](/data/subfields/) this topic belongs to (`id`, `display_name`) — the level directly above it in the hierarchy.

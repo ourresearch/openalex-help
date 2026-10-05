@@ -1,6 +1,6 @@
 ---
 title: "Keywords"
-updated: 2026-10-03
+updated: 2026-10-05
 description: "What a keyword is, how OpenAlex tags works with keywords, how the vocabulary changes, and what every attribute on a keyword object means."
 tags: ["reference"]
 source_id: "24736201130391"
@@ -28,7 +28,7 @@ On 400 random works, an independent AI judge (OpenAI's GPT-6 Astra) rated 91% of
 
 The keyword list is not fixed. New fields emerge, and keywords are added for them. Keywords get merged when they turn out to mean the same thing, and split when one label covers two meanings. If a keyword is wrong, or two keywords should be one, [tell us](https://openalex.org/help). Store keyword IDs with the date you fetched them, and expect some to change.
 
-Each keyword has a one-sentence [`description`](#description) and, where one exists, a link to its [Wikidata](https://www.wikidata.org/) item in [`ids`](#ids). Next, we'll look at joining keywords to other outside vocabularies like MeSH, vector search over keywords, and assigning each keyword to one or more [topics](/data/topics/).
+Each keyword has a one-sentence [`description`](#description) and, where one exists, a link to its [Wikidata](https://www.wikidata.org/) item in [`ids`](#ids). Each keyword is also linked to the [topics](/data/topics/) its works fall in (see [`topics`](#topics)), so the hierarchy now runs from domains down to keywords. Next, we'll look at joining keywords to other outside vocabularies like MeSH, and vector search over keywords.
 
 ## Good uses
 
@@ -60,6 +60,12 @@ This is the canonical dictionary of every attribute on a **keyword** object. Att
 ### `ids`
 *Object.* External identifiers for this keyword, as URIs. Keyword-specific keys: `openalex` and, when a confident match exists, `wikidata` (about a fifth of keywords, which cover most keyword uses). Matches are machine-made. See [Common attributes](/data/common-attributes/#ids).
 
+### `primary_topic`
+*Object.* The [topic](/data/topics/) this keyword belongs to, when one topic holds at least 20% of the keyword's works: `id`, `display_name`, `score`, and the topic's `subfield`, `field` and `domain`, the same shape as a work's [`primary_topic`](/data/works/attributes/#primary_topic). `score` is the share of the keyword's works that fall in this topic. `null` for broad keywords whose works spread across many topics (about 29% of keywords, e.g. "quantum fluctuations" or most place names); those still list their [`topics`](#topics).
+
+### `topics`
+*List.* Every topic holding at least 7% of the keyword's works, best first, each with the same fields as [`primary_topic`](#primary_topic). A keyword links to about two topics on average. Links come from the topics of the works that carry the keyword and are recomputed daily. On a judged sample, 92% of primary topics and 80% of the other links were acceptable.
+
 ### `works_count`
 *Integer.* The number of works tagged with this keyword, across the whole corpus. A keyword filter searches only the [core corpus](/data/works/corpus/) by default, so add `corpus=all` to match this count: `/works?filter=keywords.id:remote-work&corpus=all`. See [Common attributes](/data/common-attributes/#works_count).
 
@@ -83,6 +89,12 @@ To find the works carrying a keyword, filter on the [Works](/data/works/) endpoi
 
 ```
 https://api.openalex.org/works?filter=keywords.id:machine-learning
+```
+
+To list a topic's keywords, filter keywords by topic: `topics.id` matches any linked topic, `primary_topic.id` only the primary one.
+
+```
+https://api.openalex.org/keywords?filter=topics.id:T10283&sort=works_count:desc
 ```
 
 For the full list of filterable, sortable, and groupable fields see the [Keywords API reference](/data/keywords/); for all endpoints see the [endpoints index](/api/endpoints/).
