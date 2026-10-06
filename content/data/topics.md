@@ -1,6 +1,6 @@
 ---
 title: "Topics"
-updated: 2026-10-08
+updated: 2026-10-07
 description: "What a topic is, how OpenAlex assigns topics to works and rolls them up into a four-level hierarchy, and what every attribute on a topic object means."
 tags: ["reference"]
 source_id: "24736129405719"
@@ -27,7 +27,7 @@ The set of topics itself was built from the citation network. OpenAlex started w
 
 A classifier reads each work's **title, abstract, and source (journal or repository) name** and picks its topics from the full list of 4,516. It is a fine-tuned [Qwen3-8B](https://huggingface.co/Qwen/Qwen3-8B) language model, trained on 2 million works whose topics were chosen by Claude Opus 5.5, and it reads works in any language. It doesn't use citations, so a brand-new work is classified as well as an old one. The most likely topic becomes the work's [`primary_topic`](/data/works/attributes/#primary_topic), and the top three appear in the work's [`topics`](/data/works/attributes/#topics) array.
 
-Each topic's `score` is the model's **probability that this is the work's main topic**, from 0 to 1. Scores are calibrated: across many works, topics scored 0.9 are right about 90% of the time. The 2nd and 3rd topics are the next most likely ones, so their scores are often small, even close to 0. The model is at least 90% sure on about 64% of works, and right 94.5% of the time on those. On a fresh test set of random works, judged blind by AI models from two different labs, the primary topic is right 81.7% of the time (field level: 89.6%). The previous classifier, used until October 2026, scored 24.8% (field level: 44.0%). Code, model weights, training labels and evaluations are open: [github.com/ourresearch/openalex-topic-classification](https://github.com/ourresearch/openalex-topic-classification/tree/main/v2).
+Each topic's `score` is the model's **probability that this is the work's main topic**, from 0 to 1. Scores are calibrated: across many works, topics scored 0.9 are right about 90% of the time. The 2nd and 3rd topics are the next most likely ones, so their scores are often small, even close to 0. The model is at least 90% sure on about 64% of works, and right 94.5% of the time on those. The previous classifier, used until October 2026, learned to predict each work's citation cluster from its title, abstract, citations and journal; the new one picks the topics whose subject matches the title and abstract, which is what most readers expect a topic to mean. The gain is largest on works the old classifier had little to go on for: works with no abstract, works not in English, and datasets and other records. On a fresh test set of random works, the primary topic matches the one two AI judges from different labs chose blind from the title and abstract 81.7% of the time (field level: 89.6%), against 24.8% (44.0%) for the previous classifier. That test measures fit to the text, so it favors the new classifier; on arXiv papers, the field matches the category the authors chose 83% of the time, against 75%. Code, model weights, training labels and evaluations are open: [github.com/ourresearch/openalex-topic-classification](https://github.com/ourresearch/openalex-topic-classification/tree/main/v2).
 
 Some works get no topic at all. The model can say a work is **not classifiable**, mostly for records with no abstract and too little title text to go on (data files, specimen records, front matter). Works with neither a title nor an abstract are never classified. About 10% of works have no topic; count them with [`filter=primary_topic.id:null`](https://api.openalex.org/works?filter=primary_topic.id:null).
 
@@ -36,7 +36,7 @@ The topics themselves (their names, IDs, descriptions and places in the hierarch
 ### What changed in October 2026, and using the old topics
 
 Every topic's works before and after the switch, where each old topic's works went, and before-and-after profiles for
-countries and 109 institutions are in the [change-set files](https://github.com/ourresearch/openalex-topic-classification/tree/main/v2/changes).
+countries and the 109 institutions that [support OpenAlex](https://openalex.org/institutional-supporters) are in the [change-set files](https://github.com/ourresearch/openalex-topic-classification/tree/main/v2/changes).
 The [topic map](https://openalex.org/topic-map) shows the whole hierarchy with each topic's works.
 
 If you count works by topic for research reporting, filter to publication types (for example
@@ -46,7 +46,7 @@ records, specimen records) dominate the `works_count` of a few topics.
 
 To reproduce a report made with the old topics, download every work's old topics and scores, frozen on 5 October 2026,
 from the [v2.0.0 release](https://github.com/ourresearch/openalex-topic-classification/releases/tag/v2.0.0). The
-[text aboutness endpoint](/api/tag-aboutness/) keeps the old classifier at `/text/topics?version=1` until 13 January 2027.
+[text aboutness endpoint](/api/tag-aboutness/) keeps the old classifier at `/text/topics?version=1` until 13 January 2027, and the old classifier itself stays public: [code](https://github.com/ourresearch/openalex-topic-classification/tree/main/v1) on GitHub, [weights and training data](https://zenodo.org/records/10568402) on Zenodo.
 Snapshot users: this change did not move `updated_date`, so reload fully from the 14 October 2026 snapshot.
 
 ### One primary subfield per work
