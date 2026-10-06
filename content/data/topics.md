@@ -35,6 +35,7 @@ The topics themselves (their names, IDs, descriptions and places in the hierarch
 
 ### What changed in October 2026, and using the old topics
 
+The [announcement](https://blog.openalex.org/same-topics-better-assignments/) explains the change, with examples.
 Every topic's works before and after the switch, where each old topic's works went, and before-and-after profiles for
 countries and the 109 institutions that [support OpenAlex](https://openalex.org/institutional-supporters) are in the [change-set files](https://github.com/ourresearch/openalex-topic-classification/tree/main/v2/changes).
 The [topic map](TK-1558) shows the whole hierarchy with each topic's works.
@@ -46,7 +47,7 @@ records, specimen records) dominate the `works_count` of a few topics.
 
 To reproduce a report made with the old topics, download every work's old topics and scores, frozen on 5 October 2026,
 from the [v2.0.0 release](https://github.com/ourresearch/openalex-topic-classification/releases/tag/v2.0.0). The
-[text aboutness endpoint](/api/tag-aboutness/) keeps the old classifier at `/text/topics?version=1` until 13 January 2027, and the old classifier itself stays public: [code](https://github.com/ourresearch/openalex-topic-classification/tree/main/v1) on GitHub, [weights and training data](https://zenodo.org/records/10568402) on Zenodo.
+[text aboutness endpoint](/api/tag-aboutness/#the-previous-topic-classifier-version1) keeps the old classifier at `/text/topics?version=1` until 13 January 2027, and the old classifier itself stays public: [code](https://github.com/ourresearch/openalex-topic-classification/tree/main/v1) on GitHub, [weights and training data](https://zenodo.org/records/10568402) on Zenodo.
 Snapshot users: this change did not move `updated_date`, so reload fully from the 14 October 2026 snapshot.
 
 ### One primary subfield per work

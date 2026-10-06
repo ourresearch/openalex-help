@@ -73,6 +73,18 @@ Topics come from the same classifier that assigns topics to every work in OpenAl
 
 If the topic classifier cannot place a text, `topics` is empty and `meta.note` says why. This happens with short or non-descriptive titles, such as a bare project or institution name. Sending an `abstract` alongside the `title` gives the classifier much more to work with.
 
+## The previous topic classifier (`version=1`)
+
+In October 2026 OpenAlex [switched to a new topic classifier](https://blog.openalex.org/same-topics-better-assignments/). The topics themselves didn't change, only which works are assigned to them. If you need to tag new text the old way, for example to extend a series you built on the old assignments, add `version=1` to any `/text` or `/text/topics` request:
+
+```bash
+GET https://api.openalex.org/text/topics?title=type%201%20diabetes%20research%20for%20children&version=1
+```
+
+The response has the same shape, and `meta.note` says which classifier answered. `version=1` works until **13 January 2027**; leave it out, or send `version=2`, for the current classifier. Keywords are the same either way.
+
+`version=1` tags new text only. For the old topics of works already in OpenAlex, download the [frozen version 1 assignments](https://github.com/ourresearch/openalex-topic-classification/releases/tag/v2.0.0) (every work's old topics and scores as of 5 October 2026). The old classifier's [code](https://github.com/ourresearch/openalex-topic-classification/tree/main/v1) and [weights](https://zenodo.org/records/10568402) stay public, so you can also run it yourself after January. More in [Topics: what changed in October 2026](/data/topics/#what-changed-in-october-2026-and-using-the-old-topics).
+
 ## Limits
 
 | Constraint | Value |
