@@ -38,7 +38,7 @@ The topics themselves (their names, IDs, descriptions and places in the hierarch
 The [announcement](https://blog.openalex.org/same-topics-better-assignments/) explains the change, with examples.
 Every topic's works before and after the switch, where each old topic's works went, and before-and-after profiles for
 countries and the 109 institutions that [support OpenAlex](https://openalex.org/institutional-supporters) are in the [change-set files](https://github.com/ourresearch/openalex-topic-classification/tree/main/v2/changes).
-The [topic map](TK-1558) shows the whole hierarchy with each topic's works.
+The [aboutness viewer](https://openalex.org/aboutness/viewer) shows the whole hierarchy with each topic's works.
 
 If you count works by topic for research reporting, filter to publication types (for example
 [`filter=type:article|review|book|book-chapter`](https://api.openalex.org/works?filter=type:article|review|book|book-chapter)).
