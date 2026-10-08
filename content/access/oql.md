@@ -1,6 +1,6 @@
 ---
 title: "Overview"
-updated: 2026-10-04
+updated: 2026-10-08
 description: "The OpenAlex Query Language — what OQL is, how to write it, and every construct with a copyable example."
 tags: ["oql"]
 source_id: "query-spec/guide+cheatsheet"
@@ -164,7 +164,7 @@ Besides a field, you can split by:
 
 A yes/no field splits in two: `open access` and `not open access`.
 
-**Every grouped result also has a total row** for the whole starting set, with the same numbers and the same later splits. That's your baseline: start from the widest set you want to compare against (the world since 2016, a country), and read each group's numbers against the total.
+**Every result also has a summary**: the same numbers for the whole starting set, and with two or more splits, for each split's groups on their own (each year across all open access statuses, each status across all years). Every summary number is computed from the works, never added up or averaged from the group rows. That's your baseline: start from the widest set you want to compare against (the world since 2016, a country), and read each group's numbers against the summary.
 
 **Filter the groups** by adding `where` to the split. A calculation tests each group's works; any other field belongs to the group itself:
 
@@ -196,23 +196,22 @@ then calculate count, percent open access
 | `percent of those works` | each group's share of the set it came from |
 | after a split by authors, institutions or sources, their own fields | `get works where source is (S137773608); then group those works by author; then calculate count, h-index` |
 
-With splits you get one row per group plus the total row; without any, one row.
+With splits you get a flat table, one row per group with a column per split (group by year, then by open access status: a year column and a status column), plus the summary; without any split, one row.
 
 > Sorting and choosing columns are **not** part of OQL. They're controls in the results view (`?sort=` / `?select=` on the API, where `sort` takes any calculated column, e.g. `sort=mean_fwci:desc`). OQL says *which* works and *which* numbers, not how to display them.
 
 ## Downloading results
 
-A query with a `calculate` step, a split by a list, bins or conditions, or a filter on its groups downloads as a zip of three files. On the website, use the **Download CSV** button on the results table; on the API, add `format=csv`:
+A query with a `calculate` step, a split by a list, bins or conditions, or a filter on its groups downloads as two flat CSV files, one per table. On the website, use the download button on each table; on the API, add `format=csv` for the groups and `format=csv&table=summary` for the summary:
 
 ```
 https://api.openalex.org/?oql=get works where country is (KE) and year >= (2015); then group those works by year; then calculate count, percent open access&format=csv
 ```
 
-- **`groups.csv`**: one row per group (with nested splits, one row per innermost group, its outer groups repeated). Columns are named in OQL words: each split (`institution`, plus `institution id` for things with ids), then each calculation (`percent open access`).
-- **`totals.csv`**: the total row and its breakdown, plus each outer group's own row. Read these rather than summing `groups.csv`: a work can sit in more than one group, so groups don't always add up to their parent.
-- **`query.oql`**: the query, when it ran, how many works it covered, and what it cost.
+- **The groups**: one row per group (with nested splits, one row per innermost group, its outer groups repeated), so every row stands on its own. Columns are named in OQL words: each split (`institution`, plus `institution id` for things with ids), then each calculation (`percent open access`).
+- **The summary** (`-summary.csv`): the whole set, then each split's groups on their own. The first column, `summary of`, says what each row covers (`all works`, `year`); the split columns it doesn't break down are empty. Read these rather than summing the groups: a work can sit in more than one group, so groups don't always add up, and a mean of group means is not the mean.
 
-The download holds up to 10,000 groups. When there are more, `query.oql` says so: narrow the query, or page through the JSON with `cursor=*` for the rest.
+The groups file holds up to 10,000 groups. When there are more, the response's `X-Groups-Note` header says so: narrow the query, or page through the JSON with `cursor=*` for the rest.
 
 ## Limits, time and price
 
