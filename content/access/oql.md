@@ -202,16 +202,18 @@ With splits you get a flat table, one row per group with a column per split (gro
 
 ## Downloading results
 
-A query with a `calculate` step, a split by a list, bins or conditions, or a filter on its groups downloads as flat CSV. On the website, use the download button above the results; on the API, add `format=csv` for the groups and `format=csv&table=summary` for the summary:
+A query with a `calculate` step, a split by a list, bins or conditions, or a filter on its groups exports every group, however many there are, the same way a list of works exports every work. On the website, use the download button above the results: the Export dialog shows the price before you start, and you can follow the export in **Settings → Exports**. An export costs the query's price for every 100 rows it writes (1 credit per 100 groups for a filtered set, 10 for a search), and stops if your credits run out.
 
-```
-https://api.openalex.org/?oql=get works where country is (KE) and year >= (2015); then group those works by year; then calculate count, percent open access&format=csv
-```
+You can export either of two things:
 
 - **The groups** (one CSV): one row per group (with nested splits, one row per innermost group, its outer groups repeated), so every row stands on its own. Columns are named in OQL words: each split (`institution`, plus `institution id` for things with ids), then each calculation (`percent open access`). With no split, it's the one row for the whole set.
 - **The summary**: `all-works.csv`, the whole set in one row; with two or more splits, a zip of it and one CSV per split, each split's groups on their own (`by-institution.csv`, `by-year.csv`). Read these rather than summing the groups: a work can sit in more than one group (or in none, when it has no year), so groups don't always add up, and a mean of group means is not the mean.
 
-The groups file holds up to 10,000 groups. When there are more, the website says so before you download, and the API's `X-Groups-Note` header says so: narrow the query, or page through the JSON with `cursor=*` for the rest.
+On the API, add `format=csv` for the groups and `format=csv&table=summary` for the summary. A single split by a field pages: add `cursor=*` and follow the `X-Next-Cursor` response header (10,000 groups a page) until it's gone. Everything else comes whole in one answer.
+
+```
+https://api.openalex.org/?oql=get works where country is (KE) and year >= (2015); then group those works by year; then calculate count, percent open access&format=csv
+```
 
 ## Limits, time and price
 
