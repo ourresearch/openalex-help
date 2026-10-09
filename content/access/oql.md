@@ -233,7 +233,6 @@ finally, summarize using count
 
 **Just listing things by their own fields is not a calculation.** For MIT's most-cited authors, start from the authors and stop: `get authors where last known institution is [Massachusetts Institute of Technology](I63966007) and h-index is above 50`.
 
-Older forms (`group those works by author`) still work, and come back in this form.
 
 ## Splitting into groups
 
