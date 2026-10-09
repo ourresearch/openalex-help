@@ -28,7 +28,7 @@ OpenAlex data is free; what costs money is *usage* of the API. This page makes t
 
 ## What an OQL calculation costs
 
-An [OQL](/access/oql/) query with a `calculate` step, a split by a list, bins or conditions, or a filter on its groups is priced from what it does, step by step:
+An [OQL](/access/oql/) query with a `summarize using` step, a split by a list, bins or conditions, or a filter on its groups is priced from what it does, step by step:
 
 | Step | Credits | Cost |
 |------|---------|------|
@@ -42,9 +42,9 @@ Each searched phrase costs what that search costs on its own, so a query that co
 | Query | Credits | Cost |
 |-------|---------|------|
 | `get works where institution is (I63966007); then group those works by institution where collaborator is not (I63966007)` | 2 | $0.0002 |
-| `get works where title-abstract has ("climate change") and year >= (2020); then group those works by year; then calculate count, percent open access` | 10 | $0.001 |
+| `get works where title-abstract has ("climate change") and year >= (2020); then group those works by year; then summarize using count, percent open access` | 10 | $0.001 |
 | `get works where title-abstract has (kelp); then group those works by author where count of those works > (10) and h-index > (20)` | 11 | $0.0011 |
-| `get works where year >= (2010); then group those works by title-abstract search in (("a"), ("b"), ("c")); then calculate count` | 31 | $0.0031 |
+| `get works where year >= (2010); then group those works by title-abstract search in (("a"), ("b"), ("c")); then summarize using count` | 31 | $0.0031 |
 
 **Check the price before you run.** The [/query endpoint](/api/oql/#translating-a-query-the-query-endpoint) is free and reports a query's price, step by step, in `check.cost`. A response reports what the query cost in `meta.cost` and in the `X-RateLimit-Credits-Used` header. A query that costs more than you have left today is refused before it runs, and refusals are free.
 
