@@ -213,13 +213,7 @@ get authors where h-index is above 20 who published works where title-abstract h
 get authors where co-author is not [Jason R Priem](A5023888391) who published works where title-abstract has (kelp)
 ```
 
-**How many of the matching works each has** goes on the verb: `get authors who published more than 5 works where title-abstract has (kelp)` (also `at least`, `fewer than`, `at most`). To filter on another calculation over each one's works, add a `keep` step:
-
-```
-get authors who published works where title-abstract has (kelp) and published since 2024;
-then, keep those authors where mean FWCI of those works is at least 2;
-finally, summarize each author using count and mean FWCI
-```
+**How many of the matching works each has** goes on the verb: `get authors who published more than 5 works where title-abstract has (kelp)` (also `at least`, `fewer than`, `at most`).
 
 **Split each one's works further** with `group each <thing>'s works by`:
 
@@ -359,7 +353,7 @@ https://api.openalex.org/?oql=get works where country is [Kenya](KE) and publish
 
 ## Limits, time and price
 
-Up to three splits (a comparison counts as one); up to 100 items in a list or a comparison; at most 5 AND/OR/NOT in each compared search; a nested split up to 10,000 groups per split (a single split pages through any number); one walk out per query; about ten seconds a query. Looking things up by their own fields (an h-index filter, `keep`) checks up to 20,000 groups, so put a count filter first on a big set (`who published more than 5 works where ...`). Anything over a limit is refused before it runs, with the limit and how to fix it.
+Up to three splits (a comparison counts as one); up to 100 items in a list or a comparison; at most 5 AND/OR/NOT in each compared search; a nested split up to 10,000 groups per split (a single split pages through any number); one walk out per query; about ten seconds a query. Looking things up by their own fields (an h-index filter) checks up to 20,000 groups, so put a count filter first on a big set (`who published more than 5 works where ...`). Anything over a limit is refused before it runs, with the limit and how to fix it.
 
 A query with a `summarize` step, a comparison, bins, or a things start is priced from what it does: the starting set costs what a list (1 credit) or a search (10) costs, each compared search 10, each lookup 1. Nothing else adds to the price: splits by a field, counts, means and percentages are free. Any other query costs what the same query costs as a URL: 1 credit for a list, 10 for a search. The check tells you the price for free, and a response shows what it cost in `meta.cost`. See [Example costs](/access/example-costs/#what-an-oql-calculation-costs).
 
