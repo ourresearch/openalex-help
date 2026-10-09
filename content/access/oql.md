@@ -1,6 +1,6 @@
 ---
 title: "Overview"
-updated: 2026-10-08
+updated: 2026-10-09
 description: "The OpenAlex Query Language — what OQL is, how to write it, and every construct with a copyable example."
 tags: ["oql"]
 source_id: "query-spec/guide+cheatsheet"
@@ -204,12 +204,12 @@ With splits you get a flat table, one row per group with a column per split (gro
 
 A query with a `calculate` step, a split by a list, bins or conditions, or a filter on its groups exports every group, however many there are, the same way a list of works exports every work. On the website, use the download button above the results: the Export dialog shows the price before you start, and you can follow the export in **Settings → Exports**. An export costs the query's price for every 100 rows it writes (1 credit per 100 groups for a filtered set, 10 for a search), and stops if your credits run out.
 
-You can export either of two things:
+There's nothing to choose. With no split, the export is the one row for the whole set, as a CSV. With splits, it's one zip of:
 
-- **The groups** (one CSV): one row per group (with nested splits, one row per innermost group, its outer groups repeated), so every row stands on its own. Columns are named in OQL words: each split (`institution`, plus `institution id` for things with ids), then each calculation (`percent open access`). With no split, it's the one row for the whole set.
-- **The summary**: `all-works.csv`, the whole set in one row; with two or more splits, a zip of it and one CSV per split, each split's groups on their own (`by-institution.csv`, `by-year.csv`). Read these rather than summing the groups: a work can sit in more than one group (or in none, when it has no year), so groups don't always add up, and a mean of group means is not the mean.
+- **`groups.csv`**: every group, one row each (with nested splits, one row per innermost group, its outer groups repeated), so every row stands on its own. Columns are named in OQL words: each split (`institution`, plus `institution id` for things with ids), then each calculation (`percent open access`).
+- **The summary**: `all-works.csv`, the whole set in one row, and with two or more splits one CSV per split, each split's groups on their own (`by-institution.csv`, `by-year.csv`). Read these rather than summing the groups: a work can sit in more than one group (or in none, when it has no year), so groups don't always add up, and a mean of group means is not the mean.
 
-On the API, add `format=csv` for the groups and `format=csv&table=summary` for the summary. A single split by a field pages: add `cursor=*` and follow the `X-Next-Cursor` response header (10,000 groups a page) until it's gone. Everything else comes whole in one answer.
+On the API, the two are separate calls: `format=csv` for the groups, and `format=csv&table=summary` for the summary (one CSV, or a zip of one CSV per table with two or more splits). A single split by a field pages: add `cursor=*` and follow the `X-Next-Cursor` response header (10,000 groups a page) until it's gone. Everything else comes whole in one answer.
 
 ```
 https://api.openalex.org/?oql=get works where country is (KE) and year >= (2015); then group those works by year; then calculate count, percent open access&format=csv
