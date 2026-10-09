@@ -1,6 +1,6 @@
 ---
 title: "Specification"
-updated: 2026-10-08
+updated: 2026-10-09
 description: "The formal specification of the OpenAlex Query Language (v2), including the formal grammar."
 tags: ["oql"]
 source_id: "query-spec/oql+grammar"

@@ -1,6 +1,6 @@
 ---
 title: "Example costs"
-updated: 2026-10-04
+updated: 2026-10-09
 description: "What OpenAlex API operations cost, what your free daily budget buys, and the price of some common activities."
 tags: ["reference"]
 synonyms: ["costs", "credits", "api pricing", "rate card", "what it costs"]

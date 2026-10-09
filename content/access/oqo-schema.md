@@ -65,7 +65,7 @@ The [OQL API](/api/oql/) accepts either form and returns the canonical OQO for a
     },
     "calculate": {
       "type": "array",
-      "description": "OQL's final `calculate ...` step (oxjob #1530): the measures computed for each group and for the summary (the whole starting set, and each split on its own), or for the whole set when there is no split.",
+      "description": "OQL's final `summarize using ...` step (oxjob #1530, #1555): the measures computed for each group and for the summary (the whole starting set, and each split on its own), or for the whole set when there is no split.",
       "items": {
         "$ref": "#/$defs/Measure"
       },
@@ -516,7 +516,7 @@ The [OQL API](/api/oql/) accepts either form and returns the canonical OQO for a
       }
     },
     {
-      "description": "Calculations by listed values (oxjob #1530): get works where topic is (T10878); then group those works by institution in (I63966007, I97018004); then calculate count, mean FWCI, percent open access",
+      "description": "Calculations by listed values (oxjob #1530): get works where topic is (T10878); then group those works by institution in (I63966007, I97018004); then, summarize using count, mean FWCI, percent open access",
       "value": {
         "get_rows": "works",
         "filter_rows": [
