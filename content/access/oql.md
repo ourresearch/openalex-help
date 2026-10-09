@@ -125,7 +125,7 @@ The one rule to internalize: **bare words are stemmed, quotes mean exact.** `tit
 | `get works where title-abstract has ("climate change")` | **exact** phrase (stemming off) |
 | `get works where title has (stemmed "genome editing")` | a phrase kept together that *keeps* stemming |
 | `get works where title has (psoriat*)` | wildcard: `*` is any characters, `?` exactly one (`wom?n`); neither may start a word, and `*` needs at least 3 characters before it |
-| `get works where title has (within 3 ("smart", "phone"))` | proximity: terms within N words, any order |
+| `get works where title has ("smart" and "phone" within 3 words of each other)` | proximity: terms within N words, any order |
 | `get works where title-abstract is similar to ("ocean acidification effects on coral reefs")` | semantic search: by meaning, not keywords |
 
 ## Combining and nesting
@@ -204,7 +204,7 @@ get authors at [University of British Columbia](I141945490) since 2022 who publi
 then, summarize each author using count, mean FWCI, and h-index
 ```
 
-`at [UBC](I141945490) since 2022` means UBC is on their record in 2022 or later; `at [UBC](I141945490) now` means their last known institution; `ever at [UBC](I141945490)` means any year. With no year, `at` and `in` look at the last five years, and the echo writes the year out: typing `get authors in BR who published ...` comes back as `get authors in [Brazil](BR) since 2022 who published ...`. Institutions take `in` too: `get institutions in [Asia](Q48) that published works where ...`.
+`at [UBC](I141945490) since 2022` means UBC is on their record in 2022 or later; `at [UBC](I141945490) in 2+ years since 2022` means in at least two of those years; `ever at [UBC](I141945490)` means any year. For where they are now, use their last known institution, OpenAlex's best guess from the record: `get authors where last known institution is [University of British Columbia](I141945490) who published works where title-abstract has (kelp)`. With no year, `at` and `in` look at the last five years, and the echo writes the year out: typing `get authors in BR who published ...` comes back as `get authors in [Brazil](BR) since 2022 who published ...`. Institutions take `in` too: `get institutions in [Asia](Q48) that published works where ...`.
 
 **The thing's own fields** go in a `where` before the verb:
 
