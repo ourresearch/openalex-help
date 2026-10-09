@@ -1,6 +1,6 @@
 ---
 title: "Attributes"
-updated: 2026-10-03
+updated: 2026-10-09
 description: "The canonical dictionary of every attribute on a source object — what each one means, where it comes from, and its quirks."
 tags: ["reference"]
 ---
@@ -53,6 +53,7 @@ This is the canonical dictionary of every attribute on a **source** object. Attr
 - `cwts-core` — the [CWTS Core sources list](https://zenodo.org/records/13879982) (same as [`is_core`](#is_core)).
 - `doaj` — the [Directory of Open Access Journals](https://doaj.org/) (same as [`is_in_doaj`](#is_in_doaj)).
 - `doyens` — the *Liste de revues recommandables* published by the [Conférence des Doyens de Médecine and CNU Santé](https://conferencedesdoyensdemedecine.org/la-conference-des-doyens-de-medecine-et-du-cnu-sante-luttent-contre-les-revues-predatrices/) (France): health, medicine and biology journals in French and English, matched to sources by ISSN. About 3,300 sources; loaded from the 2026-07-01 edition.
+- …plus the national, regional and discipline lists in the [source lists](/data/source-lists/) Values table, one id per level where a list has levels (57 ids in all, October 2026).
 
 Empty when the source is on no list. Filter/group_by; also available on works as `primary_location.source.listed_in`, `locations.source.listed_in` and `best_oa_location.source.listed_in`. New lists are added over time; the booleans above are kept for compatibility. Each id is a [source list](/data/source-lists/) entity carrying the maintainer, URL and loaded edition.
 

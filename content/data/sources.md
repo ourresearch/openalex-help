@@ -1,6 +1,6 @@
 ---
 title: "Overview"
-updated: 2026-10-05
+updated: 2026-10-09
 description: "What a source is, where sources come from, and how OpenAlex builds them and judges journal quality and open access."
 tags: ["reference"]
 source_id: "24347057529623"
@@ -73,7 +73,7 @@ OpenAlex prefers **allow lists** (curated lists of trusted sources) over deny li
 - [`is_in_doaj`](/data/sources/attributes/#is_in_doaj) — the source is indexed in the [Directory of Open Access Journals](https://doaj.org/), which vets the legitimacy of fully-OA journals. About 23,000 sources.
 - [`is_core`](/data/sources/attributes/#is_core) — the source is on the [CWTS Core sources list](https://zenodo.org/records/13879982). About 36,000 sources.
 
-The general form is [`listed_in`](/data/sources/attributes/#listed_in): a list of the external source lists a source appears on (`cwts-core`, `doaj`, and, new in September 2026, `doyens`, `medline`, `erih-plus`, `scielo`, `latindex` and the per-level lists `norway-1`/`norway-2`, `jufo-1`/`jufo-2`/`jufo-3`, `jpps-1`/`jpps-2`/`jpps-3`, `ki-jl-1`/`ki-jl-2`/`ki-jl-3` and `abdc-a-star`/`abdc-a`/`abdc-b`/`abdc-c`; see the table below and the [source lists](/data/source-lists/) page). It's deliberately non-normative: OpenAlex records *that* a list includes a source, not whether the list is right. Filter works with `primary_location.source.listed_in:doyens`, or sources with `listed_in:doyens`.
+The general form is [`listed_in`](/data/sources/attributes/#listed_in): a list of the external source lists a source appears on (`cwts-core`, `doaj`, and, new in September 2026, `doyens`, `medline`, `erih-plus`, `scielo`, `latindex` and the per-level lists `norway-1`/`norway-2`, `jufo-1`/`jufo-2`/`jufo-3`, `jpps-1`/`jpps-2`/`jpps-3`, `ki-jl-1`/`ki-jl-2`/`ki-jl-3` and `abdc-a-star`/`abdc-a`/`abdc-b`/`abdc-c`; in October 2026, national lists from Russia, Poland, Flanders, Türkiye, South Africa, Italy, Korea, Spain, Argentina and Colombia, the FNEGE, FT50 and UTD24 business lists and the CCF computer-science list; see the table below and the [source lists](/data/source-lists/) page). It's deliberately non-normative: OpenAlex records *that* a list includes a source, not whether the list is right. Filter works with `primary_location.source.listed_in:doyens`, or sources with `listed_in:doyens`.
 
 | List id | List | Maintained by | Scope | Loaded edition |
 |---------|------|---------------|-------|----------------|
@@ -89,6 +89,19 @@ The general form is [`listed_in`](/data/sources/attributes/#listed_in): a list o
 | `scielo` | [SciELO](https://www.scielo.org/) | SciELO | Current journals in the certified SciELO network collections. About 1,500 sources | 2026-09-18 |
 | `ki-jl-1`, `ki-jl-2`, `ki-jl-3` | [Karolinska Institutet Journal List](https://staff.ki.se/research-support/karolinska-institutet-journal-list-kijl) | Karolinska Institutet (Sweden) | One list per level; medicine and health sciences. Level 1 about 5,100 sources, level 2 about 650, level 3 about 140 | 2026 edition |
 | `abdc-a-star`, `abdc-a`, `abdc-b`, `abdc-c` | [ABDC Journal Quality List](https://abdc.edu.au/abdc-journal-quality-list/) | Australian Business Deans Council | One list per rating, A* at the top; business, economics and related fields. About 220, 610, 820 and 770 sources | 2025 edition |
+| `russia-white-list-1`, `-2`, `-3`, `-4` | [Russian White List](https://journalrank.rcsi.science/) | RCSI, for the Ministry of Science and Higher Education (Russia) | One list per level, level 1 at the top; all fields. About 9,400, 8,100, 6,600 and 5,700 sources | 2026-10-09 edition |
+| `poland-200`, `-140`, `-100`, `-70`, `-40`, `-20` | [Polish journal list](https://www.gov.pl/web/nauka/nowy-wykaz-czasopism-naukowych-i-recenzowanych-materialow-z-konferencji-miedzynarodowych) | Ministry of Science and Higher Education (Poland) | One list per points level, 200 at the top; all fields. About 880, 1,900, 4,100, 6,000, 6,100 and 13,500 sources | 2026-10-09 edition |
+| `vabb-shw` | [VABB-SHW](https://www.ecoom.be/nodes/tijdschrifteninvabbshwversie1520142023/en) | ECOOM, University of Antwerp (Flanders) | Peer-reviewed journals for the social sciences and humanities. About 12,800 sources | 2026-10-09 edition |
+| `fnege-1-star`, `fnege-1` … `fnege-4` | [FNEGE ranking](https://fnege.org/classement-des-revues-scientifiques-en-sciences-de-gestion/) | FNEGE (France) | One list per rank, 1* at the top; management. About 31, 60, 150, 250 and 390 sources | 2026-10-09 edition |
+| `tr-dizin` | [TR Dizin](https://search.trdizin.gov.tr/) | TÜBİTAK ULAKBİM (Türkiye) | All fields. About 1,100 sources | 2026-10-09 edition |
+| `dhet` | [DHET approved South African journals](https://db.crest.sun.ac.za/zapublications/) | Department of Higher Education and Training (South Africa) | All fields. About 270 sources | 2026-10-09 edition |
+| `ft50`, `utd24` | [FT50](https://www.ft.com/content/3405a512-5cbb-11e1-8f1f-00144feabdc0) and [UTD24](https://jsom.utdallas.edu/the-utd-top-100-business-school-research-rankings/) | Financial Times; UT Dallas | The journals behind the two business-school research rankings. 50 and 24 journals | 2026-10-09 edition |
+| `anvur-class-a`, `anvur-scientific` | [ANVUR journal lists](https://www.anvur.it/it/ricerca/riviste/elenchi-di-riviste-classificate) | ANVUR (Italy) | Architecture, humanities, law, economics, social sciences; Class A is a subset of scientific. About 5,400 and 14,100 sources | 2026-10-09 edition |
+| `kci-excellent`, `kci-registered`, `kci-candidate` | [Korea Citation Index](https://www.kci.go.kr/) | National Research Foundation of Korea | One list per accreditation tier, Excellent at the top; all fields. About 64, 2,200 and 120 sources | 2026-10-09 edition |
+| `ccf-a`, `ccf-b`, `ccf-c` | [CCF recommended journals](https://www.ccf.org.cn/Academic_Evaluation/By_category/) | China Computer Federation | One list per class, A at the top; computer science journals (not conferences). About 37, 110 and 140 sources | 2026-10-09 edition |
+| `fecyt-seal` | [FECYT quality seal](https://calidadrevistas.fecyt.es/revistas-sello-fecyt) | FECYT (Spain) | Spanish journals. About 580 sources | 2026-10-09 edition |
+| `nbra` | [Núcleo Básico de Revistas Científicas Argentinas](https://www.caicyt-conicet.gov.ar/sitio/comunicacion-cientifica/nucleo-basico/revistas-integrantes/) | CAICYT-CONICET (Argentina) | Argentine journals. About 420 sources | 2026-10-09 edition |
+| `publindex-a1`, `-a2`, `-b`, `-c`, `-recognized` | [Publindex](https://minciencias.gov.co/convocatorias/convocatoria-clasificacion-y-reconocimiento-revistas-cientificas-nacionales-publindex) | Minciencias (Colombia) | One list per category, A1 at the top, plus recognized journals; 2026 call. About 12, 30, 130, 200 and 140 sources | 2026-10-09 edition |
 
 Each list is also a [source list](/data/source-lists/) entity (`api.openalex.org/source-lists/doyens`) carrying its maintainer, URL and loaded edition. Lists are matched to sources by ISSN, and only a list's current members count: a journal its maintainer has withdrawn is not `listed_in`. Each list is loaded from the maintainer's published file, so membership is as current as the loaded edition. Spotted a newer edition, or know an open, ISSN-keyed list we should add? [Tell us](/how-to/support/).
 
