@@ -1,12 +1,12 @@
 ---
 title: "OQO"
-updated: 2026-10-04
+updated: 2026-10-09
 description: "OQO (OpenAlex Query Objects) — the machine-readable JSON twin of OQL, built for agents and tools, with its JSON Schema."
 tags: ["oql"]
 generated: true
 source_id: "query-spec/oqo"
 source_url: "https://api.openalex.org/query/spec/oqo"
-source_updated: "2026-10-04"
+source_updated: "2026-10-09"
 ---
 OQO (OpenAlex Query Objects) is the machine-readable twin of [OQL](/access/oql/): the same queries, expressed as JSON data instead of text.
 
@@ -65,7 +65,7 @@ The [OQL API](/api/oql/) accepts either form and returns the canonical OQO for a
     },
     "calculate": {
       "type": "array",
-      "description": "OQL's final `calculate ...` step (oxjob #1530): the measures computed for each group and for the total row (the whole starting set), or for the whole set when there is no split.",
+      "description": "OQL's final `calculate ...` step (oxjob #1530): the measures computed for each group and for the summary (the whole starting set, and each split on its own), or for the whole set when there is no split.",
       "items": {
         "$ref": "#/$defs/Measure"
       },
