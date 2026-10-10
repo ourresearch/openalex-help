@@ -353,7 +353,7 @@ https://api.openalex.org/?oql=get works where country is [Kenya](KE) and publish
 
 ## Limits, time and price
 
-Up to three splits (a comparison counts as one); up to 100 items in a list or a comparison; at most 5 AND/OR/NOT in each compared search; a nested split up to 10,000 groups per split (a single split pages through any number); one walk out per query; about ten seconds a query. Looking things up by their own fields (an h-index filter) checks up to 20,000 groups, so put a count filter first on a big set (`who published more than 5 works where ...`). Anything over a limit is refused before it runs, with the limit and how to fix it.
+Up to three splits (a comparison counts as one); up to 100 items in a list or a comparison; at most 5 AND/OR/NOT in each compared search; a nested split up to 10,000 groups per split (a single split pages through any number); one walk out per query; about ten seconds a query. Anything over a limit is refused before it runs, with the limit and how to fix it.
 
 A query with a `summarize` step, a comparison, bins, or a things start is priced from what it does: the starting set costs what a list (1 credit) or a search (10) costs, each compared search 10, each lookup 1. Nothing else adds to the price: splits by a field, counts, means and percentages are free. Any other query costs what the same query costs as a URL: 1 credit for a list, 10 for a search. The check tells you the price for free, and a response shows what it cost in `meta.cost`. See [Example costs](/access/example-costs/#what-an-oql-calculation-costs).
 
