@@ -1,6 +1,6 @@
 ---
 title: "Authentication"
-updated: 2026-08-19
+updated: 2026-10-12
 description: "API keys, sending your key, rate limits, and keeping tabs on your usage"
 tags: ["api"]
 source_id: "api-reference/authentication"
@@ -40,7 +40,15 @@ Organization keys work the same way, from the organization's API settings. One t
 
 ## Rate limits
 
-Basic use is free and generous, and a free key gives you 10× the keyless budget; you can raise it further with a [paid plan](/access/pricing/). Two things return `429 Too Many Requests`: exceeding your daily budget, or making more than **100 requests per second**. For the budget numbers themselves — and what typical activity actually uses — see [Example costs](/access/example-costs/).
+Basic use is free and generous, and a free key gives you 10× the keyless budget; you can raise it further with a [paid plan](/access/pricing/). Two things return `429 Too Many Requests`: exceeding your daily budget, or sending requests faster than your per-second limit. For the budget numbers themselves — and what typical activity actually uses — see [Example costs](/access/example-costs/).
+
+| Who's calling | Requests per second |
+|---------------|---------------------|
+| No API key | 10 |
+| Free API key, or prepaid usage | 30 |
+| [Annual plan](/access/pricing/) | 50 |
+
+A few heavy request types have lower limits of their own: [semantic search](/api/semantic-search/) is 1 request per second, and searches with more than 5 `OR`/`AND`/`NOT` operators are limited to 1 (no key), 5 (free key or prepaid usage) or 25 (annual plan) per second. A per-second 429 costs nothing; wait a moment and retry.
 
 Individual queries also have hard limits:
 
