@@ -1,6 +1,6 @@
 ---
 title: "Overview"
-updated: 2026-10-09
+updated: 2026-10-12
 description: "The OpenAlex Query Language: what OQL is, how to write it, and every construct with a copyable example."
 tags: ["oql"]
 source_id: "query-spec/guide+cheatsheet"
@@ -204,7 +204,7 @@ get authors at [University of British Columbia](I141945490) since 2022 who publi
 then, summarize each author using count, mean FWCI, and h-index
 ```
 
-`at [UBC](I141945490) since 2022` means UBC is on their record in 2022 or later; `at [UBC](I141945490) in 2+ years since 2022` means in at least two of those years; `ever at [UBC](I141945490)` means any year. For where they are now, use their last known institution, OpenAlex's best guess from the record: `get authors where last known institution is [University of British Columbia](I141945490) who published works where title-abstract has (kelp)`. With no year, `at` and `in` look at the last five years, and the echo writes the year out: typing `get authors in BR who published ...` comes back as `get authors in [Brazil](BR) since 2022 who published ...`. Institutions take `in` too: `get institutions in [Asia](Q48) that published works where ...`.
+`at [UBC](I141945490)` with no year means UBC is on their record in any year; `at [UBC](I141945490) since 2022` means 2022 or later; `at [UBC](I141945490) in 2+ years since 2022` means in at least two of those years; `never at [UBC](I141945490)` means no year. For where they are now, use their last known institution, OpenAlex's best guess from the record: `get authors where last known institution is [University of British Columbia](I141945490) who published works where title-abstract has (kelp)`. `in` works the same way for a country: `get authors in [Brazil](BR) who published ...` is any year. Institutions take `in` too: `get institutions in [Asia](Q48) that published works where ...`.
 
 **The thing's own fields** go in a `where` before the verb:
 
