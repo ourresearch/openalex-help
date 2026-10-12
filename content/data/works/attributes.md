@@ -1,6 +1,6 @@
 ---
 title: "Attributes"
-updated: 2026-10-10
+updated: 2026-10-12
 description: "The canonical dictionary of every attribute on a work object — what each one means, where it comes from, and its quirks."
 tags: ["reference"]
 ---
@@ -15,7 +15,9 @@ This is the canonical dictionary of every attribute on a **work** object. Attrib
 *Object.* All known external identifiers for this work, as URIs where possible; keys for unknown IDs are omitted. Work-specific keys: `openalex`, `doi`, `mag` (Microsoft Academic Graph integer ID), `pmid` (PubMed), `pmcid` (PubMed Central).
 
 ### `doi`
-*String.* The work's DOI — the canonical external ID for works. A work occasionally has more than one DOI (e.g. a preprint DOI and a published DOI); this field always holds the DOI of the published version.
+*String.* The work's DOI — the canonical external ID for works. A work can have more than one DOI (e.g. a preprint DOI and a published DOI); this field holds one, picked by source: a Crossref DOI first (the published version's over a preprint's), then DataCite (a concept DOI over its version DOIs), then a DOI printed on a PubMed, MAG, or repository record. Every DOI-registered copy also shows its own DOI as the [`doi`](/data/locations/#doi) of its location.
+
+Filter: `doi:` matches a work whose own `doi` **or** any location's `doi` equals the value, so a secondary DOI (a preprint's, a Zenodo version's) finds the work it belongs to. Short (`10.7717/peerj.4375`) and URL (`https://doi.org/10.7717/peerj.4375`) forms both work, case-insensitively, and up to 100 can be OR-ed with `|`. `doi:!…` excludes works that have the DOI in either place. `has_doi` checks only the work's own `doi`.
 
 ### `display_name`
 *String.* The work's title. Identical to [`title`](#title); every entity carries a `display_name`.

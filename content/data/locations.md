@@ -1,6 +1,6 @@
 ---
 title: "Locations"
-updated: 2026-09-18
+updated: 2026-10-12
 description: "Each place a version of a work is available — the publisher's site, a repository, a preprint server — with its version, license, and open-access status; what every attribute means, and how to list, filter, search and group locations directly at /locations."
 tags: ["reference"]
 entity:
@@ -32,6 +32,9 @@ This is the dictionary of every attribute on a **location** object as it appears
 
 ### `id`
 *String.* The location's namespaced id: the identifier this copy was harvested under, prefixed with its namespace — `doi:10.7717/peerj.4375`, `pmh:oai:arXiv.org:cond-mat/0404022` (an OAI-PMH record id, for repository copies), `pmid:29456894`, `mag:1000037129`. Ids contain `/` and `:` and are **case-sensitive**, so copy them verbatim. Fetch the full record at `/locations/{id}` (see [Fetching one location](#fetching-one-location)). The id is stable for the underlying harvested record: when duplicate works are merged, the surviving work carries the location and its `id` with it, which is how snapshot consumers [trace merges](/access/sync/#tracing-merges-location-ids-move-to-the-surviving-work).
+
+### `doi`
+*String.* The DOI this copy was registered under, as a lowercase URL, e.g. `https://doi.org/10.7717/peerj.4375`, or null. A work with more than one DOI (say, a preprint DOI and a journal DOI) shows each on its own location, while the work's own [`doi`](/data/works/attributes/#doi) holds one of them. The works [`doi` filter](/data/works/attributes/#doi) matches any of them.
 
 ### `is_oa`
 *Boolean.* True if this specific copy is a free-to-read full text (OpenAlex's broad definition: readable without paying or logging in). A work can have some OA locations and some not.
@@ -68,7 +71,7 @@ This is the dictionary of every attribute on a **location** object as it appears
 
 ### Extra attributes on `/locations` rows
 
-A row from the [list endpoint](#the-locations-endpoint) is the harvested record itself. It has the attributes above, except that the hosting source is flattened to `source_id` and `source_name` (no nested `source` object) and the inline conveniences `is_accepted`, `is_published`, `license_id`, and `raw_source_name` are absent. On top of those it carries:
+A row from the [list endpoint](#the-locations-endpoint) is the harvested record itself. It has the attributes above, except that the hosting source is flattened to `source_id` and `source_name` (no nested `source` object) and the inline conveniences `is_accepted`, `is_published`, `license_id`, and `raw_source_name` are absent. [`doi`](#doi) is not on `/locations` rows yet. On top of those it carries:
 
 | Attribute | Type | Meaning |
 |---|---|---|
