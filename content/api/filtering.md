@@ -188,7 +188,7 @@ Each entity type has its own set of filterable fields. See the API reference for
 | [Keywords](/data/keywords/) | `works_count`, `cited_by_count` |
 | [Publishers](/data/publishers/) | `country_codes`, `hierarchy_level`, `ror`, `parent_publisher` |
 | [Funders](/data/funders/) | `country_code`, `is_global_south`, `continent`, `ror`, `awards_count` |
-| [Locations](/data/locations/) | `version`, `license`, `is_oa`, `source_id`, `work_id`, `endpoint_id`, `native_id`, `provenance`, `ingested_at` |
+| [Locations](/data/locations/) | `version`, `license`, `is_oa`, `source_id`, `work_id`, `endpoint_id`, `native_id`, `doi`, `provenance`, `ingested_at` |
 
 ORCID filters match the whole list, not just the primary: on authors, `filter=orcid:<id>` matches the primary ORCID or any [`observed_orcids`](/data/authors/#observed_orcids) entry, and on works `filter=authorships.author.orcid:<id>` does the same against each author's `observed_orcids`.
 

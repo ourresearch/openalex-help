@@ -34,7 +34,7 @@ This is the dictionary of every attribute on a **location** object as it appears
 *String.* The location's namespaced id: the identifier this copy was harvested under, prefixed with its namespace — `doi:10.7717/peerj.4375`, `pmh:oai:arXiv.org:cond-mat/0404022` (an OAI-PMH record id, for repository copies), `pmid:29456894`, `mag:1000037129`. Ids contain `/` and `:` and are **case-sensitive**, so copy them verbatim. Fetch the full record at `/locations/{id}` (see [Fetching one location](#fetching-one-location)). The id is stable for the underlying harvested record: when duplicate works are merged, the surviving work carries the location and its `id` with it, which is how snapshot consumers [trace merges](/access/sync/#tracing-merges-location-ids-move-to-the-surviving-work).
 
 ### `doi`
-*String.* The DOI this copy was registered under, as a lowercase URL, e.g. `https://doi.org/10.7717/peerj.4375`, or null. A work with more than one DOI (say, a preprint DOI and a journal DOI) shows each on its own location, while the work's own [`doi`](/data/works/attributes/#doi) holds one of them. The works [`doi` filter](/data/works/attributes/#doi) matches any of them.
+*String.* The DOI of this copy, as a lowercase URL, e.g. `https://doi.org/10.7717/peerj.4375`, or null. A Crossref or DataCite copy carries the DOI it was registered under. A repository, PubMed, or MAG copy carries the work's DOI when its own record names that DOI and no Crossref or DataCite copy of the work holds it; otherwise it is null. A work with more than one DOI (say, a preprint DOI and a journal DOI) shows each on its own location, while the work's own [`doi`](/data/works/attributes/#doi) holds one of them. The works [`doi` filter](/data/works/attributes/#doi) matches any of them.
 
 ### `is_oa`
 *Boolean.* True if this specific copy is a free-to-read full text (OpenAlex's broad definition: readable without paying or logging in). A work can have some OA locations and some not.
@@ -71,7 +71,7 @@ This is the dictionary of every attribute on a **location** object as it appears
 
 ### Extra attributes on `/locations` rows
 
-A row from the [list endpoint](#the-locations-endpoint) is the harvested record itself. It has the attributes above, except that the hosting source is flattened to `source_id` and `source_name` (no nested `source` object) and the inline conveniences `is_accepted`, `is_published`, `license_id`, and `raw_source_name` are absent. [`doi`](#doi) is not on `/locations` rows yet. On top of those it carries:
+A row from the [list endpoint](#the-locations-endpoint) is the harvested record itself. It has the attributes above, except that the hosting source is flattened to `source_id` and `source_name` (no nested `source` object) and the inline conveniences `is_accepted`, `is_published`, `license_id`, and `raw_source_name` are absent. Rows carry [`doi`](#doi) too. On top of those it carries:
 
 | Attribute | Type | Meaning |
 |---|---|---|
@@ -120,6 +120,9 @@ https://api.openalex.org/locations?filter=work_id:W1000037129
 # Everything harvested from one OAI-PMH endpoint
 https://api.openalex.org/locations?filter=endpoint_id:b2cf508dd15910823cc
 
+# Every copy carrying a DOI (short or URL form, any case; OR up to 100 with |)
+https://api.openalex.org/locations?filter=doi:10.7717/peerj.4375
+
 # Look a record up by the identifier it was harvested under
 https://api.openalex.org/locations?filter=native_id:oai:digital.csic.es:10261/28939
 
@@ -130,7 +133,7 @@ https://api.openalex.org/locations?filter=ingested_at:>2026-09-01&sort=ingested_
 https://api.openalex.org/locations?search=climate
 ```
 
-Filterable and groupable: `is_oa`, `version`, `license`, `language`, `type`, `raw_type`, `provenance`, `native_id`, `native_id_namespace`, `source_id`, `source_name`, `publisher`, `endpoint_id`, `work_id`, `is_retracted`, `title`, and `id`. `ingested_at` is filterable (with ranges) and sortable but not groupable. `search=` matches the copy's title. The live list, with operators, is at [`/properties/locations`](https://api.openalex.org/properties/locations).
+Filterable and groupable: `is_oa`, `version`, `license`, `language`, `type`, `raw_type`, `provenance`, `native_id`, `native_id_namespace`, `source_id`, `source_name`, `publisher`, `endpoint_id`, `work_id`, `is_retracted`, `title`, and `id`. `doi` is filterable and sortable but not groupable; it matches short (`10.7717/peerj.4375`) and URL forms case-insensitively. `ingested_at` is filterable (with ranges) and sortable but not groupable. `search=` matches the copy's title. The live list, with operators, is at [`/properties/locations`](https://api.openalex.org/properties/locations).
 
 Group counts answer the corpus-wide questions:
 
