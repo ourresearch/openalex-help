@@ -1,22 +1,15 @@
 ---
-title: "Multiple DOIs"
+title: "DOIs"
 updated: 2026-10-13
-description: "Why one OpenAlex work can carry several DOIs (a preprint and its journal article, a working paper and its published version, a Zenodo concept and its versions), where each one appears, which becomes the work's own doi, and how to look a work up by any of them."
+description: "How DOIs appear on OpenAlex works: most have one, some carry several (a preprint and its article, a Zenodo concept and its versions); which one becomes the work's doi, and how to find a work by any of them."
 tags: ["reference"]
 synonyms: ["two DOIs", "multiple DOIs", "secondary DOI", "preprint DOI", "arXiv DOI", "concept DOI", "version DOI", "Zenodo DOI", "wrong DOI"]
 ---
-A DOI names a registered *record*, not a work. The same paper is often registered more than once: arXiv mints a DOI for the preprint and the journal mints another when it publishes; Zenodo mints one for every version plus a "concept" DOI covering them all. OpenAlex treats these as one [work](/data/works/), so a work can carry several DOIs. Each DOI sits on the [location](/data/locations/) it was registered for, and the work's own [`doi`](/data/works/attributes/#doi) holds one of them.
+Most works have a single DOI, but some have several. A paper posted to arXiv gets an arXiv DOI (`10.48550/arxiv.1102.1523`), then a new one when a journal publishes it (`10.1109/mcse.2011.37`). Both point to the same work, *The NumPy Array* ([W2146292423](https://api.openalex.org/works/W2146292423?select=id,doi,locations)). Other reasons include a working paper and its journal version, a Zenodo record's version DOIs, and a dataset registered in two places.
 
-For example, *The NumPy Array* ([W2146292423](https://api.openalex.org/works/W2146292423?select=id,doi,locations)) has two:
+OpenAlex keeps every DOI by giving each [location](/data/locations/) (each copy of the work) its own [`doi`](/data/locations/#doi): the NumPy work's arXiv location carries the arXiv DOI and its journal location carries the journal DOI. The [`doi` filter](/data/works/attributes/#doi) matches all of a work's DOIs, so either one finds it. The work's own [`doi`](/data/works/attributes/#doi) holds the best one, picked as described [below](#which-doi-is-the-works-doi).
 
-- `doi`: `https://doi.org/10.1109/mcse.2011.37`, the article in *Computing in Science & Engineering*.
-- `locations[].doi`: that DOI on the journal location, and `https://doi.org/10.48550/arxiv.1102.1523` on the arXiv location.
-
-## Why one work, not several
-
-The arXiv preprint and the journal article are versions of the same research, by the same authors. Counting them as two works would double-count the output and split the citations between them. So OpenAlex [matches locations into works](/data/works/#how-locations-become-works) and keeps every version's DOI on its own location.
-
-Common cases:
+## Examples
 
 | Situation | Example | DOIs |
 |---|---|---|
