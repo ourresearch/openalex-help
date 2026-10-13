@@ -55,7 +55,7 @@ export const NAV_GROUPS: Record<string, NavGroup[]> = {
       // pages — Citations, Open access (moved in from Docs), and Fields.
       slugs: [
         'native',
-        { label: 'Works', slug: 'works', children: ['works/citations', 'works/open-access', 'works/corpus', 'works/attributes'] },
+        { label: 'Works', slug: 'works', children: ['works/citations', 'works/open-access', 'works/corpus', 'works/dois', 'works/attributes'] },
         // Authors is a subgroup (Jason 2026-08-19, oxjob #619): Overview (what
         // a profile is + attributes), Disambiguation (how profiles are built,
         // moved out of the overview's About), ORCID (new — the CNRS/Inist
