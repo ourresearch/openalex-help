@@ -119,7 +119,7 @@ IP address:  44.208.99.237
 User-Agent:  OpenAlexHarvester/1.0 (+https://help.openalex.org/how-to/repositories/; mailto:support@openalex.org)
 ```
 
-**New address, October 2026.** Our previous address, `18.213.181.255`, belonged to a proxy provider and was shared with its other customers, so we're retiring it. If you allowlisted it, add `44.208.99.237` as well and keep both for now; this page will say when the old address is retired. If you're setting up an allowlist now, use `44.208.99.237` only.
+**New address, October 2026.** Our previous address, `18.213.181.255`, belonged to a proxy provider and was shared with its other customers, so we're retiring it. If you allowlisted it, add `44.208.99.237` as well; we stop using `18.213.181.255` on **4 November 2026**, and you can remove it after that. If you're setting up an allowlist now, use `44.208.99.237` only.
 
 Allowlist the IP, or the User-Agent, or both. This applies to **OAI-PMH harvesting only**. Fetching landing pages and PDFs to find full text uses rotating addresses we can't promise, and blocking those costs you open-access detection, so don't restrict it to the IP above. When we first verify a newly registered endpoint we may probe it once from a different address with a User-Agent that also starts with `OpenAlex`; if your firewall logs a block during registration, that's what it was.
 
