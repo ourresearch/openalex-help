@@ -8,7 +8,7 @@ card: "Paste a search from PubMed, Scopus or Web of Science; it runs translated,
 ---
 Paste a search strategy from another database into the search box on [openalex.org](https://openalex.org) and press Enter. OpenAlex translates it into [OQL](/access/oql/), runs it, and opens it in the OQL tab. A box above the query says which database it came from and lists every place OpenAlex reads it differently. Each difference links to its section on this page.
 
-It reads searches written for **PubMed**, **Scopus**, **Web of Science**, **Ovid** (MEDLINE, Embase, PsycINFO), **Embase.com**, the **Cochrane Library** and **EBSCO** (CINAHL and others): field tags, subject headings, limits, proximity operators and numbered search lines. Plain Boolean searches, including ones written for **Dimensions** or Google Scholar, need no translation: the search box runs them as typed.
+It reads searches written for **PubMed**, **Scopus**, **Web of Science**, **Ovid** (MEDLINE, Embase, PsycINFO), **Embase.com**, the **Cochrane Library** and **EBSCO** (CINAHL and others): field tags, subject headings, limits, proximity operators and numbered search lines. Plain Boolean searches, including ones written for **Dimensions** or Google Scholar, need no translation: the search box runs them as typed (except a Google Scholar `-word`, which OpenAlex reads as the word itself: write `NOT word`).
 
 The translation follows fixed rules, the same for everyone, so the same search always gives the same query. Nothing is sent to a language model.
 
