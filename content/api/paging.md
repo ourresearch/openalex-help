@@ -1,6 +1,6 @@
 ---
 title: "Page through Results"
-updated: 2026-09-18
+updated: 2026-10-14
 description: "Navigate through large result sets"
 tags: ["api"]
 source_id: "guides/page-through-results"
@@ -31,7 +31,7 @@ https://api.openalex.org/works?page=2&per_page=100
 
 ## Cursor paging
 
-Cursor paging lets you access any number of results:
+Cursor paging lets you access any number of results. It needs a [free API key](/api/authentication/) past the first page: without a key, `cursor=*` works, but following `next_cursor` returns a 401.
 
 **Step 1:** Start with `cursor=*`
 

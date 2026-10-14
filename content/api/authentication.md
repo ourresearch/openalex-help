@@ -1,13 +1,13 @@
 ---
 title: "Authentication"
-updated: 2026-10-12
+updated: 2026-10-14
 description: "API keys, sending your key, rate limits, and keeping tabs on your usage"
 tags: ["api"]
 source_id: "api-reference/authentication"
 source_url: "https://developers.openalex.org/api-reference/authentication"
 source_updated: "2026-08-09"
 ---
-OpenAlex data is free, and so is casual use of the API — you can make basic queries with no key at all. To use the API at any real scale, though, you'll want a **free API key**: it raises your daily budget 10× and lets you track your usage. This page covers getting a key, sending it, and staying inside the rate limits. For **what the API costs** and how billing works — that's a separate concern — see [Pricing](/access/pricing/), with worked numbers on the [Example costs](/access/example-costs/) page.
+OpenAlex data is free, and so is casual use of the API — you can make basic queries with no key at all. To use the API at any real scale, though, you'll want a **free API key**: it raises your daily budget 10×, lets you track your usage, and is required for [cursor paging](/api/paging/#cursor-paging) past the first page. This page covers getting a key, sending it, and staying inside the rate limits. For **what the API costs** and how billing works — that's a separate concern — see [Pricing](/access/pricing/), with worked numbers on the [Example costs](/access/example-costs/) page.
 
 ## Getting an API key
 
@@ -59,7 +59,7 @@ Individual queries also have hard limits:
 | `sample` maximum | 10,000 |
 | Basic paging limit | 10,000 results |
 
-To retrieve more than 10,000 results, use [cursor paging](/api/paging/#cursor-paging).
+To retrieve more than 10,000 results, use [cursor paging](/api/paging/#cursor-paging) (with a free key: without one, only the first page works).
 
 ## Keeping tabs on your usage
 
