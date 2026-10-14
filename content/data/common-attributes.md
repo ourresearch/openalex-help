@@ -1,6 +1,6 @@
 ---
 title: "Common attributes"
-updated: 2026-08-11
+updated: 2026-10-14
 description: "The attributes that appear on nearly every OpenAlex entity — id, ids, display_name, counts_by_year, summary_stats, and the rest — documented once."
 tags: ["reference"]
 ---
@@ -15,7 +15,7 @@ A handful of attributes appear on nearly every OpenAlex entity. They mean the sa
 *Object.* All known identifiers for this entity, expressed as URIs where possible, keyed by namespace — always `openalex`, plus whichever external IDs apply to the entity type (`doi`, `orcid`, `ror`, `issn_l`, `wikidata`, `mag`, …). Keys with no known value are omitted.
 
 ### `display_name`
-*String.* The entity's name — a work's title, an author's name, a source's title, an institution's name. Every entity has one.
+*String or null.* The entity's name — a work's title, an author's name, a source's title, an institution's name. Every entity has one, except a [work](/data/works/attributes/#title) or [award](/data/awards/#display_name) that no source gives a title, where it is null.
 
 ## Scale & influence
 

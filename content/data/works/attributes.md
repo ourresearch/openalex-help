@@ -1,6 +1,6 @@
 ---
 title: "Attributes"
-updated: 2026-10-13
+updated: 2026-10-14
 description: "The canonical dictionary of every attribute on a work object — what each one means, where it comes from, and its quirks."
 tags: ["reference"]
 ---
@@ -20,10 +20,10 @@ This is the canonical dictionary of every attribute on a **work** object. Attrib
 Filter: `doi:` matches a work whose own `doi` **or** any location's `doi` equals the value, so a secondary DOI (a preprint's, a Zenodo version's) finds the work it belongs to. Short (`10.7717/peerj.4375`) and URL (`https://doi.org/10.7717/peerj.4375`) forms both work, case-insensitively, and up to 100 can be OR-ed with `|`. `doi:!…` excludes works that have the DOI in either place. `has_doi` checks only the work's own `doi`.
 
 ### `display_name`
-*String.* The work's title. Identical to [`title`](#title); every entity carries a `display_name`.
+*String or null.* The work's title. Identical to [`title`](#title); every entity carries a `display_name`. Null when the work has no title; see [`title`](#title).
 
 ### `title`
-*String.* The title of the work. Identical to [`display_name`](#display_name).
+*String or null.* The title of the work. Identical to [`display_name`](#display_name). Null when no source gives the work a title (an empty or whitespace-only title from a source counts as none): about 2.3M of the ~465M works.
 
 ### `type`
 *String.* The work's type (e.g. `article`, `preprint`, `dataset`, `paratext`). Every work has exactly one. See [Work types](/data/work-types/) for the full vocabulary and how the type is assigned.
