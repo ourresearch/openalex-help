@@ -71,6 +71,8 @@ https://api.openalex.org/works?search=(elmo AND "sesame street") NOT (cookie OR 
 
 > **Note:**
 > Words not separated by boolean operators are treated as `AND`.
+>
+> A minus sign doesn't exclude a word: `asthma -mice` finds works with both words. Write `asthma NOT mice`.
 
 ## Large Boolean queries
 
