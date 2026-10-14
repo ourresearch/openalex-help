@@ -1,6 +1,6 @@
 ---
 title: "Repositories"
-updated: 2026-09-25
+updated: 2026-10-14
 description: "How repository content gets into OpenAlex — OAI-PMH harvesting, matching records to works by DOI or title, locating full text, and why a repository's work count can look smaller than expected."
 tags: ["reference"]
 source_id: "41193798254743"
@@ -36,7 +36,7 @@ To see whether we harvest your repository, check our [list of sources](https://o
 - **Incremental, resuming where it left off.** Each run asks for records changed since that endpoint's last successful harvest, overlapping by one day so nothing at the boundary is lost. Because we ask by datestamp, a deposit whose datestamp is in the past is not "new" to us.
 - **First harvest is the whole back catalog.** A newly registered endpoint is harvested from its `earliestDatestamp` (as advertised in its `Identify` response) forward, in one pass. A large or slow endpoint can take days. We also read the format of that datestamp to decide whether to send dates with or without a time component.
 - **What we send.** `ListRecords` with `metadataPrefix=oai_dc`, plus `set=` when the endpoint is registered with one. Each request times out after 15 seconds and is retried a few times, honoring `Retry-After` on 429 and 503. We hold at most three connections to any host at once.
-- **Where it comes from.** A single static IP, `18.213.181.255`, with User-Agent `OpenAlexHarvester/1.0 (+https://help.openalex.org/how-to/repositories/; mailto:support@openalex.org)`. This covers OAI-PMH harvesting only; full-text fetching uses other addresses. [Allowlisting details](/how-to/repositories/#how-do-i-allowlist-openalexs-harvester).
+- **Where it comes from.** A single static IP that OpenAlex owns, `44.208.99.237` (it replaces `18.213.181.255`, which we're retiring), with User-Agent `OpenAlexHarvester/1.0 (+https://help.openalex.org/how-to/repositories/; mailto:support@openalex.org)`. This covers OAI-PMH harvesting only; full-text fetching uses other addresses. [Allowlisting details](/how-to/repositories/#how-do-i-allowlist-openalexs-harvester).
 - **Where you see it.** The Harvest tab on your source shows the endpoint on file, the last attempt's status and error text, a count of records we hold from you, and a monthly history. The [how-to](/how-to/repositories/#how-do-i-check-openalexs-harvest-of-my-repository) walks through it, including [what each status means](/how-to/repositories/#what-does-my-endpoints-harvest-status-mean).
 
 Harvested records are parsed downstream: matched to works, and mined for the license, version, language, date, and document locations described below.
