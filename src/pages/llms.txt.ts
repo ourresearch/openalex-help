@@ -46,6 +46,15 @@ export const GET: APIRoute = async ({ site }) => {
     `and the key works ($1 a day) once they click it. Details: [Authentication](${base}/api/authentication/#getting-a-key-for-your-user)`,
     `and [auth.md](${base}/auth.md).`,
     '',
+    // oxjob #1686 (Jason 2026-10-15): record pages on openalex.org are a de facto API too
+    // (#1689 server rendering, #1688 Markdown for Agents); point to the API as the better one.
+    'Record pages on openalex.org are open to agents and scripts. Every OpenAlex ID is a URL',
+    '(https://openalex.org/W2741809807) that returns the record as server-rendered HTML with schema.org',
+    'JSON-LD, or as Markdown when you send `Accept: text/markdown`. Search and list pages on openalex.org',
+    'are not served to scripts. The API has more data and is faster: the same record is',
+    'https://api.openalex.org/works/W2741809807 (single-record lookups are free), and one call can fetch',
+    `100 records by ID, or filter, search, group and page. Details: [Reading openalex.org pages](${base}/access/agents/#reading-openalexorg-pages).`,
+    '',
     'Field and vocabulary semantics (what each entity is, where its records come from,',
     'what every attribute means, controlled-vocabulary definitions) are canonical under',
     '`/data/` — e.g. the works field dictionary at `/data/works/` and work types',

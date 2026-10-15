@@ -243,6 +243,10 @@ See [Deprecations](/api/deprecations/) for full list. Key items:
 - **`host_venue`** → Use `primary_location`
 - **`grants`** → Use `funders` and `awards`
 
+## Record pages on openalex.org
+
+Every OpenAlex ID is a URL that opens a readable page, for scripts too: `https://openalex.org/W2741809807` returns server-rendered HTML with schema.org JSON-LD, or Markdown if you send `Accept: text/markdown`. Search and list pages aren't served to scripts. Prefer the API: it has more data and is faster; `/works/W2741809807` is free, and `/works?filter=openalex:W1|W2|...` fetches up to 100 records in one call.
+
 ## Links
 
 - Full docs: https://help.openalex.org (machine index: https://help.openalex.org/llms.txt)

@@ -35,6 +35,21 @@ This page is about how to work with agents effectively — which kind to use, ho
 
 **Make it durable.** If you use a coding agent regularly, tell it once — in its memory or config file — that you use OpenAlex and where your key lives. Every future session starts already set up.
 
+## Reading openalex.org pages
+
+Agents and scripts are welcome to read OpenAlex record pages directly. Every OpenAlex ID is a URL: open [openalex.org/W2741809807](https://openalex.org/W2741809807) and you get that work's page, rendered on the server, with its title, authors, abstract, DOI and a schema.org JSON-LD block. The same holds for authors, sources, institutions, topics, funders, publishers and the other entity types.
+
+- **Ask for Markdown** with an `Accept: text/markdown` header, and you get the page as Markdown at about a tenth of the HTML's size:
+
+  ```
+  curl -H "Accept: text/markdown" https://openalex.org/works/W2741809807
+  ```
+
+- **Every record page names its API twin** in a `Link` header (`rel="alternate"; type="application/json"`), and pages served to scripts and AI assistants open with a short notice that links it.
+- **Search and list pages aren't for scripts.** A script that opens `openalex.org/works?search=...` gets a short page pointing to the API instead.
+
+For anything past a few records, use the [API](/api/): it has more data (every attribute of every record) and it's faster. The same work is [api.openalex.org/works/W2741809807](https://api.openalex.org/works/W2741809807); single-record lookups are free, and one call can fetch up to 100 records by ID, or filter, search, group and page through millions.
+
 ## Trust, but verify
 
 Agents very rarely hallucinate OpenAlex results — the API is well-structured, and answers come from real responses, not the model's memory. Still, for consequential work:
