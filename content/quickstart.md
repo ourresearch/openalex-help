@@ -1,6 +1,6 @@
 ---
 title: "Quickstart"
-updated: 2026-09-30
+updated: 2026-10-15
 subtitle: "Get real data out of OpenAlex in five minutes — on the website, through the API, or by asking Claude or another AI agent."
 description: "Get real data out of OpenAlex in five minutes — on the website, through the API, or by asking Claude or another AI agent."
 ---
@@ -56,7 +56,7 @@ Claude runs the search in OpenAlex, shows you the papers, and gives you the exac
 
 Agents already know OpenAlex, and anything they're unsure of they can find right here at [help.openalex.org](https://help.openalex.org): the site is optimized for AI use.
 
-**Give your agent your API key.** Agents make a lot of requests, so the keyless budget runs out fast; at any reasonable scale your agent should use your free key. Just paste it into the chat and your agent will take it from there. (If a key ever leaks, no big deal: rotate it in **Settings → API key**, which invalidates the old one instantly.)
+**Give your agent your API key.** Agents make a lot of requests, so the keyless budget runs out fast; at any reasonable scale your agent should use your free key. Just paste it into the chat and your agent will take it from there. (If a key ever leaks, no big deal: rotate it in **Settings → API key**, which invalidates the old one instantly.) No account yet? Give your agent your email address instead: it can [get a key for you](/api/authentication/#getting-a-key-for-your-user) in one call.
 
 It's very unusual for agents to hallucinate results here, since the API is so well-structured — but for consequential queries, it's a good idea to check against the [website](https://openalex.org) yourself.
 

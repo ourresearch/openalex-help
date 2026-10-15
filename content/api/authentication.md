@@ -1,6 +1,6 @@
 ---
 title: "Authentication"
-updated: 2026-10-14
+updated: 2026-10-15
 description: "API keys, sending your key, rate limits, and keeping tabs on your usage"
 tags: ["api"]
 source_id: "api-reference/authentication"
@@ -11,7 +11,52 @@ OpenAlex data is free, and so is casual use of the API — you can make basic qu
 
 ## Getting an API key
 
-It's free. [Make an account](https://openalex.org/) (about 30 seconds) and copy your key from [openalex.org/settings/api](https://openalex.org/settings/api).
+It's free. [Make an account](https://openalex.org/) (about 30 seconds) and copy your key from [openalex.org/settings/api](https://openalex.org/settings/api). An AI agent can also [get a key for you](#getting-a-key-for-your-user) with one call.
+
+## Getting a key for your user
+
+An AI agent (Claude Code, Codex, Cursor, a notebook) can get a free key for the person it works for in one call, with no browser sign-up first:
+
+```bash
+curl -X POST https://api.openalex.org/api-keys \
+  -H "Content-Type: application/json" \
+  -d '{"email": "ana.silva@usp.br"}'
+```
+
+The answer carries the key, which works right away:
+
+```json
+{
+  "api_key": "...",
+  "status": "pending_activation",
+  "email": "ana.silva@usp.br",
+  "daily_budget_usd": 0.1,
+  "daily_budget_usd_after_activation": 1.0,
+  "activate_by": "2026-10-22T17:30:05Z",
+  "message": "This key works now, with $0.10 of free usage a day. We emailed ana.silva@usp.br a link: ..."
+}
+```
+
+- **Until it's activated,** the key has $0.10 of free usage a day and 10 requests per second: what a keyless network gets, but its own.
+- **We email the address a link** titled "Activate your OpenAlex API key." When the person clicks it, the same key gets a free account's $1 a day, with nothing to change in the code. The click also signs them in to [openalex.org](https://openalex.org), where they can see their usage.
+- **If it's never activated,** the key stops working after 7 days.
+- **The agent's key is for API calls only.** It can't sign in to openalex.org, it spends from the person's daily budget, and the person can revoke it in [Settings → API key](https://openalex.org/settings/api-key). Their own account key is separate and stays with them.
+
+Use the person's real address, so ask them for it. Placeholders like `you@example.com` are refused, and so are addresses that already have an account: that person copies their key from [Settings → API key](https://openalex.org/settings/api-key) instead.
+
+The body can also carry `"name"` (the person's name) and `"agent"` (what's asking, such as `"Claude Code"`). An `Idempotency-Key` header (a fresh UUID) makes a retry return the same key instead of an error.
+
+| Response | What it means |
+|----------|---------------|
+| `201` | Here's the key. |
+| `400` | The address is missing, malformed, a placeholder, or one we can't email. Ask the person for theirs. |
+| `409 account_exists` | The address already has an account. The person copies their key from Settings → API key. |
+| `409 activation_pending` | A key for the address is waiting for activation. The person clicks the emailed link (we resend it at most once a day). |
+| `429` | Too many keys from this network or email domain today. The person can [sign up](https://openalex.org/signup) on the website instead. |
+
+`GET https://api.openalex.org/api-keys` returns these instructions as JSON, for agents that can only fetch URLs.
+
+Keep the key out of code you share: an `OPENALEX_API_KEY` environment variable, or a `.env` file listed in `.gitignore`, is a good home.
 
 ## Sending your key
 
@@ -46,6 +91,7 @@ Basic use is free and generous, and a free key gives you 10× the keyless budget
 |---------------|---------------------|
 | No API key | 10 |
 | Free API key, or prepaid usage | 30 |
+| [Key an agent asked for](#getting-a-key-for-your-user), not yet activated | 10 |
 | [Annual plan](/access/pricing/) | 50 |
 
 A few heavy request types have lower limits of their own: [semantic search](/api/semantic-search/) is 1 request per second, and searches with more than 5 `OR`/`AND`/`NOT` operators are limited to 1 (no key), 5 (free key or prepaid usage) or 25 (annual plan) per second. A per-second 429 costs nothing; wait a moment and retry.

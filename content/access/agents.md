@@ -1,6 +1,6 @@
 ---
 title: "Other agents"
-updated: 2026-10-02
+updated: 2026-10-15
 description: "How to get the most out of AI agents that use OpenAlex through the API — ChatGPT, Cursor, coding agents, and Claude without the connector."
 tags: ["reference"]
 ---
@@ -26,6 +26,8 @@ This page is about how to work with agents effectively — which kind to use, ho
 > If you use Claude, add the free [OpenAlex connector](/how-to/ai-assistants/) from Claude's connector directory instead of doing any of this: sign in with your OpenAlex account once, and Claude queries OpenAlex on your own key with no prompt engineering. A ChatGPT version is coming soon. The rest of this section is for agents without the connector.
 
 **Give it your API key.** Agents make a lot of requests, and the keyless budget runs out fast. Sign up free at [openalex.org](https://openalex.org), copy your key from **Settings → API key**, and paste it into the chat. (If a key ever leaks, rotate it in Settings — the old one dies instantly.) See [Authentication](/api/authentication/) for how budgets work.
+
+**Or let it get one for you.** No account yet? Give your agent your email address and it can [get a key for you](/api/authentication/#getting-a-key-for-your-user) in one call. The key works right away; click the link we email you, and it gets the full free budget.
 
 **Point it at the docs.** Anything the agent is unsure of, it can read right here — this whole site is optimized for AI use. If it seems lost, saying "check help.openalex.org" is usually enough. For heavy API work, hand it the [LLM quick reference](/api/llm-quick-reference/), a condensed page written specifically for agents.
 

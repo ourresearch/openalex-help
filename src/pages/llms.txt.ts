@@ -40,6 +40,12 @@ export const GET: APIRoute = async ({ site }) => {
     `New here? Start with the [Quickstart](${base}/quickstart/): get real data out of`,
     `OpenAlex in five minutes ([markdown](${base}/quickstart.md)).`,
     '',
+    // oxjob #1697: a coding agent with no key gets one for its user in one call.
+    'No API key? An AI agent can get a free one for its user in one call:',
+    '`POST https://api.openalex.org/api-keys` with `{"email": "<your user\'s email>"}`. The key works at once',
+    `($0.10 a day); we email the user a link that raises it to $1 a day. Details: [Authentication](${base}/api/authentication/#getting-a-key-for-your-user)`,
+    `and [auth.md](${base}/auth.md).`,
+    '',
     'Field and vocabulary semantics (what each entity is, where its records come from,',
     'what every attribute means, controlled-vocabulary definitions) are canonical under',
     '`/data/` — e.g. the works field dictionary at `/data/works/` and work types',
