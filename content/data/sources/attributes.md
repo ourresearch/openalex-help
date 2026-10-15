@@ -1,6 +1,6 @@
 ---
 title: "Attributes"
-updated: 2026-10-09
+updated: 2026-10-15
 description: "The canonical dictionary of every attribute on a source object — what each one means, where it comes from, and its quirks."
 tags: ["reference"]
 ---
@@ -48,12 +48,7 @@ This is the canonical dictionary of every attribute on a **source** object. Attr
 *Boolean.* True if the source is on the [CWTS Core sources list](https://zenodo.org/records/13879982) — the venues behind the [Leiden Ranking](https://open.leidenranking.com/) (about 36,000 sources). Not the same as the Web of Science Core Collection; see [About](/data/sources/#cwts-core-vs-web-of-science). Filter/sort/group_by.
 
 ### `listed_in`
-*List of strings.* The external source lists this source appears on, by list id. Membership only — it says nothing about quality, and OpenAlex does not endorse any list (see [Allow lists](/data/sources/#allow-lists)). Current values:
-
-- `cwts-core` — the [CWTS Core sources list](https://zenodo.org/records/13879982) (same as [`is_core`](#is_core)).
-- `doaj` — the [Directory of Open Access Journals](https://doaj.org/) (same as [`is_in_doaj`](#is_in_doaj)).
-- `doyens` — the *Liste de revues recommandables* published by the [Conférence des Doyens de Médecine and CNU Santé](https://conferencedesdoyensdemedecine.org/la-conference-des-doyens-de-medecine-et-du-cnu-sante-luttent-contre-les-revues-predatrices/) (France): health, medicine and biology journals in French and English, matched to sources by ISSN. About 3,300 sources; loaded from the 2026-07-01 edition.
-- …plus the national, regional and discipline lists in the [source lists](/data/source-lists/) Values table, one id per level where a list has levels (61 ids in all, October 2026).
+*List of strings.* The external source lists this source appears on, by list id, e.g. `doaj`, `cwts-core` or `jufo-3`. Membership only — it says nothing about quality, and OpenAlex does not endorse any list (see [Allow lists](/data/sources/#allow-lists)). We keep adding lists, so this page doesn't name them all: see every list OpenAlex carries, with its maintainer, scope and loaded edition, at [openalex.org/source-lists](https://openalex.org/source-lists) or [`api.openalex.org/source-lists`](https://api.openalex.org/source-lists). `cwts-core` and `doaj` match [`is_core`](#is_core) and [`is_in_doaj`](#is_in_doaj).
 
 Empty when the source is on no list. Filter/group_by; also available on works as `primary_location.source.listed_in`, `locations.source.listed_in` and `best_oa_location.source.listed_in`. New lists are added over time; the booleans above are kept for compatibility. Each id is a [source list](/data/source-lists/) entity carrying the maintainer, URL and loaded edition.
 
