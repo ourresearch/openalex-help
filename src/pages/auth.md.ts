@@ -35,9 +35,9 @@ Every endpoint works with no key, on a free daily budget ($0.10) shared by every
 - **register_uri:** https://api.openalex.org/api-keys (POST, JSON \`{"email": "<your user's email>"}\`; GET it for instructions)
 - **guide:** ${base}/api/authentication/#getting-a-key-for-your-user
 
-The key works at once with $0.10 of free usage a day. We email the address a link; when the person clicks it,
-the same key gets a free account's $1 a day. Unactivated keys stop working after 7 days. The key is for API
-calls only: it can't sign in to openalex.org, and the person can revoke it there. Ask your user for their real
+We email the address a link; when the person clicks it, the key starts working, with a free account's $1 a day.
+Until then, requests with the key get a 403 (key_not_activated). The key is for API calls only: it can't sign in
+to openalex.org, and the person can revoke it there. Ask your user for their real
 address; placeholders and addresses that already have an account are refused.
 
 ### API key, from the person's account

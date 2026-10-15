@@ -27,7 +27,7 @@ This page is about how to work with agents effectively — which kind to use, ho
 
 **Give it your API key.** Agents make a lot of requests, and the keyless budget runs out fast. Sign up free at [openalex.org](https://openalex.org), copy your key from **Settings → API key**, and paste it into the chat. (If a key ever leaks, rotate it in Settings — the old one dies instantly.) See [Authentication](/api/authentication/) for how budgets work.
 
-**Or let it get one for you.** No account yet? Give your agent your email address and it can [get a key for you](/api/authentication/#getting-a-key-for-your-user) in one call. The key works right away; click the link we email you, and it gets the full free budget.
+**Or let it get one for you.** No account yet? Give your agent your email address and it can [get a key for you](/api/authentication/#getting-a-key-for-your-user) in one call. Click the link we email you, and the key starts working, with the full free budget.
 
 **Point it at the docs.** Anything the agent is unsure of, it can read right here — this whole site is optimized for AI use. If it seems lost, saying "check help.openalex.org" is usually enough. For heavy API work, hand it the [LLM quick reference](/api/llm-quick-reference/), a condensed page written specifically for agents.
 

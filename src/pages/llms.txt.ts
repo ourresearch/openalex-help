@@ -42,8 +42,8 @@ export const GET: APIRoute = async ({ site }) => {
     '',
     // oxjob #1697: a coding agent with no key gets one for its user in one call.
     'No API key? An AI agent can get a free one for its user in one call:',
-    '`POST https://api.openalex.org/api-keys` with `{"email": "<your user\'s email>"}`. The key works at once',
-    `($0.10 a day); we email the user a link that raises it to $1 a day. Details: [Authentication](${base}/api/authentication/#getting-a-key-for-your-user)`,
+    '`POST https://api.openalex.org/api-keys` with `{"email": "<your user\'s email>"}`. We email the user a link,',
+    `and the key works ($1 a day) once they click it. Details: [Authentication](${base}/api/authentication/#getting-a-key-for-your-user)`,
     `and [auth.md](${base}/auth.md).`,
     '',
     'Field and vocabulary semantics (what each entity is, where its records come from,',
