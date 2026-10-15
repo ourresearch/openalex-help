@@ -25,9 +25,9 @@ This page is about how to work with agents effectively — which kind to use, ho
 > [!claude]
 > If you use Claude, add the free [OpenAlex connector](/how-to/ai-assistants/) from Claude's connector directory instead of doing any of this: sign in with your OpenAlex account once, and Claude queries OpenAlex on your own key with no prompt engineering. A ChatGPT version is coming soon. The rest of this section is for agents without the connector.
 
-**Give it your API key.** Agents make a lot of requests, and the keyless budget runs out fast. Sign up free at [openalex.org](https://openalex.org), copy your key from **Settings → API key**, and paste it into the chat. (If a key ever leaks, rotate it in Settings — the old one dies instantly.) See [Authentication](/api/authentication/) for how budgets work.
+**Let it get a key for you.** Agents make a lot of requests, and the keyless budget runs out fast, so they need a key. A coding agent can get one itself: tell it to use OpenAlex, and when it needs a key it can ask for your email address. Or say it up front: *"Get me a free OpenAlex API key; my email is ana@usp.br."* Click the link in the email we send you ("Activate your OpenAlex API key"), and that's all. The key works from then on, with the full free budget, and you never copy or paste anything. ([How it works](/api/authentication/#getting-a-key-for-your-user).)
 
-**Or let it get one for you.** No account yet? Give your agent your email address and it can [get a key for you](/api/authentication/#getting-a-key-for-your-user) in one call. Click the link we email you, and the key starts working, with the full free budget.
+**Or give it your own key.** Already have an account, or using a chat assistant that can't call APIs on its own? Copy your key from **Settings → API key** and paste it into the chat. (If a key ever leaks, rotate it in Settings, and the old one stops working instantly.) See [Authentication](/api/authentication/) for how budgets work.
 
 **Point it at the docs.** Anything the agent is unsure of, it can read right here — this whole site is optimized for AI use. If it seems lost, saying "check help.openalex.org" is usually enough. For heavy API work, hand it the [LLM quick reference](/api/llm-quick-reference/), a condensed page written specifically for agents.
 

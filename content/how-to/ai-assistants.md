@@ -1,6 +1,6 @@
 ---
 title: "Using OpenAlex with an AI assistant"
-updated: 2026-10-03
+updated: 2026-10-15
 description: "Most of what you'd do with OpenAlex, an AI assistant can do for you. In Claude, the free OpenAlex connector makes it easiest: add it from Claude's connector directory in about two minutes. Any assistant can also use OpenAlex with your API key, and a ChatGPT connector is coming soon."
 tags: ["search"]
 synonyms: ["Claude", "Claude connector", "OpenAlex connector", "connectors directory", "ChatGPT", "MCP", "MCP server", "connector", "custom connector", "AI agent", "AI assistant", "chatbot", "LLM"]
@@ -8,7 +8,7 @@ card: "In Claude, add the free OpenAlex connector and just ask. Any other assist
 ---
 Most of what people do with OpenAlex, an AI assistant can do for you: find the most-cited papers on a topic, run a really thorough search, check a bibliography, profile an institution's output, clean up your own author profile. You ask in plain language. The assistant works out what to look up, runs the searches, and shows you the results with links and the exact query it used. You don't need to learn our query language or the API.
 
-**In Claude, the easiest way is the OpenAlex connector.** It's free, it's listed in Claude's connector directory, and adding it takes about two minutes. You don't *need* it: any assistant, Claude included, can use OpenAlex with your API key ([below](#without-the-connector-paste-your-api-key)). But the connector makes everything easier. You sign in once instead of pasting a key, Claude gets purpose-built OpenAlex tools instead of working from the raw API, every answer comes back with the exact query it ran, and Claude can [fix your own author profile](/tutorials/fix-your-profile/) in conversation.
+**In Claude, the easiest way is the OpenAlex connector.** It's free, it's listed in Claude's connector directory, and adding it takes about two minutes. You don't *need* it: any assistant, Claude included, can use OpenAlex with an API key ([below](#without-the-connector)). But the connector makes everything easier. You sign in once instead of pasting a key, Claude gets purpose-built OpenAlex tools instead of working from the raw API, every answer comes back with the exact query it ran, and Claude can [fix your own author profile](/tutorials/fix-your-profile/) in conversation.
 
 A ChatGPT version of the connector is coming soon; until then, see [ChatGPT](#chatgpt) below.
 
@@ -49,9 +49,13 @@ Then it hands you the finished query in [OQL](/access/oql/), OpenAlex's query la
 
 Whenever an answer looks off, ask *"what query did you run?"* Every answer carries it. More ideas for what to ask are on the [connector reference](/access/connector/#what-you-can-ask).
 
-## Without the connector: paste your API key
+## Without the connector
 
 Every major assistant already knows how to use OpenAlex, and this help site is written so that assistants can read it. All they need is a key so their searches count against your free daily budget instead of the shared anonymous one. This is the way to go in ChatGPT, Gemini or Copilot today, or in Claude if you'd rather not add a connector.
+
+**If your assistant can call APIs itself** (coding agents like Claude Code, Codex or Cursor), let it get the key. Ask your question and add *"get me a free OpenAlex API key; my email is …"*. Click the link in the email we send you, and you're set. Nothing to copy or paste. ([How it works](/api/authentication/#getting-a-key-for-your-user).)
+
+**Otherwise, paste your key:**
 
 1. Sign in at [openalex.org](https://openalex.org) (a free account takes a minute; the login link arrives by email).
 2. Open **Settings → API key** and copy the key.
@@ -63,7 +67,7 @@ That's it. The assistant reads the documentation when it's unsure, calls the API
 
 ## ChatGPT
 
-A ChatGPT version of the OpenAlex connector is coming soon. Until then, the [API-key method](#without-the-connector-paste-your-api-key) above works well in ChatGPT.
+A ChatGPT version of the OpenAlex connector is coming soon. Until then, [pasting your API key](#without-the-connector) works well in ChatGPT.
 
 If you're comfortable with developer settings and are on a Plus, Pro, Business or Enterprise plan, ChatGPT's **Developer mode** can connect to the same address as Claude (`https://mcp.openalex.org/mcp`, with sign-in). OpenAI labels the mode "elevated risk" and it has to be chosen from the **+** menu in each chat, so we don't recommend it as the everyday route. We'll replace this section with real steps when the ChatGPT connector is out.
 

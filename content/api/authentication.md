@@ -11,7 +11,12 @@ OpenAlex data is free, and so is casual use of the API — you can make basic qu
 
 ## Getting an API key
 
-It's free. [Make an account](https://openalex.org/) (about 30 seconds) and copy your key from [openalex.org/settings/api](https://openalex.org/settings/api). An AI agent can also [get a key for you](#getting-a-key-for-your-user) with one call.
+It's free, and there are two ways to get one:
+
+- **On the website.** [Make an account](https://openalex.org/signup) (about 30 seconds), then copy your key from [Settings → API key](https://openalex.org/settings/api-key).
+- **From your AI agent.** If you work with a coding agent (Claude Code, Codex, Cursor and the like), give it your email address and let it [ask for a key](#getting-a-key-for-your-user). You click one link in the email we send, and the agent's key starts working. Nothing to copy or paste.
+
+Either way, a key works only once its email address is verified. So there are just two states: no key, or a key with a verified email.
 
 ## Getting a key for your user
 
@@ -41,7 +46,7 @@ The answer carries the key:
 - **The link lasts 7 days.** If it runs out, the agent asks again with the same address and we resend it (at most once a day).
 - **The agent's key is for API calls only.** It can't sign in to openalex.org, it spends from the person's daily budget, and the person can revoke it in [Settings → API key](https://openalex.org/settings/api-key). Their own account key is separate and stays with them.
 
-Use the person's real address, so ask them for it. Placeholders like `you@example.com` are refused, and so are addresses that already have an account: that person copies their key from [Settings → API key](https://openalex.org/settings/api-key) instead.
+**Ask your user for their email address; never invent one.** We email that address, and the key works only after its owner clicks the link, so a made-up address gets you nothing. Placeholders like `you@example.com` and addresses named after an agent (`claude@…`, `gpt.user@…`) are refused. So are addresses that already have an account: that person copies their key from [Settings → API key](https://openalex.org/settings/api-key) instead.
 
 The body can also carry `"name"` (the person's name) and `"agent"` (what's asking, such as `"Claude Code"`). An `Idempotency-Key` header (a fresh UUID) makes a retry return the same key instead of an error.
 

@@ -37,8 +37,8 @@ Every endpoint works with no key, on a free daily budget ($0.10) shared by every
 
 We email the address a link; when the person clicks it, the key starts working, with a free account's $1 a day.
 Until then, requests with the key get a 403 (key_not_activated). The key is for API calls only: it can't sign in
-to openalex.org, and the person can revoke it there. Ask your user for their real
-address; placeholders and addresses that already have an account are refused.
+to openalex.org, and the person can revoke it there. Ask your user for their email address; never invent one.
+Placeholders, agent-named addresses and addresses that already have an account are refused.
 
 ### API key, from the person's account
 

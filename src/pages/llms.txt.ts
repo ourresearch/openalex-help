@@ -41,7 +41,7 @@ export const GET: APIRoute = async ({ site }) => {
     `OpenAlex in five minutes ([markdown](${base}/quickstart.md)).`,
     '',
     // oxjob #1697: a coding agent with no key gets one for its user in one call.
-    'No API key? An AI agent can get a free one for its user in one call:',
+    'No API key? An AI agent can get a free one for its user in one call (ask the user for their email; never invent one):',
     '`POST https://api.openalex.org/api-keys` with `{"email": "<your user\'s email>"}`. We email the user a link,',
     `and the key works ($1 a day) once they click it. Details: [Authentication](${base}/api/authentication/#getting-a-key-for-your-user)`,
     `and [auth.md](${base}/auth.md).`,
