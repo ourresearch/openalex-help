@@ -1,6 +1,6 @@
 ---
 title: "Authorships"
-updated: 2026-09-23
+updated: 2026-10-17
 description: "The join between a work and its authors — the raw name each author printed, their position, whether they're corresponding, and the institutions they listed — and what every attribute on an authorship object means."
 tags: ["reference"]
 entity:
@@ -23,9 +23,13 @@ The raw author name is fed into **author disambiguation** — the process that c
 
 Each of the author's [`raw_affiliation_strings`](#raw_affiliation_strings) is matched to one or more ROR-backed [institutions](/data/institutions/). The mapping — which raw string produced which institution IDs — is preserved in [`affiliations`](#affiliations); the flattened, deduplicated institutions are mirrored into [`institutions`](#institutions) and their countries into [`countries`](#countries). See [raw affiliation strings](/data/raw-affiliation-strings/) for the parsing pipeline, its benchmarks, and its failure modes.
 
-### The 100-author cap
+### How many authors a work shows
 
-To keep works fast to serve, the `authorships` list is capped at the **first 100 authors**. Works with thousands of authors (large collaborations, consortium papers) are truncated to the first hundred by byline position; the rest are dropped from the list. Counts like [`countries_distinct_count`](/data/works/attributes/#countries_distinct_count) reflect only the authorships that survive the cap.
+To keep lists fast, a work in a list of works (filter, search and sample results) shows only its **first 100 authorships**, in byline order. The single-work endpoint ([`/works/W4416450507`](https://api.openalex.org/works/W4416450507), 2,424 authors) and the [snapshot](/access/snapshot/) show all of them, up to **5,000**: for the rare work with more than 5,000 authors, OpenAlex keeps the first 5,000 in byline order, and `authors_count` stops at 5,000 too.
+
+Filters on authors, ORCIDs and institutions (`authorships.author.id`, `authorships.author.orcid`, `authorships.institutions.id`, `.lineage`, `.ror`, `.country_code`, `.type`, and the `institutions.*` shortcuts) search every authorship a work keeps. A few still look at the first 100 only: `authorships.countries`, `authorships.is_corresponding`, `raw_affiliation_strings` and `raw_author_name.search`.
+
+Counts like [`countries_distinct_count`](/data/works/attributes/#countries_distinct_count) and [`institutions_distinct_count`](/data/works/attributes/#institutions_distinct_count) count every author, including any past the first 5,000.
 
 ## Attributes
 

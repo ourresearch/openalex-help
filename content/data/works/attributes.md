@@ -51,7 +51,7 @@ Filter: `doi:` matches a work whose own `doi` **or** any location's `doi` equals
 ```
 
 ### `authorships`
-*List.* [Authorship](/data/authorships/) objects, each pairing an author with their institution(s) and role on the work. Capped at the first 100 authors for performance. Filter by the region or city of the authors' institutions with `authorships.institutions.geo.region` and `authorships.institutions.geo.city` (looked up at query time).
+*List.* [Authorship](/data/authorships/) objects, each pairing an author with their institution(s) and role on the work. In a list of works, each work shows its first 100; the single-work endpoint (`/works/{id}`) and the snapshot show all of them, up to 5,000. See [How many authors a work shows](/data/authorships/#how-many-authors-a-work-shows). Filter by the region or city of the authors' institutions with `authorships.institutions.geo.region` and `authorships.institutions.geo.city` (looked up at query time).
 
 ### `corresponding_author_ids`
 *List.* OpenAlex IDs of authors whose authorship has `is_corresponding: true`.
