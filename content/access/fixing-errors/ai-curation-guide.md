@@ -61,7 +61,7 @@ Most "the affiliation is wrong" reports are **not** string-matching errors. Chec
 - **Search recall breaks on diacritics** — search `Honggerberg`, not `Hönggerberg`, when hunting candidate strings with `q=`.
 - **Paging**: `/raw-affiliation-strings` basic paging stops at 10,000 rows (HTTP 400 past page 100) — use `cursor=*` for big pulls; `per_page` caps at 100.
 - **Batch responses are per-item.** An array `POST /curations` returns `207 Multi-Status` — always read each item's outcome; one rejected item doesn't stop the others. Submissions are validated (the institution must exist; the string must be known to OpenAlex) — a brand-new string may be rejected with "retry after the next daily update."
-- **Multi-work API queries truncate author lists at 100 authorships per work.** To audit a specific work's full author list (mega-author papers), fetch that work individually.
+- **Multi-work API queries truncate author lists at 100 authorships per work, and location lists at 100 locations.** To audit a specific work's full author or location list (mega-author papers, works copied into hundreds of repositories), fetch that work individually.
 - **Latency**: corrections apply on a nightly pipeline and reach the live API within about two days. Don't re-check five minutes later and conclude it failed; track status via `GET /curations` instead.
 
 ## Working at scale

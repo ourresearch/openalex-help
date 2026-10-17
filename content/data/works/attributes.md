@@ -1,6 +1,6 @@
 ---
 title: "Attributes"
-updated: 2026-10-14
+updated: 2026-10-17
 description: "The canonical dictionary of every attribute on a work object — what each one means, where it comes from, and its quirks."
 tags: ["reference"]
 ---
@@ -72,10 +72,10 @@ Filter: `doi:` matches a work whose own `doi` **or** any location's `doi` equals
 *Object.* The [location](/data/locations/) holding the best (closest to the [version of record](https://en.wikipedia.org/wiki/Version_of_record)) copy — for a journal article, the published full text at the publisher's DOI URL. See [Locations](/data/locations/) for the object shape. Its dehydrated `source` carries the source's list memberships, so you can narrow works to journals on an external list: `primary_location.source.listed_in:doyens` (see [`listed_in`](/data/sources/attributes/#listed_in) for the list ids; the same key works under `locations.` and `best_oa_location.`). Filter/group_by. You can also filter by attributes of the primary source and its publisher that the work doesn't store, looked up at query time: `primary_location.source.country_code`, `.is_global_south`, `.is_ojs`, `.is_high_oa_rate`, `.is_preprint_repository`, `.summary_stats.h_index`, `.summary_stats.2yr_mean_citedness`, and `primary_location.source.host_organization.country_code` (see [Filter by a related entity's attributes](/api/filtering/#filter-by-a-related-entitys-attributes)).
 
 ### `locations`
-*List.* Every unique place this work lives, each a [location](/data/locations/) object.
+*List.* Every unique place this work lives, each a [location](/data/locations/) object. In a list of works (filter, search and sample results), each work shows its first 100 locations; the single-work endpoint (`/works/{id}`) and the snapshot show all of them. Filters and group_bys on `locations.*`, `repository` and `doi` look through every location, so a work can match on one its list entry doesn't show. See [Works with many locations](/data/locations/#works-with-many-locations).
 
 ### `locations_count`
-*Integer.* The number of [`locations`](#locations).
+*Integer.* The number of [`locations`](#locations): all of them, including in a list of works that shows only the first 100.
 
 ### `best_oa_location`
 *Object.* The best openly available [location](/data/locations/), or null if none. "Best" is scored by: must be OA; publisher beats repository; `publishedVersion` beats `acceptedVersion` beats `submittedVersion`; a direct PDF link beats none; and major repositories (PubMed Central, arXiv) rank above others.

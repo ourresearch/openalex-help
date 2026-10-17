@@ -1,6 +1,6 @@
 ---
 title: "Locations"
-updated: 2026-10-13
+updated: 2026-10-17
 description: "Each place a version of a work is available — the publisher's site, a repository, a preprint server — with its version, license, and open-access status; what every attribute means, and how to list, filter, search and group locations directly at /locations."
 tags: ["reference"]
 entity:
@@ -21,6 +21,15 @@ A work exists in several forms — the author's **submitted** manuscript, the pe
 ### Where locations come from
 
 The publisher location comes from the work's own source record (the DOI's landing page and metadata). The repository and preprint locations come from **harvesting** open copies across the web — the same Unpaywall-style approach that scans institutional repositories, subject repositories (arXiv, PubMed Central, HAL, Zenodo), and aggregators (DOAJ, Europe PMC) for freely available versions of the work. Each distinct copy OpenAlex finds becomes a location, with its own hosting [`source`](#source), [`license`](#license), and open-access status. Locations always point at someone else's copy; OpenAlex's own cached full text for a work lives separately, in the work's [`content_urls`](/data/works/attributes/#content_urls) (see [Fulltext](/access/fulltext/)).
+
+### Works with many locations
+
+Most works have a handful of locations, but a few have hundreds, and one has more than a thousand. To keep lists fast, a work in a list of works (`/works?filter=…`, `/works?search=…`) shows only its first 100 locations. Nothing is lost:
+
+- The single-work endpoint ([`/works/W4392145873`](https://api.openalex.org/works/W4392145873)) and the [snapshot](/access/snapshot/) carry every location.
+- [`locations_count`](/data/works/attributes/#locations_count) is always the full number, so `locations_count:>100` finds the works whose list entry is shortened.
+- Every location filter and group_by (`locations.source.id`, `repository`, `doi`, `locations.landing_page_url`, `locations.version`, …) searches all of a work's locations, so a work can match on a location its list entry doesn't show. Fetch the work by itself to see it.
+- The [`/locations`](#the-locations-endpoint) endpoint lists every copy as its own row.
 
 ### Best-OA selection
 
