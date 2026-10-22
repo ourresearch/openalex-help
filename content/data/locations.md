@@ -1,6 +1,6 @@
 ---
 title: "Locations"
-updated: 2026-10-22
+updated: 2026-10-17
 description: "Each place a version of a work is available — the publisher's site, a repository, a preprint server — with its version, license, and open-access status; what every attribute means, and how to list, filter, search and group locations directly at /locations."
 tags: ["reference"]
 entity:
@@ -35,10 +35,6 @@ Most works have a handful of locations, but a few have hundreds, and one has mor
 
 From all of a work's locations, OpenAlex designates a [`primary_location`](/data/works/attributes/#primary_location) (the copy closest to the version of record — for a journal article, the published full text at the publisher) and a [`best_oa_location`](/data/works/attributes/#best_oa_location) (the best *freely readable* copy, or null if none). "Best OA" is scored: the location must be OA; publisher beats repository; `publishedVersion` beats `acceptedVersion` beats `submittedVersion`; a direct PDF link beats none; and major repositories (PubMed Central, arXiv) rank above others. This is what feeds the work's [`open_access`](/data/works/attributes/#open_access) `oa_url` and `oa_status`.
 
-### Correcting a location
-
-A location's [`is_oa`](#is_oa), [`pdf_url`](#pdf_url) and [`license`](#license) can be wrong. Site-wide curators correct them with [location curation](/api/location-curation/), using the location's [`id`](#id); anyone else can [report it by ticket](/access/fixing-errors/works/#wrong-open-access-status). Open-access status (`oa_status`) is derived from the license, the host type and `is_oa`, so it can't be curated itself. Corrections are applied in the nightly build and show in the API the next day.
-
 ## Attributes
 
 This is the dictionary of every attribute on a **location** object as it appears inline on a work, in [`locations`](/data/works/attributes/#locations), [`primary_location`](/data/works/attributes/#primary_location), and [`best_oa_location`](/data/works/attributes/#best_oa_location). Locations are a component entity, so they carry none of the [common attributes](/data/common-attributes/): no minted OpenAlex ID, no `display_name`, no `works_count`. The [`id`](#id) is a *namespaced* handle built from the identifier the copy was harvested under, not an `L…`-style OpenAlex ID. Rows from the [`/locations`](#the-locations-endpoint) endpoint carry a superset of these attributes; the extras are listed [below](#extra-attributes-on-locations-rows).
@@ -56,7 +52,7 @@ This is the dictionary of every attribute on a **location** object as it appears
 *String.* The URL of the page describing and linking to this copy of the work — for a publisher location, the DOI URL; for a repository, the record page.
 
 ### `pdf_url`
-*String.* Where this copy's full-text PDF is, or null when only a landing page is known. A `pdf_url` doesn't mean the copy is open: the PDF may need payment, so a location can have a `pdf_url` and [`is_oa`](#is_oa) `false`. A direct PDF link is one of the tie-breakers in best-OA scoring. This is the host's PDF, not OpenAlex's cached copy; for that, see [`content_urls`](/data/works/attributes/#content_urls).
+*String.* A direct link to a full-text PDF of this copy, or null when only a landing page is known. A direct PDF link is one of the tie-breakers in best-OA scoring. This is the host's PDF, not OpenAlex's cached copy; for that, see [`content_urls`](/data/works/attributes/#content_urls).
 
 ### `source`
 *Object.* The dehydrated [source](/data/sources/) hosting this copy — the journal, repository, or platform. Keys include `id`, `display_name`, `issn_l`, `issn`, `is_oa`, `is_in_doaj`, `is_core`, [`listed_in`](/data/sources/attributes/#listed_in), `type`, and the host organization (`host_organization`, `host_organization_name`, `host_organization_lineage`, `host_organization_lineage_names`). May be null for locations whose host isn't a known source.

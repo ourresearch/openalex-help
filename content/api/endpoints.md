@@ -1,6 +1,6 @@
 ---
 title: "Overview"
-updated: 2026-10-22
+updated: 2026-10-03
 description: "Every OpenAlex API endpoint at a glance — the entity list/single endpoints and the special-purpose ones — each linking to the entity page that documents its fields."
 tags: ["reference"]
 ---
@@ -63,7 +63,7 @@ This page is the index. What each entity *is*, and what every field on it *means
 | `/autocomplete/{entity}` | Fast type-ahead suggestions — see [Autocomplete](/api/autocomplete/) |
 | `/text` | Tag arbitrary text with topics and keywords — see [Tag Aboutness](/api/tag-aboutness/) |
 | `/collections` | [Collections](/data/collections/): list the public ones (no key) and your own (filter, search, sort, group), create, read, share and change them and their members (no credits) — see [Collections API](/api/collections/) |
-| `/curations` | Submit corrections *(on `user.openalex.org`)* — see [Author curation](/api/author-curation/), [Location curation](/api/location-curation/) and [Curations](/data/curations/) |
+| `/curations` | Submit corrections *(on `user.openalex.org`)* — see [Author curation](/api/author-curation/) and [Curations](/data/curations/) |
 | `/saved-searches` | Save searches and set email alerts for new works (no credits) — see [Alerts and saved searches](/api/alerts/) |
 
 ## OQL and OQO

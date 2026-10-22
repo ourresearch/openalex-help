@@ -351,7 +351,7 @@ export const NAV_GROUPS: Record<string, NavGroup[]> = {
       // stay in the API tab as a special endpoint (flagged for Jason's review).
       label: 'Curation & special',
       desc: 'Curation, collections, alerts, and special-purpose endpoints.',
-      slugs: ['author-curation', 'location-curation', 'collections', 'alerts', 'tag-aboutness'],
+      slugs: ['author-curation', 'collections', 'alerts', 'tag-aboutness'],
     },
     {
       // oxjob #750 (Jason): Deprecations doesn't belong in Get started — it's
