@@ -1,6 +1,6 @@
 ---
 title: "Example costs"
-updated: 2026-10-09
+updated: 2026-10-23
 description: "What OpenAlex API operations cost, what your free daily budget buys, and the price of some common activities."
 tags: ["reference"]
 synonyms: ["costs", "credits", "api pricing", "rate card", "what it costs"]
@@ -28,23 +28,26 @@ OpenAlex data is free; what costs money is *usage* of the API. This page makes t
 
 ## What an OQL calculation costs
 
-An [OQL](/access/oql/) query with a `summarize using` step, a split by a list, bins or conditions, or a filter on its groups is priced from what it does, step by step:
+An [OQL](/access/oql/) table of groups (`get the count of works ... by ...`), and anything in OQL's [general form](/access/oql/#when-a-sentence-cant-say-it-the-general-form), is priced from what it does, step by step:
 
 | Step | Credits | Cost |
 |------|---------|------|
-| The starting set, defined by filters only | 1 | $0.0001 |
-| The starting set, defined by a search | 10 | $0.001 |
-| Each listed search in a split (`group those works by title-abstract search in (...)`) | 10 | $0.001 |
-| Each lookup a group filter needs (co-authors, collaborators, or the groups' own fields such as h-index) | 1 | $0.0001 |
+| The set of works, defined by filters only | 1 | $0.0001 |
+| The set of works, defined by a search | 10 | $0.001 |
+| Each lookup of the groups' own records (`by author at [X]`, `with an h-index above 20`, `Show h-index`, `co-author is not`) | 1 | $0.0001 |
+| Each compared search (`compare title-abstract has "a" versus "b"`) | 10 | $0.001 |
+| Walks and sets: each extra call they need | 1 | $0.0001 |
 
-Each searched phrase costs what that search costs on its own, so a query that compares three searches costs the same as running the three searches. Nothing else adds to the price: splits by a field, counts, means and percentages are free. Any other OQL query costs what the same query costs as a URL: 1 credit for a list, 10 for a search, grouped or not.
+Each compared search costs what that search costs on its own, so a query that compares three searches costs the same as running the three searches. Nothing else adds to the price: splits, counts, means, shares and percentages are free. A list (`get works ...`, `get authors ...`) costs what the same query costs as a URL: 1 credit, or 10 with a search.
 
 | Query | Credits | Cost |
 |-------|---------|------|
-| `get works where institution is (I63966007); then group those works by institution where collaborator is not (I63966007)` | 2 | $0.0002 |
-| `get works where title-abstract has ("climate change") and year >= (2020); then group those works by year; then summarize using count, percent open access` | 10 | $0.001 |
-| `get works where title-abstract has (kelp); then group those works by author where count of those works > (10) and h-index > (20)` | 11 | $0.0011 |
-| `get works where year >= (2010); then group those works by title-abstract search in (("a"), ("b"), ("c")); then summarize using count` | 31 | $0.0031 |
+| `get the count of [Kenya](KE)'s works by year` | 1 | $0.0001 |
+| `get the count and percent open access of works about "climate change" by year since 2020` | 10 | $0.001 |
+| `get the count of works about kelp by author with an h-index above 20. Only authors with more than 10 works about kelp.` | 11 | $0.0011 |
+| `get the count of works about kelp by author at [University of British Columbia](I141945490) since 2022. Show h-index.` | 12 | $0.0012 |
+| `get works where published since 2010; then, compare title-abstract has "a" versus "b" versus "c" using count` | 31 | $0.0031 |
+| `get works where institution is [University of Kansas](I146416000) and published in 2023; then, get each author of those works; then, get all that author's works; finally, summarize each author using mean FWCI` | 11 | $0.0011 |
 
 **Check the price before you run.** The [/query endpoint](/api/oql/#translating-a-query-the-query-endpoint) is free and reports a query's price, step by step, in `check.cost`. A response reports what the query cost in `meta.cost` and in the `X-RateLimit-Credits-Used` header. A query that costs more than you have left today is refused before it runs, and refusals are free.
 

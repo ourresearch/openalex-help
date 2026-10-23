@@ -1,6 +1,6 @@
 ---
 title: "Filter"
-updated: 2026-10-03
+updated: 2026-10-23
 description: "Narrow down results to entities that match specific conditions"
 tags: ["api"]
 source_id: "guides/filtering"
@@ -172,7 +172,7 @@ Some filters reach through to a related entity: a work's journal country, its pu
 | Authors | `last_known_institutions.geo.region`, `.geo.city` | the institution's `geo.region`, `geo.city` | `last_known_institutions.geo.city:Paris` |
 | Awards | `funder.country_code` | the funder's `country_code` | `funder.country_code:CA` |
 
-They combine with every other filter and take `|` (OR) and `!` (NOT) as usual; quote multi-word values (`geo.region:"New York"`). In OQL they read as `source country`, `publisher country`, `funder country`, `institution region`, `institution city`, `source h-index`, `source OJS` and so on: `works where source country is (CA) and year is (2024)`. They filter but can't sort or group: group works by `primary_location.source.id` (or `funders.id`, `authorships.institutions.id`) instead. A value can match at most 300,000 related records, and `null` isn't accepted; for works with no source, filter `primary_location.source.id:null`.
+They combine with every other filter and take `|` (OR) and `!` (NOT) as usual; quote multi-word values (`geo.region:"New York"`). In OQL they read as `source country`, `publisher country`, `funder country`, `institution region`, `institution city`, `source h-index`, `source OJS` and so on: `get works from 2024 where source country is [Canada](CA)`. They filter but can't sort or group: group works by `primary_location.source.id` (or `funders.id`, `authorships.institutions.id`) instead. A value can match at most 300,000 related records, and `null` isn't accepted; for works with no source, filter `primary_location.source.id:null`.
 
 ## Available filters by entity
 

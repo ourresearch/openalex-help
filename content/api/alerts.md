@@ -1,6 +1,6 @@
 ---
 title: "Alerts and saved searches"
-updated: 2026-10-03
+updated: 2026-10-23
 description: "Save a works search and get emailed new works that match it: the API, built for scripts and AI agents"
 tags: ["api"]
 ---
@@ -119,7 +119,7 @@ without. Newest first. `per_page` defaults to 25 and is at most 100.
 
 | Field | Required | Notes |
 |---|---|---|
-| `url` | yes | The search, as an api.openalex.org or openalex.org URL: `https://api.openalex.org/works?filter=…&search=…`, or an OQL query, `https://api.openalex.org/?oql=works where …`. Your key, paging and `select` are dropped; the filter, search and sort are kept. The `url` and `api_url` you get back are normalized (re-encoded), so don't compare them to what you sent as strings. |
+| `url` | yes | The search, as an api.openalex.org or openalex.org URL: `https://api.openalex.org/works?filter=…&search=…`, or an OQL query, `https://api.openalex.org/?oql=get works …`. Your key, paging and `select` are dropped; the filter, search and sort are kept. The `url` and `api_url` you get back are normalized (re-encoded), so don't compare them to what you sent as strings. |
 | `name` | yes | |
 | `description` | no | |
 | `alert` | no | `{ "frequency": "weekly" }` to create the alert at the same time; `frequency` is required inside it (`daily`, `weekly` or `monthly`, any case). Omit or `null` for no alert. |
@@ -161,7 +161,7 @@ An alert needs a works search that can gain new works:
 | Works with no filter or search at all | No: it would send every new work | `search_is_empty` |
 | Works in a collection of works (`collection:col_…`) | No: a collection of works is a fixed list and never gains new works | `works_collection_cannot_alert` |
 | Semantic search (`search.semantic`, or OQL `is similar to`) | No: it can't be limited to newly added works | `semantic_search_cannot_alert` |
-| OQL (`https://api.openalex.org/?oql=works where …`) | Yes, if it returns works | `alert_requires_works_search` |
+| OQL (`https://api.openalex.org/?oql=get works …`) | Yes, if it returns works | `alert_requires_works_search` |
 | Authors, sources or any type but works | No: alerts send works | `alert_requires_works_search` |
 
 To alert on works from a collection of something other than works, filter by that

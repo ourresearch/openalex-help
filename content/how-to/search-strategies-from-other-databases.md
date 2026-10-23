@@ -1,6 +1,6 @@
 ---
 title: "Searching with a strategy from another database"
-updated: 2026-10-13
+updated: 2026-10-23
 description: "Paste a PubMed, Scopus, Web of Science, Ovid, Embase, Cochrane Library or EBSCO search into openalex.org and it runs translated into OQL, with every difference from the original listed."
 tags: ["search", "oql"]
 synonyms: ["PubMed", "Scopus", "Web of Science", "WoS", "Ovid", "MEDLINE", "Embase", "Cochrane", "CINAHL", "EBSCO", "Dimensions", "search strategy", "search translation", "translate search", "systematic review search", "MeSH", "TITLE-ABS-KEY", "tiab", "field tags", "Polyglot"]
@@ -59,12 +59,12 @@ Limits become OpenAlex filters:
 
 | Limit | Examples | OpenAlex |
 |---|---|---|
-| Publication years | `2015:2020[dp]`, `PUBYEAR > 2014`, `PY=(2000-2016)`, `limit 7 to yr="2010 - 2020"` | `year >= (...)`, `year <= (...)` |
-| Language | `english[la]`, `LANGUAGE(english)`, `LA=(English)`, `limit 7 to english language` | `language is (en)` |
-| Document type | `review[pt]`, `DOCTYPE(ar)`, `LIMIT-TO(DOCTYPE,"re")`, `DT=(Article)` | `type is (article or review)` |
-| Study design | `"randomized controlled trial"[pt]`, `"systematic review"[pt]`, `meta-analysis[pt]` | `study design is (...)` |
-| Open access | `LIMIT-TO(OA,"all")` | `it's open access` |
-| Source type | `SRCTYPE(j)` | `source type is (journal)` |
+| Publication years | `2015:2020[dp]`, `PUBYEAR > 2014`, `PY=(2000-2016)`, `limit 7 to yr="2010 - 2020"` | `since 2015`, `from 2000–2016` |
+| Language | `english[la]`, `LANGUAGE(english)`, `LA=(English)`, `limit 7 to english language` | `where language is [English](en)` |
+| Document type | `review[pt]`, `DOCTYPE(ar)`, `LIMIT-TO(DOCTYPE,"re")`, `DT=(Article)` | `where type is ([article](article) or [review](review))` |
+| Study design | `"randomized controlled trial"[pt]`, `"systematic review"[pt]`, `meta-analysis[pt]` | `where study design is [Randomized Controlled Trial](randomized-controlled-trial)` |
+| Open access | `LIMIT-TO(OA,"all")` | `open access works` |
+| Source type | `SRCTYPE(j)` | `where source type is [journal](journal)` |
 
 OpenAlex has no conference-paper type: conference papers are articles, so `cp` and "Proceedings Paper" become `type is (article)`. [Study designs](/data/study-designs/) are tagged by OpenAlex from each paper, not by an indexer, so they match a different set than PubMed's publication types. Publication-date limits use the year only.
 

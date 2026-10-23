@@ -1,6 +1,6 @@
 ---
 title: "Locations"
-updated: 2026-10-17
+updated: 2026-10-23
 description: "Each place a version of a work is available — the publisher's site, a repository, a preprint server — with its version, license, and open-access status; what every attribute means, and how to list, filter, search and group locations directly at /locations."
 tags: ["reference"]
 entity:
@@ -175,9 +175,9 @@ Unlike OpenAlex IDs, location ids are **case-sensitive** and contain `/` and `:`
 [OQL](/access/oql/) treats locations like any other entity. Run these at the API root (`GET /?oql=…`), or paste them into the web app at [openalex.org/locations](https://openalex.org/locations):
 
 ```
-locations where version is (publishedVersion)
-locations where license is (cc-by)
-locations where source is (sources/S4306400194) group by version
-locations where title has (climate)
-locations group by license
+get locations where version is publishedVersion
+get locations where license is [CC-BY](cc-by)
+get locations where title has climate
+get locations where source is [arXiv (Cornell University)](S4306400194); then, group those locations by version
+get locations; then, group those locations by license
 ```

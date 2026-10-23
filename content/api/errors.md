@@ -1,6 +1,6 @@
 ---
 title: "Error Handling"
-updated: 2026-10-04
+updated: 2026-10-23
 description: "API error codes and retry strategies"
 tags: ["api"]
 source_id: "api-reference/errors"
@@ -127,8 +127,8 @@ X-RateLimit-Reset: 43200
 
 Error responses are free. Any `4xx` or `5xx` response costs 0 credits, and its `X-RateLimit-Credits-Used` header reports `0`. A typo in a filter or search does not use up your daily budget.
 
-An OQL query with a `calculate` step, a split by a list, bins or conditions, or a filter on its
-groups is priced from its plan (see [Example costs](/access/example-costs/#what-an-oql-calculation-costs)).
+An OQL table of groups, or a query in OQL's general form, is priced from what it does (see
+[Example costs](/access/example-costs/#what-an-oql-calculation-costs)).
 If it costs more than you have left today, it is refused before it runs, with HTTP `429` and
 `"error": "not_enough_credits"`. The body names the price (`cost`, step by step) and how to fix
 it: run it after the daily reset, add [prepaid usage](/access/buying-and-renewing/), or narrow

@@ -1,6 +1,6 @@
 ---
 title: "Expansion corpus"
-updated: 2026-09-18
+updated: 2026-10-23
 description: "OpenAlex works come in two corpora — the curated core and a larger expansion (formerly 'XPAC'). What's in each, why the expansion is opt-in, and how to select core / expansion / all in the REST API and OQL."
 tags: ["reference"]
 synonyms: ["xpac", "expansion pack", "corpus", "include_xpac", "is_xpac", "core corpus", "expansion corpus"]
@@ -44,13 +44,15 @@ curl "https://api.openalex.org/works?corpus=expansion"
 
 ## In OQL
 
-In the [Query Language](/api/oql/), the corpus is a trailing parenthetical on a works query — the underlying selector is `corpus`, with values `core`, `expansion`, and `all`:
+In [OQL](/access/oql/), the corpus goes in parentheses right after `works`, in OQL's [general form](/access/oql/#when-a-sentence-cant-say-it-the-general-form) (the underlying selector is `corpus`, with values `core`, `expansion`, and `all`). With nothing said, a query runs on the core:
 
 ```
-works                          # core (default)
-works (expansion corpus)       # only the expansion
-works (all corpora)            # core + expansion
+get works about kelp
+get works (expansion corpus) where published in 2020 and title-abstract-keywords has (kelp)
+get works (all corpora) where title-abstract-keywords has (kelp)
 ```
+
+The first is the core only; the second, only the expansion; the third, core and expansion together.
 
 ## Why the expansion is opt-in
 
