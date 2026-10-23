@@ -131,7 +131,7 @@ The search string is portable, exactly as a systematic review would report it: c
 | `get works where it's related to ([The state of OA: a large-scale analysis of the prevalence and impact of Open Access articles](W2741809807))` | OpenAlex's "related works" for it |
 | `get works citing works in the collection [Example: altmetrics papers](col_8yWKmRNyEr)` | works citing any work in a [collection](#collections) |
 
-A work's title is cut at about 40 characters in the echo; the ID is what counts. To cite (or not cite) a whole set of works, see [the general form](#when-a-sentence-cant-say-it-the-general-form).
+A long work title is cut short in the echo (at 48 characters); the ID is what counts. To cite (or not cite) a whole set of works, see [the general form](#when-a-sentence-cant-say-it-the-general-form).
 
 ### Where the work sits: journals, topics, funders, licenses
 
@@ -197,7 +197,7 @@ With no order, a list with a search comes back best matches first; a list with n
 
 ### Lists of things
 
-Authors, institutions, journals and other things can be listed by their own fields: what's on their own record, not counts of some works. `get authors`, `get institutions`, `get companies` (and other institution types), `get journals`, `get repositories`, `get sources`, `get publishers`, `get funders`, `get topics`:
+Authors, institutions, journals and other things can be listed by their own fields: what's on their own record, not counts of some works. `get authors`, `get institutions`, `get companies`, `get journals`, `get repositories`, `get sources`, `get publishers`, `get funders`, `get topics`:
 
 | Example | Meaning |
 |---|---|
