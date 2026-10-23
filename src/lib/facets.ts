@@ -25,6 +25,7 @@ export const INTERFACE_LABELS: Record<InterfaceId, string> = {
 export const TUTORIAL_INTERFACES: Record<string, InterfaceId[]> = {
   // Slimmed to the worked-tutorial keepers (oxjob #750, Aug 2026) — the recipe-
   // shaped pages moved to How-to / Access; slugs are the shortened titles.
+  'oql': ['oql', 'web', 'api'],
   'map-sdg-research': ['api'],
   'systematic-reviews': ['oql', 'web', 'api'],
   'journals-you-cite': ['api'],

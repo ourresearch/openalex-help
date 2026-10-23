@@ -174,6 +174,7 @@ export const NAV_GROUPS: Record<string, NavGroup[]> = {
       label: 'Explore the literature',
       desc: 'Map a field, run a review, and rank the journals that matter.',
       slugs: [
+        'oql',
         'map-sdg-research',
         'systematic-reviews',
         'journals-you-cite',
