@@ -1,12 +1,12 @@
 ---
 title: "OQO"
-updated: 2026-10-09
+updated: 2026-10-25
 description: "OQO (OpenAlex Query Objects) — the machine-readable JSON twin of OQL, built for agents and tools, with its JSON Schema."
 tags: ["oql"]
 generated: true
 source_id: "query-spec/oqo"
 source_url: "https://api.openalex.org/query/spec/oqo"
-source_updated: "2026-10-09"
+source_updated: "2026-10-25"
 ---
 OQO (OpenAlex Query Objects) is the machine-readable twin of [OQL](/access/oql/): the same queries, expressed as JSON data instead of text.
 
@@ -23,9 +23,9 @@ The [OQL API](/api/oql/) accepts either form and returns the canonical OQO for a
 ```json
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://openalex.org/schemas/oqo/v1.5",
+  "$id": "https://openalex.org/schemas/oqo/v1.6",
   "name": "OpenAlex_Query_Object",
-  "description": "The canonical JSON representation for OpenAlex queries. OQO is the intermediate format for bidirectional translation between URL parameters, OQL (human-readable query language), and programmatic JSON access. GENERATED from query_translation/oqo.py by query_translation/regen_schema.py — do not hand-edit. Entity values are BARE (the namespace is the column_id, resolved via the column registry): 'I136199984', 'de', 'article', '13' — never 'institutions/I136199984'. Negation is the per-node 'is_negated' polarity bit; the canonical form is NNF (negation on leaves only). JSON is the normative serialization; YAML is display-only and MUST round-trip to identical JSON (quote every string value on emit). The OQO describes WHICH ROWS a query matches — nothing else (#661 query/view split, v1.4). View/presentation parameters (sort, column projection, pagination) are NOT part of the OQO; they travel as sibling request parameters on the execute surface, in the classic URL syntax: `sort=<col>[:asc|desc][,…]`, `select=<col>,[…]`, `page`, `per_page`, `cursor` — as query-string params on `GET /?oqo=…` / `GET /?oql=…`, or as sibling top-level body keys on `POST / {\"oqo\": …, \"sort\": …}`.",
+  "description": "The canonical JSON representation for OpenAlex queries. OQO is the intermediate format for bidirectional translation between URL parameters, OQL (human-readable query language), and programmatic JSON access. GENERATED from query_translation/oqo.py by query_translation/regen_schema.py — do not hand-edit. Entity values are BARE (the namespace is the column_id, resolved via the column registry): 'I136199984', 'de', 'article', '13' — never 'institutions/I136199984'. Negation is the per-node 'is_negated' polarity bit; the canonical form is NNF (negation on leaves only). JSON is the normative serialization; YAML is display-only and MUST round-trip to identical JSON (quote every string value on emit). The OQO describes WHICH ROWS a query matches and IN WHAT ORDER (`sort_by` is part of the query since v1.6, oxjob #1555; the #661 query/view split, v1.4, had made it view state). View/presentation parameters (column projection, pagination) are NOT part of the OQO; they travel as sibling request parameters on the execute surface, in the classic URL syntax: `select=<col>,[…]`, `page`, `per_page`, `cursor` — as query-string params on `GET /?oqo=…` / `GET /?oql=…`, or as sibling top-level body keys on `POST / {\"oqo\": …}`. A sibling `sort=<col>[:asc|desc][,…]` is still accepted and writes the order into the query.",
   "type": "object",
   "required": [
     "get_rows"
@@ -54,6 +54,14 @@ The [OQL API](/api/oql/) accepts either form and returns the canonical OQO for a
       },
       "default": []
     },
+    "sort_by": {
+      "type": "array",
+      "description": "The order, primary key first (oxjob #1555, v1.6): the order words at the end of the OQL (`, most cited first`, `, highest h-index first`). Absent ⇒ the default order (a list's; a table's most works first, years oldest first). The order never changes what else the OQL says.",
+      "items": {
+        "$ref": "#/$defs/SortBy"
+      },
+      "default": []
+    },
     "group_by": {
       "type": "array",
       "description": "The splits, outermost first (up to three): OQL's `group those works by ...` steps (oxjob #1530). Order is meaningful. A split is a column, or listed values / searches of a column, or bins of a number column, or a list of conditions; any split may filter its groups (`where`).",
@@ -65,7 +73,7 @@ The [OQL API](/api/oql/) accepts either form and returns the canonical OQO for a
     },
     "calculate": {
       "type": "array",
-      "description": "OQL's final `summarize using ...` step (oxjob #1530, #1555): the measures computed for each group and for the summary (the whole starting set, and each split on its own), or for the whole set when there is no split.",
+      "description": "The numbers of a table of groups (OQL `get the count and mean FWCI of works ... by ...`; `summarize using ...` in the general form; oxjob #1530, #1555, #1589): the measures computed for each group and for the summary (the whole starting set, and each split on its own), or for the whole set when there is no split.",
       "items": {
         "$ref": "#/$defs/Measure"
       },
@@ -405,6 +413,36 @@ The [OQL API](/api/oql/) accepts either form and returns the canonical OQO for a
         }
       }
     },
+    "SortBy": {
+      "type": "object",
+      "description": "One sort key: a column (or `relevance_score`; with a split, `count`, `key` or a measure's key such as `mean_fwci`) and a direction. `aggregate` orders groups by a metric of a number column.",
+      "required": [
+        "column_id"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "column_id": {
+          "type": "string"
+        },
+        "direction": {
+          "type": "string",
+          "enum": [
+            "asc",
+            "desc"
+          ],
+          "default": "asc"
+        },
+        "aggregate": {
+          "type": "string",
+          "enum": [
+            "mean",
+            "sum",
+            "min",
+            "max"
+          ]
+        }
+      }
+    },
     "Operator": {
       "type": "string",
       "description": "Leaf comparison operators (strictly affirmative). Sourced from oqo.VALID_OPERATORS. Negation is the `is_negated` bit, not an operator.",
@@ -516,7 +554,7 @@ The [OQL API](/api/oql/) accepts either form and returns the canonical OQO for a
       }
     },
     {
-      "description": "Calculations by listed values (oxjob #1530): get works where topic is (T10878); then group those works by institution in (I63966007, I97018004); then, summarize using count, mean FWCI, percent open access",
+      "description": "Numbers by listed values (oxjob #1530): get the count, mean FWCI, and percent open access of works in the topic [CRISPR and Genetic Engineering](T10878) by institution in ([Massachusetts Institute of Technology](I63966007), [Stanford University](I97018004))",
       "value": {
         "get_rows": "works",
         "filter_rows": [
@@ -550,7 +588,7 @@ The [OQL API](/api/oql/) accepts either form and returns the canonical OQO for a
       }
     },
     {
-      "description": "A group filter (oxjob #1530): ... then group those works by author where count of those works > (10) and h-index > (20)",
+      "description": "A group filter (oxjob #1530): get the count of works with kelp in the title or abstract by author with an h-index above 20. Only authors with more than 10 works with kelp in the title or abstract.",
       "value": {
         "get_rows": "works",
         "filter_rows": [
