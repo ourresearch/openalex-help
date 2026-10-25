@@ -1,6 +1,6 @@
 ---
 title: "Integrations"
-updated: 2026-08-15
+updated: 2026-10-25
 description: "Getting OpenAlex data into other tools: website exports, VOSviewer, link resolvers, and the Unpaywall browser extension."
 tags: ["downloads"]
 synonyms: ["export", "CSV", "RIS", "VOSviewer", "link resolver", "SFX", "EBSCO", "Unpaywall extension"]
@@ -17,6 +17,10 @@ Above any works result set there's an export button. Pick a format:
 - **Text format (.txt)** — broadly compatible with the export format used by Web of Science and Dimensions.
 
 The system prepares the file and gives you a download link — large result sets can take several minutes. The maximum export is 100,000 works.
+
+## How do I download an OQL table?
+
+An [OQL](/access/oql/) table of groups, such as `get the count and percent open access of [Kenya](KE)'s works by year since 2015`, downloads from the same button above the results. It exports every row, however many there are: one CSV with no split, or a zip with two splits (`groups.csv`, one row per group, plus a summary of the whole set). The Export dialog shows the price before you start: the query's price for every 100 rows. On the API, add `&format=csv` to the query for the groups, and `&format=csv&table=summary` for the summary. Details: [Downloading results](/access/oql/#downloading-results).
 
 ## How do I import OpenAlex data into VOSviewer?
 

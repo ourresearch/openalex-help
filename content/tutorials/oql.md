@@ -1,6 +1,6 @@
 ---
 title: "Your first OQL queries"
-updated: 2026-10-23
+updated: 2026-10-25
 subtitle: "Ask OpenAlex in plain English: a list of papers, then counts, rankings and the people behind a topic, in five sentences."
 description: "A hands-on introduction to OQL, the OpenAlex Query Language: lists of works, tables of groups, rankings with a count floor, and the researchers behind a topic, built up step by step on one topic."
 tags: ["recipes", "oql"]
@@ -95,4 +95,4 @@ OQL's text says everything the query does, with a few sensible defaults it doesn
 - **Check before you run:** `https://api.openalex.org/query/oql/<your query>` is free. It says whether the query is valid, how to fix it if not, and what it will cost.
 - **Have an AI write it:** with the [OpenAlex connector](/how-to/ai-assistants/), ask Claude in plain language; every answer comes with the OQL it ran, ready to paste into the OQL tab or your methods section.
 
-**Where next:** the [OQL guide](/access/oql/) has every part of the language with an example, and [Systematic reviews](/tutorials/systematic-reviews/) builds a full search strategy in OQL.
+**Where next:** the [OQL guide](/access/oql/) has every part of the language with an example. The how-tos take one job each: [benchmarking against peers](/how-to/benchmarking/), [finding experts and partners](/how-to/finding-experts/), [tracking trends over time](/how-to/trends-over-time/) and [following citations](/how-to/following-citations/); [Systematic reviews](/tutorials/systematic-reviews/) builds a full search strategy.

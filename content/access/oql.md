@@ -1,6 +1,6 @@
 ---
 title: "Overview"
-updated: 2026-10-23
+updated: 2026-10-25
 description: "The OpenAlex Query Language: what OQL is, how to write it, and every part of it with a copyable example."
 tags: ["oql"]
 source_id: "query-spec/guide+cheatsheet"
@@ -467,6 +467,8 @@ A query that can't do what it appears to do is refused before it runs, never ans
 
 ## Going deeper
 
+- **[Your first OQL queries](/tutorials/oql/)**: a five-step tutorial, from a list of papers to the people behind a topic.
+- **How-tos:** [Benchmarking against peers](/how-to/benchmarking/), [Finding experts and partners](/how-to/finding-experts/), [Tracking trends over time](/how-to/trends-over-time/), [Following citations](/how-to/following-citations/), and [Systematic reviews](/tutorials/systematic-reviews/).
 - **[Cases](https://openalex.org/query/oql/cases)**: a browsable library of worked examples, each with its OQL and the underlying query object.
 - **[Specification](/access/oql-spec/)**: the formal spec: every rule and edge case, plus the formal grammar.
 - **[OQO](/access/oqo-schema/)**: the machine-readable JSON twin of OQL, built for agents and tools.

@@ -1,6 +1,6 @@
 ---
 title: "Working with collections"
-updated: 2026-10-03
+updated: 2026-10-25
 description: "Recipes for collections: build one from a list of DOIs, ORCIDs or ISSNs or from a search, share it, filter by a country group such as the EU or low-income countries, copy someone else's, report on a set of journals or institutions, exclude a list, get alerts, export members, and do it all from a script or an AI agent."
 tags: ["how-do-i"]
 synonyms: ["collection", "saved list", "reading list", "journal list", "list of authors", "col_", "country group", "EU countries", "European Union", "Latin America", "low-income countries", "Global South", "OECD", "world region"]
@@ -168,6 +168,19 @@ https://api.openalex.org/works/W2741809807?select=locations
 ```
 
 Put the `locations[].id` values you want into `member_ids`.
+
+## How do I use a collection in OQL?
+
+In [OQL](/access/oql/), write the collection as a link, `[name](col_…)`, wherever a value goes. What `in the collection` means depends on what the collection holds: a works collection is those works, a country collection is works from those countries.
+
+```
+get works in the collection [Example: altmetrics papers](col_8yWKmRNyEr)
+get works citing works in the collection [Example: altmetrics papers](col_8yWKmRNyEr)
+get works from 2024 about kelp where country is not in the collection [European Union (EU27)](col_LV29j8URoX)
+get the count, mean FWCI, and percent open access of works since 2020 by country in the collection [European Union (EU27)](col_LV29j8URoX), highest mean FWCI first
+```
+
+The last is a table with one row per member country. A collection of peer institutions works the same way: `by institution in the collection [My peers](<your collection ID>)` gives one row per peer (see [Benchmarking against peers](/how-to/benchmarking/)). For now, a works collection works on its own in OQL; to combine one with other conditions, an order or a table, use the URL filter (`/works?filter=collection:col_…,publication_year:2024`).
 
 ## Can an AI agent do this for me?
 

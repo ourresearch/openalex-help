@@ -133,6 +133,12 @@ export const NAV_GROUPS: Record<string, NavGroup[]> = {
       slugs: ['api-recipes', 'collections', 'integrations', 'analyzing-your-institution'],
     },
     {
+      // oxjob #1589 (2026-10-25): OQL how-tos, one page per job (triage v3).
+      label: 'Querying with OQL',
+      desc: 'Benchmark, find experts, track trends and follow citations in plain-English queries.',
+      slugs: ['benchmarking', 'finding-experts', 'trends-over-time', 'following-citations'],
+    },
+    {
       label: 'Fixing errors',
       desc: 'Fix authors and affiliations yourself; report everything else.',
       slugs: ['fixing-errors', 'fixing-authors', 'fixing-affiliations', 'fixing-data-errors', 'author-profile-privacy'],
