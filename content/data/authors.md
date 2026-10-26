@@ -87,7 +87,7 @@ This is the canonical dictionary of every attribute on an **author** object. Att
 *Object.* Precomputed bibliometric indicators — `2yr_mean_citedness`, `h_index`, `i10_index`. See [Common attributes](/data/common-attributes/#summary_stats). Each sub-field is filterable, sortable, and groupable (e.g. `summary_stats.h_index:>40`).
 
 ### `counts_by_year`
-*List.* Per-year `{ year, works_count, oa_works_count, cited_by_count }` for roughly the last ten years. See [Common attributes](/data/common-attributes/#counts_by_year) — including why the array's sort direction isn't consistent across entity types (sort by `year` yourself).
+*List.* Per-year `{ year, works_count, oa_works_count, cited_by_count }`: works the author published that year, and citations their works received that year. See [Common attributes](/data/common-attributes/#counts_by_year) — including why the array's sort direction isn't consistent across entity types (sort by `year` yourself).
 
 ### `works_api_url`
 *String.* A ready-made [Works API](/data/works/) URL that returns this author's works — `https://api.openalex.org/works?filter=author.id:A…`. A convenience so you don't have to build the filter yourself.

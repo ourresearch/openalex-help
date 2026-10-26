@@ -84,7 +84,7 @@ This is the canonical dictionary of every attribute on a **publisher** object. A
 *Object.* Precomputed bibliometric indicators (`2yr_mean_citedness`, `h_index`, `i10_index`) over the publisher's works. See [Common attributes](/data/common-attributes/#summary_stats).
 
 ### `counts_by_year`
-*List.* Works published and citations received per year for roughly the last ten years. See [Common attributes](/data/common-attributes/#counts_by_year).
+*List.* Works published and citations received per year, from 2014 to the current year (`{ year, works_count, cited_by_count }`; no `oa_works_count`). See [Common attributes](/data/common-attributes/#counts_by_year).
 
 ### `roles`
 *List.* The other OpenAlex entities that are the *same real-world organization* — each a `{ role, id, works_count }` object where `role` is one of `publisher`, `institution`, or `funder`. See [Roles](#roles). Filter on `roles.id` to find every entity sharing a role with a given ID.

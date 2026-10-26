@@ -35,7 +35,14 @@ A handful of attributes appear on nearly every OpenAlex entity. They mean the sa
 These are convenience metrics; for anything rigorous, compute over the underlying works. Not available on works.
 
 ### `counts_by_year`
-*List.* Per-year rollup of the entity's activity for roughly the last ten years, each element `{ year, works_count, cited_by_count }` (author/source/etc. objects also carry `oa_works_count`). Handy for sparklines and trend lines. **The array's sort direction is not consistent across entity types** — always sort by `year` yourself before slicing the most-recent N.
+*List.* Per-year rollup of the entity's activity, each element `{ year, works_count, cited_by_count }` (author, source, institution and funder objects also carry `oa_works_count`). Handy for sparklines and trend lines.
+
+- `works_count` (and `oa_works_count`) counts the entity's works **published** in that year.
+- `cited_by_count` counts the citations the entity's works **received** in that year, whenever those works were published. It is the sum of the works' own [`counts_by_year`](/data/works/attributes/#counts_by_year), so it means the same thing as on a work. A year in which the entity was cited but published nothing appears with `works_count: 0`.
+- Citations are binned by year from 2012, so earlier years show `cited_by_count: 0`. Years after the current one never appear, and years with neither works nor citations are left out.
+- How far back the list goes depends on the entity type: every publication year for authors, sources and funders; from 2010 for institutions; from 2014 for publishers.
+
+**The array's sort direction is not consistent across entity types** — always sort by `year` yourself before slicing the most-recent N.
 
 ## Provenance timestamps
 

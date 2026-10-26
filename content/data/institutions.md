@@ -117,7 +117,7 @@ This is the canonical dictionary of every attribute on an **institution** object
 *Object.* Precomputed bibliometric indicators — `2yr_mean_citedness`, `h_index`, `i10_index`. See [Common attributes](/data/common-attributes/#summary_stats). Each sub-metric is independently filterable, sortable, and groupable.
 
 ### `counts_by_year`
-*List.* Works and citations for this institution per year over roughly the last ten years. See [Common attributes](/data/common-attributes/#counts_by_year) — the array is returned newest-first for institutions, so sort by `year` before slicing.
+*List.* Works this institution published and citations its works received, per year from 2010. See [Common attributes](/data/common-attributes/#counts_by_year) — the array is returned newest-first for institutions, so sort by `year` before slicing.
 
 ### `status`
 *String.* The institution's lifecycle status from ROR (e.g. `active`). Filterable, sortable, and groupable.

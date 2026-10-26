@@ -110,7 +110,7 @@ Empty when the source is on no list. Filter/group_by; also available on works as
 *List.* Like [`topics`](#topics), but scored by the source's *share* of each topic relative to all sources — surfacing the topics this source is disproportionately central to, not just its most frequent. Filter/sort/group_by on `topic_share.id`.
 
 ### `counts_by_year`
-*List.* Per-year rollup of the source's `works_count`, `oa_works_count`, and `cited_by_count` for roughly the last ten years. See [Common attributes](/data/common-attributes/#counts_by_year), including why its sort direction isn't consistent across entity types.
+*List.* Per-year rollup: the source's `works_count` and `oa_works_count` published that year, and the `cited_by_count` its works received that year. See [Common attributes](/data/common-attributes/#counts_by_year), including why its sort direction isn't consistent across entity types.
 
 ### `summary_stats`
 *Object.* Precomputed bibliometric indicators for the source: `2yr_mean_citedness` (a [journal impact factor](https://en.wikipedia.org/wiki/Impact_factor)-style measure), `h_index`, and `i10_index`. Filter/sort/group_by on each. See [Common attributes](/data/common-attributes/#summary_stats).
