@@ -1,6 +1,6 @@
 ---
 title: "Member"
-updated: 2026-08-12
+updated: 2026-10-26
 description: "The Member plan ($5,000/year): a $20/day API budget, the admin dashboard, community representation, and — for academic and government institutions — the affiliation editor and Unsub access."
 tags: ["reference"]
 synonyms: ["member plan", "membership", "institutional membership"]
@@ -39,4 +39,4 @@ A free subscription to [Unsub](https://unsub.org/), our tool for forecasting and
 
 ## Add-ons and upgrades
 
-Any plan can add the [PDF sync service](/access/pricing/#the-pdf-sync-add-on) — persistent sync of our full open-access PDF archive to your own storage. Need a bigger budget, daily sync, or real support tickets? [Member+](/access/member-plus/) includes everything here and more.
+Need a bigger budget, daily sync, real support tickets, or the [PDF sync service](/access/pricing/#the-pdf-sync-add-on)? [Member+](/access/member-plus/) includes everything here and more. PDF sync (persistent sync of our full open-access PDF archive to your own storage) is an add-on for Member+ and [Partner](/access/partner/) only, because new PDFs are only usable with the fresh metadata that daily sync provides.

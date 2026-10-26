@@ -1,6 +1,6 @@
 ---
 title: "Overview"
-updated: 2026-08-11
+updated: 2026-10-26
 description: "How OpenAlex pricing works: $1 of free API usage every day, pay-as-you-go prepaid usage, and annual plans (Member, Member+, Partner) — plus the PDF sync add-on and the free-data, paid-services sustainability model."
 tags: ["reference"]
 synonyms: ["plans", "subscriptions", "premium", "membership", "cost", "credits", "prepaid usage"]
@@ -35,9 +35,9 @@ Ready to talk? Email [sales@openalex.org](mailto:sales@openalex.org). If you're 
 
 ## The PDF sync add-on
 
-OpenAlex caches more than **50 million open-access full-text PDFs** (plus machine-readable TEI XML). Any annual plan can add the **PDF sync service**: persistent read access to the content archive's S3-compatible bucket, so you can sync the complete archive to your own storage — and keep receiving new PDFs as they arrive, continuously.
+OpenAlex caches more than **50 million open-access full-text PDFs** (plus machine-readable TEI XML). The [Member+](/access/member-plus/) and [Partner](/access/partner/) plans can add the **PDF sync service**: persistent read access to the content archive's S3-compatible bucket, so you can sync the complete archive to your own storage — and keep receiving new PDFs as they arrive, continuously. It isn't offered on Member: a new PDF is only usable with fresh metadata (its license, and which work it belongs to), and that freshness comes from [daily sync](/access/sync/), a Member+ benefit.
 
-Note what's for sale here: **sync, not PDFs**. In keeping with our [free data, paid services](#free-data-paid-services) model, we don't sell the documents — we sell the service of delivering the living, continuously-updated archive to your infrastructure. The add-on requires an active annual plan (any tier) and is priced separately; [contact sales](mailto:sales@openalex.org) for a quote. For the technical side — bucket layout, manifests, and smaller-scale download options — see [Fulltext](/access/fulltext/).
+Note what's for sale here: **sync, not PDFs**. In keeping with our [free data, paid services](#free-data-paid-services) model, we don't sell the documents — we sell the service of delivering the living, continuously-updated archive to your infrastructure. The add-on requires an active Member+ or Partner plan and is priced separately; [contact sales](mailto:sales@openalex.org) for a quote. For the technical side — bucket layout, manifests, and smaller-scale download options — see [Fulltext](/access/fulltext/).
 
 ## Free data, paid services
 

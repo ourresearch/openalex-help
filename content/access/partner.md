@@ -1,6 +1,6 @@
 ---
 title: "Partner"
-updated: 2026-08-12
+updated: 2026-10-26
 description: "The Partner plan (from $20,000/year): everything in Member+, plus a $200+/day API budget, full support, and — for academic and government institutions — power-user accounts and annual consulting hours."
 tags: ["reference"]
 synonyms: ["partner plan", "enterprise plan", "premium plan"]
@@ -35,4 +35,4 @@ A [daily-sync](/access/sync/) pipeline for your own copy of the database, the [a
 
 ## Add-ons
 
-Any plan can add the [PDF sync service](/access/pricing/#the-pdf-sync-add-on) — persistent sync of our full open-access PDF archive (more than 50 million documents) to your own storage. [Contact sales](mailto:sales@openalex.org) for a quote.
+Partner (like [Member+](/access/member-plus/)) can add the [PDF sync service](/access/pricing/#the-pdf-sync-add-on) — persistent sync of our full open-access PDF archive (more than 50 million documents) to your own storage. [Contact sales](mailto:sales@openalex.org) for a quote.

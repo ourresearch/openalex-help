@@ -1,6 +1,6 @@
 ---
 title: "Fulltext"
-updated: 2026-09-18
+updated: 2026-10-26
 description: "OpenAlex's cached full text — PDFs and Grobid TEI XML for 50M+ open-access works, linked from every work via content_urls — and how to download it at any scale, from one file to the whole archive."
 tags: ["downloads"]
 source_id: "download/full-text-pdfs"
@@ -101,7 +101,7 @@ Standard [usage rates](/access/example-costs/) apply per file; the accompanying 
 
 For the complete archive (all 50M+ files), the **PDF sync service** gives you persistent read access to the storage bucket, so you can sync everything to your own infrastructure — and keep receiving new PDFs as they arrive. Files are stored on [Cloudflare R2](https://developers.cloudflare.com/r2/), which is fully S3-compatible.
 
-PDF sync is sold as a paid **add-on to any [annual plan](/access/pricing/#annual-plans)** — what you're buying is the ongoing sync service, not the documents themselves (see [Pricing](/access/pricing/#the-pdf-sync-add-on) for the reasoning). [Contact sales](mailto:sales@openalex.org) to get started.
+PDF sync is sold as a paid **add-on to the [Member+](/access/member-plus/) or [Partner](/access/partner/) plan**: those plans include daily sync, and a new PDF is only usable with fresh metadata. What you're buying is the ongoing sync service, not the documents themselves (see [Pricing](/access/pricing/#the-pdf-sync-add-on) for the reasoning). [Contact sales](mailto:sales@openalex.org) to get started.
 
 **How it works:** we generate R2 API credentials with read-only access, and you sync with the AWS CLI:
 

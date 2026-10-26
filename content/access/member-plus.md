@@ -1,6 +1,6 @@
 ---
 title: "Member+"
-updated: 2026-08-12
+updated: 2026-10-26
 description: "The Member+ plan ($10,000/year): everything in Member, plus a $100/day API budget, basic support, and daily sync of the full database."
 tags: ["reference"]
 synonyms: ["member plus", "member+ plan", "daily sync plan"]
@@ -27,4 +27,4 @@ The [admin dashboard](/how-to/supporter-tools/#admin-dashboard), [community repr
 
 ## Add-ons and upgrades
 
-Any plan can add the [PDF sync service](/access/pricing/#the-pdf-sync-add-on) — persistent sync of our full open-access PDF archive to your own storage. Need a larger budget still, full support, or power-user accounts? See [Partner](/access/partner/).
+Member+ (and [Partner](/access/partner/)) can add the [PDF sync service](/access/pricing/#the-pdf-sync-add-on) — persistent sync of our full open-access PDF archive to your own storage. It pairs with your daily sync, which keeps each new PDF's metadata (its license, and which work it belongs to) fresh. Need a larger budget still, full support, or power-user accounts? See [Partner](/access/partner/).

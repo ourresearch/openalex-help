@@ -1,6 +1,6 @@
 ---
 title: "Buying & renewing"
-updated: 2026-08-09
+updated: 2026-10-26
 description: "How to buy OpenAlex prepaid usage and annual plans, invoices and VAT, trials, renewals, and what happens when your budget runs out."
 tags: ["reference"]
 synonyms: ["purchase", "invoice", "VAT", "renewal", "trial", "quote", "billing"]
@@ -15,7 +15,7 @@ Prepaid usage is drawn down only after your free $1 daily budget runs out, and i
 
 ## Buying an annual plan
 
-Annual plans ([Member, Member+, and Partner](/access/pricing/#annual-plans)) are sold by our team, not self-serve — most subscribers are institutions that need quotes, purchase orders, and invoices. Email [sales@openalex.org](mailto:sales@openalex.org) and we'll find the right plan, provide a quote, and invoice your organization. The [PDF sync add-on](/access/pricing/#the-pdf-sync-add-on) is scoped the same way, as part of your plan.
+Annual plans ([Member, Member+, and Partner](/access/pricing/#annual-plans)) are sold by our team, not self-serve — most subscribers are institutions that need quotes, purchase orders, and invoices. Email [sales@openalex.org](mailto:sales@openalex.org) and we'll find the right plan, provide a quote, and invoice your organization. The [PDF sync add-on](/access/pricing/#the-pdf-sync-add-on), available on Member+ and Partner, is scoped the same way, as part of your plan.
 
 ## Trials
 
