@@ -1,6 +1,6 @@
 ---
 title: "Group"
-updated: 2026-10-04
+updated: 2026-10-26
 description: "Aggregate entities into faceted counts using group_by"
 tags: ["api"]
 source_id: "guides/grouping"
@@ -118,6 +118,61 @@ https://api.openalex.org/works?filter=author.id:A5023888391&group_by=open_access
 # Which versions (published, accepted, submitted) arXiv holds
 https://api.openalex.org/locations?filter=source_id:S4306400194&group_by=version
 ```
+
+## Grouping by two or three fields
+
+`group_by` takes up to three fields, separated by commas. Each group then carries its own `groups`, split by the next field: works by year, and within each year by type.
+
+```bash
+# MIT's 2022-2023 works by year, and within each year by type
+https://api.openalex.org/works?filter=institutions.id:I63966007,publication_year:2022-2023&group_by=publication_year,type
+```
+
+Response (shortened):
+
+```json
+{
+  "group_by": [
+    {
+      "key": "2023",
+      "key_display_name": "2023",
+      "count": 13542,
+      "groups": [
+        {"key": "https://openalex.org/types/article", "key_display_name": "article", "count": 7445},
+        {"key": "https://openalex.org/types/preprint", "key_display_name": "preprint", "count": 2133}
+      ]
+    },
+    {
+      "key": "2022",
+      "key_display_name": "2022",
+      "count": 12528,
+      "groups": [
+        {"key": "https://openalex.org/types/article", "key_display_name": "article", "count": 7651},
+        {"key": "https://openalex.org/types/preprint", "key_display_name": "preprint", "count": 1641}
+      ]
+    }
+  ]
+}
+```
+
+One request replaces a loop of single-field requests (one per year, say). Each level returns up to `per_page` groups. Cursor paging doesn't work with more than one field, and the topic-hierarchy fields (`primary_topic.field.id`, `.subfield.id`, `.domain.id`) and the yes/no groupings (such as `has_doi`) work only on their own.
+
+## Sorting groups
+
+Groups come back with the most entities first. `sort` changes the order:
+
+| `sort=` | Order |
+|---|---|
+| `count:asc` | fewest first |
+| `key:asc`, `key:desc` | by the group's key (years oldest or newest first) |
+| `<number field>.<mean, sum, min or max>:desc` | by a number from each group's works; each group also returns it |
+
+```bash
+# MIT's 2023 works by subfield, highest mean citations first
+https://api.openalex.org/works?filter=institutions.id:I63966007,publication_year:2023&group_by=primary_topic.subfield.id&sort=cited_by_count.mean:desc
+```
+
+Each group then has `mean_cited_by_count` beside its `count`. With two or three fields, the order applies at every level. For several numbers per group (a count, a mean and a percent at once), use an [OQL table of groups](/access/oql/#tables-of-groups).
 
 ## Paging
 

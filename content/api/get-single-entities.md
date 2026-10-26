@@ -1,6 +1,6 @@
 ---
 title: "Get Singleton"
-updated: 2026-09-20
+updated: 2026-10-26
 description: "Retrieve a single entity by ID"
 tags: ["api"]
 source_id: "guides/get"
@@ -14,6 +14,12 @@ curl "https://api.openalex.org/works/W2741809807"
 ```
 
 **Cost:** Free
+
+**Fetching many?** One list request returns up to 100 records by ID, much faster than 100 single requests. It costs 1 credit for the whole list (see [OR filters](/api/filtering/#addition-or)):
+
+```bash
+curl "https://api.openalex.org/works?filter=ids.openalex:W2741809807|W2100837269&per_page=100"
+```
 
 ## OpenAlex IDs
 
