@@ -108,12 +108,13 @@ Unlike OpenAlex IDs these are **case-sensitive** and contain `/` and `:`; copy t
 
 ## Merged entities
 
-When duplicate entities are merged, requesting the old ID returns a `301` redirect to the new one:
+When duplicate authors, sources or funders are merged, the old ID keeps working: requesting it returns the record it was merged into. The API redirects the old ID to the surviving one and follows that redirect for you, so you get a normal `200` response whose `id` is the surviving ID:
 
 ```bash
-$ curl -i https://api.openalex.org/authors/A5092938886
-HTTP/1.1 301 MOVED PERMANENTLY
-Location: https://api.openalex.org/authors/A5006060960
+$ curl -s "https://api.openalex.org/authors/A5107411446?select=id,display_name"
+{"id": "https://openalex.org/A5107863564", "display_name": "Sonia Luquín"}
 ```
 
-Most HTTP clients follow redirects automatically, so you will receive the merged entity's data without extra handling.
+To tell that an ID was merged, compare the `id` in the response with the ID you asked for. Filters resolve the same way: `filter=authorships.author.id:A5107411446` returns the surviving author's works. Merges are followed to the end of the chain (if A was merged into B and B later into C, A returns C).
+
+A **deleted** ID (one with no surviving record) returns `404`, and so does a merged-away work ID: for works, see [Deletions and merged entities](/access/sync/#deletions-and-merged-entities). For bulk repair of stored IDs, the snapshot publishes every merged-away author and source ID with its surviving ID in [`merged_ids.csv.gz`](/access/sync/#merged-authors-and-sources-merged_idscsvgz).

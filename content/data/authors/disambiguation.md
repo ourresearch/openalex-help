@@ -1,6 +1,6 @@
 ---
 title: "Disambiguation"
-updated: 2026-08-19
+updated: 2026-10-26
 description: "How OpenAlex turns the author names printed on works into stable author profiles: the signals the model weighs, the 2023 upgrade, the special NULL and deleted-author IDs, and the two ways it fails."
 tags: ["reference"]
 source_id: "24347048891543"
@@ -40,6 +40,8 @@ Two author IDs fall outside the normal disambiguation process; you may encounter
 
 - **`A9999999999` — the NULL author.** Assigned to authorships that never went through disambiguation: no author name was received, the name was too short or too long to disambiguate reliably, or the name matched an ignored phrase (like "Unknown Author"). If an author asks to have their disambiguated profile removed, their works are reassigned here — effectively removing the profile. These records are grouped under this single NULL author rather than real profiles.
 - **`A5317838346` — deleted authors.** Used when an author ID is removed from OpenAlex, usually because it no longer has any works (its works were merged into another author or deleted).
+
+**Merged author IDs keep working.** When two profiles of the same person are merged, the merged-away ID resolves to the surviving profile: the API returns the surviving profile for it, filters on it return the surviving profile's works, and the snapshot lists every such pair in [`authors/merged_ids.csv.gz`](/access/sync/#merged-authors-and-sources-merged_idscsvgz). A deleted profile's ID (one with no surviving profile) returns 404.
 
 ## Known failure modes
 

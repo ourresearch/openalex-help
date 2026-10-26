@@ -77,6 +77,8 @@ Records are partitioned by `updated_date`: each partition holds the records that
 
 The works folder additionally carries `deleted_ids.csv.gz`, a gzip-compressed log of deleted work IDs and their deletion dates — see [Deletions and merged entities](/access/sync/#deletions-and-merged-entities) for the format, its size, and how to apply it. Works is the first entity type with a deletion log; it ships in every [daily snapshot](#the-daily-snapshot-bucket-paid-plans) (since 2026-08-15) and has been in this public bucket since the 2026-09-23 release.
 
+The authors and sources folders carry `merged_ids.csv.gz`, every merged-away author or source ID with the ID it now resolves to — see [Merged authors and sources](/access/sync/#merged-authors-and-sources-merged_idscsvgz). It ships in every daily snapshot from 2026-10-27 and reaches this public bucket with the next quarterly release.
+
 > **Note:**
 > Pre-2026 snapshots used a flat `data/{entity}/` layout (JSON Lines only) with no `jsonl/`/`parquet/` split. That older layout, along with the `merged_ids/` directory, is preserved under the `legacy-data/` prefix.
 
