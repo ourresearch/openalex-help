@@ -79,20 +79,25 @@ curl "https://api.openalex.org/works/doi:10.7717/peerj.4375"
 curl "https://api.openalex.org/works/pmid:29456894"
 ```
 
-### Canonical external IDs
+### Supported external IDs
 
-Each entity type has a primary external identifier:
+Each entity type has a primary (canonical) external identifier, and most accept a few more. Use the prefix form (`ror:02y3ad647`) or, for IDs that have one, the full URL (`https://ror.org/02y3ad647`, `https://orcid.org/...`, `https://doi.org/...`):
 
-| Entity | Canonical ID |
-|--------|--------------|
-| Works | DOI |
-| Authors | ORCID |
-| Sources | ISSN-L |
-| Institutions | ROR |
-| Topics | Wikidata ID |
-| Publishers | Wikidata ID |
+| Entity | Canonical ID | Lookup forms |
+|--------|--------------|--------------|
+| Works | DOI | `doi:`, `pmid:` (or the PubMed URL `https://pubmed.ncbi.nlm.nih.gov/29456894`) |
+| Authors | ORCID | `orcid:` |
+| Sources | ISSN-L | `issn_l:`, `issn:` |
+| Institutions | ROR | `ror:`, `wikidata:` |
+| Funders | ROR or Funder DOI | `ror:`, `doi:` (the Funder DOI, e.g. `doi:10.13039/100000001`), `crossref:` (the Funder Registry id, e.g. `crossref:100000001`), `wikidata:` |
+| Publishers | Wikidata ID | `wikidata:`, `ror:` |
+| Concepts (deprecated) | Wikidata ID | `wikidata:` |
+
+Wikidata IDs work as `wikidata:Q746413` or either Wikidata URL (`https://www.wikidata.org/wiki/Q746413` or `.../entity/Q746413`). [Topics](/data/topics/) have no external ID to look up by: their `ids.wikipedia` is a link, not a key. Keywords, fields, subfields and domains are looked up by their OpenAlex ID only.
 
 For authors, lookup by ORCID resolves by the primary ORCID or any [observed ORCID](/data/authors/#observed_orcids), not just the one currently shown as `orcid`.
+
+**When several records share an ID**, the lookup returns one: for an ORCID, the profile that holds it as its primary `orcid` (over one that only observed it), then the one with the most works; for every other ID, the record with the most works (a funder over a sub-unit that carries the same ROR, a publishing group over an imprint). To see all of them, use the matching filter, e.g. `/authors?filter=orcid:0000-0002-5787-4927`.
 
 ## Component ids: locations
 
