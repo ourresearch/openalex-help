@@ -1,6 +1,6 @@
 ---
 title: "Funders"
-updated: 2026-09-21
+updated: 2026-10-26
 description: "What a funder is, how OpenAlex grounds funders in ROR and the Crossref funder registry, and what every attribute on a funder object means."
 tags: ["reference"]
 source_id: "api-reference/funders"
@@ -63,7 +63,7 @@ This is the canonical dictionary of every attribute on a **funder** object. Attr
 *String.* The [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) code of the country the funder is based in. Unlike a [publisher's](/data/publishers/#country_codes) list, a funder has a single home country.
 
 ### `is_global_south`
-*Boolean.* Whether the funder is based in the [Global South](https://en.wikipedia.org/wiki/Global_South). Filterable and groupable — handy for equity analyses.
+*Boolean.* Whether the funder is based in the [Global South](https://en.wikipedia.org/wiki/Global_South). Not part of the funder object: it is a filter and group_by only (`filter=is_global_south:true`), worked out from [`country_code`](#country_code) when you query. Handy for equity analyses.
 
 ### `awards_count`
 *Integer.* The number of distinct [awards](/data/awards/) (grants) OpenAlex has recorded for this funder.
@@ -93,7 +93,7 @@ This is the canonical dictionary of every attribute on a **funder** object. Attr
 *List.* The other OpenAlex entities that are the *same real-world organization* — each a `{ role, id, works_count }` object where `role` is one of `funder`, `institution`, or `publisher`. See [Roles](#roles). Filter on `roles.id`.
 
 ### `created_date`
-*String.* The date this funder was added to OpenAlex (`YYYY-MM-DD`). See [Common attributes](/data/common-attributes/#created_date).
+*String.* The date this funder was added to OpenAlex (`YYYY-MM-DDTHH:MM:SS`, an ISO 8601 date and time). See [Common attributes](/data/common-attributes/#created_date).
 
 ### `updated_date`
 *String.* The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) UTC timestamp of the last change to this funder object. See [Common attributes](/data/common-attributes/#updated_date).

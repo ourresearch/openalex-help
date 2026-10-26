@@ -1,6 +1,6 @@
 ---
 title: "SDGs"
-updated: 2026-10-04
+updated: 2026-10-26
 description: "The UN's 17 SDGs as OpenAlex entities, how works are tagged to them by a classifier OpenAlex trained and tested, what a tag's score means, and what every attribute on an SDG object means."
 tags: ["reference"]
 source_id: "27972124390679"
@@ -80,7 +80,7 @@ This is the canonical dictionary of every attribute on an **SDG** object. Attrib
 *String.* A ready-made [Works API](/data/works/) URL that returns every work tagged with this goal: `works?filter=sustainable_development_goals.id:<un-uri>`.
 
 ### `created_date`
-*String.* The date this goal was added to OpenAlex (`YYYY-MM-DD`). See [Common attributes](/data/common-attributes/#created_date).
+*String.* The date this goal was added to OpenAlex (`YYYY-MM-DDTHH:MM:SS`, an ISO 8601 date and time). See [Common attributes](/data/common-attributes/#created_date).
 
 ### `updated_date`
 *String.* The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) UTC timestamp of the last change to this object. See [Common attributes](/data/common-attributes/#updated_date).

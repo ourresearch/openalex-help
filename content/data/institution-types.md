@@ -1,6 +1,6 @@
 ---
 title: "Institution types"
-updated: 2026-08-11
+updated: 2026-10-26
 description: "The controlled vocabulary of institution types — education, healthcare, company, government, and more — what each value means, and how to filter works by the type of affiliated institution."
 tags: ["reference"]
 entity:
@@ -53,7 +53,7 @@ Each institution type is a small object. Attributes shared with other entities a
 *String.* A ready-made [Works](/data/works/) API URL listing every work affiliated with an institution of this type, e.g. `https://api.openalex.org/works?filter=authorships.institutions.type:education`.
 
 ### `created_date`
-*String.* The date this type was added to OpenAlex (`YYYY-MM-DD`). See [Common attributes](/data/common-attributes/#created_date).
+*String.* The date this type was added to OpenAlex (`YYYY-MM-DDTHH:MM:SS`, an ISO 8601 date and time). See [Common attributes](/data/common-attributes/#created_date).
 
 ### `updated_date`
 *String.* The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) UTC timestamp of the last change to this type object. See [Common attributes](/data/common-attributes/#updated_date).

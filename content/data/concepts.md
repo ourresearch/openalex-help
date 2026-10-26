@@ -1,6 +1,6 @@
 ---
 title: "Concepts (deprecated)"
-updated: 2026-08-11
+updated: 2026-10-26
 description: "What concepts were, why they're deprecated in favor of topics, and what every attribute on a concept object means."
 tags: ["reference"]
 source_id: "api-reference/concepts"
@@ -42,7 +42,7 @@ This is the canonical dictionary of every attribute on a **concept** object. Att
 *String.* A short description of the concept, taken from its [Wikidata](https://www.wikidata.org/) item.
 
 ### `ids`
-*Object.* All known external identifiers for this concept, as URIs where possible; keys with no value are omitted. Concept-specific keys: `openalex`, `wikidata`, `mag` (Microsoft Academic Graph integer ID), `wikipedia`, `umls_aui`, and `umls_cui` ([Unified Medical Language System](https://www.nlm.nih.gov/research/umls/index.html) identifiers). See [Common attributes](/data/common-attributes/#ids).
+*Object.* All known external identifiers for this concept, as URIs where possible; a key with no value is present as `null`. Concept-specific keys: `openalex`, `wikidata`, `wikipedia`, and three that are `null` on every live concept: `mag` (Microsoft Academic Graph integer ID), `umls_aui` and `umls_cui` ([Unified Medical Language System](https://www.nlm.nih.gov/research/umls/index.html) identifiers). See [Common attributes](/data/common-attributes/#ids).
 
 ### `image_url`
 *String.* A URL to a representative image for the concept (usually the lead image of its [Wikipedia](https://www.wikipedia.org/) article).
@@ -75,7 +75,7 @@ This is the canonical dictionary of every attribute on a **concept** object. Att
 *String.* A ready-made [Works API](/data/works/#in-the-api) URL returning every work tagged with this concept, e.g. `https://api.openalex.org/works?filter=concepts.id:41008148`. A convenience link — the same query you'd build with the [`concepts.id`](/data/works/attributes/#concepts) filter.
 
 ### `created_date`
-*String.* The date this concept was added to OpenAlex (`YYYY-MM-DD`). See [Common attributes](/data/common-attributes/#created_date).
+*String.* The date this concept was added to OpenAlex (`YYYY-MM-DDTHH:MM:SS`; only the day is recorded, so the time is always `00:00:00`). See [Common attributes](/data/common-attributes/#created_date).
 
 ### `updated_date`
 *String.* The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) UTC timestamp of the last change to this concept object. See [Common attributes](/data/common-attributes/#updated_date).

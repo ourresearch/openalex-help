@@ -1,6 +1,6 @@
 ---
 title: "Languages"
-updated: 2026-08-11
+updated: 2026-10-26
 description: "The languages a work's metadata can be in, the ISO 639-1 standard behind the list, the fields on a language object, and how to filter works by language."
 tags: ["reference"]
 source_id: "api-reference/languages"
@@ -57,7 +57,7 @@ The top-level fields on a **language** object. Attributes shared with other enti
 *String.* A ready-made [Works](/data/works/) API URL for every work in this language (`filter=language:<CODE>`).
 
 ### `created_date`
-*String.* When the language record was added to OpenAlex (`YYYY-MM-DD`). See [Common attributes](/data/common-attributes/#created_date).
+*String.* When the language record was added to OpenAlex (`YYYY-MM-DDTHH:MM:SS`, an ISO 8601 date and time). See [Common attributes](/data/common-attributes/#created_date).
 
 ### `updated_date`
 *String.* When the language record last changed. See [Common attributes](/data/common-attributes/#updated_date).

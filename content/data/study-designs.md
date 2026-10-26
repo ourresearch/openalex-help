@@ -1,6 +1,6 @@
 ---
 title: "Study designs"
-updated: 2026-09-28
+updated: 2026-10-26
 description: "How the research inside a work was done (randomized controlled trial, systematic review, case report and four more), where each work's values come from, and how to filter and group works by design."
 tags: ["reference"]
 entity:
@@ -76,7 +76,7 @@ The top-level fields on a **study design** object. Attributes shared with other 
 *String.* A ready-made [Works](/data/works/) API URL for every work with this design (`filter=study_designs.id:<ID>`).
 
 ### `created_date`
-*String.* When the design was added to OpenAlex (`YYYY-MM-DD`). See [Common attributes](/data/common-attributes/#created_date).
+*String.* When the design was added to OpenAlex (`YYYY-MM-DDTHH:MM:SS`, an ISO 8601 date and time). See [Common attributes](/data/common-attributes/#created_date).
 
 ### `updated_date`
 *String.* When the record last changed. See [Common attributes](/data/common-attributes/#updated_date).

@@ -1,6 +1,6 @@
 ---
 title: "Licenses"
-updated: 2026-08-11
+updated: 2026-10-26
 description: "The licenses an open-access work location can carry, the fields on a license object, and how to filter works by license."
 tags: ["reference"]
 source_id: "api-reference/licenses"
@@ -67,7 +67,7 @@ The top-level fields on a **license** object. Attributes shared with other entit
 *String.* A ready-made [Works](/data/works/) API URL for every work with a location under this license (`filter=locations.license_id:licenses/<ID>`).
 
 ### `created_date`
-*String.* When the license record was added to OpenAlex (`YYYY-MM-DD`). See [Common attributes](/data/common-attributes/#created_date).
+*String.* When the license record was added to OpenAlex (`YYYY-MM-DDTHH:MM:SS`, an ISO 8601 date and time). See [Common attributes](/data/common-attributes/#created_date).
 
 ### `updated_date`
 *String.* When the license record last changed. See [Common attributes](/data/common-attributes/#updated_date).

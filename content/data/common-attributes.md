@@ -1,6 +1,6 @@
 ---
 title: "Common attributes"
-updated: 2026-10-14
+updated: 2026-10-26
 description: "The attributes that appear on nearly every OpenAlex entity — id, ids, display_name, counts_by_year, summary_stats, and the rest — documented once."
 tags: ["reference"]
 ---
@@ -12,7 +12,7 @@ A handful of attributes appear on nearly every OpenAlex entity. They mean the sa
 *String.* The canonical [OpenAlex ID](/data/#the-openalex-id-scheme) for this entity, as a URL, e.g. `https://openalex.org/A5023888391`. Stable; if the entity is later [merged](/data/#merged-entities) into another, this ID permanently redirects to the survivor.
 
 ### `ids`
-*Object.* All known identifiers for this entity, expressed as URIs where possible, keyed by namespace — always `openalex`, plus whichever external IDs apply to the entity type (`doi`, `orcid`, `ror`, `issn_l`, `wikidata`, `mag`, …). Keys with no known value are omitted.
+*Object.* All known identifiers for this entity, expressed as URIs where possible, keyed by namespace — always `openalex`, plus whichever external IDs apply to the entity type (`doi`, `orcid`, `ror`, `issn_l`, `wikidata`, `mag`, …). A key with no known value is left out on some entities (works, topics) and present as `null` on others (authors, sources, institutions, publishers, funders, concepts), so check for both.
 
 ### `display_name`
 *String or null.* The entity's name — a work's title, an author's name, a source's title, an institution's name. Every entity has one, except a [work](/data/works/attributes/#title) or [award](/data/awards/#display_name) that no source gives a title, where it is null.
@@ -40,7 +40,7 @@ These are convenience metrics; for anything rigorous, compute over the underlyin
 ## Provenance timestamps
 
 ### `created_date`
-*String.* The date this entity was first added to OpenAlex, as an `YYYY-MM-DD` date.
+*String.* When this entity was first added to OpenAlex, as an [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time, e.g. `2016-06-24T00:00:00`. Works, authors and sources record only the day, so their time is always `00:00:00`; awards add milliseconds and a `Z` (`2026-07-13T04:19:57.000Z`). The first 10 characters are the date.
 
 ### `updated_date`
 *String.* The datetime this entity was last changed in any way (an [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) datetime). Note this reflects *any* update, including routine recomputation of citation counts — not only meaningful metadata changes.

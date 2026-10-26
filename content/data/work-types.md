@@ -1,6 +1,6 @@
 ---
 title: "Work types"
-updated: 2026-08-17
+updated: 2026-10-26
 description: "The controlled vocabulary of work types — article, preprint, dataset, book, and the rest — what each value means, and how to filter works by type."
 tags: ["reference"]
 entity:
@@ -73,10 +73,10 @@ Each work type is a small object. Attributes shared with other entities are docu
 *String.* A ready-made [Works](/data/works/) API URL listing every work of this type, e.g. `https://api.openalex.org/works?filter=type:article`.
 
 ### `crossref_types`
-*List.* The [Crossref](https://www.crossref.org/) type strings that map onto this OpenAlex type — the source-standard values this label standardizes. Available as a selectable column; not returned in the default object.
+*List.* Meant for the [Crossref](https://www.crossref.org/) type strings that map onto this OpenAlex type. Not currently returned: no type carries it, even with `select=crossref_types`. How Crossref's types map to these is described [above](#about).
 
 ### `created_date`
-*String.* The date this type was added to OpenAlex (`YYYY-MM-DD`). See [Common attributes](/data/common-attributes/#created_date).
+*String.* The date this type was added to OpenAlex (`YYYY-MM-DDTHH:MM:SS`, an ISO 8601 date and time). See [Common attributes](/data/common-attributes/#created_date).
 
 ### `updated_date`
 *String.* The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) UTC timestamp of the last change to this type object. See [Common attributes](/data/common-attributes/#updated_date).

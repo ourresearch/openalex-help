@@ -1,6 +1,6 @@
 ---
 title: "Attributes"
-updated: 2026-10-15
+updated: 2026-10-26
 description: "The canonical dictionary of every attribute on a source object — what each one means, where it comes from, and its quirks."
 tags: ["reference"]
 ---
@@ -12,7 +12,7 @@ This is the canonical dictionary of every attribute on a **source** object. Attr
 *String.* The [OpenAlex ID](/data/#the-openalex-id-scheme) for this source, e.g. `https://openalex.org/S137773608`. See [Common attributes](/data/common-attributes/#id).
 
 ### `ids`
-*Object.* All known external identifiers for this source, as URIs where possible. Source-specific keys: `openalex`, `issn_l`, `issn` (a list), `mag` (Microsoft Academic Graph integer ID), `wikidata`, `fatcat`. Filter/sort on `ids.openalex` and `ids.mag`.
+*Object.* All known external identifiers for this source, as URIs where possible. Source-specific keys: `openalex`, `issn_l`, `issn` (a list), `mag` (Microsoft Academic Graph integer ID), `wikidata`. A key with no value is present as `null`. Filter/sort on `ids.openalex` and `ids.mag`.
 
 ### `display_name`
 *String.* The name of the source (a journal or repository title). Every entity carries a `display_name`. Filterable and searchable via the [`search` parameter](/api/searching/).
@@ -101,7 +101,7 @@ Empty when the source is on no list. Filter/group_by; also available on works as
 *List.* Other names the source is known by (alternate or former titles). Available as a column.
 
 ### `abbreviated_title`
-*String.* The source's standard abbreviated title (e.g. the ISO 4 abbreviation), when known. Available as a column.
+*String.* Meant for the source's standard abbreviated title (e.g. the ISO 4 abbreviation). Not currently filled: no source has one, so the key is absent and `select=abbreviated_title` returns nothing.
 
 ### `topics`
 *List.* The [topics](/data/topics/) most associated with the works published in this source, ranked, each with a `count` and its subfield/field/domain. See [Aboutness](/data/aboutness/). Filter on `topics.id`, or by the hierarchy with `topics.subfield.id`, `topics.field.id`, and `topics.domain.id` (OQL `subfield`, `field`, `domain`), e.g. [`/sources?filter=topics.subfield.id:1204`](https://api.openalex.org/sources?filter=topics.subfield.id:1204) for archaeology journals.
@@ -125,7 +125,7 @@ Empty when the source is on no list. Filter/group_by; also available on works as
 *String.* A ready-made [Works API](/data/works/) URL that returns every work in this source — i.e. `api.openalex.org/works?filter=primary_location.source.id:S…`. A convenience link, not a filterable field.
 
 ### `created_date`
-*String.* The date the source was added to OpenAlex (`YYYY-MM-DD`). See [Common attributes](/data/common-attributes/#created_date).
+*String.* The date the source was added to OpenAlex (`YYYY-MM-DDTHH:MM:SS`; only the day is recorded, so the time is always `00:00:00`). Null on about 7% of sources, all of them sources with no works. See [Common attributes](/data/common-attributes/#created_date).
 
 ### `updated_date`
 *String.* The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) UTC timestamp of the last change to the source object. See [Common attributes](/data/common-attributes/#updated_date).

@@ -1,6 +1,6 @@
 ---
 title: "Attributes"
-updated: 2026-10-17
+updated: 2026-10-26
 description: "The canonical dictionary of every attribute on a work object — what each one means, where it comes from, and its quirks."
 tags: ["reference"]
 ---
@@ -57,7 +57,7 @@ Filter: `doi:` matches a work whose own `doi` **or** any location's `doi` equals
 *List.* OpenAlex IDs of authors whose authorship has `is_corresponding: true`.
 
 ### `corresponding_institution_ids`
-*List.* OpenAlex IDs of institutions attached to a corresponding author's authorship.
+*List.* OpenAlex IDs of institutions attached to a corresponding author's authorship. When no author is marked corresponding, but every author has an affiliation string matched to an institution and they all share one institution, it holds that one institution, and [`corresponding_author_ids`](#corresponding_author_ids) stays empty (we know where, not who). About 1 work in 10 gets its value this way.
 
 ### `countries_distinct_count`
 *Integer.* Number of distinct author country codes across the work's authorships.
@@ -66,7 +66,7 @@ Filter: `doi:` matches a work whose own `doi` **or** any location's `doi` equals
 *Integer.* Number of distinct institutions across the work's authorships.
 
 ### `institutions`
-*List.* A flattened, dehydrated list of the distinct [institutions](/data/institutions/) across the work's [`authorships`](#authorships) — a convenience mirror so you don't have to walk the authorship tree. Recently added and still being backfilled, so it may be empty on works that do have affiliated institutions.
+*List.* Empty on every work for now (`[]`). It is reserved for [institutions](/data/institutions/) linked to the work as a whole rather than through an author (such as a dataset's hosting organization), and nothing fills it yet. The institutions of a work's authors are in [`authorships`](#authorships)`[].institutions`; [`institutions_distinct_count`](#institutions_distinct_count) counts them, and the filter `institutions.id` (the same as `authorships.institutions.id`) finds works by them.
 
 ### `primary_location`
 *Object.* The [location](/data/locations/) holding the best (closest to the [version of record](https://en.wikipedia.org/wiki/Version_of_record)) copy — for a journal article, the published full text at the publisher's DOI URL. See [Locations](/data/locations/) for the object shape. Its dehydrated `source` carries the source's list memberships, so you can narrow works to journals on an external list: `primary_location.source.listed_in:doyens` (see [`listed_in`](/data/sources/attributes/#listed_in) for the list ids; the same key works under `locations.` and `best_oa_location.`). Filter/group_by. You can also filter by attributes of the primary source and its publisher that the work doesn't store, looked up at query time: `primary_location.source.country_code`, `.is_global_south`, `.is_ojs`, `.is_high_oa_rate`, `.is_preprint_repository`, `.summary_stats.h_index`, `.summary_stats.2yr_mean_citedness`, and `primary_location.source.host_organization.country_code` (see [Filter by a related entity's attributes](/api/filtering/#filter-by-a-related-entitys-attributes)).
@@ -91,10 +91,10 @@ Filter: `doi:` matches a work whose own `doi` **or** any location's `doi` equals
 See [Open access](/data/works/open-access/) for how these fields combine.
 
 ### `apc_list`
-*Object.* The work's list-price [article processing charge](https://en.wikipedia.org/wiki/Article_processing_charge) as advertised by the journal (`value`, `currency`, `value_usd`, `provenance` — currently only `doaj`). The listed price, not necessarily what was paid; `apc_list.value` of zero indicates a [diamond-OA](https://en.wikipedia.org/wiki/Diamond_open_access) journal.
+*Object.* The work's list-price [article processing charge](https://en.wikipedia.org/wiki/Article_processing_charge) as advertised by the journal (`value`, `currency`, `value_usd`). The listed price, not necessarily what was paid; `apc_list.value` of zero indicates a [diamond-OA](https://en.wikipedia.org/wiki/Diamond_open_access) journal.
 
 ### `apc_paid`
-*Object.* OpenAlex's best *estimate* of the APC actually paid (`value`, `currency`, `value_usd`, `provenance`). Prefers article-level data from [OpenAPC](https://openapc.net/) (`provenance: "openapc"`); otherwise falls back to the list price. For article-level data only, filter `apc_paid.provenance:openapc`.
+*Object.* OpenAlex's best *estimate* of the APC actually paid (`value`, `currency`, `value_usd`): the article's own charge from [OpenAPC](https://openapc.net/) when OpenAPC has it (then always in EUR), otherwise the list price for gold and hybrid works. No field says which of the two a value came from, so you can't filter to OpenAPC values only.
 
 ### `primary_topic`
 *Object.* The top-ranked [topic](/data/topics/) for the work, with its `subfield`, `field`, and `domain`. Same as the first entry in [`topics`](#topics). `null` when the work has no topic (the classifier found it not classifiable, or it has no title or abstract). See [how topics are assigned](/data/topics/#assigning-topics-to-works).
@@ -148,13 +148,13 @@ See [Open access](/data/works/open-access/) for how these fields combine.
 *List.* Dehydrated [funder](/data/funders/) objects for this work. Replaces the removed `grants` property. Filter on `funders.id`, or by the funder's country with `funders.country_code` (looked up at query time).
 
 ### `awards`
-*List.* [Award](/data/awards/)/grant objects (`id`, `display_name`, `funder_award_id`, `funder_id`, `funder_display_name`, `doi`) linking the work to specific grants. Replaces the removed `grants` property.
+*List.* [Award](/data/awards/)/grant objects (`id`, `display_name`, `funder_award_id`, `funder_id`, `funder_display_name`) linking the work to specific grants. An award's DOI is on the [award](/data/awards/#doi) itself. Replaces the removed `grants` property.
 
 ### `has_content`
 *Object.* Whether downloadable full text exists in each format: `pdf` (Boolean) and `grobid_xml` (Boolean, TEI XML). More than 50 million works have `has_content.pdf: true`. See [Fulltext](/access/fulltext/).
 
 ### `has_fulltext`
-*Boolean.* A convenience flag: true if any downloadable full-text format exists for this work (i.e. either `has_content.pdf` or `has_content.grobid_xml`).
+*Boolean.* True if OpenAlex holds the work's full text for searching, so `fulltext.search` can match it. This is not the same as a downloadable file: about 4.3M works have searchable text but no file in [`has_content`](#has_content), and about 3.5M have a PDF whose text isn't searchable yet. To find works you can download, filter `has_content.pdf:true`.
 
 ### `content_urls`
 *Object.* URLs for downloading full-text content, present when [`has_content`](#has_content) indicates the format is available: `pdf` and `grobid_xml`, each a URL under `content.openalex.org` (or null). Fetching requires your API key (a free one is fine); each download is metered against your usage, and the free daily allowance covers a batch of them (see [Example costs](/access/example-costs/)). Available only through the API, not in the [snapshot](/access/snapshot/).
@@ -172,7 +172,7 @@ See [Open access](/data/works/open-access/) for how these fields combine.
 *List.* The [indexes](/data/indexes/) this work is indexed in. Possible values: `arxiv`, `crossref`, `doaj`, `pubmed`.
 
 ### `created_date`
-*String.* The date the work was added to OpenAlex (`YYYY-MM-DD`). See [Common attributes](/data/common-attributes/#created_date).
+*String.* The date the work was added to OpenAlex (`YYYY-MM-DDTHH:MM:SS`; only the day is recorded, so the time is always `00:00:00`). See [Common attributes](/data/common-attributes/#created_date).
 
 ### `updated_date`
 *String.* The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) UTC timestamp of the last change to anything in the work object — including citation-count increases. See [Common attributes](/data/common-attributes/#updated_date).

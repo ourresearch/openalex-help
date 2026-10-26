@@ -1,6 +1,6 @@
 ---
 title: "Source lists"
-updated: 2026-10-15
+updated: 2026-10-26
 description: "The external journal lists a source can appear on (DOAJ, CWTS Core, national lists), the fields on a source-list object, and how to filter sources and works by list."
 tags: ["reference"]
 entity:
@@ -66,7 +66,7 @@ The top-level fields on a **source list** object. Attributes shared with other e
 *String.* A ready-made [Works](/data/works/) API URL for every work whose primary location is on this list (`filter=primary_location.source.listed_in:<ID>`).
 
 ### `created_date`
-*String.* When the list was added to OpenAlex (`YYYY-MM-DD`). See [Common attributes](/data/common-attributes/#created_date).
+*String.* When the list was added to OpenAlex (`YYYY-MM-DDTHH:MM:SS`, an ISO 8601 date and time). See [Common attributes](/data/common-attributes/#created_date).
 
 ### `updated_date`
 *String.* When the list record last changed. See [Common attributes](/data/common-attributes/#updated_date).

@@ -1,6 +1,6 @@
 ---
 title: "Overview"
-updated: 2026-10-03
+updated: 2026-10-26
 description: "What an author is, why a profile is built from its works, and what every attribute on an author object means."
 tags: ["reference"]
 source_id: "24347048891543"
@@ -42,7 +42,7 @@ This is the canonical dictionary of every attribute on an **author** object. Att
 *String.* The [OpenAlex ID](/data/#the-openalex-id-scheme) for this author, e.g. `https://openalex.org/A5023888391`. See [Common attributes](/data/common-attributes/#id).
 
 ### `ids`
-*Object.* All known external identifiers for this author, as URIs where possible; keys with no value are omitted. Author keys are `openalex`, `orcid`, `observed_orcids`, and (rarely) `scopus`. Filter, group_by, and sort on the `orcid`, `observed_orcids`, and `scopus` sub-keys.
+*Object.* All known external identifiers for this author, as URIs where possible; a key with no value is present as `null`. Author keys are `openalex`, `orcid` and `observed_orcids`. Filter, group_by, and sort on the `orcid` and `observed_orcids` sub-keys.
 
 ### `display_name`
 *String.* The author's name — the single most-frequent, most-informative form observed across their works. See [Common attributes](/data/common-attributes/#display_name). Filterable and sortable; free-text name search uses the `search` parameter (the `display_name.search` filter is deprecated).
@@ -96,7 +96,7 @@ This is the canonical dictionary of every attribute on an **author** object. Att
 *String.* An internal blocking key (a coarse name signature, e.g. `j priem`) used during [disambiguation](#about) to group candidate authorships before finer clustering. Exposed mainly for debugging; filterable/sortable/groupable.
 
 ### `created_date`
-*String.* The date this author was added to OpenAlex (`YYYY-MM-DD`). See [Common attributes](/data/common-attributes/#created_date).
+*String.* The date this author was added to OpenAlex (`YYYY-MM-DDTHH:MM:SS`; only the day is recorded, so the time is always `00:00:00`). See [Common attributes](/data/common-attributes/#created_date).
 
 ### `updated_date`
 *String.* The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) UTC timestamp of the last change to anything in the author object — including routine citation-count recomputation. See [Common attributes](/data/common-attributes/#updated_date).

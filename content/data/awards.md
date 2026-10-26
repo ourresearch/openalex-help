@@ -1,6 +1,6 @@
 ---
 title: "Awards"
-updated: 2026-10-03
+updated: 2026-10-26
 description: "What an award (grant) is, where its data comes from, how OpenAlex matches grants to funders and works, and what every attribute on an award object means."
 tags: ["reference"]
 source_id: "api-reference/awards"
@@ -112,7 +112,7 @@ This is the canonical dictionary of every attribute on an **award** object. Awar
 *String.* A ready-made API URL listing every [work](/data/works/) this award funded (i.e. `works?filter=awards.id:<id>`). A convenience link, not a stored value.
 
 ### `created_date`
-*String.* The date this award was added to OpenAlex (`YYYY-MM-DD`). See [Common attributes](/data/common-attributes/#created_date).
+*String.* The date this award was added to OpenAlex (`YYYY-MM-DDTHH:MM:SS.sssZ`, an ISO 8601 date and time in UTC). See [Common attributes](/data/common-attributes/#created_date).
 
 ### `updated_date`
 *String.* The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) UTC timestamp of the last change to this award object. See [Common attributes](/data/common-attributes/#updated_date).

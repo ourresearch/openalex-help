@@ -1,6 +1,6 @@
 ---
 title: "Indexes"
-updated: 2026-09-18
+updated: 2026-10-26
 description: "The external bibliographic indexes a work or source can appear in, the fields on an index object, and how to filter works by index."
 tags: ["reference"]
 source_id: "api-reference/indexes"
@@ -58,7 +58,7 @@ The top-level fields on an **index** object. Attributes shared with other entiti
 *String.* A ready-made [Works](/data/works/) API URL for every work in this index (`filter=indexed_in:<ID>`).
 
 ### `created_date`
-*String.* When the index record was added to OpenAlex (`YYYY-MM-DD`). See [Common attributes](/data/common-attributes/#created_date).
+*String.* When the index record was added to OpenAlex (`YYYY-MM-DDTHH:MM:SS`; only the day is recorded, so the time is always `00:00:00`). See [Common attributes](/data/common-attributes/#created_date).
 
 ### `updated_date`
 *String.* When the index record last changed. See [Common attributes](/data/common-attributes/#updated_date).

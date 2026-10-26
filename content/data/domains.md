@@ -1,6 +1,6 @@
 ---
 title: "Domains"
-updated: 2026-08-11
+updated: 2026-10-26
 description: "What a domain is, where it sits at the top of the OpenAlex classification hierarchy, and what every attribute on a domain object means."
 tags: ["reference"]
 source_id: "24736129405719"
@@ -56,7 +56,7 @@ This is the canonical dictionary of every attribute on a **domain** object. Attr
 *String.* A ready-made [Works](/data/works/) API URL for every work in this domain, e.g. `https://api.openalex.org/works?filter=topics.domain.id:1`. A convenience link; work IDs aren't stored on the domain object.
 
 ### `created_date`
-*String.* The date this domain was added to OpenAlex (`YYYY-MM-DD`). See [Common attributes](/data/common-attributes/#created_date).
+*String.* The date this domain was added to OpenAlex (`YYYY-MM-DDTHH:MM:SS`, an ISO 8601 date and time). See [Common attributes](/data/common-attributes/#created_date).
 
 ### `updated_date`
 *String.* The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) UTC timestamp of the last change to the domain object. See [Common attributes](/data/common-attributes/#updated_date).

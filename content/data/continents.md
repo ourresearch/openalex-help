@@ -1,6 +1,6 @@
 ---
 title: "Continents"
-updated: 2026-08-11
+updated: 2026-10-26
 description: "The seven continents in OpenAlex, the fields on a continent object, and how to filter and group works, authors, and institutions by continent."
 tags: ["reference"]
 source_id: "api-reference/continents"
@@ -56,7 +56,7 @@ The top-level fields on a **continent** object. Attributes shared with other ent
 *List.* The [countries](/data/countries/) on this continent, each a dehydrated `{ id, display_name }`.
 
 ### `created_date`
-*String.* When the continent record was added to OpenAlex (`YYYY-MM-DD`). See [Common attributes](/data/common-attributes/#created_date).
+*String.* When the continent record was added to OpenAlex (`YYYY-MM-DDTHH:MM:SS`, an ISO 8601 date and time). See [Common attributes](/data/common-attributes/#created_date).
 
 ### `updated_date`
 *String.* When the continent record last changed. See [Common attributes](/data/common-attributes/#updated_date).

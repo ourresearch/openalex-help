@@ -1,6 +1,6 @@
 ---
 title: "Keywords"
-updated: 2026-10-05
+updated: 2026-10-26
 description: "What a keyword is, how OpenAlex tags works with keywords, how the vocabulary changes, and what every attribute on a keyword object means."
 tags: ["reference"]
 source_id: "24736201130391"
@@ -54,6 +54,9 @@ This is the canonical dictionary of every attribute on a **keyword** object. Att
 ### `display_name`
 *String.* The keyword's human-readable label, e.g. `machine learning`. See [Common attributes](/data/common-attributes/#display_name).
 
+### `display_name_alternatives`
+*List.* Other names for the keyword: abbreviations, spelling variants and close synonyms (e.g. `LHD` for `Large Helical Device`). Empty when there are none.
+
 ### `description`
 *String.* One sentence saying what the keyword means, written by an AI model from the keyword and works that carry it. Machine-made: it can be wrong, and it improves as the vocabulary changes.
 
@@ -76,7 +79,7 @@ This is the canonical dictionary of every attribute on a **keyword** object. Att
 *String.* A ready-made [Works API](/data/works/#in-the-api) URL returning every work tagged with this keyword, e.g. `https://api.openalex.org/works?filter=keywords.id:keywords/machine-learning`. A convenience link: it's the same query you'd build with the [`keywords.id`](/data/works/attributes/#keywords) filter.
 
 ### `created_date`
-*String.* The date this keyword was added to OpenAlex (`YYYY-MM-DD`). See [Common attributes](/data/common-attributes/#created_date).
+*String.* The date this keyword was added to OpenAlex (`YYYY-MM-DDTHH:MM:SS`, an ISO 8601 date and time). See [Common attributes](/data/common-attributes/#created_date).
 
 ### `updated_date`
 *String.* The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) UTC timestamp of the last change to this keyword object. See [Common attributes](/data/common-attributes/#updated_date).

@@ -1,6 +1,6 @@
 ---
 title: "Countries"
-updated: 2026-10-03
+updated: 2026-10-26
 description: "What a country is in OpenAlex, the ISO standard behind the list, the fields on a country object, and how to filter works, authors, and institutions by country."
 tags: ["reference"]
 source_id: "api-reference/countries"
@@ -87,7 +87,7 @@ The top-level fields on a **country** object. Attributes shared with other entit
 *String.* A ready-made [Institutions](/data/institutions/) API URL for institutions in this country (`filter=country_code:<CODE>`).
 
 ### `created_date`
-*String.* When the country record was added to OpenAlex (`YYYY-MM-DD`). See [Common attributes](/data/common-attributes/#created_date).
+*String.* When the country record was added to OpenAlex (`YYYY-MM-DDTHH:MM:SS`, an ISO 8601 date and time). See [Common attributes](/data/common-attributes/#created_date).
 
 ### `updated_date`
 *String.* When the country record last changed. See [Common attributes](/data/common-attributes/#updated_date).

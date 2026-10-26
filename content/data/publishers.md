@@ -1,6 +1,6 @@
 ---
 title: "Publishers"
-updated: 2026-08-11
+updated: 2026-10-26
 description: "What a publisher is, how OpenAlex builds the publisher hierarchy from ROR and Wikidata, how it connects to sources, and what every attribute on a publisher object means."
 tags: ["reference"]
 source_id: "api-reference/publishers"
@@ -93,7 +93,7 @@ This is the canonical dictionary of every attribute on a **publisher** object. A
 *String.* A ready-made API URL listing every [source](/data/sources/) this publisher hosts (i.e. `sources?filter=host_organization.id:<id>`). A convenience link, not a stored value.
 
 ### `created_date`
-*String.* The date this publisher was added to OpenAlex (`YYYY-MM-DD`). See [Common attributes](/data/common-attributes/#created_date).
+*String.* The date this publisher was added to OpenAlex (`YYYY-MM-DDTHH:MM:SS`, an ISO 8601 date and time). See [Common attributes](/data/common-attributes/#created_date).
 
 ### `updated_date`
 *String.* The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) UTC timestamp of the last change to this publisher object. See [Common attributes](/data/common-attributes/#updated_date).

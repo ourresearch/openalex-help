@@ -1,6 +1,6 @@
 ---
 title: "Topics"
-updated: 2026-10-07
+updated: 2026-10-26
 description: "What a topic is, how OpenAlex assigns topics to works and rolls them up into a four-level hierarchy, and what every attribute on a topic object means."
 tags: ["reference"]
 source_id: "24736129405719"
@@ -104,7 +104,7 @@ This is the canonical dictionary of every attribute on a **topic** object. Attri
 *String.* A ready-made [Works](/data/works/) API URL for every work tagged with this topic, e.g. `https://api.openalex.org/works?filter=topics.id:T11636`. A convenience link; OpenAlex doesn't store work IDs on the topic object.
 
 ### `created_date`
-*String.* The date this topic was added to OpenAlex (`YYYY-MM-DD`). See [Common attributes](/data/common-attributes/#created_date).
+*String.* The date this topic was added to OpenAlex (`YYYY-MM-DDTHH:MM:SS`, an ISO 8601 date and time). See [Common attributes](/data/common-attributes/#created_date).
 
 ### `updated_date`
 *String.* The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) UTC timestamp of the last change to the topic object. See [Common attributes](/data/common-attributes/#updated_date).

@@ -1,6 +1,6 @@
 ---
 title: "Institutions"
-updated: 2026-10-03
+updated: 2026-10-26
 description: "What an institution is, how OpenAlex grounds them in ROR and matches raw affiliation strings to them, and what every attribute on an institution object means."
 tags: ["reference"]
 entity:
@@ -48,7 +48,7 @@ This is the canonical dictionary of every attribute on an **institution** object
 *String.* The [OpenAlex ID](/data/#the-openalex-id-scheme) for this institution, e.g. `https://openalex.org/I27837315`. See [Common attributes](/data/common-attributes/#id).
 
 ### `ids`
-*Object.* All known external identifiers for this institution, as URIs where possible; keys with no value are omitted. Institution-specific keys: `openalex`, `ror`, `grid` (the legacy GRID ID that ROR superseded), `wikipedia`, `wikidata`, `mag`. Filterable via `ids.openalex`.
+*Object.* All known external identifiers for this institution, as URIs where possible; a key with no value is present as `null`. Institution-specific keys: `openalex`, `ror`, `grid` (the legacy GRID ID that ROR superseded), `wikipedia`, `wikidata`. Filterable via `ids.openalex`.
 
 ### `display_name`
 *String.* The institution's canonical name, from its ROR record. See [Common attributes](/data/common-attributes/#display_name). Filterable and sortable.
@@ -126,7 +126,7 @@ This is the canonical dictionary of every attribute on an **institution** object
 *String.* A ready-made [Works](/data/works/) API URL for every work affiliated with this institution — e.g. `https://api.openalex.org/works?filter=institutions.id:I27837315`. A convenience link, not a stored value; follow it to page through the actual works.
 
 ### `created_date`
-*String.* The date this institution was added to OpenAlex (`YYYY-MM-DD`). See [Common attributes](/data/common-attributes/#created_date).
+*String.* The date this institution was added to OpenAlex (`YYYY-MM-DDTHH:MM:SS`, an ISO 8601 date and time). See [Common attributes](/data/common-attributes/#created_date).
 
 ### `updated_date`
 *String.* The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) UTC timestamp of the last change to anything in the institution object. See [Common attributes](/data/common-attributes/#updated_date).
