@@ -1,6 +1,6 @@
 ---
 title: "Work types"
-updated: 2026-08-17
+updated: 2026-10-26
 description: "The controlled vocabulary of work types — article, preprint, dataset, book, and the rest — what each value means, and how to filter works by type."
 tags: ["reference"]
 entity:
@@ -10,7 +10,7 @@ entity:
   linksTo:
     - "works"
 ---
-A **work type** classifies the form of a scholarly document: a journal `article`, a `preprint`, a `dataset`, a `book`, and so on. Every [work](/data/works/) has exactly one type, exposed as its [`type`](/data/works/attributes/#type) field, and the type is one value from the controlled vocabulary below. Because the boundary between (say) an article and a dataset is already crisp in the real world, work types are a [vocabulary entity](/data/vocabulary/): OpenAlex doesn't adjudicate what a work *is*, it just standardizes the label so you can filter and group by it reliably. Work types use short, human-readable IDs (`article`, `dataset`) rather than the minted `W`/`A`/`S` scheme; a type's full ID looks like `https://openalex.org/types/article`.
+A **work type** classifies the form of a scholarly record: a journal `article`, a `preprint`, a `dataset`, a `book`, a `physical-object` such as a soil sample or museum specimen, and so on. Every [work](/data/works/) has exactly one type, exposed as its [`type`](/data/works/attributes/#type) field, and the type is one value from the controlled vocabulary below. Because the boundary between (say) an article and a dataset is already crisp in the real world, work types are a [vocabulary entity](/data/vocabulary/): OpenAlex doesn't adjudicate what a work *is*, it just standardizes the label so you can filter and group by it reliably. Work types use short, human-readable IDs (`article`, `dataset`) rather than the minted `W`/`A`/`S` scheme; a type's full ID looks like `https://openalex.org/types/article`.
 
 ## About
 
@@ -35,9 +35,10 @@ The complete controlled vocabulary (live from [`api.openalex.org/work-types`](ht
 | `erratum` | A journal-issued fix for mistakes in a published article, such as an erratum, corrigendum, or publisher correction, referencing the article it corrects. |
 | `letter` | A short message sent by readers to a journal's editor responding to previously published material, such as a letter to the editor, reply, or reader comment. |
 | `libguides` | A library research guide (LibGuides) curated by librarians to point users toward resources on a topic or course. |
-| `other` | A catch-all for works that fit no other type, such as news items, obituaries, full journal issues, and non-scholarly repository media (photographs, video, audio). |
+| `other` | A catch-all for works that fit no other type, such as news items, obituaries, full journal issues, and repository media like photographs, video, and audio. Physical samples and specimens are `physical-object`. |
 | `paratext` | Records that package or frame a publication rather than carry its content, such as covers, title pages, tables of contents, and author guidelines. |
 | `peer-review` | A peer review or report about a single other work, rather than a survey of many, such as an open peer review, referee report, or reviewer report. |
+| `physical-object` | A physical sample, specimen or object registered as a record of its own, such as a rock, core, water or soil sample, a biological specimen, a seed accession or an archaeological artifact. Photos and scans of such objects are not included. |
 | `preprint` | An article whose primary location is a preprint repository such as arXiv, bioRxiv, medRxiv, SSRN, or Research Square. |
 | `reference-entry` | A self-contained entry within a reference work, such as an encyclopedia article, dictionary entry, or handbook entry. |
 | `report` | A technical report or working paper issued outside the journal system by an institution, agency, or company, such as a technical report, white paper, or government report. |
@@ -48,7 +49,7 @@ The complete controlled vocabulary (live from [`api.openalex.org/work-types`](ht
 | `standard` | A formal standard or technical specification from a Standards Development Organization (SDO) or consortium, such as an ISO, IEEE, or W3C standard. |
 | `supplementary-materials` | Supporting materials accompanying a primary work, usually a journal article, such as supporting-information files, supplementary figures, tables, or appendices. |
 
-> **Note:** `book-review`, `conference-abstract`, `conference-paper`, `data-paper`, and `software-paper` are newly added to the vocabulary. They are being rolled out, so coverage is currently low or zero and they may not yet appear under [`works?group_by=type`](https://api.openalex.org/works?group_by=type).
+> **Note:** `physical-object` is the newest type, added in October 2026: about 23 million samples, specimens, and seed accessions that were typed `other` or `dataset` before. `book-review`, `conference-abstract`, `conference-paper`, `data-paper`, and `software-paper` were added in June 2026. See current counts under [`works?group_by=type`](https://api.openalex.org/works?group_by=type).
 
 ## Attributes
 
