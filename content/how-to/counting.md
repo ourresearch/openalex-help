@@ -1,15 +1,32 @@
 ---
 title: "Counting"
-updated: 2026-09-21
-description: "Recipes for counting questions: totaling citations to a result set, checking a journal's coverage, and why two counts of the same thing can disagree."
+updated: 2026-10-26
+description: "Recipes for counting questions: which journals publish most on a topic, totaling citations to a result set, checking a journal's coverage, and why two counts of the same thing can disagree."
 tags: ["search"]
-synonyms: ["count citations", "journal coverage", "is a journal in openalex", "counts by year"]
-card: "Citation totals for any result set, coverage checks, and why two counts disagree."
+synonyms: ["count citations", "journal coverage", "is a journal in openalex", "counts by year", "top journals", "top journals on a topic", "which journals publish on", "where to publish"]
+card: "Top journals on a topic, citation totals for any result set, coverage checks, and why two counts disagree."
 ---
 Recipes for counting things in OpenAlex. For building the result set you're counting, see [Searching](/how-to/searching/); for the full querying story, start with [Querying](/access/querying/).
 
 > [!claude]
 > You can count and group in plain language: *"How many works on X per year since 2015?"* or *"Which journals carry the most papers on Y?"* Each answer includes the exact query it ran. Set up once: [Using OpenAlex with an AI assistant](/how-to/ai-assistants/). (Totals of citations across a result set are website-only for now.)
+
+## Which journals publish the most on a topic?
+
+Split the topic's works by journal in [OQL](/access/oql/). Type this into the **OQL tab** on [openalex.org](https://openalex.org), or send it to the API ([this exact query](https://api.openalex.org/?oql=get+the+count+of+works+since+2020+about+kelp+by+journal)):
+
+```
+get the count of works since 2020 about kelp by journal
+```
+
+One row per journal, most works first: for kelp since 2020, *Frontiers in Marine Science* (153), *Journal of Applied Phycology* (121), *Journal of Phycology* (112). Each work counts once, under the journal of its primary location. Add numbers to compare the journals:
+
+```
+get the count and mean FWCI of works since 2020 about kelp by journal, highest mean FWCI first. Only journals with at least 20 works since 2020 about kelp.
+get the count and percent open access of works since 2020 about kelp by journal
+```
+
+The first ranks the 21 journals with at least 20 kelp papers by [FWCI](/data/works/attributes/#fwci) (*Ecology* leads at 4.1); the `Only` sentence keeps a journal with one highly cited paper from topping the list. The second shows how much of each journal's kelp work is open access. More splits and numbers: [Tracking trends over time](/how-to/trends-over-time/), [the OQL guide](/access/oql/).
 
 ## How do I count all the citations to a set of results?
 
