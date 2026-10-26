@@ -74,6 +74,17 @@ Returns groups like:
 
 For non-entity values (like `level`), both `key` and `key_display_name` are the raw value.
 
+For yes/no fields (`is_oa`, `has_abstract`, `has_doi`), the keys are `"true"` and `"false"`, the values the same field takes as a filter. The counts equal what the filter returns:
+
+```bash
+# Works from 2024 with and without an abstract
+https://api.openalex.org/works?filter=publication_year:2024&group_by=has_abstract
+
+# The same two numbers, one at a time
+https://api.openalex.org/works?filter=publication_year:2024,has_abstract:true
+https://api.openalex.org/works?filter=publication_year:2024,has_abstract:false
+```
+
 ## Including unknowns
 
 The "unknown" group (entities without a value) is hidden by default. Add `:include_unknown` to include it:
@@ -96,7 +107,7 @@ The bucket's `key` depends on the field type:
 |------------|---------|---------------|
 | String / ID | `primary_location.license`, `type` | `"unknown"` |
 | Numeric (range) | `apc_paid.value`, `cited_by_count` | `-111` (sentinel) |
-| Boolean | `is_oa` | returned as the `false` bucket |
+| Yes/no | `best_oa_location.is_oa` | `"unknown"`, only when some have no value (`has_doi` and the other `has_` fields count a missing value as `false`) |
 
 Numeric fields use the sentinel `-111` because the aggregation bucket can't mix a string key like `"unknown"` into a numeric series. Treat any `-111` (or `-111.0`) bucket key as "unknown."
 
