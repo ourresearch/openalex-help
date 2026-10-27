@@ -1,6 +1,6 @@
 ---
 title: "Error Handling"
-updated: 2026-10-26
+updated: 2026-10-27
 description: "API error codes and retry strategies"
 tags: ["api"]
 source_id: "api-reference/errors"
@@ -14,7 +14,7 @@ The OpenAlex API uses standard HTTP status codes to indicate success or failure.
 | Code | Meaning | What to Do |
 |------|---------|------------|
 | `200` | Success | Request completed successfully |
-| `301` | Moved Permanently | Entity was merged; follow the redirect (api.openalex.org follows it for you and returns the surviving record) |
+| `301` | Moved Permanently | Entity was merged; follow the redirect (api.openalex.org follows it for you and returns the surviving record; best effort) |
 | `400` | Bad Request | Check your filter syntax or parameters |
 | `403` | Forbidden | You don't have access to this resource. (A collection you can't read returns `404`, not `403`.) |
 | `404` | Not Found | Entity doesn't exist |
@@ -72,7 +72,7 @@ Error responses include a message explaining what went wrong:
 "Work W9999999999 not found"
 ```
 
-**Fix:** Verify the ID exists. A merged-away author, source or funder ID returns the surviving record instead of a 404; a deleted ID, or a merged-away work ID, returns 404 (see [Merged entities](/api/get-single-entities/#merged-entities)).
+**Fix:** Verify the ID exists. A merged-away work, author, source or funder ID usually returns the surviving record instead of a 404 (best effort, not a permanence promise); a deleted ID returns 404 (see [Merged entities](/api/get-single-entities/#merged-entities)).
 
 ## Retry Logic
 

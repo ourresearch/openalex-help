@@ -1,6 +1,6 @@
 ---
 title: "Common attributes"
-updated: 2026-10-26
+updated: 2026-10-27
 description: "The attributes that appear on nearly every OpenAlex entity — id, ids, display_name, counts_by_year, summary_stats, and the rest — documented once."
 tags: ["reference"]
 ---
@@ -9,7 +9,7 @@ A handful of attributes appear on nearly every OpenAlex entity. They mean the sa
 ## Identity
 
 ### `id`
-*String.* The canonical [OpenAlex ID](/data/#the-openalex-id-scheme) for this entity, as a URL, e.g. `https://openalex.org/A5023888391`. Stable; if the entity is later [merged](/data/#merged-entities) into another, this ID permanently redirects to the survivor.
+*String.* The canonical [OpenAlex ID](/data/#the-openalex-id-scheme) for this entity, as a URL, e.g. `https://openalex.org/A5023888391`. Stable and never reused; if the entity is later [merged](/data/#merged-entities) into another, requests for this ID usually return the survivor (best effort, not a permanence promise).
 
 ### `ids`
 *Object.* All known identifiers for this entity, expressed as URIs where possible, keyed by namespace — always `openalex`, plus whichever external IDs apply to the entity type (`doi`, `orcid`, `ror`, `issn_l`, `wikidata`, `mag`, …). A key with no known value is left out on some entities (works, topics) and present as `null` on others (authors, sources, institutions, publishers, funders, concepts), so check for both.

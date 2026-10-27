@@ -1,6 +1,6 @@
 ---
 title: "Get Singleton"
-updated: 2026-10-26
+updated: 2026-10-27
 description: "Retrieve a single entity by ID"
 tags: ["api"]
 source_id: "guides/get"
@@ -115,13 +115,15 @@ Unlike OpenAlex IDs these are **case-sensitive** and contain `/` and `:`; copy t
 
 ## Merged entities
 
-When duplicate authors, sources or funders are merged, the old ID keeps working: requesting it returns the record it was merged into. The API redirects the old ID to the surviving one and follows that redirect for you, so you get a normal `200` response whose `id` is the surviving ID:
+When duplicate works, authors, sources or funders are merged, requesting the old ID usually returns the record it was merged into. The API redirects the old ID to the surviving one and follows that redirect for you, so you get a normal `200` response whose `id` is the surviving ID:
 
 ```bash
 $ curl -s "https://api.openalex.org/authors/A5107411446?select=id,display_name"
 {"id": "https://openalex.org/A5107863564", "display_name": "Sonia Luquín"}
 ```
 
-To tell that an ID was merged, compare the `id` in the response with the ID you asked for. Filters resolve the same way: `filter=authorships.author.id:A5107411446` returns the surviving author's works. Merges are followed to the end of the chain (if A was merged into B and B later into C, A returns C).
+To tell that an ID was merged, compare the `id` in the response with the ID you asked for. Filters resolve the same way: `filter=authorships.author.id:A5107411446` returns the surviving author's works, and `filter=cites:<merged work ID>` returns the works citing the surviving work. Merges are followed to the end of the chain (if A was merged into B and B later into C, A returns C).
 
-A **deleted** ID (one with no surviving record) returns `404`, and so does a merged-away work ID: for works, see [Deletions and merged entities](/access/sync/#deletions-and-merged-entities). For bulk repair of stored IDs, the snapshot publishes every merged-away author and source ID with its surviving ID in [`merged_ids.csv.gz`](/access/sync/#merged-authors-and-sources-merged_idscsvgz).
+Redirecting merged IDs is a **best-effort convenience, not a permanence promise**: we do it while it's practical, and we may change or stop it for some IDs or entity types. If you need a link that lasts, store the work's DOI (or the author's ORCID) alongside its OpenAlex ID.
+
+A **deleted** ID (one with no surviving record) returns `404`. For bulk repair of stored IDs, the snapshot publishes every merged-away work, author and source ID with its surviving ID in [`merged_ids.csv.gz`](/access/sync/#merged-ids-merged_idscsvgz).

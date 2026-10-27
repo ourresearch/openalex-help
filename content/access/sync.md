@@ -1,7 +1,7 @@
 ---
 title: "Sync"
-updated: 2026-10-26
-description: "Snapshot release cadence and dates per plan, how updated_date partitions work, the four ways to keep a copy in sync with OpenAlex, and how deletions and merged entities behave — including the works deletion log deleted_ids.csv.gz and the authors and sources merge maps merged_ids.csv.gz."
+updated: 2026-10-27
+description: "Snapshot release cadence and dates per plan, how updated_date partitions work, the four ways to keep a copy in sync with OpenAlex, and how deletions and merged entities behave — including the works deletion log deleted_ids.csv.gz and the works, authors and sources merge maps merged_ids.csv.gz."
 tags: ["downloads"]
 source_id: "new/snapshot-updates"
 source_url: "https://developers.openalex.org/download/snapshot-format"
@@ -115,7 +115,7 @@ The real superpower is that they **combine with any other filter**, which makes 
 https://api.openalex.org/works?filter=institutions.id:I27837315,from_updated_date:2026-07-30
 ```
 
-Trade-offs: paging through the API is slower per record than bulk files, so this method fits modest change volumes — for full-database mirrors, use the daily snapshot. And the filters only surface records that exist: deleted or merged-away records just stop appearing (and their IDs [404](#deletions-and-merged-entities)), so reconcile your ID set against a snapshot periodically if deletions matter to you. Filter mechanics: [Sync filters](/api/filtering/#sync-filters-paid-plans) in the API reference.
+Trade-offs: paging through the API is slower per record than bulk files, so this method fits modest change volumes — for full-database mirrors, use the daily snapshot. And the filters only surface records that exist: deleted or merged-away records just stop appearing (deleted IDs [404](#deletions-and-merged-entities); merged-away IDs usually resolve to the survivor), so reconcile your ID set against a snapshot periodically if deletions matter to you. Filter mechanics: [Sync filters](/api/filtering/#sync-filters-paid-plans) in the API reference.
 
 ### The Unpaywall Data Feed (paid plans)
 
@@ -131,10 +131,10 @@ Records don't just get created and updated — they also disappear: works get me
 
 How that shows up today:
 
-- **In the API:** a merged-away **author, source or funder** ID resolves to the record it was merged into: you get the surviving record (its `id` is the surviving ID), and filters on the old ID return the surviving record's works. See [Merged entities](/api/get-single-entities/#merged-entities). A **deleted** ID, and a merged-away **work** ID, return **404**. (Special case: works of removed author profiles point to the [null author `A9999999999`](/data/authors/disambiguation/#special-author-ids), and `A5317838346` marks deleted authors.)
+- **In the API:** a merged-away **work, author, source or funder** ID usually resolves to the record it was merged into: you get the surviving record (its `id` is the surviving ID), and filters on the old ID match the surviving record. This is best effort, not a permanence promise; see [Merged entities](/api/get-single-entities/#merged-entities). A **deleted** ID returns **404**. (Special case: works of removed author profiles point to the [null author `A9999999999`](/data/authors/disambiguation/#special-author-ids), and `A5317838346` marks deleted authors.)
 - **In the snapshot:** the record is **gone from the current release** — it doesn't appear in any partition, and the vacated file space disappears from the manifest. This is true of every daily copy too, so reconciling against a snapshot picks up deletions.
 - **In `deleted_ids.csv.gz`** (works): every daily snapshot, and the public bucket since the 2026-09-23 release, names its deleted works explicitly — see below.
-- **In `merged_ids.csv.gz`** (authors, sources): every merged-away author and source ID with the ID it now resolves to — see [below](#merged-authors-and-sources-merged_idscsvgz).
+- **In `merged_ids.csv.gz`** (works, authors, sources): every merged-away ID with the ID it now resolves to — see [below](#merged-ids-merged_idscsvgz).
 
 ### The works deletion log: `deleted_ids.csv.gz`
 
@@ -156,9 +156,9 @@ The file is **cumulative** — each release carries the full history, so you don
 
 **Where it is today:** in every [daily snapshot](#the-daily-snapshot-paid-plans) since 2026-08-15 (written as an uncompressed `deleted_ids.csv` up to the 2026-09-24 snapshot; gzip-compressed only from 2026-09-25), and in the free public bucket since the 2026-09-23 release.
 
-### Merged authors and sources: `merged_ids.csv.gz`
+### Merged IDs: `merged_ids.csv.gz`
 
-Each snapshot's authors and sources directories carry `merged_ids.csv.gz` (`{format}/authors/merged_ids.csv.gz` and `{format}/sources/merged_ids.csv.gz`, next to each `manifest.json`): every merged-away ID and the live record it now resolves to. Use it to repair stored IDs in bulk, the way the API resolves them one at a time.
+Each snapshot's works, authors and sources directories carry `merged_ids.csv.gz` (`{format}/works/merged_ids.csv.gz`, `{format}/authors/merged_ids.csv.gz` and `{format}/sources/merged_ids.csv.gz`, next to each `manifest.json`): every merged-away ID and the live record it now resolves to. Use it to repair stored IDs in bulk, the way the API resolves them one at a time. A merged-away work also appears in `deleted_ids.csv.gz` (it left the corpus); `merged_ids.csv.gz` tells you where it went.
 
 ```csv
 id,merge_into_id,merge_date
@@ -169,11 +169,13 @@ https://openalex.org/A5107411446,https://openalex.org/A5107863564,2026-10-11
 - `merge_into_id` — the live record it resolves to today. Chains are already followed: if A was merged into B and B later into C, the row says A → C.
 - `merge_date` — the date of the merge the row reflects.
 
-The file is **cumulative and the whole truth each day**: a merged-away ID that later comes back into use drops out, and a row's `merge_into_id` changes if the surviving record is itself merged. Apply it as: *replace each `id` in your data with its `merge_into_id`*. It covers the merges in our merge ledgers, including the pre-2026 `legacy-data/merged_ids/` files. Deleted profiles and sources (with no surviving record) are not in it: those IDs are gone. The authors file runs to tens of millions of rows, so load it into a database or DuckDB rather than reading it line by line.
+The file is **cumulative and the whole truth each day**: a merged-away ID that later comes back into use drops out, and a row's `merge_into_id` changes if the surviving record is itself merged. Apply it as: *replace each `id` in your data with its `merge_into_id`*. It covers the merges in our merge ledgers, including the pre-2026 `legacy-data/merged_ids/` files. Deleted records (with no surviving record) are not in it: those IDs are gone. The works and authors files run to tens of millions of rows, so load them into a database or DuckDB rather than reading them line by line. Like the API redirects, the file is best effort, not a promise that any particular ID will keep resolving.
 
-**Where it is today:** in every [daily snapshot](#the-daily-snapshot-paid-plans) from 2026-10-27, and in the free public bucket from the next quarterly release.
+**Where it is today:** in every [daily snapshot](#the-daily-snapshot-paid-plans) from 2026-10-27 (works added that evening); all three in the free public bucket from the next quarterly release.
 
 ### Tracing merges: location IDs move to the surviving work
+
+The direct route is [`works/merged_ids.csv.gz`](#merged-ids-merged_idscsvgz), which names each merged work's survivor. Location IDs are a second trail:
 
 When two works are found to be duplicates and merged, the surviving work absorbs the other's [locations](/data/locations/). Each location carries an internal `id` — a stable handle for the underlying harvested record, like `doi:10.7717/peerj.4375`, `pmid:29456894`, or `pmh:oai:europepmc.org:4724910` — and that handle survives the merge. So between releases you can see a location `id` that used to sit on work A now sitting on work B: that's the merge trail.
 
@@ -195,7 +197,7 @@ Reconcile against a full release periodically (daily-snapshot subscribers can do
 - **Database mirror (all entities):** diff your ID set against the release's ID set (stream IDs from the part files, or compare per-partition `record_count`s in the manifest) and delete local records that no longer exist upstream.
 
 > **Note:**
-> The pre-Walden snapshot published a `merged_ids/` directory mapping merged IDs to their survivors. That mechanism ended with the 2025 Walden cutover (historical files preserved under `legacy-data/`, not updated). Its successors are `deleted_ids.csv.gz` for **works** deletions (with location IDs providing the merge trail) and `merged_ids.csv.gz` for **authors** and **sources** merges, which also carries the legacy rows. What does **not** exist today: deletion logs for authors, sources, institutions, or any other entity type. If that matters to your pipeline, [tell us about your use case](https://openalex.org/contact).
+> The pre-Walden snapshot published a `merged_ids/` directory mapping merged IDs to their survivors. That mechanism ended with the 2025 Walden cutover (historical files preserved under `legacy-data/`, not updated). Its successors are `deleted_ids.csv.gz` for **works** deletions and `merged_ids.csv.gz` for **works**, **authors** and **sources** merges, which also carries the legacy rows. What does **not** exist today: deletion logs for authors, sources, institutions, or any other entity type. If that matters to your pipeline, [tell us about your use case](https://openalex.org/contact).
 
 ## Point-in-time and reproducibility
 

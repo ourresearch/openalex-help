@@ -1,6 +1,6 @@
 ---
 title: "Overview"
-updated: 2026-09-18
+updated: 2026-10-27
 description: "The people, papers, places, and concepts OpenAlex catalogs — how their IDs work, how much to trust them, and how the objects are shaped."
 tags: ["reference"]
 ---
@@ -48,7 +48,7 @@ Not every type has one clean canonical ID — [funders](/data/funders/) carry bo
 
 ## Merged entities
 
-OpenAlex sometimes discovers that two IDs describe the same real-world thing — two author records that are actually one person, two work records for one paper. When that happens the entities are **merged**: one ID becomes canonical and the other becomes a *merged-away* ID that permanently redirects to it. Requesting a merged-away ID returns the canonical entity, so old IDs never break. Merges are a normal, ongoing part of keeping the map accurate.
+OpenAlex sometimes discovers that two IDs describe the same real-world thing — two author records that are actually one person, two work records for one paper. When that happens the entities are **merged**: one ID becomes canonical and the other becomes a *merged-away* ID. For works, authors, sources and funders, requesting a merged-away ID usually returns the canonical entity (see [Merged entities](/api/get-single-entities/#merged-entities)). Redirecting merged IDs is a **best-effort convenience, not a permanence promise**: we do it while it's practical, and we may change or stop it for some IDs or entity types. If you need a link that lasts, store the work's DOI (or the author's ORCID) alongside its OpenAlex ID. Merges are a normal, ongoing part of keeping the map accurate.
 
 ## Dehydrated vs. full objects
 
