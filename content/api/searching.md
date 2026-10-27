@@ -1,6 +1,6 @@
 ---
 title: "Search"
-updated: 2026-10-03
+updated: 2026-10-26
 description: "Find entities using full-text search across titles, abstracts, and more"
 tags: ["api"]
 source_id: "guides/searching"
@@ -151,6 +151,8 @@ Use `*` to match zero or more characters and `?` to match exactly one character:
 - **Single-character wildcard:** `wom?n` matches "woman" and "women"
 
 The search term must have at least 3 characters before the wildcard. Leading wildcards (e.g., `*ology`) are not supported.
+
+A `?` in a title or a sentence is a question mark, so you can paste a title as it is: `search=Should we ditch impact factors?` finds that paper. A `?` is a wildcard inside a word (`wom?n`), and at the end of a word only when the search is one word or uses AND/OR/NOT: `search.exact=psoriati?` matches "psoriatic".
 
 Hyphenated and slashed terms are split into separate words by the search engine, so the 3-character rule applies to the last part. `e-cigarette*` matches "e-cigarette" and "e-cigarettes" (it runs as the adjacent words `e` + `cigarette*`), and `x-ray*` and `t-cell*` work the same way. `covid-19*` is rejected, because only `19` precedes the wildcard.
 
