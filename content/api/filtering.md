@@ -1,6 +1,6 @@
 ---
 title: "Filter"
-updated: 2026-10-23
+updated: 2026-10-26
 description: "Narrow down results to entities that match specific conditions"
 tags: ["api"]
 source_id: "guides/filtering"
@@ -111,6 +111,24 @@ https://api.openalex.org/works?filter=doi:https://doi.org/10.1371/journal.pone.0
 > # INVALID: OR between different filters
 > https://api.openalex.org/works?filter=institutions.country_code:fr|primary_location.source.issn:0957-1558
 > ```
+
+### Commas inside a value
+
+A comma separates filters, so a value that holds a comma needs double quotes around it:
+
+```bash
+# One DOI that contains a comma
+https://api.openalex.org/works?filter=doi:"10.5675/hywa_2012,4_3"
+```
+
+Search filters (`title.search`, `abstract.search`, `raw_affiliation_strings.search` and the rest) need no quotes: a comma in their text stays part of the text unless the next filter starts right after it (`,type:`). So you can paste a title as it is:
+
+```bash
+# A title with a comma, then a second filter
+https://api.openalex.org/works?filter=title.search:Music and British Culture, 1785,type:book
+```
+
+Percent-encoding a comma as `%2C` doesn't change its meaning: most HTTP clients encode every comma that way, including the ones between filters.
 
 ## Sync filters (paid plans)
 

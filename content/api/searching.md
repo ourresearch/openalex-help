@@ -45,7 +45,7 @@ The first search finds 241,167 works, the second 118,920: the keywords add paper
 
 OpenAlex uses [stemming](https://en.wikipedia.org/wiki/Stemming) and removes [stop words](https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-stop-tokenfilter.html) to improve results:
 
-- Words like "the" and "an" are removed
+- Words like "the" and "an" are removed, except inside a short quoted phrase in a title or abstract search (see [Phrase matching](#phrase-matching))
 - A search for "possums" also returns "possum"
 - Searches match whole words only ("lun" won't match "lunar")
 - A straight (') and a curly (’) apostrophe match each other: `Alzheimer's disease` also finds titles written `Alzheimer’s disease`
@@ -108,6 +108,8 @@ Keep each chunk's full request URL under ~4 KB. Combining results is exact becau
 ### Phrase matching
 
 Use double quotes to search for an exact phrase. Multi-word searches without quotes rank results higher when words appear close together.
+
+Stop words count inside a short quoted phrase (four words or fewer besides the stop words) in title and abstract searches (`title.search`, `abstract.search`, `title_and_abstract.search`, `search.title`): `title.search:"vitamin A deficiency"` finds that phrase and not "vitamin D deficiency", and `title.search:"To be or not to be"` finds the titles that say it. Those words are then matched as typed, without stemming. A search with only stop words (`search.title=It`) also matches them as typed. The broad `search` parameter (and `fulltext.search`) still drops stop words.
 
 ```bash
 # Exact phrase (few results)
@@ -229,6 +231,8 @@ https://api.openalex.org/works?filter=title.search:cubist
 ```
 
 The `fulltext.search` filter searches a work's title, abstract, and full text together — the same fields as the `search` query parameter. (The older `default.search` filter is a deprecated alias of `fulltext.search`: it still works and behaves identically, but `fulltext.search` is preferred.) Variants like `.search.exact` (unstemmed) and `.search.no_stem` also exist for some fields.
+
+A comma in a search filter's text is part of the text, so a pasted title works as it is: `filter=title.search:Music and British Culture, 1785`. See [Commas inside a value](/api/filtering/#commas-inside-a-value).
 
 These filter-based searches cost the same $1 per 1,000 requests. For autocomplete use cases, use the [autocomplete endpoint](/api/autocomplete/) instead.
 
