@@ -13,7 +13,9 @@ Use `GET /{entity_type}/{id}` to retrieve a single entity. The response is the f
 curl "https://api.openalex.org/works/W2741809807"
 ```
 
-**Cost:** Free
+**Cost:** Free, for every entity type: works, authors, sources, institutions, topics, publishers, funders and awards, and the vocabularies too (`/keywords/climate-change`, `/countries/US`, `/work-types/article`, `/locations/doi:10.7717/peerj.4375`).
+
+**A random record:** `/works/random` (also `/authors/random`, `/sources/random` and the other main entities) returns one record chosen at random. It runs a query to choose it, so it costs what a list costs: 1 credit.
 
 **Fetching many?** One list request returns up to 100 records by ID, much faster than 100 single requests. It costs 1 credit for the whole list (see [OR filters](/api/filtering/#addition-or)):
 

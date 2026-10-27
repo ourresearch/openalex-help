@@ -20,7 +20,7 @@ From there it's a question of scale: one file at a time from the API, a few mill
 
 ### Option 1: API (up to ~10K files)
 
-Download files one at a time from the content API. Each download is metered against your API usage ([Example costs](/access/example-costs/)).
+Download files one at a time from the content API. Each download is metered against your API usage ([Example costs](/access/example-costs/)). A `HEAD` request (the file's size and type, no bytes) is free.
 
 ```
 https://content.openalex.org/works/{work_id}.pdf?api_key=YOUR_KEY
