@@ -48,6 +48,8 @@ OpenAlex uses [stemming](https://en.wikipedia.org/wiki/Stemming) and removes [st
 - Words like "the" and "an" are removed
 - A search for "possums" also returns "possum"
 - Searches match whole words only ("lun" won't match "lunar")
+- A straight (') and a curly (’) apostrophe match each other: `Alzheimer's disease` also finds titles written `Alzheimer’s disease`
+- Accents don't matter in institution, source and author names: `Universite de Montreal` finds Université de Montréal. In work titles and abstracts they still do: search `naïve Bayes` and `naive Bayes` separately
 
 ### Exact (unstemmed) search
 
