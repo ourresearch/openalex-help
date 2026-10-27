@@ -1,6 +1,6 @@
 ---
 title: "Attributes"
-updated: 2026-10-26
+updated: 2026-10-27
 description: "The canonical dictionary of every attribute on a source object — what each one means, where it comes from, and its quirks."
 tags: ["reference"]
 ---
@@ -113,7 +113,7 @@ Empty when the source is on no list. Filter/group_by; also available on works as
 *List.* Per-year rollup: the source's `works_count` and `oa_works_count` published that year, and the `cited_by_count` its works received that year. See [Common attributes](/data/common-attributes/#counts_by_year), including why its sort direction isn't consistent across entity types.
 
 ### `summary_stats`
-*Object.* Precomputed bibliometric indicators for the source: `2yr_mean_citedness` (a [journal impact factor](https://en.wikipedia.org/wiki/Impact_factor)-style measure), `h_index`, and `i10_index`. Filter/sort/group_by on each. See [Common attributes](/data/common-attributes/#summary_stats).
+*Object.* Precomputed bibliometric indicators for the source: `2yr_mean_citedness` (a [journal impact factor](https://en.wikipedia.org/wiki/Impact_factor)-style measure: the mean `cited_by_count` of the source's works published this year or in the two years before, counting every work except peer reviews), `h_index`, and `i10_index` (both over every work). Filter/sort/group_by on each. See [Common attributes](/data/common-attributes/#summary_stats).
 
 ### `works_count`
 *Integer.* The number of [works](/data/works/) published in this source. See [Common attributes](/data/common-attributes/#works_count). Filter/sort/group_by.

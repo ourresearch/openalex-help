@@ -1,6 +1,6 @@
 ---
 title: "Publishers"
-updated: 2026-10-26
+updated: 2026-10-27
 description: "What a publisher is, how OpenAlex builds the publisher hierarchy from ROR and Wikidata, how it connects to sources, and what every attribute on a publisher object means."
 tags: ["reference"]
 source_id: "api-reference/publishers"
@@ -81,7 +81,7 @@ This is the canonical dictionary of every attribute on a **publisher** object. A
 *Integer.* Total citations received across all works this publisher has published. See [Common attributes](/data/common-attributes/#cited_by_count).
 
 ### `summary_stats`
-*Object.* Precomputed bibliometric indicators (`2yr_mean_citedness`, `h_index`, `i10_index`) over the publisher's works. See [Common attributes](/data/common-attributes/#summary_stats).
+*Object.* Precomputed bibliometric indicators (`2yr_mean_citedness`, `h_index`, `i10_index`) over the publisher's works; `2yr_mean_citedness` leaves out peer reviews, as for sources. See [Common attributes](/data/common-attributes/#summary_stats).
 
 ### `counts_by_year`
 *List.* Works published and citations received per year, from 2014 to the current year (`{ year, works_count, cited_by_count }`; no `oa_works_count`). See [Common attributes](/data/common-attributes/#counts_by_year).
