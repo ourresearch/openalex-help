@@ -1,6 +1,6 @@
 ---
 title: "Search"
-updated: 2026-10-26
+updated: 2026-10-28
 description: "Find entities using full-text search across titles, abstracts, and more"
 tags: ["api"]
 source_id: "guides/searching"
@@ -49,7 +49,8 @@ OpenAlex uses [stemming](https://en.wikipedia.org/wiki/Stemming) and removes [st
 - A search for "possums" also returns "possum"
 - Searches match whole words only ("lun" won't match "lunar")
 - A straight (') and a curly (’) apostrophe match each other: `Alzheimer's disease` also finds titles written `Alzheimer’s disease`
-- Accents don't matter in institution, source and author names: `Universite de Montreal` finds Université de Montréal. In work titles and abstracts they still do: search `naïve Bayes` and `naive Bayes` separately
+- In works search, a possessive also matches its bare word: `hartmann` finds "Hartmann's procedure" (`search.exact` keeps them apart)
+- Accents don't matter in work titles, abstracts and full text, or in institution, source and author names: `naive Bayes` also finds `naïve Bayes`, and `Universite de Montreal` finds Université de Montréal
 
 ### Exact (unstemmed) search
 
