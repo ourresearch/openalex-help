@@ -142,7 +142,7 @@ See [Open access](/data/works/open-access/) for how these fields combine.
 *Integer.* The length of [`referenced_works`](#referenced_works).
 
 ### `related_works`
-*List.* OpenAlex IDs of algorithmically related works — recent papers sharing the most topics with this one.
+*List.* OpenAlex IDs of up to 10 works closest in meaning to this one: the nearest neighbours of its title, abstract and venue among the [embeddings](/api/searching/#semantic-search) of every titled work. Paratext, errata, retractions, reviews and retracted works are never listed, nor works with this work's own title. A list is shorter, or empty, when too few works qualify (common for generic titles such as "Preface"). Recomputed for every work in October 2026; until then this was a list of recent papers sharing the most topics with this one.
 
 ### `funders`
 *List.* Dehydrated [funder](/data/funders/) objects for this work. Replaces the removed `grants` property. Filter on `funders.id`, or by the funder's country with `funders.country_code` (looked up at query time).
