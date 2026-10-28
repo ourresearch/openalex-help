@@ -1,6 +1,6 @@
 ---
 title: "Awards"
-updated: 2026-10-26
+updated: 2026-10-28
 description: "What an award (grant) is, where its data comes from, how OpenAlex matches grants to funders and works, and what every attribute on an award object means."
 tags: ["reference"]
 source_id: "api-reference/awards"
@@ -82,7 +82,7 @@ This is the canonical dictionary of every attribute on an **award** object. Awar
 *Integer.* The number of [`funded_outputs`](#funded_outputs). Filterable and sortable.
 
 ### `doi`
-*String.* A DOI for the grant itself, when the source assigns one (common for CORDIS awards); often `null`.
+*String.* A DOI for the grant itself, when the source assigns one (common for CORDIS awards); often `null`. It keeps the source's spelling (`10.3030/649261`, `https://doi.org/…` or `http://dx.doi.org/…`). The `doi` filter finds it in any of those spellings and any case: `filter=doi:10.3030/649261`.
 
 ### `landing_page_url`
 *String.* A URL to the funder's public page for this grant (e.g. a NIH RePORTER project page).
@@ -91,7 +91,7 @@ This is the canonical dictionary of every attribute on an **award** object. Awar
 *String.* The data source this award was built from (e.g. `nih_exporter`, `crossref_work_funders`, `cordis`). See [Where grant data comes from](#where-grant-data-comes-from). Filterable and groupable.
 
 ### `lead_investigator`
-*Object.* The award's principal investigator: `given_name`, `family_name`, `orcid`, `role_start`, and an `affiliation` (`name`, `country`, `ids`). Fields may be `null`. Filter on the dotted subfields (`lead_investigator.orcid`, `lead_investigator.family_name`, `lead_investigator.affiliation.country`, and so on).
+*Object.* The award's principal investigator: `given_name`, `family_name`, `orcid`, `role_start`, and an `affiliation` (`name`, `country`, `ids`). Fields may be `null`. Filter on the dotted subfields (`lead_investigator.orcid`, `lead_investigator.family_name`, `lead_investigator.affiliation.country`, and so on). Name filters (`given_name`, `family_name`, `affiliation.name`) match the words in order, in any case: `lead_investigator.family_name:hayashi` finds Hayashi. Put a name with spaces in quotes to match it as one phrase (`lead_investigator.affiliation.name:"Kent State University"`); without quotes each word must appear.
 
 ### `co_lead_investigator`
 *Object.* A co-principal investigator, in the same shape as [`lead_investigator`](#lead_investigator), or `null`.
