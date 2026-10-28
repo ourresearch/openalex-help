@@ -1,6 +1,6 @@
 ---
 title: "Common attributes"
-updated: 2026-10-27
+updated: 2026-10-28
 description: "The attributes that appear on nearly every OpenAlex entity — id, ids, display_name, counts_by_year, summary_stats, and the rest — documented once."
 tags: ["reference"]
 ---
@@ -47,7 +47,7 @@ These are convenience metrics; for anything rigorous, compute over the underlyin
 ## Provenance timestamps
 
 ### `created_date`
-*String.* When this entity was first added to OpenAlex, as an [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time, e.g. `2016-06-24T00:00:00`. Works, authors and sources record only the day, so their time is always `00:00:00`; awards add milliseconds and a `Z` (`2026-07-13T04:19:57.000Z`). The first 10 characters are the date.
+*String.* When this entity was first added to OpenAlex, as an [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time, e.g. `2016-06-24T00:00:00`. Works, authors and sources record only the day, so their time is always `00:00:00`; awards add milliseconds and a `Z` (`2026-07-13T04:19:57.000Z`). The first 10 characters are the date. A work's `created_date` never moves later, even when its record is rebuilt ([works](/data/works/attributes/#created_date)).
 
 ### `updated_date`
 *String.* The datetime this entity was last changed in any way (an [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) datetime). Note this reflects *any* update, including routine recomputation of citation counts — not only meaningful metadata changes.

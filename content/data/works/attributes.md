@@ -1,6 +1,6 @@
 ---
 title: "Attributes"
-updated: 2026-10-26
+updated: 2026-10-28
 description: "The canonical dictionary of every attribute on a work object — what each one means, where it comes from, and its quirks."
 tags: ["reference"]
 ---
@@ -172,7 +172,7 @@ See [Open access](/data/works/open-access/) for how these fields combine.
 *List.* The [indexes](/data/indexes/) this work is indexed in. Possible values: `arxiv`, `crossref`, `doaj`, `pubmed`.
 
 ### `created_date`
-*String.* The date the work was added to OpenAlex (`YYYY-MM-DDTHH:MM:SS`; only the day is recorded, so the time is always `00:00:00`). See [Common attributes](/data/common-attributes/#created_date).
+*String.* The date the work was added to OpenAlex (`YYYY-MM-DDTHH:MM:SS`; only the day is recorded, so the time is always `00:00:00`). It never moves later: a work whose record is rebuilt keeps the earliest date OpenAlex served it with. Many older works show `2016-06-24`, the Microsoft Academic Graph load date. See [Common attributes](/data/common-attributes/#created_date).
 
 ### `updated_date`
 *String.* The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) UTC timestamp of the last change to anything in the work object — including citation-count increases. See [Common attributes](/data/common-attributes/#updated_date).
