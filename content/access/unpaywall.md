@@ -1,6 +1,6 @@
 ---
 title: "Unpaywall"
-updated: 2026-09-18
+updated: 2026-10-29
 description: "What Unpaywall is — a legacy-compatible API surface over the OpenAlex database — its DOI coverage, data format, and how it relates to OpenAlex products."
 tags: ["unpaywall"]
 source_id: "41193838206743"
@@ -16,6 +16,8 @@ Unpaywall and OpenAlex come from the same team, and they now run on the same dat
 **A little history.** Unpaywall launched in 2017 to answer one question: is there a free, legal copy of this paper? In 2022 the same team launched OpenAlex. It knows everything Unpaywall knows about open access, and adds the rest of the scholarly record: authors, journals, institutions, topics, and citations. In late 2025 we moved Unpaywall onto the OpenAlex database. Since then there has been one set of data. Unpaywall is a legacy-compatible format over it, kept stable for the thousands of tools built on it.
 
 **Same data, same sources.** The `is_oa`, `oa_status`, and PDF link in an Unpaywall record are the same values you'll find in the OpenAlex work's [`open_access`](/data/works/open-access/) and `best_oa_location` fields. The journals and repositories Unpaywall monitors are OpenAlex sources. There is no separate Unpaywall list.
+
+**One record per Crossref DOI, answered by its OpenAlex work.** Some works carry several Crossref DOIs: a preprint and the journal article it became, or a publisher's double registration. Each of those DOIs returns the record of the work OpenAlex returns for it (`https://api.openalex.org/works/doi:{DOI}`), with the `doi` you asked for. So a bioRxiv DOI for a paper later published in a journal answers with the journal article's open-access status.
 
 **We are not retiring Unpaywall.** People like the brand, the interface, and the record format, and it does one job well: DOI in, open-access answer out. The DOI lookup API, the browser extension, and the Data Feed are unchanged and staying.
 
@@ -54,12 +56,22 @@ DOIs can be created by any of several [Registration Agencies](https://www.doi.or
 - Check whether a DOI is **valid** with the [doi.org proxy REST API](https://www.doi.org/factsheets/DOIProxy.html#rest-api).
 - Check **which agency** created it with Crossref's agency endpoint: `https://api.crossref.org/works/{DOI}/agency`.
 - Some valid Crossref DOIs are still excluded because they've been deleted or are used for testing.
+- Crossref grant DOIs aren't included: they describe funding, not articles. OpenAlex lists them as [awards](/data/awards/).
 
 **DataCite DOIs** aren't included. Nearly everything with a DataCite DOI is Open Access, so classifying them added little value and was mostly a source of errors — for statistical purposes, if you have a DataCite DOI, it's OA. (OpenAlex itself *does* index DataCite works — that's one of the things the [OpenAlex API](/api/) gives you beyond the Unpaywall format.)
 
 ## The Unpaywall Data Feed
 
 Unpaywall has a data feed for [subscribers](/access/pricing/): daily change updates in the Unpaywall record format, covering Crossref-DOI works only. It delivers changes to the same underlying OpenAlex data — the feed exists for the ecosystem of integrations that already speak the Unpaywall schema, and it's one of the [four ways to keep in sync with OpenAlex](/access/sync/#keeping-in-sync-with-openalex).
+
+**Deleted DOIs.** When OpenAlex removes a DOI (a Crossref grant, or a DOI in Crossref's list of deleted DOIs), Unpaywall removes it too: the API answers 404 and the DOI leaves the full snapshot. A changefile can't carry a removal, so the feed keeps a running list of removed DOIs next to the changefiles. Download it with your feed key:
+
+```
+https://api.unpaywall.org/daily-feed/changefile/deleted_dois.jsonl.gz?api_key=YOUR_KEY
+https://api.unpaywall.org/weekly-feed/changefile/deleted_dois.jsonl.gz?api_key=YOUR_KEY
+```
+
+Each line is one DOI: `{"doi":"10.3030/101152945","deleted":"2026-10-29T17:18:06Z","reason":"crossref_grant"}` (`reason` is `crossref_grant` or `crossref_deleted_doi`). Remove these DOIs from your copy. If a DOI ever comes back, it leaves the list and arrives in a changefile. The list isn't in the changefile listing, so scripts that download every listed changefile are unaffected. The first removal, on 29 October 2026, took out 342,714 DOIs: 177,738 grants and 164,976 deleted DOIs.
 
 For any new integration, use an OpenAlex-native sync method instead — they cover every entity type (works, authors, sources, institutions, and the rest) in the full OpenAlex schema. If you're an existing Unpaywall Data Feed subscriber weighing a migration, [talk to us](mailto:sales@openalex.org) — the mapping from Unpaywall records to OpenAlex works is well-trodden.
 
