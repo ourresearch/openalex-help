@@ -1,6 +1,6 @@
 ---
 title: "Attributes"
-updated: 2026-10-28
+updated: 2026-10-29
 description: "The canonical dictionary of every attribute on a work object — what each one means, where it comes from, and its quirks."
 tags: ["reference"]
 ---
@@ -133,7 +133,7 @@ See [Open access](/data/works/open-access/) for how these fields combine.
 *Float.* The [Field-Weighted Citation Impact](/data/works/citations/#field-weighted-citation-impact): citations received divided by citations expected for works of the same type, year, and subfield. 1.0 is world average.
 
 ### `citation_normalized_percentile`
-*Object.* The same information as [`fwci`](#fwci) expressed as a percentile (`value`, `is_in_top_1_percent`, `is_in_top_10_percent`).
+*Object.* The same information as [`fwci`](#fwci) expressed as a percentile (`value`, `is_in_top_1_percent`, `is_in_top_10_percent`). Recomputed every night; a change in `value` alone does not move [`updated_date`](#updated_date), a change in either flag does (from 30 October 2026).
 
 ### `referenced_works`
 *List.* OpenAlex IDs of the works this work cites (this work ➞ others). See [Citations and references](/data/works/citations/#citations-and-references).
@@ -142,7 +142,7 @@ See [Open access](/data/works/open-access/) for how these fields combine.
 *Integer.* The length of [`referenced_works`](#referenced_works).
 
 ### `related_works`
-*List.* OpenAlex IDs of up to 10 works closest in meaning to this one: the nearest neighbours of its title, abstract and venue among the [embeddings](/api/searching/#semantic-search) of every titled work. Paratext, errata, retractions, reviews and retracted works are never listed, nor works with this work's own title. A list is shorter, or empty, when too few works qualify (common for generic titles such as "Preface"). Recomputed for every work in October 2026; until then this was a list of recent papers sharing the most topics with this one.
+*List.* OpenAlex IDs of up to 10 works closest in meaning to this one: the nearest neighbours of its title, abstract and venue among the [embeddings](/api/searching/#semantic-search) of every titled work. Paratext, errata, retractions, reviews and retracted works are never listed, nor works with this work's own title. A list is shorter, or empty, when too few works qualify (common for generic titles such as "Preface"). Recomputed for every work in October 2026; until then this was a list of recent papers sharing the most topics with this one. That recomputation did not move [`updated_date`](#updated_date): if you keep a copy current by `updated_date`, reload `related_works` once from a full snapshot made after 28 October 2026, or from the API. New works get their list the day after they are added, and their `updated_date` moves when it lands.
 
 ### `funders`
 *List.* Dehydrated [funder](/data/funders/) objects for this work. Replaces the removed `grants` property. Filter on `funders.id`, or by the funder's country with `funders.country_code` (looked up at query time).
@@ -172,10 +172,10 @@ See [Open access](/data/works/open-access/) for how these fields combine.
 *List.* The [indexes](/data/indexes/) this work is indexed in. Possible values: `arxiv`, `crossref`, `doaj`, `pubmed`.
 
 ### `created_date`
-*String.* The date the work was added to OpenAlex (`YYYY-MM-DDTHH:MM:SS`; only the day is recorded, so the time is always `00:00:00`). It never moves later: a work whose record is rebuilt keeps the earliest date OpenAlex served it with. Many older works show `2016-06-24`, the Microsoft Academic Graph load date. See [Common attributes](/data/common-attributes/#created_date).
+*String.* The date the work was added to OpenAlex (`YYYY-MM-DDTHH:MM:SS`; only the day is recorded, so the time is always `00:00:00`). It never moves later: a work whose record is rebuilt keeps the earliest date OpenAlex served it with. Many older works show `2016-06-24`, the Microsoft Academic Graph load date. Restoring these dates in October 2026 did not move [`updated_date`](#updated_date) for 213.7 million works: if you keep a copy current by `updated_date`, reload `created_date` once from a full snapshot made after 28 October 2026. See [Common attributes](/data/common-attributes/#created_date).
 
 ### `updated_date`
-*String.* The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) UTC timestamp of the last change to anything in the work object — including citation-count increases. See [Common attributes](/data/common-attributes/#updated_date).
+*String.* The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) UTC timestamp of the last change to the work object, including citation-count increases. It does not move when only [`fwci`](#fwci), the percentile `value`, [`cited_by_percentile_year`](#cited_by_percentile_year) (recomputed every night) or [`has_content`](#has_content) change. See [Common attributes](/data/common-attributes/#updated_date).
 
 ### Deprecated fields
 - **`host_venue`** and **`alternate_host_venues`** — removed; use [`primary_location`](#primary_location) and [`locations`](#locations). Filtering or grouping on them errors.

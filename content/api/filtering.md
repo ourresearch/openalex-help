@@ -1,6 +1,6 @@
 ---
 title: "Filter"
-updated: 2026-10-26
+updated: 2026-10-29
 description: "Narrow down results to entities that match specific conditions"
 tags: ["api"]
 source_id: "guides/filtering"
@@ -137,6 +137,8 @@ Percent-encoding a comma as `%2C` doesn't change its meaning: most HTTP clients 
 - `from_created_date` — records **created** since a date
 - `from_updated_date` — records **updated** (or created) since a date
 
+`to_created_date` and `to_updated_date` close the window: records created or updated on or before a date. All four work on every entity type, awards included, and each date is inclusive.
+
 ```bash
 # Works that changed since July 30
 https://api.openalex.org/works?filter=from_updated_date:2026-07-30
@@ -149,7 +151,7 @@ These make the API itself a sync mechanism: poll on your own schedule and upsert
 https://api.openalex.org/works?filter=institutions.id:I27837315,from_updated_date:2026-07-30
 ```
 
-For how this method compares with the snapshot-based approaches (and how to handle deletions and merges), see [Sync](/access/sync/#premium-api-filters-paid-plans).
+For how this method compares with the snapshot-based approaches (and how to handle deletions and merges), see [Sync](/access/sync/#premium-api-filters-paid-plans). A few work fields are recomputed every night without moving `updated_date`; [Common attributes](/data/common-attributes/#updated_date) lists them.
 
 ## Filter by saved collection
 

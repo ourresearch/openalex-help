@@ -1,6 +1,6 @@
 ---
 title: "Sync"
-updated: 2026-10-27
+updated: 2026-10-29
 description: "Snapshot release cadence and dates per plan, how updated_date partitions work, the four ways to keep a copy in sync with OpenAlex, and how deletions and merged entities behave — including the works deletion log deleted_ids.csv.gz and the works, authors and sources merge maps merged_ids.csv.gz."
 tags: ["downloads"]
 source_id: "new/snapshot-updates"
@@ -59,6 +59,7 @@ Consequences:
 
 - **The bucket is always the complete current database** — the union of all partitions, exactly once per record. No partition is a "base file"; no folder is cumulative.
 - **To update a copy you made on date X**, download only partitions with `updated_date` > X and upsert them by `id`. You never need to re-download a partition you already have.
+- **A few work fields don't move `updated_date`**: `fwci`, the percentile `value` and `cited_by_percentile_year` (recomputed every night) and `has_content`; and a change made to every record at once is announced with what to reload (`RELEASE_NOTES.txt`, or the field's own page). [Common attributes](/data/common-attributes/#updated_date) has the list.
 - **Old partitions shrink** as their records move forward. If you sync files rather than upserting records, use `--delete` so vacated files disappear (see below).
 
 ## Keeping in sync with OpenAlex
@@ -102,6 +103,8 @@ Paid plans unlock two filters on every entity type that make the API itself a sy
 
 - `from_created_date` — records **created** since a date
 - `from_updated_date` — records **updated** since a date
+
+`to_created_date` and `to_updated_date` (on or before a date) close the window, on every entity type too.
 
 ```
 https://api.openalex.org/works?filter=from_updated_date:2026-07-30

@@ -1,6 +1,6 @@
 ---
 title: "Common attributes"
-updated: 2026-10-28
+updated: 2026-10-29
 description: "The attributes that appear on nearly every OpenAlex entity — id, ids, display_name, counts_by_year, summary_stats, and the rest — documented once."
 tags: ["reference"]
 ---
@@ -50,7 +50,12 @@ These are convenience metrics; for anything rigorous, compute over the underlyin
 *String.* When this entity was first added to OpenAlex, as an [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time, e.g. `2016-06-24T00:00:00`. Works, authors and sources record only the day, so their time is always `00:00:00`; awards add milliseconds and a `Z` (`2026-07-13T04:19:57.000Z`). The first 10 characters are the date. A work's `created_date` never moves later, even when its record is rebuilt ([works](/data/works/attributes/#created_date)).
 
 ### `updated_date`
-*String.* The datetime this entity was last changed in any way (an [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) datetime). Note this reflects *any* update, including routine recomputation of citation counts — not only meaningful metadata changes.
+*String.* The datetime this entity's record last changed (an [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) datetime). It moves for routine changes too, such as a new citation, not only for metadata edits.
+
+Two exceptions, if you keep a copy current by `updated_date` (snapshot partitions or `from_updated_date`):
+
+- **On works, four fields change without moving it:** [`fwci`](/data/works/attributes/#fwci), the `value` of [`citation_normalized_percentile`](/data/works/attributes/#citation_normalized_percentile) and [`cited_by_percentile_year`](/data/works/attributes/#cited_by_percentile_year) are recomputed every night for every work (a large share shift a little each time, so moving `updated_date` for them would send you most of the corpus every day), and [`has_content`](/data/works/attributes/#has_content) follows the files OpenAlex holds. Read them from a recent full snapshot or the API when you need them current. The percentile's `is_in_top_10_percent` and `is_in_top_1_percent` flags do move it (from 30 October 2026).
+- **A change to every record at once can leave it unmoved**, so that syncing customers don't re-download the whole database for one field. Each such change is announced with what to reload, in the snapshot's `RELEASE_NOTES.txt` or on the field's own page: in October 2026, work `keywords`, [`sustainable_development_goals`](/data/sdgs/), [`related_works`](/data/works/attributes/#related_works) and [`created_date`](/data/works/attributes/#created_date).
 
 ## In the API
 
