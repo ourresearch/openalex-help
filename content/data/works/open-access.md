@@ -1,6 +1,6 @@
 ---
 title: "Open access"
-updated: 2026-08-11
+updated: 2026-10-29
 description: "How OpenAlex determines whether a work is Open Access — the status taxonomy (diamond, gold, green, hybrid, bronze), OA locations, best-location selection, and licenses."
 tags: ["reference"]
 source_id: "24347035046295"
@@ -82,12 +82,9 @@ One pseudo-license to know about: **`implied-oa`** marks articles that the publi
 
 ## OA dates
 
-OpenAlex's underlying data also tracks *when* a copy of a work first became available at each location. This `oa_date` field is exposed through the [Unpaywall API format](/access/unpaywall/) (a legacy-compatible view of the same OpenAlex data — see [its data-format reference](https://unpaywall.org/data-format#oa-location-object)) rather than on the OpenAlex work object itself. In brief:
+The [Unpaywall API format](/access/unpaywall/) (see [its data-format reference](https://unpaywall.org/data-format#oa-location-object)) gives each open copy an `oa_date`. It was meant to say when the copy first became available at that location. Today it doesn't: on every open copy it is simply the work's publication date, whether the copy is the publisher's or a repository's.
 
-- **Gold/diamond**: the article was free from day one, so `oa_date` is the publication date.
-- **Hybrid**: the publication date, or the manuscript license's effective date if a manuscript version was opened separately.
-- **Bronze**: always null — bronze availability can come and go, is often discovered late, and is rarely relevant to OA mandates.
-- **Repository copies**: the date OpenAlex first observed full text there, derived from [OAI-PMH](https://www.openarchives.org/pmh/) record timestamps. Because raw timestamps can both pre- and post-date the actual posting, OpenAlex freezes the timestamp at first discovery; reliable dates exist only for copies first observed on or after 2020-08-07, and earlier copies get null.
+So `oa_date` can't tell you when a paper was deposited in a repository, or when a delayed or bronze copy opened. Don't use it to check embargoes or deposit compliance (for example REF or funder mandates); check the repository's own record for the deposit date. And because every copy carries the same date, `first_oa_location` (defined as the copy with the earliest `oa_date`) is always the same as `best_oa_location`.
 
 ## Article processing charges
 

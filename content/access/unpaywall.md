@@ -17,6 +17,8 @@ Unpaywall and OpenAlex come from the same team, and they now run on the same dat
 
 **Same data, same sources.** The `is_oa`, `oa_status`, and PDF link in an Unpaywall record are the same values you'll find in the OpenAlex work's [`open_access`](/data/works/open-access/) and `best_oa_location` fields. The journals and repositories Unpaywall monitors are OpenAlex sources. There is no separate Unpaywall list.
 
+**Two fields to read with care.** `z_authors` is deprecated. It isn't kept up to date: a record's authors are rewritten only when some other part of the record changes, so they can differ from the work's current authors and affiliations. For authors, use the OpenAlex work's [`authorships`](/data/works/attributes/#authorships) (look it up by DOI: `api.openalex.org/works/doi:10.xxxx/...`). And `oa_date` is the work's publication date on every open copy, not the date a copy became available: see [OA dates](/data/works/open-access/#oa-dates) before using it.
+
 **One record per Crossref DOI, answered by its OpenAlex work.** Some works carry several Crossref DOIs: a preprint and the journal article it became, or a publisher's double registration. Each of those DOIs returns the record of the work OpenAlex returns for it (`https://api.openalex.org/works/doi:{DOI}`), with the `doi` you asked for. So a bioRxiv DOI for a paper later published in a journal answers with the journal article's open-access status.
 
 **We are not retiring Unpaywall.** People like the brand, the interface, and the record format, and it does one job well: DOI in, open-access answer out. The DOI lookup API, the browser extension, and the Data Feed are unchanged and staying.
