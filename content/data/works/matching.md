@@ -113,12 +113,6 @@ The rule of thumb for journal articles: **another journal publishing it under it
 
 Matching uses each record's [type](/data/work-types/) as given. When a copy carries the wrong type (a repository labelling a book chapter as an article, say), the type rules can keep it apart from its work; we fix the type rather than the match.
 
-## After a record is matched
-
-- **Matched once.** A record is matched when it first arrives, and stays on that work unless a later merge moves it.
-- **Links declared later.** Preprint servers often add the link to the published article after both records are in OpenAlex. A nightly step merges the two works when that happens.
-- **Merged-away IDs.** When two works merge, the merged-away work's ID usually resolves to the surviving work. This is best effort, not a promise; see [Merged entities](/api/get-single-entities/#merged-entities). Snapshot users can trace merges with [`merged_ids.csv.gz`](/access/sync/#merged-ids-merged_idscsvgz).
-
 ## Found a wrong merge or a duplicate?
 
 Tell us. File a report with the work IDs (both works, for a duplicate) or the DOI that doesn't belong on a work, as described in [Fixing data errors](/how-to/fixing-data-errors/).
