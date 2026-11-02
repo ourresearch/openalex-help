@@ -62,20 +62,18 @@ Every night, each new record takes this path. It stops as soon as it finds its w
 
 </details>
 
-Every decision is automatic and takes effect the same night. The matcher decides these records from 3 November 2026. Before that, a rule joined records whose normalized title and first author matched an existing work's.
+Every decision is automatic and takes effect the same night.
 
 ### An example
 
-The journal article *Heritability estimation of subcortical volumes in a multi-ancestry multi-site cohort study* arrived from Crossref in 2026 ([`10.1162/imag.a.1455`](https://doi.org/10.1162/imag.a.1455)). It shared no identifier with its 2024 bioRxiv preprint ([`10.1101/2024.01.11.575231`](https://doi.org/10.1101/2024.01.11.575231)), and the old title rule made it a new work. The matcher found the preprint's work among the candidates and joined them: [W4390839382](https://api.openalex.org/works/W4390839382?select=id,display_name,locations) now holds the article, the preprint, and their PubMed and PubMed Central copies.
+The journal article *Heritability estimation of subcortical volumes in a multi-ancestry multi-site cohort study* arrived from Crossref in 2026 ([`10.1162/imag.a.1455`](https://doi.org/10.1162/imag.a.1455)). It shared no identifier with its 2024 bioRxiv preprint ([`10.1101/2024.01.11.575231`](https://doi.org/10.1101/2024.01.11.575231)). The matcher found the preprint's work among the candidates and joined them: [W4390839382](https://api.openalex.org/works/W4390839382?select=id,display_name,locations) now holds the article, the preprint, and their PubMed and PubMed Central copies.
 
 ## How accurate it is
 
-We checked samples of the matcher's decisions on real nightly arrivals in late October 2026, each judged independently by AI reviewers and compared with hand-checked labels. The previous title rule, measured on the same kind of sample:
+We checked samples of the matcher's decisions on real nightly arrivals in late October 2026, each judged independently by AI reviewers and compared with hand-checked labels:
 
-| | Matcher | Previous title rule |
-|---|---|---|
-| When it joins a record to a work, how often that's right | 99.1% | 76.9% |
-| Of the records that belong to an existing work, how many it joins | 92.2% | 70.7% |
+- When the matcher joins a record to a work, it is right **99.1%** of the time.
+- Of the records that belong to an existing work, it joins **92.2%**.
 
 The models were trained on tens of thousands of real records whose matches were labelled by a large language model (Anthropic's Claude Opus) and spot-checked by hand.
 
@@ -115,9 +113,9 @@ The rule of thumb for journal articles: **another journal publishing it under it
 
 Matching uses each record's [type](/data/work-types/) as given. When a copy carries the wrong type (a repository labelling a book chapter as an article, say), the type rules can keep it apart from its work; we fix the type rather than the match.
 
-## Records matched earlier
+## After a record is matched
 
-- **Older matches stay.** A record is matched once, when it first arrives. Works matched before 3 November 2026 keep the matches the earlier rules made, unless a later merge changes them.
+- **Matched once.** A record is matched when it first arrives, and stays on that work unless a later merge moves it.
 - **Links declared later.** Preprint servers often add the link to the published article after both records are in OpenAlex. A nightly step merges the two works when that happens.
 - **Merged-away IDs.** When two works merge, the merged-away work's ID usually resolves to the surviving work. This is best effort, not a promise; see [Merged entities](/api/get-single-entities/#merged-entities). Snapshot users can trace merges with [`merged_ids.csv.gz`](/access/sync/#merged-ids-merged_idscsvgz).
 
