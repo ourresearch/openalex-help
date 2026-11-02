@@ -75,7 +75,9 @@ We checked samples of the matcher's decisions on real nightly arrivals in late O
 - When the matcher joins a record to a work, it is right **99.1%** of the time.
 - Of the records that belong to an existing work, it joins **92.2%**.
 
-The models were trained on tens of thousands of real records whose matches were labelled by a large language model (Anthropic's Claude Opus) and spot-checked by hand.
+The models were trained on 100,000 real records whose matches were labelled by a large language model (Anthropic's Claude Opus) and spot-checked by hand.
+
+Everything behind the matcher is public: the code as it runs, the models, the training labels and every test set, with a tool that runs the same matcher on your own records. See [openalex-work-matcher on GitHub](https://github.com/ourresearch/openalex-work-matcher).
 
 The matcher's misses are mostly duplicates rather than wrong merges, because it starts a new work whenever it is unsure. The biggest group is a repository sending again a copy of an item the work already holds. The candidate search also caps what it can find: about 94% of true matches are among the 10 candidates the reading model sees.
 
