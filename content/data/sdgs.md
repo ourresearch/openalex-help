@@ -1,6 +1,6 @@
 ---
 title: "SDGs"
-updated: 2026-10-26
+updated: 2026-11-02
 description: "The UN's 17 SDGs as OpenAlex entities, how works are tagged to them by a classifier OpenAlex trained and tested, what a tag's score means, and what every attribute on an SDG object means."
 tags: ["reference"]
 source_id: "27972124390679"
@@ -42,9 +42,9 @@ Works with a title but no abstract are tagged too, a little less accurately: abo
 - **Counts per goal changed at the switch, some of them a lot.** If you compare SDG numbers from before October 2026 with numbers from after, say which classifier each came from.
 - **`updated_date` did not change for the switch.** The new tags reached most works without changing their [`updated_date`](/data/common-attributes/#updated_date). If you keep a copy current with `from_updated_date` or by downloading only changed [snapshot](/access/snapshot/) partitions, the new tags will not reach you that way: reload `sustainable_development_goals` for all works once, from a full snapshot released after the switch or from the API.
 
-### The old Aurora tags (deprecated)
+### The old Aurora tags (removed)
 
-**Aurora's tags stay available until November 2026, in their own field.** Every work carries [`sustainable_development_goals_aurora`](/data/works/attributes/#sustainable_development_goals_aurora): the Aurora tags as they stood in October 2026, in the same shape (`id`, `display_name`, `score`). It is output only: you can read it and [select](/api/selecting-fields/) it, but you cannot filter, sort or group by it. It is deprecated and will be removed in November 2026, so use `sustainable_development_goals`, and save anything you need from the old tags before then.
+**Aurora's tags were removed on 2 November 2026, as announced.** From the October 2026 switch until then, every work also carried the deprecated field `sustainable_development_goals_aurora`: the Aurora tags as they stood at the switch, in the same shape (`id`, `display_name`, `score`). That field is gone from the API, and a [select](/api/selecting-fields/) that names it returns an error. Use `sustainable_development_goals`.
 
 Questions, or a tag that looks wrong: [support@openalex.org](mailto:support@openalex.org).
 

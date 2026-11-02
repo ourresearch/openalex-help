@@ -1,6 +1,6 @@
 ---
 title: "Attributes"
-updated: 2026-10-29
+updated: 2026-11-02
 description: "The canonical dictionary of every attribute on a work object — what each one means, where it comes from, and its quirks."
 tags: ["reference"]
 ---
@@ -110,9 +110,6 @@ See [Open access](/data/works/open-access/) for how these fields combine.
 
 ### `sustainable_development_goals`
 *List.* The UN's [17 Sustainable Development Goals](https://sdgs.un.org/goals) the work addresses, as objects (`id`, `display_name`, `score`), tagged by a [classifier OpenAlex trained](/data/sdgs/#about) on language-model judgments of titles and abstracts. Every goal with a `score` of 0.4 or above is shown. `score` is the classifier's confidence from 0 to 1, not a probability: tags scored about 0.4 to 0.7 were right roughly half the time when checked, tags above 0.9 about 8 times in 10. Until October 2026 this field came from the Aurora classifier; see [SDGs](/data/sdgs/#about) for the switch.
-
-### `sustainable_development_goals_aurora`
-*List.* **Deprecated; removed in November 2026.** The Aurora classifier's SDG tags as they stood in October 2026, frozen when [`sustainable_development_goals`](#sustainable_development_goals) moved to the new classifier, in the same shape (`id`, `display_name`, `score`). Output only: it can be read and selected, not filtered, sorted or grouped. Use `sustainable_development_goals` instead. See [SDGs](/data/sdgs/#the-old-aurora-tags-deprecated).
 
 ### `study_designs`
 *List.* How the research inside the work was done, as [study design](/data/study-designs/) objects (`id`, `display_name`): Randomized Controlled Trial, Clinical Trial, Observational Study, Case Report, Systematic Review, Meta-Analysis or Study Protocol. A work can have several, and parents are included: every randomized controlled trial is also a clinical trial, and every meta-analysis is also a systematic review. Every value comes from automated tagging of the title and abstract, held to at least 99% precision for randomized controlled trials and at least 95% for every other value; PubMed's own tags are not copied. Only works with an abstract and a research-carrying type are tagged, so an empty list means "not tagged, or none of these seven", never "not a study". Publication formats (editorial, letter, review, guideline) are in [`type`](#type), not here. Filter with `study_designs.id:randomized-controlled-trial`; group by `study_designs.id`.
