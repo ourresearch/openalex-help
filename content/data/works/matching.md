@@ -7,11 +7,50 @@ synonyms: ["duplicate", "duplicates", "duplicate works", "merge", "merged works"
 ---
 OpenAlex collects records of the same paper from many places: the publisher's record at Crossref, a preprint on arXiv, a PubMed entry, a copy in a university repository. Each record becomes a [location](/data/locations/). For every new record, OpenAlex makes one decision: does it belong to a work we already have, or is it a new work?
 
-> **The short version.** Records that share a DOI, PubMed ID or arXiv ID, or that declare themselves versions of each other, join the same work. Everything else goes to a trained matcher, which compares the record with the most similar works we have and joins it only when it is at least 99% sure. When it isn't sure, the record becomes a new work: a duplicate is easier to fix than two different papers merged into one.
-
 ## How a new record finds its work
 
-Every night, each new record goes through these steps in order. It stops at the first step that decides it.
+Every night, each new record takes this path. It stops as soon as it finds its work.
+
+<figure class="mflow" aria-label="How a new record finds its work">
+  <div class="mf-node mf-start"><b>A new record arrives</b><span>A journal article, a preprint, a repository copy, a PubMed entry…</span></div>
+  <div class="mf-down" aria-hidden="true">↓</div>
+  <div class="mf-step"><span class="mf-n">1</span><div><b>Does it share an ID with a work we have?</b><span>The same DOI, PubMed ID or arXiv ID, or a link the record declares itself: “preprint of”, “version of”.</span></div></div>
+  <div class="mf-yes"><span class="mf-label">Yes →</span><span class="mf-out">Joins that work</span></div>
+  <div class="mf-down"><span aria-hidden="true">↓</span> No</div>
+  <div class="mf-step"><span class="mf-n">2</span><div><b>Find works that look like it</b><span>Similar titles, the same authors, close in meaning. Items that are never the same work, like a correction notice or a book chapter for an article, are set aside.</span></div></div>
+  <div class="mf-down" aria-hidden="true">↓</div>
+  <div class="mf-step"><span class="mf-n">3</span><div><b>Is the matcher at least 99% sure one of them is the same work?</b><span>Two trained models compare the record with the closest candidates, side by side.</span></div></div>
+  <div class="mf-yes"><span class="mf-label">Yes →</span><span class="mf-out">Joins that work</span></div>
+  <div class="mf-down"><span aria-hidden="true">↓</span> No</div>
+  <div class="mf-node mf-end"><b>Becomes a new work</b><span>When in doubt, we keep records apart: a duplicate is easier to fix than two different papers merged into one.</span></div>
+</figure>
+
+<style>
+  .mflow { display: grid; grid-template-columns: minmax(0, 1fr) 10.5rem; column-gap: 0.75rem; margin: 1.5rem 0 1.75rem; font-size: 0.95rem; line-height: 1.45; }
+  .mflow > .mf-node, .mflow > .mf-step, .mflow > .mf-down { grid-column: 1; }
+  .mflow > .mf-yes { grid-column: 2; align-self: center; display: flex; align-items: center; gap: 0.5rem; }
+  .mflow b { display: block; color: var(--ink); font-weight: 600; }
+  .mflow span { color: var(--muted); }
+  .mf-node, .mf-step { border: 1px solid var(--line-strong); border-radius: 10px; padding: 0.75rem 1rem; background: var(--bg); }
+  .mf-start { background: var(--panel); }
+  .mf-end { background: var(--panel-strong); border-color: var(--faint); }
+  .mf-step { display: flex; gap: 0.75rem; align-items: flex-start; }
+  .mf-n { flex: none; width: 1.6rem; height: 1.6rem; border-radius: 50%; background: var(--ink); color: var(--bg) !important; font-weight: 600; font-size: 0.85rem; display: flex; align-items: center; justify-content: center; margin-top: 0.05rem; }
+  .mf-down { text-align: center; padding: 0.3rem 0; font-size: 0.85rem; color: var(--muted); }
+  .mf-down > span[aria-hidden] { font-size: 1.1rem; margin-right: 0.15rem; }
+  .mf-label { white-space: nowrap; font-size: 0.85rem; }
+  .mflow .mf-out { white-space: nowrap; background: var(--accent-wash); color: var(--accent); border: 1px solid var(--accent); border-radius: 999px; padding: 0.3rem 0.8rem; font-weight: 600; font-size: 0.9rem; }
+  @media (max-width: 36rem) {
+    .mflow { grid-template-columns: minmax(0, 1fr); }
+    .mflow > .mf-yes { grid-column: 1; padding: 0.5rem 0 0 2.4rem; }
+  }
+  .prose details.mf-more { border: 1px solid var(--line); border-radius: 10px; padding: 0.6rem 1rem; margin: 0 0 1.5rem; }
+  .prose details.mf-more summary { cursor: pointer; font-weight: 600; }
+  .prose details.mf-more[open] summary { margin-bottom: 0.5rem; }
+</style>
+
+<details class="mf-more">
+<summary>The steps in more detail</summary>
 
 1. **Shared identifiers.** If a work already holds the record's DOI, PubMed ID or arXiv ID, the record joins that work. Most records are decided here.
 2. **Declared links.** If the record says it is a version of another record, or the preprint of a published article, it joins that record's work. These links come from the record's own metadata: DataCite's `IsVersionOf` and `HasVersion`, and Crossref's `is-preprint-of` and `has-preprint`.
@@ -20,6 +59,8 @@ Every night, each new record goes through these steps in order. It stops at the 
 5. **Ranking.** A ranking model (gradient-boosted trees, about 90 measurements of how alike the record and each candidate are: titles, authors, years, venues, abstracts, identifiers) scores every candidate. If even the best candidate scores under 1%, the record becomes a new work. About two-thirds of the records that reach the matcher end here.
 6. **Reading.** A fine-tuned language model (Qwen3.5, 9 billion parameters) reads the record next to its 10 best candidates and gives each one a probability of being the same work. The record joins the top candidate when that probability is 0.91 or higher, the point where the matcher is right 99% of the time on records held out from training. When several candidates are copies of the same paper (a repository copy and an aggregator copy, say), their probabilities are added together, so the record joins that paper instead of starting yet another copy.
 7. **Otherwise, a new work.** A record that no step joins starts a new work of its own.
+
+</details>
 
 Every decision is automatic and takes effect the same night. The matcher has decided these records since 3 November 2026. Before that, a rule joined records whose normalized title and first author matched an existing work's.
 
