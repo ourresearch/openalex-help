@@ -11,12 +11,10 @@ OpenAlex keeps its own cached copy of the full text for more than 60 million ope
 
 From there it's a question of scale: one file at a time from the API, a few million with the CLI, or the complete archive synced to your own bucket.
 
-| Format | Files | Size | One file per work |
-|--------|-------|------|-------------------|
-| PDF | ~73 million | ~113 TB | ~66 million, ~101 TB |
-| TEI XML | ~71 million | ~1.5 TB | ~64 million, ~1.4 TB |
-
-Counts are the files works use, as of November 2026. A work can have more than one file: say, a preprint from a repository and the published version from the publisher.
+| Format | Files | Size |
+|--------|-------|------|
+| PDF | ~73M | ~113 TB |
+| TEI XML | ~71M | ~1.5 TB |
 
 ## Download options
 
@@ -101,71 +99,35 @@ Standard [usage rates](/access/example-costs/) apply per file; the accompanying 
 
 ### Option 3: Complete archive sync
 
-For the complete archive, the **PDF sync service** gives you read-only access to our two storage buckets, so you can copy every file a work uses to your own infrastructure — and keep receiving new ones as they arrive. The buckets are on [Cloudflare R2](https://developers.cloudflare.com/r2/), which is S3-compatible.
+For the complete archive, the **PDF sync service** gives you read access to our storage buckets for your subscription year, so you can copy every file to your own infrastructure — and keep receiving new ones as they arrive. Files are stored on [Cloudflare R2](https://developers.cloudflare.com/r2/), which is fully S3-compatible: PDFs in `openalex-pdfs`, TEI XML in `openalex-grobid-xml`.
 
 PDF sync is sold as a paid **add-on to the [Member+](/access/member-plus/) or [Partner](/access/partner/) plan**: those plans include daily sync, and a new PDF is only usable with fresh metadata. What you're buying is the ongoing sync service, not the documents themselves (see [Pricing](/access/pricing/#the-pdf-sync-add-on) for the reasoning). [Contact sales](mailto:sales@openalex.org) to get started.
 
-| Bucket | Holds |
-|--------|-------|
-| `openalex-pdfs` | PDFs, named `{uuid}.pdf`, and the [manifest](#the-manifest-for-archive-sync) under `_manifest/` |
-| `openalex-grobid-xml` | TEI XML, named `{uuid}.xml.gz` (gzip-compressed) |
+**How it works:** we generate R2 API credentials with read-only access. The buckets also hold files no work uses (repeat downloads and superseded parses, about 60% of each bucket), so copy the files the [manifest](#the-manifest-for-archive-sync) lists rather than the whole bucket. With [rclone](https://rclone.org):
 
-> **Warning:**
-> Don't copy the whole buckets. About 60% of the files in each are ones no work uses: repeat downloads of the same PDF, superseded parses, a 2025 bulk copy, and some error pages saved as `.pdf`. Copy the files the [manifest](#the-manifest-for-archive-sync) lists instead, as below. We're moving the unused files out of the buckets; PDF sync clients get an email with the date before anything moves.
+```bash
+# once: save your credentials as an rclone remote
+rclone config create openalex s3 provider=Cloudflare \
+  access_key_id=YOUR_KEY_ID secret_access_key=YOUR_SECRET no_check_bucket=true \
+  endpoint=https://a452eddbbe06eb7d02f4879cee70d29c.r2.cloudflarestorage.com
 
-**How it works:** we give you R2 credentials with read-only access to both buckets. We recommend [rclone](https://rclone.org): it downloads a list of files without scanning the whole bucket, and skips files you already have.
+# copy the manifest (sync also removes yesterday's files, whose names change daily)
+rclone sync openalex:openalex-pdfs/_manifest/content_index ./manifest
 
-1. **Set up rclone once.** Add this to your rclone config file (`rclone config file` prints where it is):
+# list the PDFs it names, then download them (rclone skips files you already have)
+duckdb -c "COPY (SELECT DISTINCT pdf_uuid || '.pdf' FROM 'manifest/*.parquet' WHERE pdf_uuid IS NOT NULL) TO 'pdf_files.txt' (HEADER false, QUOTE '')"
+rclone copy openalex:openalex-pdfs ./pdfs --files-from-raw pdf_files.txt --no-traverse --transfers 64
+```
 
-   ```ini
-   [openalex]
-   type = s3
-   provider = Cloudflare
-   access_key_id = YOUR_ACCESS_KEY_ID
-   secret_access_key = YOUR_SECRET_ACCESS_KEY
-   endpoint = https://a452eddbbe06eb7d02f4879cee70d29c.r2.cloudflarestorage.com
-   no_check_bucket = true
-   ```
+For TEI XML, do the same with `grobid_xml_id || '.xml.gz'` and the `openalex-grobid-xml` bucket. To stay current, run the last three commands daily after 04:00 UTC (the manifest is rebuilt from 03:30 UTC) — they pick up new files as they arrive.
 
-2. **Copy the manifest.** `sync` makes your local folder match ours exactly, which matters because the manifest's file names change every day:
+The files the manifest lists come to ~113 TB of PDFs and ~1.5 TB of XML, so plan on a cloud VM with multi-gigabit networking: at 1–2 Gbit/s sustained, expect **5–10 days** for the initial copy. A home connection is not a realistic option for the whole archive (a few hundred Mbit/s would take months).
 
-   ```bash
-   rclone sync openalex:openalex-pdfs/_manifest/content_index ./manifest
-   ```
-
-3. **List the files to download** (any Parquet reader works; this uses DuckDB):
-
-   ```python
-   import duckdb
-
-   duckdb.sql("""COPY (SELECT DISTINCT pdf_uuid || '.pdf' FROM 'manifest/*.parquet'
-                       WHERE pdf_uuid IS NOT NULL)
-                 TO 'pdf_files.txt' (HEADER false, QUOTE '')""")
-   duckdb.sql("""COPY (SELECT DISTINCT grobid_xml_id || '.xml.gz' FROM 'manifest/*.parquet'
-                       WHERE grobid_xml_id IS NOT NULL)
-                 TO 'xml_files.txt' (HEADER false, QUOTE '')""")
-   ```
-
-   To take one file per work instead, add `AND is_primary` to each `WHERE` (from 9 November 2026; see [the manifest](#the-manifest-for-archive-sync)).
-
-4. **Download them:**
-
-   ```bash
-   rclone copy openalex:openalex-pdfs ./pdfs --files-from-raw pdf_files.txt --no-traverse --transfers 64
-   rclone copy openalex:openalex-grobid-xml ./xml --files-from-raw xml_files.txt --no-traverse --transfers 64
-   ```
-
-**Staying current:** repeat steps 2–4 once a day, after 04:00 UTC. We rebuild the manifest from 03:30 UTC, and for a few minutes it's incomplete. rclone skips files you already have, so a daily run only downloads the new ones. A file that drops out of the manifest is no longer used by any work; delete your copy or keep it, as you like.
-
-**Size and time:** every file the manifest lists comes to about 113 TB of PDFs and 1.5 TB of XML (about 101 TB if you take one file per work). Plan on a cloud VM with multi-gigabit networking: at 1–2 Gbit/s sustained, the first copy takes **about 5–10 days**. A home connection is not a realistic option for the whole archive (a few hundred Mbit/s would take months).
-
-**Files don't change.** Once a file is written, its bytes stay the same: a fix gets a new file name, and the manifest points to the new one. The one exception so far: on 28 October 2026 we repaired 1.55 million XML files in place (older parses stored in a broken HTML shape). If you copied XML before then, run step 4 again: rclone sees the changed size and fetches the repaired versions.
-
-As a sensible default, still check each PDF on ingest (the leading `%PDF` bytes) so your pipeline is robust to the odd bad file.
+We add files every day. We plan to move files no work uses out of the buckets, and will email PDF sync clients the date before we do. As a sensible default, validate each file on ingest (check the leading `%PDF` magic bytes and skip implausibly small objects).
 
 ## Mapping work IDs to files
 
-Files in the buckets are named by UUID, not work ID. A work's PDF and its TEI XML are stored as **separate objects with different UUIDs** — the file names alone won't tell you which PDF and which XML belong to the same work:
+Files in the archive bucket are named by UUID, not work ID. A work's PDF and its TEI XML are stored as **separate objects with different UUIDs** — the file names alone won't tell you which PDF and which XML belong to the same work:
 
 ```
 openalex-pdfs/
@@ -181,39 +143,37 @@ openalex-grobid-xml/
 
 ### The manifest (for archive sync)
 
-The **manifest** maps works to files. It's a set of Parquet files in the `openalex-pdfs` bucket, rebuilt in full every day from 03:30 UTC (read it after 04:00 UTC):
+Use the **manifest** we publish in the `openalex-pdfs` bucket itself:
 
 ```
 s3://openalex-pdfs/_manifest/content_index/
 ```
 
-From **Monday 9 November 2026** it has **one row per location that has a file**: a work with a preprint in a repository and the published version at the publisher gets two rows, each with its own PDF and the XML parsed from that PDF, and `is_primary` marks the work's main file. Until then it has one row per work and only the first six columns below. The new layout is already published at `_manifest/content_index_preview/` (removed on 16 November 2026).
+It's a set of Parquet files, regenerated in full once a day from 03:30 UTC (read it after 04:00 UTC, when the rebuild is done), that maps works to their file UUIDs. Until 9 November 2026 it lists one PDF and one XML per work. From **9 November 2026** it lists every file we hold, one row per location, so a work can have several rows; the new layout is already at `_manifest/content_index_preview/`.
 
-| Column | Example | Meaning |
-|--------|---------|---------|
+| Column | Example | Object |
+|--------|---------|--------|
 | `openalex_id` | `W2741809807` | the OpenAlex work ID |
-| `pdf_uuid` | `3a07228e-de2a-4c37-955d-b1411a498328` | the PDF: `openalex-pdfs/{pdf_uuid}.pdf` |
-| `grobid_xml_id` | `5e6ea859-62f6-40ab-9f7e-6472aab3a19d` | the TEI XML parsed from that PDF: `openalex-grobid-xml/{grobid_xml_id}.xml.gz` |
-| `native_id` | `10.1038/s41586-020-2649-2` | the location's ID at its source: a DOI, or a repository's OAI-PMH identifier |
+| `pdf_uuid` | `3a07228e-de2a-4c37-955d-b1411a498328` | `openalex-pdfs/{pdf_uuid}.pdf` |
+| `grobid_xml_id` | `5e6ea859-62f6-40ab-9f7e-6472aab3a19d` | `openalex-grobid-xml/{grobid_xml_id}.xml.gz` |
+| `native_id` | `10.1038/s41586-020-2649-2` | the location's DOI or repository (OAI-PMH) ID |
 | `native_id_namespace` | `doi` | `doi` or `pmh` |
-| `updated_date` | `2026-06-20` | when the location's source record (Crossref, a repository, …) last changed; not when the file changed |
-| `version` | `publishedVersion` | `publishedVersion`, `acceptedVersion` or `submittedVersion` |
-| `is_primary` | `true` | the work's main file, exactly one per work: the one the [content endpoint](#the-content-endpoint-for-per-work-fetches) serves |
+| `updated_date` | `2026-06-20` | when the location's source record last changed |
+| `version` | `publishedVersion` | `publishedVersion`, `acceptedVersion` or `submittedVersion` (from 9 November) |
+| `is_primary` | `true` | the one file per work the content endpoint serves (from 9 November) |
 
-UUIDs are stored without their file extension — append `.pdf` and `.xml.gz` to build the object keys. A row may have a PDF but no XML (GROBID can't parse every PDF), so `grobid_xml_id` is sometimes empty; a handful of rows have XML but no PDF.
-
-Copy the manifest with `rclone sync` ([step 2 above](#option-3-complete-archive-sync)), not a plain copy: its file names change every day, and yesterday's files left in your folder would add stale, duplicate rows to every query.
+UUIDs are stored without their file extension — append `.pdf` and `.xml.gz` to build the object keys. A row may have a PDF but no XML (GROBID can't parse every PDF), so `grobid_xml_id` is sometimes empty.
 
 Query it directly with any Parquet reader — no need to load it into a database:
 
 ```python
 import duckdb
 
-# Every file of one work
-duckdb.sql("SELECT * FROM 'manifest/*.parquet' WHERE openalex_id = 'W2741809807'")
-
-# One file per work (from 9 November 2026)
-duckdb.sql("SELECT openalex_id, pdf_uuid, grobid_xml_id FROM 'manifest/*.parquet' WHERE is_primary")
+# Look up one work
+duckdb.sql("""
+  SELECT * FROM 'manifest/*.parquet'
+  WHERE openalex_id = 'W2741809807'
+""")
 ```
 
 The join is then entirely local, with no API calls:
@@ -221,9 +181,11 @@ The join is then entirely local, with no API calls:
 1. Join `openalex_id` to your [works snapshot](/access/snapshot/) to attach metadata.
 2. Join `pdf_uuid` / `grobid_xml_id` to your downloaded files to attach the PDF and TEI XML.
 
+Because the manifest is a full daily replacement with new file names each day, copy it with `rclone sync` (above), which also removes the old files.
+
 ### The content endpoint (for per-work fetches)
 
-If you're fetching files one at a time through the [content API](#option-1-api-up-to-10k-files) rather than syncing the bucket, you don't deal with UUIDs at all — the endpoint resolves the work ID to the work's main file server-side (from 9 November 2026, the file the manifest marks `is_primary`):
+If you're fetching files one at a time through the [content API](#option-1-api-up-to-10k-files) rather than syncing the bucket, you don't deal with UUIDs at all — the endpoint resolves the work ID to the underlying object server-side:
 
 ```
 https://content.openalex.org/works/{work_id}.pdf
@@ -248,7 +210,7 @@ GROBID ([project](https://github.com/kermitt2/grobid), [docs](https://grobid.rea
 
 GROBID also can't parse every PDF. It doesn't do OCR, so scanned or image-only PDFs produce little or nothing useful, and unusual or malformed PDFs can fail outright. Filter on `has_content.grobid_xml:true` to limit your set to works where we have a parse.
 
-Every XML file a work uses is standard TEI: a `<TEI>` root with `<teiHeader>` and `<text><body>`. Until 28 October 2026 about 1.5 million of them came from an older pipeline that wrapped a lowercase `<tei>` element inside `<html><body>`; we repaired those in place (see [Files don't change](#option-3-complete-archive-sync)). The buckets still hold older files in that shape that no work uses, so if you copied whole buckets, skip any file the manifest doesn't list.
+The XML comes in two shapes, because the archive was built with more than one GROBID version. Most files are standard TEI: a `<TEI>` root with `<teiHeader>` and `<text><body>`. An older minority instead wraps a lowercase `<tei>` element inside `<html><body>`, with the section `<div>`s hanging directly off `<text>` and no `<body>` element inside the TEI. An extractor that hardcodes one shape will silently return nothing for the other, so match on local element names case-insensitively and fall back from `text/body/div` to `text/div`.
 
 We pass GROBID's output through unchanged, including any errors it made. You can catch some with simple guard clauses — for example, **drop any reference whose DOI matches the work's own DOI**, and **cross-check GROBID's header metadata against the OpenAlex Work record** (which draws on Crossref and other sources independently of GROBID).
 
