@@ -62,7 +62,7 @@ Every night, each new record takes this path. It stops as soon as it finds its w
 
 </details>
 
-Every decision is automatic and takes effect the same night. The matcher has decided these records since 3 November 2026. Before that, a rule joined records whose normalized title and first author matched an existing work's.
+Every decision is automatic and takes effect the same night. The matcher decides these records from 3 November 2026. Before that, a rule joined records whose normalized title and first author matched an existing work's.
 
 ### An example
 
