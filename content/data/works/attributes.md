@@ -148,7 +148,7 @@ See [Open access](/data/works/open-access/) for how these fields combine.
 *List.* [Award](/data/awards/)/grant objects (`id`, `display_name`, `funder_award_id`, `funder_id`, `funder_display_name`) linking the work to specific grants. An award's DOI is on the [award](/data/awards/#doi) itself. Replaces the removed `grants` property.
 
 ### `has_content`
-*Object.* Whether downloadable full text exists in each format: `pdf` (Boolean) and `grobid_xml` (Boolean, TEI XML). More than 50 million works have `has_content.pdf: true`. See [Fulltext](/access/fulltext/).
+*Object.* Whether downloadable full text exists in each format: `pdf` (Boolean) and `grobid_xml` (Boolean, TEI XML). More than 60 million works have `has_content.pdf: true`. See [Fulltext](/access/fulltext/).
 
 ### `has_fulltext`
 *Boolean.* True if OpenAlex holds the work's full text for searching, so `fulltext.search` can match it. This is not the same as a downloadable file: about 4.3M works have searchable text but no file in [`has_content`](#has_content), and about 3.5M have a PDF whose text isn't searchable yet. To find works you can download, filter `has_content.pdf:true`.

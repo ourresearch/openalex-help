@@ -1,6 +1,6 @@
 ---
 title: "Overview"
-updated: 2026-09-30
+updated: 2026-11-02
 description: "Every way to get OpenAlex data — website, API, CLI, agents, snapshot, sync, fulltext, Unpaywall — and how to pick the right one for your technical skill, scale, and budget."
 tags: ["downloads"]
 ---
@@ -26,6 +26,6 @@ There are many ways to get OpenAlex data, from point-and-click to whole-database
 
 **Want the whole database?** The [snapshot](/access/snapshot/) is the entire dataset, free to download, refreshed quarterly on the second Wednesday of January, April, July and October ([release dates](/access/sync/#public-release-dates)). If quarterly isn't fresh enough, [sync](/access/sync/) gets you a complete daily snapshot plus API filters for everything new or changed since any date — a benefit of the Member+ and Partner [plans](/access/pricing/). (Only mirroring a slice of OpenAlex, like your own institution's works? Those [API filters](/access/sync/#premium-api-filters-paid-plans) can keep a subset fresh with no snapshot infrastructure at all.)
 
-**After the documents themselves?** [Fulltext](/access/fulltext/) covers the content archive — more than 50 million open-access PDFs and their machine-readable TEI XML — from single-file downloads up to syncing the complete archive to your own bucket.
+**After the documents themselves?** [Fulltext](/access/fulltext/) covers the content archive — more than 70 million open-access PDFs and their machine-readable TEI XML — from single-file downloads up to syncing the complete archive to your own bucket.
 
 However you get it, the data itself is free and open under [CC0](https://creativecommons.org/public-domain/cc0/) — what costs money at the higher tiers is the *service* of serving and refreshing it. That story, and every plan, lives in [Pricing](/access/pricing/).
