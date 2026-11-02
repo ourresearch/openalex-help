@@ -1,6 +1,6 @@
 ---
 title: "Overview"
-updated: 2026-09-18
+updated: 2026-11-02
 description: "What a work is, why works are the central entity in OpenAlex, where they come from, and how records become works."
 tags: ["reference"]
 source_id: "24347019383191"
@@ -31,8 +31,10 @@ OpenAlex aggregates and builds on many open data sources. The catalog was seeded
 
 OpenAlex starts from [locations](/data/locations/): copies of a work hosted at particular places. A preprint on arXiv is one location; the same paper published in *Physical Review B* is a second; the accepted manuscript in a university repository is a third. The job is to recognize that all three are one work. Two mechanisms do that, used together:
 
-- **Persistent identifiers.** If a location carries a DOI, PubMed ID, or arXiv ID that OpenAlex already knows, it belongs to that work. This is the certain path: a shared PID is treated as proof.
-- **Fuzzy metadata matching.** Locations with no shared PID — most repository copies, many preprints — go through a fuzzy matching algorithm built on title normalization plus author names, tuned over the years for precision and recall.
+- **Persistent identifiers and declared links.** If a location carries a DOI, PubMed ID, or arXiv ID that OpenAlex already knows, it belongs to that work. So does a location that declares itself a version or the preprint of a record we already have. This is the certain path: a shared PID is treated as proof.
+- **The matcher.** Locations with no shared PID — most repository copies, many preprints — go to a trained matcher. It ranks the most similar existing works, a language model reads the best ten, and the location joins one only when the matcher is at least 99% sure; otherwise it starts a new work.
+
+What counts as the same work (a preprint and its article: yes; the same article in two journals: no), how the matcher works and how accurate it is: [Matching and merging](/data/works/matching/).
 
 Whichever path matches, the location joins the existing work and *enriches* it rather than minting a new one. If nothing matches, the location seeds a new work of its own; the only locations that don't are ones with neither a PID nor a usable title, which are dropped.
 
