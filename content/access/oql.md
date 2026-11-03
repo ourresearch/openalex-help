@@ -104,7 +104,7 @@ Years read in words, right after the type: `since 2020` (2020 or later), `from 2
 | `get works with conjugal in the title` | the title |
 | `get works with conjugal in the abstract` | the abstract |
 | `get works with conjugal in the title or abstract` | both, no keywords |
-| `get works with "OpenAlex" in the full text` | title, abstract and full text |
+| `get works with "OpenAlex" in the title, abstract, or full text` | title, abstract and full text (the broad search) |
 | `get works where raw affiliation has ("Max Planck" AND Leipzig)` | the affiliation strings as printed |
 | `get works where byline has Priem` | the author names as printed |
 
@@ -416,7 +416,7 @@ OQL's text never hides a condition the query carries, with these exceptions: sen
 | Default | What it means |
 |---|---|
 | `about` | searches the title, the abstract and the keywords |
-| The core corpus | every query of works runs on OpenAlex's [core corpus](/data/works/corpus/) unless it asks for another, in the general form: `get works (all corpora) where title-abstract-keywords has (kelp)`, or `(expansion corpus)` |
+| The core corpus | every query of works runs on OpenAlex's [core corpus](/data/works/corpus/) unless it asks for another, after the works noun: `get works (all corpora) about kelp`, or `(expansion corpus)` |
 | Authors with works | lists of authors leave out authors with no works |
 | Sub-units count | `from [institution]` and `[institution]'s works` include its sub-units (a university's hospitals and institutes) |
 | Primary topic | `in the topic / subfield / field / domain` and splits by them use each work's primary topic, not every topic it has |
