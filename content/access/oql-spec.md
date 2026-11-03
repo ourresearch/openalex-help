@@ -84,9 +84,9 @@ OQL has two ways to write a statement:
 - number bins, samples, and three splits;
 - splits by continent, institution type, source type, license, keyword or global south, and by corresponding institution;
 - numbers outside the sentence's list (`mean reference count`, `min date`, `percent global south`), and counts of distinct things (`summarize all those authors using count`);
-- a filter on the groups by a number other than the count (`where mean FWCI of those works is at least 2`);
-- groups chosen by own fields a split can't say (`last known institution`, `co-author is not`, `institution type`);
-- a corpus other than the core (`(all corpora)`).
+- a filter on the groups by a number other than the count (`where mean FWCI of those works is at least 2`).
+
+A split's own fields and a corpus are in the sentence: `get the count of works about kelp by author where last known institution is [University of British Columbia](I141945490)`, `get works (all corpora) about kelp, most cited first`.
 
 ```
 get works where published since 2015; then, compare country [India](IN) versus country is not [India](IN) using count and mean FWCI
@@ -131,7 +131,7 @@ Lists and tables describe their works with the same words. The parts go in this 
 | 2 | Yes/no words | `open access`, `closed access`, `retracted`, `non-retracted`, `top 1% cited`, `top 10% cited` |
 | 3 | The type | `works`, `articles`, `reviews`, `preprints`, `books`, `book chapters`, `datasets`, `conference papers`, `dissertations`, `editorials`, `letters`, `reports`; `all works` in a table when nothing else narrows them |
 | 4 | Time | `since 2020`, `from 2022`, `before 2010`, `through 2010`, `from 2018–2025`; dates `since 2021-06-01`, `through 2021-09-30`, `from 2020-10-01 through 2021-09-30` |
-| 5 | Searches | `about kelp`; `with kelp in the title`, `in the abstract`, `in the full text`, `in the title or abstract` |
+| 5 | Searches | `about kelp`; `with kelp in the title`, `in the abstract`, `in the title, abstract, or full text`, `in the title or abstract` |
 | 6 | Citations | `citing [W](W2741809807)`, `cited by [W](W2741809807)`, `citing works in the collection [C](col_8yWKmRNyEr)` |
 | 7 | Places | `from [Kenya](KE)`, `from [Africa](Q15)`, `from A or B`, `from both A and B`, `from all of A, B, and C`; `co-authored with [institution]` |
 | 8 | People | `by [Jason R Priem](A5023888391)`, `co-authored by A and B`, `with [A](A5023888391) as corresponding author` |
@@ -430,7 +430,7 @@ get works where title has kelp or abstract has urchin
 
 - **The search string is portable**, as a systematic review would report it: capital `AND`, `OR` and `NOT`, parentheses for grouping. One word or one quoted phrase needs no parentheses; anything more does. Lowercase `and`, `or`, `not` and `&` work in a search string, and the echo writes capitals.
 - **Two or more bare words need parentheses or quotes** after `has`: `title has climate change` is refused, because a reserved word could otherwise be swallowed silently.
-- **Places:** `about` searches the title, the abstract and the keywords. A `with ... in the ...` phrase searches one place: `the title`, `the abstract`, `the full text` (title, abstract and full text), `the title or abstract`. After `where`, searches name their field: `title has`, `abstract has`, `title-abstract has`, `title-abstract-keywords has`, `full text has`, `raw affiliation has`, `byline has`.
+- **Places:** `about` searches the title, the abstract and the keywords. A `with ... in the ...` phrase searches one place: `the title`, `the abstract`, `the title, abstract, or full text` (the broad search, `search=`; `the full text` still reads as it), `the title or abstract`. After `where`, searches name their field: `title has`, `abstract has`, `title-abstract has`, `title-abstract-keywords has`, `full text has`, `raw affiliation has`, `byline has`.
 - **On `raw affiliation` and `byline`**, a quoted phrase and a proximity window each stay within one affiliation or one byline.
 - **Semantic search:** `title-abstract is similar to ("ocean acidification effects on coral reefs")` searches by meaning and returns the 50 closest works. It takes exactly one quoted passage. `title` and `abstract` take it too.
 - **OQL never adds words.** No synonyms, no expansions: the search is exactly the string.
@@ -666,7 +666,7 @@ OQL's text never hides a condition the query carries, with these exceptions: sen
 | Default | What it means |
 |---|---|
 | `about` | searches the title, the abstract and the keywords |
-| The core corpus | every query runs on OpenAlex's core corpus; the general form's `(all corpora)` or `(expansion corpus)`, or `include_xpac=true` on the API, adds the rest |
+| The core corpus | every query runs on OpenAlex's core corpus; `(all corpora)` or `(expansion corpus)` after the works noun (`get works (all corpora) about kelp`), or `include_xpac=true` on the API, adds the rest |
 | Authors with works | lists of authors leave out authors with no works |
 | Sub-units count | `from [institution]` and `[institution]'s works` include its sub-units (a university's hospitals and institutes) |
 | Primary topic | `in the topic / subfield / field / domain` and splits by them use each work's primary topic, not every topic it has |
@@ -873,7 +873,7 @@ only          ::= 'Only' thingNoun 'with' countWords NUMBER works '.'
 countWords    ::= 'more than' | 'at least' | 'fewer than' | 'at most'
 
 /* ---------- The works phrase, in canonical order ---------- */
-works         ::= possessive? adjective* typeNoun time? search* citing* place*
+works         ::= possessive? adjective* typeNoun corpus? time? search* citing* place*
                   people? role? sits* published? funded? license?
                   ( 'where' conditions )?
 
@@ -889,7 +889,7 @@ time          ::= ( 'since' | 'from' | 'before' | 'through' ) YEAR
                 | 'from' DATE 'through' DATE
 search        ::= 'about' searchString
                 | 'with' searchString 'in' searchPlace
-searchPlace   ::= 'the title' | 'the abstract' | 'the full text' | 'the title or abstract'
+searchPlace   ::= 'the title' | 'the abstract' | 'the title, abstract, or full text' | 'the full text' | 'the title or abstract'
 citing        ::= 'citing' link | 'cited by' link | 'citing works in the collection' link
 place         ::= 'from' link ( 'or' link )*
                 | 'from both' link 'and' link
