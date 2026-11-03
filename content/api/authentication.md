@@ -1,6 +1,6 @@
 ---
 title: "Authentication"
-updated: 2026-10-15
+updated: 2026-11-03
 description: "API keys, sending your key, rate limits, and keeping tabs on your usage"
 tags: ["api"]
 source_id: "api-reference/authentication"
@@ -90,7 +90,7 @@ Organization keys work the same way, from the organization's API settings. One t
 
 ## Rate limits
 
-Basic use is free and generous, and a free key gives you 10× the keyless budget; you can raise it further with a [paid plan](/access/pricing/). Two things return `429 Too Many Requests`: exceeding your daily budget, or sending requests faster than your per-second limit. For the budget numbers themselves — and what typical activity actually uses — see [Example costs](/access/example-costs/).
+Basic use is free and generous, and a free key gives you 10× the keyless budget; you can raise it further with a [paid plan](/access/pricing/). Three things return `429 Too Many Requests`: exceeding your daily budget, sending requests faster than your per-second limit, or a [new account](#new-accounts) spending its first $1 faster than the new-account pace. For the budget numbers themselves — and what typical activity actually uses — see [Example costs](/access/example-costs/).
 
 | Who's calling | Requests per second |
 |---------------|---------------------|
@@ -99,6 +99,12 @@ Basic use is free and generous, and a free key gives you 10× the keyless budget
 | [Annual plan](/access/pricing/) | 50 |
 
 A few heavy request types have lower limits of their own: [semantic search](/api/semantic-search/) is 1 request per second, and searches with more than 5 `OR`/`AND`/`NOT` operators are limited to 1 (no key), 5 (free key or prepaid usage) or 25 (annual plan) per second. A per-second 429 costs nothing; wait a moment and retry.
+
+### New accounts
+
+A new free account spends its first $1 at up to $0.10 every 5 minutes. Once it has spent its first $1, which takes about 50 minutes of steady use, this limit no longer applies. Your daily budget stays the same; only the first dollar is paced, so nobody can make a new account and use up its budget in a minute.
+
+If you hit it, the `429` tells you how many seconds to wait, in its message and in the `Retry-After` header. Waiting costs nothing. The pace doesn't apply to annual plans, prepaid usage, organization keys, or accounts made before 3 November 2026.
 
 Individual queries also have hard limits:
 

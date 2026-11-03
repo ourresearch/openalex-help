@@ -1,6 +1,6 @@
 ---
 title: "Overview"
-updated: 2026-11-02
+updated: 2026-11-03
 description: "How OpenAlex pricing works: $1 of free API usage every day, pay-as-you-go prepaid usage, and annual plans (Member, Member+, Partner) — plus the PDF sync add-on and the free-data, paid-services sustainability model."
 tags: ["reference"]
 synonyms: ["plans", "subscriptions", "premium", "membership", "cost", "credits", "prepaid usage"]
@@ -9,7 +9,7 @@ The OpenAlex *data* is free — but serving it is not, so *usage* is what costs 
 
 ## Free: $1 per day
 
-Create a free OpenAlex account and you get an API key with **$1 of usage per day** — no payment method required. That's enough for most research and personal projects. The budget resets every midnight UTC; how usage maps to API calls is covered in [Example costs](/access/example-costs/).
+Create a free OpenAlex account and you get an API key with **$1 of usage per day** — no payment method required. That's enough for most research and personal projects. The budget resets every midnight UTC; how usage maps to API calls is covered in [Example costs](/access/example-costs/). A new account spends its first $1 a little more slowly, at up to $0.10 every 5 minutes ([why](/api/authentication/#new-accounts)).
 
 ## Pay as you go: prepaid usage
 

@@ -1,6 +1,6 @@
 ---
 title: "Error Handling"
-updated: 2026-10-27
+updated: 2026-11-03
 description: "API error codes and retry strategies"
 tags: ["api"]
 source_id: "api-reference/errors"
@@ -61,6 +61,8 @@ Error responses include a message explaining what went wrong:
 
 **Fix:**
 - Check rate limit headers to see your remaining allowance
+- Wait the number of seconds in the `Retry-After` header, then retry
+- A new account spends its first $1 at up to $0.10 every 5 minutes; see [New accounts](/api/authentication/#new-accounts)
 - Add delays between requests
 - Use `per_page=100` to reduce total requests
 - Consider a [paid plan](/access/pricing/) for higher limits
