@@ -1,6 +1,6 @@
 ---
 title: "Search"
-updated: 2026-10-28
+updated: 2026-11-03
 description: "Find entities using full-text search across titles, abstracts, and more"
 tags: ["api"]
 source_id: "guides/searching"
@@ -79,16 +79,29 @@ https://api.openalex.org/works?search=(elmo AND "sesame street") NOT (cookie OR 
 
 ## Large Boolean queries
 
-Because the query travels in the request URL, the whole request URL is limited to about **4 KB** (roughly 4,000 characters). A very long `search=` value — typically a Boolean query with many `OR` terms, common in systematic reviews — can exceed this and return a `400` error:
+A GET request carries the whole query in its URL, and the API accepts at most **8,190 bytes** of it (about 8 KB). That counts the path and query string with special characters percent-encoded: a space counts as one byte, and `(`, `)`, `"` and `:` count three each. A long `search=` value, such as a systematic review's Boolean query with hundreds of `OR` terms, can go over and return a `400`:
 
 ```json
 {
   "error": "Request URL too long",
-  "message": "Your request URL is 4612 bytes, over the 4094-byte limit (roughly 4 KB, mostly the 'search' value). Split a large Boolean query into smaller chunks, request each separately, and combine the returned IDs client-side."
+  "message": "Your request URL is 8291 bytes, over the 8190-byte limit (roughly 8 KB, mostly the 'search' value). Send the query as OQL in a POST body, which has no length limit, or split a large Boolean query into smaller chunks and combine the returned IDs client-side. See https://help.openalex.org/api/searching/#large-boolean-queries"
 }
 ```
 
-This is a fixed limit, not a usage/credit cost — splitting the query does not lose any results. To run a query larger than ~4 KB, split the `OR` list into chunks, request each chunk separately, and take the union of the returned IDs client-side. The result is exactly the same set of works:
+The error tells you the exact size. There are two ways around the limit, and neither loses any results.
+
+**Send it by POST.** [`POST /`](/api/oql/#post-) takes the query as OQL in a JSON body, with no length limit, and returns the same results as the GET. Every response shows its own query in OQL at `meta.x_query.oql`, so run a short version of your search, copy that, and add the rest of your terms:
+
+```bash
+curl -X POST "https://api.openalex.org/?per-page=25" \
+  -H "Authorization: Bearer $OPENALEX_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{"oql": "get works with (climate AND (kelp OR seaweed OR ...)) in the title or abstract"}'
+```
+
+A POST is billed like the same request by GET. A very large search over full text (`search=`, "in the title, abstract, or full text") can still time out; the same terms in titles and abstracts run much faster (1,200 `OR` terms in about 3 seconds).
+
+**Or split the `OR` list** into chunks, request each chunk separately, and take the union of the returned IDs client-side. The result is exactly the same set of works:
 
 ```text
 # Instead of one query that is too long:
@@ -99,10 +112,12 @@ search=(termA OR ... OR termM) AND climate
 search=(termN OR ... OR termZ) AND climate
 ```
 
-Keep each chunk's full request URL under ~4 KB. Combining results is exact because `(X AND (a OR b OR c OR d))` equals `(X AND (a OR b)) ∪ (X AND (c OR d))`. Sending your `api_key` in the `Authorization` header instead of the URL frees a little extra room, but for a large Boolean query you will still need to split it.
+Keep each chunk's request URL under 8,190 bytes. Combining results is exact because `(X AND (a OR b OR c OR d))` equals `(X AND (a OR b)) ∪ (X AND (c OR d))`. Sending your `api_key` in the `Authorization` header instead of the URL frees a little extra room.
 
 > **Tip:**
-> Each chunked request is billed independently, just like any other request. Splitting is only needed to stay under the URL length limit — it is not a way to reduce cost.
+> Each chunked request is billed independently, just like any other request. Splitting is only needed to stay under the URL length limit; it is not a way to reduce cost.
+
+Past about **64 KB**, Cloudflare refuses the request before it reaches the API: you get a `414` with an empty body, or the connection drops on some HTTP/2 clients. POST avoids this too.
 
 ## Phrase and proximity search
 
@@ -231,7 +246,7 @@ https://api.openalex.org/authors?filter=display_name.search:einstein
 https://api.openalex.org/works?filter=title.search:cubist
 ```
 
-The `fulltext.search` filter searches a work's title, abstract, and full text together — the same fields as the `search` query parameter. (The older `default.search` filter is a deprecated alias of `fulltext.search`: it still works and behaves identically, but `fulltext.search` is preferred.) Variants like `.search.exact` (unstemmed) and `.search.no_stem` also exist for some fields.
+The `fulltext.search` filter searches a work's title, abstract, and full text together — the same fields as the `search` query parameter. (The older `default.search` filter is a deprecated alias of `fulltext.search`: it still works and behaves identically, but `fulltext.search` is preferred.) Most search filters also have an unstemmed `.search.exact` form, such as `title.search.exact:surgery`; see [Exact (unstemmed) search](#exact-unstemmed-search).
 
 A comma in a search filter's text is part of the text, so a pasted title works as it is: `filter=title.search:Music and British Culture, 1785`. See [Commas inside a value](/api/filtering/#commas-inside-a-value).
 
