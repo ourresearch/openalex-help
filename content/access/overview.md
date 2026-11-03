@@ -1,6 +1,6 @@
 ---
 title: "Overview"
-updated: 2026-11-02
+updated: 2026-11-03
 description: "Every way to get OpenAlex data — website, API, CLI, agents, snapshot, sync, fulltext, Unpaywall — and how to pick the right one for your technical skill, scale, and budget."
 tags: ["downloads"]
 ---
@@ -24,8 +24,8 @@ There are many ways to get OpenAlex data, from point-and-click to whole-database
 
 **Building something?** The [API](/api/) is the workhorse: fast, well-documented, and free for most uses — every account gets $1 of usage per day, which covers most research and personal projects. When you outgrow it, [usage pricing](/access/pricing/) is pay-as-you-go. The [CLI](/access/cli/) wraps the same API for bulk work in your terminal, handling parallelism, checkpointing, and resume for you.
 
-**Want the whole database?** The [snapshot](/access/snapshot/) is the entire dataset, free to download, refreshed quarterly on the second Wednesday of January, April, July and October ([release dates](/access/sync/#public-release-dates)). If quarterly isn't fresh enough, [sync](/access/sync/) gets you a complete daily snapshot plus API filters for everything new or changed since any date — a benefit of the Member+ and Partner [plans](/access/pricing/). (Only mirroring a slice of OpenAlex, like your own institution's works? Those [API filters](/access/sync/#premium-api-filters-paid-plans) can keep a subset fresh with no snapshot infrastructure at all.)
+**Want the whole database?** The [snapshot](/access/snapshot/) is the entire dataset, free to download, refreshed quarterly on the second Wednesday of January, April, July and October ([release dates](/access/sync/#public-release-dates)). If quarterly isn't fresh enough, [daily sync](/access/sync/) keeps you up to date. Keeping up to date is the paid service, part of the Member+ and Partner [plans](/access/pricing/#free-data-paid-services). The main route is a complete daily snapshot. For small numbers of updates, like just your own institution's works, the API's [sync filters](/access/sync/#api-sync-filters-member-and-partner) do the same job with no snapshot infrastructure at all.
 
 **After the documents themselves?** [Fulltext](/access/fulltext/) covers the content archive — more than 70 million open-access PDFs and their machine-readable TEI XML — from single-file downloads up to syncing the complete archive to your own bucket.
 
-However you get it, the data itself is free and open under [CC0](https://creativecommons.org/public-domain/cc0/) — what costs money at the higher tiers is the *service* of serving and refreshing it. That story, and every plan, lives in [Pricing](/access/pricing/).
+However you get it, all the data is free and open under [CC0](https://creativecommons.org/public-domain/cc0/). What costs money is service: a bigger daily API budget, support, and keeping your copy up to date. That story, and every plan, lives in [Pricing](/access/pricing/#free-data-paid-services).

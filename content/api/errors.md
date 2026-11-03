@@ -67,6 +67,17 @@ Error responses include a message explaining what went wrong:
 - Use `per_page=100` to reduce total requests
 - Consider a [paid plan](/access/pricing/) for higher limits
 
+### Plan upgrade required
+
+```
+429 Too Many Requests
+"Plan upgrade required"
+```
+
+You filtered or sorted by when records were created or updated (`from_updated_date` and the other [sync filters](/api/filtering/#sync-filters-member-and-partner)). They are the one exception to "every filter is free": they're part of daily sync, which needs a Member+ or Partner plan.
+
+**Fix:** Remove the filter or sort. To keep a copy of OpenAlex up to date, see [Sync](/access/sync/): the quarterly snapshot is free, and daily updates come with the [Member+ and Partner plans](/access/pricing/#free-data-paid-services).
+
 ### Entity Not Found
 
 ```

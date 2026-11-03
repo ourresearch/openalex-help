@@ -1,6 +1,6 @@
 ---
 title: "Filter"
-updated: 2026-10-29
+updated: 2026-11-03
 description: "Narrow down results to entities that match specific conditions"
 tags: ["api"]
 source_id: "guides/filtering"
@@ -130,28 +130,31 @@ https://api.openalex.org/works?filter=title.search:Music and British Culture, 17
 
 Percent-encoding a comma as `%2C` doesn't change its meaning: most HTTP clients encode every comma that way, including the ones between filters.
 
-## Sync filters (paid plans)
+## Sync filters (Member+ and Partner)
 
-[Paid plans](/access/pricing/#annual-plans) unlock two premium filters, available on every entity type, that select records by when they changed in OpenAlex:
+**Every filter is free except these four.** They select records by when they changed in OpenAlex, on every entity type, and they need a [Member+ or Partner plan](/access/pricing/#annual-plans):
 
-- `from_created_date` — records **created** since a date
-- `from_updated_date` — records **updated** (or created) since a date
+- `from_created_date`: records **created** since a date
+- `from_updated_date`: records **updated** (or created) since a date
+- `to_created_date` and `to_updated_date`: records created or updated on or before a date, to close the window
 
-`to_created_date` and `to_updated_date` close the window: records created or updated on or before a date. All four work on every entity type, awards included, and each date is inclusive.
+All four work on every entity type, awards included, and each date is inclusive. [Sorting](/api/sorting/) by `created_date` or `updated_date` needs the same plan. Older Premium and Institutional contracts include them too; Member doesn't. Without one of these plans, the API answers `429` with `"Plan upgrade required"`.
+
+**Why they're paid:** all OpenAlex data is free, and keeping up to date with it is the service we sell, in line with the [POSI](https://openscholarlyinfrastructure.org/) principles ([how that works](/access/pricing/#free-data-paid-services)). These filters tell you what changed, so if they were free, they would be a free way around that service. The main way to get updates is the [daily snapshot](/access/sync/#the-daily-snapshot-member-and-partner); these filters are the supported API route for smaller numbers of updates, paid like any other route to updates.
 
 ```bash
 # Works that changed since July 30
 https://api.openalex.org/works?filter=from_updated_date:2026-07-30
 ```
 
-These make the API itself a sync mechanism: poll on your own schedule and upsert the results by `id`. Because they combine with any other filter, they're especially good at keeping a **subset** of OpenAlex fresh without any bulk infrastructure — for example, just your institution's works:
+These make the API itself a sync mechanism: poll on your own schedule and upsert the results by `id`. Because they combine with any other filter, they're especially good at keeping a **subset** of OpenAlex fresh without any bulk infrastructure, for example just your institution's works:
 
 ```bash
 # Works from one institution that changed since July 30
 https://api.openalex.org/works?filter=institutions.id:I27837315,from_updated_date:2026-07-30
 ```
 
-For how this method compares with the snapshot-based approaches (and how to handle deletions and merges), see [Sync](/access/sync/#premium-api-filters-paid-plans). A few work fields are recomputed every night without moving `updated_date`; [Common attributes](/data/common-attributes/#updated_date) lists them.
+For how this method compares with the snapshot-based approaches (and how to handle deletions and merges), see [Sync](/access/sync/#api-sync-filters-member-and-partner). A few work fields are recomputed every night without moving `updated_date`; [Common attributes](/data/common-attributes/#updated_date) lists them.
 
 ## Filter by saved collection
 

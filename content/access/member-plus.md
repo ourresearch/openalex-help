@@ -1,6 +1,6 @@
 ---
 title: "Member+"
-updated: 2026-10-26
+updated: 2026-11-03
 description: "The Member+ plan ($10,000/year): everything in Member, plus a $100/day API budget, basic support, and daily sync of the full database."
 tags: ["reference"]
 synonyms: ["member plus", "member+ plan", "daily sync plan"]
@@ -15,7 +15,7 @@ Every day, your organization gets $100 of API usage — worth $36,500 over a yea
 
 ### Daily sync
 
-Keep your own copy of OpenAlex fresh, two ways: a **complete daily snapshot** — the whole database, rebuilt and published every day — and **sync filters on the API** that return everything new or changed since any date. See [Sync](/access/sync/) for how it works, including how deletions and merged entities behave.
+Keep up to date with OpenAlex. The data itself is free for everyone; keeping up to date is the service this plan pays for ([why](/access/pricing/#free-data-paid-services)). The main way is the **complete daily snapshot**: the whole database, rebuilt and published every day. For small numbers of updates, the API's **[sync filters](/api/filtering/#sync-filters-member-and-partner)** return everything new or changed since any date. See [Sync](/access/sync/) for how it works, including how deletions and merged entities behave.
 
 ### Basic support
 

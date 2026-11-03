@@ -1,11 +1,11 @@
 ---
 title: "Overview"
 updated: 2026-11-03
-description: "How OpenAlex pricing works: $1 of free API usage every day, pay-as-you-go prepaid usage, and annual plans (Member, Member+, Partner) — plus the PDF sync add-on and the free-data, paid-services sustainability model."
+description: "How OpenAlex pricing works: all the data is free, and what we sell is service. $1 of free API usage every day, pay-as-you-go prepaid usage, annual plans (Member, Member+, Partner), daily sync for keeping up to date, and the PDF sync add-on."
 tags: ["reference"]
 synonyms: ["plans", "subscriptions", "premium", "membership", "cost", "credits", "prepaid usage"]
 ---
-The OpenAlex *data* is free — but serving it is not, so *usage* is what costs money. Pricing is simple and transparent: every account gets **$1 of API usage per day for free**, and if you need more than that, there are exactly two ways to get it — **pay as you go**, or an **annual plan**. Between the free tier and those two, one of those three covers everyone, and the vast majority of users never leave the free tier. (Current prices always live on the [pricing page](https://openalex.org/pricing); this section explains what you're buying.)
+**All OpenAlex data is free. What we sell is service: a bigger daily API budget, support, and keeping your copy up to date** ([why](#free-data-paid-services)). Every account gets **$1 of API usage per day for free**, and if you need more than that, there are two ways to get it: **pay as you go**, or an **annual plan**. Most users never leave the free tier. (Current prices always live on the [pricing page](https://openalex.org/pricing); this page explains what you're buying.)
 
 ## Free: $1 per day
 
@@ -25,7 +25,7 @@ The entry plan for organizations that rely on OpenAlex. You get a **$20/day API 
 
 ### Member+ — $10,000/year
 
-Everything in Member, plus a **$100/day API budget** ($36,500/year of usage — a 73% saving), **basic support** (help with critical API bugs), and **daily sync**: a complete daily snapshot of the database plus API filters that return everything new or changed since any date. [Full details →](/access/member-plus/)
+Everything in Member, plus a **$100/day API budget** ($36,500/year of usage, a 73% saving), **basic support** (help with critical API bugs), and **daily sync**, the paid way to keep up to date: mainly a complete daily snapshot of the database, plus API filters that return everything new or changed since any date, for smaller numbers of updates. [Full details →](/access/member-plus/)
 
 ### Partner — from $20,000/year
 
@@ -41,6 +41,13 @@ Note what's for sale here: **sync, not PDFs**. In keeping with our [free data, p
 
 ## Free data, paid services
 
-Scholarly metadata is treated in most markets as "the new oil" — value is captured by *limiting* access. OpenAlex takes the opposite position: the data is a public good, released under a [CC0](https://creativecommons.org/public-domain/cc0/) public-domain license with no "personal use only" carve-out and no permission to ask. Revenue comes from time and services layered on top — serving, freshness, support — rather than from the data itself, mirroring the [POSI](https://openscholarlyinfrastructure.org/) principle of revenue based on services, not data.
+**All OpenAlex data is free. Keeping up to date with it is the paid service.** That's our business model, and it follows the [Principles of Open Scholarly Infrastructure](https://openscholarlyinfrastructure.org/) (POSI): sell services, not data.
+
+- **Free for everyone: the data.** Every record is released under a [CC0](https://creativecommons.org/public-domain/cc0/) public-domain license, with no "personal use only" carve-out and no permission to ask. Use it on the website, through the API ($1 of usage a day, free), or download the whole database in the [snapshot](/access/snapshot/), refreshed every quarter.
+- **Paid: keeping up to date.** OpenAlex changes every day, with new works, fixes and merges. Getting those changes as they happen is [daily sync](/access/sync/), part of the [Member+](/access/member-plus/) and [Partner](/access/partner/) plans.
+
+The main way to get updates is the **daily snapshot**: the complete database, published every day, so you download only what changed since your last sync. Some people would rather use the API, and for small numbers of updates (one institution's works, say) that works well: the API's [sync filters](/api/filtering/#sync-filters-member-and-partner) return what was created or changed since a date. We support that route, and like any other way of getting updates, it needs a Member+ or Partner plan. That's why those filters are the one exception to "every filter is free": without a plan, they would be a free way to learn what changed, which is the service the plans pay for.
+
+The rest of what we sell works the same way. A bigger daily API budget and support cost us real money to provide, so the people who need them pay for them, and that keeps the data free for everyone.
 
 This is also structural insurance: OpenAlex is a US 501(c)(3) nonprofit, all code is open source, and the full dataset is openly downloadable — so if we ever lost our way, anyone could take the data and code and continue the mission. Co-founder and CEO Jason Priem walks through the model, and the most common questions about it, in [this video](https://youtu.be/CZ5Q9To1zCc).

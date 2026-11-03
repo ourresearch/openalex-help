@@ -1,6 +1,6 @@
 ---
 title: "Snapshot"
-updated: 2026-11-02
+updated: 2026-11-03
 description: "The complete OpenAlex database as downloadable files — formats, S3 bucket layout, manifests, size, how it differs from the API, and how to access it (free public bucket + paid daily snapshot)."
 tags: ["downloads"]
 source_id: "download/snapshot-format"
@@ -75,7 +75,7 @@ You can browse the bucket at [openalex.s3.amazonaws.com/browse.html](https://ope
 
 Records are partitioned by `updated_date`: each partition holds the records that **last changed** on that date, in part files (`part_0000.*`, `part_0001.*`, …) of up to 400,000 records each. This is what makes incremental updates cheap — see [Sync](/access/sync/) for how partitions move between releases and how to keep a copy current.
 
-The works folder additionally carries `deleted_ids.csv.gz`, a gzip-compressed log of deleted work IDs and their deletion dates — see [Deletions and merged entities](/access/sync/#deletions-and-merged-entities) for the format, its size, and how to apply it. Works is the first entity type with a deletion log; it ships in every [daily snapshot](#the-daily-snapshot-bucket-paid-plans) (since 2026-08-15) and has been in this public bucket since the 2026-09-23 release.
+The works folder additionally carries `deleted_ids.csv.gz`, a gzip-compressed log of deleted work IDs and their deletion dates; see [Deletions and merged entities](/access/sync/#deletions-and-merged-entities) for the format, its size, and how to apply it. Works is the first entity type with a deletion log; it ships in every [daily snapshot](#the-daily-snapshot-bucket-member-and-partner) (since 2026-08-15) and has been in this public bucket since the 2026-09-23 release.
 
 The works, authors and sources folders carry `merged_ids.csv.gz`, every merged-away ID with the ID it now resolves to — see [Merged IDs](/access/sync/#merged-ids-merged_idscsvgz). It ships in every daily snapshot from 2026-10-27 and reaches this public bucket with the next quarterly release.
 
@@ -136,7 +136,7 @@ People often compare counts or fields between their snapshot copy and the live A
 | Difference | Why |
 |---|---|
 | **Works count: snapshot vs API default** | The snapshot contains **all** works, including the [expansion (XPAC) corpus](/data/works/corpus/). The API **excludes XPAC works by default** — as of September 2026 that's ~327M works by default vs ~476M with `corpus=all`. Add `corpus=all` to match the snapshot's total. Filter locally on the [`is_xpac`](/data/works/attributes/#is_xpac) field to reproduce the API's default view. |
-| **Freshness** | The snapshot is a point-in-time release (quarterly for the free public snapshot, on the second Wednesday of January, April, July and October — see [release dates](/access/sync/#public-release-dates); daily on [paid plans](/access/pricing/)); the API updates continuously. Counts and records drift between releases — see [Sync](/access/sync/). |
+| **Freshness** | The snapshot is a point-in-time release (quarterly for the free public snapshot, on the second Wednesday of January, April, July and October, see [release dates](/access/sync/#public-release-dates); daily on the [Member+ and Partner plans](/access/pricing/#free-data-paid-services)); the API updates continuously. Counts and records drift between releases; see [Sync](/access/sync/). |
 | **`content_urls` is absent** | It's generated at serve time, API-only. The snapshot has [`has_content`](/data/works/attributes/#has_content); build download URLs via the [content archive](/access/fulltext/) with work IDs. |
 | **`authors_count` and `locations[].provenance` are snapshot-only** | Two extra fields: `authors_count` is the number of authorships (up to 5,000), and `provenance` says which pipeline delivered each location, with the same values as on [`/locations` rows](/data/locations/#extra-attributes-on-locations-rows). |
 | **Releases before 27 October 2026: bare location ids, empty `best_oa_location` objects** | Snapshots written before 27 October 2026, including the public release of 14 October 2026, hold each location's [`id`](/data/locations/#id) without its namespace (`10.7717/peerj.4375`, not `doi:10.7717/peerj.4375`), and give every work with no open copy a `best_oa_location` object whose fields are all null instead of `null`. Daily snapshots from 27 October 2026 and public releases from January 2027 match the API. In an older file, treat an all-null `best_oa_location` as `null`. |
@@ -152,7 +152,7 @@ Bulk data lives in several buckets with different access rules. This is the map:
 | What | Where | Auth |
 |---|---|---|
 | Public snapshot (this page) | `s3://openalex` (S3, `data/` prefix) | **None** — free, anonymous |
-| [Daily snapshot](/access/sync/#the-daily-snapshot-paid-plans) (paid) | `s3://openalex-snapshots` (staging bucket, dated folders under `full/`) | API key via `credential_process` |
+| [Daily snapshot](/access/sync/#the-daily-snapshot-member-and-partner) (Member+ and Partner) | `s3://openalex-snapshots` (staging bucket, dated folders under `full/`) | API key via `credential_process` |
 | [Content archive](/access/fulltext/) per-file | `content.openalex.org/works/...` | API key ($0.01/file) |
 | Content archive full sync ([PDF sync service](/access/fulltext/#option-3-complete-archive-sync)) | Cloudflare R2 (S3-compatible) | Read-only R2 credentials issued by us, valid for your subscription year |
 
@@ -166,9 +166,9 @@ aws s3 sync "s3://openalex/data/jsonl" "openalex-snapshot/data/jsonl" --no-sign-
 
 You can also browse it in a browser: [openalex.s3.amazonaws.com/browse.html](https://openalex.s3.amazonaws.com/browse.html). Many thanks to the [AWS Open Data program](https://aws.amazon.com/opendata/), which covers the data-transfer fees (about $70 per download) so users don't have to.
 
-### The daily snapshot bucket (paid plans)
+### The daily snapshot bucket (Member+ and Partner)
 
-Subscribers get a full snapshot rebuilt **every day**, published to dated folders in the `openalex-snapshots` staging bucket in both formats. Access is via your OpenAlex API key, exchanged automatically for temporary AWS credentials.
+The daily snapshot is the main way to keep up to date with OpenAlex. Member+ and Partner subscribers get a full snapshot rebuilt **every day**, published to dated folders in the `openalex-snapshots` staging bucket in both formats. Access is via your OpenAlex API key, exchanged automatically for temporary AWS credentials.
 
 Add this to `~/.aws/config` (replace `YOUR_KEY` with your API key):
 
@@ -184,7 +184,7 @@ aws s3 ls s3://openalex-snapshots/full/ --profile openalex
 aws s3 sync s3://openalex-snapshots/full/YYYY-MM-DD/jsonl/ ./openalex-snapshot-jsonl --profile openalex   # pick a dated folder from the ls above
 ```
 
-See [Sync](/access/sync/#the-daily-snapshot-paid-plans) for what the daily snapshot is and the sync workflows it enables.
+See [Sync](/access/sync/#the-daily-snapshot-member-and-partner) for what the daily snapshot is and the sync workflows it enables.
 
 ### Content archive
 

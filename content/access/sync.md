@@ -1,20 +1,22 @@
 ---
 title: "Sync"
-updated: 2026-10-29
+updated: 2026-11-03
 description: "Snapshot release cadence and dates per plan, how updated_date partitions work, the four ways to keep a copy in sync with OpenAlex, and how deletions and merged entities behave — including the works deletion log deleted_ids.csv.gz and the works, authors and sources merge maps merged_ids.csv.gz."
 tags: ["downloads"]
 source_id: "new/snapshot-updates"
 source_url: "https://developers.openalex.org/download/snapshot-format"
 source_updated: "2026-07-31"
 ---
-This page is the authoritative reference for how the [snapshot](/access/snapshot/) changes over time: when releases happen, what a release means, and how to keep a local copy — including deletions and merges — in sync with OpenAlex.
+**All OpenAlex data is free; keeping up to date is the paid service.** Anyone can download the whole database for free in the quarterly [snapshot](/access/snapshot/). Getting changes as they happen is daily sync, part of the [Member+ and Partner plans](/access/pricing/#annual-plans). The main way to get updates is the [daily snapshot](#the-daily-snapshot-member-and-partner); for small numbers of updates, the API's [sync filters](#api-sync-filters-member-and-partner) work too ([why updates are paid](#free-data-paid-services)).
+
+This page is the reference for how the snapshot changes over time: when releases happen, what a release means, and how to keep a local copy in sync with OpenAlex, including deletions and merges.
 
 ## Release cadence
 
 | Plan | What you get |
 |---|---|
 | **Free** (everyone) | New full releases of the public snapshot (`s3://openalex/data/`), released **quarterly** on the **second Wednesday of January, April, July and October** (UTC). Each release replaces the bucket contents in place. |
-| **Paid** ([Member+ and Partner plans](/access/pricing/#annual-plans)) | A **daily** full snapshot — the complete database, rebuilt and published every day (dated folders in the `openalex-snapshots` staging bucket) — plus the premium sync filters on the API. |
+| **Daily sync** ([Member+ and Partner plans](/access/pricing/#annual-plans)) | A **daily** full snapshot: the complete database, rebuilt and published every day (dated folders in the `openalex-snapshots` staging bucket). Plus the sync filters on the API. |
 
 The authoritative history of what shipped when is [`RELEASE_NOTES.txt`](https://openalex.s3.amazonaws.com/RELEASE_NOTES.txt), at the root of the public bucket: one dated entry per release. Each quarterly release carries a quarter's worth of bug fixes and improvements across the database, so entries are not itemized; for individual data changes see the [data documentation](/data/). Check the file (and the manifest `date`) rather than guessing from file timestamps.
 
@@ -69,9 +71,9 @@ There are four ways to keep a copy of OpenAlex current. They differ in freshness
 | Method | Freshness | Best for | Availability |
 |---|---|---|---|
 | [Public snapshot](#the-public-snapshot-free) | Quarterly ([release dates](#public-release-dates)) | Full mirrors where quarterly is fresh enough | Free |
-| [Daily snapshot](#the-daily-snapshot-paid-plans) | Daily | Full-database mirrors | [Paid plans](/access/pricing/#annual-plans) |
-| [Premium API filters](#premium-api-filters-paid-plans) | Continuous | Keeping a **subset** fresh (e.g. one institution's works) with no bulk infrastructure | [Paid plans](/access/pricing/#annual-plans) |
-| [Unpaywall Data Feed](#the-unpaywall-data-feed-paid-plans) | Daily (works only, legacy format) | Existing integrations that speak the Unpaywall schema | [Paid plans](/access/pricing/#annual-plans) |
+| [Daily snapshot](#the-daily-snapshot-member-and-partner) | Daily | The main way to get updates; full-database mirrors | [Member+ and Partner](/access/pricing/#annual-plans) |
+| [API sync filters](#api-sync-filters-member-and-partner) | Continuous | Small numbers of updates: keeping a **subset** fresh (e.g. one institution's works) with no bulk infrastructure | [Member+ and Partner](/access/pricing/#annual-plans) |
+| [Unpaywall Data Feed](#the-unpaywall-data-feed-subscribers) | Daily (works only, legacy format) | Existing integrations that speak the Unpaywall schema | [Subscription](/access/unpaywall/#the-unpaywall-data-feed) |
 
 The two snapshot methods move the whole database in bulk; the API-filter method needs nothing but HTTP requests, which makes it the right fit when you only care about a slice of OpenAlex.
 
@@ -87,9 +89,9 @@ Re-sync from each quarterly release using the manifest (per entity or combined):
 
 If you mirror *files* with `aws s3 sync`, always pass `--delete` — otherwise files vacated by records moving to newer partitions linger and you get duplicates. Full commands in the [download recipe](/tutorials/download-the-snapshot/).
 
-### The daily snapshot (paid plans)
+### The daily snapshot (Member+ and Partner)
 
-Subscribers get the **complete database, rebuilt and published every day** — each day's copy in its own dated folder in the staging bucket, partitioned by `updated_date` just like the public snapshot ([access details](/access/snapshot/#the-daily-snapshot-bucket-paid-plans)).
+This is the main way to keep up to date. Member+ and Partner subscribers get the **complete database, rebuilt and published every day**: each day's copy in its own dated folder in the staging bucket, partitioned by `updated_date` just like the public snapshot ([access details](/access/snapshot/#the-daily-snapshot-bucket-member-and-partner)).
 
 Because every daily copy is both *complete* and *partitioned by change date*, it covers every sync rhythm:
 
@@ -97,20 +99,22 @@ Because every daily copy is both *complete* and *partitioned by change date*, it
 - **Full rebuild, as often as you like.** Rebuild your entire database from scratch every day if you want — each dated folder is the whole thing.
 - **Deletions handled.** Each day's copy is the complete current corpus, so records that were deleted or merged away are simply absent — reconcile against it and they fall out of your mirror. For works, each copy also names its deletions explicitly in [`deleted_ids.csv.gz`](#the-works-deletion-log-deleted_idscsvgz) (see [below](#deletions-and-merged-entities)).
 
-### Premium API filters (paid plans)
+### API sync filters (Member+ and Partner)
 
-Paid plans unlock two filters on every entity type that make the API itself a sync mechanism:
+Some people would rather get updates from the API than from a snapshot. We support that: for small numbers of updates, the sync filters make the API itself a sync mechanism, on every entity type:
 
-- `from_created_date` — records **created** since a date
-- `from_updated_date` — records **updated** since a date
+- `from_created_date`: records **created** since a date
+- `from_updated_date`: records **updated** since a date
 
 `to_created_date` and `to_updated_date` (on or before a date) close the window, on every entity type too.
+
+**These are the one exception to "every filter is free".** They tell you what changed, and keeping up to date is the service the plans pay for, so like the daily snapshot they need a Member+ or Partner plan (older Premium and Institutional contracts include them too; Member doesn't). The same goes for sorting by `created_date` or `updated_date`. Without a plan, the API answers `429` with `"Plan upgrade required"`.
 
 ```
 https://api.openalex.org/works?filter=from_updated_date:2026-07-30
 ```
 
-Poll with these and upsert the results by `id` — no snapshot downloads, no bulk infrastructure, just HTTP requests. It's also the freshest view of the data, since the API updates continuously rather than on a release schedule.
+Poll with these and upsert the results by `id`: no snapshot downloads, no bulk infrastructure, just HTTP requests. It's also the freshest view of the data, since the API updates continuously rather than on a release schedule.
 
 The real superpower is that they **combine with any other filter**, which makes this the method for keeping a *subset* of OpenAlex synced. Most mirrors don't need the whole database: an institution tracking its own research output, say, only needs its own works, and standing up snapshot infrastructure for that is wild overkill. One polling loop covers it:
 
@@ -118,15 +122,17 @@ The real superpower is that they **combine with any other filter**, which makes 
 https://api.openalex.org/works?filter=institutions.id:I27837315,from_updated_date:2026-07-30
 ```
 
-Trade-offs: paging through the API is slower per record than bulk files, so this method fits modest change volumes — for full-database mirrors, use the daily snapshot. And the filters only surface records that exist: deleted or merged-away records just stop appearing (deleted IDs [404](#deletions-and-merged-entities); merged-away IDs usually resolve to the survivor), so reconcile your ID set against a snapshot periodically if deletions matter to you. Filter mechanics: [Sync filters](/api/filtering/#sync-filters-paid-plans) in the API reference.
+Trade-offs: paging through the API is slower per record than bulk files, so this method fits modest change volumes; for full-database mirrors, use the daily snapshot. And the filters only surface records that exist: deleted or merged-away records just stop appearing (deleted IDs [404](#deletions-and-merged-entities); merged-away IDs usually resolve to the survivor), so reconcile your ID set against a snapshot periodically if deletions matter to you. Filter mechanics: [Sync filters](/api/filtering/#sync-filters-member-and-partner) in the API reference.
 
-### The Unpaywall Data Feed (paid plans)
+### The Unpaywall Data Feed (subscribers)
 
 [Unpaywall](/access/unpaywall/) subscribers can receive daily change updates in the legacy Unpaywall record format — works with Crossref DOIs only. It delivers changes to the same underlying OpenAlex data, and exists for the ecosystem of integrations that already speak the Unpaywall schema; for anything new, use one of the OpenAlex-native methods above. Details: [the Unpaywall Data Feed](/access/unpaywall/#the-unpaywall-data-feed).
 
 ### Free data, paid services
 
-All OpenAlex metadata is [CC0](https://creativecommons.org/publicdomain/zero/1.0/) and free — anyone can download the whole database, forever, at no cost. What's paid is *freshness as a service*: rebuilding and publishing the full database every day costs us real money every day, so we pass that cost on to the users who need daily updates. That's not an accident of pricing — it's the sustainability model encouraged by [POSI](https://openscholarlyinfrastructure.org/), the Principles of Open Scholarly Infrastructure: keep the data open, charge for the services that fund it. Plans and pricing: [Pricing](/access/pricing/).
+All OpenAlex data is [CC0](https://creativecommons.org/publicdomain/zero/1.0/) and free: anyone can download the whole database, forever, at no cost. What's paid is the service of keeping up to date. Building and publishing the full database every day, and answering what-changed queries on the API, costs us real money every day, so the people who need daily updates pay for it, and that keeps the data free for everyone else. It's the model the [Principles of Open Scholarly Infrastructure](https://openscholarlyinfrastructure.org/) (POSI) encourage: keep the data open, sell services, not data.
+
+So every way of getting updates is paid: the daily snapshot (the main route), the API sync filters (for small numbers of updates), and the Unpaywall Data Feed. Plans and the whole model: [Pricing](/access/pricing/#free-data-paid-services).
 
 ## Deletions and merged entities
 
@@ -157,7 +163,7 @@ The file is **cumulative** — each release carries the full history, so you don
 
 **Deletion is final.** A deleted ID stays deleted, and work IDs are never reused — a deleted ID will never point to a different work.
 
-**Where it is today:** in every [daily snapshot](#the-daily-snapshot-paid-plans) since 2026-08-15 (written as an uncompressed `deleted_ids.csv` up to the 2026-09-24 snapshot; gzip-compressed only from 2026-09-25), and in the free public bucket since the 2026-09-23 release.
+**Where it is today:** in every [daily snapshot](#the-daily-snapshot-member-and-partner) since 2026-08-15 (written as an uncompressed `deleted_ids.csv` up to the 2026-09-24 snapshot; gzip-compressed only from 2026-09-25), and in the free public bucket since the 2026-09-23 release.
 
 ### Merged IDs: `merged_ids.csv.gz`
 
@@ -174,7 +180,7 @@ https://openalex.org/A5107411446,https://openalex.org/A5107863564,2026-10-11
 
 The file is **cumulative and the whole truth each day**: a merged-away ID that later comes back into use drops out, and a row's `merge_into_id` changes if the surviving record is itself merged. Apply it as: *replace each `id` in your data with its `merge_into_id`*. It covers the merges in our merge ledgers, including the pre-2026 `legacy-data/merged_ids/` files. Deleted records (with no surviving record) are not in it: those IDs are gone. The works and authors files run to tens of millions of rows, so load them into a database or DuckDB rather than reading them line by line. Like the API redirects, the file is best effort, not a promise that any particular ID will keep resolving.
 
-**Where it is today:** in every [daily snapshot](#the-daily-snapshot-paid-plans) from 2026-10-27 (works added that evening); all three in the free public bucket from the next quarterly release.
+**Where it is today:** in every [daily snapshot](#the-daily-snapshot-member-and-partner) from 2026-10-27 (works added that evening); all three in the free public bucket from the next quarterly release.
 
 ### Tracing merges: location IDs move to the surviving work
 
@@ -204,7 +210,7 @@ Reconcile against a full release periodically (daily-snapshot subscribers can do
 
 ## Point-in-time and reproducibility
 
-The public bucket holds only the **current** release — once a release lands, the previous state is gone, so cite the combined manifest's `date` (or the `RELEASE_NOTES.txt` entry) in anything you need to reproduce, and archive your own copy if you need to re-run against it. Paid plans get closer to point-in-time: the staging bucket keeps each day's full snapshot in its own dated folder.
+The public bucket holds only the **current** release: once a release lands, the previous state is gone, so cite the combined manifest's `date` (or the `RELEASE_NOTES.txt` entry) in anything you need to reproduce, and archive your own copy if you need to re-run against it. Member+ and Partner plans get closer to point-in-time: the staging bucket keeps each day's full snapshot in its own dated folder.
 
 ## Related pages
 
