@@ -180,7 +180,7 @@ get works from 2024 about kelp where country is not in the collection [European 
 get the count, mean FWCI, and percent open access of works since 2020 by country in the collection [European Union (EU27)](col_LV29j8URoX), highest mean FWCI first
 ```
 
-The last is a table with one row per member country. A collection of peer institutions works the same way: `by institution in the collection [My peers](<your collection ID>)` gives one row per peer (see [Benchmarking against peers](/how-to/benchmarking/)). For now, a works collection works on its own in OQL; to combine one with other conditions, an order or a table, use the URL filter (`/works?filter=collection:col_…,publication_year:2024`).
+The last is a table with one row per member country. A collection of peer institutions works the same way: `by institution in the collection [My peers](<your collection ID>)` gives one row per peer (see [Benchmarking against peers](/how-to/benchmarking/)). A works collection combines with anything else in the sentence: `get works since 2010 in the collection [Example: altmetrics papers](col_8yWKmRNyEr), most cited first`.
 
 ## Can an AI agent do this for me?
 
