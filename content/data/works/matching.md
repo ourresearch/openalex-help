@@ -1,7 +1,7 @@
 ---
 title: "Matching and merging"
-updated: 2026-11-02
-description: "How OpenAlex decides that two records are the same work: shared identifiers and declared links first, then rules that keep different items apart, then a trained matcher that joins a record only when it is at least 99% sure. What we merge, what we keep separate, and how to report a mistake."
+updated: 2026-11-04
+description: "How OpenAlex decides that two records are the same work: shared identifiers and declared links first, then rules that keep different items apart, then a trained matcher that joins a record only when it is very confident. What we merge, what we keep separate, and how to report a mistake."
 tags: ["reference"]
 synonyms: ["duplicate", "duplicates", "duplicate works", "merge", "merged works", "deduplication", "dedup", "same work", "two works", "preprint and published version", "versions", "location matching", "record linkage", "matcher", "wrong merge", "split"]
 ---
@@ -19,7 +19,7 @@ Every night, each new record takes this path. It stops as soon as it finds its w
   <div class="mf-down"><span aria-hidden="true">↓</span> No</div>
   <div class="mf-step"><span class="mf-n">2</span><div><b>Find works that look like it</b><span>Similar titles, the same authors, close in meaning. Items that are never the same work, like a correction notice or a book chapter for an article, are set aside.</span></div></div>
   <div class="mf-down" aria-hidden="true">↓</div>
-  <div class="mf-step"><span class="mf-n">3</span><div><b>Is the matcher at least 99% sure one of them is the same work?</b><span>Two trained models compare the record with the closest candidates, side by side.</span></div></div>
+  <div class="mf-step"><span class="mf-n">3</span><div><b>Is the matcher confident one of them is the same work?</b><span>Two trained models compare the record with the closest candidates, side by side.</span></div></div>
   <div class="mf-yes"><span class="mf-label">Yes →</span><span class="mf-out">Joins that work</span></div>
   <div class="mf-down"><span aria-hidden="true">↓</span> No</div>
   <div class="mf-node mf-end"><b>Becomes a new work</b><span>When in doubt, we keep records apart: a duplicate is easier to fix than two different papers merged into one.</span></div>
@@ -56,8 +56,8 @@ Every night, each new record takes this path. It stops as soon as it finds its w
 2. **Declared links.** If the record says it is a version of another record, or the preprint of a published article, it joins that record's work. These links come from the record's own metadata: DataCite's `IsVersionOf` and `HasVersion`, and Crossref's `is-preprint-of` and `has-preprint`.
 3. **Rules that keep items apart.** Some pairs are never the same work, however alike they look: a journal article and a conference paper, thesis, report or book chapter; a book and one of its chapters; an article and a correction notice or peer review. These pairs are ruled out before any scoring. The full list is [below](#separate-works).
 4. **Finding candidates.** OpenAlex gathers the existing works the record could belong to: works that share a URL or repository ID with it, works with the same title, works by the same first author within two years, works with very similar titles, and works whose title and abstract are closest in meaning.
-5. **Ranking.** A ranking model (gradient-boosted trees, about 90 measurements of how alike the record and each candidate are: titles, authors, years, venues, abstracts, identifiers) scores every candidate. If even the best candidate scores under 1%, the record becomes a new work. About two-thirds of the records that reach the matcher end here.
-6. **Reading.** A fine-tuned language model (Qwen3.5, 9 billion parameters) reads the record next to its 10 best candidates and gives each one a probability of being the same work. The record joins the top candidate when that probability is 0.91 or higher, the point where the matcher is right 99% of the time on records held out from training. When several candidates are copies of the same paper (a repository copy and an aggregator copy, say), their probabilities are added together, so the record joins that paper instead of starting yet another copy.
+5. **Ranking.** A ranking model (gradient-boosted trees, about 90 measurements of how alike the record and each candidate are: titles, authors, years, venues, abstracts, identifiers) scores every candidate. If even the best candidate scores very low, the record becomes a new work.
+6. **Reading.** A fine-tuned language model (Qwen3.5, 9 billion parameters) reads the record next to its 10 best candidates and gives each one a probability of being the same work. The record joins the top candidate only when that probability is 0.91 or higher; we set the bar high so that wrong merges are rare. When several candidates are copies of the same paper (a repository copy and an aggregator copy, say), their probabilities are added together, so the record joins that paper instead of starting yet another copy.
 7. **Otherwise, a new work.** A record that no step joins starts a new work of its own.
 
 </details>
@@ -68,18 +68,15 @@ Every decision is automatic and takes effect the same night.
 
 The journal article *Heritability estimation of subcortical volumes in a multi-ancestry multi-site cohort study* arrived from Crossref in 2026 ([`10.1162/imag.a.1455`](https://doi.org/10.1162/imag.a.1455)). It shared no identifier with its 2024 bioRxiv preprint ([`10.1101/2024.01.11.575231`](https://doi.org/10.1101/2024.01.11.575231)). The matcher found the preprint's work among the candidates and joined them: [W4390839382](https://api.openalex.org/works/W4390839382?select=id,display_name,locations) now holds the article, the preprint, and their PubMed and PubMed Central copies.
 
-## How accurate it is
+## When it's unsure
 
-We checked samples of the matcher's decisions on real nightly arrivals in late October 2026, each judged independently by AI reviewers and compared with hand-checked labels:
+The matcher's misses are mostly duplicates rather than wrong merges, because it starts a new work whenever it is unsure. The most common one is a repository sending again a copy of an item the work already holds.
 
-- When the matcher joins a record to a work, it is right **99.1%** of the time.
-- Of the records that belong to an existing work, it joins **92.2%**.
+## Training and code
 
 The models were trained on 100,000 real records whose matches were labelled by a large language model (Anthropic's Claude Opus) and spot-checked by hand.
 
 Everything behind the matcher is public: the code as it runs, the models, the training labels and every test set, with a tool that runs the same matcher on your own records. See [openalex-work-matcher on GitHub](https://github.com/ourresearch/openalex-work-matcher).
-
-The matcher's misses are mostly duplicates rather than wrong merges, because it starts a new work whenever it is unsure. The biggest group is a repository sending again a copy of an item the work already holds. The candidate search also caps what it can find: about 94% of true matches are among the 10 candidates the reading model sees.
 
 ## What counts as one work
 
