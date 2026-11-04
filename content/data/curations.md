@@ -1,6 +1,6 @@
 ---
 title: "Curations"
-updated: 2026-08-11
+updated: 2026-11-03
 description: "What a curation is, who can file one, the review states it moves through, and how an accepted curation flows into the entity it corrects."
 tags: ["reference"]
 entity:
@@ -36,8 +36,10 @@ Every curation row carries the submitting `user_id`, so the audit trail of "who 
 
 A curation is submitted, reviewed, and then either applied to the live data or not:
 
-1. **Submitted.** The request lands as one row with `is_applied: false` and `applied_at: null`. Submitting the same curation twice (same user, entity, entity_id, value, action) returns the existing row rather than creating a duplicate, so re-submitting is idempotent.
-2. **Reviewed and applied.** Curations are picked up on the next end-to-end refresh of the pipeline, which runs once per day — so an accepted change should appear within about 24 hours. When a curation is applied, its `is_applied` flips to `true` and `applied_at` records the time.
+1. **Submitted.** The request lands as one row with `status: "pending"`, `is_applied: false` and `applied_at: null`. Submitting the same curation twice (same user, entity, entity_id, value, action) returns the existing row rather than creating a duplicate, so re-submitting is idempotent. A change that is already live is skipped, unless an earlier curation of the same item that says otherwise is still waiting: then the new one is recorded, and the newest wins.
+2. **Reviewed and applied.** Curations are picked up on the next end-to-end refresh of the pipeline, which runs once per day — so an accepted change should appear within about 24 hours. When a curation is seen in the live data, its `status` becomes `applied`, `is_applied` flips to `true` and `applied_at` records the time.
+
+The [`status`](#status) field says where each curation stands in one word; every OpenAlex surface (the website, the connector, this API) shows the same word.
 
 Because curations are re-applied *every* cycle, an accepted correction is **sticky**: a removed author stays removed even if the automated matcher tries to re-attach it on a later run.
 
@@ -83,8 +85,21 @@ A curation record is a compact statement of a correction: the target entity, the
 ### `created`
 *String.* The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) datetime the curation was submitted.
 
+### `status`
+*String.* Where the curation stands, one of:
+
+- `pending`: waiting to take effect, either submitted under a week ago or not checked yet.
+- `timed_out`: over a week old and checked at least once, but not seen in the live data yet. Not an error and not final: checks continue and it can still apply.
+- `applied`: seen in the live data. It records that the change took effect; a later curation of the same item can change it again.
+- `superseded`: a newer curation of the same item (by you or anyone else) says something different, so this one will never apply. [`superseded_by`](#superseded_by) names it.
+
+Filter with `?status=`, comma-separated for OR: `?status=pending,timed_out` lists everything still open.
+
+### `superseded_by`
+*String.* The ID of the newer curation that superseded this one, or `null` unless `status` is `superseded`.
+
 ### `is_applied`
-*Boolean.* Whether the curation has been applied to the live entity data. Starts `false` on submission and flips to `true` once a pipeline run applies it.
+*Boolean.* Whether the curation has been seen applied to the live entity data. Starts `false` on submission and flips to `true` once it is; `status` says more (an unapplied row may be pending, timed out or superseded).
 
 ### `applied_at`
 *String.* The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) datetime the curation was applied, or `null` while it's still pending.

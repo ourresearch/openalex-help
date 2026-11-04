@@ -1,6 +1,6 @@
 ---
 title: "Affiliations"
-updated: 2026-08-10
+updated: 2026-11-03
 description: "Fix affiliation errors: the Affiliation Editor for wrong institution matches (self-serve for members), tickets for one-offs, and ROR for the institution record itself."
 tags: ["reference"]
 ---
@@ -24,7 +24,7 @@ The loop an agent runs:
 
 1. **Find candidates**: `GET api.openalex.org/raw-affiliation-strings?q=<search>&unmatched-institutions=I123…` lists strings containing your search text that aren't yet linked to your institution (`matched-institutions=` audits existing links).
 2. **Submit corrections**: `POST user.openalex.org/curations` (with `Authorization: Bearer <api_key>`) — a JSON array of `{"entity": "ras", "entity_id": "<the exact string>", "property": "institution_ids", "action": "add", "value": "https://openalex.org/I123…"}` (or `"action": "remove"` to unlink). The response reports each item's outcome individually.
-3. **Track**: `GET user.openalex.org/curations?entity=ras&status=pending` until they're applied.
+3. **Track**: `GET user.openalex.org/curations?entity=ras&status=pending,timed_out` lists the ones still open; each leaves that list when it reads `applied` (live), or `superseded` (a newer curation of the same string and institution replaced it). `timed_out` is not a failure: it means over a week old and checked, but not seen live yet, and checks continue. Track `pending` alone and rows drop out of the loop at day 7.
 
 One quirk worth knowing: a string OpenAlex hasn't indexed yet is rejected with a "retry after the next daily update" message — wait a day and resubmit.
 
