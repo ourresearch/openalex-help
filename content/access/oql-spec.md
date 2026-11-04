@@ -1,6 +1,6 @@
 ---
 title: "Specification"
-updated: 2026-10-26
+updated: 2026-11-04
 description: "The formal specification of the OpenAlex Query Language: sentences, conditions, the general form, defaults, errors, and the formal grammar."
 tags: ["oql"]
 source_id: "query-spec/oql+grammar"
@@ -175,6 +175,8 @@ get <things>[ <parts>][ <own thresholds>][ where <own-field conditions>][, <orde
 | Any other own field | `where <conditions>` | `get institutions where city is Vienna` |
 
 `at [X]` reads each author's own record (the institutions on their profile, with years), not the papers' affiliations. Bare `at [X]` means any year; a window is written out (`at [X] since 2022`). OpenAlex's best guess at where an author is now is the field `last known institution`.
+
+An institution includes its child organizations (a university's labs and institutes) in `at [X]`, `last known institution` and works' `institution`; `exact last known institution` and `exact institution` mean that institution only.
 
 ### Numbers
 
