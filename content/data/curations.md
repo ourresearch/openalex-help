@@ -1,6 +1,6 @@
 ---
 title: "Curations"
-updated: 2026-11-03
+updated: 2026-11-05
 description: "What a curation is, who can file one, the review states it moves through, and how an accepted curation flows into the entity it corrects."
 tags: ["reference"]
 entity:
@@ -92,14 +92,24 @@ A curation record is a compact statement of a correction: the target entity, the
 - `timed_out`: over a week old and checked at least once, but not seen in the live data yet. Not an error and not final: checks continue and it can still apply.
 - `applied`: seen in the live data. It records that the change took effect; a later curation of the same item can change it again.
 - `superseded`: a newer curation of the same item (by you or anyone else) says something different, so this one will never apply. [`superseded_by`](#superseded_by) names it.
+- `not_applied`: the nightly data build won't apply it as it stands, and the live data doesn't show it either. Usually its target is gone: the work was merged into another or deleted, the author profile was deleted, or the name is no longer on the work's byline. [`walden.reason`](#walden) says which. No more checks run on it, but if a later build does serve the change, it turns `applied` by itself.
 
 Filter with `?status=`, comma-separated for OR: `?status=pending,timed_out` lists everything still open.
 
 ### `superseded_by`
 *String.* The ID of the newer curation that superseded this one, or `null` unless `status` is `superseded`.
 
+### `walden`
+*Object.* What the nightly data build did with this curation the last time it ran, or `null` until a build has seen it (curations of works' authors and of affiliation strings; other kinds follow). Fields:
+
+- `outcome`: `applied`, `outranked` (a newer curation of the same slot won), `ignored_by_policy`, `target_gone`, or `unsupported`.
+- `reason`: why, for example `work_merged`, `work_deleted`, `profile_deleted`, `name_not_on_byline`, or `byline_name_changed` (applied, but the work now prints the name another way).
+- `detail`: the work a merged work became (`via merge into W...`), or the ID of the curation that won.
+- `effect_live`: whether the live data shows what the curation asked for.
+- `run_date`: the date of the build that last changed this answer.
+
 ### `is_applied`
-*Boolean.* Whether the curation has been seen applied to the live entity data. Starts `false` on submission and flips to `true` once it is; `status` says more (an unapplied row may be pending, timed out or superseded).
+*Boolean.* Whether the curation has been seen applied to the live entity data. Starts `false` on submission and flips to `true` once it is; `status` says more (an unapplied row may be pending, timed out, superseded or not applied).
 
 ### `applied_at`
 *String.* The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) datetime the curation was applied, or `null` while it's still pending.
