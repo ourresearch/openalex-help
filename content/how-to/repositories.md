@@ -1,6 +1,6 @@
 ---
 title: "Repositories"
-updated: 2026-11-02
+updated: 2026-11-05
 description: "For repository managers: how to get harvested by OpenAlex, check your Harvest tab, allowlist our harvester, troubleshoot coverage, and report a problem so it gets fixed."
 tags: ["data"]
 synonyms: ["add my repository", "register repository", "institutional repository", "OAI-PMH endpoint", "not being harvested", "records missing", "harvest status", "DSpace", "EPrints", "Digital Commons", "firewall", "allowlist", "IP address", "user agent", "repository bug", "report a problem", "endpoint changed", "migrated repository", "expansion corpus", "coverage"]
@@ -119,9 +119,9 @@ IP address:  44.208.99.237
 User-Agent:  OpenAlexHarvester/1.0 (+https://help.openalex.org/how-to/repositories/; mailto:support@openalex.org)
 ```
 
-The address is also published as a plain-text list at [/harvester-ips.txt](/harvester-ips.txt). Two exceptions: until 4 November 2026 the hosts that allowlisted our old address are still fetched from `18.213.181.255`, and the few endpoints that challenge every automated request are fetched through a third-party service (Zyte) from its own addresses, with the same User-Agent.
+The address is also published as a plain-text list at [/harvester-ips.txt](/harvester-ips.txt). One exception: the few endpoints that challenge every automated request are fetched through a third-party service (Zyte) from its own addresses, with the same User-Agent.
 
-**New address, October 2026.** Our previous address, `18.213.181.255`, belonged to a proxy provider and was shared with its other customers, so we're retiring it. If you allowlisted it, add `44.208.99.237` as well; we stop using `18.213.181.255` on **4 November 2026**, and you can remove it after that. If you're setting up an allowlist now, use `44.208.99.237` only.
+Until November 2026 we harvested from a proxy provider's shared address; we no longer use it. If you allowlisted that address, replace it with `44.208.99.237`.
 
 Allowlist the IP, or the User-Agent, or both. This applies to **OAI-PMH harvesting only**. Fetching landing pages and PDFs to find full text uses rotating addresses we can't promise, and blocking those costs you open-access detection, so don't restrict it to the IP above. When we first verify a newly registered endpoint we may probe it once from a different address with a User-Agent that also starts with `OpenAlex`; if your firewall logs a block during registration, that's what it was.
 
