@@ -1,6 +1,6 @@
 ---
 title: "Attributes"
-updated: 2026-11-02
+updated: 2026-11-06
 description: "The canonical dictionary of every attribute on a work object — what each one means, where it comes from, and its quirks."
 tags: ["reference"]
 ---
@@ -27,6 +27,11 @@ Filter: `doi:` matches a work whose own `doi` **or** any location's `doi` equals
 
 ### `type`
 *String.* The work's type (e.g. `article`, `preprint`, `dataset`, `paratext`). Every work has exactly one. See [Work types](/data/work-types/) for the full vocabulary and how the type is assigned.
+
+### `is_traditional`
+*Boolean.* True if the work's type is a traditional one, the kinds of works the scholarly record has long counted (articles, books, chapters, theses, conference papers and the like); false for every other type, such as datasets, software and reports. It comes from [`type`](#type), so every work has a value, and it changes only when the type does. Both lists are on [Work types](/data/work-types/#traditional-and-other-works).
+
+Filter: `is_traditional:true` keeps works of the traditional types, and `is_traditional:false` keeps all the others. Group with `group_by=is_traditional`. You can't sort by it.
 
 ### `language`
 *String.* The language of the work's metadata (title/abstract), in [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) format, auto-detected with [langdetect](https://pypi.org/project/langdetect/). Reflects the metadata language, not necessarily the full text, and is unset when there aren't enough words to guess reliably. See [Languages](/data/languages/).

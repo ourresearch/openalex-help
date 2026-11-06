@@ -3176,6 +3176,10 @@
             "type": "string",
             "description": "The type of the work. Common values: `article`, `book`, `dataset`, `preprint`, `dissertation`, `book-chapter`."
           },
+          "is_traditional": {
+            "type": "boolean",
+            "description": "True if the work's type is a traditional one (articles, books, chapters, theses, conference papers and the like); false for every other type, such as datasets, software and reports. Comes from `type`. Filter and group_by with `is_traditional`; not sortable."
+          },
           "language": {
             "type": "string",
             "nullable": true,
@@ -5330,6 +5334,10 @@
           },
           "description": {
             "type": "string"
+          },
+          "is_traditional": {
+            "type": "boolean",
+            "description": "True if this is a traditional type of work, such as article, book or dissertation; false for the rest, such as dataset and software."
           },
           "works_count": {
             "type": "integer"

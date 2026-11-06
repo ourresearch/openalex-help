@@ -1,7 +1,7 @@
 ---
 title: "Work types"
-updated: 2026-10-26
-description: "The controlled vocabulary of work types — article, preprint, dataset, book, and the rest — what each value means, and how to filter works by type."
+updated: 2026-11-06
+description: "The controlled vocabulary of work types — article, preprint, dataset, book, and the rest — what each value means, which types are traditional, and how to filter works by type."
 tags: ["reference"]
 entity:
   example: "types/article"
@@ -50,6 +50,15 @@ The complete controlled vocabulary (live from [`api.openalex.org/work-types`](ht
 
 > **Note:** `book-review`, `conference-abstract`, `conference-paper`, `data-paper`, and `software-paper` are newly added to the vocabulary. They are being rolled out, so coverage is currently low or zero and they may not yet appear under [`works?group_by=type`](https://api.openalex.org/works?group_by=type).
 
+## Traditional and other works
+
+Each type is either traditional or not. Traditional types are the kinds of works the scholarly record has long counted: articles, books, chapters, theses, conference papers and the like. This is not the same as peer-reviewed: preprints, editorials and letters are traditional; datasets, software, abstracts and reports are not.
+
+- **Traditional:** `article`, `book`, `book-chapter`, `book-review`, `conference-paper`, `data-paper`, `dissertation`, `editorial`, `erratum`, `letter`, `preprint`, `retraction`, `review`, `software-paper`.
+- **Not traditional:** `conference-abstract`, `dataset`, `other`, `paratext`, `peer-review`, `reference-entry`, `report`, `software`, `standard`, `study-registration`, `supplementary-materials`.
+
+Each type says which it is in its [`is_traditional`](#is_traditional) attribute, and every work carries the value of its type as [`is_traditional`](/data/works/attributes/#is_traditional). So you can keep only traditional works with [`filter=is_traditional:true`](https://api.openalex.org/works?filter=is_traditional:true), or count both kinds with [`group_by=is_traditional`](https://api.openalex.org/works?group_by=is_traditional). In [OQL](/access/oql/), write `traditional scholarly work is true`.
+
 ## Attributes
 
 Each work type is a small object. Attributes shared with other entities are documented once on [Common attributes](/data/common-attributes/).
@@ -62,6 +71,9 @@ Each work type is a small object. Attributes shared with other entities are docu
 
 ### `description`
 *String.* A one-line definition of the type (the same text shown in the [Values](#values) table above).
+
+### `is_traditional`
+*Boolean.* True if this is a traditional type, such as `article`, `book` or `dissertation`; false for the rest, such as `dataset` and `software`. Both lists are under [Traditional and other works](#traditional-and-other-works).
 
 ### `works_count`
 *Integer.* How many [works](/data/works/) carry this type. See [Common attributes](/data/common-attributes/#works_count).
@@ -83,4 +95,4 @@ Each work type is a small object. Attributes shared with other entities are docu
 
 ## In the API
 
-The work-types endpoint is at [`api.openalex.org/work-types`](https://api.openalex.org/work-types); fetch a single type by ID at [`/work-types/article`](https://api.openalex.org/work-types/article). Its main use is filtering [works](/data/works/) by type: [`filter=type:dataset`](https://api.openalex.org/works?filter=type:dataset), or group works by type with [`group_by=type`](https://api.openalex.org/works?group_by=type). See [Filtering](/api/filtering/) for filter syntax and the [endpoints index](/api/endpoints/) for all endpoints. The `paratext` type replaces the deprecated boolean `is_paratext` field — filter `type:paratext` instead of `is_paratext:true`.
+The work-types endpoint is at [`api.openalex.org/work-types`](https://api.openalex.org/work-types); fetch a single type by ID at [`/work-types/article`](https://api.openalex.org/work-types/article). Its main use is filtering [works](/data/works/) by type: [`filter=type:dataset`](https://api.openalex.org/works?filter=type:dataset), or group works by type with [`group_by=type`](https://api.openalex.org/works?group_by=type). To keep only the traditional types, filter [`is_traditional:true`](https://api.openalex.org/works?filter=is_traditional:true). See [Filtering](/api/filtering/) for filter syntax and the [endpoints index](/api/endpoints/) for all endpoints. The `paratext` type replaces the deprecated boolean `is_paratext` field — filter `type:paratext` instead of `is_paratext:true`.
