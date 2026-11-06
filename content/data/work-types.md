@@ -45,9 +45,12 @@ The complete controlled vocabulary (live from [`api.openalex.org/work-types`](ht
 | `software` | A research software package or code released as a citable artifact, such as deposited code or a tagged software release with its own identifier, not a paper about it. |
 | `software-paper` | A peer-reviewed paper written mainly to describe research software, such as a software article or descriptor, rather than to report research results. |
 | `standard` | A formal standard or technical specification from a Standards Development Organization (SDO) or consortium, such as an ISO, IEEE, or W3C standard. |
+| `study-registration` | A study's plan or record registered in a study registry, such as an OSF preregistration, a PROSPERO review protocol or a trial registration. Registrations filed after the study began count too. |
 | `supplementary-materials` | Supporting materials accompanying a primary work, usually a journal article, such as supporting-information files, supplementary figures, tables, or appendices. |
 
 > **Note:** `book-review`, `conference-abstract`, `conference-paper`, `data-paper`, and `software-paper` are newly added to the vocabulary. They are being rolled out, so coverage is currently low or zero and they may not yet appear under [`works?group_by=type`](https://api.openalex.org/works?group_by=type).
+
+> **Note:** `study-registration` was added on 7 Nov 2026. It covers the registrations in OSF Registries, PROSPERO, PsychArchives, INPLASY, the AEA RCT Registry and ISRCTN, which used to be typed `other`, `dataset`, `report` or `review`. They are being retyped, so the count may be zero for a day or two. Copies of OSF registrations harvested from OSF's own feed are still typed `preprint` for now. A protocol published as a journal paper stays an `article`.
 
 > **Note:** Library guides (`libguides`) were removed on 7 Nov 2026. They are research-guide web pages, not scholarly works, so OpenAlex no longer lists them, and the type `libguides` no longer exists: a filter on it returns an error.
 
