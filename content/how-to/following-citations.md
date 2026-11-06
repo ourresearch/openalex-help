@@ -47,6 +47,16 @@ Every work citing a Kansas paper, by year. To find the work on a topic that does
 get works from 2024 in the topic [CRISPR and Genetic Engineering](T10878) where it doesn't cite any work in the set (works where institution is [University of Kansas](I146416000))
 ```
 
+## Which works cite a specific author?
+
+This query can be used to obtain papers that cite one's own works. The name (in
+square brackets) can be obtained on the author's profile page and the OpenAlex
+ID as well.
+
+```
+get works where it cites a work in the set (works where author is [Elizabeth F. Loftus](A5015439098))
+```
+
 ## Who cites a list of papers?
 
 Save the papers as a [collection](/how-to/collections/), then cite the collection:
