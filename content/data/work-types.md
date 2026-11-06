@@ -1,6 +1,6 @@
 ---
 title: "Work types"
-updated: 2026-11-06
+updated: 2026-11-07
 description: "The controlled vocabulary of work types — article, preprint, dataset, book, and the rest — what each value means, which types are traditional, and how to filter works by type."
 tags: ["reference"]
 entity:
@@ -14,7 +14,7 @@ A **work type** classifies the form of a scholarly document: a journal `article`
 
 ## About
 
-The vocabulary derives from [Crossref](https://www.crossref.org/)'s work types, extended with a handful of OpenAlex additions (e.g. `preprint`, `dataset`, `libguides`, and the newer data/software/conference splits). Every upstream source — Crossref's `type`, DataCite's `resourceType`, PubMed's publication type, HAL, and others — uses its own taxonomy, so OpenAlex maps all of them onto the single vocabulary below, then applies a deterministic rule cascade (for example, titles like "Index" or "Cover Picture" become `paratext`). The complete rule set is public — it lives in [`CreateLocationsWithTypes.ipynb`](https://github.com/ourresearch/openalex-walden/blob/main/notebooks/end2end/CreateLocationsWithTypes.ipynb) in our pipeline repo, and re-runs over the whole corpus daily; the design is described in [An Overhaul of Type Classification](https://blog.openalex.org/an-overhaul-of-type-classification/). We don't decide the boundary between types; we standardize the label. Approved [curations](/data/curations/) can override the assigned type for an individual work.
+The vocabulary derives from [Crossref](https://www.crossref.org/)'s work types, extended with a handful of OpenAlex additions (e.g. `preprint`, `dataset`, and the newer data/software/conference splits). Every upstream source — Crossref's `type`, DataCite's `resourceType`, PubMed's publication type, HAL, and others — uses its own taxonomy, so OpenAlex maps all of them onto the single vocabulary below, then applies a deterministic rule cascade (for example, titles like "Index" or "Cover Picture" become `paratext`). The complete rule set is public — it lives in [`CreateLocationsWithTypes.ipynb`](https://github.com/ourresearch/openalex-walden/blob/main/notebooks/end2end/CreateLocationsWithTypes.ipynb) in our pipeline repo, and re-runs over the whole corpus daily; the design is described in [An Overhaul of Type Classification](https://blog.openalex.org/an-overhaul-of-type-classification/). We don't decide the boundary between types; we standardize the label. Approved [curations](/data/curations/) can override the assigned type for an individual work.
 
 ## Values
 
@@ -34,7 +34,6 @@ The complete controlled vocabulary (live from [`api.openalex.org/work-types`](ht
 | `editorial` | A piece expressing the views of an individual, group, or organization on a broad topic rather than on one specific work, such as an editorial, commentary, interview, or research highlight. |
 | `erratum` | A journal-issued fix for mistakes in a published article, such as an erratum, corrigendum, or publisher correction, referencing the article it corrects. |
 | `letter` | A short message sent by readers to a journal's editor responding to previously published material, such as a letter to the editor, reply, or reader comment. |
-| `libguides` | A library research guide (LibGuides) curated by librarians to point users toward resources on a topic or course. |
 | `other` | A catch-all for works that fit no other type, such as news items, obituaries, full journal issues, and non-scholarly repository media (photographs, video, audio). |
 | `paratext` | Records that package or frame a publication rather than carry its content, such as covers, title pages, tables of contents, and author guidelines. |
 | `peer-review` | A peer review or report about a single other work, rather than a survey of many, such as an open peer review, referee report, or reviewer report. |
@@ -49,6 +48,8 @@ The complete controlled vocabulary (live from [`api.openalex.org/work-types`](ht
 | `supplementary-materials` | Supporting materials accompanying a primary work, usually a journal article, such as supporting-information files, supplementary figures, tables, or appendices. |
 
 > **Note:** `book-review`, `conference-abstract`, `conference-paper`, `data-paper`, and `software-paper` are newly added to the vocabulary. They are being rolled out, so coverage is currently low or zero and they may not yet appear under [`works?group_by=type`](https://api.openalex.org/works?group_by=type).
+
+> **Note:** Library guides (`libguides`) were removed on 7 Nov 2026. They are research-guide web pages, not scholarly works, so OpenAlex no longer lists them, and the type `libguides` no longer exists: a filter on it returns an error.
 
 ## Traditional and other works
 
