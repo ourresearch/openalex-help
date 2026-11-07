@@ -1,6 +1,6 @@
 ---
 title: "Common attributes"
-updated: 2026-10-29
+updated: 2026-11-07
 description: "The attributes that appear on nearly every OpenAlex entity — id, ids, display_name, counts_by_year, summary_stats, and the rest — documented once."
 tags: ["reference"]
 ---
@@ -54,7 +54,7 @@ These are convenience metrics; for anything rigorous, compute over the underlyin
 
 Two exceptions, if you keep a copy current by `updated_date` (snapshot partitions or `from_updated_date`):
 
-- **On works, four fields change without moving it:** [`fwci`](/data/works/attributes/#fwci), the `value` of [`citation_normalized_percentile`](/data/works/attributes/#citation_normalized_percentile) and [`cited_by_percentile_year`](/data/works/attributes/#cited_by_percentile_year) are recomputed every night for every work (a large share shift a little each time, so moving `updated_date` for them would send you most of the corpus every day), and [`has_content`](/data/works/attributes/#has_content) follows the files OpenAlex holds. Read them from a recent full snapshot or the API when you need them current. The percentile's `is_in_top_10_percent` and `is_in_top_1_percent` flags do move it (from 30 October 2026).
+- **On works, four fields change without moving it:** [`fwci`](/data/works/attributes/#fwci), the `value` of [`citation_normalized_percentile`](/data/works/attributes/#citation_normalized_percentile) and [`cited_by_percentile_year`](/data/works/attributes/#cited_by_percentile_year) are recomputed every night for every work (a large share shift a little each time, so moving `updated_date` for them would send you most of the corpus every day), and [`has_content`](/data/works/attributes/#has_content) follows the files OpenAlex holds. A recent full snapshot has each night's exact values; API lists and searches are within 1% of them ([how fresh](/data/works/attributes/#fwci)). The percentile's `is_in_top_10_percent` and `is_in_top_1_percent` flags do move it (from 30 October 2026).
 - **A change to every record at once can leave it unmoved**, so that syncing customers don't re-download the whole database for one field. Each such change is announced with what to reload, in the snapshot's `RELEASE_NOTES.txt` or on the field's own page: in October 2026, work `keywords`, [`sustainable_development_goals`](/data/sdgs/), [`related_works`](/data/works/attributes/#related_works) and [`created_date`](/data/works/attributes/#created_date).
 
 ## In the API

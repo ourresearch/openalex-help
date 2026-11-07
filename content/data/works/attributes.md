@@ -134,6 +134,8 @@ See [Open access](/data/works/open-access/) for how these fields combine.
 ### `fwci`
 *Float.* The [Field-Weighted Citation Impact](/data/works/citations/#field-weighted-citation-impact): citations received divided by citations expected for works of the same type, year, and subfield. 1.0 is world average.
 
+**How fresh.** Recomputed every night for every work, along with [`citation_normalized_percentile`](#citation_normalized_percentile) and [`cited_by_percentile_year`](#cited_by_percentile_year). The [snapshot](/access/snapshot/) carries each night's exact values. API lists, filters, sorts and group-bys carry them to within 1% of the night's `fwci`, 0.01 of the percentile `value` and 1 point of `cited_by_percentile_year`: a work that moves further is updated the morning after the night. A single-work request (`/works/W…`) can still show an older value, sometimes several weeks old.
+
 ### `citation_normalized_percentile`
 *Object.* The same information as [`fwci`](#fwci) expressed as a percentile (`value`, `is_in_top_1_percent`, `is_in_top_10_percent`). Recomputed every night; a change in `value` alone does not move [`updated_date`](#updated_date), a change in either flag does (from 30 October 2026).
 
