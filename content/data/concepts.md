@@ -1,6 +1,6 @@
 ---
 title: "Concepts (deprecated)"
-updated: 2026-10-26
+updated: 2026-11-07
 description: "What concepts were, why they're deprecated in favor of topics, and what every attribute on a concept object means."
 tags: ["reference"]
 source_id: "api-reference/concepts"
@@ -12,7 +12,7 @@ entity:
   linksTo:
     - "works"
 ---
-> **Deprecated.** Concepts are superseded by [Topics](/data/topics/), OpenAlex's current subject-classification system. The concepts endpoints and the [`concepts`](/data/works/attributes/#concepts) field on works still work, but concepts are frozen — no longer recomputed or expanded — so new works are not tagged with them and the concept tree is not maintained. Use [topics](/data/topics/) (and the [aboutness](/data/aboutness/) hierarchy of [domains](/data/domains/), [fields](/data/fields/), and [subfields](/data/subfields/)) for anything new. This page is kept for the many links and workflows that still point at it.
+> **Deprecated.** Concepts are superseded by [Topics](/data/topics/), OpenAlex's current subject-classification system. The concepts endpoints and the [`concepts`](/data/works/attributes/#concepts) field on works still work, but the concept tree is frozen: it is no longer expanded or maintained. New works are still tagged with existing concepts (about 90% of works added in October 2026 carry them), using the old tagger. Use [topics](/data/topics/) (and the [aboutness](/data/aboutness/) hierarchy of [domains](/data/domains/), [fields](/data/fields/), and [subfields](/data/subfields/)) for anything new. This page is kept for the many links and workflows that still point at it.
 
 A **concept** is a subject tag from OpenAlex's original, now-deprecated classification: a hierarchical taxonomy of research areas — `Computer science`, `Machine learning`, `Citation` — inherited from the [Microsoft Academic Graph (MAG)](https://en.wikipedia.org/wiki/Microsoft_Academic) and linked to [Wikidata](https://www.wikidata.org/). There are about 65,000 concepts, arranged in six levels from broad (`level: 0`, e.g. *Computer science*) to narrow (`level: 5`). A concept's OpenAlex ID looks like `C41008148`; fetch one at [`api.openalex.org/concepts/C41008148`](https://api.openalex.org/concepts/C41008148).
 
