@@ -145,7 +145,7 @@ People often compare counts or fields between their snapshot copy and the live A
 | **Other entities: a few fields differ** | **Authors:** `x_concepts[].count`, `x_concepts[].level` and `sources` are snapshot-only; `block_key` is API-only. **Institutions:** [`international`](/data/institutions/#international) (an empty object today) is API-only. **Publishers:** `ror_id` and `wikidata_id` are snapshot-only. **Funders:** `ids.crossref` is a number in the snapshot and a string in the API. **Awards:** the `*_full` fields (`topics_full`, `recipients_full` and the like) are snapshot-only. An empty list is `[]` in the snapshot where the API gives `null` (for example authors' `last_known_institutions`, publishers' `country_codes`). |
 | **No n-grams** | The old n-grams dataset is retired and was never part of this snapshot layout. |
 
-Otherwise the snapshot work schema matches the API's — including `fwci`, `topics`, `citation_normalized_percentile`, and `is_xpac`.
+Otherwise the snapshot work schema matches the API's — including `fwci`, `topics`, `citation_normalized_percentile`, and `is_xpac`. The snapshot has each night's exact `fwci` and percentiles; API lists and searches are within 1% of them ([how fresh](/data/works/attributes/#fwci)).
 
 ## Access & authentication
 
