@@ -1,6 +1,6 @@
 ---
 title: "Sync"
-updated: 2026-11-03
+updated: 2026-11-07
 description: "Snapshot release cadence and dates per plan, how updated_date partitions work, the four ways to keep a copy in sync with OpenAlex, and how deletions and merged entities behave — including the works deletion log deleted_ids.csv.gz and the works, authors and sources merge maps merged_ids.csv.gz."
 tags: ["downloads"]
 source_id: "new/snapshot-updates"
@@ -60,7 +60,7 @@ If 50 of those Authors are updated on 2024-01-15, they **move out of** the old p
 Consequences:
 
 - **The bucket is always the complete current database** — the union of all partitions, exactly once per record. No partition is a "base file"; no folder is cumulative.
-- **To update a copy you made on date X**, download only partitions with `updated_date` > X and upsert them by `id`. You never need to re-download a partition you already have.
+- **To update a copy made from the snapshot dated X**, download every partition with `updated_date` on or after X (not just after it) and upsert its records by `id`. The partition dated X can still gain records in the next day's snapshot: authors, sources, institutions and a few smaller entities are rebuilt later in the day than the snapshot is written, and those records land in that day's partition. Partitions older than X never gain records, so you never need to re-download one.
 - **A few work fields don't move `updated_date`**: `fwci`, the percentile `value` and `cited_by_percentile_year` (recomputed every night) and `has_content`; and a change made to every record at once is announced with what to reload (`RELEASE_NOTES.txt`, or the field's own page). [Common attributes](/data/common-attributes/#updated_date) has the list.
 - **Old partitions shrink** as their records move forward. If you sync files rather than upserting records, use `--delete` so vacated files disappear (see below).
 
@@ -82,7 +82,7 @@ The two snapshot methods move the whole database in bulk; the API-filter method 
 Re-sync from each quarterly release using the manifest (per entity or combined):
 
 1. **Download the manifest** — `aws s3 cp s3://openalex/data/jsonl/works/manifest.json . --no-sign-request`
-2. **Find new partitions** — any `updated_date` in the manifest's file list that you haven't ingested.
+2. **Find the partitions to download** — every `updated_date` in the manifest's file list on or after the date of the release you last ingested. That partition can have gained records since you ingested it ([why](#what-a-release-is-how-partitions-work)).
 3. **Download those partitions.**
 4. **Verify consistency** — re-download the manifest; if unchanged since step 1, no records moved mid-download.
 5. **Upsert by `id`** into your store.
@@ -95,7 +95,7 @@ This is the main way to keep up to date. Member+ and Partner subscribers get the
 
 Because every daily copy is both *complete* and *partitioned by change date*, it covers every sync rhythm:
 
-- **Incremental sync, on your schedule.** Grab today's copy and download only the partitions newer than your last sync — whether that was yesterday, the 15th of last month, or whatever day you fancy. There's no fixed release calendar to wait on.
+- **Incremental sync, on your schedule.** Grab today's copy and download the partitions dated on or after the date of the copy you last synced — whether that was yesterday, the 15th of last month, or whatever day you fancy ([why "on or after"](#what-a-release-is-how-partitions-work)). There's no fixed release calendar to wait on.
 - **Full rebuild, as often as you like.** Rebuild your entire database from scratch every day if you want — each dated folder is the whole thing.
 - **Deletions handled.** Each day's copy is the complete current corpus, so records that were deleted or merged away are simply absent — reconcile against it and they fall out of your mirror. For works, each copy also names its deletions explicitly in [`deleted_ids.csv.gz`](#the-works-deletion-log-deleted_idscsvgz) (see [below](#deletions-and-merged-entities)).
 
@@ -149,7 +149,7 @@ How that shows up today:
 
 **Works only, for now.** Works are the first entity type with an explicit deletion log; every other entity type still relies on the [reconcile methods below](#picking-up-deletions-in-a-mirror) to detect deletions.
 
-Each snapshot's works directory carries the log at `{format}/works/deleted_ids.csv.gz` (same file in both format trees, next to `manifest.json`). It's a gzip-compressed CSV with a header and two columns — about 160 MB compressed, but not a small file: it runs to tens of millions of rows (a couple of GB unpacked), so load it into your database or DuckDB rather than reading it line by line:
+Each snapshot's works directory carries the log at `{format}/works/deleted_ids.csv.gz` (same file in both format trees, next to `manifest.json`). It's a gzip-compressed CSV with a header and two columns, and it's big: 343 MB compressed and 102.9 million rows in the daily snapshot of 7 November 2026 (about 4.5 GB unpacked), so load it into your database or DuckDB rather than reading it line by line:
 
 ```csv
 work_id,deleted_date

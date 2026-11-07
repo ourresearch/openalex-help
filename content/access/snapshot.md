@@ -1,6 +1,6 @@
 ---
 title: "Snapshot"
-updated: 2026-11-03
+updated: 2026-11-07
 description: "The complete OpenAlex database as downloadable files — formats, S3 bucket layout, manifests, size, how it differs from the API, and how to access it (free public bucket + paid daily snapshot)."
 tags: ["downloads"]
 source_id: "download/snapshot-format"
@@ -84,7 +84,7 @@ The works, authors and sources folders carry `merged_ids.csv.gz`, every merged-a
 
 ## The manifest files
 
-Every format has a combined `manifest.json` listing all data files across all entities (`/data/{format}/manifest.json`), and every entity has its own (`/data/{format}/{entity}/manifest.json`). The manifest is written last, after all data files are uploaded — **if the manifest is present, the data for that format is complete.**
+Every format has a combined `manifest.json` listing all data files across all entities (`/data/{format}/manifest.json`), and every entity has its own (`/data/{format}/{entity}/manifest.json`). The manifest is written after all data files are uploaded: **if the manifest is present, the data files for that format are complete.** In the daily snapshot, the `merged_ids.csv.gz` files come a few minutes after the manifest (up to about 10), so fetch them 15 minutes after the manifest appears, or check that their timestamp is that day's.
 
 A per-entity manifest looks like this:
 
@@ -138,9 +138,11 @@ People often compare counts or fields between their snapshot copy and the live A
 | **Works count: snapshot vs API default** | The snapshot contains **all** works, including the [expansion (XPAC) corpus](/data/works/corpus/). The API **excludes XPAC works by default** — as of September 2026 that's ~327M works by default vs ~476M with `corpus=all`. Add `corpus=all` to match the snapshot's total. Filter locally on the [`is_xpac`](/data/works/attributes/#is_xpac) field to reproduce the API's default view. |
 | **Freshness** | The snapshot is a point-in-time release (quarterly for the free public snapshot, on the second Wednesday of January, April, July and October, see [release dates](/access/sync/#public-release-dates); daily on the [Member+ and Partner plans](/access/pricing/#free-data-paid-services)); the API updates continuously. Counts and records drift between releases; see [Sync](/access/sync/). |
 | **`content_urls` is absent** | It's generated at serve time, API-only. The snapshot has [`has_content`](/data/works/attributes/#has_content); build download URLs via the [content archive](/access/fulltext/) with work IDs. |
+| **`is_traditional` is API-only** | The API derives it from the work's [`type`](/data/works/attributes/#is_traditional) when it serves the work. In the snapshot, compute it from `type` with the lists on [Work types](/data/work-types/#traditional-and-other-works). |
 | **`authors_count` and `locations[].provenance` are snapshot-only** | Two extra fields: `authors_count` is the number of authorships (up to 5,000), and `provenance` says which pipeline delivered each location, with the same values as on [`/locations` rows](/data/locations/#extra-attributes-on-locations-rows). |
 | **Releases before 27 October 2026: bare location ids, empty `best_oa_location` objects** | Snapshots written before 27 October 2026, including the public release of 14 October 2026, hold each location's [`id`](/data/locations/#id) without its namespace (`10.7717/peerj.4375`, not `doi:10.7717/peerj.4375`), and give every work with no open copy a `best_oa_location` object whose fields are all null instead of `null`. Daily snapshots from 27 October 2026 and public releases from January 2027 match the API. In an older file, treat an all-null `best_oa_location` as `null`. |
 | **Some works have `abstract_inverted_index: null`** | Not every work has an abstract (availability and publisher restrictions) — same as the API. |
+| **Other entities: a few fields differ** | **Authors:** `x_concepts[].count`, `x_concepts[].level` and `sources` are snapshot-only; `block_key` is API-only. **Institutions:** [`international`](/data/institutions/#international) (an empty object today) is API-only. **Publishers:** `ror_id` and `wikidata_id` are snapshot-only. **Funders:** `ids.crossref` is a number in the snapshot and a string in the API. **Awards:** the `*_full` fields (`topics_full`, `recipients_full` and the like) are snapshot-only. An empty list is `[]` in the snapshot where the API gives `null` (for example authors' `last_known_institutions`, publishers' `country_codes`). |
 | **No n-grams** | The old n-grams dataset is retired and was never part of this snapshot layout. |
 
 Otherwise the snapshot work schema matches the API's — including `fwci`, `topics`, `citation_normalized_percentile`, and `is_xpac`.
@@ -165,6 +167,8 @@ aws s3 sync "s3://openalex/data/jsonl" "openalex-snapshot/data/jsonl" --no-sign-
 ```
 
 You can also browse it in a browser: [openalex.s3.amazonaws.com/browse.html](https://openalex.s3.amazonaws.com/browse.html). Many thanks to the [AWS Open Data program](https://aws.amazon.com/opendata/), which covers the data-transfer fees (about $70 per download) so users don't have to.
+
+<a id="the-daily-snapshot-bucket-paid-plans"></a>
 
 ### The daily snapshot bucket (Member+ and Partner)
 
