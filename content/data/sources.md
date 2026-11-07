@@ -1,6 +1,6 @@
 ---
 title: "Overview"
-updated: 2026-10-15
+updated: 2026-11-07
 description: "What a source is, where sources come from, and how OpenAlex builds them and judges journal quality and open access."
 tags: ["reference"]
 source_id: "24347057529623"
@@ -51,6 +51,8 @@ A source is always the **series**: the stable thing that keeps publishing over t
 | A chapter in a standalone book, or a whole monograph | the publisher's ebook platform, e.g. [Routledge eBooks](https://api.openalex.org/sources/S4306463855) | `ebook platform` |
 | A paper at ICASSP 2026 | the conference series, IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP) | `conference` |
 | A conference paper published in Lecture Notes in Computer Science | [*Lecture Notes in Computer Science*](https://api.openalex.org/sources/S106296714) | `book series` |
+| A standard, such as an ASTM test method | the standards body's collection, e.g. [ASTM Standards](https://api.openalex.org/sources/S7407122197) | `other` |
+| A news article on The Conversation | [The Conversation](https://api.openalex.org/sources/S2764582943) | `other` |
 
 Some details:
 
@@ -58,6 +60,7 @@ Some details:
 - **A book is still a [work](/data/works/)** of type `book`, with its own DOI, authors and citations. It just isn't a source. Books in a series reach their series through the series' ISSN.
 - **A conference is its series, not its edition.** ICASSP 2025 and ICASSP 2026 papers share one source, so the series' metrics cover all its years. The edition appears only as the paper's publication year. Many conferences register their own proceedings with an ISSN, as NeurIPS and ICRA do. Those records are typed `conference`, not `journal`.
 - **When proceedings are published inside a general series with an ISSN** (Lecture Notes in Computer Science, Proceedings of SPIE, Journal of Physics: Conference Series), the ISSN wins: the paper's source is that series, and the conference itself doesn't appear as a source.
+- **Standards and news articles follow the book rule: the publisher's collection is the source.** A standard belongs to no series, so its source is the collection its standards body publishes, such as BSI Standards, DIN Standards or USP-NF. An article from a news outlet like The Conversation goes on the outlet itself. These sources are typed `other`.
 - **Volume and issue numbers** are fields on the work ([`biblio`](/data/works/attributes/#biblio)), not entities. A chapter's book is recorded on the chapter as its [`volume`](/data/works/attributes/#volume), a work; filter `volume.id` lists a book's chapters. OpenAlex doesn't yet record which edition of a conference a paper came from.
 
 ### No quality bar, by design
