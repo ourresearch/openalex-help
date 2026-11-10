@@ -1,6 +1,6 @@
 ---
 title: "Attributes"
-updated: 2026-11-07
+updated: 2026-11-10
 description: "The canonical dictionary of every attribute on a work object — what each one means, where it comes from, and its quirks."
 tags: ["reference"]
 ---
@@ -137,7 +137,7 @@ See [Open access](/data/works/open-access/) for how these fields combine.
 **How fresh.** Recomputed every night for every work, along with [`citation_normalized_percentile`](#citation_normalized_percentile) and [`cited_by_percentile_year`](#cited_by_percentile_year). The [snapshot](/access/snapshot/) carries each night's exact values. The API (lists, filters, sorts, group-bys and single-work requests) carries them to within 1% of the night's `fwci`, 0.01 of the percentile `value` and 1 point of `cited_by_percentile_year`: a work that moves further is updated the morning after the night. After a night that shifts many works at once, the search results can take a day or two to catch up.
 
 ### `citation_normalized_percentile`
-*Object.* The same information as [`fwci`](#fwci) expressed as a percentile (`value`, `is_in_top_1_percent`, `is_in_top_10_percent`). Recomputed every night; a change in `value` alone does not move [`updated_date`](#updated_date), a change in either flag does (from 30 October 2026).
+*Object.* The same information as [`fwci`](#fwci) expressed as a percentile (`value`, `is_in_top_1_percent`, `is_in_top_10_percent`). `value` is the share of works of the same type, publication year and subfield with fewer citations in the FWCI window (the publication year plus the three following years). Works with the same count share one value, so a work with no citations in that window reads 0 and is never in the top 10% or top 1% (from 10 November 2026; before, tied works were spread out by work ID, and about 1.7M uncited works read top 10%). Recomputed every night; a change in `value` alone does not move [`updated_date`](#updated_date), a change in either flag does (from 30 October 2026).
 
 ### `referenced_works`
 *List.* OpenAlex IDs of the works this work cites (this work ➞ others). See [Citations and references](/data/works/citations/#citations-and-references).
