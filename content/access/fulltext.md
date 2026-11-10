@@ -1,6 +1,6 @@
 ---
 title: "Fulltext"
-updated: 2026-11-02
+updated: 2026-11-10
 description: "OpenAlex's cached full text — PDFs and Grobid TEI XML for 60M+ open-access works, linked from every work via content_urls — and how to download it at any scale, from one file to the whole archive."
 tags: ["downloads"]
 source_id: "download/full-text-pdfs"
@@ -111,7 +111,7 @@ rclone config create openalex s3 provider=Cloudflare \
   access_key_id=YOUR_KEY_ID secret_access_key=YOUR_SECRET no_check_bucket=true \
   endpoint=https://a452eddbbe06eb7d02f4879cee70d29c.r2.cloudflarestorage.com
 
-# copy the manifest (sync also removes yesterday's files, whose names change daily)
+# copy the manifest (sync also removes any file we stop publishing)
 rclone sync openalex:openalex-pdfs/_manifest/content_index ./manifest
 
 # list the PDFs it names, then download them (rclone skips files you already have)
@@ -149,7 +149,7 @@ Use the **manifest** we publish in the `openalex-pdfs` bucket itself:
 s3://openalex-pdfs/_manifest/content_index/
 ```
 
-It's a set of Parquet files, regenerated in full once a day from 03:30 UTC (read it after 04:00 UTC, when the rebuild is done), that maps works to their file UUIDs. Until 9 November 2026 it lists one PDF and one XML per work. From **9 November 2026** it lists every file we hold, one row per location, so a work can have several rows; the new layout is already at `_manifest/content_index_preview/`.
+It's a set of Parquet files, regenerated in full once a day from 03:30 UTC (read it after 04:00 UTC, when the rebuild is done), that maps works to their file UUIDs. Until 16 November 2026 it lists one PDF and one XML per work. From **16 November 2026** it lists every file we hold, one row per location, so a work can have several rows; filter on `is_primary` for one row per work. The new layout is already at `_manifest/content_index_preview/`, which stays until 23 November.
 
 | Column | Example | Object |
 |--------|---------|--------|
@@ -159,8 +159,8 @@ It's a set of Parquet files, regenerated in full once a day from 03:30 UTC (read
 | `native_id` | `10.1038/s41586-020-2649-2` | the location's DOI or repository (OAI-PMH) ID |
 | `native_id_namespace` | `doi` | `doi` or `pmh` |
 | `updated_date` | `2026-06-20` | when the location's source record last changed |
-| `version` | `publishedVersion` | `publishedVersion`, `acceptedVersion` or `submittedVersion` (from 9 November) |
-| `is_primary` | `true` | the one file per work the content endpoint serves (from 9 November) |
+| `version` | `publishedVersion` | `publishedVersion`, `acceptedVersion` or `submittedVersion` (from 16 November) |
+| `is_primary` | `true` | the one file per work the content endpoint serves (from 16 November) |
 
 UUIDs are stored without their file extension — append `.pdf` and `.xml.gz` to build the object keys. A row may have a PDF but no XML (GROBID can't parse every PDF), so `grobid_xml_id` is sometimes empty.
 
@@ -181,7 +181,7 @@ The join is then entirely local, with no API calls:
 1. Join `openalex_id` to your [works snapshot](/access/snapshot/) to attach metadata.
 2. Join `pdf_uuid` / `grobid_xml_id` to your downloaded files to attach the PDF and TEI XML.
 
-Because the manifest is a full daily replacement with new file names each day, copy it with `rclone sync` (above), which also removes the old files.
+The files keep the same names (`part_000.parquet` and up) and are replaced in full every day, so copy them with `rclone sync` (above), which also removes any file we stop publishing.
 
 ### The content endpoint (for per-work fetches)
 
