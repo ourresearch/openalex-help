@@ -149,7 +149,7 @@ Use the **manifest** we publish in the `openalex-pdfs` bucket itself:
 s3://openalex-pdfs/_manifest/content_index/
 ```
 
-It's a set of Parquet files, regenerated in full once a day from 03:30 UTC (read it after 04:00 UTC, when the rebuild is done), that maps works to their file UUIDs. Until 16 November 2026 it lists one PDF and one XML per work. From **16 November 2026** it lists every file we hold, one row per location, so a work can have several rows; filter on `is_primary` for one row per work. The new layout is already at `_manifest/content_index_preview/`, which stays until 23 November.
+It's one Parquet file, `manifest.parquet`, regenerated in full once a day from 03:30 UTC (read it after 04:00 UTC, when the rebuild is done), that maps works to their file UUIDs. Until 16 November 2026 it lists one PDF and one XML per work. From **16 November 2026** it lists every file we hold, one row per location, so a work can have several rows; filter on `is_primary` for one row per work. The new layout is already at `_manifest/content_index_preview/`, which stays until 23 November.
 
 | Column | Example | Object |
 |--------|---------|--------|
@@ -181,7 +181,7 @@ The join is then entirely local, with no API calls:
 1. Join `openalex_id` to your [works snapshot](/access/snapshot/) to attach metadata.
 2. Join `pdf_uuid` / `grobid_xml_id` to your downloaded files to attach the PDF and TEI XML.
 
-The files keep the same names (`part_000.parquet` and up) and are replaced in full every day, so copy them with `rclone sync` (above), which also removes any file we stop publishing.
+The file is replaced in full every day, so copy it with `rclone sync` (above), which also removes any file we stop publishing.
 
 ### The content endpoint (for per-work fetches)
 
