@@ -1,6 +1,6 @@
 ---
 title: "Get Singleton"
-updated: 2026-10-27
+updated: 2026-11-11
 description: "Retrieve a single entity by ID"
 tags: ["api"]
 source_id: "guides/get"
@@ -70,6 +70,9 @@ curl "https://api.openalex.org/sources/issn:0028-0836"
 
 # PMID
 curl "https://api.openalex.org/works/pmid:29456894"
+
+# arXiv
+curl "https://api.openalex.org/works/arxiv:2305.18290"
 ```
 
 ### Short-form IDs
@@ -87,13 +90,17 @@ Each entity type has a primary (canonical) external identifier, and most accept 
 
 | Entity | Canonical ID | Lookup forms |
 |--------|--------------|--------------|
-| Works | DOI | `doi:`, `pmid:` (or the PubMed URL `https://pubmed.ncbi.nlm.nih.gov/29456894`) |
+| Works | DOI | `doi:` (or a bare DOI, `10.7717/peerj.4375`), `arxiv:` (or an arxiv.org URL), `pmid:` (or the PubMed URL `https://pubmed.ncbi.nlm.nih.gov/29456894`), `pmcid:`, `mag:` |
 | Authors | ORCID | `orcid:` |
 | Sources | ISSN-L | `issn_l:`, `issn:` |
 | Institutions | ROR | `ror:`, `wikidata:` |
 | Funders | ROR or Funder DOI | `ror:`, `doi:` (the Funder DOI, e.g. `doi:10.13039/100000001`), `crossref:` (the Funder Registry id, e.g. `crossref:100000001`), `wikidata:` |
 | Publishers | Wikidata ID | `wikidata:`, `ror:` |
 | Concepts (deprecated) | Wikidata ID | `wikidata:` |
+
+Prefixes are case-insensitive: `DOI:10.7717/peerj.4375`, `PMID:29456894` and `arXiv:2305.18290` work too.
+
+An arXiv id finds the work that holds arXiv's DOI for that paper (`10.48550/arXiv.2305.18290`), so `arxiv:2305.18290`, `https://arxiv.org/abs/2305.18290v2` and `doi:10.48550/arxiv.2305.18290` return the same work. That work may be the published article, when the preprint has been merged with it. A version suffix (`v2`) is ignored, and old-style ids like `arxiv:hep-th/9711200` work too.
 
 Wikidata IDs work as `wikidata:Q746413` or either Wikidata URL (`https://www.wikidata.org/wiki/Q746413` or `.../entity/Q746413`). [Topics](/data/topics/) have no external ID to look up by: their `ids.wikipedia` is a link, not a key. Keywords, fields, subfields and domains are looked up by their OpenAlex ID only.
 
