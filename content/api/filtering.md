@@ -1,6 +1,6 @@
 ---
 title: "Filter"
-updated: 2026-11-03
+updated: 2026-11-13
 description: "Narrow down results to entities that match specific conditions"
 tags: ["api"]
 source_id: "guides/filtering"
@@ -143,15 +143,17 @@ All four work on every entity type, awards included, and each date is inclusive.
 **Why they're paid:** all OpenAlex data is free, and keeping up to date with it is the service we sell, in line with the [POSI](https://openscholarlyinfrastructure.org/) principles ([how that works](/access/pricing/#free-data-paid-services)). These filters tell you what changed, so if they were free, they would be a free way around that service. The main way to get updates is the [daily snapshot](/access/sync/#the-daily-snapshot-member-and-partner); these filters are the supported API route for smaller numbers of updates, paid like any other route to updates.
 
 ```bash
-# Works that changed since July 30
-https://api.openalex.org/works?filter=from_updated_date:2026-07-30
+# Works that changed since July 30, in both corpora (as in the snapshot)
+https://api.openalex.org/works?filter=from_updated_date:2026-07-30&corpus=all
 ```
+
+**On works, add `corpus=all`.** Works queries cover only the [core corpus](/data/works/corpus/) unless you ask for more, while the snapshot holds every work. A mirror that polls without `corpus=all` never hears about changes to expansion works, which are about a quarter of a typical night's work updates.
 
 These make the API itself a sync mechanism: poll on your own schedule and upsert the results by `id`. Because they combine with any other filter, they're especially good at keeping a **subset** of OpenAlex fresh without any bulk infrastructure, for example just your institution's works:
 
 ```bash
 # Works from one institution that changed since July 30
-https://api.openalex.org/works?filter=institutions.id:I27837315,from_updated_date:2026-07-30
+https://api.openalex.org/works?filter=institutions.id:I27837315,from_updated_date:2026-07-30&corpus=all
 ```
 
 For how this method compares with the snapshot-based approaches (and how to handle deletions and merges), see [Sync](/access/sync/#api-sync-filters-member-and-partner). A few work fields are recomputed every night without moving `updated_date`; [Common attributes](/data/common-attributes/#updated_date) lists them.
