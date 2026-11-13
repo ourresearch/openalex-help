@@ -149,7 +149,7 @@ Use the **manifest** we publish in the `openalex-pdfs` bucket itself:
 s3://openalex-pdfs/_manifest/content_index/
 ```
 
-It's one Parquet file, `manifest.parquet`, regenerated in full once a day from 03:30 UTC (read it after 04:00 UTC, when the rebuild is done), that maps works to their file UUIDs. Until 16 November 2026 it lists one PDF and one XML per work. From **16 November 2026** it lists every file we hold, one row per location, so a work can have several rows; filter on `is_primary` for one row per work. The new layout is already at `_manifest/content_index_preview/`, which stays until 23 November.
+It's one Parquet file, `manifest.parquet`, regenerated in full once a day from 03:30 UTC (read it after 04:00 UTC, when the rebuild is done), that maps works to their file UUIDs. Until 23 November 2026 it lists one PDF and one XML per work. From **23 November 2026** it lists every file we hold, one row per location, so a work can have several rows; filter on `is_primary` for one row per work. The new layout is already at `_manifest/content_index_preview/`, which stays until 30 November.
 
 | Column | Example | Object |
 |--------|---------|--------|
@@ -159,8 +159,8 @@ It's one Parquet file, `manifest.parquet`, regenerated in full once a day from 0
 | `native_id` | `10.1038/s41586-020-2649-2` | the location's DOI or repository (OAI-PMH) ID |
 | `native_id_namespace` | `doi` | `doi` or `pmh` |
 | `updated_date` | `2026-06-20` | when the location's source record last changed |
-| `version` | `publishedVersion` | `publishedVersion`, `acceptedVersion` or `submittedVersion` (from 16 November) |
-| `is_primary` | `true` | the one file per work the content endpoint serves (from 16 November) |
+| `version` | `publishedVersion` | `publishedVersion`, `acceptedVersion` or `submittedVersion` (from 23 November) |
+| `is_primary` | `true` | the one file per work the content endpoint serves (from 23 November) |
 
 UUIDs are stored without their file extension — append `.pdf` and `.xml.gz` to build the object keys. A row may have a PDF but no XML (GROBID can't parse every PDF), so `grobid_xml_id` is sometimes empty.
 
