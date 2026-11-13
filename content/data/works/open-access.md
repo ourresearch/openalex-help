@@ -1,6 +1,6 @@
 ---
 title: "Open access"
-updated: 2026-10-29
+updated: 2026-11-13
 description: "How OpenAlex determines whether a work is Open Access — the status taxonomy (diamond, gold, green, hybrid, bronze), OA locations, best-location selection, and licenses."
 tags: ["reference"]
 source_id: "24347035046295"
@@ -9,7 +9,7 @@ source_updated: "2024-07-30"
 ---
 There are [many ways to define Open Access](https://peerj.com/articles/4375/#literature-review). OpenAlex uses a broad one: a work is OA if there's a URL where you can read its full text without paying money or logging in. Of the roughly 322 million works in OpenAlex, about [121 million (37%) are Open Access](https://openalex.org/works?filter=open_access.is_oa%3Atrue) by this definition.
 
-For each work, OpenAlex decides whether it meets the definition using several techniques — checking whether its journal is in the [Directory of Open Access Journals](https://doaj.org/) (DOAJ), looking for a free copy on the publisher's page, and searching repositories for deposited versions. When a work is OA, OpenAlex gives you a link to its full text.
+For each work, OpenAlex decides whether it meets the definition using several techniques — checking whether its journal is on the journal list of the [Directory of Open Access Journals](https://doaj.org/) (DOAJ; this is the journal-level [`is_in_doaj`](/data/sources/attributes/#is_in_doaj), not the article-level `indexed_in:doaj`: see [DOAJ: journal list and article index](/data/source-lists/#doaj-journal-list-and-article-index)), looking for a free copy on the publisher's page, and searching repositories for deposited versions. When a work is OA, OpenAlex gives you a link to its full text.
 
 On the [Work object](/data/works/), this information lives in the `open_access` object:
 

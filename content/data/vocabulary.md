@@ -1,6 +1,6 @@
 ---
 title: "Overview"
-updated: 2026-09-29
+updated: 2026-11-13
 description: "Consistent, controlled handles on things that already exist crisply in the real world — work types, countries, licenses, and more."
 tags: ["reference"]
 ---
@@ -19,6 +19,6 @@ Vocabulary entities generally use short, human-readable IDs (`en` for English, `
 - [**Languages**](/data/languages/) — the language of a work's metadata, as ISO 639-1 codes.
 - [**Licenses**](/data/licenses/) — the Creative Commons and other licenses a location can carry.
 - [**Indexes**](/data/indexes/) — the external registries (Crossref, PubMed, DOAJ, …) a work's record can come from. These are vocabulary, not native: we're not minting judgment-call IDs, just consistent handles on crisply-existing lists.
-- [**Source lists**](/data/source-lists/) — the external journal lists (DOAJ, CWTS Core, national lists) a source can appear on. Membership only; OpenAlex endorses none of them.
+- [**Source lists**](/data/source-lists/) — the external journal lists (DOAJ, CWTS Core, national lists) a source can appear on. Membership only; OpenAlex endorses none of them. DOAJ has a journal list and an article index, and OpenAlex has an attribute for each: [`is_in_doaj`](/data/sources/attributes/#is_in_doaj) on the journal and [`indexed_in:doaj`](/data/works/attributes/#indexed_in) on the work. A work in a DOAJ journal lacks `indexed_in:doaj` when DOAJ's article index holds no record of that article; see [DOAJ: journal list and article index](/data/source-lists/#doaj-journal-list-and-article-index).
 
 Some classification systems that *look* like vocabularies — [topics, fields, subfields, domains](/data/aboutness/) — are grouped under [Aboutness](/data/aboutness/) instead, because assigning them to a work involves real inference. [Study designs](/data/study-designs/) sit there too for the same reason: the seven values come from PubMed's vocabulary, but every work gets them from automated tagging.

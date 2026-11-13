@@ -1,6 +1,6 @@
 ---
 title: "Overview"
-updated: 2026-11-07
+updated: 2026-11-13
 description: "What a source is, where sources come from, and how OpenAlex builds them and judges journal quality and open access."
 tags: ["reference"]
 source_id: "24347057529623"
@@ -73,7 +73,7 @@ OpenAlex deliberately does not impose a quality bar on which sources it indexes 
 
 OpenAlex prefers **allow lists** (curated lists of trusted sources) over deny lists: they're more transparent, easier to maintain, and a more robust foundation for retrieval. Two membership flags let you narrow to trusted sources:
 
-- [`is_in_doaj`](/data/sources/attributes/#is_in_doaj) — the source is indexed in the [Directory of Open Access Journals](https://doaj.org/), which vets the legitimacy of fully-OA journals. About 23,000 sources.
+- [`is_in_doaj`](/data/sources/attributes/#is_in_doaj) — the source is on the journal list of the [Directory of Open Access Journals](https://doaj.org/) (DOAJ), which vets the legitimacy of fully-OA journals. About 23,700 sources. This is the journal-level DOAJ attribute; whether DOAJ's article index holds a record of a single work is a different one, `indexed_in:doaj` on the work (see [DOAJ: journal list and article index](/data/source-lists/#doaj-journal-list-and-article-index)).
 - [`is_core`](/data/sources/attributes/#is_core) — the source is on the [CWTS Core sources list](https://zenodo.org/records/13879982). About 36,000 sources.
 
 The general form is [`listed_in`](/data/sources/attributes/#listed_in): the external source lists a source appears on, by list id (`doaj`, `cwts-core`, `medline`, `jufo-3` and many more: national research-evaluation lists, regional indexes, discipline rankings). It's deliberately non-normative: OpenAlex records *that* a list includes a source, not whether the list is right. Filter works with `primary_location.source.listed_in:doyens`, or sources with `listed_in:doyens`.
@@ -84,7 +84,7 @@ Each list is also a [source list](/data/source-lists/) entity (`api.openalex.org
 
 On [openalex.org](https://openalex.org), the same thing is the **listed in** filter on sources ([example](https://openalex.org/sources?filter=listed_in:doyens)) and **source listed in** on works ([example](https://openalex.org/works?filter=primary_location.source.listed_in:doyens)); group by it to see how a result set splits across lists.
 
-A source list is not an [index](/data/indexes/). An index records which external registries list a given *work* ([`indexed_in`](/data/works/attributes/#indexed_in), e.g. `indexed_in:pubmed`); `listed_in` records which lists a *journal* is on. DOAJ appears in both, answering different questions: is this article in DOAJ's index, versus is this journal a DOAJ member.
+A source list is not an [index](/data/indexes/). An index records which external registries list a given *work* ([`indexed_in`](/data/works/attributes/#indexed_in), e.g. `indexed_in:pubmed`); `listed_in` records which lists a *journal* is on. DOAJ has a journal list and an article index, and OpenAlex has an attribute for each: [`is_in_doaj`](/data/sources/attributes/#is_in_doaj) on the journal and [`indexed_in:doaj`](/data/works/attributes/#indexed_in) on the work. A work in a DOAJ journal lacks `indexed_in:doaj` when DOAJ's article index holds no record of that article; see [DOAJ: journal list and article index](/data/source-lists/#doaj-journal-list-and-article-index).
 
 More lists will be added over time; the goal is a "quality vs. quantity" slider that users can adjust to their needs. Because the database is open, a list of sources to *exclude* is easy for one librarian to build and share; ask your local librarian if they've curated one.
 
@@ -96,7 +96,7 @@ The [Centre for Science and Technology Studies](https://www.cwts.nl/) (CWTS) at 
 
 Whether a journal is **fully open access** matters beyond the journal itself: it determines the [OA status](/data/works/open-access/) of the works inside it. An OA article in a fully-OA journal is **gold**; the same article in a toll-access journal is **hybrid** or **bronze** — so a work's `oa_status` links back to the source's openness recorded here. Two source fields carry the determination:
 
-- [`is_in_doaj`](/data/sources/attributes/#is_in_doaj) — the journal is indexed in [DOAJ](https://doaj.org/) (about 23,000 sources). DOAJ verifies credibility and legitimacy; OpenAlex does no independent vetting, so use this field when legitimacy matters. If a journal is in DOAJ it is fully OA (`is_oa=true`, `is_in_doaj=true`).
+- [`is_in_doaj`](/data/sources/attributes/#is_in_doaj) — the journal is on [DOAJ](https://doaj.org/)'s journal list (about 23,700 sources). DOAJ verifies credibility and legitimacy; OpenAlex does no independent vetting, so use this field when legitimacy matters. If a journal is in DOAJ it is fully OA (`is_oa=true`, `is_in_doaj=true`).
 - [`is_oa`](/data/sources/attributes/#is_oa) — the journal is fully OA, whether or not DOAJ lists it (about 65,000 sources).
 
 Not every fully-OA journal is in DOAJ — smaller titles and journals from the developing world often aren't. For those, OpenAlex applies two more checks: **(1)** is it from a known fully-OA publisher (a small allow list, e.g. many [SciELO](https://scielo.org/)-model publishers)? and **(2)** does it publish *only* OA articles? Because OpenAlex indexes a journal's complete output, it can simply observe whether every article is OA — a check that credits smaller publishers who never registered with DOAJ. A journal passing either check gets `is_oa=true`, `is_in_doaj=false`. This observation-based check also detects **flipped journals** ([`oa_flip_year`](/data/sources/attributes/#oa_flip_year)): an OA article published *before* a journal's flip date is hybrid or bronze, one published *after* is gold.

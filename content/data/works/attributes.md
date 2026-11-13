@@ -1,6 +1,6 @@
 ---
 title: "Attributes"
-updated: 2026-11-10
+updated: 2026-11-13
 description: "The canonical dictionary of every attribute on a work object — what each one means, where it comes from, and its quirks."
 tags: ["reference"]
 ---
@@ -173,7 +173,7 @@ See [Open access](/data/works/open-access/) for how these fields combine.
 *Boolean.* True if the work belongs to the [expansion corpus](/data/works/corpus/) — the ~190M works added in the Walden update (primarily datasets and single-repository records), formerly called "XPAC" (Expansion Pack). Data quality is lower but improving, and the set is static: no works have been added to it since the cutover. Expansion works are excluded from API results by default; include them with `corpus=all`. See [Expansion corpus](/data/works/corpus/) for core/expansion/all and the deprecated legacy controls.
 
 ### `indexed_in`
-*List.* The [indexes](/data/indexes/) this work is indexed in. Possible values: `arxiv`, `crossref`, `doaj`, `pubmed`.
+*List.* The [indexes](/data/indexes/) this work is indexed in. Possible values: `arxiv`, `crossref`, `datacite`, `doaj`, `pubmed`. `doaj` is the article-level DOAJ attribute: it means DOAJ's article index holds a record of this work. DOAJ also has a journal list, and OpenAlex has a separate journal-level attribute for it: [`is_in_doaj`](/data/sources/attributes/#is_in_doaj) on the source (`primary_location.source.is_in_doaj` as a works filter). A work in a DOAJ journal lacks `indexed_in:doaj` when DOAJ's article index holds no record of that article; see [DOAJ: journal list and article index](/data/indexes/#doaj-journal-list-and-article-index).
 
 ### `created_date`
 *String.* The date the work was added to OpenAlex (`YYYY-MM-DDTHH:MM:SS`; only the day is recorded, so the time is always `00:00:00`). It never moves later: a work whose record is rebuilt keeps the earliest date OpenAlex served it with. Many older works show `2016-06-24`, the Microsoft Academic Graph load date. Restoring these dates in October 2026 did not move [`updated_date`](#updated_date) for 213.7 million works: if you keep a copy current by `updated_date`, reload `created_date` once from a full snapshot made after 28 October 2026. See [Common attributes](/data/common-attributes/#created_date).

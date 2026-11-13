@@ -1,6 +1,6 @@
 ---
 title: "Attributes"
-updated: 2026-10-27
+updated: 2026-11-13
 description: "The canonical dictionary of every attribute on a source object — what each one means, where it comes from, and its quirks."
 tags: ["reference"]
 ---
@@ -39,10 +39,10 @@ This is the canonical dictionary of every attribute on a **source** object. Attr
 *Boolean.* True if the source is a fully [open-access](/data/works/open-access/) venue — every work it publishes is OA. Drives the gold-vs-hybrid/bronze status of the works inside it (see [About](/data/sources/#fully-oa-journals-and-open-access)). About 65,000 sources are `is_oa=true`. Filter/sort/group_by.
 
 ### `is_in_doaj`
-*Boolean.* True if the source is indexed in the [Directory of Open Access Journals](https://doaj.org/), which vets the legitimacy of fully-OA journals (about 23,000 sources). DOAJ membership implies `is_oa=true`. Filter/sort/group_by; `is_in_doaj_since_year` records when membership began.
+*Boolean.* True if the source is on the journal list of the [Directory of Open Access Journals](https://doaj.org/) (DOAJ), which vets the legitimacy of fully-OA journals (about 23,700 sources). Being on DOAJ's journal list implies `is_oa=true`. Filter/sort/group_by; `is_in_doaj_since_year` records when the journal joined. DOAJ has a journal list and an article index, and OpenAlex has an attribute for each: [`is_in_doaj`](/data/sources/attributes/#is_in_doaj) on the journal and [`indexed_in:doaj`](/data/works/attributes/#indexed_in) on the work. A work in a DOAJ journal lacks `indexed_in:doaj` when DOAJ's article index holds no record of that article; see [DOAJ: journal list and article index](/data/source-lists/#doaj-journal-list-and-article-index).
 
 ### `is_in_doaj_since_year`
-*Integer.* The year the source entered [DOAJ](https://doaj.org/); null if it isn't in DOAJ. Filter/sort.
+*Integer.* The year the source entered [DOAJ](https://doaj.org/)'s journal list; null if it isn't on it. Filter/sort.
 
 ### `is_core`
 *Boolean.* True if the source is on the [CWTS Core sources list](https://zenodo.org/records/13879982) — the venues behind the [Leiden Ranking](https://open.leidenranking.com/) (about 36,000 sources). Not the same as the Web of Science Core Collection; see [About](/data/sources/#cwts-core-vs-web-of-science). Filter/sort/group_by.

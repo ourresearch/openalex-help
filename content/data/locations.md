@@ -1,6 +1,6 @@
 ---
 title: "Locations"
-updated: 2026-10-23
+updated: 2026-11-13
 description: "Each place a version of a work is available — the publisher's site, a repository, a preprint server — with its version, license, and open-access status; what every attribute means, and how to list, filter, search and group locations directly at /locations."
 tags: ["reference"]
 entity:
@@ -55,7 +55,7 @@ This is the dictionary of every attribute on a **location** object as it appears
 *String.* A direct link to a full-text PDF of this copy, or null when only a landing page is known. A direct PDF link is one of the tie-breakers in best-OA scoring. This is the host's PDF, not OpenAlex's cached copy; for that, see [`content_urls`](/data/works/attributes/#content_urls).
 
 ### `source`
-*Object.* The dehydrated [source](/data/sources/) hosting this copy — the journal, repository, or platform. Keys include `id`, `display_name`, `issn_l`, `issn`, `is_oa`, `is_in_doaj`, `is_core`, [`listed_in`](/data/sources/attributes/#listed_in), `type`, and the host organization (`host_organization`, `host_organization_name`, `host_organization_lineage`, `host_organization_lineage_names`). May be null for locations whose host isn't a known source.
+*Object.* The dehydrated [source](/data/sources/) hosting this copy — the journal, repository, or platform. Keys include `id`, `display_name`, `issn_l`, `issn`, `is_oa`, `is_in_doaj`, `is_core`, [`listed_in`](/data/sources/attributes/#listed_in), `type`, and the host organization (`host_organization`, `host_organization_name`, `host_organization_lineage`, `host_organization_lineage_names`). May be null for locations whose host isn't a known source. `is_in_doaj` here is the journal-level DOAJ attribute (the journal is on DOAJ's journal list); whether DOAJ's article index holds a record of the work itself is `indexed_in:doaj` on the work (see [DOAJ: journal list and article index](/data/source-lists/#doaj-journal-list-and-article-index)).
 
 ### `license`
 *String.* The license this copy is available under, as a normalized short code, e.g. `cc-by`, `cc-by-sa`, or null if unknown. Different locations of the same work can carry different licenses.

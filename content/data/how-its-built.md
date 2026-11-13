@@ -1,6 +1,6 @@
 ---
 title: "How it's built"
-updated: 2026-11-02
+updated: 2026-11-13
 description: "How the OpenAlex dataset is built: gathering records from thousands of sources and organizing them into one connected knowledge graph. A map that points into the entity pages where each step is documented in full."
 tags: ["reference"]
 ---
@@ -10,7 +10,7 @@ OpenAlex gathers the world's research output from thousands of sources, organize
 
 When a researcher publishes an article, book, or dataset, information about it is registered with agencies like [Crossref](https://crossref.org) and [DataCite](https://datacite.org), or deposited in institutional and national repositories. OpenAlex pulls records from these sources continuously — the database evolves daily. The catalog was seeded by the discontinued [Microsoft Academic Graph (MAG)](https://en.wikipedia.org/wiki/Microsoft_Academic), whose final open dataset OpenAlex adopted in 2021.
 
-We track the external [indexes](/data/indexes/) a record can come from — Crossref, PubMed, DataCite, DOAJ, arXiv — and the venues those records name become [sources](/data/sources/#about): journals, conference series, ebook platforms, and repositories. The core inputs we pull from today include:
+We track the external [indexes](/data/indexes/) a record can come from — Crossref, PubMed, DataCite, DOAJ, arXiv — and the venues those records name become [sources](/data/sources/#about): journals, conference series, ebook platforms, and repositories. (DOAJ has a journal list and an article index, and OpenAlex has an attribute for each: see [DOAJ: journal list and article index](/data/source-lists/#doaj-journal-list-and-article-index).) The core inputs we pull from today include:
 
 - [Crossref](https://www.crossref.org/) and [DataCite](https://datacite.org/), the DOI registration agencies
 - [ORCID](https://orcid.org/) and [ROR](https://ror.org/), the open identifier systems for researchers and institutions

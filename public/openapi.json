@@ -3417,7 +3417,7 @@
             "items": {
               "type": "string"
             },
-            "description": "Sources this work is indexed in. Values: `arxiv`, `crossref`, `doaj`, `pubmed`."
+            "description": "Indexes this work is indexed in. Values: `arxiv`, `crossref`, `datacite`, `doaj`, `pubmed`. `doaj` is article level: DOAJ's article index holds a record of this work. Whether the journal is on DOAJ's journal list is a different attribute, `primary_location.source.is_in_doaj`; a work in a DOAJ journal lacks `doaj` here when DOAJ holds no record of that article."
           },
           "has_content": {
             "type": "object",
@@ -3894,7 +3894,7 @@
           },
           "is_in_doaj": {
             "type": "boolean",
-            "description": "Whether this journal is listed in the Directory of Open Access Journals."
+            "description": "Whether this journal is on the journal list of the Directory of Open Access Journals (DOAJ). Journal level: whether DOAJ's article index holds a record of a single work is a different attribute, `indexed_in:doaj` on works."
           },
           "works_count": {
             "type": "integer",

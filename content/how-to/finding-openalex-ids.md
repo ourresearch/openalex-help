@@ -1,6 +1,6 @@
 ---
 title: "Finding OpenAlex IDs"
-updated: 2026-09-21
+updated: 2026-11-13
 description: "Every entity in OpenAlex has an ID. Here's how to find the ID for a work, author, source, publisher, or anything else — on the website or via the API."
 tags: ["how-do-i"]
 synonyms: ["work ID", "author ID", "source ID", "publisher ID", "OpenAlex ID"]
@@ -27,7 +27,7 @@ Start typing your name in the search box at [openalex.org](https://openalex.org)
 
 ## How do I find a source's ID?
 
-Sources are the venues that host works: journals, conference proceedings, repositories, ebook platforms, and book series. Search by title at [openalex.org/sources](https://openalex.org/sources) — you can filter to a particular source type, or to sources that are fully open access or indexed in DOAJ. Click the source you're after and the URL ends with its ID (e.g. `S4121844`).
+Sources are the venues that host works: journals, conference proceedings, repositories, ebook platforms, and book series. Search by title at [openalex.org/sources](https://openalex.org/sources) — you can filter to a particular source type, or to sources that are fully open access or on DOAJ's journal list (a journal-level attribute; whether DOAJ's article index holds a record of a single work is a [different one](/data/source-lists/#doaj-journal-list-and-article-index)). Click the source you're after and the URL ends with its ID (e.g. `S4121844`).
 
 ## How do I find a publisher's ID?
 

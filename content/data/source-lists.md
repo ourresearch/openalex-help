@@ -1,6 +1,6 @@
 ---
 title: "Source lists"
-updated: 2026-10-26
+updated: 2026-11-13
 description: "The external journal lists a source can appear on (DOAJ, CWTS Core, national lists), the fields on a source-list object, and how to filter sources and works by list."
 tags: ["reference"]
 entity:
@@ -18,7 +18,16 @@ Membership is all OpenAlex records. A list's page says who maintains it, what it
 
 OpenAlex prefers **allow lists** to deny lists: they are transparent, easy to maintain and a sound basis for retrieval. The oldest ones arrived as booleans ([`is_in_doaj`](/data/sources/attributes/#is_in_doaj), [`is_core`](/data/sources/attributes/#is_core)); `listed_in` and this entity are the general form, and the booleans are kept for compatibility.
 
-A source list is not an [index](/data/indexes/). An index records which external registries list a given *work* ([`indexed_in`](/data/works/attributes/#indexed_in)); a source list records which lists a *journal* is on. DOAJ appears in both, answering different questions: is this article in DOAJ's index, versus is this journal a DOAJ member.
+A source list is not an [index](/data/indexes/). An index records which external registries list a given *work* ([`indexed_in`](/data/works/attributes/#indexed_in)); a source list records which lists a *journal* is on. DOAJ appears in both, because DOAJ keeps both.
+
+### DOAJ: journal list and article index
+
+The [Directory of Open Access Journals](https://doaj.org/) (DOAJ) keeps two things: a **journal list** (the journals it has accepted) and an **article index** (records of single articles, which publishers send to DOAJ). OpenAlex has one attribute for each:
+
+- **Journal level: is the journal on DOAJ's journal list?** [`is_in_doaj`](/data/sources/attributes/#is_in_doaj) on the source, which is the same as `doaj` in its [`listed_in`](/data/sources/attributes/#listed_in) ([source lists](/data/source-lists/)). To filter works by it, go through the work's source: `filter=primary_location.source.is_in_doaj:true`.
+- **Article level: does DOAJ's article index hold a record of this work?** `doaj` in the work's [`indexed_in`](/data/works/attributes/#indexed_in) ([indexes](/data/indexes/)): `filter=indexed_in:doaj`.
+
+The two answers can differ. A work in a DOAJ journal lacks `indexed_in:doaj` when DOAJ's article index holds no record of that article. Publishers choose whether to send article records to DOAJ, and about 3,800 of the 23,700 DOAJ journals have sent none. About 10 million works are in a DOAJ journal without a DOAJ article record. So use the journal-level attribute for "published in a DOAJ journal", and the article-level one only for "DOAJ lists this article".
 
 Lists are matched to sources by ISSN, and only a list's current members count: a journal its maintainer has withdrawn is not `listed_in`. Each list is loaded from the maintainer's published file, so membership is as current as the loaded edition (`list_version`). Spotted a newer edition, or know an open, ISSN-keyed list we should add? [Tell us](/how-to/support/).
 
@@ -48,7 +57,7 @@ The top-level fields on a **source list** object. Attributes shared with other e
 *String.* Where the maintainer publishes the list.
 
 ### `list_version`
-*String.* The edition currently loaded, as a date (`YYYY-MM-DD`); null for lists derived continuously from another feed (DOAJ, CWTS Core).
+*String.* The edition currently loaded, as a date (`YYYY-MM-DD`); null for lists derived continuously from another feed (DOAJ's journal list, CWTS Core).
 
 ### `sources_count`
 *Integer.* How many OpenAlex sources are on this list.

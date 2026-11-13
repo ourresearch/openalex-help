@@ -1,6 +1,6 @@
 ---
 title: "Source types"
-updated: 2026-10-26
+updated: 2026-11-13
 description: "The controlled vocabulary of source types — journal, repository, conference, book series, and more — what each value means, and how to filter works by the type of venue that hosts them."
 tags: ["reference"]
 entity:
@@ -13,7 +13,7 @@ A **source type** classifies the kind of venue where works are hosted: a `journa
 
 ## About
 
-The vocabulary is a small, fixed set of venue kinds. OpenAlex assigns each [source](/data/sources/) a single type from the list below based on its metadata and origin (journals and their ISSNs from Crossref and the [DOAJ](https://doaj.org/), repositories from their harvested registries, and so on). We don't decide the boundary between a journal and a repository; we standardize the label. See the [Sources guide](/data/sources/) for more.
+The vocabulary is a small, fixed set of venue kinds. OpenAlex assigns each [source](/data/sources/) a single type from the list below based on its metadata and origin (journals and their ISSNs from Crossref and the [DOAJ](https://doaj.org/) journal list, repositories from their harvested registries, and so on). We don't decide the boundary between a journal and a repository; we standardize the label. See the [Sources guide](/data/sources/) for more.
 
 ## Values
 
