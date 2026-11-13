@@ -1,6 +1,6 @@
 ---
 title: "Get Singleton"
-updated: 2026-11-11
+updated: 2026-11-13
 description: "Retrieve a single entity by ID"
 tags: ["api"]
 source_id: "guides/get"
@@ -98,7 +98,7 @@ Each entity type has a primary (canonical) external identifier, and most accept 
 | Publishers | Wikidata ID | `wikidata:`, `ror:` |
 | Concepts (deprecated) | Wikidata ID | `wikidata:` |
 
-Prefixes are case-insensitive: `DOI:10.7717/peerj.4375`, `PMID:29456894` and `arXiv:2305.18290` work too.
+Prefixes are case-insensitive: `DOI:10.7717/peerj.4375`, `PMID:29456894` and `arXiv:2305.18290` work too. A DOI pasted with the punctuation of its sentence still finds its work: `doi:10.7717/peerj.4375.` (or with a trailing `,` or `;`) answers like `doi:10.7717/peerj.4375`.
 
 An arXiv id finds the work that holds arXiv's DOI for that paper (`10.48550/arXiv.2305.18290`), so `arxiv:2305.18290`, `https://arxiv.org/abs/2305.18290v2` and `doi:10.48550/arxiv.2305.18290` return the same work. That work may be the published article, when the preprint has been merged with it. A version suffix (`v2`) is ignored, and old-style ids like `arxiv:hep-th/9711200` work too.
 

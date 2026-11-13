@@ -1,6 +1,6 @@
 ---
 title: "Search"
-updated: 2026-11-03
+updated: 2026-11-13
 description: "Find entities using full-text search across titles, abstracts, and more"
 tags: ["api"]
 source_id: "guides/searching"
@@ -173,6 +173,8 @@ Use `*` to match zero or more characters and `?` to match exactly one character:
 The search term must have at least 3 characters before the wildcard. Leading wildcards (e.g., `*ology`) are not supported.
 
 A `?` in a title or a sentence is a question mark, so you can paste a title as it is: `search=Should we ditch impact factors?` finds that paper. A `?` is a wildcard inside a word (`wom?n`), and at the end of a word only in a one-word search: `search.exact=psoriati?` matches "psoriatic". A `*` on its own (a footnote mark in a pasted reference) is ignored.
+
+The same goes for a `*` in pasted text on a works search. In a search of two or more words with no `AND`, `OR` or `NOT`, a `*` that could not be a wildcard is punctuation: at the start of a word (Markdown `*On Bullshit*`), after fewer than 3 characters (`A*`, `C*-algebras`) or doubled (`**`). On the default (stemmed) search, a `*` at the end of a word is also punctuation when the search has four or more words, so `search=Subclinical Vitamin D Deficiency in Postmenopausal Women with Low Vertebral Bone Mass*` finds that paper. One-word and short searches (`machin* learning`), Boolean searches and quoted phrases keep `*` as a wildcard.
 
 Hyphenated and slashed terms are split into separate words by the search engine, so the 3-character rule applies to the last part. `e-cigarette*` matches "e-cigarette" and "e-cigarettes" (it runs as the adjacent words `e` + `cigarette*`), and `x-ray*` and `t-cell*` work the same way. `covid-19*` is rejected, because only `19` precedes the wildcard.
 
