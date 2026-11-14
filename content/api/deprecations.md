@@ -1,6 +1,6 @@
 ---
 title: "Deprecations"
-updated: 2026-11-02
+updated: 2026-11-14
 description: "Deprecated features and migration guides"
 tags: ["api"]
 source_id: "guides/deprecations"
@@ -78,6 +78,30 @@ The new `awards` entity provides detailed award information including DOIs when 
 - work.sustainable_development_goals_aurora
 + work.sustainable_development_goals
 ```
+
+### `volume` on Works
+
+**Removed 14 November 2026:** the `volume` object on works, and the `volume.id` filter, sort and group_by. They answer an error that names the replacement.
+
+**Replacement:** [`parent_works`](/data/works/attributes/#parent_works). A chapter's book is now one of its parent works, with `relationship: "volume"`. `parent_works` also covers the other part-of links (figures, files, data series), and a work can have more than one parent.
+
+**Migration:**
+
+```diff
+- work.volume.id
++ work.parent_works[].id        (the entry whose relationship is "volume")
+
+- filter=volume.id:W3109397498
++ filter=parent_works.id:W3109397498
+
+- group_by=volume.id
++ group_by=parent_works.id
+
+- select=volume
++ select=parent_works
+```
+
+`biblio.volume`, the volume number printed in a citation, is unchanged.
 
 ## Deprecated (Still Working)
 
@@ -188,6 +212,7 @@ Before February 2026, OpenAlex used a "polite pool" system where you could get h
 | Polite pool | Replaced | Use API keys |
 | `include_xpac` / `is_xpac` filter | Deprecated | Migrate to `corpus=` |
 | `sustainable_development_goals_aurora` | Removed (2 November 2026) | Use `sustainable_development_goals` |
+| `volume` on works, `volume.id` | Removed (14 November 2026) | Use `parent_works`, `parent_works.id` |
 
 ## Staying Updated
 

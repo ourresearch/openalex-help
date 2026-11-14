@@ -87,6 +87,7 @@ export const NAV_GROUPS: Record<string, NavGroup[]> = {
       slugs: [
         'vocabulary',
         'work-types',
+        'relationships',
         'source-types',
         'institution-types',
         'countries',
