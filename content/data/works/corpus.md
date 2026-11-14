@@ -1,6 +1,6 @@
 ---
 title: "Expansion corpus"
-updated: 2026-10-23
+updated: 2026-11-14
 description: "OpenAlex works come in two corpora — the curated core and a larger expansion (formerly 'XPAC'). What's in each, why the expansion is opt-in, and how to select core / expansion / all in the REST API and OQL."
 tags: ["reference"]
 synonyms: ["xpac", "expansion pack", "corpus", "include_xpac", "is_xpac", "core corpus", "expansion corpus"]
@@ -53,6 +53,25 @@ get works (all corpora) where title-abstract-keywords has (kelp)
 ```
 
 The first is the core only; the second, only the expansion; the third, core and expansion together.
+
+## Pieces of other works are left out too
+
+The default view also leaves out works that are a piece of another work and are not a traditional scholarly work: a book's front matter and index, an encyclopedia entry, a figure or data file with its own DOI. The rule is exact and uses two public filters: a work is left out when [`has_parent_work`](/data/works/attributes/#parent_works) is true and [`is_traditional`](/data/works/attributes/#is_traditional) is false. So chapters, proceedings papers and articles stay, because they are traditional works. Where pieces nest (a file in a dataset in a collection), only the top one shows.
+
+Nothing is deleted. The pieces come back when you ask for them:
+
+```bash
+# Everything, pieces and expansion included
+curl "https://api.openalex.org/works?corpus=all"
+
+# One work's parts: front matter and chapters alike
+curl "https://api.openalex.org/works?filter=parent_works.id:W3109397498"
+
+# Exactly the works the default view leaves out for this reason
+curl "https://api.openalex.org/works?filter=has_parent_work:true,is_traditional:false"
+```
+
+Any filter on `has_parent_work`, `parent_works.id`, `parent_works.relationship` or `lineage` shows the pieces without `corpus=all`. A single work fetched by ID (`/works/W…`) always answers. Counts on other entities (an author's `works_count`) still include the pieces. See [Parent and child works](/data/relationships/#parent-and-child-works).
 
 ## Why the expansion is opt-in
 

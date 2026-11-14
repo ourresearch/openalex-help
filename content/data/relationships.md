@@ -27,6 +27,10 @@ Only part-of links make a parent. Versions of one work (a preprint and its artic
 
 A work can have more than one parent, and a parent can have a parent (a chapter in a book in a book series). There are no loops.
 
+### Which child works show by default
+
+A traditional scholarly work (an article, a chapter, a proceedings paper) shows in search and lists whether or not it has a parent. A child that is not a traditional work (front matter, an encyclopedia entry, a figure, a data file) is left out of the default view: you reach it through its parent. The rule is `has_parent_work:true` and `is_traditional:false`, nothing else. Ask for `corpus=all`, or filter on a parent, to see them. Details: [Expansion corpus › Pieces of other works](/data/works/corpus/#pieces-of-other-works-are-left-out-too).
+
 ### Where the links come from
 
 The links come from what the records themselves say:
