@@ -1,6 +1,6 @@
 ---
 title: "Relationships"
-updated: 2026-11-14
+updated: 2026-11-15
 description: "The kinds of part-of link between a work and its parent work (volume, component, data series, part), how parent and child works are built, and how to list a book's chapters or everything under a work."
 tags: ["reference"]
 entity:
@@ -33,10 +33,13 @@ A traditional scholarly work (an article, a chapter, a proceedings paper) shows 
 
 ### Where the links come from
 
-The links come from what the records themselves say:
+Most links come from what the records themselves say; a few we build:
 
 - **Books.** A chapter, section or reference entry gets its book when the two Crossref records agree on an ISBN, or the chapter's DOI extends the book's.
 - **DataCite.** A record gets a parent when it declares `IsPartOf` another DOI and that DOI is also a work.
+- **Figures, tables and files.** A record Crossref types as a component gets its paper when its DOI extends the paper's: [`10.1371/journal.pmed.1000097.g001`](https://api.openalex.org/works/doi:10.1371/journal.pmed.1000097.g001) is part of `10.1371/journal.pmed.1000097`. Most of these records carry no title, so we write one from the kind, the number and the paper ("Figure 1 of ..."), and they take their paper's open access status. Any authors they list keep their names but are not linked to author profiles.
+- **Supplements named after their paper.** A record titled "Additional file 1 of" a paper's title gets that paper, when exactly one work has that title.
+- **Data series we build.** Some sources publish a long run of records without naming the series. For the Large Helical Device, a fusion experiment at the National Institute for Fusion Science, we made one parent work for each instrument's series of shot records and [one work for the whole experiment](https://api.openalex.org/works/W7233530818). These parents have no DOI.
 
 We leave out declared links that can't be a hierarchy: a record that claims more than 10 parents, two records that each claim to be part of the other, and chains more than 10 levels deep.
 

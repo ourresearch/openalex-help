@@ -1,11 +1,11 @@
 ---
 title: "Expansion corpus"
-updated: 2026-11-14
+updated: 2026-11-15
 description: "OpenAlex works come in two corpora — the curated core and a larger expansion (formerly 'XPAC'). What's in each, why the expansion is opt-in, and how to select core / expansion / all in the REST API and OQL."
 tags: ["reference"]
 synonyms: ["xpac", "expansion pack", "corpus", "include_xpac", "is_xpac", "core corpus", "expansion corpus"]
 ---
-OpenAlex's works come in two **corpora**. The **core** is the curated catalog most people mean by "OpenAlex" — more than 310 million works built and matched from Crossref, MAG, PubMed, DataCite, repositories, and more. The **expansion** is a larger, rawer layer of about 190 million additional works — mostly datasets and single-repository records — minted once, at the Walden cutover, from records that didn't match anything in the core. Together they're the **all** corpus: over 510 million works.
+OpenAlex's works come in two **corpora**. The **core** is the curated catalog most people mean by "OpenAlex" — about 323 million works built and matched from Crossref, MAG, PubMed, DataCite, repositories, and more (295 million of them in the default view; the rest are [pieces of other works](#pieces-of-other-works-are-left-out-too)). The **expansion** is a rawer layer of about 122 million additional works — mostly datasets and single-repository records — minted once, at the Walden cutover, from records that didn't match anything in the core. Together they're the **all** corpus: about 445 million works.
 
 The expansion was added in the November 2025 [Walden](https://blog.openalex.org/openalex-rewrite-walden-launch/) update, and for a while carried the name **XPAC** ("Expansion Pack"). It was a one-time batch and it hasn't grown since: new works go straight into the core whatever source they come from. You'll still see "XPAC" in older docs, blog posts, and the [`is_xpac`](/data/works/attributes/#is_xpac) field name — it means exactly this expansion corpus.
 
@@ -17,9 +17,9 @@ Think of it as three views over the same pile of works:
 
 | Corpus | What it is | Approx. size |
 |--------|-----------|--------------|
-| **core** | The curated catalog. **This is the default.** | 310M+ works |
-| **expansion** | The added layer — mostly datasets & repository records (the former "XPAC") | ~190M works |
-| **all** | Core + expansion together | 510M+ works |
+| **core** | The curated catalog. **This is the default.** | ~323M works (~295M in the default view) |
+| **expansion** | The added layer — mostly datasets & repository records (the former "XPAC") | ~122M works |
+| **all** | Core + expansion together | ~445M works |
 
 The corpus selector applies to **works only** — the other entity types have no expansion, so selecting one there does nothing.
 
@@ -28,10 +28,10 @@ The corpus selector applies to **works only** — the other entity types have no
 The default is **core**. Pick a different view with the `corpus` parameter on any works request:
 
 ```bash
-# Core only (default) — ~310M works
+# Core only (default): ~295M works
 curl "https://api.openalex.org/works"
 
-# All works, core + expansion — ~510M works
+# All works, core + expansion: ~445M works
 curl "https://api.openalex.org/works?corpus=all"
 
 # Only expansion works
