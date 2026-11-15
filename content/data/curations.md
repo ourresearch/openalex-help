@@ -1,6 +1,6 @@
 ---
 title: "Curations"
-updated: 2026-11-05
+updated: 2026-11-15
 description: "What a curation is, who can file one, the review states it moves through, and how an accepted curation flows into the entity it corrects."
 tags: ["reference"]
 entity:
@@ -20,6 +20,8 @@ Curation today centers on **author corrections** — the entities most prone to 
 - **`remove from work`** — detach a work that isn't yours from your profile.
 - **`modify display_name`** — change the displayed name on your author profile.
 - **`modify full_name`** — change the name used to *match future works* to your profile.
+
+OpenAlex's own curators can also correct **a work's own fields**. The first is **`is_retracted`**: set it to `true` for a retraction no source records, or to `false` where a source records one in error. These are open to site curators only, and they win over the rules that set the field every night, so a correction stays put when a publisher re-deposits the same error. More fields will follow the same way.
 
 The mechanics — exact request bodies, the `property` anchor syntax, and how each action maps to a warehouse table — are documented in [Author curation](/api/author-curation/).
 
@@ -68,19 +70,19 @@ A curation record is a compact statement of a correction: the target entity, the
 *String.* The display name of the submitting user, e.g. `Casey M`.
 
 ### `entity`
-*String.* Which native entity type the curation corrects — `works` (for claim / remove actions) or `authors` (for display_name / full_name actions).
+*String.* Which native entity type the curation corrects — `works` (for claim / remove actions, and a work's own fields such as `is_retracted`) or `authors` (for display_name / full_name actions).
 
 ### `entity_id`
 *String.* The OpenAlex ID of the specific entity being corrected, as a full URL, e.g. `https://openalex.org/W4404012345` for a work claim or `https://openalex.org/A5023888391` for a name change.
 
 ### `property`
-*String.* The field on the target entity that the curation changes. For work claims this anchors the change to a specific byline — `authorships[raw_author_name="Smith, J."].author.id` — pinning the correction to one raw author name from the work. For work removals it's the non-positional `authorships.author.id`. For name changes it's simply `display_name` or `full_name`.
+*String.* The field on the target entity that the curation changes. For work claims this anchors the change to a specific byline — `authorships[raw_author_name="Smith, J."].author.id` — pinning the correction to one raw author name from the work. For work removals it's the non-positional `authorships.author.id`. For name changes it's simply `display_name` or `full_name`; for a work's own field, the field's name (`is_retracted`).
 
 ### `action`
 *String.* What to do with the property — `replace` (claim a work, set a name) or `remove` (detach a work).
 
 ### `value`
-*String.* The new value the action applies, as a full URL where it's an entity (the author ID for a claim or removal) or a plain string for a name change (`John Smith`).
+*String.* The new value the action applies, as a full URL where it's an entity (the author ID for a claim or removal), a plain string for a name change (`John Smith`), or `true` / `false` for `is_retracted`.
 
 ### `created`
 *String.* The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) datetime the curation was submitted.
