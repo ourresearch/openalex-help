@@ -1,6 +1,6 @@
 ---
 title: "Integrations"
-updated: 2026-11-15
+updated: 2026-11-16
 description: "Getting OpenAlex data into other tools: website exports, VOSviewer, link resolvers, and the Unpaywall browser extension."
 tags: ["downloads"]
 synonyms: ["export", "CSV", "RIS", "VOSviewer", "link resolver", "SFX", "EBSCO", "Unpaywall extension"]
@@ -12,7 +12,7 @@ OpenAlex data flows into a lot of other tools. This page covers exporting from t
 
 Above any works result set there's an export button; exporting needs a free OpenAlex account. Pick a format:
 
-- **CSV (Excel)** and **CSV** (.csv) — for Excel and friends; flattens the [works data](/data/works/attributes/) into the columns you pick. CSV (Excel) shortens very long cell values, which Excel can't hold (at the cost of some data loss).
+- **CSV (Excel)** and **CSV** (.csv) — for Excel and friends; flattens the [works data](/data/works/attributes/) into the columns you pick. Both cut any cell longer than 30,000 characters, under Excel's limit of 32,767, so a very long list such as a work's references loses its tail. CSV (Excel) also puts each work on one line (a line break inside a value, as in some raw affiliation strings, becomes a space) and starts with a byte-order mark so Excel shows accented names intact. Plain CSV keeps those line breaks inside quoted cells, which pandas and R read as one row per work.
 - **EndNote (RIS)** (.ris) — for reference managers like EndNote, Zotero or Mendeley.
 - **BibTeX** (.bib) — for LaTeX and BibTeX-based reference managers.
 - **Text** (.txt) — the Web of Science plain-text format (tags such as `AU`, `TI`, `TC`; each record ends with `ER`), for bibliometric tools that read Web of Science files. Each record's `UT` line holds its OpenAlex ID.
