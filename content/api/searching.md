@@ -23,7 +23,7 @@ Each entity type searches different fields:
 
 | Entity | Searchable fields |
 |--------|-------------------|
-| Works | `title`, `abstract`, `fulltext`, and [keywords](#keywords-in-search) |
+| Works | `title` and [`alternate_titles`](/data/works/attributes/#alternate_titles), `abstract`, `fulltext`, and [keywords](#keywords-in-search) |
 | Authors | `display_name`, `display_name_alternatives` |
 | Sources | `display_name`, `alternate_titles`, `abbreviated_title` |
 | Institutions | `display_name`, `display_name_alternatives`, `display_name_acronyms` |

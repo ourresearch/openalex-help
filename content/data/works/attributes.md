@@ -25,6 +25,11 @@ Filter: `doi:` matches a work whose own `doi` **or** any location's `doi` equals
 ### `title`
 *String or null.* The title of the work. Identical to [`display_name`](#display_name). Null when no source gives the work a title (an empty or whitespace-only title from a source counts as none): about 2.3M of the ~465M works.
 
+### `alternate_titles`
+*List of strings.* The work's other titles, as its publisher deposited them: most often the same title in a second language, such as the English title of an Arabic or Japanese article, or the reverse. Empty when there are none (most works). They come from the work's Crossref record (the extra elements of its `title` list and its `original-title`), minus the title the work shows as [`title`](#title), repeats, and labels such as "English"; at most 5, in the order deposited. About 4.1M works have at least one.
+
+Search: `search=`, `title.search` and `title_and_abstract.search` (and their `.exact` forms) look in them too, so a work is found by any of its titles.
+
 ### `type`
 *String.* The work's type (e.g. `article`, `preprint`, `dataset`, `paratext`). Every work has exactly one. See [Work types](/data/work-types/) for the full vocabulary and how the type is assigned.
 
