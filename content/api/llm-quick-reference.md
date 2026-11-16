@@ -102,7 +102,7 @@ api_key=        - Free, strongly recommended (get at openalex.org/settings/api)
 filter=         - Filter results (see syntax below)
 search=         - Full-text search across title/abstract/fulltext, plus keywords a phrase in it names
 search.title_abstract_keywords= - Title/abstract text OR keywords the query names (openalex.org's default; /works)
-rerank=true     - Reorder the top 100 of a relevance-sorted works search by relevance (+10 credits per request; result 101+ unchanged)
+rerank=true     - Reorder the top 100 of a relevance-sorted works search by relevance (+10 credits per reranked page; result 101+ unchanged, at no extra cost)
 sort=           - Sort results (e.g., cited_by_count:desc)
 per_page=       - Results per page (default: 25, max: 100)
 page=           - Page number for pagination
@@ -202,7 +202,7 @@ cited_by_count                - Total citations
 | Singleton (`/works/W123`) | Free |
 | List (`/works?filter=...`) | $0.0001 |
 | Search (`?search=`) | $0.001 |
-| Rerank (`rerank=true`), added to the request | +$0.001 (a reranked search: $0.002) |
+| Rerank (`rerank=true`), added to a page it reranks | +$0.001 (a reranked search: $0.002) |
 | Content download (PDF) | $0.01 |
 
 ## Query Limits
