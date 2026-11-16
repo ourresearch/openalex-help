@@ -23,7 +23,7 @@ Curation today centers on **author corrections** — the entities most prone to 
 
 The mechanics — exact request bodies, the `property` anchor syntax, and how each action maps to a warehouse table — are documented in [Author curation](/api/author-curation/).
 
-Site-wide curators can also correct a work's own fields: **`is_retracted`** (`true` or `false`) and **`type`** (any [work type](/data/work-types/), e.g. `paratext`). These use `entity` `works`, `action` `replace` and the new value as a plain string, and the curated value wins over what OpenAlex computes from the work's records from the next nightly update on.
+Site-wide curators can also correct a work's own fields: **`is_retracted`** (`true` or `false`), **`type`** (any [work type](/data/work-types/), e.g. `paratext`) and **`title`** (the work's title as the work itself gives it, one line, for a title that arrives garbled, cut, run together with a footnote, or missing). These use `entity` `works`, `action` `replace` and the new value as a plain string, and the curated value wins over what OpenAlex computes from the work's records from the next nightly update on.
 
 ### Who can file one
 
