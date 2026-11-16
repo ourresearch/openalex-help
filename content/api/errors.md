@@ -1,6 +1,6 @@
 ---
 title: "Error Handling"
-updated: 2026-11-03
+updated: 2026-11-16
 description: "API error codes and retry strategies"
 tags: ["api"]
 source_id: "api-reference/errors"
@@ -16,7 +16,7 @@ The OpenAlex API uses standard HTTP status codes to indicate success or failure.
 | `200` | Success | Request completed successfully |
 | `301` | Moved Permanently | Entity was merged; follow the redirect (api.openalex.org follows it for you and returns the surviving record; best effort) |
 | `400` | Bad Request | Check your filter syntax or parameters |
-| `403` | Forbidden | You don't have access to this resource. (A collection you can't read returns `404`, not `403`.) |
+| `403` | Forbidden | You don't have access to this resource, or your plan doesn't include it ([Plan upgrade required](#plan-upgrade-required)). Retrying won't help. (A collection you can't read returns `404`, not `403`.) |
 | `404` | Not Found | Entity doesn't exist |
 | `429` | Too Many Requests | Rate limit or daily credit budget exceeded; slow down or wait for the reset |
 | `500` | Server Error | Temporary issue; retry with backoff |
@@ -70,11 +70,13 @@ Error responses include a message explaining what went wrong:
 ### Plan upgrade required
 
 ```
-429 Too Many Requests
+403 Forbidden
 "Plan upgrade required"
 ```
 
 You filtered or sorted by when records were created or updated (`from_updated_date` and the other [sync filters](/api/filtering/#sync-filters-member-and-partner)). They are the one exception to "every filter is free": they're part of daily sync, which needs a Member+ or Partner plan.
+
+Waiting or retrying won't change the answer. (Until November 2026 this came as a `429`.)
 
 **Fix:** Remove the filter or sort. To keep a copy of OpenAlex up to date, see [Sync](/access/sync/): the quarterly snapshot is free, and daily updates come with the [Member+ and Partner plans](/access/pricing/#free-data-paid-services).
 

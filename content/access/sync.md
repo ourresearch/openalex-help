@@ -1,6 +1,6 @@
 ---
 title: "Sync"
-updated: 2026-11-15
+updated: 2026-11-16
 description: "Snapshot release cadence and dates per plan, how updated_date partitions work, the four ways to keep a copy in sync with OpenAlex, and how deletions and merged entities behave — including the works deletion log deleted_ids.csv.gz and the works, authors and sources merge maps merged_ids.csv.gz."
 tags: ["downloads"]
 source_id: "new/snapshot-updates"
@@ -109,7 +109,7 @@ Some people would rather get updates from the API than from a snapshot. We suppo
 
 `to_created_date` and `to_updated_date` (on or before a date) close the window, on every entity type too.
 
-**These are the one exception to "every filter is free".** They tell you what changed, and keeping up to date is the service the plans pay for, so like the daily snapshot they need a Member+ or Partner plan (older Premium and Institutional contracts include them too; Member doesn't). The same goes for sorting works by `created_date` or `updated_date` (only works sort by these dates). Without a plan, the API answers `429` with `"Plan upgrade required"`.
+**These are the one exception to "every filter is free".** They tell you what changed, and keeping up to date is the service the plans pay for, so like the daily snapshot they need a Member+ or Partner plan (older Premium and Institutional contracts include them too; Member doesn't). The same goes for sorting works by `created_date` or `updated_date` (only works sort by these dates). Without a plan, the API answers `403` with `"Plan upgrade required"`.
 
 ```
 https://api.openalex.org/works?filter=from_updated_date:2026-07-30&corpus=all
