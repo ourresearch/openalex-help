@@ -143,6 +143,9 @@ See [Open access](/data/works/open-access/) for how these fields combine.
 ### `cited_by_count`
 *Integer.* The number of works that cite this work — the count of successful reference matches pointing at it (see [Citations and references](/data/works/citations/#citations-and-references)).
 
+### `cited_by_api_url`
+*String.* The API query for the works that cite this work: `https://api.openalex.org/works?filter=cites:` followed by the work's ID. Following it lists the citing works in the API's default corpus; add `corpus=all` to include the [expansion corpus](/data/works/corpus/) too. Available only through the API, not in the [snapshot](/access/snapshot/), where you can build it from [`id`](#id).
+
 ### `counts_by_year`
 *List.* [`cited_by_count`](#cited_by_count) for each of the last ten years, binned by year (years with zero citations omitted; citations older than ten years excluded). See [Common attributes](/data/common-attributes/#counts_by_year), including why it can drift from a live count.
 
