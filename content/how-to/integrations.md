@@ -27,9 +27,11 @@ An [OQL](/access/oql/) table of groups, such as `get the count and percent open 
 
 [VOSviewer](https://www.vosviewer.com/) builds and visualizes bibliometric networks, and it talks to OpenAlex directly — no file downloads needed:
 
-1. At [openalex.org](https://openalex.org), build the query you want to analyze, then copy the URL from your browser.
+1. At [openalex.org](https://openalex.org), build the query you want to analyze. Above the results, click the share icon and choose **Copy query as… → API URL**.
 2. In VOSviewer, click "Create" → "Create a map based on bibliographic data" → "Download through the API" (OpenAlex is the default).
 3. Paste your URL into the "Request URL" field and hit next to specify your network.
+
+VOSviewer reads only the `search` and `filter` parts of the URL. A query with nested AND/OR groups has no `filter=` form, so its API URL comes out as an `?oql=` link that VOSviewer can't use; keep a VOSviewer query to plain filters and a single search.
 
 Use VOSviewer 1.6.21 or later and give it your free OpenAlex API key ([get one here](https://openalex.org/settings/api)): downloading past the first page of results needs a key, and 1.6.21 is the first version that can send one.
 
