@@ -24,7 +24,7 @@ OpenAlex data is free; what costs money is *usage* of the API. This page makes t
 | [Text / Aboutness](/api/deprecations/) *(deprecated)* | Topic classification | **$10** |
 
 > **Note:**
-> **Rerank adds 10 credits ($0.001) to any request that uses it.** A search costs 10 credits; with `rerank=true` it costs 20. The add-on is the same on an [OQL](/api/oql/) request. openalex.org reranks its searches by default, and so do the [Claude and ChatGPT connectors](/access/connector/), so a search there costs 20 credits plus whatever else the page loads.
+> **Rerank adds 10 credits ($0.001) to each page it reranks.** A search costs 10 credits; with `rerank=true` it costs 20. A page past result 100 keeps the normal order and costs what it costs without `rerank`. The add-on is the same on an [OQL](/api/oql/) request. openalex.org reranks its searches by default, and so do the [Claude and ChatGPT connectors](/access/connector/), so a search there costs 20 credits plus whatever else the page loads.
 
 ## What an OQL calculation costs
 
