@@ -28,7 +28,7 @@ A handful of attributes appear on nearly every OpenAlex entity. They mean the sa
 ### `summary_stats`
 *Object.* A few precomputed bibliometric indicators for the entity:
 
-- `2yr_mean_citedness` — the [journal impact factor](/data/sources/)-style 2-year mean citedness.
+- `2yr_mean_citedness` — a [journal impact factor](https://en.wikipedia.org/wiki/Impact_factor)-style 2-year mean citedness: the citations received in the last full calendar year by the entity's works published in the two years before it, divided by the number of those works. In 2026 that is the 2025 citations to works published in 2023 and 2024, read from each work's [`counts_by_year`](/data/works/attributes/#counts_by_year); the window moves on 1 January. Every work counts (sources and publishers leave out peer reviews), so unlike the Journal Impact Factor the denominator is not limited to articles and reviews.
 - `h_index` — the [h-index](https://en.wikipedia.org/wiki/H-index).
 - `i10_index` — the number of works with at least 10 citations.
 
