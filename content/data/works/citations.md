@@ -1,6 +1,6 @@
 ---
 title: "Citations"
-updated: 2026-09-21
+updated: 2026-11-16
 description: "How OpenAlex builds citations and references — reference extraction and matching, why counts can differ from the PDF, and the Field-Weighted Citation Impact (FWCI) metric."
 tags: ["reference"]
 ---
@@ -13,9 +13,11 @@ Every work in OpenAlex knows which works it cites and which works cite it. This 
 
 Every work carries a list of the works it cites ([`referenced_works`](/data/works/attributes/#referenced_works)) and a count of the works that cite it ([`cited_by_count`](/data/works/attributes/#cited_by_count)). Both are built from the same process: extracting each work's reference list, then matching those references to other works already in OpenAlex.
 
-When OpenAlex creates a work record, it pulls the reference list from the record's source (Crossref, PubMed, and similar). When the work is open access, OpenAlex can also extract references directly from the PDF, which fills gaps for works whose source records omit references. Each extracted reference is then matched to an existing work — first by DOI (highly reliable) and, when no DOI is present, by other bibliographic metadata (less reliable). A successful match counts as a **reference** in the citing work and a **citation** of the cited work.
+When OpenAlex creates a work record, it pulls the reference list from the record's source (Crossref, PubMed, and similar). When the work is open access, OpenAlex can also extract references directly from the PDF, which fills gaps for works whose source records omit references. Each extracted reference is then matched to an existing work. A reference that prints a DOI, PubMed ID or arXiv ID is matched by that ID. A reference with no ID is matched by its text: since November 2026 a reference matcher finds the works whose metadata is closest in meaning to the printed reference, then a model reads the reference next to each candidate and links it only when it is confident, so a reference it can't place is left unlinked rather than guessed. On a random sample of about 500 of these text matches, about 97% were judged right. A successful match counts as a **reference** in the citing work and a **citation** of the cited work.
 
-Because citations are built by matching, a work's `referenced_works` can be *shorter* than the reference list printed in its PDF. The common reasons: the cited work isn't in OpenAlex (references to unknown works are dropped); the source record's references differ from the final PDF; many Crossref records include no references at all; or a reference has no DOI and metadata matching failed.
+On a hand-checked sample of about 30,000 printed references (November 2026), OpenAlex links about 84% of the references whose cited work is in OpenAlex, and about 92% of the citations it serves are estimated as right. Most of the remaining wrong ones are older links inherited from Microsoft Academic Graph, which we plan to replace with our own matches.
+
+Because citations are built by matching, a work's `referenced_works` can be *shorter* than the reference list printed in its PDF. The common reasons: the cited work isn't in OpenAlex (references to unknown works are dropped); the source record's references differ from the final PDF; many Crossref records include no references at all; or a reference has no ID and the matcher wasn't confident enough to link it.
 
 ## Field-Weighted Citation Impact
 
