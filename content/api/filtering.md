@@ -83,8 +83,15 @@ https://api.openalex.org/works?filter=institutions.country_code:fr,institutions.
 https://api.openalex.org/works?filter=institutions.country_code:fr+gb
 ```
 
+On number filters, `+` combines comparisons the same way:
+
+```bash
+# Works published after 2021, except 2023
+https://api.openalex.org/works?filter=publication_year:>2021+!2023
+```
+
 > **Note:**
-> The `+` syntax doesn't work for search filters, boolean filters, or numeric filters.
+> The `+` syntax doesn't work for search filters (they have their own [AND, OR and NOT](/api/searching/)) or yes/no filters like `is_oa`.
 
 ### Addition (OR)
 
@@ -129,6 +136,17 @@ https://api.openalex.org/works?filter=title.search:Music and British Culture, 17
 ```
 
 Percent-encoding a comma as `%2C` doesn't change its meaning: most HTTP clients encode every comma that way, including the ones between filters.
+
+### Spaces inside a value
+
+A `+` reaches the API as a space, so a space in a value means AND too: `awards.funder_award_id:973 Program` asks for works funded under both an award `973` and an award `Program`. Put double quotes around a value that holds a space:
+
+```bash
+# One award ID that contains a space
+https://api.openalex.org/works?filter=awards.funder_award_id:"973 Program"
+```
+
+Quotes also work inside an OR list (`authorships.institutions.geo.region:"New York"|California`). Two exceptions need no quotes: search filters, where spaces separate words, and source types, which are read whole (`locations.source.type:book series`).
 
 ## Sync filters (Member+ and Partner)
 
