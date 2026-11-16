@@ -65,6 +65,7 @@ Every list endpoint returns the same envelope:
 | `meta.count` | Total results matching your query |
 | `meta.page` / `meta.per_page` | Current page and page size (default 25, max 100) |
 | `meta.cost_usd` | What this single call cost — see [Authentication](/api/authentication/) |
+| `meta.merged_ids` | Only when a filter names a merged-away ID: each one with the ID it resolved to — see [Merged entities](/api/get-single-entities/#merged-entities) |
 | `results` | The array of entity objects |
 | `group_by` | Aggregation buckets, when you use [`group_by`](/api/grouping/) |
 

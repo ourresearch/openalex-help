@@ -131,6 +131,16 @@ $ curl -s "https://api.openalex.org/authors/A5107411446?select=id,display_name"
 
 To tell that an ID was merged, compare the `id` in the response with the ID you asked for. Filters resolve the same way: `filter=authorships.author.id:A5107411446` returns the surviving author's works, and `filter=cites:<merged work ID>` returns the works citing the surviving work. Merges are followed to the end of the chain (if A was merged into B and B later into C, A returns C).
 
+When a filter names merged IDs, the list response says what each one was read as, in `meta.merged_ids`. That's how a batched lookup maps each record back to the ID you asked for:
+
+```bash
+$ curl -s "https://api.openalex.org/authors?filter=openalex_id:A5107411446|A5023888391&select=id,display_name"
+{"meta": {"count": 2, ..., "merged_ids": [{"id": "https://openalex.org/A5107411446", "merge_into_id": "https://openalex.org/A5107863564"}]},
+ "results": [{"id": "https://openalex.org/A5107863564", "display_name": "Sonia Luquín"}, {"id": "https://openalex.org/A5023888391", ...}]}
+```
+
+Each entry has the same two names as the snapshot's [`merged_ids.csv.gz`](/access/sync/#merged-ids-merged_idscsvgz): `id` is the merged-away ID from your filter and `merge_into_id` is the record it resolves to. An ID that wasn't merged isn't listed: it comes back as itself. The field is there only when a filter named a merged-away work, author, source or funder ID.
+
 Redirecting merged IDs is a **best-effort convenience, not a permanence promise**: we do it while it's practical, and we may change or stop it for some IDs or entity types. If you need a link that lasts, store the work's DOI (or the author's ORCID) alongside its OpenAlex ID.
 
 A **deleted** ID (one with no surviving record) returns `404`. For bulk repair of stored IDs, the snapshot publishes every merged-away work, author and source ID with its surviving ID in [`merged_ids.csv.gz`](/access/sync/#merged-ids-merged_idscsvgz).
