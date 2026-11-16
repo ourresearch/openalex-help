@@ -20,6 +20,7 @@ The OpenAlex API uses standard HTTP status codes to indicate success or failure.
 | `404` | Not Found | Entity doesn't exist |
 | `429` | Too Many Requests | Rate limit or daily credit budget exceeded; slow down or wait for the reset |
 | `500` | Server Error | Temporary issue; retry with backoff |
+| `503` | Service Unavailable | Temporarily unable to answer; wait the seconds in the `Retry-After` header if there is one (else back off), then retry |
 
 ## Error Response Format
 

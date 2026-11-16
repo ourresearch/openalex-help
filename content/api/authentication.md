@@ -1,6 +1,6 @@
 ---
 title: "Authentication"
-updated: 2026-11-03
+updated: 2026-11-16
 description: "API keys, sending your key, rate limits, and keeping tabs on your usage"
 tags: ["api"]
 source_id: "api-reference/authentication"
@@ -133,6 +133,8 @@ The [`meta`](/api/#response-format) object also reports the cost of the call and
 ```bash
 curl "https://api.openalex.org/rate-limit?api_key=YOUR_KEY"
 ```
+
+Checking `/rate-limit` is free: it never counts against your budget. If it can't read your usage at that moment, it says so instead of guessing: it answers `503` with `"reason": "usage_lookup_failed"` and a `Retry-After` header. Wait that many seconds and check again.
 
 ## Best practices
 
