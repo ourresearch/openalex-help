@@ -1,6 +1,6 @@
 ---
 title: "Fixing authors"
-updated: 2026-10-01
+updated: 2026-11-15
 description: "Claim your OpenAlex author profile and fix it yourself: add and remove works, merge duplicates, and correct your names."
 tags: ["fixing"]
 synonyms: ["author profile", "claim profile", "merge profiles", "alternate names", "wrong works", "ORCID", "link ORCID", "connect ORCID", "sync ORCID", "import from ORCID", "claim verification"]
@@ -46,7 +46,7 @@ To unlink, use the **⋮** menu next to **✓ Linked**. Your claimed profile sta
 
 ## How do I add or remove works?
 
-On a profile you've claimed, add missing works by searching titles, pasting DOIs or OpenAlex IDs, or uploading your CV (we'll match the works in it). Remove works that aren't yours individually or in bulk. Changes are [curations](/data/curations/), applied at the next data refresh — typically live within about two days.
+On a profile you've claimed, add missing works by searching titles, pasting DOIs or OpenAlex IDs, or uploading your CV (we'll match the works in it). Remove works that aren't yours individually or in bulk. Changes are [curations](/data/curations/), applied at the next data refresh — typically live within about two days. A work that isn't in OpenAlex at all can't be added this way; [here's how to get it in](/how-to/getting-indexed/#how-do-i-get-my-own-paper-report-or-book-into-openalex).
 
 ## How do I merge duplicate profiles?
 

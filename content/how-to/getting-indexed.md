@@ -1,12 +1,18 @@
 ---
 title: "Getting indexed"
-updated: 2026-09-18
-description: "How to get your journal's or repository's works into OpenAlex."
+updated: 2026-11-15
+description: "How to get your own work, your journal or your repository into OpenAlex."
 tags: ["general"]
-synonyms: ["journal indexing", "repository indexing", "add my journal", "add my repository"]
+synonyms: ["journal indexing", "repository indexing", "add my journal", "add my repository", "add my paper", "missing paper", "work without a DOI", "add my report"]
 card: "We don’t index journals directly — we harvest Crossref and friends, so get in there first."
 ---
 OpenAlex indexes works — publications, datasets, theses, and so on — by harvesting the big scholarly [indexes](/data/indexes/): Crossref, DataCite, PubMed, and others, plus thousands of repositories. So "getting indexed" means getting your works into a place we already harvest.
+
+## How do I get my own paper, report or book into OpenAlex?
+
+Put it in a repository we harvest: [Zenodo](https://zenodo.org/), [Figshare](https://figshare.com/), your university's repository, or [arXiv](https://arxiv.org/) for a preprint. Zenodo and Figshare give it a DOI for free, and it reaches OpenAlex on its own, usually within a few days. If it doesn't land on your author profile by itself, [add it there](/how-to/fixing-authors/#how-do-i-add-or-remove-works).
+
+We don't add works by hand on request. Every work in OpenAlex comes from a source we harvest, so anyone can trace a record back to where it came from. A work that lives only as a PDF on a project or conference website has no such source, so a repository deposit is the way in. It also gives the work a lasting home and a DOI that other services pick up too.
 
 ## How do I get my journal indexed in OpenAlex?
 
