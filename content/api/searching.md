@@ -1,6 +1,6 @@
 ---
 title: "Search"
-updated: 2026-11-15
+updated: 2026-11-16
 description: "Find entities using full-text search across titles, abstracts, and more"
 tags: ["api"]
 source_id: "guides/searching"
@@ -77,6 +77,8 @@ https://api.openalex.org/works?search=(elmo AND "sesame street") NOT (cookie OR 
 
 > **Note:**
 > Words not separated by boolean operators are treated as `AND`.
+>
+> Without parentheses, `NOT` binds tightest, then `AND`, then `OR`: `a AND b OR c` is `(a AND b) OR c`, and `a OR b AND c` is `a OR (b AND c)`. Words side by side are one `AND` group: `climate change OR warming` is `(climate change) OR warming`. Every response shows the grouping it ran, in OQL, at `meta.x_query.oql`.
 >
 > A minus sign doesn't exclude a word: `asthma -mice` finds works with both words. Write `asthma NOT mice`.
 
