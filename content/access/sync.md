@@ -172,7 +172,7 @@ The file is **cumulative** — each release carries the full history, so you don
 
 ### Merged IDs: `merged_ids.csv.gz`
 
-Each snapshot's works, authors and sources directories carry `merged_ids.csv.gz` (`{format}/works/merged_ids.csv.gz`, `{format}/authors/merged_ids.csv.gz` and `{format}/sources/merged_ids.csv.gz`, next to each `manifest.json`): every merged-away ID and the live record it now resolves to. Use it to repair stored IDs in bulk, the way the API resolves them one at a time. A merged-away work also appears in `deleted_ids.csv.gz` (it left the corpus); `merged_ids.csv.gz` tells you where it went.
+Each snapshot's works, authors and sources directories carry `merged_ids.csv.gz` (`{format}/works/merged_ids.csv.gz`, `{format}/authors/merged_ids.csv.gz` and `{format}/sources/merged_ids.csv.gz`, next to each `manifest.json`): every merged-away ID and the live record it now resolves to. Where it is today: in every daily snapshot since 2026-10-27; the free public bucket gets it with the next quarterly release (13 January 2027), since the 2026-10-14 release came out before the file existed. Use it to repair stored IDs in bulk, the way the API resolves them one at a time. A merged-away work also appears in `deleted_ids.csv.gz` (it left the corpus); `merged_ids.csv.gz` tells you where it went.
 
 ```csv
 id,merge_into_id,merge_date
