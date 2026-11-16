@@ -88,7 +88,7 @@ Waiting or retrying won't change the answer. (Until November 2026 this came as a
 "Work W9999999999 not found"
 ```
 
-**Fix:** Verify the ID exists. A merged-away work, author, source or funder ID usually returns the surviving record instead of a 404 (best effort, not a permanence promise); a deleted ID returns 404 (see [Merged entities](/api/get-single-entities/#merged-entities)).
+**Fix:** Verify the ID exists. A merged-away work, author, source, institution or funder ID usually returns the surviving record instead of a 404 (best effort, not a permanence promise); a deleted ID returns 404 (see [Merged entities](/api/get-single-entities/#merged-entities)).
 
 ## Retry Logic
 

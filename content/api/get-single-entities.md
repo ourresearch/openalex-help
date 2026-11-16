@@ -1,6 +1,6 @@
 ---
 title: "Get Singleton"
-updated: 2026-11-13
+updated: 2026-11-16
 description: "Retrieve a single entity by ID"
 tags: ["api"]
 source_id: "guides/get"
@@ -122,7 +122,7 @@ Unlike OpenAlex IDs these are **case-sensitive** and contain `/` and `:`; copy t
 
 ## Merged entities
 
-When duplicate works, authors, sources or funders are merged, requesting the old ID usually returns the record it was merged into. The API redirects the old ID to the surviving one and follows that redirect for you, so you get a normal `200` response whose `id` is the surviving ID:
+When duplicate works, authors, sources, institutions or funders are merged, requesting the old ID usually returns the record it was merged into. The API redirects the old ID to the surviving one and follows that redirect for you, so you get a normal `200` response whose `id` is the surviving ID:
 
 ```bash
 $ curl -s "https://api.openalex.org/authors/A5107411446?select=id,display_name"
@@ -139,8 +139,8 @@ $ curl -s "https://api.openalex.org/authors?filter=openalex_id:A5107411446|A5023
  "results": [{"id": "https://openalex.org/A5107863564", "display_name": "Sonia Luquín"}, {"id": "https://openalex.org/A5023888391", ...}]}
 ```
 
-Each entry has the same two names as the snapshot's [`merged_ids.csv.gz`](/access/sync/#merged-ids-merged_idscsvgz): `id` is the merged-away ID from your filter and `merge_into_id` is the record it resolves to. An ID that wasn't merged isn't listed: it comes back as itself. The field is there only when a filter named a merged-away work, author, source or funder ID.
+Each entry has the same two names as the snapshot's [`merged_ids.csv.gz`](/access/sync/#merged-ids-merged_idscsvgz): `id` is the merged-away ID from your filter and `merge_into_id` is the record it resolves to. An ID that wasn't merged isn't listed: it comes back as itself. The field is there only when a filter named a merged-away work, author, source, institution or funder ID.
 
 Redirecting merged IDs is a **best-effort convenience, not a permanence promise**: we do it while it's practical, and we may change or stop it for some IDs or entity types. If you need a link that lasts, store the work's DOI (or the author's ORCID) alongside its OpenAlex ID.
 
-A **deleted** ID (one with no surviving record) returns `404`. For bulk repair of stored IDs, the snapshot publishes every merged-away work, author and source ID with its surviving ID in [`merged_ids.csv.gz`](/access/sync/#merged-ids-merged_idscsvgz).
+A **deleted** ID (one with no surviving record) returns `404`. For bulk repair of stored IDs, the snapshot publishes every merged-away work, author, source and institution ID with its surviving ID in [`merged_ids.csv.gz`](/access/sync/#merged-ids-merged_idscsvgz).

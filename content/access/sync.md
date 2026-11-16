@@ -1,7 +1,7 @@
 ---
 title: "Sync"
 updated: 2026-11-16
-description: "Snapshot release cadence and dates per plan, how updated_date partitions work, the four ways to keep a copy in sync with OpenAlex, and how deletions and merged entities behave — including the works deletion log deleted_ids.csv.gz and the works, authors and sources merge maps merged_ids.csv.gz."
+description: "Snapshot release cadence and dates per plan, how updated_date partitions work, the four ways to keep a copy in sync with OpenAlex, and how deletions and merged entities behave — including the works deletion log deleted_ids.csv.gz and the works, authors, sources and institutions merge maps merged_ids.csv.gz."
 tags: ["downloads"]
 source_id: "new/snapshot-updates"
 source_url: "https://developers.openalex.org/download/snapshot-format"
@@ -145,10 +145,10 @@ Records don't just get created and updated — they also disappear: works get me
 
 How that shows up today:
 
-- **In the API:** a merged-away **work, author, source or funder** ID usually resolves to the record it was merged into: you get the surviving record (its `id` is the surviving ID), and filters on the old ID match the surviving record. This is best effort, not a permanence promise; see [Merged entities](/api/get-single-entities/#merged-entities). A **deleted** ID returns **404**. (Special case: works of removed author profiles point to the [null author `A9999999999`](/data/authors/disambiguation/#special-author-ids), and `A5317838346` marks deleted authors.)
+- **In the API:** a merged-away **work, author, source, institution or funder** ID usually resolves to the record it was merged into: you get the surviving record (its `id` is the surviving ID), and filters on the old ID match the surviving record. This is best effort, not a permanence promise; see [Merged entities](/api/get-single-entities/#merged-entities). A **deleted** ID returns **404**. (Special case: works of removed author profiles point to the [null author `A9999999999`](/data/authors/disambiguation/#special-author-ids), and `A5317838346` marks deleted authors.)
 - **In the snapshot:** the record is **gone from the current release** — it doesn't appear in any partition, and the vacated file space disappears from the manifest. This is true of every daily copy too, so reconciling against a snapshot picks up deletions.
 - **In `deleted_ids.csv.gz`** (works): every daily snapshot, and the public bucket since the 2026-09-23 release, names its deleted works explicitly — see below.
-- **In `merged_ids.csv.gz`** (works, authors, sources): every merged-away ID with the ID it now resolves to — see [below](#merged-ids-merged_idscsvgz).
+- **In `merged_ids.csv.gz`** (works, authors, sources, institutions): every merged-away ID with the ID it now resolves to — see [below](#merged-ids-merged_idscsvgz).
 
 ### The works deletion log: `deleted_ids.csv.gz`
 
@@ -172,7 +172,7 @@ The file is **cumulative** — each release carries the full history, so you don
 
 ### Merged IDs: `merged_ids.csv.gz`
 
-Each snapshot's works, authors and sources directories carry `merged_ids.csv.gz` (`{format}/works/merged_ids.csv.gz`, `{format}/authors/merged_ids.csv.gz` and `{format}/sources/merged_ids.csv.gz`, next to each `manifest.json`): every merged-away ID and the live record it now resolves to. Where it is today: in every daily snapshot since 2026-10-27; the free public bucket gets it with the next quarterly release (13 January 2027), since the 2026-10-14 release came out before the file existed. Use it to repair stored IDs in bulk, the way the API resolves them one at a time. A merged-away work also appears in `deleted_ids.csv.gz` (it left the corpus); `merged_ids.csv.gz` tells you where it went.
+Each snapshot's works, authors, sources and institutions directories carry `merged_ids.csv.gz` (`{format}/works/merged_ids.csv.gz`, `{format}/authors/merged_ids.csv.gz`, `{format}/sources/merged_ids.csv.gz` and `{format}/institutions/merged_ids.csv.gz`, next to each `manifest.json`): every merged-away ID and the live record it now resolves to. Where it is today: in every daily snapshot since 2026-10-27 (institutions since 2026-11-17); the free public bucket gets it with the next quarterly release (13 January 2027), since the 2026-10-14 release came out before the file existed. Use it to repair stored IDs in bulk, the way the API resolves them one at a time. A merged-away work also appears in `deleted_ids.csv.gz` (it left the corpus); `merged_ids.csv.gz` tells you where it went.
 
 ```csv
 id,merge_into_id,merge_date
@@ -211,7 +211,7 @@ Reconcile against a full release periodically (daily-snapshot subscribers can do
 - **Database mirror (all entities):** diff your ID set against the release's ID set (stream IDs from the part files, or compare per-partition `record_count`s in the manifest) and delete local records that no longer exist upstream.
 
 > **Note:**
-> The pre-Walden snapshot published a `merged_ids/` directory mapping merged IDs to their survivors. That mechanism ended with the 2025 Walden cutover (historical files preserved under `legacy-data/`, not updated). Its successors are `deleted_ids.csv.gz` for **works** deletions and `merged_ids.csv.gz` for **works**, **authors** and **sources** merges, which also carries the legacy rows. What does **not** exist today: deletion logs for authors, sources, institutions, or any other entity type. If that matters to your pipeline, [tell us about your use case](https://openalex.org/contact).
+> The pre-Walden snapshot published a `merged_ids/` directory mapping merged IDs to their survivors. That mechanism ended with the 2025 Walden cutover (historical files preserved under `legacy-data/`, not updated). Its successors are `deleted_ids.csv.gz` for **works** deletions and `merged_ids.csv.gz` for **works**, **authors**, **sources** and **institutions** merges, which also carries the legacy rows. What does **not** exist today: deletion logs for authors, sources, institutions, or any other entity type. If that matters to your pipeline, [tell us about your use case](https://openalex.org/contact).
 
 ## Point-in-time and reproducibility
 
