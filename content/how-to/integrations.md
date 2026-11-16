@@ -10,13 +10,14 @@ OpenAlex data flows into a lot of other tools. This page covers exporting from t
 
 ## How do I export results from the OpenAlex website?
 
-Above any works result set there's an export button. Pick a format:
+Above any works result set there's an export button; exporting needs a free OpenAlex account. Pick a format:
 
-- **Spreadsheet (.csv)** — for Excel and friends; flattens the [works data](/data/works/attributes/) into many columns. If you'll open it in Excel, check "Shorten column values for Excel compatibility" — Excel chokes on very long cell values, and this truncates them (at the cost of some data loss).
-- **Endnote format (.ris)** — for reference managers like EndNote or Zotero.
-- **Text format (.txt)** — broadly compatible with the export format used by Web of Science and Dimensions.
+- **CSV (Excel)** and **CSV** (.csv) — for Excel and friends; flattens the [works data](/data/works/attributes/) into the columns you pick. CSV (Excel) shortens very long cell values, which Excel can't hold (at the cost of some data loss).
+- **EndNote (RIS)** (.ris) — for reference managers like EndNote, Zotero or Mendeley.
+- **BibTeX** (.bib) — for LaTeX and BibTeX-based reference managers.
+- **Text** (.txt) — the Web of Science plain-text format (tags such as `AU`, `TI`, `TC`; each record ends with `ER`), for bibliometric tools that read Web of Science files. Each record's `UT` line holds its OpenAlex ID.
 
-The system prepares the file and gives you a download link — large result sets can take several minutes. The maximum export is 100,000 works.
+The export draws on your account's daily API budget, and the dialog shows what it will cost before you start. The system prepares the file and gives you a download link — large result sets can take several minutes.
 
 ## How do I download an OQL table?
 
