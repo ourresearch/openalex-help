@@ -1,7 +1,7 @@
 ---
 title: "Fixing Errors: Overview"
 navLabel: "Overview"
-updated: 2026-09-21
+updated: 2026-11-16
 description: "Found an error in OpenAlex? Start here: what you can fix yourself right now, and how to report everything else."
 tags: ["fixing"]
 synonyms: ["report error", "report bug", "found a mistake", "wrong data", "fix error", "error portal"]
@@ -25,7 +25,7 @@ OpenAlex is built by inference at enormous scale, and inference is sometimes wro
 
 The two highest-volume error classes are fully self-serve:
 
-- **Your author profile.** [Claim it](/how-to/fixing-authors/) and you can add and remove works, correct your names, and merge duplicate profiles — the fix is live within a day or two.
+- **Your author profile.** [Claim it](/how-to/fixing-authors/) and you can add and remove works, correct your names, and merge duplicate profiles — the fix is usually live within a day or two ([when corrections go live](/how-to/when-corrections-go-live/)).
 - **Affiliation matching.** If you're at a [member institution](/access/pricing/), the Affiliation Editor lets you correct how affiliation strings map to your institution — see [Fixing affiliations](/how-to/fixing-affiliations/).
 
 Both are also fully drivable by [AI agents](/access/agents/): hand your agent your CV and your API key, and it can do the whole cleanup for you.
@@ -43,4 +43,4 @@ Both are also fully drivable by [AI agents](/access/agents/): hand your agent yo
 
 ## What happens after I report?
 
-Our AI agents read every report, verify it against the evidence, and apply the fix — or escalate to a human when a report points at a bigger bug. We're a small team with a big pipeline, so not every ticket gets a reply, but every ticket is read and acted on where it can be. The full story of how corrections work is in the [Fixing errors reference](/access/fixing-errors/).
+Our AI agents read every report, verify it against the evidence, and apply the fix — or escalate to a human when a report points at a bigger bug. Fixes go live through the same nightly update as self-serve corrections; [When corrections go live](/how-to/when-corrections-go-live/) says what updates when. We're a small team with a big pipeline, so not every ticket gets a reply, but every ticket is read and acted on where it can be. The full story of how corrections work is in the [Fixing errors reference](/access/fixing-errors/).

@@ -1,6 +1,6 @@
 ---
 title: "Fixing affiliations"
-updated: 2026-08-12
+updated: 2026-11-16
 description: "What to do when works are matched to the wrong institution — or your institution's own record is wrong."
 tags: ["fixing"]
 synonyms: ["wrong institution", "affiliation error", "missing works", "ROR", "affiliation editor"]
@@ -10,7 +10,7 @@ card: "“The affiliations are wrong” is two different bugs — the fix depend
 
 ## How do I fix a wrong or missing institution match?
 
-**At a [member institution](/access/pricing/)?** Fix it yourself with the **Affiliation Editor**: it lists every raw affiliation string, and you link strings to your institution or unlink wrong matches — one at a time or thousands in bulk, live within about two days. ([How to activate it](/how-to/supporter-tools/#affiliation-editor).)
+**At a [member institution](/access/pricing/)?** Fix it yourself with the **Affiliation Editor**: it lists every raw affiliation string, and you link strings to your institution or unlink wrong matches — one at a time or thousands in bulk, live within about two days ([what updates when](/how-to/when-corrections-go-live/)). ([How to activate it](/how-to/supporter-tools/#affiliation-editor).)
 
 **Anyone** can report a one-off — a single work showing the wrong institution — by [filing a ticket](https://openalex.org/contact). Include the work's URL, the affiliation string, and the institution it should (or shouldn't) match.
 

@@ -1,6 +1,6 @@
 ---
 title: "Fixing authors"
-updated: 2026-11-15
+updated: 2026-11-16
 description: "Claim your OpenAlex author profile and fix it yourself: add and remove works, merge duplicates, and correct your names."
 tags: ["fixing"]
 synonyms: ["author profile", "claim profile", "merge profiles", "alternate names", "wrong works", "ORCID", "link ORCID", "connect ORCID", "sync ORCID", "import from ORCID", "claim verification"]
@@ -46,15 +46,15 @@ To unlink, use the **⋮** menu next to **✓ Linked**. Your claimed profile sta
 
 ## How do I add or remove works?
 
-On a profile you've claimed, add missing works by searching titles, pasting DOIs or OpenAlex IDs, or uploading your CV (we'll match the works in it). Remove works that aren't yours individually or in bulk. Changes are [curations](/data/curations/), applied at the next data refresh — typically live within about two days. A work that isn't in OpenAlex at all can't be added this way; [here's how to get it in](/how-to/getting-indexed/#how-do-i-get-my-own-paper-report-or-book-into-openalex).
+On a profile you've claimed, add missing works by searching titles, pasting DOIs or OpenAlex IDs, or uploading your CV (we'll match the works in it). Remove works that aren't yours individually or in bulk. Changes are [curations](/data/curations/), applied at the next data refresh — typically live within about two days ([what updates when](/how-to/when-corrections-go-live/)). A work that isn't in OpenAlex at all can't be added this way; [here's how to get it in](/how-to/getting-indexed/#how-do-i-get-my-own-paper-report-or-book-into-openalex).
 
 ## How do I merge duplicate profiles?
 
-If your works are spread across two profiles and you've claimed one: add the other profile's works to yours (the CV upload makes this fast). The emptied profile goes inert — it stops accruing works and drops out of matching, so it won't grow back. There's no separate merge button; moving the works is the merge.
+If your works are spread across two profiles and you've claimed one: add the other profile's works to yours (the CV upload makes this fast). Once its last work has moved, the emptied profile is deleted (unless someone has claimed it): its page then says "not found", and it doesn't redirect to yours. There's no separate merge button; moving the works is the merge. [More on what happens to an emptied profile](/how-to/when-corrections-go-live/#what-happens-to-a-duplicate-profile-after-i-move-its-works).
 
 ## Someone else's works are on my profile. How do I split them out?
 
-Remove them. The disambiguation algorithm re-homes removed works to the right profile — that part isn't your problem.
+Remove them. A removed work leaves your profile for good, but it isn't moved to anyone else's automatically: author matching only runs on new works. If you know whose works they are, their author can claim them. [More on removed works](/how-to/when-corrections-go-live/#what-happens-to-a-work-i-remove-from-my-profile).
 
 ## Alternate names
 
