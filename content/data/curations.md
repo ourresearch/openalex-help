@@ -1,6 +1,6 @@
 ---
 title: "Curations"
-updated: 2026-11-05
+updated: 2026-11-15
 description: "What a curation is, who can file one, the review states it moves through, and how an accepted curation flows into the entity it corrects."
 tags: ["reference"]
 entity:
@@ -22,6 +22,8 @@ Curation today centers on **author corrections** — the entities most prone to 
 - **`modify full_name`** — change the name used to *match future works* to your profile.
 
 The mechanics — exact request bodies, the `property` anchor syntax, and how each action maps to a warehouse table — are documented in [Author curation](/api/author-curation/).
+
+Site-wide curators can also correct a work's own fields: **`is_retracted`** (`true` or `false`) and **`type`** (any [work type](/data/work-types/), e.g. `paratext`). These use `entity` `works`, `action` `replace` and the new value as a plain string, and the curated value wins over what OpenAlex computes from the work's records from the next nightly update on.
 
 ### Who can file one
 
@@ -68,7 +70,7 @@ A curation record is a compact statement of a correction: the target entity, the
 *String.* The display name of the submitting user, e.g. `Casey M`.
 
 ### `entity`
-*String.* Which native entity type the curation corrects — `works` (for claim / remove actions) or `authors` (for display_name / full_name actions).
+*String.* Which native entity type the curation corrects — `works` (for claim / remove actions and work fields such as `type`) or `authors` (for display_name / full_name actions).
 
 ### `entity_id`
 *String.* The OpenAlex ID of the specific entity being corrected, as a full URL, e.g. `https://openalex.org/W4404012345` for a work claim or `https://openalex.org/A5023888391` for a name change.
