@@ -1,6 +1,6 @@
 ---
 title: "Integrations"
-updated: 2026-10-25
+updated: 2026-11-15
 description: "Getting OpenAlex data into other tools: website exports, VOSviewer, link resolvers, and the Unpaywall browser extension."
 tags: ["downloads"]
 synonyms: ["export", "CSV", "RIS", "VOSviewer", "link resolver", "SFX", "EBSCO", "Unpaywall extension"]
@@ -29,6 +29,8 @@ An [OQL](/access/oql/) table of groups, such as `get the count and percent open 
 1. At [openalex.org](https://openalex.org), build the query you want to analyze, then copy the URL from your browser.
 2. In VOSviewer, click "Create" → "Create a map based on bibliographic data" → "Download through the API" (OpenAlex is the default).
 3. Paste your URL into the "Request URL" field and hit next to specify your network.
+
+Use VOSviewer 1.6.21 or later and give it your free OpenAlex API key ([get one here](https://openalex.org/settings/api)): downloading past the first page of results needs a key, and 1.6.21 is the first version that can send one.
 
 Note that VOSviewer supports up to 50,000 records per analysis, so you may need to narrow your query with extra filters.
 

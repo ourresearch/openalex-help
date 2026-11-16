@@ -1,6 +1,6 @@
 ---
 title: "Sort"
-updated: 2026-11-03
+updated: 2026-11-15
 description: "Order results by a field"
 tags: ["api"]
 source_id: "guides/sort"
@@ -52,4 +52,4 @@ https://api.openalex.org/works?search=bioplastics&sort=publication_year:desc,rel
 > Sorting by `relevance_score` requires an active search. An error is thrown otherwise.
 
 > **Note:**
-> Sorting by `created_date` or `updated_date` needs a Member+ or Partner plan, like the [sync filters](/api/filtering/#sync-filters-member-and-partner): it shows what changed, and keeping up to date is the paid service. Every other sort is free.
+> Sorting works by `created_date` or `updated_date` (only works sort by these dates) needs a Member+ or Partner plan, like the [sync filters](/api/filtering/#sync-filters-member-and-partner): it shows what changed, and keeping up to date is the paid service. Every other sort is free.

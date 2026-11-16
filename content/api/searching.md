@@ -1,13 +1,16 @@
 ---
 title: "Search"
-updated: 2026-11-13
+updated: 2026-11-15
 description: "Find entities using full-text search across titles, abstracts, and more"
 tags: ["api"]
 source_id: "guides/searching"
 source_url: "https://developers.openalex.org/guides/searching"
 source_updated: "2026-06-24"
 ---
-The `search` parameter finds results matching a given text search. Search requests cost **\$1 per 1,000 calls** (vs. \$0.10 per 1,000 for list+filter requests); [rerank](#rerank) adds \$1 per 1,000. See [pricing](/access/example-costs/).
+The `search` parameter finds results matching a given text search. Search requests cost **\$1 per 1,000 calls** (vs. \$0.10 per 1,000 for list+filter requests), and so does a request with a `.search` filter such as `default.search` or `title.search`; [rerank](#rerank) adds \$1 per 1,000. See [pricing](/access/example-costs/).
+
+> **Tip:**
+> **Looking for a person's works? Don't put their name in `search`.** On works, `search` matches titles, abstracts and full text, so a surname finds papers that mention or cite the person (and short surnames match other words). Find the person with `/authors?search=jennifer doudna`, then filter works by `authorships.author.id`; or match the printed byline with [`raw_author_name.search`](#searching-author-bylines-with-raw_author_namesearch).
 
 ```bash
 # Works with "dna" in title, abstract, or fulltext, or tagged with the DNA keyword

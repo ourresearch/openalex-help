@@ -1,6 +1,6 @@
 ---
 title: "Sync"
-updated: 2026-11-14
+updated: 2026-11-15
 description: "Snapshot release cadence and dates per plan, how updated_date partitions work, the four ways to keep a copy in sync with OpenAlex, and how deletions and merged entities behave — including the works deletion log deleted_ids.csv.gz and the works, authors and sources merge maps merged_ids.csv.gz."
 tags: ["downloads"]
 source_id: "new/snapshot-updates"
@@ -109,7 +109,7 @@ Some people would rather get updates from the API than from a snapshot. We suppo
 
 `to_created_date` and `to_updated_date` (on or before a date) close the window, on every entity type too.
 
-**These are the one exception to "every filter is free".** They tell you what changed, and keeping up to date is the service the plans pay for, so like the daily snapshot they need a Member+ or Partner plan (older Premium and Institutional contracts include them too; Member doesn't). The same goes for sorting by `created_date` or `updated_date`. Without a plan, the API answers `429` with `"Plan upgrade required"`.
+**These are the one exception to "every filter is free".** They tell you what changed, and keeping up to date is the service the plans pay for, so like the daily snapshot they need a Member+ or Partner plan (older Premium and Institutional contracts include them too; Member doesn't). The same goes for sorting works by `created_date` or `updated_date` (only works sort by these dates). Without a plan, the API answers `429` with `"Plan upgrade required"`.
 
 ```
 https://api.openalex.org/works?filter=from_updated_date:2026-07-30&corpus=all
@@ -118,6 +118,8 @@ https://api.openalex.org/works?filter=from_updated_date:2026-07-30&corpus=all
 **On works, add `corpus=all`.** Works queries cover only the [core corpus](/data/works/corpus/) unless you ask for more, while the snapshot holds every work. A mirror that polls without `corpus=all` never hears about changes to expansion works, which are about a quarter of a typical night's work updates.
 
 Poll with these and upsert the results by `id`: no snapshot downloads, no bulk infrastructure, just HTTP requests. It's also the freshest view of the data, since the API updates continuously rather than on a release schedule.
+
+**Poll by day, with a day of overlap.** `updated_date` and `created_date` are in UTC, written without an offset (`2026-11-15T12:55:33.944570`). Most records change in the nightly build: a night's changed works share one `updated_date`, stamped when that night's build ran, and they reach the API a few hours later. So a poll that asks only for changes since its last run, an hour ago, finds none of them. Ask instead from the day before your last successful poll (on 15 November, `from_updated_date:2026-11-14`) and upsert by `id`; records you already have just come back again.
 
 The real superpower is that they **combine with any other filter**, which makes this the method for keeping a *subset* of OpenAlex synced. Most mirrors don't need the whole database: an institution tracking its own research output, say, only needs its own works, and standing up snapshot infrastructure for that is wild overkill. One polling loop covers it:
 

@@ -1,6 +1,6 @@
 ---
 title: "Example costs"
-updated: 2026-10-23
+updated: 2026-11-15
 description: "What OpenAlex API operations cost, what your free daily budget buys, and the price of some common activities."
 tags: ["reference"]
 synonyms: ["costs", "credits", "api pricing", "rate card", "what it costs"]
@@ -15,8 +15,8 @@ OpenAlex data is free; what costs money is *usage* of the API. This page makes t
 | Operation | Description | **Cost per 1,000 calls** |
 |-----------|-------------|--------------------------|
 | [Get single entity](/api/get-single-entities/) | Retrieve one entity by ID or DOI | **Free** |
-| [List + filter](/api/filtering/) | Query and filter entities | **$0.10** |
-| [Search](/api/searching/) | Full-text keyword search | **$1** |
+| [List + filter](/api/filtering/) | Query and filter entities (filters that don't search) | **$0.10** |
+| [Search](/api/searching/) | Full-text keyword search: the `search` parameter, or any `.search` filter (`default.search`, `title.search`...) | **$1** |
 | [Group by](/api/grouping/) | Counts by a field (`group_by=`), on a list or a search | **$0.10** on a list, **$1** on a search |
 | [Rerank](/api/searching/#rerank) | Add-on: the top 100 results reordered by relevance (`rerank=true`) | **+$1** (a reranked search: **$2**) |
 | [Semantic search](/api/searching/) | AI-powered semantic search | **$1** |

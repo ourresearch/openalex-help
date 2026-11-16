@@ -695,6 +695,13 @@
 /access/quickstart/  /quickstart/  301
 /tutorials/quickstart  /quickstart/  301
 /tutorials/quickstart/  /quickstart/  301
+# Old pre-launch help links still printed elsewhere: docs.openalex.org's "get
+# started with OpenAlex" (ZD 6814) and the old works article's "several other
+# sources" (ZD 2764). Oxjob #1108.
+/getting-started  /quickstart/  301
+/getting-started/  /quickstart/  301
+/how-it-works  /data/how-its-built/  301
+/how-it-works/  /data/how-its-built/  301
 
 # Pass AC.2 (Jason 2026-08-08): "How it works" dissolved. The pipeline article
 # moved to Data as "How it's built"; sustainability + the stale FAQ pricing
