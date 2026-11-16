@@ -58,11 +58,11 @@ The first is the core only; the second, only the expansion; the third, core and 
 
 The default view also leaves out works that are a piece of another work and are not a traditional scholarly work: a book's front matter and index, an encyclopedia entry, a figure or data file with its own DOI. The rule is exact and uses two public filters: a work is left out when [`has_parent_work`](/data/works/attributes/#parent_works) is true and [`is_traditional`](/data/works/attributes/#is_traditional) is false. So chapters, proceedings papers and articles stay, because they are traditional works. Where pieces nest (a file in a dataset in a collection), only the top one shows.
 
-Nothing is deleted. The pieces come back when you ask for them:
+Nothing is deleted. Add `include_parts=true` to any works query and the pieces come back:
 
 ```bash
-# Everything, pieces and expansion included
-curl "https://api.openalex.org/works?corpus=all"
+# The core corpus with every piece: ~323M works
+curl "https://api.openalex.org/works?include_parts=true"
 
 # One work's parts: front matter and chapters alike
 curl "https://api.openalex.org/works?filter=parent_works.id:W3109397498"
@@ -71,7 +71,7 @@ curl "https://api.openalex.org/works?filter=parent_works.id:W3109397498"
 curl "https://api.openalex.org/works?filter=has_parent_work:true,is_traditional:false"
 ```
 
-Any filter on `has_parent_work`, `parent_works.id`, `parent_works.relationship` or `lineage` shows the pieces without `corpus=all`. A single work fetched by ID (`/works/W…`) always answers. Counts on other entities (an author's `works_count`) still include the pieces. See [Parent and child works](/data/relationships/#parent-and-child-works).
+A filter on `has_parent_work`, `parent_works.id`, `parent_works.relationship` or `lineage` shows the pieces too, since it asks about them. A single work fetched by ID (`/works/W…`) always answers. Counts on other entities (an author's `works_count`) still include the pieces. See [Parent and child works](/data/relationships/#parent-and-child-works).
 
 ## Why the expansion is opt-in
 
