@@ -47,6 +47,12 @@ We leave out declared links that can't be a hierarchy: a record that claims more
 
 `lineage` means what it means on [institutions](/data/institutions/#lineage) and publishers: the thing itself plus all of its ancestors. A relationship on each link is how [awards](/data/awards/) and institutions describe their own parents and children.
 
+### How relationships are named
+
+A relationship's value is a noun that names the link itself, not one end of it, so it reads the same from either work: `component`, `volume`, and later `citation` or `retraction`. Its definition reads from the work that carries the link ("The work is ...").
+
+Linked-data vocabularies name the same links with verbs, such as Dublin Core's `isPartOf`. Each relationship lists those terms in [`standard_terms`](#standard_terms). A standard term can be broader than ours: all four part-of kinds are `isPartOf`.
+
 ## Values
 
 | ID | Display name | Definition |
@@ -70,6 +76,24 @@ The top-level fields on a **relationship** object. Attributes shared with other 
 
 ### `description`
 *String.* What the relationship means, in a sentence (the definitions in [Values](#values)).
+
+### `standard_terms`
+*List of objects.* The same link in standard vocabularies, so you can map OpenAlex relationships to linked data. Each object has:
+
+- `vocabulary`: the vocabulary's name: `Dublin Core`, `schema.org`, `DataCite`, `Crossref` or `DCAT`.
+- `term`: the term as that vocabulary spells it, e.g. `isPartOf`.
+- `url`: where that vocabulary defines the term.
+
+```json
+"standard_terms": [
+  {"vocabulary": "Dublin Core", "term": "isPartOf", "url": "http://purl.org/dc/terms/isPartOf"},
+  {"vocabulary": "schema.org", "term": "isPartOf", "url": "https://schema.org/isPartOf"},
+  {"vocabulary": "DataCite", "term": "IsPartOf", "url": "https://datacite-metadata-schema.readthedocs.io/en/4.6/appendices/appendix-1/relationType/#ispartof"},
+  {"vocabulary": "Crossref", "term": "isPartOf", "url": "https://www.crossref.org/documentation/schema-library/markup-guide-metadata-segments/relationships/"}
+]
+```
+
+`data-series` also lists DCAT's [`inSeries`](https://www.w3.org/ns/dcat#inSeries). A standard term can be broader than the relationship: it says the same kind of link, not the same detail.
 
 ### `works_count`
 *Integer.* How many works have a parent through this kind of link. See [Common attributes](/data/common-attributes/#works_count).
