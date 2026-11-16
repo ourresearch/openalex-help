@@ -130,7 +130,7 @@ The paging and view parameters work alongside `oql`:
 | `cursor` | yes | deep paging; start with `cursor=*`, follow `meta.next_cursor` |
 | `sort` | yes | classic `sort=column:direction`, e.g. `sort=cited_by_count:desc`. It's written into the query: `meta.x_query.oql` comes back with the order phrase (`, most cited first`). |
 | `select` | yes | classic `select=field,field` to project a subset of fields |
-| `rerank` | yes | `rerank=true` reorders the top 100 of a relevance-sorted works search by relevance; result 101 onward is unchanged. Adds 10 credits. See [Rerank](https://help.openalex.org/api/searching/#rerank) |
+| `rerank` | yes | `rerank=true` reorders the top 100 of a relevance-sorted works search by relevance; result 101 onward is unchanged. Adds 10 credits to a page it reranks. See [Rerank](https://help.openalex.org/api/searching/#rerank) |
 | `format` | yes | `format=csv` on a table of groups returns its groups as one flat CSV: one row per group, a column per split, a column per number. A single split by a field pages: add `cursor=*` and follow the `X-Next-Cursor` header (10,000 groups a page); without a cursor it holds the first 10,000. Costs the query's price for every 100 rows |
 | `table` | yes | with `format=csv`: `table=summary` returns the summary instead: `all-works.csv` (the whole set, one row), and with two splits a zip of it plus `by-<split>.csv` for each split's groups on their own. Default `groups` |
 | `api_key` | yes | or send `Authorization: Bearer <key>` (see Auth below) |
