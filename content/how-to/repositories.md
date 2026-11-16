@@ -1,6 +1,6 @@
 ---
 title: "Repositories"
-updated: 2026-11-05
+updated: 2026-11-15
 description: "For repository managers: how to get harvested by OpenAlex, check your Harvest tab, allowlist our harvester, troubleshoot coverage, and report a problem so it gets fixed."
 tags: ["data"]
 synonyms: ["add my repository", "register repository", "institutional repository", "OAI-PMH endpoint", "not being harvested", "records missing", "harvest status", "DSpace", "EPrints", "Digital Commons", "firewall", "allowlist", "IP address", "user agent", "repository bug", "report a problem", "endpoint changed", "migrated repository", "expansion corpus", "coverage"]
@@ -37,7 +37,7 @@ Most registration failures are the endpoint's own OAI-PMH quirks, and you can ch
 
 - **Give us the OAI-PMH base URL, not your homepage.** Test it: `https://your-endpoint/oai?verb=Identify` should return XML with your repository's name in it, and `…?verb=ListRecords&metadataPrefix=oai_dc` should return records. If either returns a web page or an error, that's not the URL we need. Typical shapes: `/oai/request` (DSpace), `/cgi/oai2` (EPrints), `/do/oai/` (Digital Commons), `/index.php/<journal>/oai` (OJS).
 - **No login, API key, or IP restriction on the feed.** We fetch it anonymously. If you run a firewall or a bot-blocker in front of it, [allowlist us](#how-do-i-allowlist-openalexs-harvester).
-- **A correct `earliestDatestamp` in your `Identify` response.** We start your first harvest there, and we read its format to decide whether to send dates with or without times. A date in the future or long after your oldest record silently truncates the back catalog.
+- **A well-formed `earliestDatestamp` in your `Identify` response.** We read its format to decide whether to send dates with or without times. Your first harvest asks for every record with no start date, so a wrong date there doesn't cut off your back catalog, but other harvesters may still trust it.
 - **Answer within 15 seconds per request.** That's our timeout. If your platform takes longer to warm up from cold, the first request of the day fails and we try again tomorrow. We make at most three requests to any host at once.
 - **Serve `oai_dc`.** That is the metadata format we read. Records with an empty `<metadata>` element are skipped, not fatal.
 - **A DOI and a title in each record**, so we can match it. Details in [Making your records match better](#how-can-i-make-my-records-match-better).
