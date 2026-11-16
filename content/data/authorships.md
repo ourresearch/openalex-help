@@ -25,9 +25,11 @@ Each of the author's [`raw_affiliation_strings`](#raw_affiliation_strings) is ma
 
 ### How many authors a work shows
 
-To keep lists fast, a work in a list of works (filter, search and sample results) shows only its **first 100 authorships**, in byline order. The single-work endpoint ([`/works/W4416450507`](https://api.openalex.org/works/W4416450507), 2,424 authors) and the [snapshot](/access/snapshot/) show all of them, up to **5,000**: for the rare work with more than 5,000 authors, OpenAlex keeps the first 5,000 in byline order, and `authors_count` stops at 5,000 too.
+To keep lists fast, a work in a list of works (filter, search and sample results) shows only its **first 100 authorships**, in byline order; [`is_authors_truncated`](/data/works/attributes/#is_authors_truncated) says when a work has more. The single-work endpoint ([`/works/W4416450507`](https://api.openalex.org/works/W4416450507), 2,424 authors) and the [snapshot](/access/snapshot/) show all of them, up to **5,000**: for the rare work with more than 5,000 authors, OpenAlex keeps the first 5,000 in byline order, and `authors_count` stops at 5,000 too.
 
 Filters on authors, ORCIDs, institutions, countries and corresponding authors (`authorships.author.id`, `authorships.author.orcid`, `authorships.institutions.id`, `.lineage`, `.ror`, `.country_code`, `.type`, the `institutions.*` shortcuts, `authorships.countries` and `authorships.is_corresponding`) search every authorship a work keeps. Two still look at the first 100 only: `raw_affiliation_strings` and `raw_author_name.search`.
+
+Exports from the website (CSV, RIS, Web of Science text, BibTeX) carry every author the single work shows, not the list's first 100.
 
 Counts like [`countries_distinct_count`](/data/works/attributes/#countries_distinct_count) and [`institutions_distinct_count`](/data/works/attributes/#institutions_distinct_count) count every author, including any past the first 5,000.
 

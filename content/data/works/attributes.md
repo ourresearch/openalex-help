@@ -68,6 +68,9 @@ Filter: `parent_works.id:W3109397498` lists a book's parts, `has_parent_work:tru
 ### `authorships`
 *List.* [Authorship](/data/authorships/) objects, each pairing an author with their institution(s) and role on the work. In a list of works, each work shows its first 100; the single-work endpoint (`/works/{id}`) and the snapshot show all of them, up to 5,000. See [How many authors a work shows](/data/authorships/#how-many-authors-a-work-shows). Filter by the region or city of the authors' institutions with `authorships.institutions.geo.region` and `authorships.institutions.geo.city` (looked up at query time).
 
+### `is_authors_truncated`
+*Boolean.* In a list of works, `true` when [`authorships`](#authorships) holds only the work's first 100 authors, `false` when it holds them all. For the full list, fetch the single work (`/works/{id}`), which leaves this key out. Filter with `authors_count:>100`.
+
 ### `corresponding_author_ids`
 *List.* OpenAlex IDs of authors whose authorship has `is_corresponding: true`.
 
