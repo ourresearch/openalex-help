@@ -74,7 +74,7 @@ export const NAV_GROUPS: Record<string, NavGroup[]> = {
     {
       label: 'Component',
       desc: 'Parts of a work without their own OpenAlex IDs.',
-      slugs: ['component', 'authorships', 'locations', 'raw-affiliation-strings'],
+      slugs: ['component', 'authorships', 'locations', 'links', 'raw-affiliation-strings'],
     },
     {
       label: 'Aboutness',

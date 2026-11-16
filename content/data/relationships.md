@@ -1,15 +1,16 @@
 ---
 title: "Relationships"
 updated: 2026-11-16
-description: "The kinds of part-of link between a work and its parent work (volume, component, data series, part), how parent and child works are built, and how to list a book's chapters or everything under a work."
+description: "The kinds of link between two works: citation, and the part-of kinds (volume, component, data series, part); how parent and child works are built, and how to list a book's chapters or everything under a work."
 tags: ["reference"]
 entity:
   example: "relationships/volume"
   api: "relationships"
   linksTo:
     - "works"
+    - "links"
 ---
-A **relationship** says how a [work](/data/works/) is part of its parent work: a chapter in a book, a figure of a paper, one record of a data series. There are four. Each entry in a work's [`parent_works`](/data/works/attributes/#parent_works) carries one. A relationship's OpenAlex ID looks like `https://openalex.org/relationships/volume`; list all four at [`api.openalex.org/relationships`](https://api.openalex.org/relationships).
+A **relationship** is the kind of [link](/data/links/) between two [works](/data/works/): a citation, or a part-of link (a chapter in a book, a figure of a paper, one record of a data series). There are five: `citation`, and four part-of kinds, one on each entry in a work's [`parent_works`](/data/works/attributes/#parent_works). A relationship's OpenAlex ID looks like `https://openalex.org/relationships/volume`; list all five at [`api.openalex.org/relationships`](https://api.openalex.org/relationships), and list a work's links at [`/links`](/data/links/).
 
 ## About
 
@@ -23,7 +24,7 @@ Three attributes on every work carry this:
 - [`lineage`](/data/works/attributes/#lineage): the work itself, then every ancestor, nearest first.
 - [`child_works_count`](/data/works/attributes/#child_works_count): how many works name it as a parent.
 
-Only part-of links make a parent. Versions of one work (a preprint and its article) are merged into one work. A citation is a reference. A dataset behind a paper is its own work, not the paper's child.
+Only part-of links make a parent. Versions of one work (a preprint and its article) are merged into one work. A citation is a link too, but not a parent: its relationship is `citation`. A dataset behind a paper is its own work, not the paper's child.
 
 A work can have more than one parent, and a parent can have a parent (a chapter in a book in a book series). There are no loops.
 
@@ -49,7 +50,7 @@ We leave out declared links that can't be a hierarchy: a record that claims more
 
 ### How relationships are named
 
-A relationship's value is a noun that names the link itself, not one end of it, so it reads the same from either work: `component`, `volume`, and later `citation` or `retraction`. Its definition reads from the work that carries the link ("The work is ...").
+A relationship's value is a noun that names the link itself, not one end of it, so it reads the same from either work: `citation`, `component`, `volume`, and later `retraction`. Its definition reads from the work that carries the link ("The work is ...").
 
 Linked-data vocabularies name the same links with verbs, such as Dublin Core's `isPartOf`. Each relationship lists those terms in [`standard_terms`](#standard_terms). A standard term can be broader than ours: all four part-of kinds are `isPartOf`.
 
@@ -57,6 +58,7 @@ Linked-data vocabularies name the same links with verbs, such as Dublin Core's `
 
 | ID | Display name | Definition |
 |----|--------------|------------|
+| `citation` | Citation | The work cites another work: that work is in its reference list. |
 | `volume` | Volume | The work is in a book or proceedings volume: a chapter, entry, front matter or paper of that volume. |
 | `component` | Component | The work is a piece of another work that does not stand alone: a figure, table, file or supplement. |
 | `data-series` | Data series | The work is one record of a data series: datasets published separately that share an instrument and method. |
@@ -80,7 +82,7 @@ The top-level fields on a **relationship** object. Attributes shared with other 
 ### `standard_terms`
 *List of objects.* The same link in standard vocabularies, so you can map OpenAlex relationships to linked data. Each object has:
 
-- `vocabulary`: the vocabulary's name: `Dublin Core`, `schema.org`, `DataCite`, `Crossref` or `DCAT`.
+- `vocabulary`: the vocabulary's name: `Dublin Core`, `schema.org`, `DataCite`, `Crossref`, `DCAT` or `CiTO`.
 - `term`: the term as that vocabulary spells it, e.g. `isPartOf`.
 - `url`: where that vocabulary defines the term.
 
@@ -93,13 +95,13 @@ The top-level fields on a **relationship** object. Attributes shared with other 
 ]
 ```
 
-`data-series` also lists DCAT's [`inSeries`](https://www.w3.org/ns/dcat#inSeries). A standard term can be broader than the relationship: it says the same kind of link, not the same detail.
+`data-series` also lists DCAT's [`inSeries`](https://www.w3.org/ns/dcat#inSeries). `citation` lists Dublin Core's `references`, schema.org's `citation`, DataCite's `References` and `Cites`, Crossref's `references` and [CiTO](http://purl.org/spar/cito/cites)'s `cites`. A standard term can be broader than the relationship: it says the same kind of link, not the same detail.
 
 ### `works_count`
-*Integer.* How many works have a parent through this kind of link. See [Common attributes](/data/common-attributes/#works_count).
+*Integer.* How many works carry this kind of link: works with at least one matched reference for `citation`, works with a parent of that kind for the others. See [Common attributes](/data/common-attributes/#works_count).
 
 ### `works_api_url`
-*String.* A ready-made [Works](/data/works/) API URL for every work with a parent of this kind (`filter=parent_works.relationship:<ID>`).
+*String.* A ready-made [Works](/data/works/) API URL for the works that carry this kind of link (`filter=has_references:true` for `citation`, `filter=parent_works.relationship:<ID>` for the others).
 
 ### `created_date`
 *String.* When the relationship was added to OpenAlex (`YYYY-MM-DDTHH:MM:SS`, an ISO 8601 date and time). See [Common attributes](/data/common-attributes/#created_date).
@@ -109,7 +111,7 @@ The top-level fields on a **relationship** object. Attributes shared with other 
 
 ## In the API
 
-The Relationships endpoint is at [`api.openalex.org/relationships`](https://api.openalex.org/relationships). Fetch one by ID, [`/relationships/volume`](https://api.openalex.org/relationships/volume), or list all four.
+The Relationships endpoint is at [`api.openalex.org/relationships`](https://api.openalex.org/relationships). Fetch one by ID, [`/relationships/volume`](https://api.openalex.org/relationships/volume), or list all five. To list the links themselves, use [`/links`](/data/links/).
 
 Relationships are most useful from the works side:
 

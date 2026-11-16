@@ -22,11 +22,12 @@ This page is the index. What each entity *is*, and what every field on it *means
 
 ## Component endpoints
 
-[Component](/data/component/) entities are parts of a work. They have no minted OpenAlex ID, but two of them have their own list endpoints; locations are addressed by a namespaced id (`doi:…`, `pmh:…`, `pmid:…`, `mag:…`) rather than a letter-prefixed one.
+[Component](/data/component/) entities are parts of a work. They have no minted OpenAlex ID, but three of them have their own list endpoints; locations are addressed by a namespaced id (`doi:…`, `pmh:…`, `pmid:…`, `mag:…`) rather than a letter-prefixed one.
 
 | Endpoint | List / single | What it returns |
 |---|---|---|
 | `/locations` | `/locations` · `/locations/doi:…` | [Locations](/data/locations/) — every harvested copy of a work, one row per copy |
+| `/links` | `/links?filter=from:W…` · `/links?filter=to:W…` | [Links](/data/links/) — work-to-work links (citations and part-of), one work at a time |
 | `/raw-affiliation-strings` | `/raw-affiliation-strings` | [Raw affiliation strings](/data/raw-affiliation-strings/) — distinct affiliation strings as printed |
 
 ## Aboutness endpoints
@@ -47,6 +48,7 @@ This page is the index. What each entity *is*, and what every field on it *means
 | Endpoint | What it returns |
 |---|---|
 | `/work-types` | [Work types](/data/work-types/) |
+| `/relationships` | [Relationships](/data/relationships/): the kinds of link between two works (citation, volume, component, data series, part) |
 | `/source-types` | [Source types](/data/source-types/) |
 | `/institution-types` | [Institution types](/data/institution-types/) |
 | `/countries` | [Countries](/data/countries/) |
