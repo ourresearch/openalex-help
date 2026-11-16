@@ -1,6 +1,6 @@
 ---
 title: "Relationships"
-updated: 2026-11-15
+updated: 2026-11-16
 description: "The kinds of part-of link between a work and its parent work (volume, component, data series, part), how parent and child works are built, and how to list a book's chapters or everything under a work."
 tags: ["reference"]
 entity:
@@ -128,3 +128,5 @@ https://api.openalex.org/works?filter=type:book,child_works_count:>100
 ```
 
 `parent_works.id` and `lineage` take a work ID, short (`W3109397498`) or full. `parent_works.relationship` takes the short value (`volume`). See [Filtering](/api/filtering/) for the syntax and the [endpoints index](/api/endpoints/) for every endpoint.
+
+`child_works_count` counts parts in both [corpora](/data/works/corpus/), but works lists show the core corpus unless you ask for more. The parts of an expansion work (most Zenodo and repository records are expansion works) are usually expansion works too, so add `corpus=all` to list them: [`/works?filter=parent_works.id:W6931481510&corpus=all`](https://api.openalex.org/works?filter=parent_works.id:W6931481510&corpus=all) lists the 8 chapters of an IPBES report on Zenodo; without `corpus=all` it lists none.
