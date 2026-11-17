@@ -11,15 +11,27 @@ A work is **pulled** when its publisher, its host (a journal, preprint server or
 
 > **The one thing to know:** pulled works are left out of works lists, searches and counts by default. Add `include_pulled=true` to bring them back. Looking a work up by its ID or DOI always answers, with `is_pulled` showing.
 
+## Why hide them, and why keep them
+
+People use OpenAlex in two ways: to get at the knowledge in the scholarly record, and to study the record itself. For the first, pulled works should mostly just go away. Pulled means someone in the know took the work out of the record, yet retracted papers [keep turning up in AI answers](https://www.technologyreview.com/2025/09/23/1123897/ai-models-are-using-material-from-retracted-scientific-papers/), and [chatbots catch fewer than half of them](https://retractionwatch.com/2025/11/19/ai-unreliable-identifying-retracted-research-papers-study/). Hiding them by default keeps us from passing along bad information.
+
+For the second, pulled works are really useful: for finding papers [other systems still cite](https://news.illinois.edu/retracted-scientific-paper-persists-in-new-citations-study-finds/) and should take down, for studying retractions (most [come from misconduct, not honest error](https://pmc.ncbi.nlm.nih.gov/articles/PMC3479492/)), or for [comparing publishers by their share of pulled works](https://arxiv.org/abs/2602.19197). So we hide them by default and keep every one.
+
 ## What counts
 
-| Pulled | Not pulled |
-|---|---|
-| Retracted works ([`is_retracted`](/data/works/attributes/#is_retracted)) | Corrections, errata and addenda |
-| Works the publisher withdrew or removed, as its Crossref record says | Expressions of concern |
-| Preprints and repository records their host marks withdrawn or removed ("WITHDRAWN:", "Removed due to policy violations") | Partial retractions |
-| | A retract-and-replace: the corrected version stands |
-| | A Cochrane review withdrawn because it is out of date |
+**Pulled:**
+
+- Retracted works ([`is_retracted`](/data/works/attributes/#is_retracted))
+- Works the publisher withdrew or removed, as its Crossref record says
+- Preprints and repository records their host marks withdrawn or removed ("WITHDRAWN:", "Removed due to policy violations")
+
+**Not pulled:**
+
+- Corrections, errata and addenda
+- Expressions of concern
+- Partial retractions
+- A retract-and-replace: the corrected version stands
+- A Cochrane review withdrawn because it is out of date
 
 The last two need a word. Retraction Watch records a retract-and-replace, and a Cochrane review withdrawn as out of date, as retractions, so a few hundred of these works read `is_retracted: true` but `is_pulled: false`. A Cochrane review withdrawn for a problem with the review itself (unreliable data, misconduct) is pulled.
 
