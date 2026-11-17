@@ -1,6 +1,6 @@
 ---
 title: "Fulltext"
-updated: 2026-11-10
+updated: 2026-11-17
 description: "OpenAlex's cached full text — PDFs and Grobid TEI XML for 60M+ open-access works, linked from every work via content_urls — and how to download it at any scale, from one file to the whole archive."
 tags: ["downloads"]
 source_id: "download/full-text-pdfs"
@@ -123,7 +123,7 @@ For TEI XML, do the same with `grobid_xml_id || '.xml.gz'` and the `openalex-gro
 
 The files the manifest lists come to ~113 TB of PDFs and ~1.5 TB of XML, so plan on a cloud VM with multi-gigabit networking: at 1–2 Gbit/s sustained, expect **5–10 days** for the initial copy. A home connection is not a realistic option for the whole archive (a few hundred Mbit/s would take months).
 
-We add files every day. We plan to move files no work uses out of the buckets, and will email PDF sync clients the date before we do. As a sensible default, validate each file on ingest (check the leading `%PDF` magic bytes and skip implausibly small objects).
+We add files every day. We plan to move files no work uses out of the buckets, and will email PDF sync clients the date before we do. As a sensible default, validate each file on ingest: check the leading `%PDF` magic bytes, skip implausibly small objects, and run the two checks under [PDF quality and limitations](#pdf-quality-and-limitations).
 
 ## Mapping work IDs to files
 
@@ -203,6 +203,17 @@ Filter your candidate set with `has_content.pdf:true` (available in the [snapsho
 
 > **Warning:**
 > Do **not** map work IDs to archive objects via `locations[].pdf_url`. That field is the *original publisher* URL, not the archive object — keying off it produces a lossy, inferred match. Use the manifest or the content endpoint instead.
+
+## PDF quality and limitations
+
+`has_content.pdf: true` means we hold a copy of the work's PDF. It doesn't promise you can extract text from it. Scanned PDFs have no text layer, and some publisher PDFs embed fonts with no Unicode map, so text tools return glyph codes instead of words. Those files are faithful copies of what the publisher serves.
+
+A small share of the PDFs we hold, about 1 in 100, were damaged when we fetched them (files we've fetched recently don't show it): bytes went missing, so pages come out blank or the file won't open. They still start with `%PDF-`, so a header check won't catch them. Two cheap checks on each file catch most of them:
+
+- the file ends with `%%EOF` (look in its last few kilobytes);
+- the number after the last `startxref` is smaller than the file's size in bytes.
+
+For the rest, the sign is a text extraction that comes back empty for a file that should have text. If you find a damaged file, please send the work ID to [support@openalex.org](mailto:support@openalex.org).
 
 ## TEI XML quality and limitations
 
