@@ -5,7 +5,7 @@ description: "A work is pulled when its publisher, host or authors retracted, wi
 tags: ["reference"]
 synonyms: ["retracted", "retraction", "retracted works", "withdrawn", "withdrawal", "removed", "pulled", "is_pulled", "include_pulled", "is_retracted", "retraction watch"]
 ---
-A work is **pulled** when its publisher, its host (a journal, preprint server or repository) or its authors retracted, withdrew or removed it. OpenAlex keeps every pulled work and marks it with [`is_pulled`](/data/works/attributes/#is_pulled). "Pulled" reports what someone else did to the work. It is not our judgment of the research. About 118,000 works are pulled.
+A work is **pulled** when its publisher, its host (a journal, preprint server or repository) or its authors retracted, withdrew or removed it. OpenAlex keeps every pulled work and marks it with [`is_pulled`](/data/works/attributes/#is_pulled). "Pulled" reports what someone else did to the work. It is not our judgment of the research. [See every pulled work on the website](https://openalex.org/works?page=1&filter=is_pulled:true)<span data-live-count="is_pulled:true" data-live-text=" ({n} right now)" hidden></span>.
 
 > **Starting Thursday 19 November 2026.** The `is_pulled` field is live now; the default described here starts on the 19th. Until then, pulled works still show in lists and counts.
 
@@ -33,7 +33,7 @@ For the second, pulled works are really useful: for finding papers [other system
 - A retract-and-replace: the corrected version stands
 - A Cochrane review withdrawn because it is out of date
 
-The last two need a word. Retraction Watch records a retract-and-replace, and a Cochrane review withdrawn as out of date, as retractions, so a few hundred of these works read `is_retracted: true` but `is_pulled: false`. A Cochrane review withdrawn for a problem with the review itself (unreliable data, misconduct) is pulled.
+The last two need a word. Retraction Watch records a retract-and-replace, and a Cochrane review withdrawn as out of date, as retractions, so some of these works<span data-live-count="is_retracted:true,is_pulled:false" data-live-text=" ({n} right now)" hidden></span> read `is_retracted: true` but `is_pulled: false`. A Cochrane review withdrawn for a problem with the review itself (unreliable data, misconduct) is pulled.
 
 ## Left out by default
 

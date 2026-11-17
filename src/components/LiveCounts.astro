@@ -1,0 +1,27 @@
+---
+// Live works counts in an article (oxjob #2264): a count written into a page goes stale within a day, so a page
+// marks the spot instead and the reader's browser asks the API when the page opens:
+//
+//   <span data-live-count="is_pulled:true" data-live-text=" ({n} right now)" hidden></span>
+//
+// data-live-count is a works filter; {n} in data-live-text becomes meta.count, formatted. The span stays hidden
+// (the sentence must read whole without it) when JS is off, the API doesn't answer, or the count is 0.
+// One credit per count.
+---
+
+<script is:inline>
+  (() => {
+    for (const el of document.querySelectorAll('[data-live-count]')) {
+      const url = 'https://api.openalex.org/works?per_page=1&select=id&filter=' + el.dataset.liveCount;
+      fetch(url)
+        .then((r) => (r.ok ? r.json() : Promise.reject(r.status)))
+        .then((d) => {
+          const n = d && d.meta && d.meta.count;
+          if (typeof n !== 'number' || n === 0) return; // a zero never reads right in a sentence
+          el.textContent = (el.dataset.liveText || '{n}').replace('{n}', n.toLocaleString('en-US'));
+          el.hidden = false;
+        })
+        .catch(() => {});
+    }
+  })();
+</script>
