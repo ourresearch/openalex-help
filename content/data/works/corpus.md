@@ -75,7 +75,7 @@ A filter on `has_parent_work`, `parent_works.id`, `parent_works.relationship` or
 
 ## Pulled works are left out too
 
-The default view also leaves out [pulled works](/data/works/pulled/): about 118,000 works their publisher, host or authors retracted, withdrew or removed ([`is_pulled`](/data/works/attributes/#is_pulled)). This rule ignores the corpus: no `corpus` value brings them back. Nothing is deleted. Add `include_pulled=true` to any works query and they come back:
+The default view also leaves out [pulled works](/data/works/pulled/): works their publisher, host or authors retracted, withdrew or removed<span data-live-count="is_pulled:true" data-live-text=" ({n} right now)" hidden></span> ([`is_pulled`](/data/works/attributes/#is_pulled)). This rule ignores the corpus: no `corpus` value brings them back. Nothing is deleted. Add `include_pulled=true` to any works query and they come back:
 
 ```bash
 # The default view with pulled works
