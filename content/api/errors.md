@@ -1,6 +1,6 @@
 ---
 title: "Error Handling"
-updated: 2026-11-16
+updated: 2026-11-17
 description: "API error codes and retry strategies"
 tags: ["api"]
 source_id: "api-reference/errors"
@@ -57,16 +57,33 @@ Error responses include a message explaining what went wrong:
 
 ```
 429 Too Many Requests
-"Rate limit exceeded"
+{
+  "error": "Rate limit exceeded",
+  "message": "Rate limit exceeded: this key can send 50 requests per second. Your daily budget is not affected ($143.20 left today). Retry after 1s. Limits: https://help.openalex.org/api/authentication/#rate-limits",
+  "reason": "requests_per_second",
+  "perSecondLimit": 50,
+  "retryAfter": 0.012,
+  "dailyRemainingUsd": 143.2
+}
 ```
 
-**Fix:**
-- Check rate limit headers to see your remaining allowance
-- Wait the number of seconds in the `Retry-After` header, then retry
-- A new account spends its first $1 at up to $0.10 every 5 minutes; see [New accounts](/api/authentication/#new-accounts)
-- Add delays between requests
+The body's `reason` says which limit you hit:
+
+| `reason` | What happened | What to do |
+|---|---|---|
+| `requests_per_second` | More requests per second than your key's limit (10, 30 or 50; see [Per-second limits](/api/authentication/#per-second-limits)) | Wait `Retry-After` (usually 1 second) and retry. Your daily budget is untouched. |
+| `broad_boolean_query` | A search with more than 5 `AND`/`OR`/`NOT` came too soon after the previous one (1, 2 or 5 a second) | Send these searches one at a time, or narrow the query. |
+| `wide_or_filter` | A filter joins more than 10 `topics.id`, `primary_topic.id`, `concepts.id` or `concept.id` values with `\|` (1 a second) | Split the list into requests of at most 10 values. |
+| `semantic_search` | A second [semantic search](/api/semantic-search/) within the same second | Wait a second and retry. |
+| `first_dollar` | A [new account](/api/authentication/#new-accounts) spending its first $1 faster than the new-account pace | Wait the `Retry-After` seconds. |
+| `daily_budget` | Today's budget (and any prepaid usage) is spent | Wait for midnight UTC, or add [prepaid usage](/access/pricing/). |
+
+A per-second `429` costs nothing. `perSecondLimit` gives the limit you hit, and `dailyRemainingUsd` and the `X-RateLimit-Remaining` headers show what's left of today's budget. A few rarer `429`s (keyless traffic while search is under heavy load, an account we've throttled) carry no `reason`; wait the `Retry-After` seconds and retry.
+
+**To stay under the limits:**
+- Check [`/rate-limit`](/api/authentication/#keeping-tabs-on-your-usage) for your key's limits and today's budget
 - Use `per_page=100` to reduce total requests
-- Consider a [paid plan](/access/pricing/) for higher limits
+- Consider a [paid plan](/access/pricing/) for a bigger daily budget
 
 ### Plan upgrade required
 

@@ -1,6 +1,6 @@
 ---
 title: "Partner"
-updated: 2026-11-02
+updated: 2026-11-17
 description: "The Partner plan (from $20,000/year): everything in Member+, plus a $200+/day API budget, full support, and — for academic and government institutions — power-user accounts and annual consulting hours."
 tags: ["reference"]
 synonyms: ["partner plan", "enterprise plan", "premium plan"]
@@ -23,7 +23,7 @@ On top of the academic/government benefits every plan carries (the [affiliation 
 
 ### 3 power-user accounts
 
-Grant extra-high API limits to three users in your organization — for the researchers or engineers who push the hardest.
+Give up to three people in your organization a $25/day budget on their own personal API key (instead of the free $1/day), on top of your organization's budget rather than out of it — for the researchers or engineers who run their own scripts. On openalex.org they're called "High-volume user keys"; see [Organization keys and budgets](/api/authentication/#organization-keys-and-budgets).
 
 ### 5 hours of consulting per year
 

@@ -88,6 +88,14 @@ You can replace your key with a new one anytime in [Settings → API key](https:
 
 Organization keys work the same way, from the organization's API settings. One thing to know about personal keys: your key is also your openalex.org sign-in credential, so rotating it logs you out on your other browsers and devices right away — the grace window applies to API requests only.
 
+## Organization keys and budgets
+
+An organization on an [annual plan](/access/pricing/) has an **organization key** that carries the plan's daily budget ($20 a day on Member, $100 on Member+, $200 or more on Partner). Owners of the organization manage it on [openalex.org/settings/org-api](https://openalex.org/settings/org-api).
+
+- **Personal keys stay personal.** Everyone in your organization also has their own key with its own budget ($1 a day on a free account). A personal key never spends the organization's budget, and the organization key never spends anyone's personal budget.
+- **Seeing the organization's budget.** Owners see what the organization key has used and has left today on the same settings page. Other members don't see that page. Anyone who holds the organization key can check it any time with [`/rate-limit`](#keeping-tabs-on-your-usage); each person sees their own key's usage at [openalex.org/settings/usage](https://openalex.org/settings/usage).
+- **High-volume user keys (Partner).** A Partner organization's owners can give up to 3 members a bigger budget on their personal key: $25 a day instead of $1. It comes on top of the organization key's budget, not out of it, so it suits staff who run their own scripts or tests apart from your production key. Owners assign them in the "High-volume user keys" section of the settings page; the member's openalex.org account must belong to your organization (an email on one of its domains). If everything you run uses the organization key, you don't need them.
+
 ## Rate limits
 
 Basic use is free and generous, and a free key gives you 10× the keyless budget; you can raise it further with a [paid plan](/access/pricing/). Three things return `429 Too Many Requests`: exceeding your daily budget, sending requests faster than your per-second limit, or a [new account](#new-accounts) spending its first $1 faster than the new-account pace. For the budget numbers themselves — and what typical activity actually uses — see [Example costs](/access/example-costs/).
@@ -142,6 +150,28 @@ The [`meta`](/api/#response-format) object also reports the cost of the call and
 
 ```bash
 curl "https://api.openalex.org/rate-limit?api_key=YOUR_KEY"
+```
+
+```json
+{
+  "api_key": "abc...xyz",
+  "rate_limit": {
+    "daily_budget_usd": 200,
+    "daily_used_usd": 56.8,
+    "daily_remaining_usd": 143.2,
+    "prepaid_balance_usd": 0,
+    "resets_at": "2026-11-18T00:00:00.000Z",
+    "resets_in_seconds": 10612,
+    "per_second_limits": {
+      "all_requests": 50,
+      "searches_with_more_than_5_boolean_operators": 5,
+      "filters_with_more_than_10_topic_or_concept_ids": 1,
+      "semantic_search": 1,
+      "docs": "https://help.openalex.org/api/authentication/#rate-limits"
+    },
+    "endpoint_costs_usd": { "singleton": 0, "list": 0.0001, "search": 0.001, "...": "..." }
+  }
+}
 ```
 
 It returns today's budget, what you've used and what's left, when it resets, and your key's per-second limits (`per_second_limits`). Checking `/rate-limit` is free: it never counts against your budget. If it can't read your usage at that moment, it says so instead of guessing: it answers `503` with `"reason": "usage_lookup_failed"` and a `Retry-After` header. Wait that many seconds and check again.
