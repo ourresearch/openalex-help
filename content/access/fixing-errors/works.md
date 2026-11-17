@@ -1,6 +1,6 @@
 ---
 title: "Works"
-updated: 2026-08-09
+updated: 2026-11-17
 description: "How to report errors on works — wrong open-access status, broken fulltext links, bad metadata — and what makes a report we can act on."
 tags: ["reference"]
 ---
@@ -24,6 +24,10 @@ If the work really is open, **include the URL of the free-to-read copy** — tha
 ## Broken or wrong fulltext link
 
 A related case: OpenAlex says a work is open but the link is broken — it 404s, points at the wrong article, or lands on the wrong file. Report it like any other work error, and include the broken URL plus, if you know it, the URL it should be.
+
+## Wrong retracted or pulled flag
+
+If a work is marked [pulled](/data/works/pulled/) (retracted, withdrawn or removed) and isn't, or was pulled and we don't say so, report it with the work's ID or DOI and a link to the publisher's or host's notice. Our curators correct `is_retracted` with a [curation](/data/curations/), which wins over every source and takes effect the next night.
 
 ## Why work errors happen
 

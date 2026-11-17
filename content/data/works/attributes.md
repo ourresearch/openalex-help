@@ -187,6 +187,9 @@ See [Open access](/data/works/open-access/) for how these fields combine.
 ### `is_retracted`
 *Boolean.* True if the work is known to be retracted: the [Retraction Watch database](https://doi.org/10.13003/c23rw1d9) lists its DOI as a retracted paper (and not as reinstated), or Crossref or PubMed records a retraction of it, or its title starts "Retracted". We read Retraction Watch every day, as Crossref publishes it, so a retraction added there usually shows here the next day. A retracted paper with no DOI is flagged only through Crossref, PubMed or its title. Where these sources are wrong about one work, our curators correct it with a [curation](/data/curations/), which wins over them.
 
+### `is_pulled`
+*Boolean.* True if the work's publisher, host or authors retracted, withdrew or removed it: every retracted work (except a retract-and-replace and a Cochrane review withdrawn as out of date), plus works their publisher's Crossref record withdraws or removes and preprints or repository records their host stamps withdrawn or removed. Pulled works are left out of works lists, searches and counts unless you add `include_pulled=true`; a filter on `is_pulled` or `is_retracted` brings them back too. Looking a work up by ID always shows it. See [Pulled works](/data/works/pulled/).
+
 ### `is_paratext` *(deprecated)*
 *Boolean.* True if the work is [paratext](/data/work-types/) (covers, tables of contents, mastheads, and similar). Now derived directly from `type` — true exactly when `type` is `paratext`. Filter with `type:paratext` instead.
 

@@ -1,6 +1,6 @@
 ---
 title: "Common attributes"
-updated: 2026-11-07
+updated: 2026-11-17
 description: "The attributes that appear on nearly every OpenAlex entity — id, ids, display_name, counts_by_year, summary_stats, and the rest — documented once."
 tags: ["reference"]
 ---
@@ -20,7 +20,7 @@ A handful of attributes appear on nearly every OpenAlex entity. They mean the sa
 ## Scale & influence
 
 ### `works_count`
-*Integer.* How many works are associated with this entity — authored by an author, published in a source, affiliated with an institution, tagged with a topic, and so on. For [works](/data/works/) themselves this field is absent.
+*Integer.* How many works are associated with this entity — authored by an author, published in a source, affiliated with an institution, tagged with a topic, and so on. For [works](/data/works/) themselves this field is absent. It counts [pulled works](/data/works/pulled/) (retracted, withdrawn or removed), which a works list leaves out by default, so the list can come out shorter.
 
 ### `cited_by_count`
 *Integer.* The total number of [citations](/data/works/attributes/#cited_by_count) this entity has received — summed across all of its works for non-work entities. Recomputed as the graph updates, so it drifts upward over time.

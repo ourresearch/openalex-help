@@ -1,6 +1,6 @@
 ---
 title: "Systematic Reviews"
-updated: 2026-10-23
+updated: 2026-11-17
 subtitle: "Build a reproducible systematic-review search in OQL: term blocks, exact vs. stemmed matching, and scope filters."
 description: "Build a real systematic-review search strategy in OQL: term blocks, exact vs. stemmed matching, scope filters, and a reproducible query you can paste straight into your appendix."
 tags: ["recipes", "oql"]
@@ -52,10 +52,10 @@ get works from 2015–2025 with ((vaping OR vape OR "e-cigarette" OR stemmed "el
 
 ## Exclude what you don't want
 
-`NOT` inside the search string pushes terms out, for example animal studies. To leave out retracted works, say `non-retracted`:
+`NOT` inside the search string pushes terms out, for example animal studies. Retracted and withdrawn works ([pulled works](/data/works/pulled/)) are left out already, so the search doesn't need to say so:
 
 ```
-get non-retracted works from 2015–2025 with ((vaping OR vape OR "e-cigarette" OR stemmed "electronic cigarette") AND (adolescent OR teen OR youth) AND (health OR harm OR risk) NOT (mice OR murine)) in the title or abstract where type is ([article](article) or [review](review)) and language is [English](en)
+get works from 2015–2025 with ((vaping OR vape OR "e-cigarette" OR stemmed "electronic cigarette") AND (adolescent OR teen OR youth) AND (health OR harm OR risk) NOT (mice OR murine)) in the title or abstract where type is ([article](article) or [review](review)) and language is [English](en)
 ```
 
 That's the finished strategy: one sentence for your appendix.

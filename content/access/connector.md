@@ -1,6 +1,6 @@
 ---
 title: "AI agent connector"
-updated: 2026-11-05
+updated: 2026-11-17
 description: "The free OpenAlex connector for Claude (ChatGPT coming soon): ask about the literature in plain language, get the exact query behind every answer, and fix your own author profile in conversation."
 synonyms: ["MCP", "MCP server", "Model Context Protocol", "Claude connector", "OpenAlex connector", "connectors directory", "Claude", "ChatGPT", "custom connector"]
 tags: ["reference"]
@@ -69,7 +69,7 @@ The agent chooses among sixteen tools: eleven that read OpenAlex, and five that 
 
 Every search comes back with the exact query that ran, written in [OQL](/access/oql/), plus a link that reruns it. Ask Claude for "the query you used" and you can paste it into the OQL tab on openalex.org, put it in a methods section, or refine it by hand. For a systematic search, ask Claude to build the query, preview the count and a sample, and tighten it before running. Ask for a *thorough* search and Claude also adds OpenAlex keywords that mean your topic in other words (searches already match the keywords your phrases name): they find papers that use other wording, are written in other languages, or have no abstract, and Claude tells you how many the keywords added and shows you a sample of them.
 
-Retracted works are left out by default, everywhere, including queries you write in OQL; ask for them explicitly ("include retracted works") when you want them, and a lookup of a retracted paper says so plainly. Keyword searches match titles and abstracts by default, which keeps citation-ranked results on topic. Ask for "full text" if you want the broader match. Semantic search works best with a sentence or two describing what you're after.
+[Pulled works](/data/works/pulled/) (retracted, withdrawn or removed) are left out by default, everywhere, as they are on the website and in the API; ask for them explicitly ("include pulled works") when you want them, and a lookup of a pulled paper says so plainly. Keyword searches match titles and abstracts by default, which keeps citation-ranked results on topic. Ask for "full text" if you want the broader match. Semantic search works best with a sentence or two describing what you're after.
 
 ## Fixing your author profile
 

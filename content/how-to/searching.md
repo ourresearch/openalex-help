@@ -27,7 +27,7 @@ Your results are now the top 100, ready to export or analyze. (If the count is s
 
 ## How do I omit retracted works from my analysis?
 
-Add a filter: click "Add filter", type "retracted", and select it. Then set the filter's dropdown to "is not". Retracted works are now excluded from your results. In the API, that's `filter=is_retracted:false`. Through the [AI agent connector](/access/connector/) they're excluded already, and you have to ask for them to get them back.
+You don't need to: retracted works, and every other work its publisher, host or authors withdrew or removed, are [pulled works](/data/works/pulled/), and OpenAlex leaves them out by default, on the website, in the API and through the [AI agent connector](/access/connector/). Add nothing. To bring them back, add `include_pulled=true` to an API query. A filter on retracted (`filter=is_retracted:false`, or "retracted is not" on the website) now brings withdrawn works back in, because naming the field asks about them.
 
 ## How do I get the query Claude used?
 

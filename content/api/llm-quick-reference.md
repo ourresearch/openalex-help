@@ -1,6 +1,6 @@
 ---
 title: "LLM Quick Reference"
-updated: 2026-11-16
+updated: 2026-11-17
 description: "OpenAlex API reference optimized for AI agents"
 tags: ["api"]
 source_id: "guides/llm-quick-reference"
@@ -29,7 +29,9 @@ Corpus: default = curated core (~295M works; ~323M with include_parts=true, whic
         pieces of other works like figures and front matter). corpus=all adds the ~122M-work
         expansion corpus (formerly "XPAC"); corpus=expansion selects it alone; each
         work has an is_xpac boolean. (Legacy include_xpac=true = corpus=all; deprecated —
-        never combine it with corpus=.)
+        never combine it with corpus=.) Pulled works (~118K retracted, withdrawn or removed;
+        is_pulled) are left out whatever the corpus; include_pulled=true brings them back, and so
+        does a filter or group_by on is_pulled / is_retracted.
 ```
 
 ## Entity Endpoints
@@ -112,6 +114,7 @@ select=         - Limit returned fields (e.g., select=id,title)
 group_by=       - Aggregate results by a field
 corpus=         - core (default) | expansion | all — which works corpus to query (/works only; legacy include_xpac=true = corpus=all, deprecated)
 include_parts=  - true adds pieces of other works (figures, front matter, data-series records) that the default /works view leaves out
+include_pulled= - true adds pulled works (retracted, withdrawn or removed: is_pulled) that the default /works view leaves out
 ```
 
 > **Note:**

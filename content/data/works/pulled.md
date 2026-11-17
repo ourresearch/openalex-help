@@ -7,8 +7,6 @@ synonyms: ["retracted", "retraction", "retracted works", "withdrawn", "withdrawa
 ---
 A work is **pulled** when its publisher, its host (a journal, preprint server or repository) or its authors retracted, withdrew or removed it. OpenAlex keeps every pulled work and marks it with [`is_pulled`](/data/works/attributes/#is_pulled). "Pulled" reports what someone else did to the work. It is not our judgment of the research. [See every pulled work on the website](https://openalex.org/works?page=1&filter=is_pulled:true)<span data-live-count="is_pulled:true" data-live-text=" ({n} right now)" hidden></span>.
 
-> **Starting Thursday 19 November 2026.** The `is_pulled` field is live now; the default described here starts on the 19th. Until then, pulled works still show in lists and counts.
-
 > **The one thing to know:** pulled works are left out of works lists, searches and counts by default. Add `include_pulled=true` to bring them back. Looking a work up by its ID or DOI always answers, with `is_pulled` showing.
 
 ## Why hide them, and why keep them
