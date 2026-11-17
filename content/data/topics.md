@@ -1,6 +1,6 @@
 ---
 title: "Topics"
-updated: 2026-10-26
+updated: 2026-11-17
 description: "What a topic is, how OpenAlex assigns topics to works and rolls them up into a four-level hierarchy, and what every attribute on a topic object means."
 tags: ["reference"]
 source_id: "24736129405719"
@@ -31,7 +31,7 @@ Each topic's `score` is the model's **probability that this is the work's main t
 
 Some works get no topic at all. The model can say a work is **not classifiable**, mostly for records with no abstract and too little title text to go on (data files, specimen records, front matter). Works with neither a title nor an abstract are never classified. About 10% of works have no topic; count them with [`filter=primary_topic.id:null`](https://api.openalex.org/works?filter=primary_topic.id:null).
 
-The topics themselves (their names, IDs, descriptions and places in the hierarchy) did not change when the new classifier replaced the old one in October 2026; only the assignments to works did. Because [FWCI](/data/works/citations/#field-weighted-citation-impact) and citation percentiles compare a work with others in its primary subfield, they changed for most works at the same time.
+The topics themselves (their names, IDs, descriptions and places in the hierarchy) did not change when the new classifier replaced the old one in October 2026; only the assignments to works did. Some names and places in the hierarchy changed later, in November 2026: see [How the topic list changes](#how-the-topic-list-changes). Because [FWCI](/data/works/citations/#field-weighted-citation-impact) and citation percentiles compare a work with others in its primary subfield, they changed for most works at the same time.
 
 ### What changed in October 2026, and using the old topics
 
@@ -49,6 +49,15 @@ To reproduce a report made with the old topics, download every work's old topics
 from the [v2.0.0 release](https://github.com/ourresearch/openalex-topic-classification/releases/tag/v2.0.0). The
 [text aboutness endpoint](/api/tag-aboutness/#the-previous-topic-classifier-version1) keeps the old classifier at `/text/topics?version=1` until 13 January 2027, and the old classifier itself stays public: [code](https://github.com/ourresearch/openalex-topic-classification/tree/main/v1) on GitHub, [weights and training data](https://zenodo.org/records/10568402) on Zenodo.
 Snapshot users: this change did not move `updated_date`, so reload fully from the 14 October 2026 snapshot.
+
+### How the topic list changes
+
+The set of 4,516 topics and their IDs stays fixed: OpenAlex doesn't add, remove, split or merge topics, so analyses built on topic IDs keep working. A topic's name and its place in the hierarchy can change.
+
+- **Names.** In November 2026, 56 topics got new names that describe the works the classifier assigns them, so that no two topics share a name or the same words in a different order. The new names were checked against fresh samples of the topics' works before they shipped. Seven subfields got back the labels ASJC gives them, such as "Genetics (clinical)".
+- **Subfields.** Also in November 2026, every topic with works was checked against the subfield it sits under, and 972 topics moved to the subfield whose scope best covers their works. The review was automated. Two AI models from different labs each looked at 20 of a topic's works: one rated the current subfield, the other ranked subfields without seeing it. A topic moved only when both called its subfield wrong; a third model settled the destination when the two picked different ones, and the moves were checked on a separate sample of works. Two subfields, 1502 Bioengineering and 3614 Radiological and Ultrasound Technology, were left with no topics.
+
+Because [FWCI](/data/works/citations/#field-weighted-citation-impact) and citation percentiles compare a work with others in its primary subfield, many works' values changed when topics moved. If a topic looks misnamed or misplaced, [file a ticket](https://openalex.org/contact) with its ID (for example `T11636`).
 
 ### One primary subfield per work
 
