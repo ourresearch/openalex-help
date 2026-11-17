@@ -1,6 +1,6 @@
 ---
 title: "Authentication"
-updated: 2026-11-16
+updated: 2026-11-17
 description: "API keys, sending your key, rate limits, and keeping tabs on your usage"
 tags: ["api"]
 source_id: "api-reference/authentication"
@@ -92,13 +92,23 @@ Organization keys work the same way, from the organization's API settings. One t
 
 Basic use is free and generous, and a free key gives you 10× the keyless budget; you can raise it further with a [paid plan](/access/pricing/). Three things return `429 Too Many Requests`: exceeding your daily budget, sending requests faster than your per-second limit, or a [new account](#new-accounts) spending its first $1 faster than the new-account pace. For the budget numbers themselves — and what typical activity actually uses — see [Example costs](/access/example-costs/).
 
-| Who's calling | Requests per second |
-|---------------|---------------------|
-| No API key | 10 |
-| Free API key, or prepaid usage | 30 |
-| [Annual plan](/access/pricing/) | 50 |
+### Per-second limits
 
-A few heavy request types have lower limits of their own: [semantic search](/api/semantic-search/) is 1 request per second, and searches with more than 5 `OR`/`AND`/`NOT` operators are limited to 1 (no key), 5 (free key or prepaid usage) or 25 (annual plan) per second. A per-second 429 costs nothing; wait a moment and retry.
+Every key can send a set number of requests per second, and a few heavy kinds of request have lower limits of their own. With no key, the limits count per IP address.
+
+| Requests per second | No API key | Free key, or prepaid usage | [Member](/access/member/) | [Member+](/access/member-plus/) or [Partner](/access/partner/) |
+|---|---|---|---|---|
+| All requests | 10 | 30 | 50 | 50 |
+| Searches with more than 5 `AND`/`OR`/`NOT` operators | 1 | 2 | 2 | 5 |
+| Filters with more than 10 values joined by `\|` on `topics.id`, `primary_topic.id`, `concepts.id` or `concept.id` | 1 | 1 | 1 | 1 |
+| [Semantic search](/api/semantic-search/) | 1 | 1 | 1 | 1 |
+
+- **All requests:** you can send up to a second's worth at once (50 on an annual plan), and the allowance refills at the same rate. Above the limit, only the excess is refused: at a steady 60 requests a second on a 50 limit, about 1 in 6 gets a `429`; at 100 a second, half do.
+- **The three search limits:** these refuse a request that comes too soon after the previous one, with no room for bursts. Send these requests one at a time, or evenly spaced. The numbers above are the steady rates that run with no `429`s; parallel bursts can be refused even below them.
+- **A per-second `429` costs nothing and leaves your daily budget alone.** Its body says which limit you hit (`"reason"`: `requests_per_second`, `broad_boolean_query`, `wide_or_filter` or `semantic_search`) and the limit itself (`"perSecondLimit"`). Wait the `Retry-After` seconds (usually 1) and retry. `"reason": "daily_budget"` means today's budget is spent; it resets at midnight UTC.
+- **[`/rate-limit`](#keeping-tabs-on-your-usage)** lists your key's per-second limits under `per_second_limits`.
+
+Until 27 June 2026 every caller could send 100 requests per second; older copies of these docs say 100.
 
 ### New accounts
 
@@ -134,7 +144,7 @@ The [`meta`](/api/#response-format) object also reports the cost of the call and
 curl "https://api.openalex.org/rate-limit?api_key=YOUR_KEY"
 ```
 
-Checking `/rate-limit` is free: it never counts against your budget. If it can't read your usage at that moment, it says so instead of guessing: it answers `503` with `"reason": "usage_lookup_failed"` and a `Retry-After` header. Wait that many seconds and check again.
+It returns today's budget, what you've used and what's left, when it resets, and your key's per-second limits (`per_second_limits`). Checking `/rate-limit` is free: it never counts against your budget. If it can't read your usage at that moment, it says so instead of guessing: it answers `503` with `"reason": "usage_lookup_failed"` and a `Retry-After` header. Wait that many seconds and check again.
 
 ## Best practices
 

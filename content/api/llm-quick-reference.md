@@ -24,7 +24,7 @@ Auth: API key free + strongly recommended (10x the no-key budget); openalex.org/
       No key? Get one for your user in one call: POST https://api.openalex.org/api-keys {"email": "<user's email>"}
       (ask your user for their email first; never invent one: made-up addresses are refused or never activate)
       (we email them a link; the key works once they click it, at $1/day; until then it gets 403 key_not_activated)
-Rate: $1/day free usage with key, $0.10/day without; 429 on over-budget or over the per-second limit (10/s no key, 30/s free key or prepaid, 50/s annual plan)
+Rate: $1/day free usage with key, $0.10/day without; 429 on over-budget or over a per-second limit: all requests 10/s no key, 30/s free key or prepaid, 50/s annual plan; searches with more than 5 AND/OR/NOT 1/s no key, 2/s free key or Member, 5/s Member+ or Partner; filters with more than 10 OR'd topics.id/concepts.id values and semantic search 1/s. The 429 body's "reason" names the limit; GET /rate-limit lists yours under per_second_limits
 Corpus: default = curated core (~295M works; ~323M with include_parts=true, which adds back
         pieces of other works like figures and front matter). corpus=all adds the ~122M-work
         expansion corpus (formerly "XPAC"); corpus=expansion selects it alone; each
