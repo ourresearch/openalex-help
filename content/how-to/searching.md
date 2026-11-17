@@ -37,6 +37,14 @@ Ask for it: *"what query did you run?"* Every answer from the [AI agent connecto
 
 Only for a query sent as a URL (a GET request): the whole request URL can be at most 8,190 bytes, about 8 KB. For anything longer, send the query as [OQL](/access/oql/) in a POST body, which has no length limit and returns the same results; or split a long `OR` list into smaller queries and combine the IDs they return. The exact limit, how it's counted and the error you get are in [Large Boolean queries](/api/searching/#large-boolean-queries).
 
+On [openalex.org](https://openalex.org), the OQL tab sends your query in the body of the request, so it has no length limit. For a long Boolean search, such as a systematic review's, paste it into the OQL tab inside one pair of parentheses:
+
+```
+get works with (<your Boolean search>) in the title or abstract
+```
+
+A quoted phrase in OQL matches exactly; put `stemmed` before it (`stemmed "brain injury"`) to also match word variants.
+
 ## Where do I find the volume and issue of an article?
 
 Issue-level metadata lives in the work's [`biblio`](/data/works/attributes/#biblio) attribute — volume, issue, first page, and last page. You'll see it in exports from the website, or in the API response for any single work, e.g. [api.openalex.org/works/W2016949000](https://api.openalex.org/works/W2016949000).
