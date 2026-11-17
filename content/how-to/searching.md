@@ -1,6 +1,6 @@
 ---
 title: "Searching"
-updated: 2026-09-21
+updated: 2026-11-17
 description: "Recipes for common search questions: most-cited works, top-100 lists, excluding retractions, query length, and finding issue metadata."
 tags: ["search"]
 synonyms: ["most cited", "top cited", "retracted works", "query length", "volume and issue"]
@@ -35,7 +35,7 @@ Ask for it: *"what query did you run?"* Every answer from the [AI agent connecto
 
 ## Is there a limit to query length?
 
-Yes — queries are URLs, and the total URL is limited to about 4,000 characters. If your query won't fit, break it into several smaller queries combined with OR logic, export each result set, and combine them — deduplicating on the OpenAlex work ID to remove any overlap.
+Only for a query sent as a URL (a GET request): the whole request URL can be at most 8,190 bytes, about 8 KB. For anything longer, send the query as [OQL](/access/oql/) in a POST body, which has no length limit and returns the same results; or split a long `OR` list into smaller queries and combine the IDs they return. The exact limit, how it's counted and the error you get are in [Large Boolean queries](/api/searching/#large-boolean-queries).
 
 ## Where do I find the volume and issue of an article?
 
