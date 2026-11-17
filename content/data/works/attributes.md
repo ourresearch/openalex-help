@@ -1,6 +1,6 @@
 ---
 title: "Attributes"
-updated: 2026-11-16
+updated: 2026-11-17
 description: "The canonical dictionary of every attribute on a work object — what each one means, where it comes from, and its quirks."
 tags: ["reference"]
 ---
@@ -28,7 +28,7 @@ Filter: `doi:` matches a work whose own `doi` **or** any location's `doi` equals
 ### `alternate_titles`
 *List of strings.* The work's other titles, as its publisher deposited them: most often the same title in a second language, such as the English title of an Arabic or Japanese article, or the reverse. Empty when there are none (most works). They come from the work's Crossref record (the extra elements of its `title` list and its `original-title`), minus the title the work shows as [`title`](#title), repeats, and labels such as "English"; at most 5, in the order deposited. About 4.1M works have at least one.
 
-Search: `search=`, `title.search` and `title_and_abstract.search` (and their `.exact` forms) look in them too, so a work is found by any of its titles.
+Search: `search=`, `title.search` and `title_and_abstract.search` (and their `.exact` forms) look in them too, so a work is found by any of its titles. For example, [W3164863413](https://api.openalex.org/works/W3164863413) has an Arabic `title` and its English title in `alternate_titles`, and [`/works?filter=title.search:interactive whiteboard female teachers`](https://api.openalex.org/works?filter=title.search:interactive%20whiteboard%20female%20teachers) finds it.
 
 ### `type`
 *String.* The work's type (e.g. `article`, `preprint`, `dataset`, `paratext`). Every work has exactly one. See [Work types](/data/work-types/) for the full vocabulary and how the type is assigned.
