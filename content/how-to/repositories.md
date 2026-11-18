@@ -1,9 +1,9 @@
 ---
 title: "Repositories"
-updated: 2026-11-15
+updated: 2026-11-17
 description: "For repository managers: how to get harvested by OpenAlex, check your Harvest tab, allowlist our harvester, troubleshoot coverage, and report a problem so it gets fixed."
 tags: ["data"]
-synonyms: ["add my repository", "register repository", "institutional repository", "OAI-PMH endpoint", "not being harvested", "records missing", "harvest status", "DSpace", "EPrints", "Digital Commons", "firewall", "allowlist", "IP address", "user agent", "repository bug", "report a problem", "endpoint changed", "migrated repository", "expansion corpus", "coverage"]
+synonyms: ["add my repository", "register repository", "institutional repository", "OAI-PMH endpoint", "not being harvested", "records missing", "harvest status", "DSpace", "EPrints", "Digital Commons", "firewall", "allowlist", "IP address", "user agent", "bot wall", "Cloudflare", "Anubis", "page checks", "landing pages", "repository bug", "report a problem", "endpoint changed", "migrated repository", "expansion corpus", "coverage"]
 card: "Get harvested, read your Harvest tab, and tell us what to fix — all by support ticket."
 ---
 If you run a repository, OpenAlex is probably already harvesting it, and there's a lot you can do to make your records show up more completely and accurately. This page is the recipes. The mechanism (how harvesting, matching, and full-text detection actually work) lives in the [Repositories reference](/data/sources/repositories/).
@@ -123,7 +123,19 @@ The address is also published as a plain-text list at [/harvester-ips.txt](/harv
 
 Until November 2026 we harvested from a proxy provider's shared address; we no longer use it. If you allowlisted that address, replace it with `44.208.99.237`.
 
-Allowlist the IP, or the User-Agent, or both. This applies to **OAI-PMH harvesting only**. Fetching landing pages and PDFs to find full text uses rotating addresses we can't promise, and blocking those costs you open-access detection, so don't restrict it to the IP above. When we first verify a newly registered endpoint we may probe it once from a different address with a User-Agent that also starts with `OpenAlex`; if your firewall logs a block during registration, that's what it was.
+Allowlist the IP, or the User-Agent, or both. On its own that covers **OAI-PMH harvesting**. We fetch record pages and files separately, from rotating addresses unless your repository is on our list, so read [how to let our page checks through](#how-do-i-let-openalexs-page-checks-through) before you restrict anything to the IP above: blocking those fetches costs you open-access detection. When we first verify a newly registered endpoint we may probe it once from a different address with a User-Agent that also starts with `OpenAlex`; if your firewall logs a block during registration, that's what it was.
+
+## How do I let OpenAlex's page checks through?
+
+Besides harvesting your OAI-PMH feed, we look at the page or file each new record points to, to confirm there's a free copy and read its license. That check is what makes your records count as open access in OpenAlex and Unpaywall, so a bot wall in front of your record pages (a Cloudflare challenge, Anubis, a "confirm you are human" page) makes your open copies look closed.
+
+How much we ask for, measured over the 30 days to 17 November 2026 across about 8,000 repositories:
+
+- **Each new or changed record once:** its page, and its file when the record lists one. A fetch that fails for a passing reason (a timeout, a 429) is retried at most three times over a week.
+- **Runs every four hours**, at most 3,000 of your pages per run and never more than 10 at once.
+- **Half of repositories get under one page request a day from us; 95% get fewer than about 60.** A repository that adds or re-dates many records at once sees more for a few days.
+
+By default these checks go through a third-party service (Zyte), from addresses we can't name. If you allowlist our harvester's IP and User-Agent (above) for your record and file pages too and tell us, we put your repository on our list and fetch its pages from `44.208.99.237` with that User-Agent. If a page from that address is still challenged, we fall back to the usual route, so allowlisting can only help. To get on the list, reply to our email or write to [support@openalex.org](mailto:support@openalex.org) with your repository's address.
 
 ## How often do you harvest, and how long until a new deposit shows up?
 
