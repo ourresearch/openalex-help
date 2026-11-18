@@ -27,7 +27,7 @@ This page is the index. What each entity *is*, and what every field on it *means
 | Endpoint | List / single | What it returns |
 |---|---|---|
 | `/locations` | `/locations` · `/locations/doi:…` | [Locations](/data/locations/) — every harvested copy of a work, one row per copy |
-| `/links` | `/links?filter=from:W…` · `/links?filter=to:W…` | [Links](/data/links/) — work-to-work links (citations and part-of), one work at a time |
+| `/links` | `/links?filter=origin:W…` · `/links?filter=target:W…` | [Links](/data/links/) — work-to-work links (citations and part-of), one work at a time |
 | `/raw-affiliation-strings` | `/raw-affiliation-strings` | [Raw affiliation strings](/data/raw-affiliation-strings/) — distinct affiliation strings as printed |
 
 ## Aboutness endpoints
