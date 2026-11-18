@@ -69,7 +69,7 @@ Pulled works still count toward an author's, journal's or institution's [`works_
 - **arXiv:** withdrawn preprints.
 - **Copernicus meeting sites** (EGU and others): abstracts withdrawn from the meeting.
 - **The work's own title:** a stamp such as "Retracted:", "WITHDRAWN:", "REMOVED:" or IEEE's "Notice of Retraction", unless the work is the notice about another paper.
-- **[Curations](/data/curations/):** our curators' corrections to `is_retracted` win over every source.
+- **[Curations](/data/curations/):** our curators' corrections to `is_retracted` and `is_pulled` win over every source.
 
 The flag is rebuilt every night. A retraction Crossref records today shows in the API tomorrow (10 to 38 hours later); one known only to Retraction Watch waits for Retraction Watch's own update. A pulled work's [`updated_date`](/data/works/attributes/#updated_date) is the night it changed.
 
