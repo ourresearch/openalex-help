@@ -1,6 +1,6 @@
 ---
 title: "Repositories"
-updated: 2026-11-17
+updated: 2026-11-18
 description: "For repository managers: how to get harvested by OpenAlex, check your Harvest tab, allowlist our harvester, troubleshoot coverage, and report a problem so it gets fixed."
 tags: ["data"]
 synonyms: ["add my repository", "register repository", "institutional repository", "OAI-PMH endpoint", "not being harvested", "records missing", "harvest status", "DSpace", "EPrints", "Digital Commons", "firewall", "allowlist", "IP address", "user agent", "bot wall", "Cloudflare", "Anubis", "page checks", "landing pages", "repository bug", "report a problem", "endpoint changed", "migrated repository", "expansion corpus", "coverage"]
@@ -84,6 +84,8 @@ Because a repository *record* isn't an OpenAlex *work*. When your record matches
 Matching also depends on metadata: records without a cleanly reported DOI, or a matchable title and first author, can fail to match, and a record whose only DOI is one your repository minted looks like a different paper to us. See [Why a repository seems to be missing most of its works](/data/sources/repositories/#why-a-repository-seems-to-be-missing-most-of-its-works).
 
 To see exactly what we hold from you, use the *records (locations)* count on your Harvest tab and its API link: `api.openalex.org/locations?filter=source_id:S<id>`. Every record we harvested and kept is there, whether or not it matched.
+
+If items you can see in your repository aren't in that count at all, check your own feed next: we can only harvest what your endpoint's `ListRecords` returns. On DSpace 7 and later (including DSpace-CRIS), the OAI-PMH feed is served from a separate OAI index, which only changes when `[dspace]/bin/dspace oai import` runs, usually from a nightly cron job. If that job stops, new items never reach the feed, and edited ones keep their old datestamps. The signs: your newest deposits are missing from `ListRecords`, and the feed's newest datestamp is months old. Running the import, and scheduling it, fixes it; our next daily harvest picks the items up.
 
 ## How do I see my repository's unmatched records?
 
