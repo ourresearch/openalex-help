@@ -1,0 +1,34 @@
+---
+// Security is a top-level page like Quickstart: our vulnerability disclosure
+// policy and the list of published advisories (oxjob #1831). Its source is
+// content/security.md, outside the tab collections, so the tab routes never
+// pick it up. security.txt on our domains and the org-wide SECURITY.md on
+// GitHub link here, so keep the URL /security/.
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/PageHeader.astro';
+import * as security from '../../content/security.md';
+
+const { Content, frontmatter } = security;
+---
+
+<Base title={frontmatter.title} description={frontmatter.description}>
+  <article
+    class="prose"
+    data-pagefind-body
+    data-pagefind-meta="eyebrow:Security"
+  >
+    <PageHeader
+      title={frontmatter.title}
+      lede={frontmatter.subtitle}
+      crumbs={[{ label: 'Security', icon: 'shield' }]}
+    />
+    <Content />
+  </article>
+</Base>
+
+<style>
+  article.prose {
+    max-width: 46rem;
+    margin: 0 auto;
+  }
+</style>
