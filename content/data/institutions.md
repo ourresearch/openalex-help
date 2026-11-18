@@ -1,6 +1,6 @@
 ---
 title: "Institutions"
-updated: 2026-10-26
+updated: 2026-11-18
 description: "What an institution is, how OpenAlex grounds them in ROR and matches raw affiliation strings to them, and what every attribute on an institution object means."
 tags: ["reference"]
 entity:
@@ -27,6 +27,8 @@ The hard problem isn't naming institutions — it's *linking works to them*. Wor
 ### Lineage and hierarchy
 
 Because OpenAlex inherits ROR's lineage structure, an institution can roll up to a parent — so you can report on a specific lab or on the university it belongs to. The [`lineage`](#lineage) field lists an institution together with all of its ancestors, and [`associated_institutions`](#associated_institutions) records parent, child, and related organizations. Some large umbrella organizations (e.g. the University of California System, along with some governments and multinational companies) are flagged as **super systems** via [`is_super_system`](#is_super_system); these are excluded from certain analyses so they don't swamp collaborating-institution results. Complex national research systems (such as French *unités mixtes de recherche*, which belong to several parents at once) are handled through this same ROR lineage.
+
+Because works are matched to the unit a string names, an institution's works can be counted three ways, and every institution carries all three: [`works_count`](#works_count) (the institution itself), [`works_count_with_children`](#works_count_with_children) (plus its units, such as labs and hospitals) and [`works_count_with_children_and_predecessors`](#works_count_with_children_and_predecessors) (plus the institutions it replaced in a merger). For INRAE in November 2026 these were about 223,000, 577,000 and 612,000 works. The institution's page on the website shows each count that differs from the one before it. A super system's counts don't include its members, just as no institution's `lineage` lists a super system.
 
 ### Country assignment
 
@@ -108,7 +110,13 @@ This is the canonical dictionary of every attribute on an **institution** object
 *List.* Like [`topics`](#topics), but ranked by this institution's *share* of each topic relative to all institutions — surfacing topics where the institution is disproportionately active rather than just high-volume. Filter with `topic_share.id`.
 
 ### `works_count`
-*Integer.* The number of works affiliated with this institution itself, not counting its units (child institutions such as labs and hospitals, or merged predecessor records). To include them, filter works on `authorships.institutions.lineage`, as the website does. See [Common attributes](/data/common-attributes/#works_count). Filterable, sortable, and groupable.
+*Integer.* The number of works affiliated with this institution itself, not counting its units (child institutions such as labs and hospitals, or merged predecessor records); [`works_count_with_children`](#works_count_with_children) and [`works_count_with_children_and_predecessors`](#works_count_with_children_and_predecessors) count those too. Matches the works filter `authorships.institutions.id` with [`corpus=all`](/data/works/corpus/). See [Common attributes](/data/common-attributes/#works_count). Filterable, sortable, and groupable.
+
+### `works_count_with_children`
+*Integer.* The number of works affiliated with this institution or any institution beneath it in ROR's hierarchy, at every level (its labs, hospitals, institutes and their own units). A work affiliated with several of them counts once. Predecessors are not included, and no single works filter returns exactly this set, so on the website this count has no link. Filterable and sortable.
+
+### `works_count_with_children_and_predecessors`
+*Integer.* [`works_count_with_children`](#works_count_with_children) plus works affiliated with the institutions this one replaced (a university absorbed by merger, for example) and their units: every institution whose [`lineage`](#lineage) includes this one. Each work counts once. Matches the works filter `authorships.institutions.lineage` with [`corpus=all`](/data/works/corpus/); without it, that filter (which the website uses for an institution's works list) counts the core corpus only. Filterable and sortable.
 
 ### `cited_by_count`
 *Integer.* Total citations across this institution's works. See [Common attributes](/data/common-attributes/#cited_by_count). Filterable, sortable, and groupable.
@@ -124,6 +132,12 @@ This is the canonical dictionary of every attribute on an **institution** object
 
 ### `works_api_url`
 *String.* A ready-made [Works](/data/works/) API URL for every work affiliated with this institution — e.g. `https://api.openalex.org/works?filter=institutions.id:I27837315`. A convenience link, not a stored value; follow it to page through the actual works.
+
+### `awards_count`
+*Integer.* The number of [awards](/data/awards/) (grants) that name this institution as the institution awarded, the recipient of the money. Counts the institution itself, not its units. Filterable and sortable.
+
+### `awards_api_url`
+*String.* A ready-made [Awards](/data/awards/) API URL for the awards this institution received, e.g. `https://api.openalex.org/awards?filter=institution_awarded.id:I27837315`.
 
 ### `created_date`
 *String.* The date this institution was added to OpenAlex (`YYYY-MM-DDTHH:MM:SS`, an ISO 8601 date and time). See [Common attributes](/data/common-attributes/#created_date).

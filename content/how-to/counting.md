@@ -1,6 +1,6 @@
 ---
 title: "Counting"
-updated: 2026-10-26
+updated: 2026-11-18
 description: "Recipes for counting questions: which journals publish most on a topic, totaling citations to a result set, checking a journal's coverage, and why two counts of the same thing can disagree."
 tags: ["search"]
 synonyms: ["count citations", "journal coverage", "is a journal in openalex", "counts by year", "top journals", "top journals on a topic", "which journals publish on", "where to publish"]
@@ -40,7 +40,7 @@ Search for the journal by name and click it — that filters to works whose prim
 
 The `counts_by_year`, `works_count`, and `cited_by_count` numbers nested inside an entity (an author, institution, or source) are **precomputed**. They are refreshed regularly, so they trail a live works query only slightly (typically well under 1%). When the gap is bigger, it usually comes from one of these:
 
-- **Institutions and publishers count only themselves.** An institution's `works_count` counts works tagged with that institution, not its units (labs, hospitals, merged predecessor records); a publisher's counts its own sources, not its imprints'. The website's works list for an institution or publisher includes those units, because it filters on `lineage` (`authorships.institutions.lineage`, `primary_location.source.host_organization_lineage`).
+- **Institutions and publishers count only themselves.** An institution's `works_count` counts works tagged with that institution, not its units (labs, hospitals, merged predecessor records); a publisher's counts its own sources, not its imprints'. The website's works list for an institution or publisher includes those units, because it filters on `lineage` (`authorships.institutions.lineage`, `primary_location.source.host_organization_lineage`). For institutions, [`works_count_with_children_and_predecessors`](/data/institutions/#works_count_with_children_and_predecessors) is the count that matches that list (plus the expansion corpus).
 - **Entity counts include the expansion corpus.** `works_count` counts works in both corpora, while a works query counts only the core corpus unless you add [`corpus=all`](/data/works/corpus/).
 - **Topics count primary topics.** A topic's `works_count` counts works whose primary topic it is; filtering on `topics.id` also matches secondary topics.
 - **Sources count primary locations.** A source's `works_count` counts works whose primary location is that source.

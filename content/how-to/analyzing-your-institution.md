@@ -1,6 +1,6 @@
 ---
 title: "Analyzing your institution"
-updated: 2026-09-21
+updated: 2026-11-18
 description: "Count an institution's outputs on the OpenAlex website and break them down by type, subject, SDG, open access, citations, collaborators, and journals — plus APC spend and open-access trends."
 tags: ["analytics"]
 synonyms: ["institution outputs", "count publications", "outputs by type", "outputs by subfield", "SDG", "open access percentage", "APC fees", "citations", "collaborators", "journals published in"]
@@ -13,7 +13,7 @@ Most of these questions are answered the same way, on [openalex.org](https://ope
 
 ## How many outputs does my institution have?
 
-After you've filtered to your institution, the total under **Stats** is the count of all outputs affiliated with it. That total includes the institution's units (its labs, hospitals, and merged predecessor records), so it is usually larger than the works count on the institution's own page, which counts only works tagged with the institution itself.
+After you've filtered to your institution, the total under **Stats** is the count of all outputs affiliated with it. That total includes the institution's units (its labs, hospitals, and merged predecessor records). The institution's own page shows its works counted up to three ways: the institution itself, with its child institutions, and with its child and predecessor institutions. That last count covers the same works as the **Stats** total, plus works in the expansion corpus, so it can be a little larger ([why counts differ](/how-to/counting/#why-do-the-counts-by-year-numbers-differ-from-what-i-see-in-the-interface)).
 
 ## How many of each type of output does it have?
 
