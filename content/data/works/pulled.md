@@ -1,6 +1,6 @@
 ---
 title: "Pulled works"
-updated: 2026-11-17
+updated: 2026-11-18
 description: "A work is pulled when its publisher, host or authors retracted, withdrew or removed it. OpenAlex keeps pulled works, marks them with is_pulled, and leaves them out of lists, searches and counts unless you add include_pulled=true."
 tags: ["reference"]
 synonyms: ["retracted", "retraction", "retracted works", "withdrawn", "withdrawal", "removed", "pulled", "is_pulled", "include_pulled", "is_retracted", "retraction watch"]
@@ -23,7 +23,8 @@ For the second, pulled works are really useful: for finding papers [other system
 
 - Retracted works ([`is_retracted`](/data/works/attributes/#is_retracted))
 - Works the publisher withdrew or removed, as its Crossref record says
-- Preprints and repository records their host marks withdrawn or removed ("WITHDRAWN:", "Removed due to policy violations")
+- Preprints and repository records their host marks withdrawn or removed (arXiv withdrawals, "WITHDRAWN:", "Removed due to policy violations")
+- Conference abstracts the meeting withdrew, including after a no-show
 
 **Not pulled:**
 
@@ -65,11 +66,13 @@ Pulled works still count toward an author's, journal's or institution's [`works_
 - **Crossref:** a retraction, withdrawal or removal the publisher deposits on the work's record or in a notice that names it.
 - **[Retraction Watch](https://doi.org/10.13003/c23rw1d9):** works it lists as retracted and never reinstated, read every day.
 - **PubMed:** retractions it records.
-- **The work's own title:** a stamp such as "Retracted:", "WITHDRAWN:" or "REMOVED:", unless the work is the notice about another paper.
+- **arXiv:** withdrawn preprints.
+- **Copernicus meeting sites** (EGU and others): abstracts withdrawn from the meeting.
+- **The work's own title:** a stamp such as "Retracted:", "WITHDRAWN:", "REMOVED:" or IEEE's "Notice of Retraction", unless the work is the notice about another paper.
 - **[Curations](/data/curations/):** our curators' corrections to `is_retracted` win over every source.
 
 The flag is rebuilt every night. A retraction Crossref records today shows in the API tomorrow (10 to 38 hours later); one known only to Retraction Watch waits for Retraction Watch's own update. A pulled work's [`updated_date`](/data/works/attributes/#updated_date) is the night it changed.
 
 ## Known gaps
 
-We don't yet read arXiv withdrawals, withdrawn conference abstracts, or IEEE's "Notice of Retraction" title stamps, so some pulled works still read `false`. The notice itself (with its date and reason) isn't linked to the work yet. If a work is pulled and we say it isn't, or the other way round, [report it](/access/fixing-errors/works/#wrong-retracted-or-pulled-flag).
+Copernicus withdrawals come from a one-time read of the meeting sites, so an abstract withdrawn since then can still read `false`. The notice itself (with its date and reason) isn't linked to the work yet. If a work is pulled and we say it isn't, or the other way round, [report it](/access/fixing-errors/works/#wrong-retracted-or-pulled-flag).
