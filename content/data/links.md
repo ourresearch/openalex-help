@@ -58,7 +58,7 @@ Every request names a work with `origin` or `target`; a request that names none 
 # The works W2117905317 cites, and the works it is part of
 https://api.openalex.org/links?filter=origin:W2117905317
 
-# The works that cite W2741809807, or are part of it, newest first
+# The works that are part of W2741809807, then the works that cite it, newest first
 https://api.openalex.org/links?filter=target:W2741809807
 
 # Only one kind of link (join several with |)
@@ -70,7 +70,7 @@ https://api.openalex.org/links?filter=origin:W2117905317,target:W88818295
 
 - `origin` and `target` take one work ID, short (`W2741809807`) or full. A merged-away ID is read as the work it was merged into, and named in `meta.merged_ids`.
 - `relationship` takes `citation`, `volume`, `component`, `data-series` or `part` (the short value or the full ID).
-- Order: a work's outgoing links list its parent works first, then the works it cites in `referenced_works` order. Incoming links list the newest linking work first.
+- Order: a work's outgoing links list its parent works first, then the works it cites in `referenced_works` order. Incoming links list the work's parts first (its figures, chapters or records), then the works that cite it, newest first.
 - Paging works as on every list: `page` and `per_page` (up to 200) for the first 10,000 links, and [cursor paging](/api/paging/) for all of them.
 - `/links` has no `sort`, `group_by`, `search` or `select`. To count or group the works on either side, use the [works](/data/works/) filters `cites`, `referenced_works`, `parent_works.id` and `lineage`.
 
