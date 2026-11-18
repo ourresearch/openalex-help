@@ -1,6 +1,6 @@
 ---
 title: "Search"
-updated: 2026-11-16
+updated: 2026-11-17
 description: "Find entities using full-text search across titles, abstracts, and more"
 tags: ["api"]
 source_id: "guides/searching"
@@ -29,6 +29,8 @@ Each entity type searches different fields:
 | Institutions | `display_name`, `display_name_alternatives`, `display_name_acronyms` |
 | Topics/Keywords | `display_name`, `description` |
 | [Locations](/data/locations/) | `title` |
+
+A work's `fulltext` is text we took from its PDF, so only works with [`has_fulltext:true`](/data/works/attributes/#has_fulltext) (about 60 million) can match on words in their body. Every other work matches on its title, abstract and keywords.
 
 ## Keywords in search
 

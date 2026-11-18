@@ -1,6 +1,6 @@
 ---
 title: "How it's built"
-updated: 2026-11-13
+updated: 2026-11-17
 description: "How the OpenAlex dataset is built: gathering records from thousands of sources and organizing them into one connected knowledge graph. A map that points into the entity pages where each step is documented in full."
 tags: ["reference"]
 ---
@@ -16,7 +16,6 @@ We track the external [indexes](/data/indexes/) a record can come from — Cross
 - [ORCID](https://orcid.org/) and [ROR](https://ror.org/), the open identifier systems for researchers and institutions
 - [PubMed](https://pubmed.ncbi.nlm.nih.gov/) and [PubMed Central](https://www.ncbi.nlm.nih.gov/pmc/)
 - [DOAJ](https://doaj.org/) and [the ISSN International Centre](https://www.issn.org/)
-- The [Internet Archive](https://archive.org/details/GeneralIndex)
 - Aggregators and subject repositories: HAL, arXiv, Zenodo, Dergipark, OSTI, RePEc, and many more
 - Thousands of institutional [repositories](/data/sources/repositories/), from [UNC's CDR](https://cdr.lib.unc.edu/) to [Michigan's Deep Blue](https://deepblue.lib.umich.edu/documents) ([full list of repositories we harvest](https://openalex.org/sources?filter=type:repository))
 - Parsing of 70M+ open access PDFs, journal landing pages, and direct publisher feeds
