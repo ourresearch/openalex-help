@@ -27,7 +27,7 @@ A related case: OpenAlex says a work is open but the link is broken — it 404s,
 
 ## Wrong retracted or pulled flag
 
-If a work is marked [pulled](/data/works/pulled/) (retracted, withdrawn or removed) and isn't, or was pulled and we don't say so, report it with the work's ID or DOI and a link to the publisher's or host's notice. Our curators correct `is_retracted` with a [curation](/data/curations/), which wins over every source and takes effect the next night.
+If a work is marked [pulled](/data/works/pulled/) (retracted, withdrawn or removed) and isn't, or was pulled and we don't say so, report it with the work's ID or DOI and a link to the publisher's or host's notice. Our curators correct `is_pulled` (and `is_retracted`) with a [curation](/data/curations/), which wins over every source and takes effect the next night.
 
 ## Why work errors happen
 
