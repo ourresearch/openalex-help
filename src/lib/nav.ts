@@ -185,6 +185,7 @@ export const NAV_GROUPS: Record<string, NavGroup[]> = {
         'map-sdg-research',
         'systematic-reviews',
         'journals-you-cite',
+        'audit-the-literature',
       ],
     },
     {

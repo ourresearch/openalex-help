@@ -29,6 +29,7 @@ export const TUTORIAL_INTERFACES: Record<string, InterfaceId[]> = {
   'map-sdg-research': ['api'],
   'systematic-reviews': ['oql', 'web', 'api'],
   'journals-you-cite': ['api'],
+  'audit-the-literature': ['api', 'agents'],
   'find-collaborators': ['api'],
   'audit-a-profile': ['api'],
   'funder-portfolios': ['api'],
