@@ -1,6 +1,6 @@
 ---
 title: "Languages"
-updated: 2026-10-26
+updated: 2026-11-18
 description: "The languages a work's metadata can be in, the ISO 639-1 standard behind the list, the fields on a language object, and how to filter works by language."
 tags: ["reference"]
 source_id: "api-reference/languages"
@@ -12,15 +12,17 @@ entity:
   linksTo:
     - "works"
 ---
-A **language** is the language of a [work](/data/works/)'s metadata — its title and abstract — identified by a two-letter [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) code: `en` for English, `es` for Spanish, `zh` for Chinese. Languages are a [vocabulary](/data/vocabulary/): a fixed, standardized list OpenAlex attaches handles to rather than inventing. Each work carries a single [`language`](/data/works/attributes/#language), auto-detected with [langdetect](https://pypi.org/project/langdetect/) — so a language value reflects the metadata language, not necessarily the full text, and is unset when there aren't enough words to guess reliably. A language's OpenAlex ID looks like `https://openalex.org/languages/en`; fetch one at [`api.openalex.org/languages/en`](https://api.openalex.org/languages/en).
+A **language** is the language of a [work](/data/works/)'s metadata — its title and abstract — identified by a two-letter [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) code: `en` for English, `es` for Spanish, `zh` for Chinese. Languages are a [vocabulary](/data/vocabulary/): a fixed, standardized list OpenAlex attaches handles to rather than inventing. Each work carries a single [`language`](/data/works/attributes/#language), detected with the fastText language identifier (lid.176) from its title and the start of its abstract, else the language its source record declares — so a language value reflects the metadata language, not necessarily the full text, and is unset when neither gives a language. A language's OpenAlex ID looks like `https://openalex.org/languages/en`; fetch one at [`api.openalex.org/languages/en`](https://api.openalex.org/languages/en).
 
 ## About
 
-We don't build the list — we adopt [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes), the standard two-letter language codes, and add live counts of the works detected in each. Detection is per-work and automatic (see the work [`language`](/data/works/attributes/#language) field). There are 180 languages.
+We don't build the list — we adopt [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes), the standard two-letter language codes, and add live counts of the works detected in each. Detection is per-work and automatic (see the work [`language`](/data/works/attributes/#language) field). There are 182 languages.
+
+A work's `language` can also be a three-letter [ISO 639-3](https://en.wikipedia.org/wiki/ISO_639-3) code, for a language that has no ISO 639-1 code: `ceb` (Cebuano, about 269,000 works) and `war` (Waray, about 59,000) are the largest. These codes work in `filter=language:ceb` and `group_by=language` (with no display name), but have no language record: [`/languages/ceb`](https://api.openalex.org/languages/ceb) returns 404.
 
 ## Values
 
-The full list of 180 languages is at [`api.openalex.org/languages`](https://api.openalex.org/languages) — page through with `per_page=200` to pull every one. A sample of the largest by works count:
+The full list of 182 languages is at [`api.openalex.org/languages`](https://api.openalex.org/languages) — page through with `per_page=200` to pull every one. A sample of the largest by works count:
 
 | Code | Language |
 |------|----------|
