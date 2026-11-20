@@ -1,6 +1,6 @@
 ---
 title: "Searching with a strategy from another database"
-updated: 2026-10-23
+updated: 2026-11-20
 description: "Paste a PubMed, Scopus, Web of Science, Ovid, Embase, Cochrane Library or EBSCO search into openalex.org and it runs translated into OQL, with every difference from the original listed."
 tags: ["search", "oql"]
 synonyms: ["PubMed", "Scopus", "Web of Science", "WoS", "Ovid", "MEDLINE", "Embase", "Cochrane", "CINAHL", "EBSCO", "Dimensions", "search strategy", "search translation", "translate search", "systematic review search", "MeSH", "TITLE-ABS-KEY", "tiab", "field tags", "Polyglot"]
@@ -85,7 +85,7 @@ OpenAlex finds two words or phrases within N words of each other, in any order: 
 | Embase.com, Cochrane | `NEAR/n` | within n words |
 | EBSCO | `Nn` / `Wn` | within n words |
 
-OpenAlex counts distance in word moves, so two words in reverse order must be up to two words closer than the same words in order. When either side of a proximity search is an OR group, OpenAlex runs each pair as its own proximity search and joins them with OR. Web of Science's `SAME` (same address) runs as AND.
+N counts the words between the two, and the order doesn't matter: `(mental and health within 0 words of each other)` finds "mental health" and "health mental" alike, and `within 2 words` also finds "mental and physical health". When either side of a proximity search is an OR group, OpenAlex runs each pair as its own proximity search and joins them with OR. Web of Science's `SAME` (same address) runs as AND.
 
 ## Precedence
 
