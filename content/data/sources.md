@@ -1,6 +1,6 @@
 ---
 title: "Overview"
-updated: 2026-11-13
+updated: 2026-11-20
 description: "What a source is, where sources come from, and how OpenAlex builds them and judges journal quality and open access."
 tags: ["reference"]
 source_id: "24347057529623"
@@ -74,7 +74,7 @@ OpenAlex deliberately does not impose a quality bar on which sources it indexes 
 OpenAlex prefers **allow lists** (curated lists of trusted sources) over deny lists: they're more transparent, easier to maintain, and a more robust foundation for retrieval. Two membership flags let you narrow to trusted sources:
 
 - [`is_in_doaj`](/data/sources/attributes/#is_in_doaj) — the source is on the journal list of the [Directory of Open Access Journals](https://doaj.org/) (DOAJ), which vets the legitimacy of fully-OA journals. About 23,700 sources. This is the journal-level DOAJ attribute; whether DOAJ's article index holds a record of a single work is a different one, `indexed_in:doaj` on the work (see [DOAJ: journal list and article index](/data/source-lists/#doaj-journal-list-and-article-index)).
-- [`is_core`](/data/sources/attributes/#is_core) — the source is on the [CWTS Core sources list](https://zenodo.org/records/13879982). About 36,000 sources.
+- [`is_core`](/data/sources/attributes/#is_core) — the source is on the [CWTS Core sources list](https://doi.org/10.5281/zenodo.23890190). About 40,000 sources (2026 edition, from the OpenAlex snapshot of 31 August 2026).
 
 The general form is [`listed_in`](/data/sources/attributes/#listed_in): the external source lists a source appears on, by list id (`doaj`, `cwts-core`, `medline`, `jufo-3` and many more: national research-evaluation lists, regional indexes, discipline rankings). It's deliberately non-normative: OpenAlex records *that* a list includes a source, not whether the list is right. Filter works with `primary_location.source.listed_in:doyens`, or sources with `listed_in:doyens`.
 

@@ -1,6 +1,6 @@
 ---
 title: "Source lists"
-updated: 2026-11-13
+updated: 2026-11-20
 description: "The external journal lists a source can appear on (DOAJ, CWTS Core, national lists), the fields on a source-list object, and how to filter sources and works by list."
 tags: ["reference"]
 entity:
@@ -10,7 +10,7 @@ entity:
     - "sources"
     - "works"
 ---
-A **source list** is an externally maintained list of journals that a [source](/data/sources/) can appear on: the [Directory of Open Access Journals](https://doaj.org/), the [CWTS Core sources list](https://zenodo.org/records/13879982), a national list of recommended health journals. Source lists are a [vocabulary](/data/vocabulary/): consistent handles on lists that exist outside OpenAlex, maintained by someone else. Each source carries a [`listed_in`](/data/sources/attributes/#listed_in) array of the lists it is on, and the dehydrated source inside every work [location](/data/locations/) carries the same array, so works can be filtered by the lists their journal is on. A source list's OpenAlex ID looks like `https://openalex.org/source-lists/doyens`; fetch one at [`api.openalex.org/source-lists/doyens`](https://api.openalex.org/source-lists/doyens).
+A **source list** is an externally maintained list of journals that a [source](/data/sources/) can appear on: the [Directory of Open Access Journals](https://doaj.org/), the [CWTS Core sources list](https://doi.org/10.5281/zenodo.23890190), a national list of recommended health journals. Source lists are a [vocabulary](/data/vocabulary/): consistent handles on lists that exist outside OpenAlex, maintained by someone else. Each source carries a [`listed_in`](/data/sources/attributes/#listed_in) array of the lists it is on, and the dehydrated source inside every work [location](/data/locations/) carries the same array, so works can be filtered by the lists their journal is on. A source list's OpenAlex ID looks like `https://openalex.org/source-lists/doyens`; fetch one at [`api.openalex.org/source-lists/doyens`](https://api.openalex.org/source-lists/doyens).
 
 Membership is all OpenAlex records. A list's page says who maintains it, what it covers and which edition is loaded; it never says the list is right, and OpenAlex does not endorse any list. See [Allow lists](/data/sources/#allow-lists) for why we prefer this over deny lists.
 

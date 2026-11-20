@@ -1,6 +1,6 @@
 ---
 title: "Attributes"
-updated: 2026-11-13
+updated: 2026-11-20
 description: "The canonical dictionary of every attribute on a source object — what each one means, where it comes from, and its quirks."
 tags: ["reference"]
 ---
@@ -45,7 +45,7 @@ This is the canonical dictionary of every attribute on a **source** object. Attr
 *Integer.* The year the source entered [DOAJ](https://doaj.org/)'s journal list; null if it isn't on it. Filter/sort.
 
 ### `is_core`
-*Boolean.* True if the source is on the [CWTS Core sources list](https://zenodo.org/records/13879982) — the venues behind the [Leiden Ranking](https://open.leidenranking.com/) (about 36,000 sources). Not the same as the Web of Science Core Collection; see [About](/data/sources/#cwts-core-vs-web-of-science). Filter/sort/group_by.
+*Boolean.* True if the source is on the [CWTS Core sources list](https://doi.org/10.5281/zenodo.23890190) — the venues behind the [Leiden Ranking](https://open.leidenranking.com/) (about 40,000 sources in the 2026 edition). Not the same as the Web of Science Core Collection; see [About](/data/sources/#cwts-core-vs-web-of-science). Filter/sort/group_by.
 
 ### `listed_in`
 *List of strings.* The external source lists this source appears on, by list id, e.g. `doaj`, `cwts-core` or `jufo-3`. Membership only — it says nothing about quality, and OpenAlex does not endorse any list (see [Allow lists](/data/sources/#allow-lists)). We keep adding lists, so this page doesn't name them all: see every list OpenAlex carries, with its maintainer, scope and loaded edition, at [openalex.org/source-lists](https://openalex.org/source-lists) or [`api.openalex.org/source-lists`](https://api.openalex.org/source-lists). `cwts-core` and `doaj` match [`is_core`](#is_core) and [`is_in_doaj`](#is_in_doaj).
