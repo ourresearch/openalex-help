@@ -1,15 +1,13 @@
 ---
 title: "Security"
-updated: 2026-11-18
+updated: 2026-11-20
 subtitle: "Found a security hole in OpenAlex, Unpaywall or Unsub? Tell us privately. We'll fix it, credit you, and publish what happened."
 description: "How to report a security vulnerability in OpenAlex, Unpaywall or Unsub, what we do with a report, and the security advisories we've published."
 ---
-If you've found a security hole in OpenAlex, Unpaywall or Unsub, please tell us privately. We'll confirm it, fix it, credit you, and publish an advisory once the fix is live.
-
 ## How to report
 
-- **On GitHub (preferred).** Open the repository for the affected code at [github.com/ourresearch](https://github.com/ourresearch), go to its **Security** tab, and click **Report a vulnerability**. Only our maintainers see the report. Not sure which repository? Pick the closest one and we'll move it.
-- **No GitHub account?** Write to [support@openalex.org](mailto:support@openalex.org) with "Security report" in the subject, and leave out the details. We'll reply with a private way to send them.
+- **By email.** Write to [security@openalex.org](mailto:security@openalex.org). Only our security team reads it.
+- **On GitHub.** Open the repository for the affected code at [github.com/ourresearch](https://github.com/ourresearch), go to its **Security** tab, and click **Report a vulnerability**. Only our maintainers see the report. Not sure which repository? Pick the closest one and we'll move it.
 
 Please include what's affected (a URL, an API route, or a file and line), the steps to reproduce it, what an attacker could do with it, and how to reach you. Please don't post it in a public issue, the forum, or social media.
 
