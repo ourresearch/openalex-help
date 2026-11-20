@@ -1,7 +1,7 @@
 ---
 title: "Authorships"
-updated: 2026-10-17
-description: "The join between a work and its authors — the raw name each author printed, their position, whether they're corresponding, and the institutions they listed — and what every attribute on an authorship object means."
+updated: 2026-11-20
+description: "The join between a work and its authors — the raw name each author printed, their position, whether they're corresponding, the institutions they listed, and the CRediT roles they played where stated — and what every attribute on an authorship object means."
 tags: ["reference"]
 entity:
   linksTo:
@@ -9,7 +9,7 @@ entity:
     - "authors"
     - "institutions"
 ---
-An **authorship** is the join between a [work](/data/works/) and one of its [authors](/data/authors/): for a single author, it records their raw name as printed on the work, their position in the byline, whether they're the corresponding author, and the institutions they listed. Authorships are a [component](/data/component/) entity — they don't get their own OpenAlex ID. Today they live inside a work object, one per author, in the [`authorships`](/data/works/attributes/#authorships) list: fetch a work such as [`api.openalex.org/works/W2741809807`](https://api.openalex.org/works/W2741809807) and read its `authorships` array to see them. A standalone authorships list endpoint (like the ones the other two components — [locations](/data/locations/) and [raw affiliation strings](/data/raw-affiliation-strings/) — already have) is on the way.
+An **authorship** is the join between a [work](/data/works/) and one of its [authors](/data/authors/): for a single author, it records their raw name as printed on the work, their position in the byline, whether they're the corresponding author, the institutions they listed, and the [CRediT roles](/data/contributor-roles/) they played, where stated. Authorships are a [component](/data/component/) entity — they don't get their own OpenAlex ID. Today they live inside a work object, one per author, in the [`authorships`](/data/works/attributes/#authorships) list: fetch a work such as [`api.openalex.org/works/W2741809807`](https://api.openalex.org/works/W2741809807) and read its `authorships` array to see them. A standalone authorships list endpoint (like the ones the other two components — [locations](/data/locations/) and [raw affiliation strings](/data/raw-affiliation-strings/) — already have) is on the way.
 
 ## About
 
@@ -51,6 +51,9 @@ This is the dictionary of every attribute on an **authorship** object, as it app
 
 ### `is_corresponding`
 *Boolean.* True if this author is marked as a corresponding author on the work. Corresponding authors are also collected at the work level in [`corresponding_author_ids`](/data/works/attributes/#corresponding_author_ids).
+
+### `contributor_roles`
+*List.* The [CRediT roles](/data/contributor-roles/) this author played on the work, as stated for that author (Crossref deposits, PubMed Central XML, or an "Author contributions" statement in CRediT's terms), each with `id` and `display_name`, e.g. `[{"id": "https://openalex.org/contributor-roles/software", "display_name": "Software"}]`. Empty means no roles reached OpenAlex, not that the author had none; see [where roles come from](/data/contributor-roles/#where-the-values-come-from).
 
 ### `raw_author_name`
 *String.* The author's name exactly as it appeared on the source record, before disambiguation — e.g. `"Heather Piwowar"`. The unnormalized input to author resolution; the resolved person is in [`author`](#author).

@@ -36,7 +36,7 @@ const ENTITIES = {
   authors: {}, institutions: {}, publishers: {},
   funders: {}, topics: {}, keywords: {}, awards: {}, concepts: {},
   subfields: {}, fields: {}, domains: {}, sdgs: {},
-  'work-types': {}, 'source-types': {}, 'institution-types': {},
+  'work-types': {}, 'contributor-roles': {}, 'source-types': {}, 'institution-types': {},
   countries: {}, continents: {}, languages: {}, licenses: {}, indexes: {},
 };
 

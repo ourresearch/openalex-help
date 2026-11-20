@@ -1,6 +1,6 @@
 ---
 title: "Overview"
-updated: 2026-10-03
+updated: 2026-11-20
 description: "Every OpenAlex API endpoint at a glance — the entity list/single endpoints and the special-purpose ones — each linking to the entity page that documents its fields."
 tags: ["reference"]
 ---
@@ -49,6 +49,7 @@ This page is the index. What each entity *is*, and what every field on it *means
 |---|---|
 | `/work-types` | [Work types](/data/work-types/) |
 | `/relationships` | [Relationships](/data/relationships/): the kinds of link between two works (citation, volume, component, data series, part) |
+| `/contributor-roles` | [Contributor roles](/data/contributor-roles/): the 14 CRediT roles an author can play on a work (conceptualization, software, writing – original draft, …) |
 | `/source-types` | [Source types](/data/source-types/) |
 | `/institution-types` | [Institution types](/data/institution-types/) |
 | `/countries` | [Countries](/data/countries/) |

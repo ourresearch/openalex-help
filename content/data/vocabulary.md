@@ -1,6 +1,6 @@
 ---
 title: "Overview"
-updated: 2026-11-13
+updated: 2026-11-20
 description: "Consistent, controlled handles on things that already exist crisply in the real world — work types, countries, licenses, and more."
 tags: ["reference"]
 ---
@@ -13,6 +13,7 @@ Vocabulary entities generally use short, human-readable IDs (`en` for English, `
 ## The vocabulary entities
 
 - [**Work types**](/data/work-types/) — article, preprint, dataset, book, and the rest of a work's `type`.
+- [**Contributor roles**](/data/contributor-roles/): the 14 CRediT roles an author can play on a work (conceptualization, software, writing – original draft, and the rest), as stated for each author.
 - [**Source types**](/data/source-types/) — journal, conference, repository, ebook platform, and other venue kinds.
 - [**Institution types**](/data/institution-types/) — education, healthcare, company, government, and so on.
 - [**Countries**](/data/countries/) and [**continents**](/data/continents/) — geography, as ISO codes.

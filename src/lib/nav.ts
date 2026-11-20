@@ -88,6 +88,7 @@ export const NAV_GROUPS: Record<string, NavGroup[]> = {
         'vocabulary',
         'work-types',
         'relationships',
+        'contributor-roles',
         'source-types',
         'institution-types',
         'countries',
