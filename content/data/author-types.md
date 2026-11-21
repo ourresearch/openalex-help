@@ -21,11 +21,11 @@ Author types are a [vocabulary](/data/vocabulary/): OpenAlex sets a type only wh
 
 - **Human**: a person.
 - **Organization**: a group credited as one author, such as a consortium, a committee, a working group, a company or an institution.
-- **Software agent**: running software credited as an author, such as an AI research agent, an AI model named on the byline, or another bot.
+- **Software agent**: running software credited as an author, such as an AI research agent, an AI model named on the byline, a persona the byline presents as an AI (a name followed by the model it runs on), or another bot. A handful are not AI at all, such as a bot credited on a software release.
 
 ### Null means not stated
 
-Most authors have no type. Null means no source stated it and no rule could tell, not that the author is a human. Today almost every typed author is a software agent. Organizations and humans will be typed as we read them from sources that state them.
+Most authors have no type. Null means no source stated it and no rule could tell, not that the author is a human. Today typed authors are software agents and organizations that a source identifies with a ROR ID. More organizations, and humans, will be typed as we read them from sources that state them.
 
 So filter on `software-agent`, not on `human`: a filter for humans would leave out nearly every human author.
 
@@ -36,8 +36,13 @@ Each author on a byline is typed on its own, before authors are grouped into pro
 - **A source says so.** When a source states that an author is software, OpenAlex records it.
 - **The byline names an AI product.** OpenAlex keeps a list of AI products and agents, each with its launch date and the ways bylines write its name. A byline name counts only on a work published after that product's launch date, so an older author who shares a name is never typed.
 - **Never a first name alone.** Some AI products share a first name with many people. A first name on its own never makes an author a software agent.
+- **Read in context.** Before a byline name is typed, an AI model reads it beside the rest of the byline and the work's title and venue, and confirms that it names software. That leaves out lab instruments, teams and companies named after AI products, and entries that join a person and an AI.
 
-Each rule is checked on a sample of bylines before it is used.
+Each rule is checked on a random sample of bylines before it is used, and new typed authors are checked again every week.
+
+### How organizations are found
+
+An author is typed `organization` when the source record names it as an organization and gives its [ROR](https://ror.org) ID. Most of these are museums, herbaria and other collections credited on their own records. A group name on a byline, such as "Study Group" or "Collaboration", is not enough on its own yet: too many people's names and affiliations look like one.
 
 ### Authorships and profiles
 
@@ -134,7 +139,7 @@ https://api.openalex.org/works?filter=authorships.author.type:!software-agent
 https://api.openalex.org/authors?filter=type:software-agent
 ```
 
-`authorships.author.type` looks at every author on a work, not only the first 100. With `!`, it keeps a work only when it has no known AI authors: no author on it is typed `software-agent`. Only typed authors are caught, so this keeps works whose authors have no type stated (an AI author nobody typed among them) and works with no authors listed. It does not mean every author is human.
+`authorships.author.type` looks at every author on a work, not only the first 100. With `!`, it keeps a work only when it has no known AI authors: no author on it is typed `software-agent`. Only typed authors are caught, so this keeps works whose authors have no type stated (an AI author nobody typed among them) and works with no authors listed. It does not mean every author is human. The few non-AI bots typed `software-agent` count as known AI authors in these filters.
 
 The filters take the short value (`software-agent`). See [Filtering](/api/filtering/) for the syntax and the [endpoints index](/api/endpoints/) for every endpoint.
 
