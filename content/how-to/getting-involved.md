@@ -1,6 +1,6 @@
 ---
 title: "Getting involved"
-updated: 2026-08-11
+updated: 2026-11-21
 description: "Viewing the OpenAlex roadmap, joining the community, and shaping OpenAlex's direction — town halls, mailing lists, the advisory board, and supporter roundtables."
 tags: ["general"]
 synonyms: ["roadmap", "town hall", "advisory board", "mailing list", "user group", "community"]
@@ -26,3 +26,7 @@ The 12-member Community Advisory Board helps guide OpenAlex's direction. Nominat
 ## Supporter roundtables
 
 Institutional supporters also get quarterly roundtable meetings: open-forum discussions of development priorities, held directly with our product team. Calendar invites go to each institution's supporter contacts; additional attendees from your institution are welcome — just [let us know](mailto:kyle@openalex.org).
+
+## Built something with OpenAlex?
+
+If you've built a tool, app or service on OpenAlex data, we'd love to hear about it. See [Tools built on OpenAlex](/how-to/tools-built-on-openalex/) for the ones others have built, what counts, and how to get yours listed.
