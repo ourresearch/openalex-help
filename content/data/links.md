@@ -48,7 +48,7 @@ Every work counts, including works the default works view leaves out ([expansion
 *String.* The [link type](/data/link-types/#values)'s OpenAlex ID, such as `https://openalex.org/link-types/citation`. The six are `citation`, `review`, `volume`, `component`, `data-series` and `part`.
 
 ### `relationship`
-*String.* The same link type under its old name and ID form, such as `https://openalex.org/relationships/citation`. Served until Monday 30 November 2026, then removed: read `link_type` instead ([Deprecations](/api/deprecations/#relationships-renamed-link-types)).
+*String.* The same link type under its old name and ID form, such as `https://openalex.org/relationships/citation`. Served until Monday 7 December 2026, then removed: read `link_type` instead ([Deprecations](/api/deprecations/#relationships-renamed-link-types)).
 
 ### Why `origin` and `target`
 
@@ -79,7 +79,7 @@ https://api.openalex.org/links?filter=origin:W2117905317,target:W88818295
 ```
 
 - `origin` and `target` take one work ID, short (`W2741809807`) or full. A merged-away ID is read as the work it was merged into, and named in `meta.merged_ids`.
-- `link_type` takes `citation`, `review`, `volume`, `component`, `data-series` or `part` (the short value or the full ID). Until 30 November 2026 the old filter name `relationship` works too.
+- `link_type` takes `citation`, `review`, `volume`, `component`, `data-series` or `part` (the short value or the full ID). The old filter name `relationship` works too, until 1 March 2027.
 - Order: no order is promised yet; links come back in the order they are stored. To get one kind, such as a work's reviews or its figures, filter on `link_type`.
 - Paging works as on every list: `page` and `per_page` (up to 200) for the first 10,000 links, and [cursor paging](/api/paging/) for all of them. A cursor walk sees the links as they were when it started; ask for each next page within 5 minutes, or start again with `cursor=*`.
 - `/links` has no `sort`, `group_by`, `search` or `select`. To count or group the works on either side, use the [works](/data/works/) filters `cites`, `referenced_works`, `parent_works.id`, `lineage` and `reviewed_by_count`.

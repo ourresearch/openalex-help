@@ -48,7 +48,7 @@ This page is the index. What each entity *is*, and what every field on it *means
 | Endpoint | What it returns |
 |---|---|
 | `/work-types` | [Work types](/data/work-types/) |
-| `/link-types` | [Link types](/data/link-types/): the kinds of link between two works (citation, review, volume, component, data series, part). `/relationships`, its old name, answers until 30 November 2026, then redirects here |
+| `/link-types` | [Link types](/data/link-types/): the kinds of link between two works (citation, review, volume, component, data series, part). `/relationships`, its old name, answers until 7 December 2026, then redirects here |
 | `/contributor-roles` | [Contributor roles](/data/contributor-roles/): the 14 CRediT roles an author can play on a work (conceptualization, software, writing – original draft, …) |
 | `/source-types` | [Source types](/data/source-types/) |
 | `/institution-types` | [Institution types](/data/institution-types/) |

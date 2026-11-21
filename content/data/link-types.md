@@ -12,7 +12,7 @@ entity:
 ---
 A **link type** is the kind of [link](/data/links/) between two [works](/data/works/): a citation, a review, or a part-of link (a chapter in a book, a figure of a paper, one record of a data series). There are six: `citation`, `review`, and four part-of kinds, one on each entry in a work's [`parent_works`](/data/works/attributes/#parent_works). A link type's OpenAlex ID looks like `https://openalex.org/link-types/review`; list all six at [`api.openalex.org/link-types`](https://api.openalex.org/link-types), and list a work's links at [`/links`](/data/links/).
 
-**Renamed from "relationships".** Until Monday 30 November 2026 this vocabulary is also served under its old name: the `/relationships` endpoint, the `relationship` field on `/links` and on `parent_works`, and the `relationship` and `parent_works.relationship` filters. On 30 November the old names stop being returned. The new names work now, so switch any time this week. The full list of what changes: [Deprecations › relationships renamed link types](/api/deprecations/#relationships-renamed-link-types).
+**Renamed from "relationships".** Until Monday 7 December 2026 this vocabulary is also served under its old name: the `/relationships` endpoint, the `relationship` field on `/links` and on `parent_works`, and the `relationship` and `parent_works.relationship` filters. On 7 December the old fields stop being returned (the old filter names are read until 1 March 2027). The new names work in the API now; the snapshot switches on 7 December. The full list of what changes: [Deprecations › relationships renamed link types](/api/deprecations/#relationships-renamed-link-types).
 
 ## About
 
