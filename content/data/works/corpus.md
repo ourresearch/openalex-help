@@ -1,6 +1,6 @@
 ---
 title: "Expansion corpus"
-updated: 2026-11-17
+updated: 2026-11-21
 description: "OpenAlex works come in two corpora — the curated core and a larger expansion (formerly 'XPAC'). What's in each, why the expansion is opt-in, and how to select core / expansion / all in the REST API and OQL."
 tags: ["reference"]
 synonyms: ["xpac", "expansion pack", "corpus", "include_xpac", "is_xpac", "core corpus", "expansion corpus"]
@@ -71,7 +71,7 @@ curl "https://api.openalex.org/works?filter=parent_works.id:W3109397498"
 curl "https://api.openalex.org/works?filter=has_parent_work:true,is_traditional:false"
 ```
 
-A filter on `has_parent_work`, `parent_works.id`, `parent_works.relationship` or `lineage` shows the pieces too, since it asks about them. Neither `include_parts` nor these filters bring in expansion works: if a work's parts are expansion works (as Zenodo records usually are), add `corpus=all` too. A single work fetched by ID (`/works/W…`) always answers. Counts on other entities (an author's `works_count`) still include the pieces. See [Parent and child works](/data/relationships/#parent-and-child-works).
+A filter on `has_parent_work`, `parent_works.id`, `parent_works.link_type` or `lineage` shows the pieces too, since it asks about them. Neither `include_parts` nor these filters bring in expansion works: if a work's parts are expansion works (as Zenodo records usually are), add `corpus=all` too. A single work fetched by ID (`/works/W…`) always answers. Counts on other entities (an author's `works_count`) still include the pieces. See [Parent and child works](/data/relationships/#parent-and-child-works).
 
 ## Pulled works are left out too
 

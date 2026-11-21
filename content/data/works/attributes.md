@@ -1,6 +1,6 @@
 ---
 title: "Attributes"
-updated: 2026-11-17
+updated: 2026-11-21
 description: "The canonical dictionary of every attribute on a work object — what each one means, where it comes from, and its quirks."
 tags: ["reference"]
 ---
@@ -51,11 +51,11 @@ Filter: `is_traditional:true` keeps works of the traditional types, and `is_trad
 *Object.* Old-style bibliographic pointers, mostly useful in citation contexts. All strings (values like "Spring" or "Inside cover" turn up): `volume`, `issue`, `first_page`, `last_page`. When a publisher numbers its articles instead of printing page numbers, `first_page` holds the article number (`e70493`, `094517`, `giab008`) and `last_page` is empty. `biblio.volume` is the volume's number as printed in a citation; filtering, sorting or grouping by it is no longer supported. The book or proceedings volume itself is one of the work's [`parent_works`](#parent_works).
 
 ### `parent_works`
-*List.* The works this work is part of: a chapter's book, a figure's paper, a file's dataset. Each entry is a dehydrated work (`id`, `display_name`) plus `relationship`, the kind of link, one of the four [relationships](/data/relationships/): `volume`, `component`, `data-series` or `part`. For example, a chapter has `[{"id": "https://openalex.org/W3109397498", "display_name": "Routledge Handbook of Critical Indigenous Studies", "relationship": "volume"}]`. Empty when the work isn't part of another work, or no link was found. Only part-of links are here: a preprint and its article are one work, and a paper's cited works are its [`referenced_works`](#referenced_works).
+*List.* The works this work is part of: a chapter's book, a figure's paper, a file's dataset. Each entry is a dehydrated work (`id`, `display_name`) plus `link_type`, the kind of link, one of the four part-of [link types](/data/link-types/): `volume`, `component`, `data-series` or `part`. For example, a chapter has `[{"id": "https://openalex.org/W3109397498", "display_name": "Routledge Handbook of Critical Indigenous Studies", "link_type": "volume"}]`. Until Monday 30 November 2026 each entry also carries the same value as `relationship`, the field's old name ([Deprecations](/api/deprecations/#relationships-renamed-link-types)). Empty when the work isn't part of another work, or no link was found. Only part-of links are here: a preprint and its article are one work, and a paper's cited works are its [`referenced_works`](#referenced_works).
 
 The links come from the records themselves. A chapter, section or reference entry gets its book when the chapter's Crossref record and the book's agree on an ISBN, or the chapter's DOI extends the book's. A DataCite record gets a parent when it declares `IsPartOf` another DOI that is also a work. A work can have several parents, up to 10. Links that can't be a hierarchy are left out: a record that claims more than 10 parents, two records that each claim to be part of the other, and chains more than 10 levels deep.
 
-Filter: `parent_works.id:W3109397498` lists a book's parts, `has_parent_work:true` keeps works that are part of another, and `parent_works.relationship:volume` keeps one kind of link. Group with `group_by=parent_works.relationship` or `group_by=parent_works.id`. See [Parent and child works](/data/relationships/#parent-and-child-works). `parent_works` replaced the `volume` field on 14 November 2026 ([Deprecations](/api/deprecations/#volume-on-works)).
+Filter: `parent_works.id:W3109397498` lists a book's parts, `has_parent_work:true` keeps works that are part of another, and `parent_works.link_type:volume` keeps one kind of link. Group with `group_by=parent_works.link_type` or `group_by=parent_works.id`. See [Parent and child works](/data/link-types/#parent-and-child-works). `parent_works` replaced the `volume` field on 14 November 2026 ([Deprecations](/api/deprecations/#volume-on-works)).
 
 ### `lineage`
 *List.* OpenAlex IDs of this work, then its ancestors, nearest first: its parents, then their parents, and so on. A work's own ID is always first, so a work with no parent has a `lineage` of just itself. It works like [`lineage` on institutions](/data/institutions/#lineage): the filter `lineage:W3109397498` returns that work and everything under it, at any depth.
@@ -142,6 +142,9 @@ See [Open access](/data/works/open-access/) for how these fields combine.
 
 ### `cited_by_count`
 *Integer.* The number of works that cite this work — the count of successful reference matches pointing at it (see [Citations and references](/data/works/citations/#citations-and-references)).
+
+### `reviewed_by_count`
+*Integer.* The number of works that review this work: peer reviews, preprint reviews, expert recommendations and book reviews linked to it by a [`review` link](/data/link-types/#reviews). 0 when nothing reviews it. List the reviews with [`/links?filter=target:<this work's ID>,link_type:review`](/data/links/). Filter and sort by it, e.g. `reviewed_by_count:>0` for works that have at least one review. It counts linked reviews; it is not a mark of quality, and publishers differ in how many records they mint per review. It changes the work's `updated_date` when it changes, as `cited_by_count` does.
 
 ### `cited_by_api_url`
 *String.* The API query for the works that cite this work: `https://api.openalex.org/works?filter=cites:` followed by the work's ID. Following it lists the citing works in the API's default corpus; add `corpus=all` to include the [expansion corpus](/data/works/corpus/) too. Available only through the API, not in the [snapshot](/access/snapshot/), where you can build it from [`id`](#id).

@@ -1064,6 +1064,10 @@
 /faq/  /how-to/  301
 # <<< old docs.openalex.org GitBook paths <<<
 
+# oxjob #2481: relationships renamed link types (21 Nov 2026)
+/data/relationships  /data/link-types/  301
+/data/relationships/  /data/link-types/  301
+
 # >>> WILDCARDS LAST — do not move, do not add rules after this section >>>
 # CF Pages bug (oxjob #354, verified 2026-08-01): once a wildcard/splat rule
 # appears, CF silently stops processing rules some distance later in the file
