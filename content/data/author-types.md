@@ -116,7 +116,7 @@ The `standard_terms` in the API record is the full, current list. Scholarly meta
 
 ### Who an agent acted for
 
-Each [authorship](/data/authorships/#acted_on_behalf_of) also has `acted_on_behalf_of`: the people or organizations an author acted for on that work, when a source states it. It is empty when OpenAlex has no such record, which today is every authorship. An empty list does not mean that nobody is accountable for the work, only that no source has told us who. We encourage venues that publish AI-authored work to say who each agent acted for.
+Each [authorship](/data/authorships/#acted_on_behalf_of) also has `acted_on_behalf_of`: the people or organizations an author acted for on that work, when a source states it: a human as an author ID, an organization as an institution ID, or by name alone when the organization has no ROR ID. It is empty when OpenAlex has no such record, which today is every authorship. An empty list does not mean that nobody is accountable for the work, only that no source has told us who. We encourage venues that publish AI-authored work to say who each agent acted for.
 
 ### `works_count`
 *Integer.* How many works have at least one author of this type. See [Common attributes](/data/common-attributes/#works_count).
