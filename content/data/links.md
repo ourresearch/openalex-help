@@ -1,6 +1,6 @@
 ---
 title: "Links"
-updated: 2026-11-18
+updated: 2026-11-21
 description: "Work-to-work links: each joins two works and has a relationship (a citation, or a part-of link such as a chapter in its book). How to list a work's links out and in with the /links endpoint."
 tags: ["reference"]
 entity:
@@ -58,7 +58,7 @@ Every request names a work with `origin` or `target`; a request that names none 
 # The works W2117905317 cites, and the works it is part of
 https://api.openalex.org/links?filter=origin:W2117905317
 
-# The works that are part of W2741809807, then the works that cite it, newest first
+# The works that cite W2741809807 or are part of it
 https://api.openalex.org/links?filter=target:W2741809807
 
 # Only one kind of link (join several with |)
@@ -70,8 +70,8 @@ https://api.openalex.org/links?filter=origin:W2117905317,target:W88818295
 
 - `origin` and `target` take one work ID, short (`W2741809807`) or full. A merged-away ID is read as the work it was merged into, and named in `meta.merged_ids`.
 - `relationship` takes `citation`, `volume`, `component`, `data-series` or `part` (the short value or the full ID).
-- Order: a work's outgoing links list its parent works first, then the works it cites in `referenced_works` order. Incoming links list the work's parts first (its figures, chapters or records), then the works that cite it, newest first.
-- Paging works as on every list: `page` and `per_page` (up to 200) for the first 10,000 links, and [cursor paging](/api/paging/) for all of them.
+- Order: no order is promised yet; links come back in the order they are stored. To get one kind, such as a work's figures, filter on `relationship`.
+- Paging works as on every list: `page` and `per_page` (up to 200) for the first 10,000 links, and [cursor paging](/api/paging/) for all of them. A cursor walk sees the links as they were when it started; ask for each next page within 5 minutes, or start again with `cursor=*`.
 - `/links` has no `sort`, `group_by`, `search` or `select`. To count or group the works on either side, use the [works](/data/works/) filters `cites`, `referenced_works`, `parent_works.id` and `lineage`.
 
 Until 18 November 2026 the fields were `from` and `to`, each with an `id` and `display_name`, and `relationship` was the bare value (`citation`). The `from:` and `to:` filters now answer an error naming the new ones.
