@@ -1,7 +1,7 @@
 ---
 title: "Author types"
 updated: 2026-11-21
-description: "What kind of author is on a byline: a human, an organization, or a software agent such as an AI; what null means, how software agents are found, and how to find or leave out works with an AI author."
+description: "What kind of author is on a byline: a human, an organization, or a software agent such as an AI; what null means, how software agents are found, and how to find or leave out works with known AI authors."
 tags: ["reference"]
 entity:
   example: "author-types/software-agent"
@@ -124,18 +124,18 @@ The Author types endpoint is at [`api.openalex.org/author-types`](https://api.op
 Author types are most useful as filters:
 
 ```
-# Works with at least one software-agent author
+# Works with known AI authors (at least one author typed software-agent)
 https://api.openalex.org/works?filter=authorships.author.type:software-agent
 
-# Works with no author typed as a software agent
+# Works with no known AI authors (no author typed software-agent)
 https://api.openalex.org/works?filter=authorships.author.type:!software-agent
 
 # Author profiles that are software agents
 https://api.openalex.org/authors?filter=type:software-agent
 ```
 
-`authorships.author.type` looks at every author on a work, not only the first 100. With `!`, it keeps a work only when no author on it is typed `software-agent`. That includes works whose authors have no type stated and works with no authors listed. It does not mean every author is human.
+`authorships.author.type` looks at every author on a work, not only the first 100. With `!`, it keeps a work only when it has no known AI authors: no author on it is typed `software-agent`. Only typed authors are caught, so this keeps works whose authors have no type stated (an AI author nobody typed among them) and works with no authors listed. It does not mean every author is human.
 
 The filters take the short value (`software-agent`). See [Filtering](/api/filtering/) for the syntax and the [endpoints index](/api/endpoints/) for every endpoint.
 
-On [openalex.org](https://openalex.org), works search can show only works with an AI author or leave them out, and a software-agent author carries a small tag on work and author pages.
+On [openalex.org](https://openalex.org), works search has one choice of three: All works, Only works with known AI authors, or No known AI authors. A software-agent author carries a small tag on work and author pages.
