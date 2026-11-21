@@ -1,6 +1,6 @@
 ---
 title: "Repositories"
-updated: 2026-11-18
+updated: 2026-11-21
 description: "For repository managers: how to get harvested by OpenAlex, check your Harvest tab, allowlist our harvester, troubleshoot coverage, and report a problem so it gets fixed."
 tags: ["data"]
 synonyms: ["add my repository", "register repository", "institutional repository", "OAI-PMH endpoint", "not being harvested", "records missing", "harvest status", "DSpace", "EPrints", "Digital Commons", "firewall", "allowlist", "IP address", "user agent", "bot wall", "Cloudflare", "Anubis", "page checks", "landing pages", "repository bug", "report a problem", "endpoint changed", "migrated repository", "expansion corpus", "coverage"]
@@ -118,12 +118,12 @@ Our OAI-PMH harvester runs from a single static IP address that OpenAlex owns, a
 
 ```
 IP address:  44.208.99.237
-User-Agent:  OpenAlexHarvester/1.0 (+https://help.openalex.org/how-to/repositories/; mailto:support@openalex.org)
+User-Agent:  OpenAlex/1.0 (+https://help.openalex.org/how-to/repositories/; mailto:support@openalex.org)
 ```
 
 The address is also published as a plain-text list at [/harvester-ips.txt](/harvester-ips.txt). One exception: the few endpoints that challenge every automated request are fetched through a third-party service (Zyte) from its own addresses, with the same User-Agent.
 
-Until November 2026 we harvested from a proxy provider's shared address; we no longer use it. If you allowlisted that address, replace it with `44.208.99.237`.
+Until November 2026 we harvested from a proxy provider's shared address; we no longer use it. If you allowlisted that address, replace it with `44.208.99.237`. Until 21 November 2026 the harvester called itself `OpenAlexHarvester/1.0 (+https://help.openalex.org/how-to/repositories/; mailto:support@openalex.org)`; if you allowlisted that name, add the new one.
 
 Allowlist the IP, or the User-Agent, or both. On its own that covers **OAI-PMH harvesting**. We fetch record pages and files separately, from rotating addresses unless your repository is on our list, so read [how to let our page checks through](#how-do-i-let-openalexs-page-checks-through) before you restrict anything to the IP above: blocking those fetches costs you open-access detection. When we first verify a newly registered endpoint we may probe it once from a different address with a User-Agent that also starts with `OpenAlex`; if your firewall logs a block during registration, that's what it was.
 
