@@ -1,6 +1,6 @@
 ---
 title: "Overview"
-updated: 2026-10-26
+updated: 2026-11-21
 description: "What an author is, why a profile is built from its works, and what every attribute on an author object means."
 tags: ["reference"]
 source_id: "24347048891543"
@@ -13,7 +13,7 @@ entity:
     - "authorships"
     - "institutions"
 ---
-An **author** is a person who creates [works](/data/works/) — a researcher, scholar, or anyone credited on a scholarly document. Authors are one of OpenAlex's [native entities](/data/native/): OpenAlex mints each a stable ID by *disambiguating* the messy author-name strings that appear on works into real-world people. There are over 120 million disambiguated authors. An author's OpenAlex ID looks like `A5023888391`; fetch one at [`api.openalex.org/authors/A5023888391`](https://api.openalex.org/authors/A5023888391).
+An **author** is a person who creates [works](/data/works/) — a researcher, scholar, or anyone credited on a scholarly document. Authors are one of OpenAlex's [native entities](/data/native/): OpenAlex mints each a stable ID by *disambiguating* the messy author-name strings that appear on works into real-world people. There are over 120 million disambiguated authors. Some bylines also name an organization or a software agent, such as an AI system, as an author; [`type`](#type) says which kind of author a profile is, where stated. An author's OpenAlex ID looks like `A5023888391`; fetch one at [`api.openalex.org/authors/A5023888391`](https://api.openalex.org/authors/A5023888391).
 
 This page covers what a profile is and what every attribute means. How profiles are built from raw author names is on [Disambiguation](/data/authors/disambiguation/); how OpenAlex sources and uses ORCID iDs — and why a profile may be missing one — is on [ORCID](/data/authors/orcid/).
 
@@ -46,6 +46,9 @@ This is the canonical dictionary of every attribute on an **author** object. Att
 
 ### `display_name`
 *String.* The author's name — the single most-frequent, most-informative form observed across their works. See [Common attributes](/data/common-attributes/#display_name). Filterable and sortable; free-text name search uses the `search` parameter (the `display_name.search` filter is deprecated).
+
+### `type`
+*String.* What kind of author this is: `human`, `organization` or `software-agent`, or null when not stated. Most profiles are null, and null does not mean human. A profile takes a type only when every authorship on it has that same type. See [Author types](/data/author-types/) for what each means and how software agents are found. Filter and group_by with `type`, e.g. [`/authors?filter=type:software-agent`](https://api.openalex.org/authors?filter=type:software-agent).
 
 ### `display_name_alternatives`
 *List.* Other name strings seen for this author, deduplicated (e.g. `["Jason Priem", "Priem, Jason"]`). Useful for matching against name forms that differ from the canonical [`display_name`](#display_name).

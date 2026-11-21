@@ -1,6 +1,6 @@
 ---
 title: "Authorships"
-updated: 2026-11-20
+updated: 2026-11-21
 description: "The join between a work and its authors — the raw name each author printed, their position, whether they're corresponding, the institutions they listed, and the CRediT roles they played where stated — and what every attribute on an authorship object means."
 tags: ["reference"]
 entity:
@@ -27,7 +27,7 @@ Each of the author's [`raw_affiliation_strings`](#raw_affiliation_strings) is ma
 
 To keep lists fast, a work in a list of works (filter, search and sample results) shows only its **first 100 authorships**, in byline order; [`is_authors_truncated`](/data/works/attributes/#is_authors_truncated) says when a work has more. The single-work endpoint ([`/works/W4416450507`](https://api.openalex.org/works/W4416450507), 2,424 authors) and the [snapshot](/access/snapshot/) show all of them, up to **5,000**: for the rare work with more than 5,000 authors, OpenAlex keeps the first 5,000 in byline order, and `authors_count` stops at 5,000 too.
 
-Filters on authors, ORCIDs, institutions, countries and corresponding authors (`authorships.author.id`, `authorships.author.orcid`, `authorships.institutions.id`, `.lineage`, `.ror`, `.country_code`, `.type`, the `institutions.*` shortcuts, `authorships.countries` and `authorships.is_corresponding`) search every authorship a work keeps. Two still look at the first 100 only: `raw_affiliation_strings` and `raw_author_name.search`.
+Filters on authors, ORCIDs, institutions, countries and corresponding authors (`authorships.author.id`, `authorships.author.orcid`, `authorships.author.type`, `authorships.institutions.id`, `.lineage`, `.ror`, `.country_code`, `.type`, the `institutions.*` shortcuts, `authorships.countries` and `authorships.is_corresponding`) search every authorship a work keeps. Two still look at the first 100 only: `raw_affiliation_strings` and `raw_author_name.search`.
 
 Exports from the website (CSV, RIS, Web of Science text, BibTeX) carry every author the single work shows, not the list's first 100.
 
@@ -41,7 +41,7 @@ This is the dictionary of every attribute on an **authorship** object, as it app
 *String.* Where this author sits in the byline: `first`, `middle`, or `last`. Derived from byline order, so it tracks the printed sequence rather than any notion of credit or seniority.
 
 ### `author`
-*Object.* The dehydrated [author](/data/authors/) this authorship resolved to: `id` (the OpenAlex author ID), `display_name`, `orcid` (the profile's primary ORCID, or null), and `observed_orcids` (every ORCID trusted on the profile's works, as URLs, primary first; empty when there is none — the same list as the author's [`observed_orcids`](/data/authors/#observed_orcids)). This is the disambiguated person — follow the `id` to the full author object.
+*Object.* The dehydrated [author](/data/authors/) this authorship resolved to: `id` (the OpenAlex author ID), `display_name`, `orcid` (the profile's primary ORCID, or null), `observed_orcids` (every ORCID trusted on the profile's works, as URLs, primary first; empty when there is none — the same list as the author's [`observed_orcids`](/data/authors/#observed_orcids)), and `type` (the kind of author on this byline: `human`, `organization` or `software-agent`, or null when not stated; see [Author types](/data/author-types/)). This is the disambiguated person — follow the `id` to the full author object.
 
 ### `institutions`
 *List.* The distinct [institutions](/data/institutions/) this author was affiliated with on this work, each dehydrated: `id`, `display_name`, `ror`, `country_code`, `type`, and `lineage` (the institution and all its ROR ancestors). A flattened view of what [`affiliations`](#affiliations) records per raw string.
@@ -76,6 +76,7 @@ You can still filter works by authorship attributes using **dotted filter keys**
 - `authorships.author.id` — works by a given author
 - `authorships.author.orcid` — works by a given ORCID; matches the author's primary ORCID or any entry of their `observed_orcids`
 - `authorships.institutions.id` / `.ror` / `.country_code` / `.type` / `.lineage` — works affiliated with an institution (or its lineage, country, or type)
+- `authorships.author.type`: works with an author of a given [type](/data/author-types/), e.g. `authorships.author.type:software-agent`; `authorships.author.type:!software-agent` keeps only works where no author is typed a software agent
 - `authorships.countries` — works with an author from a given country
 - `authorships.is_corresponding` — works filtered on corresponding-author status
 - `authorships.affiliations.institution_ids` — works whose raw-string-to-institution mapping includes an institution
