@@ -55,6 +55,9 @@ This is the dictionary of every attribute on an **authorship** object, as it app
 ### `contributor_roles`
 *List.* The [CRediT roles](/data/contributor-roles/) this author played on the work, as stated for that author (Crossref deposits, PubMed Central XML, or an "Author contributions" statement in CRediT's terms), each with `id` and `display_name`, e.g. `[{"id": "https://openalex.org/contributor-roles/software", "display_name": "Software"}]`. Empty means no roles reached OpenAlex, not that the author had none; see [where roles come from](/data/contributor-roles/#where-the-values-come-from).
 
+### `acted_on_behalf_of`
+*List.* Who this author acted for on this work, when a source states it (W3C PROV's `actedOnBehalfOf`): each item has `id` and `display_name`, and the `id` is an OpenAlex [author](/data/authors/) ID (a human or an organization) or an [institution](/data/institutions/) ID. Empty when OpenAlex has no such record, which today is every authorship. An empty list means none is recorded in OpenAlex, not that nobody is accountable for the work. See [Author types](/data/author-types/#who-an-agent-acted-for).
+
 ### `raw_author_name`
 *String.* The author's name exactly as it appeared on the source record, before disambiguation — e.g. `"Heather Piwowar"`. The unnormalized input to author resolution; the resolved person is in [`author`](#author).
 
