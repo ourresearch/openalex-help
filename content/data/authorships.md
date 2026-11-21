@@ -76,7 +76,7 @@ You can still filter works by authorship attributes using **dotted filter keys**
 - `authorships.author.id` — works by a given author
 - `authorships.author.orcid` — works by a given ORCID; matches the author's primary ORCID or any entry of their `observed_orcids`
 - `authorships.institutions.id` / `.ror` / `.country_code` / `.type` / `.lineage` — works affiliated with an institution (or its lineage, country, or type)
-- `authorships.author.type`: works with an author of a given [type](/data/author-types/), e.g. `authorships.author.type:software-agent`; `authorships.author.type:!software-agent` keeps only works where no author is typed a software agent
+- `authorships.author.type`: works with an author of a given [type](/data/author-types/), e.g. `authorships.author.type:software-agent`; `authorships.author.type:!software-agent` keeps only works with no known AI authors (no author typed `software-agent`; untyped authors are not caught)
 - `authorships.countries` — works with an author from a given country
 - `authorships.is_corresponding` — works filtered on corresponding-author status
 - `authorships.affiliations.institution_ids` — works whose raw-string-to-institution mapping includes an institution
