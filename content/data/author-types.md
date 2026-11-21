@@ -25,7 +25,7 @@ Author types are a [vocabulary](/data/vocabulary/): OpenAlex sets a type only wh
 
 ### Null means not stated
 
-Most authors have no type. Null means no source stated it and no rule could tell, not that the author is a human. Today typed authors are software agents and organizations that a source identifies with a ROR ID. More organizations, and humans, will be typed as we read them from sources that state them.
+Most authors have no type. Null means no source stated it and no rule could tell, not that the author is a human. Today only software agents are typed. Organizations and humans will be typed as we read them from sources that state them.
 
 So filter on `software-agent`, not on `human`: a filter for humans would leave out nearly every human author.
 
@@ -40,9 +40,9 @@ Each author on a byline is typed on its own, before authors are grouped into pro
 
 Each rule is checked on a random sample of bylines before it is used, and new typed authors are checked again every week.
 
-### How organizations are found
+### Organizations
 
-An author is typed `organization` when the source record names it as an organization and gives its [ROR](https://ror.org) ID. Most of these are museums, herbaria and other collections credited on their own records. A group name on a byline, such as "Study Group" or "Collaboration", is not enough on its own yet: too many people's names and affiliations look like one.
+No author is typed `organization` yet. When we add them, we will start with records whose source states that an author is an organization. A group name on a byline, such as "Study Group" or "Collaboration", is not enough on its own: too many people's names and affiliations look like one.
 
 ### Authorships and profiles
 
@@ -101,14 +101,22 @@ At launch the terms are:
 | `human` | W3C PROV-O | [Person](http://www.w3.org/ns/prov#Person) |
 | `human` | schema.org | [Person](https://schema.org/Person) |
 | `human` | Wikidata | [human (Q5)](https://www.wikidata.org/wiki/Q5) |
+| `human` | DataCite | [Personal (nameType)](https://datacite-metadata-schema.readthedocs.io/en/4.7/properties/creator/#a-nametype) |
+| `human` | FOAF | [Person](http://xmlns.com/foaf/0.1/Person) |
 | `organization` | W3C PROV-O | [Organization](http://www.w3.org/ns/prov#Organization) |
 | `organization` | schema.org | [Organization](https://schema.org/Organization) |
 | `organization` | Wikidata | [organization (Q43229)](https://www.wikidata.org/wiki/Q43229) |
+| `organization` | DataCite | [Organizational (nameType)](https://datacite-metadata-schema.readthedocs.io/en/4.7/properties/creator/#a-nametype) |
+| `organization` | FOAF | [Organization](http://xmlns.com/foaf/0.1/Organization) |
 | `software-agent` | W3C PROV-O | [SoftwareAgent](http://www.w3.org/ns/prov#SoftwareAgent) |
 | `software-agent` | Wikidata | [software agent (Q2297769)](https://www.wikidata.org/wiki/Q2297769) |
 | `software-agent` | W3C ActivityStreams 2.0 | [Application](https://www.w3.org/ns/activitystreams#Application) |
 
 The `standard_terms` in the API record is the full, current list. Scholarly metadata standards such as Crossref, DataCite and JATS have person and organization contributors but no software type yet, so `software-agent` has no term from them.
+
+### Who an agent acted for
+
+Each [authorship](/data/authorships/#acted_on_behalf_of) also has `acted_on_behalf_of`: the people or organizations an author acted for on that work, when a source states it. It is empty when OpenAlex has no such record, which today is every authorship. An empty list does not mean that nobody is accountable for the work, only that no source has told us who. We encourage venues that publish AI-authored work to say who each agent acted for.
 
 ### `works_count`
 *Integer.* How many works have at least one author of this type. See [Common attributes](/data/common-attributes/#works_count).
