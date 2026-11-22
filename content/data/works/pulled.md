@@ -1,9 +1,9 @@
 ---
 title: "Pulled works"
-updated: 2026-11-18
-description: "A work is pulled when its publisher, host or authors retracted, withdrew or removed it. OpenAlex keeps pulled works, marks them with is_pulled, and leaves them out of lists, searches and counts unless you add include_pulled=true."
+updated: 2026-11-23
+description: "A work is pulled when its publisher, host or authors retracted, withdrew or removed it. OpenAlex keeps pulled works, marks them with is_pulled, links each to its retraction, withdrawal or removal notice where it holds one (pull_notice_works), and leaves them out of lists, searches and counts unless you add include_pulled=true."
 tags: ["reference"]
-synonyms: ["retracted", "retraction", "retracted works", "withdrawn", "withdrawal", "removed", "pulled", "is_pulled", "include_pulled", "is_retracted", "retraction watch"]
+synonyms: ["retracted", "retraction", "retracted works", "withdrawn", "withdrawal", "removed", "pulled", "is_pulled", "include_pulled", "is_retracted", "retraction watch", "retraction notice", "pull notice", "pull_notice_works", "notice of retraction"]
 ---
 A work is **pulled** when its publisher, its host (a journal, preprint server or repository) or its authors retracted, withdrew or removed it. OpenAlex keeps every pulled work and marks it with [`is_pulled`](/data/works/attributes/#is_pulled). "Pulled" reports what someone else did to the work. It is not our judgment of the research. [See every pulled work on the website](https://openalex.org/works?page=1&filter=is_pulled:true)<span data-live-count="is_pulled:true" data-live-text=" ({n} right now)" hidden></span>.
 
@@ -49,7 +49,7 @@ curl "https://api.openalex.org/works?search=ivermectin&include_pulled=true"
 curl "https://api.openalex.org/works?filter=is_pulled:true&include_pulled=true"
 ```
 
-A filter or `group_by` that names `is_pulled` or `is_retracted` asks about pulled works, so it brings them back too, exactly as if you had added `include_pulled=true`. `include_pulled=false` keeps them out even then.
+A filter or `group_by` that names `is_pulled` or `is_retracted`, or a [`pull_notice_works.link_type` or `pull_notice_works.id`](#pull-notices) filter, asks about pulled works, so it brings them back too, exactly as if you had added `include_pulled=true`. `include_pulled=false` keeps them out even then.
 
 So `filter=is_retracted:false` no longer means "the default view without retracted works". It means every work that isn't retracted, withdrawn ones included. To leave pulled works out, add nothing.
 
@@ -71,6 +71,34 @@ Pulled works still count toward an author's, journal's or institution's [`works_
 
 The flag is rebuilt every night. A retraction Crossref records today shows in the API tomorrow (10 to 38 hours later); one known only to Retraction Watch waits for Retraction Watch's own update. A pulled work's [`updated_date`](/data/works/attributes/#updated_date) is the night it changed.
 
+## Pull notices
+
+A pulled work says that it was pulled, but not why. That's like a car recall lookup that only says "recalled": you need the notice to know whether it's the brakes or the cup holder. For a paper, the notice usually says whether it was fraud, an honest error the authors caught themselves, or a duplicate copy of a paper that is otherwise fine. Each means something different to someone who cites the paper or screens it for a review.
+
+The notice is often a work in OpenAlex too, and the pulled work lists it in [`pull_notice_works`](/data/works/attributes/#pull_notice_works): each notice's `id` and `display_name`, plus its `link_type`, the kind of notice (`retraction`, `withdrawal` or `removal`), oldest first. Wakefield's 1998 MMR paper, [W2117847125](https://api.openalex.org/works/W2117847125), lists The Lancet's 2010 retraction:
+
+```json
+"pull_notice_works": [
+  {
+    "id": "https://openalex.org/W4245876183",
+    "display_name": "Retraction\u2014Ileal-lymphoid-nodular hyperplasia, non-specific colitis, and pervasive developmental disorder in children",
+    "link_type": "retraction"
+  }
+]
+```
+
+Fetch the notice to see its date and read its reason; OpenAlex has no field for the reason. The same link is on [`/links`](/data/links/), with the notice as `origin` and the pulled work as `target`: [`/links?filter=target:W2117847125,link_type:retraction`](https://api.openalex.org/links?filter=target:W2117847125,link_type:retraction).
+
+To find works by their notices, filter on `pull_notice_works.link_type` (works with a retraction notice: [`pull_notice_works.link_type:retraction`](https://api.openalex.org/works?filter=pull_notice_works.link_type:retraction)) or `pull_notice_works.id` (the works one notice pulls). Like a filter on `is_pulled`, these filters bring pulled works back.
+
+About 62,000 works list a notice, roughly 4 in 10 pulled works. For the rest we hold no separate notice. Often the publisher marked the paper itself (its record or its title) instead of publishing a notice; other times the work is a withdrawn preprint, or the notice has no DOI. So an empty list means we hold no notice, not that none exists.
+
+Almost every link is a retraction, because PubMed and Retraction Watch's database file every pull as a retraction. A link says withdrawal or removal only where a Crossref record does.
+
+A few works list a notice and still read `is_pulled: false`. The link records what its source declared, while `is_pulled` follows the rules in [What counts](#what-counts): a retract-and-replace, for one, has a retraction notice, but the corrected version stands, so it isn't pulled.
+
+[Link types › Pull notices](/data/link-types/#pull-notices-retraction-withdrawal-and-removal) defines the three kinds, says why we call them pull notices, and maps them onto the terms of Crossref, NISO, COPE, Retraction Watch, PubMed, Web of Science, Wikidata and others.
+
 ## Known gaps
 
-Copernicus withdrawals come from a one-time read of the meeting sites, so an abstract withdrawn since then can still read `false`. The notice itself (with its date and reason) isn't linked to the work yet. If a work is pulled and we say it isn't, or the other way round, [report it](/access/fixing-errors/works/#wrong-retracted-or-pulled-flag).
+Copernicus withdrawals come from a one-time read of the meeting sites, so an abstract withdrawn since then can still read `false`. If a work is pulled and we say it isn't, or the other way round, [report it](/access/fixing-errors/works/#wrong-retracted-or-pulled-flag).

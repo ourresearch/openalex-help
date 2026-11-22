@@ -1,6 +1,6 @@
 ---
 title: "Expansion corpus"
-updated: 2026-11-21
+updated: 2026-11-23
 description: "OpenAlex works come in two corpora — the curated core and a larger expansion (formerly 'XPAC'). What's in each, why the expansion is opt-in, and how to select core / expansion / all in the REST API and OQL."
 tags: ["reference"]
 synonyms: ["xpac", "expansion pack", "corpus", "include_xpac", "is_xpac", "core corpus", "expansion corpus"]
@@ -71,7 +71,7 @@ curl "https://api.openalex.org/works?filter=parent_works.id:W3109397498"
 curl "https://api.openalex.org/works?filter=has_parent_work:true,is_traditional:false"
 ```
 
-A filter on `has_parent_work`, `parent_works.id`, `parent_works.link_type` or `lineage` shows the pieces too, since it asks about them. Neither `include_parts` nor these filters bring in expansion works: if a work's parts are expansion works (as Zenodo records usually are), add `corpus=all` too. A single work fetched by ID (`/works/W…`) always answers. Counts on other entities (an author's `works_count`) still include the pieces. See [Parent and child works](/data/relationships/#parent-and-child-works).
+A filter on `has_parent_work`, `parent_works.id`, `parent_works.link_type` or `lineage` shows the pieces too, since it asks about them. Neither `include_parts` nor these filters bring in expansion works: if a work's parts are expansion works (as Zenodo records usually are), add `corpus=all` too. A single work fetched by ID (`/works/W…`) always answers. Counts on other entities (an author's `works_count`) still include the pieces. See [Parent and child works](/data/link-types/#parent-and-child-works).
 
 ## Pulled works are left out too
 
@@ -82,7 +82,7 @@ The default view also leaves out [pulled works](/data/works/pulled/): works thei
 curl "https://api.openalex.org/works?search=ivermectin&include_pulled=true"
 ```
 
-A filter or `group_by` on `is_pulled` or `is_retracted` asks about pulled works, so it brings them back too, as `include_pulled=true` would; `include_pulled=false` keeps them out even then. A single work fetched by ID always answers, and counts on other entities (an author's `works_count`) still include pulled works. See [Pulled works](/data/works/pulled/).
+A filter or `group_by` on `is_pulled` or `is_retracted`, or a [`pull_notice_works.link_type` or `pull_notice_works.id`](/data/works/attributes/#pull_notice_works) filter, asks about pulled works, so it brings them back too, as `include_pulled=true` would; `include_pulled=false` keeps them out even then. A single work fetched by ID always answers, and counts on other entities (an author's `works_count`) still include pulled works. See [Pulled works](/data/works/pulled/).
 
 ## Why the expansion is opt-in
 
