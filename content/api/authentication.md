@@ -1,6 +1,6 @@
 ---
 title: "Authentication"
-updated: 2026-11-17
+updated: 2026-11-22
 description: "API keys, sending your key, rate limits, and keeping tabs on your usage"
 tags: ["api"]
 source_id: "api-reference/authentication"
@@ -81,12 +81,12 @@ Both work identically. The [openalex.org](https://openalex.org) website runs on 
 
 ## Rotating your key
 
-You can replace your key with a new one anytime in [Settings → API key](https://openalex.org/settings/api). When you rotate, you choose when the old key stops working:
+Rotating revokes your key and gives you a new one, so it's what to do if your key has leaked (say, pasted into a shared notebook or pushed to GitHub). Do it anytime in [Settings → API key](https://openalex.org/settings/api-key): click **Rotate**, next to **Copy**. When you rotate, you choose when the old key stops working:
 
-- **Immediately** (the default) — the old key dies on the spot. The right choice when a key has leaked.
-- **In 24 hours** or **in 7 days** — both keys work during the window, so you can deploy the new key to your systems with no downtime. The old key keeps its normal limits, then stops for good. If you discover a leak mid-window, the **Expire now** button kills the old key early.
+- **Immediately** (the default): the old key stops working within about two minutes. The right choice when a key has leaked.
+- **In 24 hours** or **in 7 days**: both keys work during the window, so you can deploy the new key to your systems with no downtime. The old key keeps its normal limits, then stops for good. If you discover a leak mid-window, the **Expire now** button kills the old key early.
 
-Organization keys work the same way, from the organization's API settings. One thing to know about personal keys: your key is also your openalex.org sign-in credential, so rotating it logs you out on your other browsers and devices right away — the grace window applies to API requests only.
+Organization keys work the same way, from the organization's API settings. One thing to know about personal keys: your key is also your openalex.org sign-in credential, so rotating it logs you out on your other browsers and devices right away; the grace window applies to API requests only.
 
 ## Organization keys and budgets
 

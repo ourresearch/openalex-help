@@ -56,7 +56,7 @@ Claude runs the search in OpenAlex, shows you the papers, and gives you the exac
 
 Agents already know OpenAlex, and anything they're unsure of they can find right here at [help.openalex.org](https://help.openalex.org): the site is optimized for AI use.
 
-**Your agent needs a key, and it can get one for you.** Agents make a lot of requests, so the keyless budget runs out fast. Tell a coding agent *"get me a free OpenAlex API key; my email is …"* and it [gets the key](/api/authentication/#getting-a-key-for-your-user) itself; you just click the link in the email we send you. Already have a key? Paste it into the chat instead. (If a key ever leaks, no big deal: rotate it in **Settings → API key**, which invalidates the old one instantly.)
+**Your agent needs a key, and it can get one for you.** Agents make a lot of requests, so the keyless budget runs out fast. Tell a coding agent *"get me a free OpenAlex API key; my email is …"* and it [gets the key](/api/authentication/#getting-a-key-for-your-user) itself; you just click the link in the email we send you. Already have a key? Paste it into the chat instead. (If a key ever leaks, no big deal: rotate it in **Settings → API key**, which shuts off the old one within about two minutes.)
 
 It's very unusual for agents to hallucinate results here, since the API is so well-structured — but for consequential queries, it's a good idea to check against the [website](https://openalex.org) yourself.
 

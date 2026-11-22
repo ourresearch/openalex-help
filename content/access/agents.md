@@ -27,7 +27,7 @@ This page is about how to work with agents effectively — which kind to use, ho
 
 **Let it get a key for you.** Agents make a lot of requests, and the keyless budget runs out fast, so they need a key. A coding agent can get one itself: tell it to use OpenAlex, and when it needs a key it can ask for your email address. Or say it up front: *"Get me a free OpenAlex API key; my email is ana@usp.br."* Click the link in the email we send you ("Activate your OpenAlex API key"), and that's all. The key works from then on, with the full free budget, and you never copy or paste anything. ([How it works](/api/authentication/#getting-a-key-for-your-user).)
 
-**Or give it your own key.** Already have an account, or using a chat assistant that can't call APIs on its own? Copy your key from **Settings → API key** and paste it into the chat. (If a key ever leaks, rotate it in Settings, and the old one stops working instantly.) See [Authentication](/api/authentication/) for how budgets work.
+**Or give it your own key.** Already have an account, or using a chat assistant that can't call APIs on its own? Copy your key from **Settings → API key** and paste it into the chat. (If a key ever leaks, rotate it in Settings, and the old one stops working within about two minutes.) See [Authentication](/api/authentication/) for how budgets work.
 
 **Point it at the docs.** Anything the agent is unsure of, it can read right here — this whole site is optimized for AI use. If it seems lost, saying "check help.openalex.org" is usually enough. For heavy API work, hand it the [LLM quick reference](/api/llm-quick-reference/), a condensed page written specifically for agents.
 

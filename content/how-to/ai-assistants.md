@@ -63,7 +63,7 @@ Every major assistant already knows how to use OpenAlex, and this help site is w
 
 > My OpenAlex API key is `xxxxxxxx`. Using the OpenAlex API (the docs are at help.openalex.org), find the 25 most-cited papers about microplastics in drinking water since 2022 and list them with title, year, journal, citation count and DOI.
 
-That's it. The assistant reads the documentation when it's unsure, calls the API, and answers. If it stalls, saying *"check help.openalex.org"* usually gets it going again. If a key ever leaks, rotate it in **Settings → API key** and the old one stops working immediately.
+That's it. The assistant reads the documentation when it's unsure, calls the API, and answers. If it stalls, saying *"check help.openalex.org"* usually gets it going again. If a key ever leaks, rotate it in **Settings → API key**; the old one stops working within about two minutes.
 
 ## ChatGPT
 
