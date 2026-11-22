@@ -53,7 +53,7 @@ This is the dictionary of every attribute on an **authorship** object, as it app
 *Boolean.* True if this author is marked as a corresponding author on the work. Corresponding authors are also collected at the work level in [`corresponding_author_ids`](/data/works/attributes/#corresponding_author_ids).
 
 ### `contributor_roles`
-*List.* The [CRediT roles](/data/contributor-roles/) this author played on the work, as stated for that author (Crossref deposits, PubMed Central XML, or an "Author contributions" statement in CRediT's terms), each with `id` and `display_name`, e.g. `[{"id": "https://openalex.org/contributor-roles/software", "display_name": "Software"}]`. Empty means no roles reached OpenAlex, not that the author had none; see [where roles come from](/data/contributor-roles/#where-the-values-come-from).
+*List.* The [contributor roles](/data/contributor-roles/) this person played on the work, each with `id` and `display_name`: CRediT roles as stated for that author (Crossref deposits, PubMed Central XML, or an "Author contributions" statement in CRediT's terms), or `editor` for the editors of an edited book (from Crossref), e.g. `[{"id": "https://openalex.org/contributor-roles/software", "display_name": "Software"}]`. Empty means no roles reached OpenAlex, not that the author had none; see [where roles come from](/data/contributor-roles/#where-the-values-come-from).
 
 ### `raw_author_name`
 *String.* The author's name exactly as it appeared on the source record, before disambiguation — e.g. `"Heather Piwowar"`. The unnormalized input to author resolution; the resolved person is in [`author`](#author).

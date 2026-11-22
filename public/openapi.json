@@ -6260,7 +6260,7 @@
       },
       "DehydratedContributorRole": {
         "type": "object",
-        "description": "A CRediT contributor role, as listed on an authorship",
+        "description": "A contributor role (one of the 14 CRediT roles, or editor), as listed on an authorship",
         "properties": {
           "id": {
             "type": "string",
@@ -6274,7 +6274,7 @@
       },
       "ContributorRole": {
         "type": "object",
-        "description": "One of the 14 CRediT contributor roles (Contributor Roles Taxonomy, ANSI/NISO Z39.104-2022)",
+        "description": "A contributor role: one of the 14 CRediT roles (Contributor Roles Taxonomy, ANSI/NISO Z39.104-2022), or editor",
         "properties": {
           "id": {
             "type": "string",
@@ -6286,7 +6286,28 @@
           },
           "description": {
             "type": "string",
-            "description": "CRediT's definition of the role"
+            "description": "The role's definition (CRediT's own for its 14 roles)"
+          },
+          "standard_terms": {
+            "type": "array",
+            "description": "The same role in other vocabularies (Crossref, JATS4R, ORCID; for editor also DataCite, JATS, MARC relators, CSL, schema.org, Wikidata)",
+            "items": {
+              "type": "object",
+              "properties": {
+                "vocabulary": {
+                  "type": "string",
+                  "example": "MARC relators"
+                },
+                "term": {
+                  "type": "string",
+                  "example": "edt"
+                },
+                "url": {
+                  "type": "string",
+                  "example": "http://id.loc.gov/vocabulary/relators/edt"
+                }
+              }
+            }
           },
           "ids": {
             "type": "object",
@@ -6296,13 +6317,15 @@
               },
               "credit": {
                 "type": "string",
-                "example": "https://credit.niso.org/contributor-roles/software/"
+                "example": "https://credit.niso.org/contributor-roles/software/",
+                "description": "CRediT URL; null for editor",
+                "nullable": true
               }
             }
           },
           "works_count": {
             "type": "integer",
-            "description": "Works where at least one author has this role"
+            "description": "Works where at least one person has this role"
           },
           "cited_by_count": {
             "type": "integer"
