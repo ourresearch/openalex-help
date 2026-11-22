@@ -1,7 +1,7 @@
 ---
 title: "Link types"
-updated: 2026-11-21
-description: "The kinds of link between two works: citation, review, and the part-of kinds (volume, component, data series, part); what counts as a review, how each type maps to Crossref, DataCite, Wikidata and other vocabularies, and how to list a work's reviews or parts."
+updated: 2026-11-22
+description: "The kinds of link between two works: citation, review, translation, and the part-of kinds (volume, component, data series, part); what counts as a review or a translation, how each type maps to Crossref, DataCite, Wikidata and other vocabularies, and how to list a work's reviews, translations or parts."
 tags: ["reference"]
 entity:
   example: "link-types/review"
@@ -10,7 +10,7 @@ entity:
     - "works"
     - "links"
 ---
-A **link type** is the kind of [link](/data/links/) between two [works](/data/works/): a citation, a review, or a part-of link (a chapter in a book, a figure of a paper, one record of a data series). There are six: `citation`, `review`, and four part-of kinds, one on each entry in a work's [`parent_works`](/data/works/attributes/#parent_works). A link type's OpenAlex ID looks like `https://openalex.org/link-types/review`; list all six at [`api.openalex.org/link-types`](https://api.openalex.org/link-types), and list a work's links at [`/links`](/data/links/).
+A **link type** is the kind of [link](/data/links/) between two [works](/data/works/): a citation, a review, a translation, or a part-of link (a chapter in a book, a figure of a paper, one record of a data series). There are seven: `citation`, `review`, `translation`, and four part-of kinds, one on each entry in a work's [`parent_works`](/data/works/attributes/#parent_works). A link type's OpenAlex ID looks like `https://openalex.org/link-types/review`; list them all at [`api.openalex.org/link-types`](https://api.openalex.org/link-types), and list a work's links at [`/links`](/data/links/).
 
 **Renamed from "relationships".** Until Monday 7 December 2026 this vocabulary is also served under its old name: the `/relationships` endpoint, the `relationship` field on `/links` and on `parent_works`, and the `relationship` and `parent_works.relationship` filters. On 7 December the old fields stop being returned (the old filter names are read until 1 March 2027). The new names work in the API now; the snapshot switches on 7 December. The full list of what changes: [Deprecations › relationships renamed link types](/api/deprecations/#relationships-renamed-link-types).
 
@@ -30,6 +30,17 @@ Where review links come from:
 Crossref asks that a reviewed work have a Crossref DOI, so reviews of preprints on arXiv or Zenodo are usually deposited with DataCite (`Reviews`) instead. Those, and reviews that have no DOI at all but a stable page (OpenReview, alphaXiv), come next.
 
 A review link says a review exists. It is not a seal of quality: a work with one review isn't better than a work with none, and some publishers mint one DOI per report per version, so counts partly measure publishers' habits.
+
+### Translations
+
+A translation is a work whose text is another work's full text in another language, published as its own work: an article in the English edition of a Russian journal, say. The translation is its own work in OpenAlex, with its own DOI and journal, and a `translation` link joins it to the original it translates: `origin` is the translation, `target` is the original. A translation keeps the authors its publisher lists, which are usually the original's authors, since it carries their words.
+
+What counts as a translation: another work's full text in another language, published as its own record by another journal, book or publisher. Out: a shorter version in another language (that is a summary), translated titles or abstracts inside one record, free adaptations, and a second-language copy of an article inside the same journal or repository, which is the same work (we merge those).
+
+Where translation links come from:
+
+- **Publishers' declarations.** A translation's Crossref record declares its original (`isTranslationOf`), or the original declares its translation (`hasTranslation`); DataCite records do the same (`IsTranslationOf`, `HasTranslation`). Both directions say the same link, so we keep one. About 33,000 links, almost all Russian and Soviet journals and their English editions, such as *Mathematical Notes* and *Matematicheskie Zametki*, or *Physics-Uspekhi* and *Uspekhi Fizicheskikh Nauk*.
+- **Translation journals.** Most English editions of Russian journals declare nothing, so we pair each article with its original in the journal it was translated from, by year and the whole author list, keeping a pair only when it is the only one for both articles. About 63,000 links from 113 English journals published by Pleiades, Springer, IOP and SIAM; checked against the declared pairs (99.7% agree) and by reading a random 100 (all right). Where a publisher declares a link, its declaration wins.
 
 ### Parent and child works
 
@@ -86,12 +97,34 @@ Before naming it we read 24 vocabularies that describe reviews. Every one that h
 
 So `standard_terms` for `review` lists Crossref, DataCite, Wikidata and the Library of Congress first, then schema.org and CiTO.
 
+### Why `translation`, and how it maps
+
+Before naming it we read 26 vocabularies that describe translations. Every one that has a link from a translation to its original calls it a translation ("translation of") and points the same way: from the translation to the original. None calls the link a "version", "language version" or "edition". Libraries and Crossref treat a translation as a form of the same work; we keep a translation published by another journal as its own work, which IFLA's Library Reference Model allows for translated journals, and link the two.
+
+| Vocabulary | Term | Fit |
+|---|---|---|
+| DataCite | [`IsTranslationOf`](https://datacite-metadata-schema.readthedocs.io/en/4.7/appendices/appendix-1/relationType/#istranslationof) (inverse `HasTranslation`) | Same link |
+| Crossref | [`isTranslationOf`](https://www.crossref.org/documentation/schema-library/markup-guide-metadata-segments/relationships/) (inverse `hasTranslation`) | Same link |
+| Wikidata | [P9745 "translation of"](https://www.wikidata.org/wiki/Property:P9745) | Same link |
+| schema.org | [`translationOfWork`](https://schema.org/translationOfWork) (inverse `workTranslation`) | Same link |
+| Library of Congress | [`translationof` "translation of"](http://id.loc.gov/vocabulary/relationship/translationof) | Same link |
+| BIBFRAME, BIBO, FRBR core, RDA, MARC 21 field 765 | [`translationOf`](http://id.loc.gov/ontologies/bibframe/translationOf), [`translationOf`](http://purl.org/ontology/bibo/translationOf), [`translationOf`](http://purl.org/vocab/frbr/core#translationOf), [`is translation of`](http://rdaregistry.info/Elements/e/P20141), [Original Language Entry](https://www.loc.gov/marc/bibliographic/bd765.html) | Same link (not listed in `standard_terms`) |
+| Wikidata | [P629 "edition or translation of"](https://www.wikidata.org/wiki/Property:P629) | Broader: also editions (it is what most scholarly items on Wikidata use) |
+| Dublin Core | [`isVersionOf`](http://purl.org/dc/terms/isVersionOf) | Broader: any version, edition or adaptation |
+| ORCID, MODS, IANA link relations | `version-of`, `otherVersion`, `alternate` | Broader and two-way; not listed |
+| PubMed, Web of Science, Scopus | Translated titles and "English Abstract" | No translation link |
+
+So `standard_terms` for `translation` lists DataCite, Crossref, Wikidata, schema.org and the Library of Congress first, then Wikidata's P629 and Dublin Core's `isVersionOf`.
+
+The line between a translation and a summary: a translation is the whole text in another language; anything shorter, in any language, is a summary.
+
 ## Values
 
 | ID | Display name | Definition |
 |----|--------------|------------|
 | `citation` | Citation | The work cites another work: that work is in its reference list. |
 | `review` | Review | The work reviews another work: an evaluation of that specific work by someone other than its authors, such as a peer review, preprint review or book review (a literature review article is the work type review, not this link). |
+| `translation` | Translation | The work is a translation of another work: that work's full text in another language, published as its own work (such as an article in an English edition of a Russian journal). A shorter version in another language is a summary; a translated title or abstract inside one record, or a free adaptation, is neither. |
 | `volume` | Volume | The work is in a book or proceedings volume: a chapter, entry, front matter or paper of that volume. |
 | `component` | Component | The work is a piece of another work that does not stand alone: a figure, table, file or supplement. |
 | `data-series` | Data series | The work is one record of a data series: datasets published separately that share an instrument and method. |
@@ -146,7 +179,7 @@ The top-level fields on a **link type** object. Attributes shared with other ent
 
 ## In the API
 
-The Link types endpoint is at [`api.openalex.org/link-types`](https://api.openalex.org/link-types). Fetch one by ID, [`/link-types/review`](https://api.openalex.org/link-types/review), or list all six. To list the links themselves, use [`/links`](/data/links/).
+The Link types endpoint is at [`api.openalex.org/link-types`](https://api.openalex.org/link-types). Fetch one by ID, [`/link-types/review`](https://api.openalex.org/link-types/review), or list them all. To list the links themselves, use [`/links`](/data/links/).
 
 ```
 # The reviews of one work
@@ -154,6 +187,12 @@ https://api.openalex.org/links?filter=target:W2045435533,link_type:review
 
 # The works one review reviews
 https://api.openalex.org/links?filter=origin:W4233084407,link_type:review
+
+# The original of one translation (Kitaev's 1997 survey in Russian Mathematical Surveys)
+https://api.openalex.org/links?filter=origin:W2159566537,link_type:translation
+
+# The translations of one work
+https://api.openalex.org/links?filter=target:W2327385060,link_type:translation
 
 # Works that have at least one review, most reviewed first
 https://api.openalex.org/works?filter=reviewed_by_count:>0&sort=reviewed_by_count:desc
