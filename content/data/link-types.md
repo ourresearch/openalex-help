@@ -33,9 +33,9 @@ A review link says a review exists. It is not a seal of quality: a work with one
 
 ### Translations
 
-A translation is a work whose text is another work's full text in another language, published as its own work: an article in the English edition of a Russian journal, say. The translation is its own work in OpenAlex, with its own DOI and journal, and a `translation` link joins it to the original it translates: `origin` is the translation, `target` is the original. A translation keeps the authors its publisher lists, which are usually the original's authors, since it carries their words.
+A translation is a work whose text is another work's text rendered in another language, published as its own work: an article in the English edition of a Russian journal, say. The translation is its own work in OpenAlex, with its own DOI and journal, and a `translation` link joins it to the original it translates: `origin` is the translation, `target` is the original. A translation keeps the authors its publisher lists, which are usually the original's authors, since it carries their words.
 
-What counts as a translation: another work's full text in another language, published as its own record by another journal, book or publisher. Out: a shorter version in another language (that is a summary), translated titles or abstracts inside one record, free adaptations, and a second-language copy of an article inside the same journal or repository, which is the same work (we merge those).
+What counts as a translation: another work's text rendered in another language, published as its own record by another journal, book or publisher. Out: a condensed account of a work's content, in any language (that is a summary), translated titles or abstracts inside one record, free adaptations, and a second-language copy of an article inside the same journal or repository, which is the same work (we merge those).
 
 Where translation links come from:
 
@@ -116,7 +116,7 @@ Before naming it we read 26 vocabularies that describe translations. Every one t
 
 So `standard_terms` for `translation` lists DataCite, Crossref, Wikidata, schema.org and the Library of Congress first, then Wikidata's P629 and Dublin Core's `isVersionOf`.
 
-The line between a translation and a summary: a translation is the whole text in another language; anything shorter, in any language, is a summary.
+The line between a translation and a summary: a translation renders a work's text in another language; a condensed account of its content, in any language, is a summary; an abridged edition of the same text is the same work.
 
 ## Values
 
@@ -124,7 +124,7 @@ The line between a translation and a summary: a translation is the whole text in
 |----|--------------|------------|
 | `citation` | Citation | The work cites another work: that work is in its reference list. |
 | `review` | Review | The work reviews another work: an evaluation of that specific work by someone other than its authors, such as a peer review, preprint review or book review (a literature review article is the work type review, not this link). |
-| `translation` | Translation | The work is a translation of another work: that work's full text in another language, published as its own work (such as an article in an English edition of a Russian journal). A shorter version in another language is a summary; a translated title or abstract inside one record, or a free adaptation, is neither. |
+| `translation` | Translation | The work is a translation of another work: that work's text rendered in another language, published as its own work (such as an article in an English edition of a Russian journal). A condensed account of its content, in any language, is a summary; a translated title or abstract inside one record, or a free adaptation, is neither. |
 | `volume` | Volume | The work is in a book or proceedings volume: a chapter, entry, front matter or paper of that volume. |
 | `component` | Component | The work is a piece of another work that does not stand alone: a figure, table, file or supplement. |
 | `data-series` | Data series | The work is one record of a data series: datasets published separately that share an instrument and method. |
