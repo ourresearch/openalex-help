@@ -40,7 +40,9 @@ What counts as a translation: another work's text rendered in another language, 
 Where translation links come from:
 
 - **Publishers' declarations.** A translation's Crossref record declares its original (`isTranslationOf`), or the original declares its translation (`hasTranslation`); DataCite records do the same (`IsTranslationOf`, `HasTranslation`). Both directions say the same link, so we keep one. About 33,000 links, almost all Russian and Soviet journals and their English editions, such as *Mathematical Notes* and *Matematicheskie Zametki*, or *Physics-Uspekhi* and *Uspekhi Fizicheskikh Nauk*.
-- **Translation journals.** Most English editions of Russian journals declare nothing, so we pair each article with its original in the journal it was translated from, by year and the whole author list, keeping a pair only when it is the only one for both articles. About 63,000 links from 113 English journals published by Pleiades, Springer, IOP and SIAM; checked against the declared pairs (99.7% agree) and by reading a random 100 (all right). Where a publisher declares a link, its declaration wins.
+- **Translation journals.** Most English editions declare nothing, so we pair each article with its original in the journal it was translated from, by year and the whole author list, keeping a pair only when it is the only one for both articles. About 63,000 links from 113 English editions of Russian and Ukrainian journals (Pleiades, Springer, IOP, SIAM), checked against the declared pairs (99.7% agree); and about 32,000 from about 45 "English Edition" journals of Spanish, Portuguese, Latin American and French journals (Elsevier and others), where we also require the two titles to differ, so the same English text printed in both editions isn't called a translation. A random 100 of each, read by hand, were all right. Where a publisher declares a link, its declaration wins.
+
+The direction follows the journals: the English edition is the translation, as its publisher presents it, even for the few articles whose authors wrote in English first.
 
 ### Parent and child works
 
