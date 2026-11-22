@@ -1,6 +1,6 @@
 ---
 title: "Affiliations"
-updated: 2026-11-05
+updated: 2026-11-22
 description: "Fix affiliation errors: the Affiliation Editor for wrong institution matches (self-serve for members), tickets for one-offs, and ROR for the institution record itself."
 tags: ["reference"]
 ---
@@ -11,6 +11,8 @@ tags: ["reference"]
 OpenAlex reads the [raw affiliation strings](/data/raw-affiliation-strings/) authors put on their papers ("Dept. of Physics, MIT, Cambridge MA") and matches each one to an [institution](/data/institutions/). The matcher handles messy text in many languages, but it can pick the wrong institution or fail to match at all.
 
 **If you're at a [member institution](/access/pricing/), fix it yourself with the Affiliation Editor** (in your account settings on [openalex.org](https://openalex.org)). It shows every raw affiliation string, searchable and filterable by whether it's linked to your institution; for each string you can see the works carrying it, then **link** it to your institution or **unlink** a wrong match — one at a time or in bulk, thousands of rows at once. Corrections apply automatically as [curations](/data/curations/), no review queue, and are live within about two days; you can track each one's status (pending → applied) from your account. To undo a correction, submit the opposite one.
+
+The editor lists your institution and everything under it in ROR, plus the organizations ROR lists as related to it (a university's affiliated hospitals, say), unless another member institution curates that organization itself. A string you link to a related organization counts for that organization, not for yours.
 
 **Anyone can report a one-off** — a single work showing the wrong institution, a string matched badly — by [filing a ticket](https://openalex.org/contact): include the work URL, the affiliation string, and the institution it should (or shouldn't) match.
 
