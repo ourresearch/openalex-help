@@ -1,6 +1,6 @@
 ---
 title: "Sync"
-updated: 2026-11-16
+updated: 2026-11-22
 description: "Snapshot release cadence and dates per plan, how updated_date partitions work, the four ways to keep a copy in sync with OpenAlex, and how deletions and merged entities behave — including the works deletion log deleted_ids.csv.gz and the works, authors, sources and institutions merge maps merged_ids.csv.gz."
 tags: ["downloads"]
 source_id: "new/snapshot-updates"
@@ -100,6 +100,23 @@ Because every daily copy is both *complete* and *partitioned by change date*, it
 - **Full rebuild, as often as you like.** Rebuild your entire database from scratch every day if you want — each dated folder is the whole thing.
 - **Deletions handled.** Each day's copy is the complete current corpus, so records that were deleted or merged away are simply absent — reconcile against it and they fall out of your mirror. For works, each copy also names its deletions explicitly in [`deleted_ids.csv.gz`](#the-works-deletion-log-deleted_idscsvgz) (see [below](#deletions-and-merged-entities)).
 
+#### Tracking only some fields
+
+A night's works partition can be huge (68 million works, about 205 GB of Parquet on 22 November 2026) because `updated_date` moves whenever anything in a work changes. Downloading full works wastes bandwidth when you only track a few fields, like citation counts and work type.
+
+Instead, read the Parquet copy in the same dated folder (`parquet/` instead of `jsonl/`). Parquet stores each field as its own column, so a reader that asks for a few columns downloads only those; on 22 November 2026, `id`, `cited_by_count`, and `type` were about 0.4% of that night's Parquet bytes (about 0.7 GB). Compare those values with yours and update what differs.
+
+This DuckDB query works with the [AWS profile from the snapshot page](/access/snapshot/#the-daily-snapshot-bucket-member-and-partner) when the secret uses `CHAIN 'process'`. Replace both dates with today's folder and the partitions you need:
+
+```sql
+INSTALL httpfs; LOAD httpfs; INSTALL aws; LOAD aws;
+CREATE SECRET openalex (TYPE s3, PROVIDER credential_chain, CHAIN 'process', PROFILE 'openalex', REGION 'us-east-1');
+SELECT id, cited_by_count, type
+FROM read_parquet('s3://openalex-snapshots/full/2026-11-22/parquet/works/updated_date=2026-11-22/*.parquet');
+```
+
+[Deletions and merges](#deletions-and-merged-entities) still come from `deleted_ids.csv.gz` and `merged_ids.csv.gz`.
+
 ### API sync filters (Member+ and Partner)
 
 Some people would rather get updates from the API than from a snapshot. We support that: for small numbers of updates, the sync filters make the API itself a sync mechanism, on every entity type:
@@ -115,7 +132,7 @@ Some people would rather get updates from the API than from a snapshot. We suppo
 https://api.openalex.org/works?filter=from_updated_date:2026-07-30&corpus=all
 ```
 
-**On works, add `corpus=all`.** Works queries cover only the [core corpus](/data/works/corpus/) unless you ask for more, while the snapshot holds every work. A mirror that polls without `corpus=all` never hears about changes to expansion works, which are about a quarter of a typical night's work updates.
+**On works, add `corpus=all`.** Works queries cover only the [core corpus](/data/works/corpus/) unless you ask for more, while the snapshot holds every work. A mirror that polls without `corpus=all` never hears about changes to expansion works, which were between 4% and a quarter of a night's work updates in November 2026.
 
 Poll with these and upsert the results by `id`: no snapshot downloads, no bulk infrastructure, just HTTP requests. It's also the freshest view of the data, since the API updates continuously rather than on a release schedule.
 
