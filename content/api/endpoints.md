@@ -49,7 +49,7 @@ This page is the index. What each entity *is*, and what every field on it *means
 | Endpoint | What it returns |
 |---|---|
 | `/work-types` | [Work types](/data/work-types/) |
-| `/link-types` | [Link types](/data/link-types/): the kinds of link between two works (citation, review, volume, component, data series, part). `/relationships`, its old name, answers until 7 December 2026, then redirects here |
+| `/link-types` | [Link types](/data/link-types/): the kinds of link between two works (citation, review, translation, summary, retraction, withdrawal, removal, volume, component, data series, part). `/relationships`, its old name, answers until 7 December 2026, then redirects here |
 | `/contributor-roles` | [Contributor roles](/data/contributor-roles/): the 14 CRediT roles a person can play on a work (conceptualization, software, writing – original draft, …), editor and translator |
 | `/author-types` | [Author types](/data/author-types/): the kinds of author on a byline (human, organization, software agent) |
 | `/source-types` | [Source types](/data/source-types/) |
