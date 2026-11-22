@@ -1,7 +1,7 @@
 ---
 title: "Link types"
 updated: 2026-11-22
-description: "The kinds of link between two works: citation, review, translation, and the part-of kinds (volume, component, data series, part); what counts as a review or a translation, how each type maps to Crossref, DataCite, Wikidata and other vocabularies, and how to list a work's reviews, translations or parts."
+description: "The kinds of link between two works: citation, review, translation, summary, and the part-of kinds (volume, component, data series, part); what counts as a review, a translation or a summary, how each type maps to Crossref, DataCite, Wikidata and other vocabularies, and how to list a work's reviews, translations, summaries or parts."
 tags: ["reference"]
 entity:
   example: "link-types/review"
@@ -10,7 +10,7 @@ entity:
     - "works"
     - "links"
 ---
-A **link type** is the kind of [link](/data/links/) between two [works](/data/works/): a citation, a review, a translation, or a part-of link (a chapter in a book, a figure of a paper, one record of a data series). There are seven: `citation`, `review`, `translation`, and four part-of kinds, one on each entry in a work's [`parent_works`](/data/works/attributes/#parent_works). A link type's OpenAlex ID looks like `https://openalex.org/link-types/review`; list them all at [`api.openalex.org/link-types`](https://api.openalex.org/link-types), and list a work's links at [`/links`](/data/links/).
+A **link type** is the kind of [link](/data/links/) between two [works](/data/works/): a citation, a review, a translation, a summary, or a part-of link (a chapter in a book, a figure of a paper, one record of a data series). There are eight: `citation`, `review`, `translation`, `summary`, and four part-of kinds, one on each entry in a work's [`parent_works`](/data/works/attributes/#parent_works). A link type's OpenAlex ID looks like `https://openalex.org/link-types/review`; list them all at [`api.openalex.org/link-types`](https://api.openalex.org/link-types), and list a work's links at [`/links`](/data/links/).
 
 **Renamed from "relationships".** Until Monday 7 December 2026 this vocabulary is also served under its old name: the `/relationships` endpoint, the `relationship` field on `/links` and on `parent_works`, and the `relationship` and `parent_works.relationship` filters. On 7 December the old fields stop being returned (the old filter names are read until 1 March 2027). The new names work in the API now; the snapshot switches on 7 December. The full list of what changes: [Deprecations › relationships renamed link types](/api/deprecations/#relationships-renamed-link-types).
 
@@ -41,6 +41,21 @@ Where translation links come from:
 
 - **Publishers' declarations.** A translation's Crossref record declares its original (`isTranslationOf`), or the original declares its translation (`hasTranslation`); DataCite records do the same (`IsTranslationOf`, `HasTranslation`). Both directions say the same link, so we keep one. About 33,000 links, almost all Russian and Soviet journals and their English editions, such as *Mathematical Notes* and *Matematicheskie Zametki*, or *Physics-Uspekhi* and *Uspekhi Fizicheskikh Nauk*.
 - **Translation journals.** Most English editions of Russian journals declare nothing, so we pair each article with its original in the journal it was translated from, by year and the whole author list, keeping a pair only when it is the only one for both articles. About 63,000 links from 113 English journals published by Pleiades, Springer, IOP and SIAM; checked against the declared pairs (99.7% agree) and by reading a random 100 (all right). Where a publisher declares a link, its declaration wins.
+
+### Summaries
+
+A summary is a work that gives a condensed account of another work's content, separate from that work's own abstract: an abstracting service's abstract (ChemInform), a digest entry (Reactions Weekly), a research highlight (Nature Reviews journals, Synfacts), a Year Book entry (Elsevier's Year Books, which pair an abstract with a short editor's comment), a clinical answer (Cochrane Clinical Answers), a plain-language summary, and in future summaries written by AI agents. The summary is its own work in OpenAlex (type `other` for now), and a `summary` link joins it to the work it summarizes: `origin` is the summary, `target` is the work summarized. A summary can summarize more than one work.
+
+Any separate condensed account counts as a summary, whether written by the original's authors or anyone else: abstracts, digests, highlights, plain-language summaries, and agent summaries. We leave out a work's own abstract or summary section (part of the work, not a separate work), a piece that mainly evaluates the work (a `review`), a piece that mainly argues its own point (a comment), a rendering of the whole work in another language (a translation), an abridged edition of the same text (the same work, merged rather than linked), and a round-up of a whole issue (not a summary of any one work).
+
+Where summary links come from:
+
+- **Publisher metadata.** Crossref and DataCite have no summary relation, so publishers do not declare these links.
+- **Dedicated summary services.** For 89 services whose items each summarize one work published elsewhere, we take the item's single reference and keep the link when the item's own Crossref record cites that work's DOI or their titles match. That gives about 970,000 links (ChemInform about 674,000, Reactions Weekly 177,000, Nature's research highlights 33,000, Year Books 30,000), and a check of 100 random links found every one right. We link new summaries nightly.
+
+We do not yet link items that carry no reference, Journal Watch, highlights mixed into general journals, or PubMed's patient summaries.
+
+A summary's reference still counts as a citation, as a review's does.
 
 ### Parent and child works
 
@@ -118,6 +133,23 @@ So `standard_terms` for `translation` lists DataCite, Crossref, Wikidata, schema
 
 The line between a translation and a summary: a translation renders a work's text in another language; a condensed account of its content, in any language, is a summary; an abridged edition of the same text is the same work.
 
+### Why `summary`, and how it maps
+
+Before naming it we read 20 vocabularies. The three vocabularies with a general link from a summary to the work it summarizes all call it a summary and point from the summary to the work summarized; library standards list abstract and digest as kinds of summary or beside it. We did not use `abstract`, `digest`, or `abridgement`: `abstract` is narrower in RDA and reads as a work's own abstract field; `digest` means a systematic condensing, which RDA files under derivation; and `abridgement` is the same work in FRBR.
+
+| Vocabulary | Term | Fit |
+|---|---|---|
+| Library of Congress (BIBFRAME) | [`summaryof` "summary of"](http://id.loc.gov/vocabulary/relationship/summaryof) | Same link |
+| RDA | ["is summary of"](http://rdaregistry.info/Elements/w/P10179) | Same link |
+| FRBR (RDF) | [`summarizationOf`](http://purl.org/vocab/frbr/core#summarizationOf) | Same link |
+| PubMed | [`OriginalReportIn`](https://dtd.nlm.nih.gov/ncbi/pubmed/out/pubmed_250101.dtd) (inverse `SummaryForPatientsIn`) | Narrower: patient summaries only |
+| Crossref, DataCite | [`isDerivedFrom`](https://www.crossref.org/documentation/schema-library/markup-guide-metadata-segments/relationships/), [`IsDerivedFrom`](https://datacite-metadata-schema.readthedocs.io/en/4.7/appendices/appendix-1/relationType/#isderivedfrom) | Broader: any derivation; neither has a summary relation |
+| CiTO | [`containsAssertionFrom`](http://purl.org/spar/cito/containsAssertionFrom) | Broader: any citation that carries an assertion; its note names separate abstracts and summaries |
+| schema.org | [`isBasedOn`](https://schema.org/isBasedOn) | Broader: any work derived from or adapted from another |
+| Wikidata | [P144 "based on"](https://www.wikidata.org/wiki/Property:P144) | Broader: any work based on another |
+
+So `standard_terms` for `summary` lists the Library of Congress, RDA, and FRBR first, then PubMed, then Crossref, DataCite, CiTO, schema.org, and Wikidata.
+
 ## Values
 
 | ID | Display name | Definition |
@@ -125,6 +157,7 @@ The line between a translation and a summary: a translation renders a work's tex
 | `citation` | Citation | The work cites another work: that work is in its reference list. |
 | `review` | Review | The work reviews another work: an evaluation of that specific work by someone other than its authors, such as a peer review, preprint review or book review (a literature review article is the work type review, not this link). |
 | `translation` | Translation | The work is a translation of another work: that work's text rendered in another language, published as its own work (such as an article in an English edition of a Russian journal). A condensed account of its content, in any language, is a summary; a translated title or abstract inside one record, or a free adaptation, is neither. |
+| `summary` | Summary | The work summarizes another work: it gives a condensed account of that work's content, separate from the work's own abstract, by its authors or anyone else (an abstracting service's abstract, a digest entry, a research highlight, a plain-language summary, an agent's summary). |
 | `volume` | Volume | The work is in a book or proceedings volume: a chapter, entry, front matter or paper of that volume. |
 | `component` | Component | The work is a piece of another work that does not stand alone: a figure, table, file or supplement. |
 | `data-series` | Data series | The work is one record of a data series: datasets published separately that share an instrument and method. |
@@ -193,6 +226,9 @@ https://api.openalex.org/links?filter=origin:W2159566537,link_type:translation
 
 # The translations of one work
 https://api.openalex.org/links?filter=target:W2327385060,link_type:translation
+
+# The summaries of one paper (a ChemInform abstract of it)
+https://api.openalex.org/links?filter=target:W2001923307,link_type:summary
 
 # Works that have at least one review, most reviewed first
 https://api.openalex.org/works?filter=reviewed_by_count:>0&sort=reviewed_by_count:desc
