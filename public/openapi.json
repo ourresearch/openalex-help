@@ -103,6 +103,10 @@
       "description": "Types of scholarly works (article, book, dataset, etc.)"
     },
     {
+      "name": "Contributor Roles",
+      "description": "CRediT roles each author played on a work (14 total)"
+    },
+    {
       "name": "Source Types",
       "description": "Types of sources (journal, repository, conference, etc.)"
     },
@@ -2663,6 +2667,115 @@
         }
       }
     },
+    "/contributor-roles": {
+      "get": {
+        "operationId": "listContributorRoles",
+        "summary": "List contributor roles",
+        "description": "Get the 14 CRediT contributor roles (Conceptualization, Software, Writing – original draft, ...), each with how many works carry it. Roles are recorded per author in each work's authorships[].contributor_roles.",
+        "tags": [
+          "Contributor Roles"
+        ],
+        "parameters": [
+          {
+            "name": "filter",
+            "in": "query",
+            "description": "Filter contributor roles. Examples: `id:software`, `works_count:>1000000`",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "description": "Sort by: `works_count`, `cited_by_count`. Prefix with `-` for descending.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/search"
+          },
+          {
+            "$ref": "#/components/parameters/per_page"
+          },
+          {
+            "$ref": "#/components/parameters/page"
+          },
+          {
+            "$ref": "#/components/parameters/cursor"
+          },
+          {
+            "$ref": "#/components/parameters/sample"
+          },
+          {
+            "$ref": "#/components/parameters/select"
+          },
+          {
+            "$ref": "#/components/parameters/group_by"
+          },
+          {
+            "$ref": "#/components/parameters/api_key"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ContributorRolesListResponse"
+                }
+              }
+            }
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimited"
+          }
+        }
+      }
+    },
+    "/contributor-roles/{id}": {
+      "get": {
+        "operationId": "getContributorRole",
+        "summary": "Get a contributor role",
+        "description": "Get one CRediT contributor role by its OpenAlex ID, e.g. `software` or `writing-original-draft`.",
+        "tags": [
+          "Contributor Roles"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Role ID, e.g. `software`",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/api_key"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ContributorRole"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found"
+          },
+          "429": {
+            "$ref": "#/components/responses/RateLimited"
+          }
+        }
+      }
+    },
     "/source-types": {
       "get": {
         "operationId": "listSourceTypes",
@@ -3564,6 +3677,13 @@
             "type": "boolean",
             "description": "Whether this is the corresponding author"
           },
+          "contributor_roles": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DehydratedContributorRole"
+            },
+            "description": "The CRediT roles this author played on the work, as stated for that author (Crossref deposits, PubMed Central XML, or an \"Author contributions\" statement in CRediT's terms). Empty means no roles reached OpenAlex, not that the author had none. There is no works filter for roles yet: to find works where an author had a role, list the author's works (filter=author.id:A...) and read this field on their authorship. [Contributor roles](https://help.openalex.org/data/contributor-roles/)"
+          },
           "raw_author_name": {
             "type": "string",
             "description": "Author name as it appears in the work"
@@ -3573,6 +3693,31 @@
             "items": {
               "type": "string"
             }
+          },
+          "affiliations": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "raw_affiliation_string": {
+                  "type": "string"
+                },
+                "institution_ids": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "description": "Maps each raw affiliation string to the OpenAlex institution IDs it matched."
+          },
+          "raw_orcid": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "The ORCID iD as it arrived on the source record for this authorship, or null."
           }
         }
       },
@@ -6109,6 +6254,78 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/Index"
+            }
+          }
+        }
+      },
+      "DehydratedContributorRole": {
+        "type": "object",
+        "description": "A CRediT contributor role, as listed on an authorship",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "https://openalex.org/contributor-roles/software"
+          },
+          "display_name": {
+            "type": "string",
+            "example": "Software"
+          }
+        }
+      },
+      "ContributorRole": {
+        "type": "object",
+        "description": "One of the 14 CRediT contributor roles (Contributor Roles Taxonomy, ANSI/NISO Z39.104-2022)",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "https://openalex.org/contributor-roles/software"
+          },
+          "display_name": {
+            "type": "string",
+            "example": "Software"
+          },
+          "description": {
+            "type": "string",
+            "description": "CRediT's definition of the role"
+          },
+          "ids": {
+            "type": "object",
+            "properties": {
+              "openalex": {
+                "type": "string"
+              },
+              "credit": {
+                "type": "string",
+                "example": "https://credit.niso.org/contributor-roles/software/"
+              }
+            }
+          },
+          "works_count": {
+            "type": "integer",
+            "description": "Works where at least one author has this role"
+          },
+          "cited_by_count": {
+            "type": "integer"
+          },
+          "created_date": {
+            "type": "string"
+          },
+          "updated_date": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "ContributorRolesListResponse": {
+        "type": "object",
+        "properties": {
+          "meta": {
+            "$ref": "#/components/schemas/Meta"
+          },
+          "results": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ContributorRole"
             }
           }
         }
