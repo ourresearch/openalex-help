@@ -1,6 +1,6 @@
 ---
 title: "Overview"
-updated: 2026-11-21
+updated: 2026-11-23
 description: "Every OpenAlex API endpoint at a glance — the entity list/single endpoints and the special-purpose ones — each linking to the entity page that documents its fields."
 tags: ["reference"]
 ---
@@ -28,6 +28,7 @@ This page is the index. What each entity *is*, and what every field on it *means
 |---|---|---|
 | `/locations` | `/locations` · `/locations/doi:…` | [Locations](/data/locations/) — every harvested copy of a work, one row per copy |
 | `/links` | `/links?filter=origin:W…` · `/links?filter=target:W…` | [Links](/data/links/) — work-to-work links (citations and part-of), one work at a time |
+| `/works/W…/references` | single only | [Reference lists](/data/works/references/) — a work's printed references, each with the work it links to |
 | `/raw-affiliation-strings` | `/raw-affiliation-strings` | [Raw affiliation strings](/data/raw-affiliation-strings/) — distinct affiliation strings as printed |
 
 ## Aboutness endpoints

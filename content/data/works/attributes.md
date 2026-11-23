@@ -164,7 +164,7 @@ See [Open access](/data/works/open-access/) for how these fields combine.
 *Object.* The same information as [`fwci`](#fwci) expressed as a percentile (`value`, `is_in_top_1_percent`, `is_in_top_10_percent`). `value` is the share of works of the same type, publication year and subfield with fewer citations in the FWCI window (the publication year plus the three following years). Works with the same count share one value, so a work with no citations in that window reads 0 and is never in the top 10% or top 1% (from 10 November 2026; before, tied works were spread out by work ID, and about 1.7M uncited works read top 10%). Recomputed every night; a change in `value` alone does not move [`updated_date`](#updated_date), a change in either flag does (from 30 October 2026).
 
 ### `referenced_works`
-*List.* OpenAlex IDs of the works this work cites (this work ➞ others). See [Citations and references](/data/works/citations/#citations-and-references).
+*List.* OpenAlex IDs of the works this work cites (this work ➞ others). See [Citations and references](/data/works/citations/#citations-and-references). Each reference line behind them, matched or not, is at [`/works/{id}/references`](/data/works/references/).
 
 ### `referenced_works_count`
 *Integer.* The length of [`referenced_works`](#referenced_works).
