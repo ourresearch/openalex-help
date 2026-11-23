@@ -19,7 +19,7 @@ An **award** is a single research grant: a specific pot of money a [funder](/dat
 
 ### Where grant data comes from
 
-Awards are assembled from grant metadata published by funders and aggregators, tracked in [`provenance`](#provenance). The big sources are the grant-and-funder fields inside [Crossref](https://www.crossref.org/) work records (`crossref_work_funders`, `crossref_work.grants`), Europe PMC (`europepmc_work_funders`), and national grant databases published directly by funders — the [NIH RePORTER](https://reporter.nih.gov/) export (`nih_exporter`), Japan's KAKEN, the US [NSF](https://www.nsf.gov/) award search, the EU's CORDIS, UK Gateway to Research, and hundreds of others. OpenAlex normalizes these heterogeneous feeds into one award shape.
+Awards are assembled from grant metadata published by funders and aggregators, tracked in [`provenance`](#provenance). The big sources are the grant-and-funder fields inside [Crossref](https://www.crossref.org/) work records (`crossref_work_funders`, `crossref_work.grants`), Europe PMC (`europepmc_work_funders`), the grant records funders register at Crossref themselves, each with its own grant DOI (`crossref_work`), and national grant databases published directly by funders — the [NIH RePORTER](https://reporter.nih.gov/) export (`nih_exporter`), Japan's KAKEN, the US [NSF](https://www.nsf.gov/) award search, the EU's CORDIS, UK Gateway to Research, and hundreds of others. OpenAlex normalizes these heterogeneous feeds into one award shape.
 
 ### Matching awards to funders and works
 
@@ -88,7 +88,7 @@ This is the canonical dictionary of every attribute on an **award** object. Awar
 *String.* A URL to the funder's public page for this grant (e.g. a NIH RePORTER project page).
 
 ### `provenance`
-*String.* The data source this award was built from (e.g. `nih_exporter`, `crossref_work_funders`, `cordis`). See [Where grant data comes from](#where-grant-data-comes-from). Filterable and groupable.
+*String.* The data source this award was built from (e.g. `nih_exporter`, `crossref_work_funders`, `cordis`). See [Where grant data comes from](#where-grant-data-comes-from). Filterable and groupable. Two kinds of Crossref value mean different things. `crossref_work_funders` and `crossref_work.grants` (like `europepmc_work_funders` and `datacite_work_funders`) mean the award was built from an award ID that a work's funding metadata named, so it carries little beyond the funder and the ID. `crossref_work` is the grant record the funder itself registered at Crossref, with a grant DOI (e.g. `10.3030/101000790`); it comes from the funder, not from a paper, so it can list no works.
 
 ### `lead_investigator`
 *Object.* The award's principal investigator: `given_name`, `family_name`, `orcid`, `role_start`, and an `affiliation` (`name`, `country`, `ids`). Fields may be `null`. Filter on the dotted subfields (`lead_investigator.orcid`, `lead_investigator.family_name`, `lead_investigator.affiliation.country`, and so on). Name filters (`given_name`, `family_name`, `affiliation.name`) match the words in order, in any case: `lead_investigator.family_name:hayashi` finds Hayashi. Put a name with spaces in quotes to match it as one phrase (`lead_investigator.affiliation.name:"Kent State University"`); without quotes each word must appear.
