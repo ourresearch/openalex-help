@@ -1,6 +1,6 @@
 ---
 title: "Locations"
-updated: 2026-11-13
+updated: 2026-11-23
 description: "Each place a version of a work is available — the publisher's site, a repository, a preprint server — with its version, license, and open-access status; what every attribute means, and how to list, filter, search and group locations directly at /locations."
 tags: ["reference"]
 entity:
@@ -58,7 +58,7 @@ This is the dictionary of every attribute on a **location** object as it appears
 *Object.* The dehydrated [source](/data/sources/) hosting this copy — the journal, repository, or platform. Keys include `id`, `display_name`, `issn_l`, `issn`, `is_oa`, `is_in_doaj`, `is_core`, [`listed_in`](/data/sources/attributes/#listed_in), `type`, and the host organization (`host_organization`, `host_organization_name`, `host_organization_lineage`, `host_organization_lineage_names`). May be null for locations whose host isn't a known source. `is_in_doaj` here is the journal-level DOAJ attribute (the journal is on DOAJ's journal list); whether DOAJ's article index holds a record of the work itself is `indexed_in:doaj` on the work (see [DOAJ: journal list and article index](/data/source-lists/#doaj-journal-list-and-article-index)).
 
 ### `license`
-*String.* The license this copy is available under, as a normalized short code, e.g. `cc-by`, `cc-by-sa`, or null if unknown. Different locations of the same work can carry different licenses.
+*String.* The license this copy is available under, as a normalized short code, e.g. `cc-by`, `cc-by-sa`, or null if unknown. Different locations of the same work can carry different licenses. On a work, a copy that isn't open ([`is_oa`](#is_oa) false) has no license unless a [curation](/data/curations/) set one: a licence notice on a closed copy's page, such as a figure credit or a government-work notice, doesn't make the copy available under it. Rows from the [`/locations`](#the-locations-endpoint) endpoint are the harvested records and keep the license as harvested.
 
 ### `license_id`
 *String.* The OpenAlex ID for the [license](/data/licenses/), e.g. `https://openalex.org/licenses/cc-by` — the canonical handle for the same license named in [`license`](#license).
