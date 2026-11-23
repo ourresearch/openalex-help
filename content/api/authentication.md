@@ -1,6 +1,6 @@
 ---
 title: "Authentication"
-updated: 2026-11-22
+updated: 2026-11-23
 description: "API keys, sending your key, rate limits, and keeping tabs on your usage"
 tags: ["api"]
 source_id: "api-reference/authentication"
@@ -46,7 +46,9 @@ The answer carries the key:
 - **The link lasts 7 days.** If it runs out, the agent asks again with the same address and we resend it (at most once a day).
 - **The agent's key is for API calls only.** It can't sign in to openalex.org, it spends from the person's daily budget, and the person can revoke it in [Settings → API key](https://openalex.org/settings/api-key). Their own account key is separate and stays with them.
 
-**Ask your user for their email address; never invent one.** We email that address, and the key works only after its owner clicks the link, so a made-up address gets you nothing. Placeholders like `you@example.com` and addresses named after an agent (`claude@…`, `gpt.user@…`) are refused. So are addresses that already have an account: that person copies their key from [Settings → API key](https://openalex.org/settings/api-key) instead.
+**Ask your user for their email address; never invent one.** We email that address, and the key works only after its owner clicks the link, so a made-up address gets you nothing. Placeholders like `you@example.com` and addresses named after an agent (`claude@…`, `gpt.user@…`) are refused.
+
+**People who already have an account get a key the same way.** The answer is the same `201` with a key, and the email asks the owner to approve it. The key works once they click; it spends from their account's free $1 a day and never from prepaid credit. If the account already has a working key an assistant asked for, you get `409 agent_key_exists`: the person copies that key from [Settings → API key](https://openalex.org/settings/api-key), or revokes it there so you can ask for a new one.
 
 The body can also carry `"name"` (the person's name) and `"agent"` (what's asking, such as `"Claude Code"`). An `Idempotency-Key` header (a fresh UUID) makes a retry return the same key instead of an error.
 
@@ -54,10 +56,10 @@ The body can also carry `"name"` (the person's name) and `"agent"` (what's askin
 |----------|---------------|
 | `201` | Here's the key. |
 | `400` | The address is missing, malformed, a placeholder, or one we can't email. Ask the person for theirs. |
-| `409 account_exists` | The address already has an account. The person copies their key from Settings → API key. |
-| `409 activation_pending` | A key for the address is waiting for activation. The person clicks the emailed link (we resend it at most once a day). |
+| `409 agent_key_exists` | The account already has a working key an assistant asked for. The person copies it from Settings → API key, or revokes it there so you can ask again. |
+| `409 activation_pending` | A key for a new account at this address is waiting for activation. The person clicks the emailed link (we resend it at most once a day). |
 | `403 key_not_activated` | (On any API call with the key.) The person hasn't clicked the link yet. |
-| `429` | Too many keys from this network or email domain today. The person can [sign up](https://openalex.org/signup) on the website instead. |
+| `429` | Too many keys from this network or email domain today, or we've already emailed this address about keys three times today (`rate_limit_address`: the person clicks the latest email). The person can also [sign up](https://openalex.org/signup) on the website. |
 
 `GET https://api.openalex.org/api-keys` returns these instructions as JSON, for agents that can only fetch URLs.
 
