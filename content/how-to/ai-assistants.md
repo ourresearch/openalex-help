@@ -1,14 +1,14 @@
 ---
 title: "Using OpenAlex with an AI assistant"
-updated: 2026-10-15
-description: "Most of what you'd do with OpenAlex, an AI assistant can do for you. In Claude, the free OpenAlex connector makes it easiest: add it from Claude's connector directory in about two minutes. Any assistant can also use OpenAlex with your API key, and a ChatGPT connector is coming soon."
+updated: 2026-11-23
+description: "Most of what you'd do with OpenAlex, an AI assistant can do for you. In Claude, the free OpenAlex connector makes it easiest: add it from Claude's connector directory in about two minutes. Without it, Claude calls the API itself and gets you a key by email when it needs one; other assistants work with your API key, and a ChatGPT connector is coming soon."
 tags: ["search"]
 synonyms: ["Claude", "Claude connector", "OpenAlex connector", "connectors directory", "ChatGPT", "MCP", "MCP server", "connector", "custom connector", "AI agent", "AI assistant", "chatbot", "LLM"]
 card: "In Claude, add the free OpenAlex connector and just ask. Any other assistant works with your API key."
 ---
 Most of what people do with OpenAlex, an AI assistant can do for you: find the most-cited papers on a topic, run a really thorough search, check a bibliography, profile an institution's output, clean up your own author profile. You ask in plain language. The assistant works out what to look up, runs the searches, and shows you the results with links and the exact query it used. You don't need to learn our query language or the API.
 
-**In Claude, the easiest way is the OpenAlex connector.** It's free, it's listed in Claude's connector directory, and adding it takes about two minutes. You don't *need* it: any assistant, Claude included, can use OpenAlex with an API key ([below](#without-the-connector)). But the connector makes everything easier. You sign in once instead of pasting a key, Claude gets purpose-built OpenAlex tools instead of working from the raw API, every answer comes back with the exact query it ran, and Claude can [fix your own author profile](/tutorials/fix-your-profile/) in conversation.
+**In Claude, the easiest way is the OpenAlex connector.** It's free, it's listed in Claude's connector directory, and adding it takes about two minutes. You don't *need* it: Claude can call the API itself, and any assistant can use OpenAlex with an API key ([below](#without-the-connector)). But the connector makes everything easier. You sign in once instead of pasting a key, Claude gets purpose-built OpenAlex tools instead of working from the raw API, every answer comes back with the exact query it ran, and Claude can [fix your own author profile](/tutorials/fix-your-profile/) in conversation.
 
 A ChatGPT version of the connector is coming soon; until then, see [ChatGPT](#chatgpt) below.
 
@@ -51,11 +51,17 @@ Whenever an answer looks off, ask *"what query did you run?"* Every answer carri
 
 ## Without the connector
 
-Every major assistant already knows how to use OpenAlex, and this help site is written so that assistants can read it. All they need is a key so their searches count against your free daily budget instead of the shared anonymous one. This is the way to go in ChatGPT, Gemini or Copilot today, or in Claude if you'd rather not add a connector.
+Every major assistant already knows how to use OpenAlex, and this help site is written so that assistants can read it.
 
-**If your assistant can call APIs itself** (coding agents like Claude Code, Codex or Cursor), let it get the key. Ask your question and add *"get me a free OpenAlex API key; my email is …"*. Click the link in the email we send you, and you're set. Nothing to copy or paste. ([How it works](/api/authentication/#getting-a-key-for-your-user).)
+**In Claude** (claude.ai or the Claude desktop app), just ask, and tell it where the docs are:
 
-**Otherwise, paste your key:**
+> Use the OpenAlex API (docs: https://help.openalex.org) to find some papers where Vincent Larivière had the Methodology role.
+
+Claude reads the docs and calls the API itself, from its code tool. Most questions need no key at all. If one does, Claude asks for your email address, we email you a link, and you click it: that's the whole sign-up, and it unlocks $1 of free usage a day. Use a normal chat: incognito chats can't run code, so there Claude can only describe the query.
+
+**Coding agents** (Claude Code, Codex, Cursor) work the same way. Ask your question and add *"get me a free OpenAlex API key; my email is …"*. Click the link in the email we send you, and you're set. Nothing to copy or paste. ([How it works](/api/authentication/#getting-a-key-for-your-user).)
+
+**In other assistants, paste your key.** Sign in to the assistant first: logged out, ChatGPT can't open API links at all.
 
 1. Sign in at [openalex.org](https://openalex.org) (a free account takes a minute; the login link arrives by email).
 2. Open **Settings → API key** and copy the key.
