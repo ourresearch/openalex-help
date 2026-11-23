@@ -1,6 +1,6 @@
 ---
 title: "Authorships"
-updated: 2026-11-20
+updated: 2026-11-23
 description: "The join between a work and its authors — the raw name each author printed, their position, whether they're corresponding, the institutions they listed, and the CRediT roles they played where stated — and what every attribute on an authorship object means."
 tags: ["reference"]
 entity:
@@ -38,7 +38,7 @@ Counts like [`countries_distinct_count`](/data/works/attributes/#countries_disti
 This is the dictionary of every attribute on an **authorship** object, as it appears inside a work's [`authorships`](/data/works/attributes/#authorships) list. Authorships are a component entity, so they carry none of the [common attributes](/data/common-attributes/) (no `id`, `works_count`, etc.) — an authorship has no OpenAlex ID of its own.
 
 ### `author_position`
-*String.* Where this author sits in the byline: `first`, `middle`, or `last`. Derived from byline order, so it tracks the printed sequence rather than any notion of credit or seniority.
+*String.* Where this author sits in the byline: `first`, `middle`, or `last`. Derived from byline order, so it tracks the printed sequence rather than any notion of credit or seniority. `null` on a translator OpenAlex added after the authors (see [contributor roles](/data/contributor-roles/#where-the-values-come-from)), so `first` and `last` stay with the authors.
 
 ### `author`
 *Object.* The dehydrated [author](/data/authors/) this authorship resolved to: `id` (the OpenAlex author ID), `display_name`, `orcid` (the profile's primary ORCID, or null), and `observed_orcids` (every ORCID trusted on the profile's works, as URLs, primary first; empty when there is none — the same list as the author's [`observed_orcids`](/data/authors/#observed_orcids)). This is the disambiguated person — follow the `id` to the full author object.
@@ -53,7 +53,7 @@ This is the dictionary of every attribute on an **authorship** object, as it app
 *Boolean.* True if this author is marked as a corresponding author on the work. Corresponding authors are also collected at the work level in [`corresponding_author_ids`](/data/works/attributes/#corresponding_author_ids).
 
 ### `contributor_roles`
-*List.* The [contributor roles](/data/contributor-roles/) this person played on the work, each with `id` and `display_name`: CRediT roles as stated for that author (Crossref deposits, PubMed Central XML, or an "Author contributions" statement in CRediT's terms), or `editor` for the editors of an edited book (from Crossref), e.g. `[{"id": "https://openalex.org/contributor-roles/software", "display_name": "Software"}]`. Empty means no roles reached OpenAlex, not that the author had none; see [where roles come from](/data/contributor-roles/#where-the-values-come-from).
+*List.* The [contributor roles](/data/contributor-roles/) this person played on the work, each with `id` and `display_name`: CRediT roles as stated for that author (Crossref deposits, PubMed Central XML, or an "Author contributions" statement in CRediT's terms), `editor` for the editors of an edited book, or `translator` for a work's translators (both from Crossref), e.g. `[{"id": "https://openalex.org/contributor-roles/software", "display_name": "Software"}]`. Empty means no roles reached OpenAlex, not that the author had none; see [where roles come from](/data/contributor-roles/#where-the-values-come-from).
 
 ### `raw_author_name`
 *String.* The author's name exactly as it appeared on the source record, before disambiguation — e.g. `"Heather Piwowar"`. The unnormalized input to author resolution; the resolved person is in [`author`](#author).
