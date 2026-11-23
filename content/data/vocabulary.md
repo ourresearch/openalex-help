@@ -13,7 +13,7 @@ Vocabulary entities generally use short, human-readable IDs (`en` for English, `
 ## The vocabulary entities
 
 - [**Work types**](/data/work-types/) — article, preprint, dataset, book, and the rest of a work's `type`.
-- [**Contributor roles**](/data/contributor-roles/): the 14 CRediT roles a person can play on a work (conceptualization, software, writing – original draft, and the rest) and editor, as stated for each person.
+- [**Contributor roles**](/data/contributor-roles/): the 14 CRediT roles a person can play on a work (conceptualization, software, writing – original draft, and the rest), editor and translator, as stated for each person.
 - [**Source types**](/data/source-types/) — journal, conference, repository, ebook platform, and other venue kinds.
 - [**Institution types**](/data/institution-types/) — education, healthcare, company, government, and so on.
 - [**Countries**](/data/countries/) and [**continents**](/data/continents/) — geography, as ISO codes.

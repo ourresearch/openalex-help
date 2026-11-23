@@ -3682,7 +3682,7 @@
             "items": {
               "$ref": "#/components/schemas/DehydratedContributorRole"
             },
-            "description": "The CRediT roles this author played on the work, as stated for that author (Crossref deposits, PubMed Central XML, or an \"Author contributions\" statement in CRediT's terms). Empty means no roles reached OpenAlex, not that the author had none. There is no works filter for roles yet: to find works where an author had a role, list the author's works (filter=author.id:A...) and read this field on their authorship. [Contributor roles](https://help.openalex.org/data/contributor-roles/)"
+            "description": "The contributor roles this person played on the work: CRediT roles as stated for that author (Crossref deposits, PubMed Central XML, or an \"Author contributions\" statement in CRediT's terms), editor for the editors of an edited book, translator for a work's translators (both from Crossref). Empty means no roles reached OpenAlex, not that the author had none. There is no works filter for roles yet: to find works where an author had a role, list the author's works (filter=author.id:A...) and read this field on their authorship. [Contributor roles](https://help.openalex.org/data/contributor-roles/)"
           },
           "raw_author_name": {
             "type": "string",
