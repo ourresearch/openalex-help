@@ -1,6 +1,6 @@
 ---
 title: "Tools built on OpenAlex"
-updated: 2026-11-21
+updated: 2026-11-23
 description: "Apps and services that other people have built on OpenAlex data, grouped by what they do, and how to get yours listed."
 tags: ["general"]
 synonyms: ["projects using OpenAlex", "built with OpenAlex", "showcase", "apps", "third-party tools", "community projects", "directory"]
@@ -17,7 +17,7 @@ Lots of people build tools on OpenAlex data. This page lists the ones whose buil
 
 - **[CoAuthra](https://coauthra.com)**: a research collaboration explorer powered by OpenAlex. Search any researcher by name or ORCID to map their co-authorship network; no account needed.
 - **[MapAlex](https://smartdata.las.ac.cn/openalex-map/)**: a global map of science for OpenAlex, an open system for analyzing OpenAlex data from the National Science Library, Chinese Academy of Sciences.
-- **[pubScan](https://pubscan.org)**: explore your scientific co-authorship network and visualize your collaborations across PubMed publications. Fast, mobile-friendly and completely open source.
+- **[pubScan](https://pubscan.org)**: explore your scientific co-authorship network, visualize your collaborations and find the top scientists in any research topic. Fast, mobile-friendly and completely open source.
 
 ## Research data and evidence
 
