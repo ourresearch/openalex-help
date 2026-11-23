@@ -159,7 +159,7 @@ It's one Parquet file, `manifest.parquet`, regenerated in full once a day from 0
 | `native_id` | `10.1038/s41586-020-2649-2` | the location's DOI or repository (OAI-PMH) ID |
 | `native_id_namespace` | `doi` | `doi` or `pmh` |
 | `updated_date` | `2026-06-20` | when the location's source record last changed |
-| `version` | `publishedVersion` | `publishedVersion`, `acceptedVersion` or `submittedVersion` (from 23 November) |
+| `version` | `publishedVersion` | `publishedVersion`, `acceptedVersion` or `submittedVersion`, or empty when the source doesn't say (about 1% of rows, mostly DataCite DOIs such as Zenodo) (from 23 November) |
 | `is_primary` | `true` | the one file per work the content endpoint serves (from 23 November) |
 
 UUIDs are stored without their file extension — append `.pdf` and `.xml.gz` to build the object keys. A row may have a PDF but no XML (GROBID can't parse every PDF), so `grobid_xml_id` is sometimes empty.
