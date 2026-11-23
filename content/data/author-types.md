@@ -1,7 +1,7 @@
 ---
 title: "Author types"
-updated: 2026-11-21
-description: "What kind of author is on a byline: a human, an organization, or a software agent such as an AI; what null means, how software agents are found, and how to find or leave out works with known AI authors."
+updated: 2026-11-23
+description: "What kind of author is on a byline: a human, an organization, or a software agent such as an AI; what null means, how software agents and organizations are found, and how to find or leave out works with known AI authors."
 tags: ["reference"]
 entity:
   example: "author-types/software-agent"
@@ -25,7 +25,7 @@ Author types are a [vocabulary](/data/vocabulary/): OpenAlex sets a type only wh
 
 ### Null means not stated
 
-Most authors have no type. Null means no source stated it and no rule could tell, not that the author is a human. Today only software agents are typed. Organizations and humans will be typed as we read them from sources that state them.
+Most authors have no type. Null means no source stated it and no rule could tell, not that the author is a human. Today software agents and some organizations are typed. Humans will be typed as we read them from sources that state them.
 
 So filter on `software-agent`, not on `human`: a filter for humans would leave out nearly every human author.
 
@@ -40,9 +40,14 @@ Each author on a byline is typed on its own, before authors are grouped into pro
 
 Each rule is checked on a random sample of bylines before it is used, and new typed authors are checked again every week.
 
-### Organizations
+### How organizations are found
 
-No author is typed `organization` yet. When we add them, we will start with records whose source states that an author is an organization. A group name on a byline, such as "Study Group" or "Collaboration", is not enough on its own: too many people's names and affiliations look like one.
+Each author on a byline is typed on its own, from one of two kinds of evidence. Each was checked on a random sample of bylines before it was used.
+
+- **The source names the organization.** Natural history collections in [DiSSCo](https://www.dissco.eu/), the European network of collections, register each digital specimen with DataCite and name the museum or herbarium that holds it as the creator, with its [ROR](https://ror.org/) ID. When the creator's name is the name on that ROR record, the author is typed `organization`.
+- **A group name, read in context.** A byline name such as "ATLAS Collaboration", "RECOVERY Collaborative Group" or "Writing Committee" is typed `organization` when an AI model, reading it beside the work's title and byline, confirms that it names a group credited as an author. A person listed with a group ("J. Smith for the X Study Group"), a person with a role ("Smith, Anne, committee member") and an affiliation printed as if it were an author stay untyped.
+
+A ROR ID alone is not enough. Repositories often list their own university as an author of the theses and papers they hold, so an organization named that way stays untyped, and so does a company, university or agency on a byline with neither kind of evidence.
 
 ### Authorships and profiles
 
@@ -142,6 +147,9 @@ https://api.openalex.org/works?filter=authorships.author.type:software-agent
 
 # Works with no known AI authors (no author typed software-agent)
 https://api.openalex.org/works?filter=authorships.author.type:!software-agent
+
+# Works with an author typed organization (a consortium, collaboration or collection)
+https://api.openalex.org/works?filter=authorships.author.type:organization
 
 # Author profiles that are software agents
 https://api.openalex.org/authors?filter=type:software-agent

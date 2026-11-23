@@ -48,7 +48,7 @@ This is the canonical dictionary of every attribute on an **author** object. Att
 *String.* The author's name — the single most-frequent, most-informative form observed across their works. See [Common attributes](/data/common-attributes/#display_name). Filterable and sortable; free-text name search uses the `search` parameter (the `display_name.search` filter is deprecated).
 
 ### `type`
-*String.* What kind of author this is: `human`, `organization` or `software-agent`, or null when not stated. Most profiles are null, and null does not mean human. A profile takes a type only when every authorship on it has that same type. See [Author types](/data/author-types/) for what each means and how software agents are found. Filter and group_by with `type`, e.g. [`/authors?filter=type:software-agent`](https://api.openalex.org/authors?filter=type:software-agent).
+*String.* What kind of author this is: `human`, `organization` or `software-agent`, or null when not stated. Most profiles are null, and null does not mean human. A profile takes a type only when every authorship on it has that same type. See [Author types](/data/author-types/) for what each means and how software agents and organizations are found. Filter and group_by with `type`, e.g. [`/authors?filter=type:software-agent`](https://api.openalex.org/authors?filter=type:software-agent).
 
 ### `display_name_alternatives`
 *List.* Other name strings seen for this author, deduplicated (e.g. `["Jason Priem", "Priem, Jason"]`). Useful for matching against name forms that differ from the canonical [`display_name`](#display_name).
