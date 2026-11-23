@@ -1,6 +1,6 @@
 ---
 title: "Overview"
-updated: 2026-10-26
+updated: 2026-11-23
 description: "What an author is, why a profile is built from its works, and what every attribute on an author object means."
 tags: ["reference"]
 source_id: "24347048891543"
@@ -19,7 +19,7 @@ This page covers what a profile is and what every attribute means. How profiles 
 
 ## About
 
-Scholarly works list author names in all sorts of ways. "J. Smith," "John Smith," and "John A. Smith" might all be the same person — or three different people. OpenAlex builds author profiles by **disambiguating** those names — deciding which authorships across millions of works belong to the same real-world person, and giving each person a stable ID. How that works — the signals the model weighs, the 2023 upgrade, the special NULL and deleted-author IDs, and the ways it fails — is on [Disambiguation](/data/authors/disambiguation/). How ORCID fits in is on [ORCID](/data/authors/orcid/).
+Scholarly works list author names in all sorts of ways. "J. Smith," "John Smith," and "John A. Smith" might all be the same person — or three different people. OpenAlex builds author profiles by **disambiguating** those names — deciding which authorships across millions of works belong to the same real-world person, and giving each person a stable ID. How that works — which system matched which works, how the nightly matcher decides, how accurate profiles are, and the ways it fails — is on [Disambiguation](/data/authors/disambiguation/). How ORCID fits in is on [ORCID](/data/authors/orcid/).
 
 ### A profile is built from its works
 

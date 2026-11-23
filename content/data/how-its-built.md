@@ -1,6 +1,6 @@
 ---
 title: "How it's built"
-updated: 2026-11-17
+updated: 2026-11-23
 description: "How the OpenAlex dataset is built: gathering records from thousands of sources and organizing them into one connected knowledge graph. A map that points into the entity pages where each step is documented in full."
 tags: ["reference"]
 ---
@@ -27,7 +27,7 @@ The records flowing in are messy and redundant, so the heart of OpenAlex is turn
 
 **Records become works.** Each incoming record is matched (by DOI or other metadata) against the [works](/data/works/#about) already in OpenAlex. If it matches, the record enriches the existing work; if nothing matches, it may seed a new one. Duplicate records of the same work are merged into a single work — the core node that every other entity connects to.
 
-**Authors get disambiguated.** The name strings on a work ("J. Smith," "John A. Smith") are clustered into real people, each assigned a stable author ID. This is [author disambiguation](/data/authors/disambiguation/), a machine-learning process that weighs name, co-authors, affiliations, topics, citations, and ORCID.
+**Authors get disambiguated.** The name strings on a work ("J. Smith," "John A. Smith") are clustered into real people, each assigned a stable author ID. This is [author disambiguation](/data/authors/disambiguation/). Each night, the authors on newly added works are matched to existing profiles by ORCID, by comparing each author entry with the recent works of profiles that share the name, and by name rules that look for a shared institution, journal or topic; anything still in doubt gets a new profile.
 
 **Affiliations get matched.** The free-text [raw affiliation strings](/data/raw-affiliation-strings/) on each work ("MIT, Boston, USA") are parsed and linked to ROR-backed [institutions](/data/institutions/#about) and countries — which in turn feeds the affiliation signal used in author disambiguation.
 
