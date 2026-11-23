@@ -1,6 +1,6 @@
 ---
 title: "Publishers"
-updated: 2026-10-27
+updated: 2026-11-23
 description: "What a publisher is, how OpenAlex builds the publisher hierarchy from ROR and Wikidata, how it connects to sources, and what every attribute on a publisher object means."
 tags: ["reference"]
 source_id: "api-reference/publishers"
@@ -31,7 +31,7 @@ A publisher doesn't publish works directly — it publishes them *through* [sour
 
 ### Roles
 
-A single real-world organization can act as more than one kind of OpenAlex entity: a university press is a **publisher**, but the university is also an **[institution](/data/institutions/)** and sometimes a **[funder](/data/funders/)**. [`roles`](#roles-1) links those alter egos together, so you can hop from the publisher record to the institution or funder record for the same organization.
+A single real-world organization can act as more than one kind of OpenAlex entity: a university press is a **publisher**, but the university is also an **[institution](/data/institutions/)** and sometimes a **[funder](/data/funders/)**. [`roles`](#roles-1) links those alter egos together, so you can hop from the publisher record to the institution or funder record for the same organization. Two records are linked when they carry the same [ROR](https://ror.org/) id, and the links are rebuilt every day, so a record with no ROR id has no roles beyond its own.
 
 ### Failure modes
 

@@ -1,6 +1,6 @@
 ---
 title: "Institutions"
-updated: 2026-11-18
+updated: 2026-11-23
 description: "What an institution is, how OpenAlex grounds them in ROR and matches raw affiliation strings to them, and what every attribute on an institution object means."
 tags: ["reference"]
 entity:
@@ -36,7 +36,7 @@ Country is assigned through the same affiliation matching. When a raw string mat
 
 ### Roles
 
-A single real-world organization can act as more than one kind of OpenAlex entity: a university is an **institution**, but the same organization is often also a **[funder](/data/funders/)** (when it funds research) and sometimes a **[publisher](/data/publishers/)** (when it runs a university press). [`roles`](#roles) links those alter egos together, so you can hop from the institution record to the funder or publisher record for the same organization.
+A single real-world organization can act as more than one kind of OpenAlex entity: a university is an **institution**, but the same organization is often also a **[funder](/data/funders/)** (when it funds research) and sometimes a **[publisher](/data/publishers/)** (when it runs a university press). [`roles`](#roles) links those alter egos together, so you can hop from the institution record to the funder or publisher record for the same organization. Two records are linked when they carry the same [ROR](https://ror.org/) id, and the links are rebuilt every day, so a record with no ROR id has no roles beyond its own.
 
 ### Known failure modes
 

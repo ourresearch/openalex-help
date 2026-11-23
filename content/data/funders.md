@@ -1,6 +1,6 @@
 ---
 title: "Funders"
-updated: 2026-10-26
+updated: 2026-11-23
 description: "What a funder is, how OpenAlex grounds funders in ROR and the Crossref funder registry, and what every attribute on a funder object means."
 tags: ["reference"]
 source_id: "api-reference/funders"
@@ -34,7 +34,7 @@ Unlike [publishers](/data/publishers/) and [institutions](/data/institutions/), 
 
 ### Roles
 
-A single real-world organization can act as more than one kind of OpenAlex entity: a national agency is a **funder**, but the same organization is often also an **[institution](/data/institutions/)** (when its own staff do research) and sometimes a **[publisher](/data/publishers/)**. [`roles`](#roles) links those alter egos together, so you can hop from the funder record to the institution or publisher record for the same organization.
+A single real-world organization can act as more than one kind of OpenAlex entity: a national agency is a **funder**, but the same organization is often also an **[institution](/data/institutions/)** (when its own staff do research) and sometimes a **[publisher](/data/publishers/)**. [`roles`](#roles) links those alter egos together, so you can hop from the funder record to the institution or publisher record for the same organization. Two records are linked when they carry the same [ROR](https://ror.org/) id, and the links are rebuilt every day, so a record with no ROR id has no roles beyond its own.
 
 ### Failure modes
 
