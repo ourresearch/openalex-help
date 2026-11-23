@@ -1,6 +1,6 @@
 ---
 title: "Matching and merging"
-updated: 2026-11-04
+updated: 2026-11-23
 description: "How OpenAlex decides that two records are the same work: shared identifiers and declared links first, then rules that keep different items apart, then a trained matcher that joins a record only when it is very confident. What we merge, what we keep separate, and how to report a mistake."
 tags: ["reference"]
 synonyms: ["duplicate", "duplicates", "duplicate works", "merge", "merged works", "deduplication", "dedup", "same work", "two works", "preprint and published version", "versions", "location matching", "record linkage", "matcher", "wrong merge", "split"]
@@ -53,7 +53,7 @@ Every night, each new record takes this path. It stops as soon as it finds its w
 <summary>The steps in more detail</summary>
 
 1. **Shared identifiers.** If a work already holds the record's DOI, PubMed ID or arXiv ID, the record joins that work. Most records are decided here.
-2. **Declared links.** If the record says it is a version of another record, or the preprint of a published article, it joins that record's work. These links come from the record's own metadata: DataCite's `IsVersionOf` and `HasVersion`; Crossref's `is-preprint-of` and `has-preprint`; and, between two DOIs of one publisher, Crossref's `is-version-of`, `has-version` and `is-same-as` and Crossmark updates of type `new_version`. Versions declared in Crossref are joined each night, so a new version can show as its own work for a day.
+2. **Declared links.** If the record says it is a version of another record, or the preprint of a published article, it joins that record's work. These links come from the record's own metadata: DataCite's `IsVersionOf` and `HasVersion`; Crossref's `is-preprint-of` and `has-preprint`; and, between two DOIs of one publisher, Crossref's `is-version-of`, `has-version` and `is-same-as`, Crossmark updates of type `new_version`, and `is-translation-of` and `has-translation` when both DOIs are one journal's language editions of an article. Versions declared in Crossref are joined each night, so a new version can show as its own work for a day.
 3. **Rules that keep items apart.** Some pairs are never the same work, however alike they look: a journal article and a conference paper, thesis, report or book chapter; a book and one of its chapters; an article and a correction notice or peer review. These pairs are ruled out before any scoring. The full list is [below](#separate-works).
 4. **Finding candidates.** OpenAlex gathers the existing works the record could belong to: works that share a URL or repository ID with it, works with the same title, works by the same first author within two years, works with very similar titles, and works whose title and abstract are closest in meaning.
 5. **Ranking.** A ranking model (gradient-boosted trees, about 90 measurements of how alike the record and each candidate are: titles, authors, years, venues, abstracts, identifiers) scores every candidate. If even the best candidate scores very low, the record becomes a new work.
