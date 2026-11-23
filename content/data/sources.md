@@ -1,6 +1,6 @@
 ---
 title: "Overview"
-updated: 2026-11-20
+updated: 2026-11-23
 description: "What a source is, where sources come from, and how OpenAlex builds them and judges journal quality and open access."
 tags: ["reference"]
 source_id: "24347057529623"
@@ -103,7 +103,7 @@ Not every fully-OA journal is in DOAJ — smaller titles and journals from the d
 
 ### APC data
 
-The [article processing charge](https://en.wikipedia.org/wiki/Article_processing_charge) (APC) is the fee some journals charge to publish a work OA. At the source level OpenAlex records the journal's **list price** in [`apc_prices`](/data/sources/attributes/#apc_prices) (per currency) and [`apc_usd`](/data/sources/attributes/#apc_usd); at the [work](/data/works/attributes/#apc_list) level it records both the list price and OpenAlex's best estimate of what was actually paid. List prices are sourced from DOAJ plus manual curation. Two caveats: OpenAlex stores one (current-year) list price per journal, so historical estimates apply today's price to an older year; and DOAJ coverage skews toward fully-OA journals, leaving hybrid journals — where much APC spending happens — thinly covered. For year-by-year list prices, [Butler et al. 2024](https://doi.org/10.7910/DVN/CR1MMV) (Harvard Dataverse, CC0) provides publisher price lists per journal per year (2019–2023, six large publishers, ~8,711 journals); OpenAlex is **evaluating** integrating this dataset but has **not** yet done so. For a worked example of estimating an institution's APC spend, see [Analyzing your institution](/how-to/analyzing-your-institution/#how-much-has-it-spent-on-apc-fees).
+The [article processing charge](https://en.wikipedia.org/wiki/Article_processing_charge) (APC) is the fee some journals charge to publish a work OA. At the source level OpenAlex records the journal's **list price** in [`apc_prices`](/data/sources/attributes/#apc_prices) (per currency) and [`apc_usd`](/data/sources/attributes/#apc_usd); at the [work](/data/works/attributes/#apc_list) level it records both the list price and OpenAlex's best estimate of what was actually paid. List prices are sourced from DOAJ plus manual curation. A fully-OA journal with no list price on record makes its works [`diamond`](/data/works/open-access/#oa-statuses) ("no fee on record"), so a journal whose fee we lack reads `diamond`, not `gold`, until its fee is recorded. Two caveats: OpenAlex stores one (current-year) list price per journal, so historical estimates apply today's price to an older year; and DOAJ coverage skews toward fully-OA journals, leaving hybrid journals — where much APC spending happens — thinly covered. For year-by-year list prices, [Butler et al. 2024](https://doi.org/10.7910/DVN/CR1MMV) (Harvard Dataverse, CC0) provides publisher price lists per journal per year (2019–2023, six large publishers, ~8,711 journals); OpenAlex is **evaluating** integrating this dataset but has **not** yet done so. For a worked example of estimating an institution's APC spend, see [Analyzing your institution](/how-to/analyzing-your-institution/#how-much-has-it-spent-on-apc-fees).
 
 ## Attributes
 

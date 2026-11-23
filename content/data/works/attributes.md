@@ -1,6 +1,6 @@
 ---
 title: "Attributes"
-updated: 2026-11-21
+updated: 2026-11-23
 description: "The canonical dictionary of every attribute on a work object — what each one means, where it comes from, and its quirks."
 tags: ["reference"]
 ---
@@ -114,7 +114,7 @@ Filter: `parent_works.id:W3109397498` lists a book's parts, `has_parent_work:tru
 See [Open access](/data/works/open-access/) for how these fields combine.
 
 ### `apc_list`
-*Object.* The work's list-price [article processing charge](https://en.wikipedia.org/wiki/Article_processing_charge) as advertised by the journal (`value`, `currency`, `value_usd`). The listed price, not necessarily what was paid; `apc_list.value` of zero indicates a [diamond-OA](https://en.wikipedia.org/wiki/Diamond_open_access) journal.
+*Object.* The work's list-price [article processing charge](https://en.wikipedia.org/wiki/Article_processing_charge) as advertised by the journal (`value`, `currency`, `value_usd`). The listed price, not necessarily what was paid. Null when the journal has no list price on record. A fully-OA journal with no price on record (null or zero) makes its works [`diamond`](/data/works/open-access/#oa-statuses): "no fee on record", which is not always a journal that charges nothing.
 
 ### `apc_paid`
 *Object.* OpenAlex's best *estimate* of the APC actually paid (`value`, `currency`, `value_usd`): the article's own charge from [OpenAPC](https://openapc.net/) when OpenAPC has it (then always in EUR), otherwise the list price for gold and hybrid works. No field says which of the two a value came from, so you can't filter to OpenAPC values only.

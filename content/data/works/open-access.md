@@ -1,6 +1,6 @@
 ---
 title: "Open access"
-updated: 2026-11-13
+updated: 2026-11-23
 description: "How OpenAlex determines whether a work is Open Access — the status taxonomy (diamond, gold, green, hybrid, bronze), OA locations, best-location selection, and licenses."
 tags: ["reference"]
 source_id: "24347035046295"
@@ -26,16 +26,17 @@ Beyond the yes/no of `is_oa`, OpenAlex assigns every work an **OA status** — t
 
 | Status | Meaning | Works |
 |---|---|---|
-| [`diamond`](https://en.wikipedia.org/wiki/Diamond_open_access) | Published in a fully-OA journal that charges no article processing charges — free for both readers and authors | ~17M (5%) |
-| `gold` | Published in a fully-OA journal | ~15M (5%) |
+| [`diamond`](https://en.wikipedia.org/wiki/Diamond_open_access) | Published in a fully-OA journal with no article processing charge (APC) on record: either the journal is known to charge none, or OpenAlex has no fee for it yet (see below) | ~17M (5%) |
+| `gold` | Published in a fully-OA journal that has an APC on record | ~15M (5%) |
 | `green` | Toll-access on the publisher landing page, but a free copy exists in an [OA repository](https://en.wikipedia.org/wiki/Open-access_repository) | ~66M (21%) |
 | `hybrid` | Free under an open license in a toll-access journal | ~9M (3%) |
 | `bronze` | Free to read on the publisher landing page, but without an identifiable open license | ~14M (4%) |
 | `closed` | Everything else | ~202M (63%) |
 
-Two things follow from these definitions that often surprise people:
+Three things follow from these definitions that often surprise people:
 
 - **Status depends on the journal, not just the article.** The same freely readable article is `gold` (or `diamond`) in a fully-OA journal but `hybrid` or `bronze` in a toll-access one. How OpenAlex determines whether a journal is fully OA — including journals that "flipped" to OA partway through their run — is covered in [Journal quality & OA status](/data/sources/#about).
+- **Diamond means "no fee on record", not a confirmed free journal.** OpenAlex calls a work `diamond` when its journal is fully OA and the journal's [APC list price](/data/sources/#apc-data) is zero or missing. Many fully-OA journals' fees aren't on record yet, so some `diamond` works sit in journals that do charge authors. When we record a journal's fee, its works become `gold`. If a journal that charges an APC shows as `diamond`, [file a ticket](https://openalex.org/contact) with a link to the journal's fee page.
 - **The hybrid/bronze line is drawn by license.** A free-to-read article in a toll-access journal is `hybrid` if it carries an open license and `bronze` if it doesn't. What counts as an open license is defined below.
 
 You can filter and group works by status — for example, [group all works by `oa_status`](https://api.openalex.org/works?group_by=open_access.oa_status) — so the taxonomy is countable, not just descriptive.
