@@ -1,6 +1,6 @@
 ---
 title: "Curations"
-updated: 2026-11-18
+updated: 2026-11-23
 description: "What a curation is, who can file one, the review states it moves through, and how an accepted curation flows into the entity it corrects."
 tags: ["reference"]
 entity:
@@ -39,7 +39,7 @@ Every curation row carries the submitting `user_id`, so the audit trail of "who 
 A curation is submitted, reviewed, and then either applied to the live data or not:
 
 1. **Submitted.** The request lands as one row with `status: "pending"`, `is_applied: false` and `applied_at: null`. Submitting the same curation twice (same user, entity, entity_id, value, action) returns the existing row rather than creating a duplicate, so re-submitting is idempotent. A change that is already live is skipped, unless an earlier curation of the same item that says otherwise is still waiting: then the new one is recorded, and the newest wins.
-2. **Reviewed and applied.** Curations are picked up by the next nightly refresh of the pipeline, which starts at 05:00 UTC each day — so an accepted change is usually live within one to two days ([what updates when](/how-to/when-corrections-go-live/)). When a curation is seen in the live data, its `status` becomes `applied`, `is_applied` flips to `true` and `applied_at` records the time.
+2. **Reviewed and applied.** Curations are picked up by the next nightly refresh of the pipeline, which starts at 03:00 UTC each day — so an accepted change is usually live within one to two days ([what updates when](/how-to/when-corrections-go-live/)). When a curation is seen in the live data, its `status` becomes `applied`, `is_applied` flips to `true` and `applied_at` records the time.
 
 The [`status`](#status) field says where each curation stands in one word; every OpenAlex surface (the website, the connector, this API) shows the same word.
 

@@ -1,6 +1,6 @@
 ---
 title: "When corrections go live"
-updated: 2026-11-16
+updated: 2026-11-23
 description: "How long a correction takes to show up in OpenAlex, which parts of the website and API update first, what happens to emptied profiles and removed works, and how to check on a correction."
 tags: ["fixing"]
 synonyms: ["how long", "when will my correction show up", "correction not showing", "changes not showing", "curation pending", "profile not updated", "works count wrong", "merged profile still there", "empty profile", "deleted profile", "redirect", "delay", "timeline", "nightly update", "data refresh"]
@@ -10,9 +10,9 @@ Every correction to OpenAlex goes live through the same nightly update. That inc
 
 ## How long does a correction take?
 
-OpenAlex rebuilds its data once a day. The update starts at **05:00 UTC** and picks up every correction submitted before it starts. It then takes several hours to build and publish. Search results usually show it by mid-afternoon UTC, or by early evening after a heavy night.
+OpenAlex rebuilds its data once a day. The update starts at **03:00 UTC** (9 PM US Central the evening before) and picks up every correction submitted before it starts. It then takes several hours to build and publish. On a typical day the API shows it by about 13:00 UTC and the [daily snapshot](/access/sync/) has it by about 12:00 UTC; after a heavy night, by mid-afternoon UTC.
 
-So a correction made just before 05:00 UTC can be live that afternoon. One made just after has to wait for the next night's update, which means about a day and a half. Either way, **expect one to two days**. A few take longer, so give a correction a week before you write to us about it.
+So a correction made just before 03:00 UTC can be live later that day. One made just after has to wait for the next night's update, which means about a day and a half. Either way, **expect one to two days**. A few take longer, so give a correction a week before you write to us about it.
 
 ## Which parts update first?
 
