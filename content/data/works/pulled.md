@@ -1,6 +1,6 @@
 ---
 title: "Pulled works"
-updated: 2026-11-23
+updated: 2026-11-24
 description: "A work is pulled when its publisher, host or authors retracted, withdrew or removed it. OpenAlex keeps pulled works, marks them with is_pulled, links each to its retraction, withdrawal or removal notice where it holds one (pull_notice_works), and leaves them out of lists, searches and counts unless you add include_pulled=true."
 tags: ["reference"]
 synonyms: ["retracted", "retraction", "retracted works", "withdrawn", "withdrawal", "removed", "pulled", "is_pulled", "include_pulled", "is_retracted", "retraction watch", "retraction notice", "pull notice", "pull_notice_works", "notice of retraction"]
@@ -49,7 +49,7 @@ curl "https://api.openalex.org/works?search=ivermectin&include_pulled=true"
 curl "https://api.openalex.org/works?filter=is_pulled:true&include_pulled=true"
 ```
 
-A filter or `group_by` that names `is_pulled` or `is_retracted`, or a [`pull_notice_works.link_type` or `pull_notice_works.id`](#pull-notices) filter, asks about pulled works, so it brings them back too, exactly as if you had added `include_pulled=true`. `include_pulled=false` keeps them out even then.
+A filter or `group_by` that names `is_pulled` or `is_retracted`, or a [`pull_notice_works.link_type` or `pull_notice_works.id`](#pull-notices) filter, asks about pulled works, so it brings them back too, exactly as if you had added `include_pulled=true`. So does a filter that looks works up by an identifier, such as `doi:`, `openalex:`, `pmid:`, `pmcid:`, `arxiv:` or `mag:`: `filter=doi:10.4049/jimmunol.169.8.4594` finds that paper although it was retracted, and a batch of DOIs (`doi:a|b|c`) keeps its pulled ones. `include_pulled=false` keeps them out even then.
 
 So `filter=is_retracted:false` no longer means "the default view without retracted works". It means every work that isn't retracted, withdrawn ones included. To leave pulled works out, add nothing.
 
