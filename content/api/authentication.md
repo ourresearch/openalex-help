@@ -48,7 +48,7 @@ The answer carries the key:
 
 **Ask your user for their email address; never invent one.** We email that address, and the key works only after its owner clicks the link, so a made-up address gets you nothing. Placeholders like `you@example.com` and addresses named after an agent (`claude@…`, `gpt.user@…`) are refused.
 
-**People who already have an account get a key the same way.** The answer is the same `201` with a key, and the email asks the owner to approve it. The key works once they click; it spends from their account's free $1 a day and never from prepaid credit. If the account already has a working key an assistant asked for, you get `409 agent_key_exists`: the person copies that key from [Settings → API key](https://openalex.org/settings/api-key), or revokes it there so you can ask for a new one.
+**People who already have an account get a key the same way.** The answer is the same `201` with a key, and the email asks the owner to approve it. The key works once they click; it spends from their account's free $1 a day and never from prepaid credit. If the account already has a working key an assistant asked for, you get `409 agent_key_exists`. Only the assistant that asked ever sees that key: [Settings → API key](https://openalex.org/settings/api-key) shows just its last four characters, so the person can't copy it from there. If you've lost it, the person revokes it in Settings and you ask again, or they copy their own key from Settings and paste it into the chat.
 
 The body can also carry `"name"` (the person's name) and `"agent"` (what's asking, such as `"Claude Code"`). An `Idempotency-Key` header (a fresh UUID) makes a retry return the same key instead of an error.
 
@@ -56,7 +56,7 @@ The body can also carry `"name"` (the person's name) and `"agent"` (what's askin
 |----------|---------------|
 | `201` | Here's the key. |
 | `400` | The address is missing, malformed, a placeholder, or one we can't email. Ask the person for theirs. |
-| `409 agent_key_exists` | The account already has a working key an assistant asked for. The person copies it from Settings → API key, or revokes it there so you can ask again. |
+| `409 agent_key_exists` | The account already has a working key an assistant asked for. Settings shows only its last four characters, so the person can't copy it: they revoke it in Settings → API key so you can ask again, or give you their own key from there. |
 | `409 activation_pending` | A key for a new account at this address is waiting for activation. The person clicks the emailed link (we resend it at most once a day). |
 | `403 key_not_activated` | (On any API call with the key.) The person hasn't clicked the link yet. |
 | `429` | Too many keys from this network or email domain today, or we've already emailed this address about keys three times today (`rate_limit_address`: the person clicks the latest email). The person can also [sign up](https://openalex.org/signup) on the website. |
