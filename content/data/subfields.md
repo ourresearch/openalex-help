@@ -1,6 +1,6 @@
 ---
 title: "Subfields"
-updated: 2026-10-26
+updated: 2026-11-24
 description: "What a subfield is, where it sits in the OpenAlex classification hierarchy, and what every attribute on a subfield object means."
 tags: ["reference"]
 source_id: "24736129405719"
@@ -18,7 +18,7 @@ A **subfield** is the third level of OpenAlex's four-level classification hierar
 
 ## About
 
-Subfields aren't classified on their own — they're a level of the same hierarchy [topics](/data/topics/) are built from. Each of the ~4,500 topics is mapped to a single subfield using Scopus's [ASJC categories](https://service.elsevier.com/app/answers/detail/a_id/12007/supporthub/scopus/), and a work "belongs to" a subfield through the topics assigned to it. The subfield **labels** are standardized (the 252 ASJC-derived groupings), but a work lands in one only because a machine-learning model inferred its topic from the work's text — which is why subfields, like the rest of the hierarchy, live under [Aboutness](/data/aboutness/) rather than [Vocabulary](/data/vocabulary/). See [Topics → About](/data/topics/#about) for the full assignment pipeline, including the deliberate choice to give every work a single **primary subfield** from its own text (not from its journal).
+Subfields aren't classified on their own — they're a level of the same hierarchy [topics](/data/topics/) are built from. Each of the ~4,500 topics is mapped to a single subfield using Scopus's [ASJC categories](https://service.elsevier.com/app/answers/detail/a_id/12007/supporthub/scopus/), and a work "belongs to" a subfield through the topics assigned to it. Which topics a subfield holds can change: in November 2026, 1,001 topics moved to another subfield, and two subfields (1502 Bioengineering and 3614 Radiological and Ultrasound Technology) now hold none. Every move is listed on [Topic hierarchy changes](/data/topic-hierarchy-changes/). The subfield **labels** are standardized (the 252 ASJC-derived groupings), but a work lands in one only because a machine-learning model inferred its topic from the work's text — which is why subfields, like the rest of the hierarchy, live under [Aboutness](/data/aboutness/) rather than [Vocabulary](/data/vocabulary/). See [Topics → About](/data/topics/#about) for the full assignment pipeline, including the deliberate choice to give every work a single **primary subfield** from its own text (not from its journal).
 
 A work's primary subfield is the subfield of its [`primary_topic`](/data/works/attributes/#primary_topic). To find works in a subfield, filter [Works](/data/works/) by `topics.subfield.id` (any assigned topic's subfield) or `primary_topic.subfield.id` (the primary only). One level up is a [field](/data/fields/); one level down is a set of [topics](/data/topics/).
 
