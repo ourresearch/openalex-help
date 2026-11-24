@@ -1,9 +1,9 @@
 ---
 title: "Fixing authors"
-updated: 2026-11-16
+updated: 2026-11-23
 description: "Claim your OpenAlex author profile and fix it yourself: add and remove works, merge duplicates, and correct your names."
 tags: ["fixing"]
-synonyms: ["author profile", "claim profile", "merge profiles", "alternate names", "wrong works", "ORCID", "link ORCID", "connect ORCID", "sync ORCID", "import from ORCID", "claim verification"]
+synonyms: ["author profile", "claim profile", "merge profiles", "alternate names", "wrong works", "ORCID", "link ORCID", "connect ORCID", "sync ORCID", "import from ORCID", "claim verification", "change email", "new email", "lost email", "log in with ORCID"]
 card: "No ticket needed — claim it and fix it yourself: works, name variants, merged twins."
 ---
 Your author profile is the big self-serve case in OpenAlex: you don't need to file a ticket — claim the profile and fix it yourself. This page is the recipes; the full story (everything you can change, how curations work, the API) is in the [Authors fixing-errors reference](/access/fixing-errors/authors/).
@@ -43,6 +43,20 @@ We check every link automatically and answer in a few minutes. If we can't appro
 If an OpenAlex profile carries your iD, we claim it for you. Linking doesn't import works from your ORCID record: [add and remove works](#how-do-i-add-or-remove-works) yourself, as with any claimed profile.
 
 To unlink, use the **⋮** menu next to **✓ Linked**. Your claimed profile stays yours.
+
+## How do I change the email on my account?
+
+Your claimed profile belongs to your OpenAlex account, not to one email address, so it moves with you when you change jobs.
+
+1. Sign in and open [Settings](https://openalex.org/settings/profile). Under **Emails**, click **Add email** and enter the new address.
+2. Click the link we send to that address.
+3. In the **⋮** menu next to the new address, choose **Make primary**. You can then remove the old one.
+
+Your claim, API key and saved searches stay as they were.
+
+**Lost access to your old email?** If you linked your ORCID to your account, choose **Log in with ORCID** on the [login page](https://openalex.org/login), then add your new email as above.
+
+**Already made a second account with the new email?** An address can be on only one account. Sign in with the new address and delete that account in [Settings](https://openalex.org/settings/profile) (**Delete account**; it takes that account's own saved searches and curations with it). Then add the address to the account that holds your profile.
 
 ## How do I add or remove works?
 
