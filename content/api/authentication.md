@@ -13,7 +13,7 @@ OpenAlex data is free, and so is casual use of the API — you can make basic qu
 
 It's free, and there are two ways to get one:
 
-- **On the website.** [Make an account](https://openalex.org/signup) (about 30 seconds), then copy your key from [Settings → API key](https://openalex.org/settings/api-key).
+- **On the website.** [Make an account](https://openalex.org/signup) (about 30 seconds), then copy your key from [Settings → API key](https://openalex.org/settings/api-key) (**Copy**, or **Show** to see it and select it).
 - **From your AI agent.** If you work with a coding agent (Claude Code, Codex, Cursor and the like), give it your email address and let it [ask for a key](#getting-a-key-for-your-user). You click one link in the email we send, and the agent's key starts working. Nothing to copy or paste.
 
 Either way, a key works only once its email address is verified. So there are just two states: no key, or a key with a verified email.

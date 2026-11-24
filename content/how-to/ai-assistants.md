@@ -64,7 +64,7 @@ Claude reads the docs and calls the API itself, from its code tool. Most questio
 **In other assistants, paste your key.** Sign in to the assistant first: logged out, ChatGPT can't open API links at all.
 
 1. Sign in at [openalex.org](https://openalex.org) (a free account takes a minute; the login link arrives by email).
-2. Open **Settings → API key** and copy the key.
+2. Open **Settings → API key** and click **Copy** (or **Show**, then select the key and copy it).
 3. Start a chat and paste it in with your question, like this:
 
 > My OpenAlex API key is `xxxxxxxx`. Using the OpenAlex API (the docs are at help.openalex.org), find the 25 most-cited papers about microplastics in drinking water since 2022 and list them with title, year, journal, citation count and DOI.
