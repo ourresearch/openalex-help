@@ -1,6 +1,6 @@
 ---
 title: "Deprecations"
-updated: 2026-11-21
+updated: 2026-11-24
 description: "Deprecated features and migration guides"
 tags: ["api"]
 source_id: "guides/deprecations"
@@ -112,7 +112,7 @@ The new `awards` entity provides detailed award information including DOIs when 
 **Already working in the API, so you can switch now:**
 
 - The endpoint [`/link-types`](https://api.openalex.org/link-types) and single records like [`/link-types/review`](https://api.openalex.org/link-types/review), with IDs `https://openalex.org/link-types/<value>`.
-- `link_type` on every [`/links`](/data/links/) result, as a full ID (`https://openalex.org/link-types/citation`), beside the old `relationship` (`https://openalex.org/relationships/citation`).
+- `link_type` on every [`/links`](/data/links/) result, as a full ID (`https://openalex.org/link-types/citation`). `/links` dropped the old `relationship` early, on 24 November 2026, before links were announced: results carry only `link_type`, and the `relationship:` filter answers an error naming `link_type`.
 - `link_type` on every entry of a work's [`parent_works`](/data/works/attributes/#parent_works), as a short value (`volume`), beside the old `relationship`.
 - The filters `link_type:` on `/links` and `parent_works.link_type:` on works, and `group_by=parent_works.link_type`. Group keys are the same short values under either name.
 
@@ -124,9 +124,9 @@ The new `awards` entity provides detailed award information including DOIs when 
 |---|---|
 | `/relationships`, `/relationships/<value>` and every path under them, and `/work-relationships/...` | Redirect (301) to the same path under `/link-types`, query string kept, until at least 1 March 2027. Point your code at `/link-types`: some HTTP clients don't follow redirects |
 | Link type IDs `https://openalex.org/relationships/<value>` | `https://openalex.org/link-types/<value>`. The API still accepts the old form as input until 1 March 2027. If you store these IDs or join on them, map `/relationships/` to `/link-types/` |
-| `relationship` on `/links` results | Removed: read `link_type` |
+| `relationship` on `/links` results | Already removed (24 November 2026): read `link_type` |
 | `parent_works[].relationship` on works | Removed: read `parent_works[].link_type` |
-| Filter `relationship:` on `/links` | Still works, read as `link_type:`, until 1 March 2027; then an error that names `link_type` |
+| Filter `relationship:` on `/links` | Already removed (24 November 2026): an error that names `link_type` |
 | Filter and group_by `parent_works.relationship` on works | Still work, read as `parent_works.link_type`, until 1 March 2027; then an error that names the new name |
 
 **A large update that day.** The 83.6 million works that have parent works (about a fifth of all works) take a new `updated_date` on 7 December, so a copy kept up to date by `updated_date` (the API's `from_updated_date` filter, or the snapshot's updated files) receives each of them again, with the new name. If you sync that way, plan for that day's update being several times its usual size. The rename changes nothing else in those works.
@@ -263,7 +263,7 @@ Before February 2026, OpenAlex used a "polite pool" system where you could get h
 | `include_xpac` / `is_xpac` filter | Deprecated | Migrate to `corpus=` |
 | `sustainable_development_goals_aurora` | Removed (2 November 2026) | Use `sustainable_development_goals` |
 | `volume` on works, `volume.id` | Removed (14 November 2026) | Use `parent_works`, `parent_works.id` |
-| `/relationships`, `relationship` | Renamed; old fields removed 7 December 2026 (old filter names read until 1 March 2027) | Use `/link-types`, `link_type` |
+| `/relationships`, `relationship` | Renamed; removed from `/links` 24 November 2026, from works 7 December 2026 (old works filter names read until 1 March 2027) | Use `/link-types`, `link_type` |
 
 ## Staying Updated
 

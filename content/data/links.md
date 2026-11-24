@@ -1,6 +1,6 @@
 ---
 title: "Links"
-updated: 2026-11-23
+updated: 2026-11-24
 description: "Work-to-work links: each joins two works and has a link type (a citation, a review, a pull notice such as a retraction, or a part-of link such as a chapter in its book). How to list a work's links out and in, its reviews and the notices that pulled it, with the /links endpoint."
 tags: ["reference"]
 entity:
@@ -48,9 +48,6 @@ Every work counts, including works the default works view leaves out ([expansion
 ### `link_type`
 *String.* The [link type](/data/link-types/#values)'s OpenAlex ID, such as `https://openalex.org/link-types/citation`. The eleven are `citation`, `review`, `translation`, `summary`, `retraction`, `withdrawal`, `removal`, `volume`, `component`, `data-series` and `part`.
 
-### `relationship`
-*String.* The same link type under its old name and ID form, such as `https://openalex.org/relationships/citation`. Served until Monday 7 December 2026, then removed: read `link_type` instead ([Deprecations](/api/deprecations/#relationships-renamed-link-types)).
-
 ### Why `origin` and `target`
 
 `target` is the usual word for the far end of a link, on the web and in graph tools. The usual word for the near end, `source`, is already an OpenAlex entity (the journal or repository a work appears in), and `from` and `to` are reserved words in Python and SQL, so they would need quoting in pyalex and in queries on the snapshot.
@@ -83,9 +80,9 @@ https://api.openalex.org/links?filter=origin:W2117905317,target:W88818295
 ```
 
 - `origin` and `target` take one work ID, short (`W2741809807`) or full. A merged-away ID is read as the work it was merged into, and named in `meta.merged_ids`.
-- `link_type` takes `citation`, `review`, `translation`, `summary`, `retraction`, `withdrawal`, `removal`, `volume`, `component`, `data-series` or `part` (the short value or the full ID). The old filter name `relationship` works too, until 1 March 2027.
+- `link_type` takes `citation`, `review`, `translation`, `summary`, `retraction`, `withdrawal`, `removal`, `volume`, `component`, `data-series` or `part` (the short value or the full ID).
 - Order: no order is promised yet; links come back in the order they are stored. To get one kind, such as a work's reviews or its figures, filter on `link_type`.
 - Paging works as on every list: `page` and `per_page` (up to 200) for the first 10,000 links, and [cursor paging](/api/paging/) for all of them. A cursor walk sees the links as they were when it started; ask for each next page within 5 minutes, or start again with `cursor=*`.
 - `/links` has no `sort`, `group_by`, `search` or `select`. To count or group the works on either side, use the [works](/data/works/) filters `cites`, `referenced_works`, `parent_works.id`, `lineage`, `reviewed_by_count` and `pull_notice_works.id`.
 
-Until 18 November 2026 the fields were `from` and `to`, each with an `id` and `display_name`, and `relationship` was the bare value (`citation`). The `from:` and `to:` filters now answer an error naming the new ones.
+Until 18 November 2026 the fields were `from` and `to`, each with an `id` and `display_name`, and `relationship` was the bare value (`citation`). The `from:` and `to:` filters now answer an error naming the new ones. Until 24 November 2026 each link also carried `relationship`, the old name of `link_type` (`https://openalex.org/relationships/citation`); it is gone from results, and the `relationship:` filter now answers an error naming `link_type`.

@@ -1,6 +1,6 @@
 ---
 title: "Link types"
-updated: 2026-11-23
+updated: 2026-11-24
 description: "The kinds of link between two works: citation, review, translation, summary, the pull notices (retraction, withdrawal, removal) and the part-of kinds (volume, component, data series, part); what counts as a review, a translation, a summary or a pull notice, how each type maps to Crossref, DataCite, NISO, COPE, Retraction Watch, PubMed, Wikidata and other vocabularies, and how to list a work's reviews, translations, summaries, notices or parts."
 tags: ["reference"]
 entity:
@@ -12,7 +12,7 @@ entity:
 ---
 A **link type** is the kind of [link](/data/links/) between two [works](/data/works/): a citation, a review, a translation, a summary, a pull notice (a notice that retracts, withdraws or removes another work), or a part-of link (a chapter in a book, a figure of a paper, one record of a data series). There are eleven: `citation`, `review`, `translation`, `summary`, the three pull notices and the four part-of kinds. A work lists its pull notices in [`pull_notice_works`](/data/works/attributes/#pull_notice_works) and its parents in [`parent_works`](/data/works/attributes/#parent_works). A link type's OpenAlex ID looks like `https://openalex.org/link-types/review`; list them all at [`api.openalex.org/link-types`](https://api.openalex.org/link-types), and list a work's links at [`/links`](/data/links/).
 
-**Renamed from "relationships".** Until Monday 7 December 2026 this vocabulary is also served under its old name: the `/relationships` endpoint, the `relationship` field on `/links` and on `parent_works`, and the `relationship` and `parent_works.relationship` filters. On 7 December the old fields stop being returned (the old filter names are read until 1 March 2027). The new names work in the API now; the snapshot switches on 7 December. The full list of what changes: [Deprecations › relationships renamed link types](/api/deprecations/#relationships-renamed-link-types).
+**Renamed from "relationships".** Until Monday 7 December 2026 this vocabulary is also served under its old name: the `/relationships` endpoint, the `relationship` field on `parent_works`, and the `parent_works.relationship` filter. On 7 December the old field stops being returned (the old filter name is read until 1 March 2027). [`/links`](/data/links/) dropped its `relationship` field and filter early, on 24 November 2026, before links were announced. The new names work in the API now; the snapshot switches on 7 December. The full list of what changes: [Deprecations › relationships renamed link types](/api/deprecations/#relationships-renamed-link-types).
 
 ## About
 
