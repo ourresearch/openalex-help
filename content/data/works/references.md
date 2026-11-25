@@ -1,6 +1,6 @@
 ---
 title: "Reference lists"
-updated: 2026-11-23
+updated: 2026-11-25
 description: "Each work's reference list, line by line: the text of each reference, the DOI its source gave, and the OpenAlex work it links to. Served at /works/{id}/references."
 tags: ["reference"]
 ---
@@ -28,7 +28,7 @@ A work's **reference list** is the list of references printed at the end of the 
 }
 ```
 
-(Three of its 55 lines: one we couldn't match, one matched by its text, one the publisher gave only as a DOI.)
+(Three of its 52 lines: one we couldn't match, one matched by its text, one the publisher gave only as a DOI.)
 
 A work's [`referenced_works`](/data/works/attributes/#referenced_works) lists only the references we matched to a work. The reference list shows every line, matched or not, so you can see what a paper cites that isn't in OpenAlex, and the line each citation came from.
 
@@ -42,11 +42,11 @@ The list then has up to two more groups of lines, in this order:
 
 1. **Every line of that list, in printed order.**
 2. **Lines from the work's other lists** that link to a work the first list doesn't, once each, with that list's text.
-3. **Citations with no printed line**, with both `raw_reference_string` and `raw_doi` null: links in `referenced_works` that come from no reference list we hold, mostly ones inherited from Microsoft Academic Graph.
+3. **Citations with no printed line**, with both `raw_reference_string` and `raw_doi` null: links in `referenced_works` inherited from Microsoft Academic Graph. Since 25 November 2026 a work keeps these only when its own reference lists link no work at all, mostly works we hold no list for.
 
 So the `work_id`s on a work's list are exactly its `referenced_works`: the same works, from the same matches, updated together. The list is usually longer, since unmatched lines are on it (with `work_id` null) and two lines can link to one work. `referenced_works` stops at 5,000 works; the reference list has no limit.
 
-About 172 million works have a reference list (November 2026), with about 4.9 billion lines between them, 3.7 billion of them linked to a work. A work with no reference list answers an empty list.
+About 165 million works have a printed reference list (November 2026), and 8.5 million more list only citations with no printed line: 4.8 billion lines in all, 3.5 billion of them linked to a work. A work with no reference list answers an empty list.
 
 ## Attributes
 
