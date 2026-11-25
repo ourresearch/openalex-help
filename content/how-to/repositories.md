@@ -1,6 +1,6 @@
 ---
 title: "Repositories"
-updated: 2026-11-21
+updated: 2026-11-25
 description: "For repository managers: how to get harvested by OpenAlex, check your Harvest tab, allowlist our harvester, troubleshoot coverage, and report a problem so it gets fixed."
 tags: ["data"]
 synonyms: ["add my repository", "register repository", "institutional repository", "OAI-PMH endpoint", "not being harvested", "records missing", "harvest status", "DSpace", "EPrints", "Digital Commons", "firewall", "allowlist", "IP address", "user agent", "bot wall", "Cloudflare", "Anubis", "page checks", "landing pages", "repository bug", "report a problem", "endpoint changed", "migrated repository", "expansion corpus", "coverage"]
@@ -29,7 +29,7 @@ Three or four example DOIs of open-access articles in the repository:
 
 That's the whole registration. We verify the endpoint, add it, and reply. If we need something else (a set name, a metadata prefix, an allowlist entry on your side) we'll ask; you don't need to validate anything before writing. Your receipt is the Harvest tab on your new source: once the endpoint is on file it appears there, and the first harvest pulls your whole back catalog, which can take a few days for a large or slow repository.
 
-Running a **journal on OJS**? A journal belongs in [Crossref](/how-to/getting-indexed/#how-do-i-get-my-journal-indexed-in-openalex), not here, but OJS's built-in OAI-PMH endpoint can also be registered the same way. See [Getting indexed](/how-to/getting-indexed/#how-do-i-get-my-repository-indexed-in-openalex) for which path fits.
+Running a **journal on OJS**? A journal belongs in [Crossref](/how-to/getting-indexed/#how-do-i-get-my-journal-indexed-in-openalex), not here, but OJS's built-in OAI-PMH endpoint can also be registered the same way. See [Getting indexed](/how-to/getting-indexed/#how-do-i-get-my-repository-indexed-in-openalex) for which path fits, and [Metadata for publishing platforms](/how-to/platform-metadata/) for how a journal's own feed can count as the publisher's copy.
 
 ## Is my endpoint harvestable?
 
@@ -162,7 +162,7 @@ A recognized open license or access statement can establish OA without a success
 
 ### The license
 
-Put your license in `dc:rights`, as its URL or name. The ordinary `oai_dc` parser doesn't read `dc:license`, `dcterms:license`, `dcterms:accessRights` or `oaire:licenseCondition` for this purpose. These values establish OA for records that pass the other ingest checks:
+Put your license in `dc:rights`, as its URL or name. When `dc:rights` names no license we recognize (a copyright line, say), we also look in `dcterms:license` and `dcterms:accessRights`; the ordinary `oai_dc` parser doesn't read `dc:license` or `oaire:licenseCondition`. These values establish OA for records that pass the other ingest checks:
 
 | In `dc:rights` | Normalized metadata license |
 |---|---|
@@ -172,7 +172,7 @@ Put your license in `dc:rights`, as its URL or name. The ordinary `oai_dc` parse
 | `https://creativecommons.org/licenses/by-nc/4.0/` or `CC BY-NC 4.0` | `cc-by-nc` |
 | `https://creativecommons.org/licenses/by-nc-sa/4.0/` or `CC BY-NC-SA 4.0` | `cc-by-nc-sa` |
 | `https://creativecommons.org/licenses/by-nc-nd/4.0/` or `CC BY-NC-ND 4.0` | `cc-by-nc-nd` |
-| `https://creativecommons.org/publicdomain/zero/1.0/` (the URL; a bare `CC0` isn't recognised) | `public-domain` |
+| `https://creativecommons.org/publicdomain/zero/1.0/` or `CC0 1.0` | `public-domain` |
 | `https://creativecommons.org/publicdomain/mark/1.0/` or `Public domain` | `public-domain` |
 | `info:eu-repo/semantics/openAccess` | `other-oa` (open, without a specific license) |
 

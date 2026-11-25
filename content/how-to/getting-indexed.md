@@ -1,6 +1,6 @@
 ---
 title: "Getting indexed"
-updated: 2026-11-15
+updated: 2026-11-25
 description: "How to get your own work, your journal or your repository into OpenAlex."
 tags: ["general"]
 synonyms: ["journal indexing", "repository indexing", "add my journal", "add my repository", "add my paper", "missing paper", "work without a DOI", "add my report"]
@@ -24,7 +24,7 @@ Once your DOIs are registered, no separate OpenAlex submission is needed: new re
 
 Check whether we already harvest you at [openalex.org/sources?filter=type:repository](https://openalex.org/sources?filter=type:repository); if not, email [support@openalex.org](mailto:support@openalex.org?subject=Add%20my%20repository) with your OAI-PMH endpoint URL and we'll add it. That's the whole process: no form, no validator. The full recipe, the endpoint checklist, and how to read your source's Harvest tab afterwards are on [Repositories](/how-to/repositories/#how-do-i-get-my-repository-harvested-by-openalex).
 
-**Running a journal on OJS?** OJS exposes an OAI-PMH endpoint, so journals often ask to be registered as repositories. Which path fits depends on DOIs. If your articles have Crossref DOIs, nothing more is needed: they arrive through Crossref, with the journal as their source. If they don't, we can harvest your OJS endpoint like a repository, but matching and metadata are weaker that way, and the lasting fix is still to register DOIs.
+**Running a journal on OJS?** OJS exposes an OAI-PMH endpoint, so journals often ask to be registered as repositories. Which path fits depends on DOIs. If your articles have Crossref DOIs, nothing more is needed: they arrive through Crossref, with the journal as their source. If they don't, we can harvest your OJS endpoint like a repository, but matching and metadata are weaker that way, and the lasting fix is still to register DOIs. Running a platform for several journals? [Metadata for publishing platforms](/how-to/platform-metadata/) covers what we read from Crossref, your pages and your feed, and how to get each journal's feed counted as the publisher's copy.
 
 ## My journal or repository is indexed, but works are missing. What now?
 

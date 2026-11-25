@@ -1,6 +1,6 @@
 ---
 title: "Repositories"
-updated: 2026-11-21
+updated: 2026-11-25
 description: "How repository content gets into OpenAlex — OAI-PMH harvesting, matching records to works by DOI or title, locating full text, and why a repository's work count can look smaller than expected."
 tags: ["reference"]
 source_id: "41193798254743"
@@ -51,7 +51,7 @@ DOI matching is greatly preferred, because it's an exact one-to-one match.
 
 - Put the article's DOI in a [`<dc:identifier>`](https://www.dublincore.org/specifications/dublin-core/dcmi-terms/#terms-identifier) element in the OAI-PMH record, formatted like `<dc:identifier>doi:YOUR_DOI</dc:identifier>`.
 - There should be only one identifier element containing a DOI.
-- If an identifier element can't be used, put the DOI in a `<dc:relation>` element instead, formatted the same way. If more than one relation element contains a DOI, OpenAlex assumes they belong to the article's references rather than the article itself.
+- Only `dc:identifier` is read for the DOI. A DOI in `<dc:relation>` isn't used: that element names related resources, such as works the article cites.
 - **If you mint your own DOIs for deposits of already-published papers, put the publisher's DOI in the record too.** A record whose only DOI is a repository-minted one looks to us like a different paper, so it is minted as a separate work instead of becoming a location on the published one. The published DOI is what lets us group them.
 
 ### Matching by title and author
@@ -109,7 +109,7 @@ or as its name:
 <dc:rights>CC BY-NC 4.0</dc:rights>
 ```
 
-For ordinary `oai_dc` records, we read only `dc:rights` for license metadata. If several values are present, we select the first containing the exact lowercase text `creativecommons.org`; otherwise we select the first value. Creative Commons flavors, public-domain statements, and `info:eu-repo/semantics/openAccess` (which we record as open but not as a specific license) are all recognized.
+For ordinary `oai_dc` records, `dc:rights` is where we read license metadata; only when it names no license we recognize (a copyright line, say) do we also look in `dcterms:license` and `dcterms:accessRights`. If several `dc:rights` values are present, we select the first containing the exact lowercase text `creativecommons.org`; otherwise we select the first value. Creative Commons flavors, public-domain statements, and `info:eu-repo/semantics/openAccess` (which we record as open but not as a specific license) are all recognized.
 
 OpenAlex also looks for license evidence in fetched content, whether or not your record supplies `dc:rights`. This is less accurate: it relies on full license URLs or text patterns seen before, like "distributed under the terms ..." or "This is an open access article published under ...", which may not include the pattern used by your repository software. We recommend including the license in the OAI-PMH record as shown above.
 
