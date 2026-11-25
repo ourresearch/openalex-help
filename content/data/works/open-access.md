@@ -1,6 +1,6 @@
 ---
 title: "Open access"
-updated: 2026-11-23
+updated: 2026-11-25
 description: "How OpenAlex determines whether a work is Open Access — the status taxonomy (diamond, gold, green, hybrid, bronze), OA locations, best-location selection, and licenses."
 tags: ["reference"]
 source_id: "24347035046295"
@@ -79,7 +79,7 @@ Licenses OpenAlex counts as open include:
 
 Licenses OpenAlex recognizes but does **not** count as open include the [Elsevier user license](https://www.elsevier.com/about/policies/open-access-licenses/elsevier-user-license), which doesn't allow redistribution. Expect these lists to grow and change.
 
-One pseudo-license to know about: **`implied-oa`** marks articles that the publisher labels as Open Access — typically under an APC-funded hybrid arrangement — but that carry no specific license statement OpenAlex can identify.
+One pseudo-license to know about: **`other-oa`** marks copies that are open but carry no specific license OpenAlex can name: for example, a repository record that says only `info:eu-repo/semantics/openAccess`.
 
 ## OA dates
 
