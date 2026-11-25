@@ -73,4 +73,4 @@ https://api.openalex.org/works/W2741809807/references
 - An ID merged into another work redirects to that work's list. An unknown ID answers `404`.
 - The response is the whole list: no paging, `select` or filters. Reference lists aren't in `/works` responses, and their text isn't searchable.
 - Lists are updated once a day, in the afternoon (UTC) after each night's update.
-- Reference lists aren't in the [snapshot](/access/snapshot/) yet.
+- Reference lists are in the [snapshot](/access/snapshot/) as a `references` folder: in every daily snapshot from 26 November 2026, and in the public snapshot from its next quarterly release.

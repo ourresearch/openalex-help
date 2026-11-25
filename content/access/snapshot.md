@@ -1,6 +1,6 @@
 ---
 title: "Snapshot"
-updated: 2026-11-22
+updated: 2026-11-25
 description: "The complete OpenAlex database as downloadable files — formats, S3 bucket layout, manifests, size, how it differs from the API, and how to access it (free public bucket + paid daily snapshot)."
 tags: ["downloads"]
 source_id: "download/snapshot-format"
@@ -65,7 +65,7 @@ The entity folders under each format are:
 
 | Core entities | Topic hierarchy | Lookup / aggregation entities |
 |---------------|-----------------|-------------------------------|
-| `works` | `topics` | `keywords`, `concepts` |
+| `works`, `references` | `topics` | `keywords`, `concepts` |
 | `authors` | `subfields` | `continents`, `countries` |
 | `institutions` | `fields` | `institution-types`, `source-types`, `work-types` |
 | `sources` | `domains` | `languages`, `licenses`, `sdgs` |
@@ -76,6 +76,8 @@ You can browse the bucket at [openalex.s3.amazonaws.com/browse.html](https://ope
 Records are partitioned by `updated_date`: each partition holds the records that **last changed** on that date, in part files (`part_0000.*`, `part_0001.*`, …) of up to 400,000 records each. This is what makes incremental updates cheap — see [Sync](/access/sync/) for how partitions move between releases and how to keep a copy current.
 
 The works folder additionally carries `deleted_ids.csv.gz`, a gzip-compressed log of deleted work IDs and their deletion dates; see [Deletions and merged entities](/access/sync/#deletions-and-merged-entities) for the format, its size, and how to apply it. Works is the first entity type with a deletion log; it ships in every [daily snapshot](#the-daily-snapshot-bucket-member-and-partner) (since 2026-08-15) and has been in this public bucket since the 2026-09-23 release.
+
+The `references` folder holds each work's full reference list, one record per work that has one: `id` and `references`, the same as the API's [`/works/{id}/references`](/data/works/references/). Its `updated_date` partitions are the date a work's list last changed, which can differ from the work's own `updated_date`, and its lists run one day behind the works. It ships in every daily snapshot from 2026-11-26 and reaches this public bucket with the next quarterly release.
 
 The works, authors, sources and institutions folders carry `merged_ids.csv.gz`, every merged-away ID with the ID it now resolves to — see [Merged IDs](/access/sync/#merged-ids-merged_idscsvgz). It ships in every daily snapshot from 2026-10-27 (institutions from 2026-11-17) and reaches this public bucket with the next quarterly release.
 
