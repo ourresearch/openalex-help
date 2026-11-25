@@ -52,7 +52,7 @@ DOI matching is greatly preferred, because it's an exact one-to-one match.
 - Put the article's DOI in a [`<dc:identifier>`](https://www.dublincore.org/specifications/dublin-core/dcmi-terms/#terms-identifier) element in the OAI-PMH record, formatted like `<dc:identifier>doi:YOUR_DOI</dc:identifier>`.
 - There should be only one identifier element containing a DOI.
 - Only `dc:identifier` is read for the DOI. A DOI in `<dc:relation>` isn't used: that element names related resources, such as works the article cites.
-- **If you mint your own DOIs for deposits of already-published papers, put the publisher's DOI in the record too.** A record whose only DOI is a repository-minted one looks to us like a different paper, so it is minted as a separate work instead of becoming a location on the published one. The published DOI is what lets us group them.
+- **If you mint your own DOIs for deposits of already-published papers, put the publisher's DOI in the record too, ahead of your own.** We use the first DOI we find in `dc:identifier`. A record whose only DOI, or first DOI, is a repository-minted one looks to us like a different paper, so it is minted as a separate work instead of becoming a location on the published one. The published DOI is what lets us group them.
 
 ### Matching by title and author
 
