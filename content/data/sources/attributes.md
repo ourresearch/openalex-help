@@ -1,6 +1,6 @@
 ---
 title: "Attributes"
-updated: 2026-11-20
+updated: 2026-11-26
 description: "The canonical dictionary of every attribute on a source object — what each one means, where it comes from, and its quirks."
 tags: ["reference"]
 ---
@@ -77,7 +77,7 @@ Empty when the source is on no list. Filter/group_by; also available on works as
 *Integer.* The [`apc_prices`](#apc_prices) list price converted to USD — a single comparable number across sources. Filter/sort/group_by.
 
 ### `apc_usd_by_year`
-*List.* The USD list price by year (`year`, `price`), where OpenAlex has year-specific data. Present on the object; the single-value [`apc_usd`](#apc_usd) is the filterable field.
+*List.* The source's USD list price by year (`year`, `price`), for each year with a price on record: about 12,400 journals, 2019–2025, from the [ScholCommLab APC dataset](https://doi.org/10.7910/DVN/AZ985C) (see [About](/data/sources/#apc-data)). Only observed years appear; gaps are not filled. Null for other sources. Present on the object and selectable, but not a filter: to get a publisher's price histories, filter on the publisher, select the field, and keep the rows where it isn't null, e.g. [`/sources?filter=host_organization_lineage:P4310319965,apc_usd:!null&select=id,display_name,issn_l,apc_usd_by_year`](https://api.openalex.org/sources?filter=host_organization_lineage:P4310319965,apc_usd:!null&select=id,display_name,issn_l,apc_usd_by_year) for Springer Nature and its imprints. A work's [`apc_list`](/data/works/attributes/#apc_list) takes its publication year's price from this list when there is one.
 
 ### `oa_works_count`
 *Integer.* How many of the source's [`works_count`](/data/common-attributes/#works_count) works are [open access](/data/works/open-access/). Also appears per-year inside [`counts_by_year`](#counts_by_year).
