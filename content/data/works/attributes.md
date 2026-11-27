@@ -1,6 +1,6 @@
 ---
 title: "Attributes"
-updated: 2026-11-26
+updated: 2026-11-27
 description: "The canonical dictionary of every attribute on a work object — what each one means, where it comes from, and its quirks."
 tags: ["reference"]
 ---
@@ -188,7 +188,7 @@ See [Open access](/data/works/open-access/) for how these fields combine.
 *Object.* URLs for downloading full-text content, present when [`has_content`](#has_content) indicates the format is available: `pdf` and `grobid_xml`, each a URL under `content.openalex.org` (or null). Fetching requires your API key (a free one is fine); each download is metered against your usage, and the free daily allowance covers a batch of them (see [Example costs](/access/example-costs/)). Available only through the API, not in the [snapshot](/access/snapshot/).
 
 ### `is_retracted`
-*Boolean.* True if the work is known to be retracted: the [Retraction Watch database](https://doi.org/10.13003/c23rw1d9) lists its DOI as a retracted paper (and not as reinstated), or Crossref or PubMed records a retraction of it, or its title starts "Retracted". We read Retraction Watch every day, as Crossref publishes it, so a retraction added there usually shows here the next day. A retracted paper with no DOI is flagged only through Crossref, PubMed or its title. Where these sources are wrong about one work, our curators correct it with a [curation](/data/curations/), which wins over them.
+*Boolean.* True if the work is known to be retracted: the [Retraction Watch database](https://doi.org/10.13003/c23rw1d9) lists its DOI as a retracted paper (and not as reinstated), or Crossref or PubMed records a retraction of it, or its title starts "Retracted". We read Retraction Watch every day, as Crossref publishes it, so a retraction added there usually shows here the next day. A retracted paper with no DOI is flagged only through Crossref, PubMed or its title. Where these sources are wrong about one work, our curators correct it with a [curation](/data/curations/), which wins over them. Retracted works are also [pulled](#is_pulled), except a retract-and-replace and a Cochrane review withdrawn as out of date, so works lists leave them out unless you add `include_pulled=true`; a filter on `is_retracted` brings them back. See [Pulled works](/data/works/pulled/).
 
 ### `is_pulled`
 *Boolean.* True if the work's publisher, host or authors retracted, withdrew or removed it: every retracted work (except a retract-and-replace and a Cochrane review withdrawn as out of date), plus works their publisher's Crossref record withdraws or removes and preprints or repository records their host stamps withdrawn or removed. Pulled works are left out of works lists, searches and counts unless you add `include_pulled=true`; a filter on `is_pulled`, `is_retracted`, `pull_notice_works.link_type` or `pull_notice_works.id` brings them back too. Looking a work up by ID always shows it. Its retraction, withdrawal or removal notices, where OpenAlex holds them, are in [`pull_notice_works`](#pull_notice_works). See [Pulled works](/data/works/pulled/).
